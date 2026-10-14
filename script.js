@@ -1,11 +1,53 @@
-const $=s=>document.querySelectorAll(s),nav=document.getElementById('nav'),menu=document.getElementById('menu'),hd=document.querySelector('header'),bar=document.getElementById('bar');
-menu.onclick=()=>{menu.setAttribute('aria-expanded',nav.classList.toggle('show'))};
-$('nav li>button').forEach(b=>b.onclick=e=>{const li=b.parentElement,w=li.classList.contains('open');$('nav li.open').forEach(x=>x.classList.remove('open'));if(!w)li.classList.add('open');b.setAttribute('aria-expanded',!w);e.stopPropagation()});
-document.onclick=()=>$('nav li.open').forEach(x=>x.classList.remove('open'));
-document.onkeydown=e=>{if(e.key==='Escape')$('nav li.open').forEach(x=>x.classList.remove('open'))};
-addEventListener('scroll',()=>{hd.classList.toggle('sc',scrollY>10);bar.style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%'},{passive:true});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-$('.card,.st li,details,.sh,.frame:not(.hero .frame),.q,.note,figure').forEach(el=>{const sib=[...el.parentElement.children].indexOf(el);el.classList.add('rv');el.style.transitionDelay=Math.min(sib,5)*90+'ms';io.observe(el)});
-const t=document.getElementById('type');
-if(t){const sync=()=>$('.ex').forEach(x=>x.classList.toggle('show',x.dataset.for===t.value));const q=new URLSearchParams(location.search).get('type');if(q)t.value=q;t.onchange=sync;sync();
-document.getElementById('f').onsubmit=e=>{e.preventDefault();/* TODO: send to your backend or a form service; show the message only after a successful response */const o=document.getElementById('ok');o.style.display='block';o.focus();e.target.reset();sync()}}
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  const header = document.querySelector('.site-header');
+  const scrollBar = document.getElementById('bar');
+
+  // Mobile menu toggle
+  if (toggleBtn && navLinks) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navLinks.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', isOpen);
+    });
+  }
+
+  // Dropdown toggles
+  document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const parent = trigger.closest('.has-dropdown');
+      const isOpen = parent.classList.contains('open');
+      
+      document.querySelectorAll('.has-dropdown.open').forEach(el => {
+        if (el !== parent) el.classList.remove('open');
+      });
+      
+      parent.classList.toggle('open', !isOpen);
+      trigger.setAttribute('aria-expanded', !isOpen);
+    });
+  });
+
+  // Close menus on outside click
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
+    if (navLinks && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Scroll indicator & sticky header shadow
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (header) {
+      header.classList.toggle('scrolled', scrollY > 15);
+    }
+    if (scrollBar) {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+      scrollBar.style.width = progress + '%';
+    }
+  }, { passive: true });
+});
