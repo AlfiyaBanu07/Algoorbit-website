@@ -2,6 +2,25 @@
  * ALGO ORBIT — site behaviour
  * Mobile navigation, dropdown menus, and scroll feedback.
  */
+/* ---------- Site-wide favicon (logo icon on every page) ---------- */
+(function applySiteFavicon() {
+  const FAVICON_SVG =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'>" +
+    "<rect width='40' height='40' rx='10' fill='#000'/>" +
+    "<line x1='13.5' y1='28' x2='21.5' y2='12.5' stroke='#fff' stroke-width='10' stroke-linecap='round'/>" +
+    "<circle cx='30' cy='27.5' r='5' fill='#fff'/></svg>";
+  const href = 'data:image/svg+xml,' + encodeURIComponent(FAVICON_SVG);
+
+  // Remove any older icon links so the logo icon is the only one used.
+  document.querySelectorAll('link[rel~="icon"], link[rel="shortcut icon"]').forEach((link) => link.remove());
+
+  const icon = document.createElement('link');
+  icon.rel = 'icon';
+  icon.type = 'image/svg+xml';
+  icon.href = href;
+  document.head.appendChild(icon);
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
@@ -119,5 +138,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.6 });
 
     document.querySelectorAll('[data-count]').forEach((counter) => counterObserver.observe(counter));
+  }
+
+  /* ---------- Contact page: enquiry form ---------- */
+  const enquiryForm = document.getElementById('f');
+
+  if (enquiryForm) {
+    const typeSelect = document.getElementById('type');
+    const extraGroups = enquiryForm.querySelectorAll('.ex');
+    const confirmation = document.getElementById('ok');
+
+    // Show only the extra fields that belong to the selected enquiry type.
+    const showExtraFields = (type) => {
+      extraGroups.forEach((group) => {
+        group.hidden = group.dataset.for !== type;
+      });
+    };
+
+    // Links such as contact.html?type=learner preselect the enquiry type.
+    const requestedType = new URLSearchParams(window.location.search).get('type');
+    if (typeSelect && requestedType) {
+      const match = Array.from(typeSelect.options).find((option) => option.value === requestedType);
+      if (match) typeSelect.value = requestedType;
+    }
+
+    if (typeSelect) {
+      showExtraFields(typeSelect.value);
+      typeSelect.addEventListener('change', () => showExtraFields(typeSelect.value));
+    }
+
+    enquiryForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (confirmation) {
+        confirmation.classList.add('show');
+        confirmation.focus();
+      }
+
+      enquiryForm.reset();
+      if (typeSelect) showExtraFields(typeSelect.value);
+    });
   }
 });

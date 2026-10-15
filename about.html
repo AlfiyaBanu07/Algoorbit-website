@@ -6,42 +6,33 @@
   <title>About ALGO ORBIT | Technology &amp; Learning Company</title>
   <meta name="description" content="ALGOORBIT INNOVATIONS PRIVATE LIMITED combines software engineering with industry-oriented technical education.">
   <link rel="canonical" href="https://www.algoorbit.in/about.html">
-  <link rel="icon" href="https://www.algoorbit.in/static/images/logo.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23000'/%3E%3Cline x1='13.5' y1='28' x2='21.5' y2='12.5' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='27.5' r='5' fill='%23fff'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="bar"></div>
 
-  <div class="top-bar">
-    <div class="wrap">
-      <div class="meta">
-        <span>✉ <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></span>
-        <span>☎ <a href="tel:+919482119446">+91 94821 19446</a></span>
-        <span>📍 Karkala, Udupi, Karnataka</span>
-      </div>
-      <div class="social">
-        <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/919482119446" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-    </div>
-  </div>
-
+  <!-- Header -->
   <header class="site-header">
     <div class="wrap nav-inner">
-      <a href="index.html" class="site-logo">
-        <img src="https://www.algoorbit.in/static/images/logo.png" alt="ALGO ORBIT">
+      <a href="index.html" class="site-logo" aria-label="ALGO ORBIT home">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="10"/>
+          <line x1="13.5" y1="28" x2="21.5" y2="12.5"/>
+          <circle cx="30" cy="27.5" r="5"/>
+        </svg>
+        <span class="logo-text"><span class="logo-algo">ALGO</span><span class="logo-orbit">ORBIT</span></span>
       </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
-      <nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">☰</button>
+      <nav aria-label="Primary">
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="about.html" class="active" aria-current="page">About</a></li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">Services ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">Services ▾</button>
             <div class="dropdown-menu">
               <a href="services.html#software">Software Development</a>
               <a href="services.html#consulting">IT Consulting</a>
@@ -49,7 +40,7 @@
             </div>
           </li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">For Institutions ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">For Institutions ▾</button>
             <div class="dropdown-menu">
               <a href="institutions.html#placement">Campus Placement Training</a>
               <a href="institutions.html#vac">Value-Added Courses</a>
@@ -57,7 +48,7 @@
             </div>
           </li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">For Learners ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">For Learners ▾</button>
             <div class="dropdown-menu">
               <a href="learners.html#placement">Placement Preparation</a>
               <a href="learners.html#fullstack">Full-Stack Development</a>
@@ -73,6 +64,7 @@
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="page-hero">
       <div class="wrap page-hero-grid">
         <div class="page-hero-text">
@@ -84,19 +76,88 @@
             <a href="contact.html" class="btn btn-primary">Talk to Our Team</a>
             <a href="our-work.html" class="btn btn-outline">Explore Our Work</a>
           </div>
+          <ul class="checklist hero-proof">
+            <li>Project-first delivery</li>
+            <li>Industry-aligned training</li>
+            <li>Transparent milestones</li>
+          </ul>
         </div>
         <div class="hero-visual">
-          <img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="ALGO ORBIT Campus Programs">
-          <div class="badge-chip">
-            <i>01</i>
-            <div><strong>Project-First Model</strong><span style="font-size:12px;color:var(--muted)">Hands-on engineering</span></div>
+          <div class="hero-photo">
+            <img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="ALGO ORBIT Campus Programs">
+            <div class="badge-chip">
+              <i>01</i>
+              <div>
+                <strong>Project-First Model</strong>
+                <div class="badge-note">Hands-on engineering</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore strip (overlaps the hero, same as the home page) -->
+    <section class="cat-section" aria-labelledby="explore-heading">
+      <div class="wrap">
+        <div class="cat-strip">
+          <div class="cat-head">
+            <h2 id="explore-heading">Explore ALGO ORBIT</h2>
+            <a href="contact.html" class="link-arrow">Contact us <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="cat-grid">
+            <a class="cat-item" href="services.html"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></span><strong>Services</strong><small>Software and consulting</small></a>
+            <a class="cat-item" href="institutions.html"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5-10-5zM6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg></span><strong>For Institutions</strong><small>Campus programs</small></a>
+            <a class="cat-item" href="learners.html"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5zM4 19a2 2 0 0 1 2-2h13"/></svg></span><strong>For Learners</strong><small>Hands-on tracks</small></a>
+            <a class="cat-item" href="products.html"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><strong>Products</strong><small>In-house platforms</small></a>
+            <a class="cat-item" href="our-work.html"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></span><strong>Our Work</strong><small>Projects and programs</small></a>
+            <a class="cat-item" href="contact.html"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg></span><strong>Contact</strong><small>Talk to our team</small></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who we are -->
+    <section class="section showcase">
+      <div class="wrap showcase-grid">
+        <div class="showcase-copy">
+          <span class="eyebrow">Who we are</span>
+          <h2>One team for engineering and education</h2>
+          <p>ALGOORBIT INNOVATIONS PRIVATE LIMITED builds software for businesses and runs structured, hands-on technical programs for colleges and learners. Both sides of the company share one standard: practical work that holds up in the real world.</p>
+          <ul class="checklist">
+            <li>Software engineering and IT consulting</li>
+            <li>Corporate and campus training programs</li>
+            <li>Mentor-led learning built around real projects</li>
+          </ul>
+          <a href="our-work.html" class="btn btn-primary">See Our Work</a>
+        </div>
+        <div class="showcase-visual profile-visual">
+          <div class="profile-card">
+            <div class="profile-head">
+              <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+                <rect width="40" height="40" rx="10"/>
+                <line x1="13.5" y1="28" x2="21.5" y2="12.5"/>
+                <circle cx="30" cy="27.5" r="5"/>
+              </svg>
+              <div>
+                <strong>Company profile</strong>
+                <small>ALGO ORBIT at a glance</small>
+              </div>
+            </div>
+            <dl class="profile-list">
+              <div class="profile-row"><dt>Company</dt><dd>ALGOORBIT INNOVATIONS PRIVATE LIMITED</dd></div>
+              <div class="profile-row"><dt>Based in</dt><dd>Karkala, Udupi, Karnataka</dd></div>
+              <div class="profile-row"><dt>Service lines</dt><dd>Software Development, IT Consulting, Corporate Training</dd></div>
+              <div class="profile-row"><dt>Serves</dt><dd>Enterprises, institutions and learners</dd></div>
+              <div class="profile-row"><dt>Live products</dt><dd>PureDine and TrionCam</dd></div>
+            </dl>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Mission & Vision -->
-    <section class="section">
+    <section class="section alt">
       <div class="wrap">
         <div class="section-head">
           <h2>Mission &amp; Vision</h2>
@@ -111,6 +172,33 @@
             <span class="ic">V</span>
             <h3>Our Vision</h3>
             <p>To be a premier partner for dependable digital transformation and applied, outcome-based technical training.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Principles -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head center">
+          <h2>What guides our work</h2>
+          <p>Three principles shape every project we deliver and every program we teach.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></span>
+            <h3>Practical Technology</h3>
+            <p>We favour working solutions over theory: structured engineering that solves real operational problems and ships to production.</p>
+          </div>
+          <div class="card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14.2c2 .7 3.5 2.6 3.5 5.8"/></svg></span>
+            <h3>Meaningful Collaboration</h3>
+            <p>Clients, institutions and learners work with us, not just alongside us, with clear scope, regular reviews and shared milestones.</p>
+          </div>
+          <div class="card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5zM4 19a2 2 0 0 1 2-2h13"/></svg></span>
+            <h3>Continuous Learning</h3>
+            <p>Mentor-led, project-based programs keep skills current for learners, and keep our own engineering practice sharp.</p>
           </div>
         </div>
       </div>
@@ -148,6 +236,48 @@
       </div>
     </section>
 
+    <!-- Highlights -->
+    <section class="stats-section" aria-label="Highlights">
+      <div class="wrap">
+        <div class="stats-band">
+          <div class="stat"><span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14.2c2 .7 3.5 2.6 3.5 5.8"/></svg></span><div><strong><span data-count="2500">2,500</span>+</strong><span class="stat-label">Learners trained</span></div></div>
+          <div class="stat"><span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><div><strong>2</strong><span class="stat-label">Live products</span></div></div>
+          <div class="stat"><span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></span><div><strong>3</strong><span class="stat-label">Service lines</span></div></div>
+          <div class="stat"><span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5-10-5zM6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg></span><div><strong>3</strong><span class="stat-label">Institution programs</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who we serve -->
+    <section class="section alt">
+      <div class="wrap">
+        <div class="section-head center">
+          <h2>Who we work with</h2>
+          <p>Choose the path that matches your goals.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5l8-2v18M12 9h8v12M4 21h16M7 9h2M7 13h2M7 17h2M15 13h2M15 17h2"/></svg></span>
+            <h3>Enterprises</h3>
+            <p>Custom software, cloud integration and architecture consulting, delivered against clear timelines.</p>
+            <div class="card-action"><a href="services.html" class="btn btn-outline btn-sm">View Services</a></div>
+          </div>
+          <div class="card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5-10-5zM6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg></span>
+            <h3>Colleges &amp; Institutions</h3>
+            <p>Placement training, value-added courses and faculty development aligned with technical syllabi.</p>
+            <div class="card-action"><a href="institutions.html" class="btn btn-outline btn-sm">View Programs</a></div>
+          </div>
+          <div class="card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v11H3zM12 15v5M8 20h8M7 10l3-2 3 2 4-3"/></svg></span>
+            <h3>Students &amp; Learners</h3>
+            <p>Hands-on tracks in Placement Preparation, Full-Stack and Mobile App Development.</p>
+            <div class="card-action"><a href="learners.html" class="btn btn-outline btn-sm">Explore Tracks</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Delivery Lifecycle -->
     <section class="section">
       <div class="wrap">
@@ -165,19 +295,48 @@
       </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="section alt" id="faq">
+      <div class="wrap">
+        <div class="section-head center">
+          <h2>Frequently asked questions</h2>
+          <p>Quick answers about ALGO ORBIT and how we work.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>What does ALGO ORBIT do?</summary>
+            <p>We work across software development, IT consulting and technical education, serving enterprises, colleges and students.</p>
+          </details>
+          <details>
+            <summary>Who do you work with?</summary>
+            <p>Businesses use us for custom software and consulting. Institutions use us for placement training, value-added courses and faculty development. Learners join our mentor-led project tracks in Full-Stack, Flutter and AI.</p>
+          </details>
+          <details>
+            <summary>Where are you based?</summary>
+            <p>We are based in Karkala, Udupi, Karnataka.</p>
+          </details>
+          <details>
+            <summary>How do we get started?</summary>
+            <p>Reach out through the <a href="contact.html" style="color:var(--primary);font-weight:600;">contact page</a>, by email at connect@algoorbit.in, or by phone on +91 94821 19446. We will map out your specifications, schedule and milestones together.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA Band -->
     <div class="cta-band">
       <h2>Let's build a productive partnership.</h2>
       <p>Whether you require software engineering or campus training, we are ready to discuss your goals.</p>
-      <a href="contact.html" class="btn btn-amber">Contact Our Team</a>
+      <a href="contact.html" class="btn btn-light">Contact Our Team</a>
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="36" style="margin-bottom:14px; filter: brightness(0) invert(1);">
+          <img class="footer-logo" src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="36">
           <p>ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p>
         </div>
         <div class="footer-col">
@@ -221,6 +380,31 @@
       </div>
     </div>
   </footer>
+
+  <!-- Contact bar (at the bottom of the page, same as the home page) -->
+  <div class="top-bar top-bar--bottom">
+    <div class="wrap">
+      <div class="meta">
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg>
+          <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a>
+        </span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+          <a href="tel:+919482119446">+91 94821 19446</a>
+        </span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Karkala, Udupi, Karnataka
+        </span>
+      </div>
+      <div class="social">
+        <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/919482119446" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

@@ -3,45 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ALGO ORBIT Products | Restaurant Management & Civic Platforms</title>
+  <title>ALGO ORBIT Products | Restaurant Management &amp; Civic Platforms</title>
   <meta name="description" content="Explore PureDine restaurant management and TrionCam civic platforms built in-house by ALGO ORBIT.">
+  <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://www.algoorbit.in/products.html">
-  <link rel="icon" href="https://www.algoorbit.in/static/images/logo.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23000'/%3E%3Cline x1='13.5' y1='28' x2='21.5' y2='12.5' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='27.5' r='5' fill='%23fff'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="bar"></div>
 
-  <div class="top-bar">
-    <div class="wrap">
-      <div class="meta">
-        <span>✉ <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></span>
-        <span>☎ <a href="tel:+919482119446">+91 94821 19446</a></span>
-        <span>📍 Karkala, Udupi, Karnataka</span>
-      </div>
-      <div class="social">
-        <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/919482119446" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-    </div>
-  </div>
-
+  <!-- Header -->
   <header class="site-header">
     <div class="wrap nav-inner">
-      <a href="index.html" class="site-logo">
-        <img src="https://www.algoorbit.in/static/images/logo.png" alt="ALGO ORBIT">
+      <a href="index.html" class="site-logo" aria-label="ALGO ORBIT home">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="10"/>
+          <line x1="13.5" y1="28" x2="21.5" y2="12.5"/>
+          <circle cx="30" cy="27.5" r="5"/>
+        </svg>
+        <span class="logo-text"><span class="logo-algo">ALGO</span><span class="logo-orbit">ORBIT</span></span>
       </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
-      <nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">☰</button>
+      <nav aria-label="Primary">
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">Services ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">Services ▾</button>
             <div class="dropdown-menu">
               <a href="services.html#software">Software Development</a>
               <a href="services.html#consulting">IT Consulting</a>
@@ -49,7 +41,7 @@
             </div>
           </li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">For Institutions ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">For Institutions ▾</button>
             <div class="dropdown-menu">
               <a href="institutions.html#placement">Campus Placement Training</a>
               <a href="institutions.html#vac">Value-Added Courses</a>
@@ -57,14 +49,14 @@
             </div>
           </li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">For Learners ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">For Learners ▾</button>
             <div class="dropdown-menu">
               <a href="learners.html#placement">Placement Preparation</a>
               <a href="learners.html#fullstack">Full-Stack Development</a>
               <a href="learners.html#mobile">Mobile App Development</a>
             </div>
           </li>
-          <li><a href="products.html" class="active">Products</a></li>
+          <li><a href="products.html" class="active" aria-current="page">Products</a></li>
           <li><a href="our-work.html">Our Work</a></li>
           <li><a href="contact.html" class="btn btn-primary btn-sm">Contact Us</a></li>
         </ul>
@@ -73,6 +65,7 @@
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="page-hero">
       <div class="wrap page-hero-grid">
         <div class="page-hero-text">
@@ -84,78 +77,167 @@
             <a href="contact.html?type=business" class="btn btn-primary">Request a Live Demo</a>
             <a href="#puredine" class="btn btn-outline">Explore Products</a>
           </div>
+          <ul class="checklist hero-proof">
+            <li>Built in-house</li>
+            <li>Production tested</li>
+            <li>Two live platforms</li>
+          </ul>
         </div>
         <div class="hero-visual">
-          <img src="https://www.algoorbit.in/static/images/trioncam.png" alt="ALGO ORBIT products">
-          <div class="badge-chip">
-            <i>✓</i>
-            <div><strong>In-House Built</strong><span style="font-size:12px;color:var(--muted)">Production tested</span></div>
+          <div class="hero-photo">
+            <img src="https://www.algoorbit.in/static/images/trioncam.png" alt="ALGO ORBIT products">
+            <div class="badge-chip">
+              <i>✓</i>
+              <div>
+                <strong>In-House Built</strong>
+                <div class="badge-note">Production tested</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product strip (overlaps the hero, same as the About page) -->
+    <section class="cat-section" aria-labelledby="products-heading">
+      <div class="wrap">
+        <div class="cat-strip">
+          <div class="cat-head">
+            <h2 id="products-heading">Explore our products</h2>
+            <a href="contact.html?type=business" class="link-arrow">Request a demo <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="cat-grid">
+            <a class="cat-item" href="#puredine"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v7a2 2 0 0 0 2 2v9M10 3v7a2 2 0 0 1-2 2M16 21V3c-2.2 1.2-3 3.6-3 7v3h3"/></svg></span><strong>PureDine</strong><small>Restaurant management</small></a>
+            <a class="cat-item" href="#trioncam"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><strong>TrionCam</strong><small>Civic platform</small></a>
+            <a class="cat-item" href="contact.html?type=business"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v11H3zM12 15v5M8 20h8M7 10l3-2 3 2 4-3"/></svg></span><strong>Live Demo</strong><small>See it in action</small></a>
+            <a class="cat-item" href="services.html"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></span><strong>Services</strong><small>Custom software</small></a>
+            <a class="cat-item" href="our-work.html"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></span><strong>Our Work</strong><small>Projects and programs</small></a>
+            <a class="cat-item" href="contact.html"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg></span><strong>Contact</strong><small>Talk to our team</small></a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- PureDine Feature Section -->
-    <section id="puredine" class="section">
-      <div class="wrap">
-        <div class="page-hero-grid" style="align-items: center;">
-          <div class="hero-visual">
-            <img src="https://www.algoorbit.in/static/images/restaurant.png" alt="PureDine Restaurant Platform">
-          </div>
-          <div>
-            <span class="eyebrow">Hospitality Operations</span>
-            <h2>PureDine</h2>
-            <p style="margin: 12px 0 20px;">An all-in-one restaurant and café management suite that consolidates ordering, kitchen operations, billing, and inventory tracking into one system.</p>
-            <ul class="checklist">
-              <li>Live table management and split billing workflows</li>
-              <li>Kitchen order ticketing (KOT) and real-time order states</li>
-              <li>Automated ingredient and inventory depletion alerts</li>
-              <li>Daily sales reports and staff role-based access control</li>
-            </ul>
-            <div style="margin-top:24px">
-              <a href="contact.html?type=business" class="btn btn-primary">Schedule a PureDine Demo</a>
-            </div>
+    <section id="puredine" class="section showcase product-section">
+      <div class="wrap showcase-grid reverse">
+        <div class="showcase-copy">
+          <span class="eyebrow">Hospitality Operations</span>
+          <h2>PureDine</h2>
+          <p>An all-in-one restaurant and café management suite that consolidates ordering, kitchen operations, billing, and inventory tracking into one system.</p>
+          <ul class="checklist">
+            <li>Live table management and split billing workflows</li>
+            <li>Kitchen order ticketing (KOT) and real-time order states</li>
+            <li>Automated ingredient and inventory depletion alerts</li>
+            <li>Daily sales reports and staff role-based access control</li>
+          </ul>
+          <div class="tags"><span>Billing</span><span>Inventory</span><span>Analytics</span></div>
+          <a href="contact.html?type=business" class="btn btn-primary">Schedule a PureDine Demo</a>
+        </div>
+        <div class="showcase-visual product-visual">
+          <div class="hero-photo">
+            <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>PureDine</span></div>
+            <img src="https://www.algoorbit.in/static/images/restaurant.png" alt="PureDine Restaurant Platform" loading="lazy" decoding="async">
+            <span class="live-pill">Live product</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- TrionCam Feature Section -->
-    <section id="trioncam" class="section alt">
-      <div class="wrap">
-        <div class="page-hero-grid" style="align-items: center;">
-          <div>
-            <span class="eyebrow">Civic Technology</span>
-            <h2>TrionCam</h2>
-            <p style="margin: 12px 0 20px;">A civic platform designed to provide transparent, verified local insights, public project updates, and location-aware community interactions.</p>
-            <ul class="checklist">
-              <li>Location-based community activity feed</li>
-              <li>Real-time updates and public progress tracking</li>
-              <li>High-concurrency backend architecture with responsive mobile UI</li>
-            </ul>
-            <div style="margin-top:24px">
-              <a href="contact.html?type=business" class="btn btn-primary">Learn About TrionCam</a>
-            </div>
-          </div>
-          <div class="hero-visual">
-            <img src="https://www.algoorbit.in/static/images/trioncam.png" alt="TrionCam Civic Tech Platform">
+    <section id="trioncam" class="section alt product-section">
+      <div class="wrap showcase-grid">
+        <div class="showcase-copy">
+          <span class="eyebrow">Civic Technology</span>
+          <h2>TrionCam</h2>
+          <p>A civic platform designed to provide transparent, verified local insights, public project updates, and location-aware community interactions.</p>
+          <ul class="checklist">
+            <li>Location-based community activity feed</li>
+            <li>Real-time updates and public progress tracking</li>
+            <li>High-concurrency backend architecture with responsive mobile UI</li>
+          </ul>
+          <div class="tags"><span>Civic Tech</span><span>Mobile MVP</span><span>Real-time</span></div>
+          <a href="contact.html?type=business" class="btn btn-primary">Learn About TrionCam</a>
+        </div>
+        <div class="showcase-visual product-visual">
+          <div class="hero-photo">
+            <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>TrionCam</span></div>
+            <img src="https://www.algoorbit.in/static/images/trioncam.png" alt="TrionCam Civic Tech Platform" loading="lazy" decoding="async">
+            <span class="live-pill">Live product</span>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Why our products -->
+    <section class="section why-section">
+      <div class="wrap">
+        <div class="section-head center">
+          <h2>Why teams choose our products</h2>
+          <p>Every product is designed, built and maintained by the same engineering team.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></span>
+            <h3>Built In-House</h3>
+            <p>Engineered entirely by our own team, so we understand every part of the product and can adapt it quickly.</p>
+          </div>
+          <div class="card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span>
+            <h3>Production Tested</h3>
+            <p>Both PureDine and TrionCam are live products, shaped by real operational use rather than theory.</p>
+          </div>
+          <div class="card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 10h18M8 15h4"/></svg></span>
+            <h3>Made for Operations</h3>
+            <p>Designed to streamline hospitality management and deliver clear, modern civic data insights.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section alt" id="faq">
+      <div class="wrap">
+        <div class="section-head center">
+          <h2>Frequently asked questions</h2>
+          <p>Quick answers about our products.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>What is PureDine?</summary>
+            <p>PureDine is an all-in-one restaurant and café management suite that brings ordering, kitchen operations, billing and inventory tracking into one system.</p>
+          </details>
+          <details>
+            <summary>What is TrionCam?</summary>
+            <p>TrionCam is a civic platform that provides transparent, verified local insights, public project updates and location-aware community interactions.</p>
+          </details>
+          <details>
+            <summary>How can I see a demo?</summary>
+            <p>Use the <a href="contact.html?type=business" style="color:var(--primary);font-weight:600;">demo request form</a> on our contact page, or reach us at connect@algoorbit.in or +91 94821 19446.</p>
+          </details>
+          <details>
+            <summary>Can you build a custom product for us?</summary>
+            <p>Yes. We work with founders and enterprise leaders to architect, prototype and launch robust software products.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Band -->
     <div class="cta-band">
       <h2>Have a custom product idea?</h2>
       <p>We work with founders and enterprise leaders to architect, prototype, and launch robust software products.</p>
-      <a href="contact.html?type=business" class="btn btn-amber">Discuss Your Concept</a>
+      <a href="contact.html?type=business" class="btn btn-light">Discuss Your Concept</a>
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="36" style="margin-bottom:14px; filter: brightness(0) invert(1);">
+          <img class="footer-logo" src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="36">
           <p>ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p>
         </div>
         <div class="footer-col">
@@ -199,6 +281,31 @@
       </div>
     </div>
   </footer>
+
+  <!-- Contact bar (at the bottom of the page, same as the home and About pages) -->
+  <div class="top-bar top-bar--bottom">
+    <div class="wrap">
+      <div class="meta">
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg>
+          <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a>
+        </span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+          <a href="tel:+919482119446">+91 94821 19446</a>
+        </span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Karkala, Udupi, Karnataka
+        </span>
+      </div>
+      <div class="social">
+        <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/919482119446" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

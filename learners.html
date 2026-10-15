@@ -3,45 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Technical Training, Internships & Placement Preparation | ALGO ORBIT</title>
+  <title>Technical Training, Internships &amp; Placement Preparation | ALGO ORBIT</title>
   <meta name="description" content="Learning paths in Full-Stack, Flutter, AI, and placement preparation with real projects and mentor guidance.">
+  <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://www.algoorbit.in/learners.html">
-  <link rel="icon" href="https://www.algoorbit.in/static/images/logo.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23000'/%3E%3Cline x1='13.5' y1='28' x2='21.5' y2='12.5' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='27.5' r='5' fill='%23fff'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="bar"></div>
 
-  <div class="top-bar">
-    <div class="wrap">
-      <div class="meta">
-        <span>✉ <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></span>
-        <span>☎ <a href="tel:+919482119446">+91 94821 19446</a></span>
-        <span>📍 Karkala, Udupi, Karnataka</span>
-      </div>
-      <div class="social">
-        <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/919482119446" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-    </div>
-  </div>
-
+  <!-- Header -->
   <header class="site-header">
     <div class="wrap nav-inner">
-      <a href="index.html" class="site-logo">
-        <img src="https://www.algoorbit.in/static/images/logo.png" alt="ALGO ORBIT">
+      <a href="index.html" class="site-logo" aria-label="ALGO ORBIT home">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="10"/>
+          <line x1="13.5" y1="28" x2="21.5" y2="12.5"/>
+          <circle cx="30" cy="27.5" r="5"/>
+        </svg>
+        <span class="logo-text"><span class="logo-algo">ALGO</span><span class="logo-orbit">ORBIT</span></span>
       </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
-      <nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">☰</button>
+      <nav aria-label="Primary">
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">Services ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">Services ▾</button>
             <div class="dropdown-menu">
               <a href="services.html#software">Software Development</a>
               <a href="services.html#consulting">IT Consulting</a>
@@ -49,7 +41,7 @@
             </div>
           </li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">For Institutions ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">For Institutions ▾</button>
             <div class="dropdown-menu">
               <a href="institutions.html#placement">Campus Placement Training</a>
               <a href="institutions.html#vac">Value-Added Courses</a>
@@ -57,7 +49,7 @@
             </div>
           </li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">For Learners ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">For Learners ▾</button>
             <div class="dropdown-menu">
               <a href="learners.html#placement">Placement Preparation</a>
               <a href="learners.html#fullstack">Full-Stack Development</a>
@@ -73,6 +65,7 @@
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="page-hero">
       <div class="wrap page-hero-grid">
         <div class="page-hero-text">
@@ -84,60 +77,89 @@
             <a href="contact.html?type=learner" class="btn btn-primary">Inquire About Enrollment</a>
             <a href="#placement" class="btn btn-outline">Explore Learning Tracks</a>
           </div>
+          <ul class="checklist hero-proof">
+            <li>Guided projects</li>
+            <li>Code reviews</li>
+            <li>Interview prep</li>
+          </ul>
         </div>
         <div class="hero-visual">
-          <img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="Learners in training">
-          <div class="badge-chip">
-            <i>▶</i>
-            <div><strong>Project Based</strong><span style="font-size:12px;color:var(--muted)">Portfolio-ready code</span></div>
+          <div class="hero-photo">
+            <img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="Learners in training">
+            <div class="badge-chip">
+              <i>▶</i>
+              <div>
+                <strong>Project Based</strong>
+                <div class="badge-note">Portfolio-ready code</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick links strip (overlaps the hero, same as the Institutions page) -->
+    <section class="cat-section" aria-labelledby="learners-heading">
+      <div class="wrap">
+        <div class="cat-strip">
+          <div class="cat-head">
+            <h2 id="learners-heading">Explore our learning tracks</h2>
+            <a href="contact.html?type=learner" class="link-arrow">Inquire about enrollment <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="cat-grid cat-grid-5">
+            <a class="cat-item" href="#placement"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span><strong>Placement Prep</strong><small>DSA and interviews</small></a>
+            <a class="cat-item" href="#fullstack"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></span><strong>Full-Stack Web</strong><small>React and Node.js</small></a>
+            <a class="cat-item" href="#mobile"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v11H3zM12 15v5M8 20h8M7 10l3-2 3 2 4-3"/></svg></span><strong>Mobile Apps</strong><small>Flutter and Dart</small></a>
+            <a class="cat-item" href="#ai"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></span><strong>AI &amp; Data</strong><small>Python and LLM APIs</small></a>
+            <a class="cat-item" href="contact.html?type=learner"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg></span><strong>Contact</strong><small>Talk to our team</small></a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Learning Tracks -->
-    <section class="section">
+    <section id="tracks" class="section work-section">
       <div class="wrap">
         <div class="section-head">
           <h2>Specialized Learning Tracks</h2>
           <p>Carefully sequenced modules taught by active software engineers.</p>
         </div>
-        <div class="grid">
-          <div class="card" id="placement">
+        <div class="grid grid-2">
+          <div class="card service-card program-card" id="placement">
             <span class="ic">01</span>
             <h3>Placement Preparation</h3>
             <p>Master technical screening rounds and coding interviews with systematic problem-solving practice.</p>
-            <ul class="checklist" style="margin-top:14px">
+            <ul class="checklist">
               <li>Data Structures &amp; Algorithms in Java/C++</li>
               <li>Core DBMS, SQL queries &amp; OOP concepts</li>
               <li>Mock technical interviews and resume refining</li>
             </ul>
           </div>
-          <div class="card" id="fullstack">
+          <div class="card service-card program-card" id="fullstack">
             <span class="ic">02</span>
             <h3>Full-Stack Web Engineering</h3>
             <p>Build end-to-end web apps with modern frontends, robust REST APIs, and databases.</p>
-            <ul class="checklist" style="margin-top:14px">
+            <ul class="checklist">
               <li>React, JavaScript/TypeScript</li>
               <li>Node.js, Express, and REST architecture</li>
               <li>MongoDB/PostgreSQL &amp; Cloud deployment</li>
             </ul>
           </div>
-          <div class="card" id="mobile">
+          <div class="card service-card program-card" id="mobile">
             <span class="ic">03</span>
             <h3>Mobile App Development</h3>
             <p>Create cross-platform mobile apps for Android and iOS using Flutter and Dart.</p>
-            <ul class="checklist" style="margin-top:14px">
+            <ul class="checklist">
               <li>State management and responsive design</li>
               <li>API integration, local caching &amp; SQLite</li>
               <li>Play Store and App Store build deployment</li>
             </ul>
           </div>
-          <div class="card" id="ai">
+          <div class="card service-card program-card" id="ai">
             <span class="ic">04</span>
             <h3>AI &amp; Data Fundamentals</h3>
             <p>Practical introduction to Python, data science libraries, and building with generative AI APIs.</p>
-            <ul class="checklist" style="margin-top:14px">
+            <ul class="checklist">
               <li>Python, Pandas, and NumPy basics</li>
               <li>Machine learning workflows</li>
               <li>Integrating LLMs and vector search</li>
@@ -148,31 +170,57 @@
     </section>
 
     <!-- Program Standards -->
-    <section class="section alt">
+    <section id="commitments" class="section alt work-section">
       <div class="wrap">
         <div class="section-head">
           <h2>Transparent Program Commitments</h2>
         </div>
-        <div class="grid" style="grid-template-columns: 1fr 1fr;">
-          <div class="card">
+        <div class="grid grid-2">
+          <div class="card service-card program-card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span>
             <h3>Every Program Includes</h3>
-            <ul class="checklist" style="margin-top:14px">
+            <ul class="checklist">
               <li>Documented prerequisite checklist and syllabus</li>
               <li>Direct code reviews on GitHub with actionable feedback</li>
               <li>Hands-on capstone project to display in your portfolio</li>
               <li>Verified certificate upon meeting completion requirements</li>
             </ul>
           </div>
-          <div class="card">
+          <div class="card service-card policy-card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 10h18M8 15h4"/></svg></span>
             <h3>Our Educational Policy</h3>
-            <p style="margin-top:14px">We focus on authentic capability building. Our programs equip you with the practical skills required to succeed in competitive hiring pipelines; we do not sell inflated placement guarantees or shortcuts.</p>
+            <p>We focus on authentic capability building. Our programs equip you with the practical skills required to succeed in competitive hiring pipelines; we do not sell inflated placement guarantees or shortcuts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights -->
+    <section class="stats-section" aria-label="Program highlights">
+      <div class="wrap">
+        <div class="stats-band">
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></span>
+            <div><strong><span data-count="4">4</span></strong><span class="stat-label">Specialized learning tracks</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span>
+            <div><strong><span data-count="5">5</span></strong><span class="stat-label">Step learning process</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 10h18M8 15h4"/></svg></span>
+            <div><strong><span data-count="4">4</span></strong><span class="stat-label">Inclusions in every program</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></span>
+            <div><strong><span data-count="1">1</span></strong><span class="stat-label">Capstone project per program</span></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Learning Process -->
-    <section class="section">
+    <section id="process" class="section work-section process-section">
       <div class="wrap">
         <div class="section-head">
           <h2>How Learning Works</h2>
@@ -187,18 +235,20 @@
       </div>
     </section>
 
+    <!-- CTA Band -->
     <div class="cta-band">
       <h2>Ready to level up your technical skills?</h2>
       <p>Contact our training coordinators to find the cohort that matches your schedule.</p>
-      <a href="contact.html?type=learner" class="btn btn-amber">Inquire About Enrollment</a>
+      <a href="contact.html?type=learner" class="btn btn-light">Inquire About Enrollment</a>
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="36" style="margin-bottom:14px; filter: brightness(0) invert(1);">
+          <img class="footer-logo" src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="36">
           <p>ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p>
         </div>
         <div class="footer-col">
@@ -242,6 +292,31 @@
       </div>
     </div>
   </footer>
+
+  <!-- Contact bar (at the bottom of the page, same as the home, About, Products, Our Work, Services and Institutions pages) -->
+  <div class="top-bar top-bar--bottom">
+    <div class="wrap">
+      <div class="meta">
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg>
+          <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a>
+        </span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+          <a href="tel:+919482119446">+91 94821 19446</a>
+        </span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Karkala, Udupi, Karnataka
+        </span>
+      </div>
+      <div class="social">
+        <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/919482119446" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

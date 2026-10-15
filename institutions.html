@@ -3,45 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>College Placement Training, FDPs & Value-Added Courses | ALGO ORBIT</title>
+  <title>College Placement Training, FDPs &amp; Value-Added Courses | ALGO ORBIT</title>
   <meta name="description" content="Placement preparation, value-added courses, faculty development programs, and technical workshops for colleges and universities.">
+  <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://www.algoorbit.in/institutions.html">
-  <link rel="icon" href="https://www.algoorbit.in/static/images/logo.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23000'/%3E%3Cline x1='13.5' y1='28' x2='21.5' y2='12.5' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='27.5' r='5' fill='%23fff'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="bar"></div>
 
-  <div class="top-bar">
-    <div class="wrap">
-      <div class="meta">
-        <span>✉ <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></span>
-        <span>☎ <a href="tel:+919482119446">+91 94821 19446</a></span>
-        <span>📍 Karkala, Udupi, Karnataka</span>
-      </div>
-      <div class="social">
-        <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/919482119446" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-    </div>
-  </div>
-
+  <!-- Header -->
   <header class="site-header">
     <div class="wrap nav-inner">
-      <a href="index.html" class="site-logo">
-        <img src="https://www.algoorbit.in/static/images/logo.png" alt="ALGO ORBIT">
+      <a href="index.html" class="site-logo" aria-label="ALGO ORBIT home">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="10"/>
+          <line x1="13.5" y1="28" x2="21.5" y2="12.5"/>
+          <circle cx="30" cy="27.5" r="5"/>
+        </svg>
+        <span class="logo-text"><span class="logo-algo">ALGO</span><span class="logo-orbit">ORBIT</span></span>
       </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
-      <nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">☰</button>
+      <nav aria-label="Primary">
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">Services ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">Services ▾</button>
             <div class="dropdown-menu">
               <a href="services.html#software">Software Development</a>
               <a href="services.html#consulting">IT Consulting</a>
@@ -49,7 +41,7 @@
             </div>
           </li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">For Institutions ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">For Institutions ▾</button>
             <div class="dropdown-menu">
               <a href="institutions.html#placement">Campus Placement Training</a>
               <a href="institutions.html#vac">Value-Added Courses</a>
@@ -57,7 +49,7 @@
             </div>
           </li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">For Learners ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">For Learners ▾</button>
             <div class="dropdown-menu">
               <a href="learners.html#placement">Placement Preparation</a>
               <a href="learners.html#fullstack">Full-Stack Development</a>
@@ -73,6 +65,7 @@
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="page-hero">
       <div class="wrap page-hero-grid">
         <div class="page-hero-text">
@@ -84,50 +77,79 @@
             <a href="contact.html?type=institution" class="btn btn-primary">Request an Institutional Proposal</a>
             <a href="#placement" class="btn btn-outline">Explore Programs</a>
           </div>
+          <ul class="checklist hero-proof">
+            <li>Placement training</li>
+            <li>Value-added courses</li>
+            <li>Faculty development</li>
+          </ul>
         </div>
         <div class="hero-visual">
-          <img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt="University technical workshops">
-          <div class="badge-chip">
-            <i>★</i>
-            <div><strong>Practical Labs</strong><span style="font-size:12px;color:var(--muted)">Hands-on modules</span></div>
+          <div class="hero-photo">
+            <img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt="University technical workshops">
+            <div class="badge-chip">
+              <i>★</i>
+              <div>
+                <strong>Practical Labs</strong>
+                <div class="badge-note">Hands-on modules</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick links strip (overlaps the hero, same as the Services page) -->
+    <section class="cat-section" aria-labelledby="institutions-heading">
+      <div class="wrap">
+        <div class="cat-strip">
+          <div class="cat-head">
+            <h2 id="institutions-heading">Explore our programs</h2>
+            <a href="contact.html?type=institution" class="link-arrow">Request a proposal <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="cat-grid cat-grid-5">
+            <a class="cat-item" href="#placement"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></span><strong>Campus Placement</strong><small>DSA and interviews</small></a>
+            <a class="cat-item" href="#vac"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></span><strong>Value-Added Courses</strong><small>Industry certifications</small></a>
+            <a class="cat-item" href="#fdp"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 11a3 3 0 1 0 0-6M18 14c1.9.6 3 2.4 3 5"/></svg></span><strong>Faculty Development</strong><small>Hands-on upskilling</small></a>
+            <a class="cat-item" href="#process"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span><strong>How It Works</strong><small>Five-step engagement</small></a>
+            <a class="cat-item" href="contact.html?type=institution"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg></span><strong>Contact</strong><small>Talk to our team</small></a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Institutional Programs -->
-    <section class="section">
+    <section id="programs" class="section work-section">
       <div class="wrap">
         <div class="section-head">
           <h2>Our Academic Programs</h2>
           <p>Structured to integrate cleanly with undergraduate and postgraduate computer science schedules.</p>
         </div>
         <div class="grid">
-          <div class="card" id="placement">
+          <div class="card service-card program-card" id="placement">
             <span class="ic">01</span>
             <h3>Campus Placement Training</h3>
             <p>Comprehensive technical and problem-solving training to clear coding rounds and technical interviews.</p>
-            <ul class="checklist" style="margin-top:14px">
+            <ul class="checklist">
               <li>Data Structures &amp; Algorithms (DSA)</li>
               <li>Object-Oriented Programming (OOP), SQL, DBMS</li>
               <li>Resume Building &amp; Mock Technical Interviews</li>
             </ul>
           </div>
-          <div class="card" id="vac">
+          <div class="card service-card program-card" id="vac">
             <span class="ic">02</span>
             <h3>Value-Added Courses (VAC)</h3>
             <p>Focused certification tracks that bridge the gap between academic textbooks and current industry stacks.</p>
-            <ul class="checklist" style="margin-top:14px">
+            <ul class="checklist">
               <li>Full-Stack Web (React, Node.js)</li>
               <li>Cross-Platform Mobile Apps (Flutter &amp; Dart)</li>
               <li>Applied Python, Machine Learning &amp; Cloud</li>
             </ul>
           </div>
-          <div class="card" id="fdp">
+          <div class="card service-card program-card" id="fdp">
             <span class="ic">03</span>
             <h3>Faculty Development Programs</h3>
             <p>Hands-on technical upskilling for faculty members covering emerging technologies and developer tooling.</p>
-            <ul class="checklist" style="margin-top:14px">
+            <ul class="checklist">
               <li>Configurable duration (1-week to 2-week formats)</li>
               <li>Git, CI/CD, and collaborative development tools</li>
             </ul>
@@ -137,24 +159,26 @@
     </section>
 
     <!-- Planning & Delivery -->
-    <section class="section alt">
+    <section id="schedule" class="section alt work-section">
       <div class="wrap">
         <div class="section-head">
           <h2>Designed Around Your Academic Schedule</h2>
         </div>
-        <div class="grid" style="grid-template-columns: 1fr 1fr;">
-          <div class="card">
+        <div class="grid grid-2">
+          <div class="card service-card program-card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 10h18M8 15h4"/></svg></span>
             <h3>We Plan Around</h3>
-            <ul class="checklist" style="margin-top:14px">
+            <ul class="checklist">
               <li>Department, semester, and examination windows</li>
               <li>Batch size, cohort prior background, and lab availability</li>
               <li>Delivery mode: on-campus, hybrid, or online</li>
               <li>Formal milestones, continuous assessments, and budgets</li>
             </ul>
           </div>
-          <div class="card">
+          <div class="card service-card program-card">
+            <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span>
             <h3>Your Institution Receives</h3>
-            <ul class="checklist" style="margin-top:14px">
+            <ul class="checklist">
               <li>Complete module-wise syllabus and reference material</li>
               <li>Daily session logs and attendance tracking</li>
               <li>Automated coding assessments and progress reports</li>
@@ -165,8 +189,32 @@
       </div>
     </section>
 
+    <!-- Highlights -->
+    <section class="stats-section" aria-label="Program highlights">
+      <div class="wrap">
+        <div class="stats-band">
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></span>
+            <div><strong><span data-count="3">3</span></strong><span class="stat-label">Academic program tracks</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v11H3zM12 15v5M8 20h8M7 10l3-2 3 2 4-3"/></svg></span>
+            <div><strong><span data-count="3">3</span></strong><span class="stat-label">Delivery modes</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span>
+            <div><strong><span data-count="5">5</span></strong><span class="stat-label">Step engagement process</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 10h18M8 15h4"/></svg></span>
+            <div><strong><span data-count="4">4</span></strong><span class="stat-label">Deliverables per program</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Process -->
-    <section class="section">
+    <section id="process" class="section work-section process-section">
       <div class="wrap">
         <div class="section-head">
           <h2>How the Engagement Works</h2>
@@ -182,38 +230,42 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section alt">
+    <section class="section alt work-section" id="faq">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head center">
           <h2>Institutional FAQ</h2>
         </div>
-        <details>
-          <summary>Can programs be customized per department?</summary>
-          <p>Yes. Syllabi, durations, and project components are configured collaboratively with your department heads.</p>
-        </details>
-        <details>
-          <summary>Can you train entire cohorts together?</summary>
-          <p>Yes. We assign dedicated lead instructors and lab mentors to maintain ideal instructor-to-student ratios.</p>
-        </details>
-        <details>
-          <summary>Is training conducted on-campus?</summary>
-          <p>We provide full on-campus instruction, remote interactive delivery, or hybrid setups depending on location and preference.</p>
-        </details>
+        <div class="faq-list">
+          <details>
+            <summary>Can programs be customized per department?</summary>
+            <p>Yes. Syllabi, durations, and project components are configured collaboratively with your department heads.</p>
+          </details>
+          <details>
+            <summary>Can you train entire cohorts together?</summary>
+            <p>Yes. We assign dedicated lead instructors and lab mentors to maintain ideal instructor-to-student ratios.</p>
+          </details>
+          <details>
+            <summary>Is training conducted on-campus?</summary>
+            <p>We provide full on-campus instruction, remote interactive delivery, or hybrid setups depending on location and preference.</p>
+          </details>
+        </div>
       </div>
     </section>
 
+    <!-- CTA Band -->
     <div class="cta-band">
       <h2>Planning your next technical training program?</h2>
       <p>Share your department specifications and target dates for a custom curriculum plan.</p>
-      <a href="contact.html?type=institution" class="btn btn-amber">Request an Institutional Proposal</a>
+      <a href="contact.html?type=institution" class="btn btn-light">Request an Institutional Proposal</a>
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="36" style="margin-bottom:14px; filter: brightness(0) invert(1);">
+          <img class="footer-logo" src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="36">
           <p>ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p>
         </div>
         <div class="footer-col">
@@ -257,6 +309,31 @@
       </div>
     </div>
   </footer>
+
+  <!-- Contact bar (at the bottom of the page, same as the home, About, Products, Our Work and Services pages) -->
+  <div class="top-bar top-bar--bottom">
+    <div class="wrap">
+      <div class="meta">
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg>
+          <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a>
+        </span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+          <a href="tel:+919482119446">+91 94821 19446</a>
+        </span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Karkala, Udupi, Karnataka
+        </span>
+      </div>
+      <div class="social">
+        <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/919482119446" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

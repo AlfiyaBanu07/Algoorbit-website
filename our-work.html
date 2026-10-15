@@ -5,43 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Our Work | Software Projects &amp; Training Programs | ALGO ORBIT</title>
   <meta name="description" content="Selected products, institutional workshops, and testimonials from ALGO ORBIT engagements.">
+  <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://www.algoorbit.in/our-work.html">
-  <link rel="icon" href="https://www.algoorbit.in/static/images/logo.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23000'/%3E%3Cline x1='13.5' y1='28' x2='21.5' y2='12.5' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='27.5' r='5' fill='%23fff'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="bar"></div>
 
-  <div class="top-bar">
-    <div class="wrap">
-      <div class="meta">
-        <span>✉ <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></span>
-        <span>☎ <a href="tel:+919482119446">+91 94821 19446</a></span>
-        <span>📍 Karkala, Udupi, Karnataka</span>
-      </div>
-      <div class="social">
-        <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/919482119446" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-    </div>
-  </div>
-
+  <!-- Header -->
   <header class="site-header">
     <div class="wrap nav-inner">
-      <a href="index.html" class="site-logo">
-        <img src="https://www.algoorbit.in/static/images/logo.png" alt="ALGO ORBIT">
+      <a href="index.html" class="site-logo" aria-label="ALGO ORBIT home">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="10"/>
+          <line x1="13.5" y1="28" x2="21.5" y2="12.5"/>
+          <circle cx="30" cy="27.5" r="5"/>
+        </svg>
+        <span class="logo-text"><span class="logo-algo">ALGO</span><span class="logo-orbit">ORBIT</span></span>
       </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
-      <nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">☰</button>
+      <nav aria-label="Primary">
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">Services ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">Services ▾</button>
             <div class="dropdown-menu">
               <a href="services.html#software">Software Development</a>
               <a href="services.html#consulting">IT Consulting</a>
@@ -49,7 +41,7 @@
             </div>
           </li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">For Institutions ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">For Institutions ▾</button>
             <div class="dropdown-menu">
               <a href="institutions.html#placement">Campus Placement Training</a>
               <a href="institutions.html#vac">Value-Added Courses</a>
@@ -57,7 +49,7 @@
             </div>
           </li>
           <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button">For Learners ▾</button>
+            <button class="dropdown-trigger" type="button" aria-expanded="false">For Learners ▾</button>
             <div class="dropdown-menu">
               <a href="learners.html#placement">Placement Preparation</a>
               <a href="learners.html#fullstack">Full-Stack Development</a>
@@ -65,7 +57,7 @@
             </div>
           </li>
           <li><a href="products.html">Products</a></li>
-          <li><a href="our-work.html" class="active">Our Work</a></li>
+          <li><a href="our-work.html" class="active" aria-current="page">Our Work</a></li>
           <li><a href="contact.html" class="btn btn-primary btn-sm">Contact Us</a></li>
         </ul>
       </nav>
@@ -73,6 +65,7 @@
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="page-hero">
       <div class="wrap page-hero-grid">
         <div class="page-hero-text">
@@ -84,39 +77,77 @@
             <a href="contact.html" class="btn btn-primary">Start a Collaboration</a>
             <a href="#case-studies" class="btn btn-outline">View Engagements</a>
           </div>
+          <ul class="checklist hero-proof">
+            <li>Product deployments</li>
+            <li>Campus programs</li>
+            <li>Partner feedback</li>
+          </ul>
         </div>
         <div class="hero-visual">
-          <img src="https://www.algoorbit.in/static/images/events/mou1.png" alt="Collaborations and partnerships">
-          <div class="badge-chip">
-            <i>★</i>
-            <div><strong>Proven Impact</strong><span style="font-size:12px;color:var(--muted)">Verified programs</span></div>
+          <div class="hero-photo">
+            <img src="https://www.algoorbit.in/static/images/events/mou1.png" alt="Collaborations and partnerships">
+            <div class="badge-chip">
+              <i>★</i>
+              <div>
+                <strong>Proven Impact</strong>
+                <div class="badge-note">Verified programs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick links strip (overlaps the hero, same as the Products page) -->
+    <section class="cat-section" aria-labelledby="work-heading">
+      <div class="wrap">
+        <div class="cat-strip">
+          <div class="cat-head">
+            <h2 id="work-heading">Explore our work</h2>
+            <a href="contact.html" class="link-arrow">Start a collaboration <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="cat-grid cat-grid-5">
+            <a class="cat-item" href="#case-studies"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v7a2 2 0 0 0 2 2v9M10 3v7a2 2 0 0 1-2 2M16 21V3c-2.2 1.2-3 3.6-3 7v3h3"/></svg></span><strong>Café System</strong><small>Food &amp; Beverage</small></a>
+            <a class="cat-item" href="#case-studies"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 10h18M8 15h4"/></svg></span><strong>Clinic System</strong><small>Healthcare</small></a>
+            <a class="cat-item" href="#case-studies"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></span><strong>Campus Training</strong><small>Education</small></a>
+            <a class="cat-item" href="#feedback"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span><strong>Feedback</strong><small>Partners and learners</small></a>
+            <a class="cat-item" href="contact.html"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg></span><strong>Contact</strong><small>Talk to our team</small></a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Case Studies & Engagements -->
-    <section id="case-studies" class="section">
+    <section id="case-studies" class="section work-section">
       <div class="wrap">
         <div class="section-head">
           <h2>Selected Engagements</h2>
           <p>Real-world challenges solved through code and structured workshops.</p>
         </div>
         <div class="grid">
-          <div class="card">
-            <span class="eyebrow" style="margin-bottom:8px">Food &amp; Beverage</span>
+          <div class="card work-card">
+            <div class="work-top">
+              <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v7a2 2 0 0 0 2 2v9M10 3v7a2 2 0 0 1-2 2M16 21V3c-2.2 1.2-3 3.6-3 7v3h3"/></svg></span>
+              <span class="eyebrow">Food &amp; Beverage</span>
+            </div>
             <h3>Café Management System</h3>
             <p>Unified ordering, table allocation, and staff payouts into a single portal, cutting order confusion and reducing settlement delays.</p>
             <div class="tags"><span>Web App</span><span>Payments</span><span>Node.js</span></div>
           </div>
-          <div class="card">
-            <span class="eyebrow" style="margin-bottom:8px">Healthcare</span>
+          <div class="card work-card">
+            <div class="work-top">
+              <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 10h18M8 15h4"/></svg></span>
+              <span class="eyebrow">Healthcare</span>
+            </div>
             <h3>Clinic Management System</h3>
             <p>Developed an intuitive appointment scheduler, digital patient records, and billing workflow that staff adopted within days.</p>
             <div class="tags"><span>Dashboard</span><span>Billing</span><span>Healthcare</span></div>
           </div>
-          <div class="card">
-            <span class="eyebrow" style="margin-bottom:8px">Education</span>
+          <div class="card work-card">
+            <div class="work-top">
+              <span class="ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></span>
+              <span class="eyebrow">Education</span>
+            </div>
             <h3>Campus Training at NMAMIT Nitte</h3>
             <p>Delivered an intensive 8-week, project-first training program covering software engineering practices for 52 engineering students.</p>
             <div class="tags"><span>Bootcamp</span><span>Full-Stack</span><span>Placement</span></div>
@@ -125,40 +156,65 @@
       </div>
     </section>
 
+    <!-- Highlights -->
+    <section class="stats-section" aria-label="Engagement highlights">
+      <div class="wrap">
+        <div class="stats-band">
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></span>
+            <div><strong><span data-count="3">3</span></strong><span class="stat-label">Selected engagements</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 10h18M8 15h4"/></svg></span>
+            <div><strong><span data-count="3">3</span></strong><span class="stat-label">Industries served</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div><strong><span data-count="8">8</span></strong><span class="stat-label">Week training program</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 11a3 3 0 1 0 0-6M18 14c1.9.6 3 2.4 3 5"/></svg></span>
+            <div><strong><span data-count="52">52</span></strong><span class="stat-label">Students trained</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Feedback & Testimonials -->
-    <section class="section alt">
+    <section id="feedback" class="section alt work-section">
       <div class="wrap">
         <div class="section-head">
           <h2>Partner &amp; Learner Feedback</h2>
+          <p>What the teams and learners we work with say about the results.</p>
         </div>
         <div class="grid">
-          <div class="card">
-            <p style="font-size:16px; margin-bottom:16px; color:var(--ink);">"Algo Orbit completely transformed how we run our café. The management system they built handles orders, staff scheduling, and payments seamlessly."</p>
-            <div style="display:flex; gap:12px; align-items:center;">
-              <img src="https://www.algoorbit.in/static/images/review/riya.png" alt="Riya Fernandes" style="width:44px; height:44px; border-radius:50%; object-fit:cover;">
+          <div class="card quote-card">
+            <p class="quote">"Algo Orbit completely transformed how we run our café. The management system they built handles orders, staff scheduling, and payments seamlessly."</p>
+            <div class="person">
+              <img class="avatar" src="https://www.algoorbit.in/static/images/review/riya.png" alt="Riya Fernandes" loading="lazy" decoding="async">
               <div>
                 <strong>Riya Fernandes</strong>
-                <div style="font-size:13px; color:var(--muted);">Owner, Brew &amp; Bean Café</div>
+                <div class="person-role">Owner, Brew &amp; Bean Café</div>
               </div>
             </div>
           </div>
-          <div class="card">
-            <p style="font-size:16px; margin-bottom:16px; color:var(--ink);">"The clinic management system was clean, reliable, and exceeded expectations. Patient records, visits, and billing in one smooth application."</p>
-            <div style="display:flex; gap:12px; align-items:center;">
-              <img src="https://www.algoorbit.in/static/images/review/meera.png" alt="Dr. Meera Rao" style="width:44px; height:44px; border-radius:50%; object-fit:cover;">
+          <div class="card quote-card">
+            <p class="quote">"The clinic management system was clean, reliable, and exceeded expectations. Patient records, visits, and billing in one smooth application."</p>
+            <div class="person">
+              <img class="avatar" src="https://www.algoorbit.in/static/images/review/meera.png" alt="Dr. Meera Rao" loading="lazy" decoding="async">
               <div>
                 <strong>Dr. Meera Rao</strong>
-                <div style="font-size:13px; color:var(--muted);">Harmony Health Clinic</div>
+                <div class="person-role">Harmony Health Clinic</div>
               </div>
             </div>
           </div>
-          <div class="card">
-            <p style="font-size:16px; margin-bottom:16px; color:var(--ink);">"The training program didn't just teach syntax; it taught real engineering workflows. Building real projects with mentor feedback helped me secure my first offer."</p>
-            <div style="display:flex; gap:12px; align-items:center;">
-              <img src="https://www.algoorbit.in/static/images/review/prajna.jpg" alt="Prajna Mendon" style="width:44px; height:44px; border-radius:50%; object-fit:cover;">
+          <div class="card quote-card">
+            <p class="quote">"The training program didn't just teach syntax; it taught real engineering workflows. Building real projects with mentor feedback helped me secure my first offer."</p>
+            <div class="person">
+              <img class="avatar" src="https://www.algoorbit.in/static/images/review/prajna.jpg" alt="Prajna Mendon" loading="lazy" decoding="async">
               <div>
                 <strong>Prajna Mendon</strong>
-                <div style="font-size:13px; color:var(--muted);">NMAMIT Nitte Graduate</div>
+                <div class="person-role">NMAMIT Nitte Graduate</div>
               </div>
             </div>
           </div>
@@ -166,18 +222,20 @@
       </div>
     </section>
 
+    <!-- CTA Band -->
     <div class="cta-band">
       <h2>Have a similar software or training requirement?</h2>
       <p>Let's map out how we can solve your specific engineering challenge.</p>
-      <a href="contact.html" class="btn btn-amber">Discuss Your Project</a>
+      <a href="contact.html" class="btn btn-light">Discuss Your Project</a>
     </div>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="36" style="margin-bottom:14px; filter: brightness(0) invert(1);">
+          <img class="footer-logo" src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="36">
           <p>ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p>
         </div>
         <div class="footer-col">
@@ -221,6 +279,31 @@
       </div>
     </div>
   </footer>
+
+  <!-- Contact bar (at the bottom of the page, same as the home, About and Products pages) -->
+  <div class="top-bar top-bar--bottom">
+    <div class="wrap">
+      <div class="meta">
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg>
+          <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a>
+        </span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+          <a href="tel:+919482119446">+91 94821 19446</a>
+        </span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Karkala, Udupi, Karnataka
+        </span>
+      </div>
+      <div class="social">
+        <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/919482119446" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
