@@ -1,461 +1,935 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ALGO ORBIT | Technology Solutions &amp; Practical Learning</title>
-  <meta name="description" content="ALGOORBIT INNOVATIONS PRIVATE LIMITED provides software development, IT consulting, corporate training, and institutional technical education.">
-  <link rel="canonical" href="https://www.algoorbit.in/index.html">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23000'/%3E%3Cline x1='13.5' y1='28' x2='21.5' y2='12.5' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='27.5' r='5' fill='%23fff'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALGO ORBIT | Technology Solutions &amp; Practical Learning</title>
+<meta name="description" content="ALGOORBIT INNOVATIONS PRIVATE LIMITED provides software development, IT consulting, corporate training, and institutional technical education.">
+<link rel="canonical" href="https://www.algoorbit.in/index.html">
+<meta name="theme-color" content="#D10000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ALGO ORBIT">
+<meta property="og:title" content="ALGO ORBIT | Technology Solutions &amp; Practical Learning">
+<meta property="og:description" content="Custom software, IT consulting and mentor-led technical training for businesses, institutions and learners.">
+<meta property="og:url" content="https://www.algoorbit.in/">
+<meta property="og:image" content="https://www.algoorbit.in/static/images/hero-img1.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ALGOORBIT INNOVATIONS PRIVATE LIMITED","alternateName":"ALGO ORBIT","url":"https://www.algoorbit.in/","email":"connect@algoorbit.in","telephone":"+91-94821-19446","address":{"@type":"PostalAddress","addressLocality":"Karkala, Udupi","addressRegion":"Karnataka","addressCountry":"IN"}}</script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23000'/%3E%3Cline x1='13.5' y1='28' x2='21.5' y2='12.5' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='27.5' r='5' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--red:#D10000;--red-d:#A80000;--black:#000;--ink:#1a1a1a;--mute:#5c5c5c;--line:#e6e6e6;--soft:#f6f6f6;--w:1200px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font:16px/1.65 Inter,system-ui,sans-serif;color:var(--ink);background:#fff}
+body.lock{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+h1,h2,h3,h4{font-family:Montserrat,sans-serif;line-height:1.15;color:var(--black)}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 24px}
+.ui{width:1.3em;height:1.3em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* Loader */
+#loader{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:#fff;color:#000;transition:transform .9s cubic-bezier(.77,0,.18,1)}
+#loader.done{transform:translateY(-100%)}
+.ld-in{text-align:center}
+.ld-mark{width:92px;height:92px;margin:0 auto 22px;overflow:visible}
+.ld-mark rect{fill:#000;stroke:none}
+.ld-mark line{stroke:var(--red);stroke-width:10;stroke-linecap:round;stroke-dasharray:30;stroke-dashoffset:30;animation:draw .7s .2s ease forwards}
+.ld-mark circle{fill:#fff;transform-origin:30px 27.5px;transform:scale(0);animation:pop .5s .8s cubic-bezier(.3,1.6,.5,1) forwards}
+.ld-name{font:800 22px Montserrat,sans-serif;color:#000;letter-spacing:.14em;opacity:0;animation:fadein .6s 1s forwards}
+.ld-name b{color:var(--red)}
+.ld-bar{width:200px;height:2px;background:#e6e6e6;margin:26px auto 10px;overflow:hidden}
+.ld-bar i{display:block;height:100%;width:0;background:var(--red)}
+.ld-pct{font-size:12px;color:#5c5c5c;font-variant-numeric:tabular-nums}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{to{transform:scale(1)}}
+@keyframes fadein{to{opacity:1}}
+
+/* Scroll bar */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--red);z-index:200}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.site-logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:36px;height:36px}
+.logo-mark rect{fill:#000}.logo-mark line{stroke:#fff;stroke-width:10;stroke-linecap:round}.logo-mark circle{fill:#fff}
+.logo-text{font:800 20px Montserrat,sans-serif;letter-spacing:.02em}
+.logo-algo{color:var(--red)}.logo-orbit{color:#000}
+.nav-links{display:flex;align-items:center;gap:26px;font-size:14.5px;font-weight:500}
+.nav-links>li>a:not(.btn),.dropdown-trigger{color:var(--ink);padding:8px 0;position:relative}
+.nav-links>li>a.active{color:var(--red)}
+.nav-links>li>a:not(.btn):hover,.dropdown-trigger:hover{color:var(--red)}
+.dropdown-trigger{background:none;border:0;font:inherit;cursor:pointer}
+.has-dropdown{position:relative}
+.dropdown-menu{position:absolute;top:100%;left:-14px;min-width:230px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--red);box-shadow:0 14px 30px rgba(0,0,0,.1);padding:8px 0;opacity:0;visibility:hidden;transform:translateY(6px);transition:.2s}
+.has-dropdown:hover .dropdown-menu,.has-dropdown.open .dropdown-menu{opacity:1;visibility:visible;transform:none}
+.dropdown-menu a{display:block;padding:10px 18px;font-size:14px}
+.dropdown-menu a:hover{background:var(--soft);color:var(--red)}
+.menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:6px;width:42px;height:42px;font-size:20px;cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border-radius:6px;font:600 15px Inter,sans-serif;border:2px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn-sm{padding:9px 18px;font-size:14px}
+.btn-primary{background:var(--red);color:#fff}.btn-primary:hover{background:var(--red-d)}
+.btn-outline{border-color:var(--black);color:var(--black);background:transparent}.btn-outline:hover{background:var(--black);color:#fff}
+.btn-light{background:#fff;color:var(--red)}.btn-light:hover{background:#000;color:#fff}
+
+/* Hero */
+.hero{position:relative;background:#fff url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1800&q=80) center/cover;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#fff 0,#fff 38%,rgba(255,255,255,.82) 60%,rgba(255,255,255,.35) 100%)}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;padding:96px 24px}
+.hero h1{font-size:clamp(2.2rem,4.4vw,3.6rem);letter-spacing:-.02em;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--red)}
+.lead{font-size:1.1rem;color:var(--mute);max-width:520px;margin-bottom:30px}
+.acts{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px}
+.checklist{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:14px;font-weight:500}
+.checklist li{display:flex;align-items:center;gap:8px}
+.checklist li::before{content:"";width:8px;height:8px;background:var(--red);border-radius:50%}
+.hero-card{background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 24px 60px rgba(0,0,0,.14);overflow:hidden}
+.hero-card a{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line);transition:background .2s}
+.hero-card a:last-of-type{border-bottom:0}
+.hero-card a:hover{background:var(--soft)}
+.hero-card strong{display:block;font-size:15px;line-height:1.3}
+.hero-card small{color:var(--mute);font-size:13px}
+.hc-ic,.cat-ic{display:grid;place-items:center;width:42px;height:42px;border-radius:8px;background:#000;color:#fff;flex:none}
+.hero-note{background:var(--red);color:#fff;padding:16px 20px;display:flex;align-items:baseline;gap:12px}
+.hero-note strong{font:800 1.7rem Montserrat,sans-serif}
+.hero-note span{font-size:13px;opacity:.9}
+.rise{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.ready .rise{opacity:1;transform:none}
+.ready .rise:nth-child(2){transition-delay:.12s}.ready .rise:nth-child(3){transition-delay:.24s}.ready .rise:nth-child(4){transition-delay:.36s}.ready .rise:nth-child(5){transition-delay:.48s}
+
+/* Sections */
+.section{padding:88px 0}
+.alt{background:var(--soft)}
+.section-head{max-width:640px;margin-bottom:44px}
+.section-head.center{text-align:center;margin-inline:auto}
+.section-head h2,.showcase-copy h2{font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.015em;margin-bottom:12px}
+.section-head p{color:var(--mute)}
+.section-bar{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.link-arrow{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-weight:600;font-size:14.5px}
+.link-arrow:hover{text-decoration:underline}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid-wide{grid-template-columns:repeat(2,1fr)}
+
+.cat-section{padding:56px 0 0}
+.cat-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.cat-head h2{font-size:1.5rem}
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.cat-item{border:1px solid var(--line);border-radius:10px;padding:20px 16px;transition:border-color .2s,box-shadow .2s}
+.cat-item:hover{border-color:var(--red);box-shadow:0 10px 24px rgba(209,0,0,.1)}
+.cat-ic{margin-bottom:14px;background:#fff0f0;color:var(--red)}
+.cat-item strong{display:block;font-size:14.5px;line-height:1.3;margin-bottom:2px}
+.cat-item small{color:var(--mute);font-size:13px}
+
+.card{border:1px solid var(--line);border-top:3px solid var(--red);border-radius:0 0 10px 10px;padding:32px 28px;background:#fff;display:flex;flex-direction:column}
+.card .cat-ic{width:48px;height:48px}
+.card h3{font-size:1.2rem;margin-bottom:10px}
+.card p{color:var(--mute);font-size:15px;margin-bottom:22px;flex:1}
+
+.track-card,.prod-card{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.track-visual{position:relative;height:150px;background:#000;display:grid;place-items:center;color:var(--red)}
+.track-visual .ui{width:56px;height:56px;stroke-width:1.4}
+.track-visual::after{content:"";position:absolute;right:-30px;bottom:-30px;width:120px;height:120px;border-radius:50%;border:18px solid var(--red)}
+.track-chip{position:absolute;left:14px;top:14px;background:#fff;color:#000;font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px}
+.track-body,.prod-body{padding:24px;display:flex;flex-direction:column;flex:1;align-items:flex-start}
+.track-body h3,.prod-body h3{font-size:1.15rem;margin-bottom:8px}
+.track-body p,.prod-body p{color:var(--mute);font-size:15px;margin-bottom:16px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;margin-top:auto}
+.tags span{font-size:12px;font-weight:500;border:1px solid var(--line);border-radius:20px;padding:3px 11px;color:var(--ink)}
+.prod-shot{position:relative;aspect-ratio:16/9;background:#111}
+.prod-shot img{width:100%;height:100%;object-fit:cover}
+.live-pill{position:absolute;left:14px;top:14px;background:var(--red);color:#fff;font-size:12px;font-weight:600;padding:3px 12px;border-radius:20px}
+
+/* Stats */
+.stats-section{background:#000;color:#fff;padding:56px 0}
+.stats-band{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:6px 28px;border-left:1px solid #2a2a2a}
+.stat:first-child{border-left:0;padding-left:0}
+.stat strong{display:block;font:800 2.6rem/1.1 Montserrat,sans-serif;color:#fff}
+.stat strong span+span,.stat i{color:var(--red);font-style:normal}
+.stat small{color:#aaa;font-size:14px}
+
+/* Tech */
+.tech{padding:56px 0;border-bottom:1px solid var(--line);overflow:hidden}
+.tech h2{font-size:1.4rem;text-align:center;margin-bottom:24px}
+.marq{display:flex;width:max-content;animation:marq 40s linear infinite}
+.tech:hover .marq{animation-play-state:paused}
+.marq span{padding:8px 22px;margin:0 6px;border:1px solid var(--line);border-radius:30px;font-weight:500;font-size:14px;white-space:nowrap}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* Showcase */
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.showcase-copy p{color:var(--mute);margin-bottom:22px}
+.showcase-copy .checklist{flex-direction:column;margin-bottom:28px;gap:10px}
+.showcase-visual{position:relative}
+.showcase-visual::before{content:"";position:absolute;inset:24px -16px -16px 24px;background:var(--red);border-radius:12px}
+.showcase-visual img{position:relative;border-radius:12px;width:100%}
+
+/* Testimonials */
+.quote{background:#fff;border:1px solid var(--line);border-radius:10px;padding:28px;display:flex;flex-direction:column}
+.quote p{flex:1;margin-bottom:22px;font-size:15px;color:var(--ink)}
+.who{display:flex;align-items:center;gap:12px}
+.who img{width:46px;height:46px;border-radius:50%;object-fit:cover;background:#ddd}
+.who strong{display:block;font-size:14.5px;line-height:1.3}.who small{color:var(--mute);font-size:13px}
+
+/* FAQ */
+.faq{max-width:760px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;font-weight:600;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:16px;font-size:1.6rem;font-weight:400;color:var(--red);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 20px;color:var(--mute)}
+
+/* CTA */
+.cta-band{background:var(--red);color:#fff;text-align:center;padding:76px 24px}
+.cta-band h2{color:#fff;font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:10px}
+.cta-band p{opacity:.92;margin-bottom:28px}
+
+/* Footer */
+.site-footer{background:#000;color:#bbb;padding:64px 0 0;font-size:14.5px}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.3fr;gap:36px;padding-bottom:44px}
+.footer-grid h4{color:#fff;font-size:15px;margin-bottom:16px}
+.footer-grid li{margin-bottom:9px}
+.footer-grid a:hover{color:#fff;text-decoration:underline}
+.footer-logo{height:36px;margin-bottom:16px;filter:brightness(0) invert(1)}
+.footer-bottom{border-top:1px solid #222;padding:20px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:#888}
+.contact-bar{background:#111;color:#ccc;font-size:13.5px;padding:14px 0}
+.contact-bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.contact-bar .meta,.contact-bar .social{display:flex;flex-wrap:wrap;gap:8px 24px}
+.contact-bar a:hover{color:var(--red)}
+.wa{position:fixed;right:24px;bottom:24px;z-index:90;width:54px;height:54px;border-radius:50%;background:#25d366;display:grid;place-items:center;color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:transform .2s}
+.wa:hover{transform:scale(1.08)}.wa .ui{width:28px;height:28px;fill:currentColor;stroke:none}
+
+/* Partners */
+.partners{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.partners div{height:92px;border:1px solid var(--line);border-radius:10px;background:#fff;display:grid;place-items:center;padding:16px 22px;transition:border-color .2s}
+.partners div:hover{border-color:var(--red)}
+.partners img{max-height:52px;max-width:100%;object-fit:contain;filter:grayscale(1);opacity:.7;transition:.25s}
+.partners div:hover img{filter:none;opacity:1}
+/* Gallery */
+.gal-nav{display:flex;gap:10px}
+.gal-nav button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--black);background:#fff;font-size:18px;cursor:pointer;transition:.2s}
+.gal-nav button:hover{background:var(--red);border-color:var(--red);color:#fff}
+.gal-track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.gal-track::-webkit-scrollbar{display:none}
+.gal-item{flex:0 0 calc((100% - 66px)/4);scroll-snap-align:start;border-radius:10px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.gal-item img{width:100%;height:240px;object-fit:cover;background:#ddd}
+.gal-item div{padding:18px 20px 22px;border-top:3px solid var(--red)}
+.gal-item h3{font-size:1.02rem;margin-bottom:6px}
+.gal-item p{font-size:14px;color:var(--mute)}
+@media(max-width:1000px){.partners{grid-template-columns:repeat(3,1fr)}.gal-item{flex-basis:calc((100% - 22px)/2)}}
+@media(max-width:640px){.partners{grid-template-columns:repeat(2,1fr)}.gal-item{flex-basis:86%}}
+@media(prefers-reduced-motion:reduce){.gal-track{scroll-behavior:auto}}
+
+@media(max-width:1000px){
+ .cat-grid{grid-template-columns:repeat(3,1fr)}
+ .grid{grid-template-columns:1fr 1fr}
+ .hero-grid,.showcase-grid{grid-template-columns:1fr;gap:40px}
+ .hero::before{background:rgba(255,255,255,.9)}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:820px){
+ .menu-toggle{display:block}
+ #navWrap{position:absolute;top:72px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);display:none;max-height:calc(100vh - 72px);overflow:auto}
+ #navWrap.open{display:block}
+ .nav-links{flex-direction:column;align-items:stretch;gap:0;padding:12px 24px 20px}
+ .nav-links>li{border-bottom:1px solid var(--line)}
+ .nav-links>li>a,.dropdown-trigger{display:block;width:100%;text-align:left;padding:14px 0}
+ .dropdown-menu{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;display:none;padding:0 0 10px 14px}
+ .has-dropdown.open .dropdown-menu{display:block}
+ .nav-links li:last-child{border:0;padding-top:14px}
+}
+@media(max-width:640px){
+ .section{padding:60px 0}.hero-grid{padding:60px 24px}
+ .grid,.grid-wide{grid-template-columns:1fr}
+ .cat-grid{grid-template-columns:1fr 1fr}
+ .stats-band{grid-template-columns:1fr 1fr;row-gap:28px}
+ .stat:nth-child(3){border-left:0;padding-left:0}
+ .footer-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}.marq{animation:none}}
+
+/* ===== Added: old-site effects in red theme ===== */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.cat-item,.card,.track-card,.prod-card,.quote,.gal-item,.tstat{transition:transform .35s,box-shadow .35s,border-color .25s}
+.cat-item:hover,.card:hover,.track-card:hover,.prod-card:hover,.quote:hover,.gal-item:hover{transform:translateY(-8px);box-shadow:0 20px 44px rgba(0,0,0,.11);border-color:var(--red)}
+.prod-shot,.track-visual{overflow:hidden}.prod-shot img,.gal-item img{transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.prod-card:hover .prod-shot img,.gal-item:hover img{transform:scale(1.07)}
+.c-dot,.c-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:1500;border-radius:50%;margin:-4px 0 0 -4px}
+.c-dot{width:8px;height:8px;background:var(--red)}
+.c-ring{width:36px;height:36px;margin:-18px 0 0 -18px;border:1.5px solid rgba(209,0,0,.55);transition:width .25s,height .25s,margin .25s,background .25s}
+.c-ring.hov{width:56px;height:56px;margin:-28px 0 0 -28px;background:rgba(209,0,0,.07)}
+.hero{isolation:isolate}
+#particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+#particles i{position:absolute;bottom:-10px;border-radius:50%;background:rgba(209,0,0,.45);animation:floatUp linear forwards}
+@keyframes floatUp{0%{transform:translateY(0) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-110vh) scale(1.2);opacity:0}}
+.hero-grid{z-index:2}
+.pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border:1px solid var(--line);background:#fff;border-radius:30px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:22px;animation:glow 2.6s ease-in-out infinite}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--red);animation:blink 1.8s infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(209,0,0,.25)}50%{box-shadow:0 0 0 8px rgba(209,0,0,0)}}
+@keyframes blink{50%{opacity:.35}}
+.ready .rise:nth-child(1){transition-delay:0s}.ready .rise:nth-child(6){transition-delay:.6s}.ready .rise:nth-child(7){transition-delay:.72s}
+.proof{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:28px 0 20px}
+.avs{display:flex}.avs b{width:34px;height:34px;border-radius:50%;border:2px solid #fff;display:grid;place-items:center;font-size:12px;color:#fff;background:var(--red);margin-left:-9px}
+.avs b:first-child{margin-left:0}.avs b:nth-child(2){background:#000}.avs b:nth-child(3){background:#555}
+.stars{color:var(--red);font-size:14px;letter-spacing:2px}.stars strong{color:#000;letter-spacing:0;margin-left:4px;font-size:13px}
+.proof small{font-size:12px;color:var(--mute)}.vr{width:1px;height:28px;background:var(--line)}.trust{font-size:13px;color:var(--mute)}.trust strong{color:#000}
+.hstrip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.92);overflow:hidden;max-width:520px}
+.hstrip div{padding:14px 8px;text-align:center;border-left:1px solid var(--line)}.hstrip div:first-child{border:0}
+.hstrip strong{display:block;font:800 1.35rem Montserrat,sans-serif;color:var(--red);line-height:1.1}.hstrip span{font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.hero-right{display:flex;flex-direction:column;gap:18px}
+.dash{background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 24px 60px rgba(0,0,0,.12);padding:18px 20px}
+.dash-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.dash small{display:block;font-size:11px;color:var(--mute);letter-spacing:.04em}.dash-head strong{font-size:15px}
+.live{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;color:#0a7d3b;background:#e8f6ee;padding:5px 11px;border-radius:20px;text-transform:uppercase}
+.live i{width:7px;height:7px;border-radius:50%;background:#12a150;animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(18,161,80,.55)}70%{box-shadow:0 0 0 8px rgba(18,161,80,0)}100%{box-shadow:0 0 0 0 rgba(18,161,80,0)}}
+.dp{padding:10px 0;border-top:1px solid var(--line)}.dp-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}.dp-top>div{flex:1}.dp-top strong{display:block;font-size:13.5px;line-height:1.3}
+.dp-top em{font-style:normal;font-size:10.5px;font-weight:700;text-transform:uppercase;padding:3px 9px;border-radius:5px}.dp-top em.ok{color:#0a7d3b;background:#e8f6ee}.dp-top em.wip{color:#9a6200;background:#fff3dc}.dp-top b{font-size:13px;color:var(--red);min-width:34px;text-align:right}
+.bar{height:5px;background:#eee;border-radius:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--red);border-radius:5px;transform-origin:left;animation:fillbar 1.8s cubic-bezier(.16,1,.3,1) 1.2s both}
+@keyframes fillbar{from{transform:scaleX(0)}}
+.dtiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 10px}.dtiles div{background:var(--soft);border-radius:8px;padding:10px 6px;text-align:center}
+.dtiles strong{display:block;font:800 1.25rem Montserrat,sans-serif;line-height:1.2}.dtiles span{font-size:10.5px;color:var(--mute)}
+.act p{display:flex;align-items:center;gap:9px;font-size:12px;padding:6px 0;border-top:1px solid var(--line)}.act p i{width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
+.act p span{flex:1;font-weight:600}.act em{font-style:normal;font-weight:400;color:var(--mute);margin-left:5px}.act time{font-size:11px;color:#999}
+.ticker{background:var(--red);overflow:hidden;padding:13px 0}.tk{animation-duration:30s}
+.tk span{border:0;border-radius:0;margin:0;padding:0 28px;color:#fff;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px}
+.tk span::after{content:"";width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.55)}
+.ck{margin:0 0 22px;display:flex;flex-direction:column;gap:9px;font-size:14px}.ck li{display:flex;gap:9px;align-items:center}.ck li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
+.card .link-arrow{margin-top:auto}
+.h2{font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.015em;margin-bottom:14px}.sub{color:var(--mute);margin-bottom:26px}
+.feats{display:flex;flex-direction:column;gap:6px;margin-bottom:28px}
+.feat{display:flex;gap:16px;padding:14px;border-radius:10px;border:1px solid transparent;transition:.3s}.feat:hover{background:var(--soft);border-color:var(--line);transform:translateX(6px)}
+.feat .cat-ic{margin:0;flex:none}.feat strong{display:block;font-size:15px;margin-bottom:2px}.feat p{font-size:14px;color:var(--mute)}
+.train-block{background:#000;color:#fff;border-radius:12px;padding:38px;position:relative;overflow:hidden}
+.train-block::before{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;border:26px solid var(--red)}
+.train-block h3{color:#fff;font-size:1.3rem}.tsub{color:#aaa;font-size:14px;margin:4px 0 24px}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;position:relative}
+.tstat{display:flex;flex-direction:column;padding:18px;background:#111;border:1px solid #2a2a2a;border-radius:10px}.tstat:hover{border-color:var(--red);transform:translateY(-4px)}
+.tstat strong{font:800 1.9rem Montserrat,sans-serif;color:#fff;line-height:1.1}.tstat strong i{color:var(--red);font-style:normal}.tstat span{font-size:12.5px;color:#aaa;margin-top:4px}
+.train-block blockquote{border-left:3px solid var(--red);padding-left:16px;font-style:italic;color:#ccc;font-size:14.5px}
+.tsub2{text-align:center;color:var(--mute);font-size:14px;margin:-14px 0 24px}
+.tech .marq+.marq{margin-top:12px}.marq.rev{animation-direction:reverse;animation-duration:34s}
+.stats-h{color:#fff;text-align:center;font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:36px}
+.why-img::before{inset:24px 24px -16px -16px}
+.gal-prog{height:2px;background:var(--line);margin-top:28px;border-radius:2px;overflow:hidden}.gal-prog i{display:block;height:100%;width:0;background:var(--red);transition:width .1s linear}
+.t-track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.t-track::-webkit-scrollbar{display:none}
+.t-track .quote{flex:0 0 calc((100% - 44px)/3);scroll-snap-align:start;position:relative}
+.t-track .quote::before{content:"\201C";position:absolute;right:20px;top:6px;font:700 90px/1 Georgia,serif;color:#f1d4d4}
+.quote .who{margin-bottom:16px}.quote p{font-style:italic;color:var(--mute)}.rs{color:var(--red);letter-spacing:3px;font-size:15px}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:26px}.dots button{width:9px;height:9px;border-radius:50%;border:0;background:#ccc;cursor:pointer;transition:.3s}.dots button.on{background:var(--red);width:26px;border-radius:5px}
+.faq details{background:#fff;margin-bottom:12px;border:1px solid var(--line);border-radius:10px;padding:0 24px;transition:border-color .25s}.faq details[open]{border-color:var(--red)}
+.faq-cta{text-align:center;margin-top:36px}.faq-cta p{color:var(--mute);margin-bottom:14px}
+.cta-acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}.btn-ghost{border-color:#fff;color:#fff}.btn-ghost:hover{background:#fff;color:var(--red)}
+.section.alt .faq details{background:#fff}
+@media(max-width:1000px){.t-track .quote{flex-basis:calc((100% - 22px)/2)}}
+@media(max-width:640px){.t-track .quote{flex-basis:86%}.hstrip{grid-template-columns:repeat(2,1fr)}.hstrip div:nth-child(3){border-left:0}.hstrip div:nth-child(n+3){border-top:1px solid var(--line)}.train-block{padding:26px 20px}.tgrid{grid-template-columns:1fr 1fr}}
+@media(hover:none){.c-dot,.c-ring{display:none}}
+
+/* ===== Hero layout refinement ===== */
+.hero-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;padding:72px 24px 48px;align-items:center}
+.hero h1{font-size:clamp(2rem,3.4vw,3rem);line-height:1.12;letter-spacing:-.02em;margin-bottom:18px}
+.hero .lead{font-size:1.05rem;max-width:500px;margin-bottom:26px}
+.hero .acts{margin-bottom:24px}
+.hero .checklist{margin-bottom:0}
+.hero .proof{margin:24px 0 0}
+.hero::before{background:linear-gradient(90deg,#fff 0,rgba(255,255,255,.96) 40%,rgba(255,255,255,.72) 65%,rgba(255,255,255,.25) 100%)}
+.hero-right{width:100%;max-width:480px;margin-left:auto}
+.dash{padding:20px 22px}
+.hero-strip{position:relative;z-index:2;padding-bottom:44px}
+.hero-strip .hstrip{max-width:none;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 44px rgba(0,0,0,.10)}
+.hero-strip .hstrip div{padding:22px 16px;text-align:center;border-left:1px solid var(--line)}
+.hero-strip .hstrip div:first-child{border-left:0}
+.hero-strip .hstrip strong{font-size:1.9rem;color:#000}
+.hero-strip .hstrip strong{background:none}
+.hero-strip .hstrip span:last-child{display:block;margin-top:4px;font-size:12px}
+#particles i{background:rgba(209,0,0,.28)}
+@media(max-width:1000px){
+ .hero-grid{grid-template-columns:1fr;gap:36px;padding:56px 24px 32px}
+ .hero-right{max-width:none}
+ .hero-strip .hstrip{grid-template-columns:repeat(2,1fr)}
+ .hero-strip .hstrip div:nth-child(3){border-left:0}
+ .hero-strip .hstrip div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media(max-width:640px){.hero h1{font-size:1.85rem}.hero-strip .hstrip strong{font-size:1.5rem}}
+
+/* Round loader */
+.ld-ring{position:relative;width:180px;height:180px;margin:0 auto 26px;display:grid;place-items:center}
+.ld-circle{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.ld-circle .trk{fill:none;stroke:#ececec;stroke-width:3}
+.ld-circle .arc{fill:none;stroke:var(--red);stroke-width:3;stroke-linecap:round;stroke-dasharray:515.2;stroke-dashoffset:515.2}
+.ld-orbit{position:absolute;inset:0;animation:ldspin 2.6s linear infinite}
+.ld-orbit i{position:absolute;top:-5px;left:50%;margin-left:-5px;width:10px;height:10px;border-radius:50%;background:#000}
+@keyframes ldspin{to{transform:rotate(360deg)}}
+.ld-ring .ld-mark{width:78px;height:78px;margin:0}
+.ld-pct{margin-top:10px;font:700 14px Inter,sans-serif;color:#000;letter-spacing:.04em}
+
+/* ===== Design system v2: sharper, editorial, orbit motif ===== */
+html{overflow-x:clip}
+::selection{background:var(--red);color:#fff}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:#fff}::-webkit-scrollbar-thumb{background:var(--red);border:2px solid #fff;border-radius:6px}
+.card,.cat-item,.track-card,.prod-card,.quote,.gal-item,.dash,.train-block,.faq details,.partners div,.hero-strip .hstrip,.dropdown-menu{border-radius:6px}
+.card{border-radius:0 0 6px 6px}.cat-ic,.hc-ic,.btn{border-radius:4px}
+.nav-inner{transition:height .3s}.site-header{transition:box-shadow .3s}
+.site-header.scrolled .nav-inner{height:60px}.site-header.scrolled{box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.nav-links>li>a:not(.btn)::after,.dropdown-trigger::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav-links>li>a:not(.btn):hover::after,.nav-links>li>a.active::after,.dropdown-trigger:hover::after{transform:scaleX(1)}
+.btn{position:relative;overflow:hidden;isolation:isolate;transition:color .3s,border-color .3s,transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.btn::before{content:"";position:absolute;inset:0;background:#000;transform:translateX(-101%);transition:transform .45s cubic-bezier(.77,0,.18,1);z-index:-1}
+.btn:hover::before{transform:none}
+.btn-primary:hover,.btn-outline:hover{background:var(--red);color:#fff;box-shadow:0 12px 28px rgba(209,0,0,.28)}
+.btn-primary:hover,.btn-light:hover{background:#000}.btn-outline{background:#fff}.btn-outline::before{background:var(--red)}.btn-outline:hover{background:#fff;border-color:var(--red)}
+.btn-primary::before{background:#000}.btn-light::before,.btn-ghost::before{background:#000}.btn-ghost:hover{background:transparent;color:#fff;border-color:#000}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(0,0,0,.16) 1px,transparent 1.4px);background-size:26px 26px;-webkit-mask-image:linear-gradient(90deg,#000,transparent 55%);mask-image:linear-gradient(90deg,#000,transparent 55%)}
+.ready .hero h1.rise{animation:unmask 1.1s cubic-bezier(.77,0,.18,1) .15s both}
+@keyframes unmask{from{clip-path:inset(0 0 100% 0);transform:translateY(34px)}to{clip-path:inset(0 0 -10% 0);transform:none}}
+.orbit{position:absolute;pointer-events:none;z-index:1}.orbit svg{width:100%;height:100%;overflow:visible}
+.orbit circle{fill:none;stroke:rgba(209,0,0,.28);stroke-width:1}.orbit .dash2{stroke-dasharray:3 9;stroke:rgba(0,0,0,.25)}
+.orbit .dot{fill:var(--red);stroke:none}
+.orbit g{transform-box:view-box;transform-origin:300px 300px}.o1{animation:ospin 28s linear infinite}.o2{animation:ospin 44s linear infinite reverse}.o3{animation:ospin 18s linear infinite}
+@keyframes ospin{to{transform:rotate(360deg)}}
+.hero-orbit{width:780px;height:780px;right:-200px;top:50%;margin-top:-390px;opacity:.9}
+.cta-orbit,.stat-orbit{width:520px;height:520px;right:-120px;top:50%;margin-top:-260px}
+.cta-orbit circle,.stat-orbit circle{stroke:rgba(255,255,255,.22)}.cta-orbit .dot{fill:#000}.stat-orbit .dot{fill:var(--red)}.cta-orbit .dash2,.stat-orbit .dash2{stroke:rgba(255,255,255,.3)}
+.cta-band,.stats-section{position:relative;overflow:hidden}.cta-band>*:not(.orbit),.stats-section .wrap{position:relative;z-index:2}
+.stats-section{clip-path:polygon(0 32px,100% 0,100% calc(100% - 32px),0 100%);margin:-32px 0;padding:116px 0;z-index:1}
+.cta-band{clip-path:polygon(0 34px,100% 0,100% 100%,0 100%);margin-top:-34px;padding:112px 24px 80px}
+.ticker{position:relative;z-index:3;transform:rotate(-1deg);margin:18px -24px;box-shadow:0 12px 30px rgba(209,0,0,.28)}
+.section-head h2::after,.h2::after{content:"";display:block;width:0;height:4px;background:var(--red);margin:16px auto 0;transition:width .9s cubic-bezier(.77,0,.18,1) .2s}
+.h2::after,.section-bar .section-head h2::after,.products-left h2::after{margin-left:0}
+.section-head:not(.center) h2::after{margin-left:0}
+.drawn h2::after,.h2.drawn::after{width:64px}
+.wm{position:relative}.wm::before{content:attr(data-wm);position:absolute;top:-34px;left:50%;transform:translateX(-50%);font:800 clamp(4.5rem,13vw,11rem)/1 Montserrat,sans-serif;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px rgba(0,0,0,.08);white-space:nowrap;pointer-events:none;z-index:0}
+.wm>*{position:relative;z-index:1}
+.card,.cat-item,.quote,.track-card,.prod-card{position:relative;overflow:hidden}
+.card::after,.cat-item::after,.quote::after,.track-card::after,.prod-card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(209,0,0,.09),transparent 65%)}
+.card:hover::after,.cat-item:hover::after,.quote:hover::after,.track-card:hover::after,.prod-card:hover::after{opacity:1}
+.card:hover .cat-ic,.cat-item:hover .cat-ic,.feat:hover .cat-ic{background:var(--red);color:#fff;transform:rotate(-6deg) scale(1.06)}
+.cat-ic{transition:background .3s,transform .3s}.cat-ic{background:#fff0f0}.feat .cat-ic,.card .cat-ic{background:#000;color:#fff}.cat-item .cat-ic{background:#fff0f0;color:var(--red)}
+.track-visual::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1.4px);background-size:18px 18px}
+.track-visual .ui{position:relative;transition:transform .5s cubic-bezier(.2,.8,.2,1)}.track-card:hover .track-visual .ui{transform:scale(1.15) rotate(-4deg)}
+.stat strong{font-size:3rem}.stat{position:relative}
+@media(max-width:820px){.hero-orbit{width:520px;height:520px;right:-240px;margin-top:-260px;opacity:.6}.ticker{margin:14px -24px}.stats-section{padding:96px 0}.wm::before{top:-18px}}
+@media(prefers-reduced-motion:reduce){.orbit g,.ready .hero h1.rise{animation:none}}
+
+/* ===== Requested tweaks ===== */
+.track-visual{height:190px}
+.track-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.track-visual::before,.track-visual::after{display:none}
+.track-card:hover .track-visual img{transform:scale(1.07)}
+.track-chip{z-index:2}
+.tstat{padding:22px 16px}
+.tstat strong{font-size:2.8rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tstat span{font-size:14px;margin-top:8px}
+.partners img{filter:none;opacity:1}
+#marq span,#marq2 span{color:var(--c,var(--ink));border:1.5px solid var(--c,var(--line));font-weight:600;display:inline-flex;align-items:center;gap:9px;background:#fff}
+#marq span::before,#marq2 span::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c,var(--ink))}
+@media(max-width:640px){.tgrid{grid-template-columns:1fr}.tstat strong{font-size:2.4rem}}
+</style>
 </head>
-<body>
-  <div id="bar"></div>
+<body class="lock">
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="wrap nav-inner">
-      <a href="index.html" class="site-logo" aria-label="ALGO ORBIT home">
-        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
-          <rect width="40" height="40" rx="10"/>
-          <line x1="13.5" y1="28" x2="21.5" y2="12.5"/>
-          <circle cx="30" cy="27.5" r="5"/>
-        </svg>
-        <span class="logo-text"><span class="logo-algo">ALGO</span><span class="logo-orbit">ORBIT</span></span>
-      </a>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">☰</button>
-      <nav aria-label="Primary">
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html" class="active" aria-current="page">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button" aria-expanded="false">Services ▾</button>
-            <div class="dropdown-menu">
-              <a href="services.html#software">Software Development</a>
-              <a href="services.html#consulting">IT Consulting</a>
-              <a href="services.html#corporate">Corporate Training</a>
-            </div>
-          </li>
-          <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button" aria-expanded="false">For Institutions ▾</button>
-            <div class="dropdown-menu">
-              <a href="institutions.html#placement">Campus Placement Training</a>
-              <a href="institutions.html#vac">Value-Added Courses</a>
-              <a href="institutions.html#fdp">Faculty Development</a>
-            </div>
-          </li>
-          <li class="has-dropdown">
-            <button class="dropdown-trigger" type="button" aria-expanded="false">For Learners ▾</button>
-            <div class="dropdown-menu">
-              <a href="learners.html#placement">Placement Preparation</a>
-              <a href="learners.html#fullstack">Full-Stack Development</a>
-              <a href="learners.html#mobile">Mobile App Development</a>
-            </div>
-          </li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="our-work.html">Our Work</a></li>
-          <li><a href="contact.html" class="btn btn-primary btn-sm">Contact Us</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></symbol>
+ <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+ <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14.2c2 .7 3.5 2.6 3.5 5.8"/></symbol>
+ <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5-10-5zM6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></symbol>
+ <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5zM4 19a2 2 0 0 1 2-2h13"/></symbol>
+ <symbol id="i-board" viewBox="0 0 24 24"><path d="M3 4h18v11H3zM12 15v5M8 20h8M7 10l3-2 3 2 4-3"/></symbol>
+ <symbol id="i-brief" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
+ <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></symbol>
+ <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+ <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+ <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+ <symbol id="i-help" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v5H5a1 1 0 0 1-1-1zM20 14h-3v5h2a1 1 0 0 0 1-1z"/></symbol>
+ <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.300 1.200-1.800 1.200-.5.100-1 .2-3.300-.7-2.800-1.200-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.200.1.400 0 .5l-.4.600-.4.400c-.1.200-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.100 1 2.100 1.300 2.400 1.500.3.100.5.100.6-.1l.9-1.100c.2-.3.400-.2.600-.1l1.900.9c.3.100.5.200.5.300.1.200.1.700-.1 1.300z"/></symbol>
+</svg>
 
-  <main>
-    <!-- Hero -->
-    <section class="page-hero">
-      <div class="wrap page-hero-grid">
-        <div class="page-hero-text">
-          <span class="eyebrow">Software Engineering &amp; Technical Education</span>
-          <h1>Technology solutions for business. Practical learning for learners.</h1>
-          <p class="lead">We engineer scalable digital products for businesses and deliver hands-on, mentor-led programs that build applied engineering skills.</p>
-          <div class="acts">
-            <a href="contact.html" class="btn btn-primary">Discuss Your Project</a>
-            <a href="services.html" class="btn btn-outline">Explore Services</a>
-          </div>
-          <ul class="checklist hero-proof">
-            <li>Mentor-led programs</li>
-            <li>Production-grade products</li>
-            <li>Syllabus-aligned training</li>
-          </ul>
-        </div>
-        <div class="hero-visual">
-          <aside class="hero-card" aria-label="What we do">
-            <a href="services.html#software"><span class="hc-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></span><span><strong>Software Development</strong><small>Scalable digital products</small></span></a>
-            <a href="services.html#consulting"><span class="hc-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><span><strong>IT Consulting</strong><small>Architecture and cloud</small></span></a>
-            <a href="services.html#corporate"><span class="hc-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14.2c2 .7 3.5 2.6 3.5 5.8"/></svg></span><span><strong>Corporate Training</strong><small>Hands-on team upskilling</small></span></a>
-            <a href="institutions.html#placement"><span class="hc-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5-10-5zM6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg></span><span><strong>Campus Placement</strong><small>Training for institutions</small></span></a>
-          </aside>
-          <div class="hero-photo">
-            <img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="ALGO ORBIT training session">
-            <div class="badge-chip">
-              <i>★</i>
-              <div>
-                <strong><span data-count="2500">2,500</span>+ Trained</strong>
-                <div class="badge-note">Across partner institutions</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Popular services -->
-    <section class="cat-section" aria-labelledby="services-heading">
-      <div class="wrap">
-        <div class="cat-strip">
-          <div class="cat-head">
-            <h2 id="services-heading">Popular services</h2>
-            <a href="services.html" class="link-arrow">View all services <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
-          <div class="cat-grid">
-            <a class="cat-item" href="services.html#software"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></span><strong>Software Development</strong><small>Custom digital products</small></a>
-            <a class="cat-item" href="services.html#consulting"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><strong>IT Consulting</strong><small>Architecture and cloud</small></a>
-            <a class="cat-item" href="services.html#corporate"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14.2c2 .7 3.5 2.6 3.5 5.8"/></svg></span><strong>Corporate Training</strong><small>Team upskilling</small></a>
-            <a class="cat-item" href="institutions.html#placement"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5-10-5zM6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg></span><strong>Campus Placement</strong><small>Placement training</small></a>
-            <a class="cat-item" href="institutions.html#vac"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5zM4 19a2 2 0 0 1 2-2h13"/></svg></span><strong>Value-Added Courses</strong><small>Syllabus-aligned modules</small></a>
-            <a class="cat-item" href="institutions.html#fdp"><span class="cat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v11H3zM12 15v5M8 20h8M7 10l3-2 3 2 4-3"/></svg></span><strong>Faculty Development</strong><small>Programs for educators</small></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Core paths -->
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head center">
-          <h2>How can we help you?</h2>
-          <p>Choose the engagement model that matches your current priorities.</p>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <span class="ic">01</span>
-            <h3>For Businesses</h3>
-            <p>Custom software engineering, cloud integration, and architecture consulting tailored to clear timelines.</p>
-            <div class="card-action"><a href="services.html" class="btn btn-outline btn-sm">Explore Solutions</a></div>
-          </div>
-          <div class="card">
-            <span class="ic">02</span>
-            <h3>For Institutions</h3>
-            <p>Placement preparation tracks, value-added modules, and faculty development aligned with technical syllabi.</p>
-            <div class="card-action"><a href="institutions.html" class="btn btn-outline btn-sm">View Programs</a></div>
-          </div>
-          <div class="card">
-            <span class="ic">03</span>
-            <h3>For Learners</h3>
-            <p>Hands-on project tracks in Full-Stack, Flutter, and AI designed to build demonstrable technical competency.</p>
-            <div class="card-action"><a href="learners.html" class="btn btn-outline btn-sm">Explore Tracks</a></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured learning tracks -->
-    <section class="section alt">
-      <div class="wrap">
-        <div class="section-bar">
-          <div class="section-head">
-            <h2>Featured learning tracks</h2>
-            <p>Hands-on, mentor-led programs that build applied engineering skills.</p>
-          </div>
-          <a href="learners.html" class="link-arrow">View all tracks <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-        <div class="grid">
-          <article class="track-card">
-            <div class="track-visual">
-              <!-- Illustration: resume, interview Q&A and a passed check -->
-              <svg class="track-art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Resume and interview preparation illustration">
-                <rect x="40" y="30" width="100" height="124" rx="8" fill="#fff"/>
-                <rect x="40" y="30" width="100" height="30" rx="8" fill="#D10000"/>
-                <rect x="40" y="48" width="100" height="12" fill="#D10000"/>
-                <circle cx="62" cy="45" r="9" fill="#fff"/>
-                <rect x="78" y="40" width="50" height="5" rx="2.5" fill="#fff"/>
-                <rect x="78" y="50" width="34" height="4" rx="2" fill="#ffb3b3"/>
-                <rect x="52" y="74" width="76" height="5" rx="2.5" fill="#d9d9d9"/>
-                <rect x="52" y="86" width="60" height="5" rx="2.5" fill="#d9d9d9"/>
-                <rect x="52" y="98" width="70" height="5" rx="2.5" fill="#d9d9d9"/>
-                <rect x="52" y="116" width="40" height="5" rx="2.5" fill="#D10000"/>
-                <rect x="52" y="128" width="66" height="5" rx="2.5" fill="#d9d9d9"/>
-                <rect x="52" y="140" width="50" height="5" rx="2.5" fill="#d9d9d9"/>
-                <rect x="160" y="34" width="126" height="38" rx="10" fill="#fff"/>
-                <path d="M174 72l-2 12 14-12z" fill="#fff"/>
-                <text x="174" y="58" font-family="Montserrat, sans-serif" font-size="18" font-weight="800" fill="#000">Q&amp;A ?</text>
-                <rect x="190" y="88" width="108" height="38" rx="10" fill="#D10000"/>
-                <path d="M286 126l4 12-14-12z" fill="#D10000"/>
-                <rect x="204" y="100" width="70" height="5" rx="2.5" fill="#fff"/>
-                <rect x="204" y="111" width="48" height="5" rx="2.5" fill="#ffb3b3"/>
-                <circle cx="176" cy="138" r="14" fill="#fff"/>
-                <path d="M169 138l5 5 9-10" fill="none" stroke="#D10000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg><span class="track-chip">For Learners</span></div>
-            <div class="track-body">
-              <h3>Placement Preparation</h3>
-              <p>Structured preparation for technical interviews and campus placement rounds.</p>
-              <div class="tags"><span>Mentor-led</span><span>Interview prep</span></div>
-              <a href="learners.html#placement" class="btn btn-outline btn-sm">Explore Track</a>
-            </div>
-          </article>
-          <article class="track-card">
-            <div class="track-visual">
-              <!-- Illustration: front-end browser, back-end servers and database -->
-              <svg class="track-art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Browser, server and database illustration">
-                <rect x="24" y="30" width="144" height="108" rx="8" fill="#fff"/>
-                <rect x="24" y="30" width="144" height="20" rx="8" fill="#ececec"/>
-                <rect x="24" y="42" width="144" height="8" fill="#ececec"/>
-                <circle cx="37" cy="40" r="3" fill="#D10000"/>
-                <circle cx="47" cy="40" r="3" fill="#bdbdbd"/>
-                <circle cx="57" cy="40" r="3" fill="#bdbdbd"/>
-                <rect x="72" y="36" width="86" height="8" rx="4" fill="#fff"/>
-                <rect x="34" y="58" width="124" height="32" rx="5" fill="#D10000"/>
-                <rect x="44" y="68" width="60" height="6" rx="3" fill="#fff"/>
-                <rect x="44" y="79" width="40" height="5" rx="2.5" fill="#ffb3b3"/>
-                <rect x="34" y="98" width="38" height="30" rx="4" fill="#e4e4e4"/>
-                <rect x="78" y="98" width="38" height="30" rx="4" fill="#e4e4e4"/>
-                <rect x="122" y="98" width="36" height="30" rx="4" fill="#e4e4e4"/>
-                <path d="M172 84h30" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 7"/>
-                <path d="M198 77l8 7-8 7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <rect x="212" y="26" width="86" height="24" rx="6" fill="#fff"/>
-                <circle cx="225" cy="38" r="4" fill="#D10000"/>
-                <rect x="236" y="35" width="50" height="6" rx="3" fill="#d0d0d0"/>
-                <rect x="212" y="56" width="86" height="24" rx="6" fill="#fff"/>
-                <circle cx="225" cy="68" r="4" fill="#D10000"/>
-                <rect x="236" y="65" width="50" height="6" rx="3" fill="#d0d0d0"/>
-                <rect x="212" y="86" width="86" height="24" rx="6" fill="#fff"/>
-                <circle cx="225" cy="98" r="4" fill="#D10000"/>
-                <rect x="236" y="95" width="50" height="6" rx="3" fill="#d0d0d0"/>
-                <path d="M255 110v10" stroke="#fff" stroke-width="3"/>
-                <path d="M230 124v22c0 5 11.6 9 25 9s25-4 25-9v-22" fill="#D10000"/>
-                <ellipse cx="255" cy="124" rx="25" ry="9" fill="#ff3b3b"/>
-                <path d="M230 135c0 5 11.6 9 25 9s25-4 25-9" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/>
-                <text x="40" y="164" font-family="Montserrat, sans-serif" font-size="20" font-weight="800" fill="#fff">&lt;/&gt;</text>
-              </svg>
-              <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg><span class="track-chip">For Learners</span></div>
-            <div class="track-body">
-              <h3>Full-Stack Development</h3>
-              <p>Project-based track covering front-end, back-end, and deployment fundamentals.</p>
-              <div class="tags"><span>Project-based</span><span>Full-Stack</span></div>
-              <a href="learners.html#fullstack" class="btn btn-outline btn-sm">Explore Track</a>
-            </div>
-          </article>
-          <article class="track-card">
-            <div class="track-visual">
-              <!-- Illustration: two cross-platform mobile app screens -->
-              <svg class="track-art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Cross-platform mobile app screens illustration">
-                <rect x="70" y="18" width="84" height="150" rx="14" fill="#fff"/>
-                <rect x="78" y="30" width="68" height="126" rx="8" fill="#f4f4f4"/>
-                <rect x="100" y="22" width="24" height="4" rx="2" fill="#cfcfcf"/>
-                <rect x="78" y="30" width="68" height="26" rx="8" fill="#D10000"/>
-                <rect x="78" y="46" width="68" height="10" fill="#D10000"/>
-                <rect x="86" y="38" width="34" height="5" rx="2.5" fill="#fff"/>
-                <rect x="84" y="64" width="56" height="20" rx="5" fill="#fff"/>
-                <circle cx="95" cy="74" r="5" fill="#D10000"/>
-                <rect x="105" y="70" width="28" height="4" rx="2" fill="#cfcfcf"/>
-                <rect x="105" y="77" width="18" height="3" rx="1.5" fill="#e0e0e0"/>
-                <rect x="84" y="90" width="56" height="20" rx="5" fill="#fff"/>
-                <circle cx="95" cy="100" r="5" fill="#000"/>
-                <rect x="105" y="96" width="28" height="4" rx="2" fill="#cfcfcf"/>
-                <rect x="105" y="103" width="18" height="3" rx="1.5" fill="#e0e0e0"/>
-                <rect x="84" y="116" width="56" height="20" rx="5" fill="#fff"/>
-                <circle cx="95" cy="126" r="5" fill="#D10000"/>
-                <rect x="105" y="122" width="28" height="4" rx="2" fill="#cfcfcf"/>
-                <rect x="105" y="129" width="18" height="3" rx="1.5" fill="#e0e0e0"/>
-                <rect x="88" y="142" width="48" height="9" rx="4.5" fill="#D10000"/>
-                <rect x="172" y="34" width="84" height="138" rx="14" fill="#1e1e1e" stroke="#fff" stroke-opacity=".7" stroke-width="2"/>
-                <rect x="180" y="46" width="68" height="114" rx="8" fill="#000"/>
-                <rect x="202" y="38" width="24" height="4" rx="2" fill="#555"/>
-                <path d="M214 56l22 12-22 12-22-12z" fill="#D10000"/>
-                <path d="M214 74l22 12-22 12-22-12z" fill="#fff" fill-opacity=".85"/>
-                <path d="M192 94l22 12 22-12" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="2.5" stroke-linejoin="round"/>
-                <rect x="190" y="116" width="48" height="5" rx="2.5" fill="#ffffff" fill-opacity=".35"/>
-                <rect x="198" y="128" width="32" height="5" rx="2.5" fill="#ffffff" fill-opacity=".2"/>
-                <rect x="192" y="140" width="44" height="12" rx="6" fill="#D10000"/>
-              </svg>
-              <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><span class="track-chip">For Learners</span></div>
-            <div class="track-body">
-              <h3>Mobile App Development</h3>
-              <p>Build cross-platform mobile apps with Flutter through guided, hands-on projects.</p>
-              <div class="tags"><span>Flutter</span><span>Hands-on</span></div>
-              <a href="learners.html#mobile" class="btn btn-outline btn-sm">Explore Track</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Highlights -->
-    <section class="stats-section" aria-label="Highlights">
-      <div class="wrap">
-        <div class="stats-band">
-          <div class="stat"><span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14.2c2 .7 3.5 2.6 3.5 5.8"/></svg></span><div><strong><span data-count="2500">2,500</span>+</strong><span class="stat-label">Learners trained</span></div></div>
-          <div class="stat"><span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><div><strong>2</strong><span class="stat-label">Live products</span></div></div>
-          <div class="stat"><span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></span><div><strong>3</strong><span class="stat-label">Service lines</span></div></div>
-          <div class="stat"><span class="stat-ic"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5-10-5zM6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg></span><div><strong>3</strong><span class="stat-label">Institution programs</span></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- In-house products -->
-    <section class="section alt">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>In-house digital products</h2>
-          <p>Production platforms developed by our engineering team.</p>
-        </div>
-        <div class="grid grid-wide">
-          <article class="prod-card">
-            <div class="prod-shot">
-              <img src="https://www.algoorbit.in/static/images/restaurant.png" alt="PureDine" loading="lazy">
-              <span class="live-pill">Live product</span>
-            </div>
-            <h3>PureDine</h3>
-            <p>Integrated restaurant platform covering table management, smart billing, and live kitchen inventory analytics.</p>
-            <div class="tags"><span>Billing</span><span>Inventory</span><span>Analytics</span></div>
-            <a href="products.html#puredine" class="btn btn-outline btn-sm">Learn More</a>
-          </article>
-          <article class="prod-card">
-            <div class="prod-shot">
-              <img src="https://www.algoorbit.in/static/images/trioncam.png" alt="TrionCam" loading="lazy">
-              <span class="live-pill">Live product</span>
-            </div>
-            <h3>TrionCam</h3>
-            <p>Civic engagement platform delivering data aggregation, verified community feeds, and local operational clarity.</p>
-            <div class="tags"><span>Civic Tech</span><span>Mobile MVP</span><span>Real-time</span></div>
-            <a href="products.html#trioncam" class="btn btn-outline btn-sm">Learn More</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Practical learning -->
-    <section class="section showcase">
-      <div class="wrap showcase-grid">
-        <div class="showcase-copy">
-          <span class="eyebrow">Learn by building</span>
-          <h2>Practical learning, built around real projects</h2>
-          <p>Mentor-led programs where every concept is applied to a working project, from first commit to deployment.</p>
-          <ul class="checklist">
-            <li>Mentor-led, hands-on sessions</li>
-            <li>Project tracks in Full-Stack, Flutter, and AI</li>
-            <li>Aligned with technical syllabi</li>
-          </ul>
-          <a href="learners.html" class="btn btn-primary">Start Learning Today</a>
-        </div>
-        <div class="showcase-visual">
-          <div class="laptop">
-            <div class="laptop-screen" aria-hidden="true">
-              <div class="ide">
-                <div class="ide-bar"><i></i><i></i><i></i><span>project-dashboard</span></div>
-                <div class="ide-body">
-                  <div class="ide-side"><span class="on">Overview</span><span>Projects</span><span>Mentors</span><span>Reviews</span></div>
-                  <div class="ide-main">
-                    <div class="ide-card">
-                      <strong>Current project</strong>
-                      <small>Full-Stack Development</small>
-                      <div class="ide-progress"><i></i></div>
-                    </div>
-                    <div class="ide-code"><span></span><span></span><span></span><span></span><span></span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="laptop-base"></div>
-          </div>
-          <div class="phone" aria-hidden="true">
-            <div class="phone-title">Project milestones</div>
-            <div class="milestone">Environment setup</div>
-            <div class="milestone">API development</div>
-            <div class="milestone pending">Deployment</div>
-            <div class="phone-bar"><i></i></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to action -->
-    <div class="cta-band">
-      <h2>Have a project or training requirement?</h2>
-      <p>Let's map out your specifications, schedule, and milestones together.</p>
-      <a href="contact.html" class="btn btn-light">Get in touch with us</a>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <img class="footer-logo" src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="36">
-          <p>ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About us</a></li>
-            <li><a href="our-work.html">Our Work</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="services.html#software">Software Development</a></li>
-            <li><a href="services.html#consulting">IT Consulting</a></li>
-            <li><a href="services.html#corporate">Corporate Training</a></li>
-            <li><a href="products.html">In-House Products</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Training</h4>
-          <ul>
-            <li><a href="institutions.html">For Institutions</a></li>
-            <li><a href="learners.html">For Learners</a></li>
-            <li><a href="institutions.html#placement">Campus Placement</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></li>
-            <li><a href="tel:+919482119446">+91 94821 19446</a></li>
-            <li><span>Karkala, Udupi, Karnataka</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 ALGOORBIT INNOVATIONS PRIVATE LIMITED. All rights reserved.</p>
-        <div><span>Built with engineering rigor</span></div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Contact bar (moved from the top to the bottom of the page) -->
-  <div class="top-bar top-bar--bottom">
-    <div class="wrap">
-      <div class="meta">
-        <span>
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg>
-          <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a>
-        </span>
-        <span>
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
-          <a href="tel:+919482119446">+91 94821 19446</a>
-        </span>
-        <span>
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          Karkala, Udupi, Karnataka
-        </span>
-      </div>
-      <div class="social">
-        <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/919482119446" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-    </div>
+<!-- Loader -->
+<div id="loader" role="status" aria-label="Loading ALGO ORBIT">
+ <div class="ld-in">
+  <div class="ld-ring">
+   <svg class="ld-circle" viewBox="0 0 180 180" aria-hidden="true"><circle class="trk" cx="90" cy="90" r="82"/><circle class="arc" id="ldArc" cx="90" cy="90" r="82"/></svg>
+   <div class="ld-orbit" aria-hidden="true"><i></i></div>
+   <svg class="ld-mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="0.5" y="0.5" width="39" height="39" rx="10"/><line x1="13.5" y1="28" x2="21.5" y2="12.5"/><circle cx="30" cy="27.5" r="5"/></svg>
   </div>
+  <div class="ld-name"><b>ALGO</b>ORBIT</div>
+  <div class="ld-pct" id="ldPct">0%</div>
+ </div>
+</div>
+<div id="bar"></div>
 
-  <script src="script.js"></script>
+<!-- Header -->
+<header class="site-header">
+ <div class="wrap nav-inner">
+  <a href="index.html" class="site-logo" aria-label="ALGO ORBIT home">
+   <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10"/><line x1="13.500" y1="28" x2="21.500" y2="12.500"/><circle cx="30" cy="27.500" r="5"/></svg>
+   <span class="logo-text"><span class="logo-algo">ALGO</span><span class="logo-orbit">ORBIT</span></span>
+  </a>
+  <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-controls="navWrap" aria-expanded="false">☰</button>
+  <nav id="navWrap" aria-label="Primary">
+   <ul class="nav-links">
+    <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="has-dropdown"><button class="dropdown-trigger" type="button" aria-expanded="false">Services ▾</button>
+     <div class="dropdown-menu"><a href="services.html#consulting">IT Consultancy</a><a href="services.html#corporate">Enterprise Training</a><a href="products.html">Products</a></div></li>
+    <li><a href="our-work.html">Our Work</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="contact.html" class="btn btn-primary btn-sm">Get Started</a></li>
+   </ul>
+  </nav>
+ </div>
+</header>
+
+<main>
+<!-- Hero -->
+<section class="hero">
+ <div id="particles" aria-hidden="true"></div>
+ <div class="wrap hero-grid">
+  <div>
+   <div class="pill rise"><i></i>IT Solutions · Training · Products</div>
+   <h1 class="rise">Technology solutions for business. <em>Practical learning</em> for learners.</h1>
+   <p class="lead rise">We engineer scalable digital products for businesses and deliver hands-on, mentor-led programs that build applied engineering skills.</p>
+   <div class="acts rise"><a href="contact.html" class="btn btn-primary">Schedule Free Consultation</a><a href="#services" class="btn btn-outline">Explore Services</a></div>
+   <ul class="checklist rise"><li>Mentor-led programs</li><li>Production-grade products</li><li>Syllabus-aligned training</li></ul>
+   <div class="proof rise"><div class="avs"><b>R</b><b>M</b><b>P</b></div><div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; <strong>5.0</strong></div><small>Rated by 2,500+ trained students</small></div><span class="vr"></span><div class="trust">Trusted by <strong>50+</strong> enterprises</div></div>
+  </div>
+  <div class="hero-right rise"><div class="dash">
+   <div class="dash-head"><div><small>Project Intelligence</small><strong>Live Dashboard</strong></div><span class="live"><i></i>All systems live</span></div>
+   <div class="dp"><div class="dp-top"><div><strong>Enterprise ERP Rollout</strong><small>Healthcare · Phase 3 of 4</small></div><em class="ok">On track</em><b>87%</b></div><div class="bar"><i style="width:87%"></i></div></div>
+   <div class="dp"><div class="dp-top"><div><strong>SaaS Platform Dev</strong><small>Fintech · MVP Stage</small></div><em class="wip">In dev</em><b>62%</b></div><div class="bar"><i style="width:62%"></i></div></div>
+   <div class="dp"><div class="dp-top"><div><strong>Campus Training Batch 9</strong><small>52 Students · Week 5 of 8</small></div><em class="ok">Active</em><b>50%</b></div><div class="bar"><i style="width:50%"></i></div></div>
+   <div class="dtiles"><div><small>Rating</small><strong>5.0</strong><span>2,500+ reviews</span></div><div><small>Projects</small><strong>120+</strong><span>Delivered</span></div><div><small>Clients</small><strong>50+</strong><span>99% satisfied</span></div></div>
+   <div class="act"><small>Recent activity</small>
+    <p><i></i><span>Batch 9 rated 5 stars <em>NMAMIT</em></span><time>just now</time></p>
+    <p><i></i><span>ERP Phase 3 milestone hit <em>Healthcare</em></span><time>2h ago</time></p>
+    <p><i></i><span>SaaS MVP demo approved <em>Fintech</em></span><time>5h ago</time></p></div>
+  </div>
+  </div>
+ </div>
+ <div class="wrap hero-strip"><div class="hstrip rise">
+   <div><strong><span data-count="50">0</span>+</strong><span>Enterprise clients</span></div>
+   <div><strong><span data-count="2500">0</span>+</strong><span>Learners trained</span></div>
+   <div><strong>5/5</strong><span>Student rating</span></div>
+   <div><strong><span data-count="120">0</span>+</strong><span>Projects delivered</span></div>
+  </div></div>
+</section>
+
+<!-- Ticker -->
+<div class="ticker" aria-hidden="true"><div class="marq tk" id="tk"></div></div>
+
+<!-- Popular services -->
+<section class="cat-section" aria-labelledby="sv">
+ <div class="wrap">
+  <div class="cat-head"><h2 id="sv">Popular services</h2><a href="services.html" class="link-arrow">View all services</a></div>
+  <div class="cat-grid">
+   <a class="cat-item" href="services.html#software"><span class="cat-ic"><svg class="ui"><use href="#i-code"/></svg></span><strong>Software Development</strong><small>Custom digital products</small></a>
+   <a class="cat-item" href="services.html#consulting"><span class="cat-ic"><svg class="ui"><use href="#i-compass"/></svg></span><strong>IT Consulting</strong><small>Architecture and cloud</small></a>
+   <a class="cat-item" href="services.html#corporate"><span class="cat-ic"><svg class="ui"><use href="#i-users"/></svg></span><strong>Corporate Training</strong><small>Team upskilling</small></a>
+   <a class="cat-item" href="institutions.html#placement"><span class="cat-ic"><svg class="ui"><use href="#i-cap"/></svg></span><strong>Campus Placement</strong><small>Placement training</small></a>
+   <a class="cat-item" href="institutions.html#vac"><span class="cat-ic"><svg class="ui"><use href="#i-book"/></svg></span><strong>Value-Added Courses</strong><small>Syllabus-aligned modules</small></a>
+   <a class="cat-item" href="institutions.html#fdp"><span class="cat-ic"><svg class="ui"><use href="#i-board"/></svg></span><strong>Faculty Development</strong><small>Programs for educators</small></a>
+  </div>
+ </div>
+</section>
+
+<!-- Full-spectrum services -->
+<section class="section" id="services">
+ <div class="wrap">
+  <div class="section-head center"><h2>Full-spectrum IT solutions for modern enterprises</h2><p>Consulting, engineering, and education, covering every touchpoint of your digital journey.</p></div>
+  <div class="grid">
+   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-compass"/></svg></span><h3>IT Consulting &amp; Architecture</h3><p>Strategic technology planning and digital transformation roadmaps built around your business goals.</p><ul class="ck"><li>Cloud &amp; Infrastructure Strategy</li><li>System Architecture Design</li><li>Tech Stack Optimization</li></ul><a href="services.html#consulting" class="link-arrow">Learn More</a></div>
+   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>Product Development</h3><p>End-to-end software engineering from ideation to launch. Web, mobile, and enterprise platforms.</p><ul class="ck"><li>Custom Software Solutions</li><li>SaaS Platform Development</li><li>API &amp; Integration Services</li></ul><a href="services.html#software" class="link-arrow">Learn More</a></div>
+   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-cap"/></svg></span><h3>Enterprise &amp; Campus Training</h3><p>Immersive, project-first training for corporate teams and college students. 2,500+ trained. 5/5 rated.</p><ul class="ck"><li>Industry Upskilling Programs</li><li>College Programs &amp; Internships</li><li>Bootcamps &amp; Workshops</li></ul><a href="services.html#corporate" class="link-arrow">Learn More</a></div>
+  </div>
+ </div>
+</section>
+
+<!-- Audiences -->
+<section class="section">
+ <div class="wrap">
+  <div class="section-head center"><h2>How can we help you?</h2><p>Choose the engagement model that matches your current priorities.</p></div>
+  <div class="grid">
+   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-brief"/></svg></span><h3>For Businesses</h3><p>Custom software engineering, cloud integration, and architecture consulting tailored to clear timelines.</p><div><a href="services.html" class="btn btn-outline btn-sm">Explore Solutions</a></div></div>
+   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-cap"/></svg></span><h3>For Institutions</h3><p>Placement preparation tracks, value-added modules, and faculty development aligned with technical syllabi.</p><div><a href="institutions.html" class="btn btn-outline btn-sm">View Programs</a></div></div>
+   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>For Learners</h3><p>Hands-on project tracks in Full-Stack, Flutter, and AI designed to build demonstrable technical competency.</p><div><a href="learners.html" class="btn btn-outline btn-sm">Explore Tracks</a></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- Tracks -->
+<section class="section alt">
+ <div class="wrap">
+  <div class="section-bar" style="margin-bottom:44px">
+   <div class="section-head" style="margin:0"><h2>Featured learning tracks</h2><p>Hands-on, mentor-led programs that build applied engineering skills.</p></div>
+   <a href="learners.html" class="link-arrow">View all tracks</a>
+  </div>
+  <div class="grid">
+   <article class="track-card"><div class="track-visual"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80" alt="Interview and placement preparation session" loading="lazy"><span class="track-chip">For Learners</span></div>
+    <div class="track-body"><h3>Placement Preparation</h3><p>Structured preparation for technical interviews and campus placement rounds.</p><div class="tags"><span>Mentor-led</span><span>Interview prep</span></div><a href="learners.html#placement" class="btn btn-outline btn-sm">Explore Track</a></div></article>
+   <article class="track-card"><div class="track-visual"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80" alt="Developer writing full-stack code" loading="lazy"><span class="track-chip">For Learners</span></div>
+    <div class="track-body"><h3>Full-Stack Development</h3><p>Project-based track covering front-end, back-end, and deployment fundamentals.</p><div class="tags"><span>Project-based</span><span>Full-Stack</span></div><a href="learners.html#fullstack" class="btn btn-outline btn-sm">Explore Track</a></div></article>
+   <article class="track-card"><div class="track-visual"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=80" alt="Mobile app being built on a smartphone" loading="lazy"><span class="track-chip">For Learners</span></div>
+    <div class="track-body"><h3>Mobile App Development</h3><p>Build cross-platform mobile apps with Flutter through guided, hands-on projects.</p><div class="tags"><span>Flutter</span><span>Hands-on</span></div><a href="learners.html#mobile" class="btn btn-outline btn-sm">Explore Track</a></div></article>
+  </div>
+ </div>
+</section>
+
+<!-- Training highlight -->
+<section class="section">
+ <div class="wrap showcase-grid">
+  <div class="train-copy">
+   <h2 class="h2">Shaping the next generation of tech professionals</h2>
+   <p class="sub">Whether you're a corporate team that needs to upskill, or a college that wants to give students real industry exposure, our structured, mentor-led programs deliver.</p>
+   <div class="feats">
+    <div class="feat"><span class="cat-ic"><svg class="ui"><use href="#i-brief"/></svg></span><div><strong>Corporate Upskilling</strong><p>Tailored programs in full-stack dev, cloud, AI tools, and agile practices.</p></div></div>
+    <div class="feat"><span class="cat-ic"><svg class="ui"><use href="#i-cap"/></svg></span><div><strong>College Programs</strong><p>Internships, final-year projects, and campus workshops that bridge academics and industry.</p></div></div>
+    <div class="feat"><span class="cat-ic"><svg class="ui"><use href="#i-book"/></svg></span><div><strong>Certified Bootcamps</strong><p>Intensive programs with live projects, mentorship, and placement support.</p></div></div>
+   </div>
+   <a href="learners.html" class="btn btn-primary">Explore Training Programs</a>
+  </div>
+  <div class="train-block">
+   <h3>Training Impact</h3><p class="tsub">Real numbers. Real outcomes.</p>
+   <div class="tgrid">
+    <div class="tstat"><strong><span data-count="2500">0</span>+</strong><span>Students Trained</span></div>
+    <div class="tstat"><strong><span data-count="20">0</span>+</strong><span>College Partners</span></div>
+    <div class="tstat"><strong><span data-count="92">0</span>%</strong><span>Placement Rate</span></div>
+    <div class="tstat"><strong>5.0 <i>&#9733;</i></strong><span>Student Rating</span></div>
+   </div>
+   <blockquote>"The best thing we did for our engineering team was Algo Orbit's upskilling program."</blockquote>
+  </div>
+ </div>
+</section>
+
+<!-- Tech stack -->
+<section class="tech" aria-label="Technologies">
+ <h2>Technologies we master</h2><p class="tsub2">Cutting-edge tools. Enterprise-grade results.</p>
+ <div class="marq" id="marq"></div>
+ <div class="marq rev" id="marq2"></div>
+</section>
+
+<!-- Products -->
+<section class="section">
+ <div class="wrap">
+  <div class="section-head"><h2>In-house digital products</h2><p>Production platforms developed by our engineering team.</p></div>
+  <div class="grid grid-wide">
+   <article class="prod-card"><div class="prod-shot"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="PureDine restaurant platform" loading="lazy"><span class="live-pill">Live product</span></div>
+    <div class="prod-body"><h3>PureDine</h3><p>Integrated restaurant platform covering table management, smart billing, and live kitchen inventory analytics.</p><div class="tags"><span>Billing</span><span>Inventory</span><span>Analytics</span></div><a href="products.html#puredine" class="btn btn-outline btn-sm">Learn More</a></div></article>
+   <article class="prod-card"><div class="prod-shot"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1200&q=80" alt="TrionCam civic platform" loading="lazy"><span class="live-pill">Live product</span></div>
+    <div class="prod-body"><h3>TrionCam</h3><p>Civic engagement platform delivering data aggregation, verified community feeds, and local operational clarity.</p><div class="tags"><span>Civic Tech</span><span>Mobile MVP</span><span>Real-time</span></div><a href="products.html#trioncam" class="btn btn-outline btn-sm">Learn More</a></div></article>
+  </div>
+ </div>
+</section>
+
+<!-- Partners -->
+<section class="section">
+ <div class="wrap">
+  <div class="section-head center"><h2>Industry and institution partners</h2><p>We work with organizations that share our standards for the products and programs we deliver together.</p></div>
+  <div class="partners">
+   <div><img src="https://www.algoorbit.in/static/partners/l1.png" alt="Partner 1" loading="lazy"></div>
+   <div><img src="https://www.algoorbit.in/static/partners/l2.png" alt="Partner 2" loading="lazy"></div>
+   <div><img src="https://www.algoorbit.in/static/partners/l3.png" alt="Partner 3" loading="lazy"></div>
+   <div><img src="https://www.algoorbit.in/static/partners/l4.png" alt="Partner 4" loading="lazy"></div>
+   <div><img src="https://www.algoorbit.in/static/partners/l5.png" alt="Partner 5" loading="lazy"></div>
+   <div><img src="https://www.algoorbit.in/static/partners/l6.png" alt="Partner 6" loading="lazy"></div>
+   <div><img src="https://www.algoorbit.in/static/partners/l7.png" alt="Partner 7" loading="lazy"></div>
+   <div><img src="https://www.algoorbit.in/static/partners/l8.png" alt="Partner 8" loading="lazy"></div>
+   <div><img src="https://www.algoorbit.in/static/partners/l9.png" alt="Partner 9" loading="lazy"></div>
+  </div>
+ </div>
+</section>
+
+<!-- Showcase -->
+<section class="section alt">
+ <div class="wrap showcase-grid">
+  <div class="showcase-copy">
+   <h2>Practical learning, built around real projects</h2>
+   <p>Mentor-led programs where every concept is applied to a working project, from first commit to deployment.</p>
+   <ul class="checklist"><li>Mentor-led, hands-on sessions</li><li>Project tracks in Full-Stack, Flutter, and AI</li><li>Aligned with technical syllabi</li></ul>
+   <a href="learners.html" class="btn btn-primary">Start Learning Today</a>
+  </div>
+  <div class="showcase-visual"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="ALGO ORBIT training session" loading="lazy"></div>
+ </div>
+</section>
+
+<!-- Why us -->
+<section class="section">
+ <div class="wrap showcase-grid">
+  <div class="showcase-visual why-img"><img src="https://www.algoorbit.in/static/images/hero-img1.png" alt="ALGO ORBIT team" loading="lazy"></div>
+  <div class="why-copy">
+   <h2 class="h2">Your technology partner for measurable growth</h2>
+   <p class="sub">Deep technical expertise meets real business strategy, delivering outcomes that matter.</p>
+   <div class="feats">
+    <div class="feat"><span class="cat-ic"><svg class="ui"><use href="#i-layers"/></svg></span><div><strong>Enterprise-Grade Delivery</strong><p>Battle-tested architectures built for scale, security, and peak performance.</p></div></div>
+    <div class="feat"><span class="cat-ic"><svg class="ui"><use href="#i-users"/></svg></span><div><strong>Seasoned Expert Team</strong><p>Domain experts with proven track records across industries.</p></div></div>
+    <div class="feat"><span class="cat-ic"><svg class="ui"><use href="#i-shield"/></svg></span><div><strong>Security-First Mindset</strong><p>GDPR, HIPAA, SOC 2 compliant practices embedded in every layer.</p></div></div>
+    <div class="feat"><span class="cat-ic"><svg class="ui"><use href="#i-help"/></svg></span><div><strong>Dedicated Long-Term Support</strong><p>We stay with you post-launch, monitoring, optimizing, and evolving.</p></div></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-section" aria-label="Our impact">
+ <div class="wrap">
+  <h2 class="stats-h">Numbers that tell the story</h2>
+  <div class="stats-band">
+   <div class="stat"><strong><span data-count="50">0</span><i>+</i></strong><small>Enterprise clients</small></div>
+   <div class="stat"><strong><span data-count="120">0</span><i>+</i></strong><small>Projects delivered</small></div>
+   <div class="stat"><strong><span data-count="2500">0</span><i>+</i></strong><small>Professionals trained</small></div>
+   <div class="stat"><strong>5<i>/5</i></strong><small>Student rating</small></div>
+  </div>
+ </div>
+</section>
+
+<!-- Gallery -->
+<section class="section alt">
+ <div class="wrap">
+  <div class="section-bar" style="margin-bottom:36px">
+   <div class="section-head" style="margin:0"><h2>Milestones and collaborations</h2><p>Partnerships, workshops, and programs from our journey so far.</p></div>
+  </div>
+  <div class="gal-track" id="galTrack">
+   <article class="gal-item"><img src="https://www.algoorbit.in/static/images/events/mou1.png" alt="Strategic partnerships" loading="lazy"><div><h3>Strategic Partnerships</h3><p>Collaborating with industry and institutions across sectors.</p></div></article>
+   <article class="gal-item"><img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt="Industry workshops" loading="lazy"><div><h3>Industry Workshops</h3><p>Hands-on sessions that connect academia with real-world practice.</p></div></article>
+   <article class="gal-item"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="Innovation programs" loading="lazy"><div><h3>Innovation Programs</h3><p>In-house research and development, and client pilots.</p></div></article>
+   <article class="gal-item"><img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80" alt="Campus training" loading="lazy"><div><h3>Campus Training</h3><p>Mentor-led, project-first learning for the next generation.</p></div></article>
+  </div>
+  <div class="gal-prog"><i id="galFill"></i></div>
+ </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section alt">
+ <div class="wrap">
+  <div class="section-head center"><h2>Trusted by industry leaders</h2><p>Real results from real partnerships.</p></div>
+  <div class="t-track" id="tTrack">
+   <figure class="quote"><div class="who"><img src="https://www.algoorbit.in/static/images/review/riya.png" alt="" loading="lazy"><span><strong>Riya Fernandes</strong><small>Owner, Brew &amp; Bean Café</small></span></div><p>"Algo Orbit completely transformed how we run our café. The management system they built handles orders, staff scheduling, and payments seamlessly. The team was professional, fast, and genuinely cared about our success. Night-and-day difference for our operations."</p><div class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</div></figure>
+   <figure class="quote"><div class="who"><img src="https://www.algoorbit.in/static/images/review/meera.png" alt="" loading="lazy"><span><strong>Dr. Meera Rao</strong><small>Harmony Health Clinic</small></span></div><p>"The clinic management system Algo Orbit delivered was clean, practical, and exceeded every expectation. Patient scheduling, records, and billing, all in one intuitive system. Our staff adopted it in days. I'd recommend them without hesitation."</p><div class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</div></figure>
+   <figure class="quote"><div class="who"><img src="https://www.algoorbit.in/static/images/review/prajna.jpg" alt="" loading="lazy"><span><strong>Prajna Mendon</strong><small>NMAMIT Nitte</small></span></div><p>"The training program at Algo Orbit didn't just teach me to code; it taught me to think like a developer. Real projects, real mentors, real feedback. I landed my first job offer before the program even ended. Best investment in my career, hands down."</p><div class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</div></figure>
+  </div>
+  <div class="dots" id="tDots"></div>
+ </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+ <div class="wrap">
+  <div class="section-head center"><h2>Frequently asked questions</h2><p>Everything you need to know about partnering with Algo Orbit.</p></div>
+  <div class="faq">
+   <details><summary>What industries do you serve?</summary><p>We serve healthcare, finance, retail, manufacturing, education, and government. Solutions are customized for each industry's requirements and compliance standards.</p></details>
+   <details><summary>Do you build fully custom software?</summary><p>Absolutely. Custom software is our core. From web apps and mobile apps to complex enterprise systems, we design, build, and scale solutions for your exact requirements.</p></details>
+   <details><summary>Do you offer training for college students?</summary><p>Yes! We run internships, final-year project guidance, workshops, and placement-focused bootcamps. We've trained 2,500+ students with a consistent 5/5 rating.</p></details>
+   <details><summary>What is your typical project timeline?</summary><p>Small projects typically take 2–3 months; enterprise solutions 6–12 months. We provide detailed milestones during the initial discovery phase.</p></details>
+   <details><summary>What post-launch support do you provide?</summary><p>We offer comprehensive post-launch support including maintenance, performance monitoring, feature updates, and dedicated technical assistance, ensuring your systems evolve with your business.</p></details>
+  </div>
+  <div class="faq-cta"><p>Still have questions?</p><a href="contact.html" class="btn btn-primary">Contact Our Team</a></div>
+ </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+ <h2>Ready to transform your business?</h2>
+ <p>Whether you need enterprise consulting, a custom product built, or a world-class training program. We're ready to make it happen.</p>
+ <div class="cta-acts"><a href="contact.html" class="btn btn-light">Schedule Consultation</a><a href="about.html" class="btn btn-ghost">Learn More About Us</a></div>
+</div>
+</main>
+
+<footer class="site-footer">
+ <div class="wrap">
+  <div class="footer-grid">
+   <div><img class="footer-logo" src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT"><p>ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p></div>
+   <div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About us</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+   <div><h4>Services</h4><ul><li><a href="services.html#software">Software Development</a></li><li><a href="services.html#consulting">IT Consulting</a></li><li><a href="services.html#corporate">Corporate Training</a></li><li><a href="products.html">In-House Products</a></li></ul></div>
+   <div><h4>Training</h4><ul><li><a href="institutions.html">For Institutions</a></li><li><a href="learners.html">For Learners</a></li><li><a href="institutions.html#placement">Campus Placement</a></li></ul></div>
+   <div><h4>Contact</h4><ul><li><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></li><li><a href="tel:+919482119446">+91 94821 19446</a></li><li>Karkala, Udupi, Karnataka</li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2026 ALGOORBIT INNOVATIONS PRIVATE LIMITED. All rights reserved.</p><span><a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a></span></div>
+ </div>
+ <div class="contact-bar"><div class="wrap">
+  <div class="meta"><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a><a href="tel:+919482119446">+91 94821 19446</a><span>Karkala, Udupi, Karnataka</span></div>
+  <div class="social"><a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=61578724749065" target="_blank" rel="noopener">Facebook</a><a href="https://whatsapp.com/channel/0029VbBktvfAYlUS6kToth1B" target="_blank" rel="noopener">WhatsApp Channel</a></div>
+ </div></div>
+</footer>
+
+<a class="wa" href="https://wa.me/919482119446" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg class="ui"><use href="#i-wa"/></svg></a>
+
+<script>
+// Loader: real load progress, minimum 1.8s so the logo animation completes
+(function(){
+  var fill=document.getElementById('ldArc'),pct=document.getElementById('ldPct'),loader=document.getElementById('loader');
+  var p=0,loaded=false,start=Date.now();
+  window.addEventListener('load',function(){loaded=true});
+  (function tick(){
+    var min=Date.now()-start>1800,target=(loaded&&min)?100:88;
+    p=Math.min(100,p+(target-p)*.07+.25);
+    fill.style.strokeDashoffset=515.2*(1-p/100);pct.textContent=Math.floor(p)+'%';
+    if(p<99.5){requestAnimationFrame(tick)}else{
+      fill.style.strokeDashoffset=0;pct.textContent='100%';
+      setTimeout(function(){loader.classList.add('done');document.body.classList.remove('lock');document.body.classList.add('ready');countUp(document.querySelectorAll('.hero [data-count]'))},350);
+      setTimeout(function(){loader.style.display='none'},1300);
+    }
+  })();
+})();
+
+// Stat count-up (once, after loader)
+function countUp(list){
+  (list||document.querySelectorAll('[data-count]')).forEach(function(el){
+    var t=+el.dataset.count,s=null;
+    (function step(ts){s=s||ts;var k=Math.min((ts-s)/1600,1);
+      el.textContent=Math.floor((1-Math.pow(1-k,3))*t).toLocaleString('en-IN');
+      if(k<1)requestAnimationFrame(step);else el.textContent=t.toLocaleString('en-IN')})(performance.now());
+  });
+}
+
+// Scroll progress
+addEventListener('scroll',function(){
+  var h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('bar').style.width=(h>0?scrollY/h*100:0)+'%';
+},{passive:true});
+
+// Mobile menu + dropdowns
+var tg=document.getElementById('menuToggle'),nav=document.getElementById('navWrap');
+tg.addEventListener('click',function(){var o=nav.classList.toggle('open');tg.setAttribute('aria-expanded',o)});
+document.querySelectorAll('.dropdown-trigger').forEach(function(b){
+  b.addEventListener('click',function(){
+    var li=b.parentElement,o=!li.classList.contains('open');
+    document.querySelectorAll('.has-dropdown').forEach(function(x){x.classList.remove('open');x.firstElementChild.setAttribute('aria-expanded','false')});
+    if(o){li.classList.add('open');b.setAttribute('aria-expanded','true')}
+  });
+});
+document.addEventListener('click',function(e){if(!e.target.closest('.has-dropdown'))document.querySelectorAll('.has-dropdown').forEach(function(x){x.classList.remove('open')})});
+
+
+// Gallery arrows
+var gt=document.getElementById('galTrack');
+function gstep(d){gt.scrollBy({left:d*(gt.querySelector('.gal-item').offsetWidth+22),behavior:'smooth'})}
+
+// ---- Scroll reveal (stagger inside each group) ----
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(!reduce){
+  var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('reveal','in');el.style.transitionDelay=''},1300)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.section-head,.cat-item,.card,.track-card,.prod-card,.partners div,.gal-item,.quote,.faq details,.faq-cta,.showcase-copy,.showcase-visual,.train-copy,.train-block,.why-copy,.feat,.tstat,.stats-h,.stat,.tech h2').forEach(function(el){
+    var sib=Array.prototype.indexOf.call(el.parentNode.children,el);
+    el.classList.add('reveal');el.style.transitionDelay=(sib%4)*.1+'s';rio.observe(el)});
+}
+// ---- Count-up when stats scroll into view ----
+var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target.querySelectorAll('[data-count]'));cio.unobserve(e.target)}})},{threshold:.35});
+document.querySelectorAll('.stats-section,.train-block').forEach(function(el){cio.observe(el)});
+// ---- Cursor ring (desktop only) ----
+if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce){
+  var dot=document.createElement('div'),ring=document.createElement('div');dot.className='c-dot';ring.className='c-ring';document.body.append(dot,ring);
+  var mx=0,my=0,rx=0,ry=0;
+  addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.transform='translate('+mx+'px,'+my+'px)'});
+  (function loop(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.transform='translate('+rx+'px,'+ry+'px)';requestAnimationFrame(loop)})();
+  document.addEventListener('mouseover',function(e){ring.classList.toggle('hov',!!e.target.closest('a,button,summary,.card,.prod-card,.track-card'))});
+}
+// ---- Hero particles ----
+var pc=document.getElementById('particles');
+function spawn(){if(document.hidden)return;var d=document.createElement('i'),z=Math.random()*5+3;
+  d.style.cssText='left:'+Math.random()*100+'%;width:'+z+'px;height:'+z+'px;animation-duration:'+(Math.random()*8+8)+'s';
+  pc.appendChild(d);setTimeout(function(){d.remove()},17000)}
+if(!reduce){setInterval(spawn,700);for(var i=0;i<8;i++)setTimeout(spawn,i*250)}
+// ---- Autoplay carousels ----
+function auto(track,ms,fillEl,dotsEl){
+  var items=track.children,t=0,hold=false;
+  track.addEventListener('mouseenter',function(){hold=true});track.addEventListener('mouseleave',function(){hold=false});
+  if(dotsEl){for(var i=0;i<items.length;i++){(function(i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Slide '+(i+1));b.onclick=function(){track.scrollTo({left:items[i].offsetLeft-track.offsetLeft,behavior:'smooth'})};dotsEl.appendChild(b)})(i)}
+    track.addEventListener('scroll',function(){var w=items[0].offsetWidth+22,n=Math.min(items.length-1,Math.round(track.scrollLeft/w));Array.prototype.forEach.call(dotsEl.children,function(b,k){b.className=k===n?'on':''})});
+    track.dispatchEvent(new Event('scroll'))}
+  if(reduce)return;
+  setInterval(function(){if(hold||document.hidden)return;t+=100;if(fillEl)fillEl.style.width=Math.min(100,t/ms*100)+'%';
+    if(t>=ms){t=0;if(track.scrollLeft+track.clientWidth>=track.scrollWidth-4)track.scrollTo({left:0,behavior:'smooth'});else track.scrollBy({left:items[0].offsetWidth+22,behavior:'smooth'})}},100)}
+auto(document.getElementById('galTrack'),3800,document.getElementById('galFill'));
+auto(document.getElementById('tTrack'),3500,null,document.getElementById('tDots'));
+
+// ---- Design layer: header, parallax, orbits, watermarks, spotlight, magnetic buttons ----
+(function(){
+  var hdr=document.querySelector('.site-header'),hero=document.querySelector('.hero');
+  addEventListener('scroll',function(){var y=scrollY;hdr.classList.toggle('scrolled',y>40);if(hero&&y<900&&!reduce)hero.style.backgroundPosition='center calc(50% + '+y*.12+'px)'},{passive:true});
+  function orbit(host,cls){if(!host)return;var d=document.createElement('div');d.className='orbit '+cls;d.setAttribute('aria-hidden','true');
+    d.innerHTML='<svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="290"/><circle class="dash2" cx="300" cy="300" r="215"/><circle cx="300" cy="300" r="140"/><g class="o1"><circle class="dot" cx="300" cy="10" r="7"/></g><g class="o2"><circle class="dot" cx="515" cy="300" r="5"/></g><g class="o3"><circle class="dot" cx="300" cy="440" r="4"/></g></svg>';host.prepend(d)}
+  orbit(hero,'hero-orbit');orbit(document.querySelector('.cta-band'),'cta-orbit');orbit(document.querySelector('.stats-section'),'stat-orbit');
+  var wm=[['Full-spectrum','SERVICES'],['How can we','PATHS'],['Featured learning','TRACKS'],['In-house','PRODUCTS'],['Milestones','JOURNEY'],['Trusted by','STORIES'],['Frequently','FAQ']];
+  document.querySelectorAll('section.section').forEach(function(sec){var h=sec.querySelector('h2');if(!h)return;wm.forEach(function(m){if(h.textContent.indexOf(m[0])>-1){var w=sec.querySelector('.wrap');w.classList.add('wm');w.dataset.wm=m[1]}})});
+  var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('drawn');dio.unobserve(e.target)}})},{threshold:.6});
+  document.querySelectorAll('.section-head,.h2').forEach(function(el){dio.observe(el)});
+  document.querySelectorAll('.card,.cat-item,.quote,.track-card,.prod-card').forEach(function(c){c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-r.left+'px');c.style.setProperty('--my',e.clientY-r.top+'px')})});
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce)document.querySelectorAll('.btn').forEach(function(b){
+    b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+(e.clientX-r.left-r.width/2)*.18+'px,'+(e.clientY-r.top-r.height/2)*.28+'px)'});
+    b.addEventListener('mouseleave',function(){b.style.transform=''})});
+})();
+
+// Tech stack marquee
+var t1=['Next.js','React','Flutter','Android','iOS / Swift','Node.js','Python','AWS','Docker','Kubernetes','Firebase','Azure'];
+var t2=['TypeScript','MongoDB','PostgreSQL','HTML5 / CSS3','JavaScript','Tailwind CSS','GraphQL','Redis','Linux / DevOps','TensorFlow','React Native','NestJS'];
+var C={'Next.js':'#111111','React':'#0a9fc7','Flutter':'#02569B','Android':'#2e9d5b','iOS / Swift':'#F05138','Node.js':'#3c873a','Python':'#3776ab','AWS':'#c77700','Docker':'#2496ed','Kubernetes':'#326ce5','Firebase':'#e08a00','Azure':'#0078d4','TypeScript':'#3178c6','MongoDB':'#47a248','PostgreSQL':'#336791','HTML5 / CSS3':'#e34f26','JavaScript':'#b59b00','Tailwind CSS':'#0891b2','GraphQL':'#e10098','Redis':'#dc382d','Linux / DevOps':'#444444','TensorFlow':'#ff6f00','React Native':'#0a9fc7','NestJS':'#e0234e'};
+function fill(id,a){document.getElementById(id).innerHTML=a.concat(a).map(function(t){var c=C[t];return '<span'+(c?' style="--c:'+c+'"':'')+'>'+t+'</span>'}).join('')}
+fill('marq',t1);fill('marq2',t2);
+fill('tk',['IT Consulting','Cloud Architecture','SaaS Development','Corporate Training','College Programs','Digital Transformation','API Integration','Product Engineering','IT Consulting','Cloud Architecture','SaaS Development','Corporate Training']);
+</script>
+
+<!-- ===== PATCH: no hover effects + images ===== -->
+<style>
+.btn{transform:none!important}
+.btn:hover::before{transform:translateX(-101%)!important}
+.btn-primary:hover{background:var(--red);color:#fff;box-shadow:none}
+.btn-outline:hover{background:#fff;color:#000;border-color:#000;box-shadow:none}
+.btn-light:hover{background:#fff;color:var(--red);box-shadow:none}
+.btn-ghost:hover{background:transparent;color:#fff;border-color:#fff}
+
+.nav-links>li>a:not(.btn):hover,.dropdown-trigger:hover{color:var(--ink)}
+.nav-links>li>a.active:hover{color:var(--red)}
+.nav-links>li>a:not(.btn):hover::after,.dropdown-trigger:hover::after{transform:scaleX(0)}
+.nav-links>li>a.active:hover::after{transform:scaleX(1)}
+.dropdown-menu a:hover{background:transparent;color:inherit}
+
+.cat-item:hover,.track-card:hover,.prod-card:hover,.quote:hover,.gal-item:hover,.partners div:hover{border-color:var(--line);box-shadow:none;transform:none}
+.card:hover{border-color:var(--red) var(--line) var(--line);box-shadow:none;transform:none}
+.cat-item:hover::after,.card:hover::after,.quote:hover::after,.track-card:hover::after,.prod-card:hover::after{opacity:0}
+
+.prod-card:hover .prod-shot img,.gal-item:hover img,.track-card:hover .track-visual img{transform:none}
+.track-card:hover .track-visual .ui{transform:none}
+.card:hover .cat-ic,.feat:hover .cat-ic{background:#000;color:#fff;transform:none}
+.cat-item:hover .cat-ic{background:#fff0f0;color:var(--red);transform:none}
+.feat:hover{background:transparent;border-color:transparent;transform:none}
+.tstat:hover{border-color:#2a2a2a;transform:none}
+
+.link-arrow:hover,.footer-grid a:hover{text-decoration:none}
+.footer-grid a:hover,.contact-bar a:hover{color:inherit}
+.hero-card a:hover{background:transparent}
+.wa:hover{transform:none}
+.c-dot,.c-ring{display:none!important}
+
+.card-img{display:block;width:calc(100% + 56px);max-width:none;height:170px;object-fit:cover;margin:-32px -28px 22px;background:#222}
+.stats-section{background:linear-gradient(rgba(0,0,0,.88),rgba(0,0,0,.92)),url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=80) center/cover #000}
+.cta-band{background-image:linear-gradient(rgba(168,0,0,.93),rgba(209,0,0,.9)),url(https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=80);background-size:cover;background-position:center}
+</style>
+<script>
+(function(){
+  var U=function(id){return 'https://images.unsplash.com/photo-'+id+'?auto=format&fit=crop&w=800&q=80'};
+  var map={
+    'IT Consulting & Architecture':U('1460925895917-afdab827c52f'),
+    'Product Development':U('1555066931-4365d14bab8c'),
+    'Enterprise & Campus Training':U('1524178232363-1fb2b075b655'),
+    'For Businesses':U('1531482615713-2afd69097998'),
+    'For Institutions':U('1522202176988-66273c2fd55f'),
+    'For Learners':U('1517694712202-14dd9538aa97')
+  };
+  document.querySelectorAll('.card').forEach(function(card){
+    var h=card.querySelector('h3');if(!h)return;
+    var src=map[h.textContent.trim()];if(!src)return;
+    var img=new Image();img.className='card-img';img.alt=h.textContent.trim();img.loading='lazy';img.src=src;
+    card.insertBefore(img,card.firstChild);
+  });
+})();
+</script>
 </body>
 </html>
