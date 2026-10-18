@@ -140,13 +140,6 @@ h1,h2,h3,h4{font-family:Montserrat,sans-serif;line-height:1.15;color:#000}
 .ind-no{position:absolute;top:12px;right:14px;z-index:2;font-size:11px;font-weight:700;color:#fff;letter-spacing:.1em}
 .ind-info{padding:18px 20px 22px;border-top:3px solid var(--red);flex:1;display:flex;flex-direction:column}
 .ind-info h3{font-size:1.05rem;margin-bottom:6px}.ind-info p{font-size:13.5px;color:var(--mute);margin-bottom:14px}.ind-info .tags{margin-top:auto}
-/* comparison */
-.cmp{max-width:860px;margin:0 auto;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
-.cr{display:grid;grid-template-columns:2fr 1fr 1fr;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line);font-size:14.5px}
-.cr:last-child{border:0}.cr.h{background:#000;color:#fff;font:700 12px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase}
-.cr>*:not(:first-child){text-align:center}.cr:nth-child(even):not(.h){background:var(--soft)}
-.y,.n,.m{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;font-size:13px;font-weight:700}
-.y{background:#e8f6ee;color:#0a7d3b}.n{background:#fdeeee;color:var(--red)}.m{background:#fff3dc;color:#9a6200}
 /* tech */
 .tech{padding:56px 0;border-bottom:1px solid var(--line);overflow:hidden}.tech h2{font-size:1.4rem;text-align:center;margin-bottom:24px}
 .tech .marq{animation-duration:34s}.tech:hover .marq{animation-play-state:paused}
@@ -384,22 +377,6 @@ h1,h2,h3,h4{font-family:Montserrat,sans-serif;line-height:1.15;color:#000}
  </div>
 </section>
 
-<section class="section alt">
- <div class="wrap">
-  <div class="section-head center"><span class="eyebrow">Why Us</span><h2>Algo Orbit vs <em>Everyone Else</em></h2><p>Here is what sets us apart.</p></div>
-  <div class="cmp">
-   <div class="cr h"><span>What You Get</span><span>Algo Orbit</span><span>Others</span></div>
-   <div class="cr"><span>Fixed price, no hidden costs</span><span><b class="y">✓</b></span><span><b class="n">✕</b></span></div>
-   <div class="cr"><span>Weekly live demos &amp; updates</span><span><b class="y">✓</b></span><span><b class="n">✕</b></span></div>
-   <div class="cr"><span>Full code &amp; IP ownership</span><span><b class="y">✓</b></span><span><b class="n">✕</b></span></div>
-   <div class="cr"><span>Startup-friendly pricing</span><span><b class="y">✓</b></span><span><b class="n">✕</b></span></div>
-   <div class="cr"><span>Post-launch support included</span><span><b class="y">✓</b></span><span><b class="m">–</b></span></div>
-   <div class="cr"><span>Full-stack: design + dev + deploy</span><span><b class="y">✓</b></span><span><b class="n">✕</b></span></div>
-   <div class="cr"><span>Dedicated point of contact</span><span><b class="y">✓</b></span><span><b class="m">–</b></span></div>
-  </div>
- </div>
-</section>
-
 <section class="tech">
  <h2>Our Technology Arsenal</h2>
  <div class="marq" id="tech"></div>
@@ -422,11 +399,11 @@ h1,h2,h3,h4{font-family:Montserrat,sans-serif;line-height:1.15;color:#000}
  <div class="wrap wm" data-wm="PRICING">
   <div class="section-head center"><span class="eyebrow">Transparent Pricing</span><h2>Simple Plans, <em>No Hidden Costs.</em></h2><p>Starting prices shown. Every project is unique — final pricing depends on your requirements, scope, and complexity.</p></div>
   <div class="grid">
-   <div class="pc"><span class="eyebrow">Starter</span><small>Starting from</small><div class="price">$1,200</div><div class="fee">One-time project fee</div><button type="button" onclick="openScheduleModal()" class="btn btn-outline btn-block">Get a Free Quote →</button>
+   <div class="pc"><span class="eyebrow">Starter</span><small>Starting from</small><div class="price">₹1,200</div><div class="fee">One-time project fee</div><button type="button" onclick="openScheduleModal()" class="btn btn-outline btn-block">Get a Free Quote →</button>
     <div class="pf">Business website up to 5 pages</div><div class="pf">Mobile-responsive design</div><div class="pf">SEO setup and on-page optimisation</div><div class="pf">Contact form and basic integrations</div><div class="pf">30 days post-launch support</div><div class="pf">Source code ownership</div><div class="pf dim">Custom backend or API</div><div class="pf dim">Mobile application</div></div>
-   <div class="pc pop"><span class="pop-b">★ Most Popular</span><span class="eyebrow" style="margin-top:12px">Premium</span><small>Starting from</small><div class="price">$2,800</div><div class="fee">One-time project fee</div><button type="button" onclick="openScheduleModal()" class="btn btn-primary btn-block">Get a Free Quote →</button>
+   <div class="pc pop"><span class="pop-b">★ Most Popular</span><span class="eyebrow" style="margin-top:12px">Premium</span><small>Starting from</small><div class="price">₹2,800</div><div class="fee">One-time project fee</div><button type="button" onclick="openScheduleModal()" class="btn btn-primary btn-block">Get a Free Quote →</button>
     <div class="pf">Full web app or MVP, unlimited pages</div><div class="pf">Custom backend and REST APIs</div><div class="pf">Database design and admin dashboard</div><div class="pf">Auth, payments and third-party integrations</div><div class="pf">Cloud deployment on AWS or GCP</div><div class="pf">60 days post-launch support</div><div class="pf">Weekly demos and progress reports</div><div class="pf">Full code and IP ownership</div></div>
-   <div class="pc"><span class="eyebrow">Enterprise</span><small>Starting from</small><div class="price">$4,999</div><div class="fee">Custom scoped engagement</div><button type="button" onclick="openScheduleModal()" class="btn btn-outline btn-block">Contact Sales →</button>
+   <div class="pc"><span class="eyebrow">Enterprise</span><small>Starting from</small><div class="price">₹4,999</div><div class="fee">Custom scoped engagement</div><button type="button" onclick="openScheduleModal()" class="btn btn-outline btn-block">Contact Sales →</button>
     <div class="pf">Everything in Premium</div><div class="pf">Mobile app for iOS and Android</div><div class="pf">AI and automation integrations</div><div class="pf">ERP, CRM, or SaaS platform build</div><div class="pf">Dedicated project manager</div><div class="pf">Security audit and compliance</div><div class="pf">SLA-backed 24/7 support</div><div class="pf">Flexible payment milestones</div></div>
   </div>
   <div class="note"><span class="cat-ic" style="margin:0;background:#e0a100">!</span><div><strong>Pricing varies based on project scope and requirements</strong><p>The prices above are starting points. Your final quote depends on features, complexity, integrations, timeline, and team size. We will give you a precise fixed-price proposal within 48 hours of your discovery call — with no surprises, ever.</p></div></div>
@@ -448,7 +425,7 @@ h1,h2,h3,h4{font-family:Montserrat,sans-serif;line-height:1.15;color:#000}
  <div class="wrap">
   <div class="section-head center"><span class="eyebrow">FAQ</span><h2>Questions? <em>We Have Answers.</em></h2><p>Everything you would want to know before reaching out.</p></div>
   <div class="faq">
-   <details><summary>How much does a project cost?</summary><p>Starter projects begin from $1,200. MVP or web apps from $2,800. Enterprise platforms from $4,999. All final quotes are fixed price with no surprises and you will receive a detailed breakdown in your proposal within 48 hours.</p></details>
+   <details><summary>How much does a project cost?</summary><p>Starter projects begin from ₹1,200. MVP or web apps from ₹2,800. Enterprise platforms from ₹4,999. All final quotes are fixed price with no surprises and you will receive a detailed breakdown in your proposal within 48 hours.</p></details>
    <details><summary>How long does development take?</summary><p>Simple websites take 1 to 2 weeks. MVPs and apps take 6 to 10 weeks. Enterprise platforms take 3 to 6 months. We always provide a milestone timeline upfront, and we hit them.</p></details>
    <details><summary>We are an early-stage startup. Can you work with us?</summary><p>Absolutely. We love working with founders. Startup-friendly pricing, flexible payment plans, and we can act as your technical co-founder. Many of our best projects started with just an idea.</p></details>
    <details><summary>Do I own the code after the project?</summary><p>100% yes. Full source code, documentation, and IP ownership transfers to you on final payment. No vendor lock-in, ever.</p></details>
@@ -566,7 +543,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('.has-dropdow
 addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-innerHeight;document.getElementById('bar').style.width=(h>0?scrollY/h*100:0)+'%';document.querySelector('.site-header').classList.toggle('scrolled',scrollY>40);if(scrollY<900&&!reduce)hero.style.backgroundPosition='center calc(50% + '+scrollY*.12+'px)'},{passive:true});
 // reveal
 if(!reduce){var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('reveal','in');el.style.transitionDelay=''},1300)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
- document.querySelectorAll('.section-head,.card,.ind,.quote,.pc,.ring,.feat,.cmp,.note,.tl-item,.faq details').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('reveal');el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)})}
+ document.querySelectorAll('.section-head,.card,.ind,.quote,.pc,.ring,.feat,.note,.tl-item,.faq details').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('reveal');el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)})}
 // particles
 var pc=document.getElementById('particles');
 function spawn(){if(document.hidden)return;var d=document.createElement('i'),z=Math.random()*5+3;d.style.cssText='left:'+Math.random()*100+'%;width:'+z+'px;height:'+z+'px;animation-duration:'+(Math.random()*8+8)+'s';pc.appendChild(d);setTimeout(function(){d.remove()},17000)}
