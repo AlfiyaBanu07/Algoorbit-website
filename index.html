@@ -745,7 +745,7 @@ html{overflow-x:clip}
 <footer class="site-footer">
  <div class="wrap">
   <div class="footer-grid">
-   <div><img class="footer-logo" src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT"><p>ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p></div>
+   <div><a href="index.html" class="footer-wordmark" aria-label="ALGO ORBIT home"><span>ALGO</span><b>ORBIT</b></a><p>ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p></div>
    <div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About us</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
    <div><h4>Services</h4><ul><li><a href="services.html#software">Software Development</a></li><li><a href="consultancy.html">IT Consulting</a></li><li><a href="training.html">Corporate Training</a></li><li><a href="products.html">In-House Products</a></li></ul></div>
    <div><h4>Training</h4><ul><li><a href="consultancy.html">For Institutions</a></li><li><a href="training.html">For Learners</a></li><li><a href="consultancy.html#placement">Campus Placement</a></li></ul></div>
@@ -911,6 +911,12 @@ fill('tk',['IT Consulting','Cloud Architecture','SaaS Development','Corporate Tr
 .card-img{display:block;width:calc(100% + 56px);max-width:none;height:170px;object-fit:cover;margin:-32px -28px 22px;background:#222}
 .stats-section{background:linear-gradient(rgba(0,0,0,.88),rgba(0,0,0,.92)),url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=80) center/cover #000}
 .cta-band{background-image:linear-gradient(rgba(168,0,0,.93),rgba(209,0,0,.9)),url(https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=80);background-size:cover;background-position:center}
+
+/* Footer wordmark (text only, replaces footer logo image) */
+.footer-wordmark{display:inline-block;margin-bottom:16px;font:800 24px Montserrat,sans-serif;letter-spacing:.02em;line-height:1.1}
+.footer-wordmark span{color:#fff}
+.footer-wordmark b{color:var(--red)}
+.footer-grid .footer-wordmark:hover{color:inherit;text-decoration:none}
 </style>
 <script>
 (function(){

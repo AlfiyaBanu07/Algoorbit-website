@@ -564,6 +564,12 @@ html{overflow-x:clip}
 .c-dot,.c-ring{display:none}
 /* ===== Card images ===== */
 .card-img{display:block;width:calc(100% + 56px);max-width:none;height:170px;object-fit:cover;margin:-32px -28px 22px;background:#222}
+
+/* Footer wordmark (text only, replaces footer logo image) */
+.footer-wordmark{display:inline-block;margin-bottom:16px;font:800 24px Montserrat,sans-serif;letter-spacing:.02em;line-height:1.1}
+.footer-wordmark span{color:#fff}
+.footer-wordmark b{color:var(--red)}
+.footer-grid .footer-wordmark:hover{color:inherit;text-decoration:none}
 </style>
 </head>
 <body>
@@ -889,7 +895,7 @@ html{overflow-x:clip}
  <div class="wrap">
   <div class="footer-grid">
    <div>
-    <img class="footer-logo" src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT">
+    <a href="index.html" class="footer-wordmark" aria-label="ALGO ORBIT home"><span>ALGO</span><b>ORBIT</b></a>
     <p>Empowering businesses with innovative digital solutions. From restaurant management to civic engagement platforms, we build technology that drives real impact.</p>
     <p style="margin-top:10px">ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p>
     <div class="soc">

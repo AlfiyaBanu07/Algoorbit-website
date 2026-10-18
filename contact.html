@@ -181,7 +181,7 @@ form textarea{resize:vertical;min-height:120px}
 /* Impact band */
 .stats-section{position:relative;overflow:hidden;color:#fff;clip-path:polygon(0 32px,100% 0,100% calc(100% - 32px),0 100%);margin:-32px 0;padding:116px 0;z-index:1}
 .stats-section .wrap{position:relative;z-index:2}
-.impact{background:linear-gradient(rgba(0,0,0,.86),rgba(0,0,0,.92)),url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=80) center/cover #000}
+.impact{background:linear-gradient(rgba(0,0,0,.86),rgba(0,0,0,.92)),url(https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1800&q=80) center/cover #000}
 .impact .eyebrow{display:block;text-align:center;color:#ff7a7a}
 .stats-h{color:#fff;text-align:center;font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:56px}
 .rings{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
@@ -208,7 +208,7 @@ form textarea{resize:vertical;min-height:120px}
 .steps li::before{counter-increment:s;content:"0" counter(s);display:block;font:800 1.9rem Montserrat,sans-serif;color:var(--red);margin-bottom:10px}
 
 /* CTA */
-.cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;clip-path:polygon(0 34px,100% 0,100% 100%,0 100%);margin-top:-34px;padding:112px 24px 80px;background:linear-gradient(rgba(168,0,0,.93),rgba(209,0,0,.9)),url(https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=80) center/cover #D10000}
+.cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;clip-path:polygon(0 34px,100% 0,100% 100%,0 100%);margin-top:-34px;padding:112px 24px 80px;background:linear-gradient(rgba(168,0,0,.93),rgba(209,0,0,.9)),url(/static/images/office1.jpg) center/cover #D10000}
 .cta-band>*:not(.orbit){position:relative;z-index:2}
 .cta-band h2{color:#fff;font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:10px}
 .cta-band p{opacity:.92;margin:0 auto 28px;max-width:640px}
@@ -222,6 +222,10 @@ form textarea{resize:vertical;min-height:120px}
 .footer-grid h4.sp{margin-top:22px}
 .footer-grid li{margin-bottom:9px}
 .footer-logo{height:36px;margin-bottom:16px;filter:brightness(0) invert(1)}
+/* footer text wordmark (replaces footer logo image) */
+.footer-wordmark{display:inline-block;font:800 30px/1 Montserrat,sans-serif;letter-spacing:.02em;margin-bottom:16px}
+.footer-wordmark .fw-algo{color:#fff}
+.footer-wordmark .fw-orbit{color:var(--red)}
 .footer-bottom{border-top:1px solid #222;padding:20px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:#888}
 .footer-bottom a{color:#aaa}
 .contact-bar{background:#111;color:#ccc;font-size:13.5px;padding:14px 0}
@@ -324,7 +328,7 @@ form textarea{resize:vertical;min-height:120px}
 <main id="main">
 
 <!-- Hero -->
-<section class="hero" style="background-image:url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1800&q=80)">
+<section class="hero" style="background-image:url(https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=1800&q=80)">
  <div id="particles" aria-hidden="true"></div>
  <div class="wrap hero-grid">
   <div>
@@ -547,7 +551,7 @@ form textarea{resize:vertical;min-height:120px}
  <div class="wrap">
   <div class="footer-grid">
    <div>
-    <img class="footer-logo" src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT" height="40">
+    <a href="index.html" class="footer-wordmark" aria-label="ALGO ORBIT"><span class="fw-algo">ALGO</span><span class="fw-orbit">ORBIT</span></a>
     <p>Empowering businesses with innovative digital solutions. From restaurant management to civic engagement platforms, we build technology that drives real impact.</p>
     <p style="margin-top:10px">Software solutions and practical learning for businesses, institutions and learners.</p>
     <div class="fsoc">

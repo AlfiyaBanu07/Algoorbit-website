@@ -47,7 +47,7 @@ h1,h2,h3,h4{font-family:Montserrat,sans-serif;line-height:1.15;color:#000}
 .btn-light{background:#fff;color:var(--red)}
 .btn-ghost{border-color:#fff;color:#fff}
 /* hero */
-.hero{position:relative;isolation:isolate;overflow:hidden;background:#fff url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1800&q=80) center/cover}
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#fff url(https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1800&q=80) center/cover}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#fff 0,rgba(255,255,255,.96) 40%,rgba(255,255,255,.72) 65%,rgba(255,255,255,.25) 100%)}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(0,0,0,.16) 1px,transparent 1.4px);background-size:26px 26px;-webkit-mask-image:linear-gradient(90deg,#000,transparent 55%);mask-image:linear-gradient(90deg,#000,transparent 55%)}
 #particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -123,7 +123,7 @@ h1,h2,h3,h4{font-family:Montserrat,sans-serif;line-height:1.15;color:#000}
 .proj .info{padding:20px 22px 24px;border-top:3px solid var(--red);flex:1}
 .proj h3{font-size:1.05rem;margin-bottom:6px}.proj p{font-size:14px;color:var(--mute)}
 /* stats */
-.stats-section{position:relative;overflow:hidden;color:#fff;padding:116px 0;margin:-32px 0;z-index:1;clip-path:polygon(0 32px,100% 0,100% calc(100% - 32px),0 100%);background:linear-gradient(rgba(0,0,0,.88),rgba(0,0,0,.92)),url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=80) center/cover #000}
+.stats-section{position:relative;overflow:hidden;color:#fff;padding:116px 0;margin:-32px 0;z-index:1;clip-path:polygon(0 32px,100% 0,100% calc(100% - 32px),0 100%);background:linear-gradient(rgba(0,0,0,.88),rgba(0,0,0,.92)),url(https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1800&q=80) center/cover #000}
 .stats-h{color:#fff;text-align:center;font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:36px}
 .stats-band{display:grid;grid-template-columns:repeat(4,1fr)}
 .stat{padding:6px 28px;border-left:1px solid #2a2a2a}.stat:first-child{border:0;padding-left:0}
@@ -140,7 +140,7 @@ h1,h2,h3,h4{font-family:Montserrat,sans-serif;line-height:1.15;color:#000}
 .quote p{flex:1;margin-bottom:18px;font-size:15px;font-style:italic;color:var(--mute)}
 .rs{color:var(--red);letter-spacing:3px;font-size:15px}
 /* cta */
-.cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:112px 24px 80px;margin-top:-34px;clip-path:polygon(0 34px,100% 0,100% 100%,0 100%);background:linear-gradient(rgba(168,0,0,.93),rgba(209,0,0,.9)),url(https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=80) center/cover}
+.cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:112px 24px 80px;margin-top:-34px;clip-path:polygon(0 34px,100% 0,100% 100%,0 100%);background:linear-gradient(rgba(168,0,0,.93),rgba(209,0,0,.9)),url(https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1800&q=80) center/cover}
 .cta-band h2{color:#fff;font-size:clamp(1.8rem,3.4vw,2.8rem);margin-bottom:10px}
 .cta-band p{opacity:.92;margin:0 auto 28px;max-width:520px}
 .cta-pill{display:inline-block;margin-bottom:20px;padding:6px 18px;border:1px solid rgba(255,255,255,.5);border-radius:30px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
@@ -252,6 +252,11 @@ html{scroll-padding-top:84px}
 .soc .ui{width:1.25em;height:1.25em}
 @media(max-width:1000px){.rings{grid-template-columns:1fr 1fr;row-gap:44px}.s2 .stats-band{grid-template-columns:1fr 1fr!important}.s2 .stat:nth-child(3){border-left:0}.s2 .stat:nth-child(n+3){border-top:1px solid var(--line)}}
 @media(max-width:640px){.ring-c{width:128px;height:128px}.ring-c strong{font-size:2rem}}
+
+/* Footer wordmark (text only, replaces footer logo image) */
+.footer-wordmark{display:inline-block;margin-bottom:16px;font:800 24px Montserrat,sans-serif;letter-spacing:.02em;line-height:1.1}
+.footer-wordmark span{color:#fff}
+.footer-wordmark b{color:var(--red)}
 </style>
 </head>
 <body>
@@ -276,7 +281,7 @@ html{scroll-padding-top:84px}
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li class="has-dropdown"><button class="dropdown-trigger" type="button" aria-expanded="false">Services ▾</button>
-     <div class="dropdown-menu"><a href="services.html#consulting">IT Consultancy</a><a href="services.html#corporate">Enterprise Training</a><a href="products.html">Products</a></div></li>
+     <div class="dropdown-menu"><a href="consultancy.html">IT Consultancy</a><a href="training.html">Enterprise Training</a><a href="products.html">Products</a></div></li>
     <li><a href="our-work.html" class="active" aria-current="page">Our Work</a></li>
     <li><a href="careers.html">Careers</a></li>
     <li><a href="contact.html">Contact</a></li>
@@ -330,8 +335,8 @@ html{scroll-padding-top:84px}
  <div class="wrap">
   <div class="section-head center"><h2>Two projects. Endless impact.</h2><p>Our flagship builds.</p></div>
   <div class="grid flag-grid" style="grid-template-columns:1fr 1fr">
-   <a class="flag" href="/works/luminae"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&h=600&fit=crop&q=85" alt="Luminae Interior"><div class="ov"><span class="chip">Interior Design</span><h3>Luminae Interior</h3><p>A luxury design studio that needed a digital space as beautiful as the spaces they create.</p><span class="vb">View Project →</span></div></a>
-   <a class="flag b" href="/works/bramhari"><img src="https://www.algoorbit.in/static/images/sharon/banner.png" alt="Bramhari Fashion" style="object-position:center top"><div class="ov"><span class="chip">Fashion &amp; Tailoring</span><h3>Bramhari Fashion</h3><p>A royal Indian fashion designer &amp; tailoring studio in Karkala, where every stitch tells a story.</p><span class="vb">View Project →</span></div></a>
+   <a class="flag" href="works/luminae.html"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&h=600&fit=crop&q=85" alt="Luminae Interior"><div class="ov"><span class="chip">Interior Design</span><h3>Luminae Interior</h3><p>A luxury design studio that needed a digital space as beautiful as the spaces they create.</p><span class="vb">View Project →</span></div></a>
+   <a class="flag b" href="works/bramhari.html"><img src="https://www.algoorbit.in/static/images/sharon/banner.png" alt="Bramhari Fashion" style="object-position:center top"><div class="ov"><span class="chip">Fashion &amp; Tailoring</span><h3>Bramhari Fashion</h3><p>A royal Indian fashion designer &amp; tailoring studio in Karkala, where every stitch tells a story.</p><span class="vb">View Project →</span></div></a>
   </div>
  </div>
 </section>
@@ -390,7 +395,7 @@ html{scroll-padding-top:84px}
 <footer class="site-footer">
  <div class="wrap">
   <div class="footer-grid">
-   <div><img class="footer-logo" src="https://www.algoorbit.in/static/images/logo-bl.png" alt="ALGO ORBIT"><p>ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p>
+   <div><a href="index.html" class="footer-wordmark" aria-label="ALGO ORBIT home"><span>ALGO</span><b>ORBIT</b></a><p>ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p>
     <div class="soc">
      <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ui"><use href="#i-in"/></svg></a>
      <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ui"><use href="#i-ig"/></svg></a>
@@ -398,7 +403,7 @@ html{scroll-padding-top:84px}
      <a href="https://whatsapp.com/channel/0029VbBktvfAYlUS6kToth1B" target="_blank" rel="noopener" aria-label="WhatsApp Channel"><svg class="ui" style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg></a>
     </div></div>
    <div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About us</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-   <div><h4>Services</h4><ul><li><a href="services.html#software">Software Development</a></li><li><a href="services.html#consulting">IT Consulting</a></li><li><a href="services.html#corporate">Corporate Training</a></li><li><a href="products.html">In-House Products</a></li></ul></div>
+   <div><h4>Services</h4><ul><li><a href="consultancy.html">Software Development</a></li><li><a href="consultancy.html">IT Consulting</a></li><li><a href="training.html">Corporate Training</a></li><li><a href="products.html">In-House Products</a></li></ul></div>
    <div><h4>Training</h4><ul><li><a href="institutions.html">For Institutions</a></li><li><a href="learners.html">For Learners</a></li><li><a href="institutions.html#placement">Campus Placement</a></li></ul></div>
    <div><h4>Contact</h4><ul><li><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></li><li><a href="tel:+919482119446">+91 94821 19446</a></li><li>Karkala, Udupi, Karnataka</li></ul></div>
   </div>
@@ -417,18 +422,18 @@ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 // Projects (from previous Our Work page)
 var U=function(id,q){return 'https://images.unsplash.com/photo-'+id+'?w=700&h=440&fit=crop&q='+(q||80)};
 var P=[
- ['business','Business','Luminae Interior','Where luxury design meets digital elegance.','/works/luminae',U('1618221195710-dd6b41faaea6',85)],
- ['technology','Technology','VRTX Commerce','E-commerce platform and app built for the next generation.','/works/vrtx',U('1555529669-e69e7aa0ba9a',85)],
- ['fashion','Fashion','Bramhari Fashion Designer','Dressed in tradition, stitched in style: Karkala\u2019s premier tailoring studio.','/works/bramhari','https://www.algoorbit.in/static/images/sharon/banner.png'],
- ['business','Business','Annapoorna Restaurant & Lodge','Complete brand identity & digital presence for a beloved coastal Karnataka hospitality brand.','/works/annapoorna',U('1517248135467-4c7edcad34c4',85),1],
- ['business','Business','Voyex Travel','A travel booking experience that feels like the journey itself.','/works/voyex',U('1469854523086-cc02fe5d8800')],
- ['healthcare','Healthcare','Apex Medical Center','A hospital that patients can trust, online and offline.','/works/hospital',U('1519494026892-80bbd2d6fd0d')],
- ['ngo','NGO / Social','HopeForward Foundation','Turning compassion into a digital movement.','/works/hopeforward',U('1469571486292-0ba58a3f068b')],
- ['lifestyle','Lifestyle','IronForge Gym','A fitness brand that hits as hard as its members train.','/works/gym',U('1534438327276-14e5300c3a48')],
+ ['business','Business','Luminae Interior','Where luxury design meets digital elegance.','works/luminae.html',U('1618221195710-dd6b41faaea6',85)],
+ ['technology','Technology','VRTX Commerce','E-commerce platform and app built for the next generation.','works/vrtx.html',U('1555529669-e69e7aa0ba9a',85)],
+ ['fashion','Fashion','Bramhari Fashion Designer','Dressed in tradition, stitched in style: Karkala\u2019s premier tailoring studio.','works/bramhari.html','https://www.algoorbit.in/static/images/sharon/banner.png'],
+ ['business','Business','Annapoorna Restaurant & Lodge','Complete brand identity & digital presence for a beloved coastal Karnataka hospitality brand.','works/annapoorna.html',U('1517248135467-4c7edcad34c4',85),1],
+ ['business','Business','Voyex Travel','A travel booking experience that feels like the journey itself.','works/voyex.html',U('1469854523086-cc02fe5d8800')],
+ ['healthcare','Healthcare','Apex Medical Center','A hospital that patients can trust, online and offline.','works/hospital.html',U('1519494026892-80bbd2d6fd0d')],
+ ['ngo','NGO / Social','HopeForward Foundation','Turning compassion into a digital movement.','works/hopeforward.html',U('1469571486292-0ba58a3f068b')],
+ ['lifestyle','Lifestyle','IronForge Gym','A fitness brand that hits as hard as its members train.','works/gym.html',U('1534438327276-14e5300c3a48')],
  ['product','Product','TrionCam','Civic engagement reimagined, built from within.','https://www.trioncam.com',U('1477959858617-67f85cf4f1df')],
- ['product','Product','Smart Restaurant System','The operating system powering 50+ modern restaurants.','/products',U('1517248135467-4c7edcad34c4')],
- ['business','Business','NovaBuild Properties','Premium real estate that sells before the showroom opens.','/works/novabuild',U('1560518883-ce09059eeffa')],
- ['technology','Technology','SwiftCart','Hyperlocal grocery delivery that gets there before you\u2019re hungry.','/work/swiftcart',U('1542838132-92c53300491e')]
+ ['product','Product','Smart Restaurant System','The operating system powering 50+ modern restaurants.','products.html',U('1517248135467-4c7edcad34c4')],
+ ['business','Business','NovaBuild Properties','Premium real estate that sells before the showroom opens.','works/novabuild.html',U('1560518883-ce09059eeffa')],
+ ['technology','Technology','SwiftCart','Hyperlocal grocery delivery that gets there before you\u2019re hungry.','work/swiftcart.html',U('1542838132-92c53300491e')]
 ];
 var grid=document.getElementById('proj-grid');
 grid.innerHTML=P.map(function(p){return '<a class="proj" data-cat="'+p[0]+'" href="'+p[4]+'"><div class="shot"><img src="'+p[5]+'" alt="'+p[2].replace(/&/g,'&amp;')+'" loading="lazy"><span class="ib">'+p[1]+'</span>'+(p[6]?'<span class="nb">New</span>':'')+'</div><div class="info"><h3>'+p[2].replace(/&/g,'&amp;')+'</h3><p>'+p[3].replace(/&/g,'&amp;')+'</p></div></a>'}).join('');
