@@ -55,10 +55,10 @@ header.scrolled{box-shadow:0 8px 28px rgba(0,0,0,.08)}
 .dd-menu a::after{display:none}
 .dd{position:relative}
 .dd>button{font:inherit;font-weight:500;background:none;border:0;cursor:pointer;color:inherit;display:flex;align-items:center;gap:5px}
-/* services dropdown (card style, same as the reference image) */
-.dd-menu{position:absolute;top:100%;left:-14px;min-width:270px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--red);border-radius:6px;padding:8px 0;box-shadow:0 14px 30px rgba(0,0,0,.1);opacity:0;visibility:hidden;transform:translateY(6px);transition:.2s}
+/* services dropdown (compact rectangle card, same style as the reference image) */
+.dd-menu{position:absolute;top:100%;left:-14px;min-width:240px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--red);border-radius:6px;padding:4px 0;box-shadow:0 14px 30px rgba(0,0,0,.1);opacity:0;visibility:hidden;transform:translateY(6px);transition:.2s}
 .dd-menu.open{opacity:1;visibility:visible;transform:none}
-.dd-menu a{display:block;padding:20px 30px;border-radius:0;font-size:17px;line-height:1.5;color:var(--ink);transition:background .2s,color .2s}
+.dd-menu a{display:block;padding:12px 22px;border-radius:0;font-size:16px;line-height:1.4;color:var(--ink);transition:background .2s,color .2s}
 .dd-menu a:hover{background:var(--red-l);color:var(--red)}
 .dd-menu a.on{color:var(--red);background:transparent;font-weight:700}
 .dd-menu a.on:hover{background:var(--red-l)}
@@ -162,7 +162,7 @@ footer li a,.soc a,.fb a{transition:color .2s}footer li a:hover,.soc a:hover,.fb
 .links.open{display:flex}
 .dd-menu{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;margin-top:8px;display:none;min-width:0;width:100%}
 .dd-menu.open{display:block}
-.dd-menu a{padding:16px 24px}
+.dd-menu a{padding:12px 20px}
 .hero-orbit{width:520px;height:520px;right:-240px;margin-top:-260px;opacity:.6}
 }
 @media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.fg{grid-template-columns:1fr}.sec{padding:60px 0}}
