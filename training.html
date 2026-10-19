@@ -149,6 +149,209 @@ footer{background:#000;color:#bbb;padding:64px 0 0;font-size:.9rem}
 @media(max-width:820px){.hero-orbit{width:520px;height:520px;right:-240px;margin-top:-260px;opacity:.6}.mb{display:block}.links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:16px 24px;gap:14px;max-height:calc(100vh - 72px);overflow:auto}.links.open{display:flex}.menu{position:static;opacity:1;visibility:visible;transform:none;display:none;margin-top:8px;min-width:0;width:100%}.menu a,.menu a.on{padding:12px 20px}.menu.open{display:block}}
 @media(max-width:640px){.sec{padding:60px 0}.g3,.g4,.g5,.fg{grid-template-columns:1fr}.bc{padding:28px}.vf{flex-direction:column}.nums{grid-template-columns:1fr}.nums div{border-left:0;border-top:1px solid rgba(255,255,255,.14)}.nums div:first-child{border-top:0}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* =====================================================================
+   ALGO ORBIT · training.html · Responsive + UI polish layer
+   Responsive layout, uniform buttons and UI polish. Content and logic untouched.
+   ===================================================================== */
+
+/* ---------- 1. Design tokens (spacing / radius / shadow scale) ---------- */
+:root{
+  --r-sm:6px; --r-md:10px; --r-lg:14px;
+  --sh-1:0 2px 8px rgba(0,0,0,.05);
+  --sh-2:0 12px 28px rgba(0,0,0,.09);
+  --sh-3:0 22px 50px rgba(0,0,0,.14);
+  --btn-h:48px;
+  --gutter:clamp(16px,4vw,24px);
+}
+
+/* ---------- 2. Base typography & rhythm ---------- */
+body{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{padding-left:var(--gutter);padding-right:var(--gutter)}
+h1{font-size:clamp(1.9rem,5.2vw,3.3rem)}
+h2{font-size:clamp(1.45rem,3.6vw,2.3rem);text-wrap:balance}
+h3{font-size:clamp(1rem,1.6vw,1.1rem)}
+.lead{font-size:clamp(.96rem,1.6vw,1.05rem);line-height:1.7}
+.sec{padding:clamp(56px,8vw,96px) 0}
+.head{margin-bottom:clamp(32px,5vw,52px)}
+img{height:auto}
+.c p,.c li,.st p,.tl p{line-height:1.65}
+.tag{border-radius:var(--r-sm);line-height:1.4}
+
+/* ---------- 3. Buttons: ONE size on every device ----------
+   Same height, same min-width, same type size, same padding for
+   .btn / .btn.sm / .btn.o / .btn.l / .btn.g everywhere. */
+.btn,.btn.sm{
+  min-height:var(--btn-h);height:var(--btn-h);
+  min-width:210px;
+  padding:0 28px;
+  font-size:15px;line-height:1;font-weight:600;
+  border-radius:var(--r-sm);
+  white-space:nowrap;text-align:center;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.btn:active{transform:translateY(0);box-shadow:none}
+.acts{gap:14px;align-items:stretch}
+.center{display:flex;justify-content:center}
+.vf .btn{min-width:150px}   /* Verify button sits beside an input; still same height/type */
+.vf input{height:var(--btn-h);border-radius:var(--r-sm)}
+.gr .btn{flex:none}
+
+/* ---------- 4. Header polish ---------- */
+header{background:rgba(255,255,255,.97)}
+.nav{gap:16px}
+.logo{flex:none}
+.links{gap:clamp(16px,2vw,26px)}
+.links>a.btn{margin-left:6px}
+.mb{flex:none;display:none;place-items:center;border-radius:var(--r-sm);transition:border-color .2s,color .2s}
+.mb:hover{border-color:var(--red);color:var(--red)}
+.menu{border-radius:var(--r-md)}
+
+/* ---------- 5. Cards: consistent radius, depth and hover ---------- */
+.c{border-radius:0 0 var(--r-md) var(--r-md);box-shadow:var(--sh-1);height:100%}
+.c:hover{box-shadow:var(--sh-2)}
+a.c{color:inherit}
+.cimg{border-radius:0}
+.pic,.ban,.nums,.vb,.gr,.tl div,.mini div{border-radius:var(--r-md)}
+.vb{border-radius:0 0 var(--r-md) var(--r-md)}
+.pic{box-shadow:var(--sh-3)}
+.ft{flex-wrap:wrap}
+.tgs{gap:6px}
+.tg,.wall span{white-space:normal}
+.pop{max-width:calc(100% - 24px)}
+
+/* ---------- 6. Stat band & misc sections ---------- */
+.nums strong{font-size:clamp(1.9rem,4vw,2.4rem)}
+.nums small{line-height:1.5;display:block;margin-top:4px}
+.wall{gap:10px}
+.st{align-items:flex-start}
+.st .ic{margin-top:2px}
+.tl div::before{box-shadow:0 0 0 1px var(--red),0 0 0 6px var(--pink)}
+.cta{padding:clamp(64px,9vw,104px) var(--gutter)}
+.cta h2{text-wrap:balance}
+footer a{display:inline-block;padding:2px 0}
+
+/* ---------- 7. Accessibility ---------- */
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+.btn:focus-visible{outline-offset:4px}
+.wa{bottom:max(24px,env(safe-area-inset-bottom));right:max(24px,env(safe-area-inset-right))}
+@media (hover:none){
+  .c:hover,.btn:hover,.wall span:hover,.tl div:hover,.c:hover .ic,.st:hover .ic,.c:hover .cimg img{transform:none}
+  .c:hover{box-shadow:var(--sh-1)}
+}
+
+/* ---------- 8. Large desktop (>=1400px) ---------- */
+@media (min-width:1400px){
+  .wrap{max-width:1280px}
+}
+
+/* ---------- 9. Laptop / small desktop (<=1200px) ---------- */
+@media (max-width:1200px){
+  .fg{grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr;gap:24px}
+  .g5{grid-template-columns:repeat(3,1fr)}
+}
+
+/* ---------- 10. Tablet landscape & below (<=1000px) ---------- */
+@media (max-width:1000px){
+  .hg{gap:36px}
+  .hero{padding:56px 0 64px}
+  .sp{gap:36px}
+  .pic img{aspect-ratio:16/10}
+  /* avoid a lonely last card in 2-column grids */
+  .g3>*:last-child:nth-child(odd){grid-column:1/-1}
+  .g4>*:last-child:nth-child(odd){grid-column:auto}
+  /* keep the internship info chips (previously hidden) visible, as a row */
+  .bb{display:flex;flex-wrap:wrap;gap:8px;top:16px;left:16px;right:16px}
+  .bb div{min-width:0;flex:1 1 130px;padding:10px 14px}
+  .ban{min-height:520px}
+  .bc{padding:120px 36px 40px;max-width:100%}
+  .fg{grid-template-columns:1fr 1fr;gap:32px}
+  .fg>div:first-child{grid-column:1/-1}
+  .nums div{padding:32px 20px}
+}
+
+/* ---------- 11. Tablet portrait & large phones (<=820px) ---------- */
+@media (max-width:820px){
+  .nav{height:64px}
+  .mb{display:grid}
+  .links{padding:16px var(--gutter) 24px;gap:6px;box-shadow:0 18px 30px rgba(0,0,0,.08)}
+  .links>a:not(.btn),.dd>button{display:block;width:100%;padding:12px 0;text-align:left;border-bottom:1px solid var(--line)}
+  .links>a:not(.btn)::after,.dd>button::after{display:none}
+  .dd{width:100%}
+  .menu{border-top-width:3px;box-shadow:none;margin:8px 0 4px}
+  .links>a.btn{width:100%;margin:12px 0 0}
+  .hero-orbit{opacity:.35}
+}
+
+/* ---------- 12. Phones (<=640px) ---------- */
+@media (max-width:640px){
+  .hero{padding:44px 0 52px}
+  .hero::before{background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(255,255,255,.9))}
+  .g2,.g3,.g4,.g5{grid-template-columns:1fr;gap:18px}
+  .g3>*:last-child:nth-child(odd){grid-column:auto}
+  .c{padding:22px}
+  .cimg{margin:-22px -22px 16px}
+  /* buttons: identical full-width size, comfortably tappable */
+  .acts{flex-direction:column;align-items:stretch}
+  .acts .btn,.center .btn,.gr .btn,.vf .btn,.cta .btn{width:100%;max-width:360px;min-width:0}
+  .acts{align-items:flex-start}
+  .cta .acts{align-items:center}
+  .center{padding:0}
+  .chips{gap:6px}
+  .chips span{font-size:.78rem;padding:6px 10px}
+  .fl{right:10px;bottom:10px;padding:10px 14px}
+  .fl strong{font-size:1.25rem}
+  .mini{gap:10px}
+  .mini div{padding:14px 10px}
+  .gr{padding:20px;flex-direction:column;align-items:flex-start}
+  .gr strong{font-size:2.2rem}
+  .vb{padding:22px 18px}
+  .vf{flex-direction:column}
+  .vf input,.vf .btn{width:100%;max-width:none}
+  .ban{min-height:600px}
+  .bc{padding:150px 22px 28px}
+  .bb div{flex:1 1 100%}
+  .tl{padding-left:26px}
+  .tl div{padding:18px}
+  .tl div::before{left:-35px}
+  .fg{grid-template-columns:1fr;gap:28px}
+  .fb{flex-direction:column;align-items:flex-start}
+  .wa{width:50px;height:50px}
+}
+
+/* ---------- 13. Very small phones (<=380px) ---------- */
+@media (max-width:380px){
+  body{font-size:15px}
+  .logo{font-size:1.15rem}
+  .logo svg{width:30px;height:30px}
+  .btn,.btn.sm{padding:0 18px;font-size:14.5px}
+  .nums strong{font-size:1.8rem}
+}
+
+/* ---------- 14. Landscape phones (short viewports) ---------- */
+@media (max-height:480px) and (orientation:landscape){
+  .links{max-height:calc(100vh - 64px)}
+  .hero{padding:36px 0}
+}
+
+/* ---------- 14b. Header "Get Started" button: medium size ----------
+   Smaller than the page buttons; same on desktop, tablet and mobile. */
+.links>a.btn.sm{
+  height:40px;min-height:40px;
+  min-width:0;width:auto;
+  padding:0 20px;
+  font-size:14px;
+  margin-left:6px;
+}
+@media (max-width:820px){
+  .links>a.btn.sm{width:auto;margin:12px 0 0;align-self:flex-start}
+}
+
+/* ---------- 15. Print ---------- */
+@media print{
+  header,.wa,#bar,.orbit{display:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
 </style>
 </head>
 <body>

@@ -167,6 +167,175 @@ footer li a,.soc a,.fb a{transition:color .2s}footer li a:hover,.soc a:hover,.fb
 }
 @media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.fg{grid-template-columns:1fr}.sec{padding:60px 0}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* =====================================================================
+   ALGO ORBIT · products.html · Responsive + UI polish layer
+   Responsive layout, uniform buttons, medium Get Started, UI polish.
+   Content and logic untouched.
+   ===================================================================== */
+
+/* ---------- 1. Tokens ---------- */
+:root{
+  --r-sm:8px; --r-md:12px;
+  --sh-1:0 2px 8px rgba(0,0,0,.05);
+  --sh-2:0 12px 28px rgba(0,0,0,.09);
+  --sh-3:0 22px 50px rgba(0,0,0,.14);
+  --btn-h:48px;
+  --gutter:clamp(16px,4vw,24px);
+}
+
+/* ---------- 2. Base typography & rhythm ---------- */
+body{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{padding-left:var(--gutter);padding-right:var(--gutter)}
+h1{font-size:clamp(1.9rem,5.4vw,3.4rem)}
+h2{font-size:clamp(1.45rem,3.6vw,2.4rem);text-wrap:balance}
+h3{font-size:clamp(1.25rem,2.4vw,1.5rem)}
+.lead{font-size:clamp(.97rem,1.7vw,1.08rem);line-height:1.7}
+.sec{padding:clamp(56px,8vw,92px) 0}
+.head{margin-bottom:clamp(32px,5vw,52px)}
+img{height:auto}
+.feat p,.card p,.step p,.t p,.cols li span{line-height:1.65}
+.tag{line-height:1.4}
+.sub{margin-top:clamp(48px,7vw,80px)}
+
+/* ---------- 3. Buttons: ONE size on every device ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:var(--btn-h);min-height:var(--btn-h);
+  min-width:210px;
+  padding:0 28px;
+  font-size:15px;line-height:1;font-weight:600;
+  border-radius:var(--r-sm);
+  white-space:nowrap;text-align:center;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.btn:active{transform:translateY(0);box-shadow:none}
+.acts{gap:14px;align-items:stretch}
+
+/* ---------- 4. Header: medium "Get Started" button ---------- */
+.nav{gap:16px}
+.logo{flex:none}
+.links{gap:clamp(16px,2.2vw,30px)}
+.links>a.btn{
+  height:40px;min-height:40px;
+  min-width:0;width:auto;
+  padding:0 20px;
+  font-size:14px;
+  margin-left:6px;
+}
+.menu-btn{flex:none;width:44px;height:44px;border:1px solid var(--line);border-radius:var(--r-sm);display:none;place-items:center;font-size:1.4rem;line-height:1;transition:border-color .2s,color .2s}
+.menu-btn:hover{border-color:var(--red);color:var(--red)}
+.dd-menu{border-radius:var(--r-sm)}
+
+/* ---------- 5. Cards & panels: consistent radius and depth ---------- */
+.card,.t,.step{border-radius:var(--r-md);box-shadow:var(--sh-1)}
+.card:hover,.t:hover,.step:hover{box-shadow:var(--sh-2)}
+.feat li,.trio div{box-shadow:var(--sh-1)}
+.shot,.vis .frame,.met{border-radius:var(--r-md)}
+.vis .frame,.shot{box-shadow:var(--sh-3)}
+.card,.t,.step{height:100%}
+.card .ico{margin-bottom:16px}
+.badge{max-width:calc(100% - 32px)}
+.trio div{display:flex;align-items:center;justify-content:center}
+.met strong{font-size:clamp(1.6rem,3.6vw,2rem)}
+.stats strong{font-size:clamp(1.4rem,3vw,1.7rem)}
+.cta{padding:clamp(64px,9vw,104px) 0}
+.cta h2{text-wrap:balance}
+.trust{gap:12px 28px}
+footer a{display:inline-block;padding:2px 0}
+.soc{flex-wrap:wrap}
+
+/* ---------- 6. Accessibility ---------- */
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+.btn:focus-visible{outline-offset:4px}
+.wa{bottom:max(24px,env(safe-area-inset-bottom));right:max(24px,env(safe-area-inset-right))}
+@media (hover:none){
+  .btn:hover,.card:hover,.t:hover,.step:hover,.feat li:hover,.trio div:hover,
+  .card:hover .ico,.feat li:hover .ico,.shot:hover img,.vis .frame:hover img{transform:none}
+  .card:hover,.t:hover,.step:hover{box-shadow:var(--sh-1)}
+}
+
+/* ---------- 7. Large desktop ---------- */
+@media (min-width:1400px){.wrap{max-width:1280px}}
+
+/* ---------- 8. Small laptop / large tablet (<=1100px) ---------- */
+@media (max-width:1100px){
+  .links{font-size:.9rem}
+  .hero-grid,.pgrid{gap:40px}
+}
+
+/* ---------- 9. Tablet (<=960px) ---------- */
+@media (max-width:960px){
+  .nav{height:64px}
+  .menu-btn{display:grid}
+  .hero{padding:56px 0 64px}
+  .links{padding:16px var(--gutter) 24px;gap:4px;box-shadow:0 18px 30px rgba(0,0,0,.08);max-height:calc(100vh - 64px);overflow:auto}
+  .links>a:not(.btn),.dd>button{display:flex;width:100%;padding:12px 0;border-bottom:1px solid var(--line)}
+  .links>a:not(.btn)::after,.dd>button::after{display:none}
+  .dd{width:100%}
+  .dd-menu{margin:8px 0 4px}
+  .links>a.btn{width:auto;align-self:flex-start;margin:14px 0 0}
+  .shots{grid-template-columns:1fr 1fr}
+  /* tablet: 2-column cards, last odd card spans full width */
+  .g3{grid-template-columns:1fr 1fr}
+  .g3>*:last-child:nth-child(odd){grid-column:1/-1}
+  .cta .g3{max-width:none}
+  .fg>div:first-child{grid-column:1/-1}
+  .vis .frame img{aspect-ratio:16/10}
+}
+
+/* ---------- 10. Phones (<=640px) ---------- */
+@media (max-width:640px){
+  .hero{padding:44px 0 52px}
+  .hero::before{background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(255,255,255,.9))}
+  .shots{grid-template-columns:1fr}
+  .g3,.g4{grid-template-columns:1fr;gap:16px}
+  .g3>*:last-child:nth-child(odd){grid-column:auto}
+  .card,.t{padding:22px}
+  .step{padding:26px 20px}
+  /* buttons: identical full-width size, easy to tap */
+  .acts{flex-direction:column;align-items:flex-start}
+  .acts .btn{width:100%;max-width:360px;min-width:0}
+  .cta .acts{align-items:center}
+  .stats{gap:18px 12px}
+  .badge{padding:12px 16px}
+  .badge strong{font-size:1.25rem}
+  .feat li{padding:14px;gap:14px}
+  .trio{gap:10px}
+  .trio div{padding:14px 6px;font-size:.78rem}
+  .met div{padding:28px 10px}
+  .t .who{align-items:flex-start}
+  .trust{flex-direction:column;align-items:center}
+  .fg{gap:28px}
+  .fb{flex-direction:column;align-items:flex-start}
+  .wa{width:50px;height:50px}
+}
+
+/* ---------- 11. Small phones (<=480px) ---------- */
+@media (max-width:480px){
+  .trio{grid-template-columns:1fr}
+  .met{grid-template-columns:1fr 1fr}
+}
+
+/* ---------- 12. Very small phones (<=380px) ---------- */
+@media (max-width:380px){
+  body{font-size:15px}
+  .logo{font-size:1.3rem}
+  .btn{padding:0 18px;font-size:14.5px}
+  .links>a.btn{padding:0 18px;font-size:14px}
+  .met strong{font-size:1.5rem}
+}
+
+/* ---------- 13. Landscape phones ---------- */
+@media (max-height:480px) and (orientation:landscape){
+  .hero{padding:36px 0}
+}
+
+/* ---------- 14. Print ---------- */
+@media print{
+  header,.wa,#bar,.orbit{display:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
 </style>
 </head>
 <body>
