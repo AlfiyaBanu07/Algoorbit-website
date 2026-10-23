@@ -362,8 +362,9 @@ h1,h2,h3,h4{font-family:var(--fd);letter-spacing:-.02em}
 .hero-orbit{opacity:.4}
 .orbit circle{stroke:rgba(91,75,232,.25)}.orbit .dot{fill:var(--red)}
 @media(max-width:960px){
- .hero{flex-direction:column-reverse;align-items:stretch;min-height:0}
- .hero-bg{position:relative;width:100%;height:auto;aspect-ratio:16/9;-webkit-mask-image:none;mask-image:none}
+ /* MOBILE/TABLET: hero image comes FIRST, text below it */
+ .hero{flex-direction:column;align-items:stretch;min-height:0}
+ .hero-bg{position:relative;top:auto;right:auto;z-index:0;width:100%;height:auto;aspect-ratio:16/9;object-position:center;-webkit-mask-image:none;mask-image:none;animation:fadeUp .9s var(--ease) both}
  .hero>.wrap{padding:44px 24px 36px}
  .hero-copy{max-width:none}
 }
@@ -400,7 +401,7 @@ header .links>a.btn{height:34px;min-height:34px;min-width:0;padding:0 18px;font-
 header .links>a.btn:hover{background:#fff;border-color:#fff;color:var(--navy)}
 header .menu-btn{color:#fff;border-color:rgba(255,255,255,.3);width:38px;height:38px}
 @media(max-width:960px){
- header .links{background:#0e0f2a;border-bottom:1px solid rgba(143,132,242,.28);max-height:calc(100vh - 52px)}
+ header .links{background:#0e0f2a;border-bottom:1px solid rgba(143,132,242,.28);max-height:calc(100vh - 52px);max-height:calc(100dvh - 52px)}
  header .links>a:not(.btn),header .dd>button{border-bottom-color:rgba(255,255,255,.12);padding:12px 0}
  header .links>a:not(.btn)::after,header .dd>button::after{display:none}
 }
@@ -445,8 +446,35 @@ header .menu-btn{color:#fff;border-color:rgba(255,255,255,.3);width:38px;height:
 .ao-foot .social .ui{width:22px;height:22px}
 .ao-foot .fbot{border-top:1px solid #26284f;padding:20px 0;font-size:13px;color:#9092ae}
 .ao-foot .fbot p{max-width:none;color:#9092ae}.ao-foot .fbot strong{color:#ddd;font-weight:600}
+.ao-foot .fbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 24px}
+.ao-foot .fbot a{padding:0;color:#9092ae;transition:color .2s}.ao-foot .fbot a:hover{color:#a9a3ee}
 @media(max-width:1000px){.ao-foot .fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.ao-foot .fgrid>div:first-child{grid-column:1/-1}}
 @media(max-width:700px){.ao-foot .fgrid{grid-template-columns:minmax(0,1fr);gap:28px}}
+
+/* =====================================================================
+   Mobile-fit refinements (hero image first, tighter spacing on phones)
+   ===================================================================== */
+@media(max-width:640px){
+ .hero-bg{aspect-ratio:3/2}
+ .hero>.wrap{padding:32px var(--gutter) 40px}
+ .hero h1{font-size:clamp(1.8rem,8vw,2.3rem)}
+ .stats{margin-top:28px;padding-top:22px}
+ .sec{padding:48px 0}
+ .pgrid{gap:32px}
+ .cols{gap:20px}
+ .tag{max-width:100%}
+ .badge small{font-size:.72rem}
+ .head{margin-bottom:28px}
+ .ao-foot .wrap{padding:0 var(--gutter)}
+ .ao-foot .fbot{flex-direction:column;align-items:flex-start}
+ .wa{right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:380px){
+ .hero-bg{aspect-ratio:4/3}
+ .hero h1{font-size:1.75rem}
+ .stats strong{font-size:1.3rem}
+ .ao-foot .wordmark{font-size:28px}
+}
 </style>
 </head>
 <body>
@@ -476,7 +504,6 @@ header .menu-btn{color:#fff;border-color:rgba(255,255,255,.3);width:38px;height:
 <a href="our-work.html">Our Work</a>
 <a href="careers.html">Careers</a>
 <a href="contact.html">Contact</a>
-<a href="contact.html" class="btn">Get Started</a>
 </nav>
 </div>
 </header>
@@ -487,7 +514,6 @@ header .menu-btn{color:#fff;border-color:rgba(255,255,255,.3);width:38px;height:
 <img class="hero-bg" src="assets/images/product.png" alt="Algo Orbit products: PureDine and TrionCam" width="1600" height="900" fetchpriority="high">
 <div class="wrap hero-grid">
 <div class="hero-copy">
-<span class="tag">Innovative Solutions</span>
 <h1>Products that <em>transform industries</em></h1>
 <p class="lead">From revolutionizing restaurant operations to empowering civic engagement, our solutions are built to create real impact and drive measurable results.</p>
 <div class="acts">
@@ -716,7 +742,7 @@ header .menu-btn{color:#fff;border-color:rgba(255,255,255,.3);width:38px;height:
    <div><h4>Products</h4><ul><li><a href="products.html#puredine">Restaurant System</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
    <div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="training.html">Internships</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
   </div>
-  <div class="fbot"><p>&copy; 2026 <strong>ALGOORBIT INNOVATIONS PRIVATE LIMITED</strong> All rights reserved.</p></div>
+  <div class="fbot"><p>&copy; 2026 <strong>ALGOORBIT INNOVATIONS PRIVATE LIMITED</strong> All rights reserved.</p><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></div>
  </div>
 </footer>
 
