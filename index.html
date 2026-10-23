@@ -19,12 +19,12 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%230e0f2a'/%3E%3Cline x1='13.5' y1='28' x2='21.5' y2='12.5' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='27.5' r='5' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f5fc;--mist:#ecebfc;--soft:#dedcf7;--glass:#d9e4f5;--line:#e3e2f2;--vio:#a9a3ee;--peri:#8f84f2;--ind:#5b4be8;--indd:#4538c4;--dk:#1d1f48;--navy:#0e0f2a;--ink:#14152e;--mute:#5d5f7a;--fd:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;--ease:cubic-bezier(.65,0,.2,1)}
+:root{--bg:#f6f5fc;--mist:#ecebfc;--soft:#dedcf7;--glass:#d9e4f5;--line:#e3e2f2;--vio:#a9a3ee;--peri:#8f84f2;--ind:#5b4be8;--indd:#4538c4;--dk:#1d1f48;--navy:#0e0f2a;--ink:#14152e;--mute:#5d5f7a;--fd:'Poppins','Open Sans',system-ui,sans-serif;--ease:cubic-bezier(.65,0,.2,1)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font:16px/1.65 'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+body{font:16px/1.65 'Open Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
 body.lock{overflow:hidden}
 img{max-width:100%;display:block;height:auto}
 a{color:inherit;text-decoration:none}
@@ -48,7 +48,7 @@ html,body{max-width:100%;overflow-x:clip}
 .ld-mark line{stroke:var(--ind);stroke-width:10;stroke-linecap:round;stroke-dasharray:30;stroke-dashoffset:30;animation:draw .7s .2s ease forwards}
 .ld-mark circle{fill:#fff;transform-origin:30px 27.5px;transform:scale(0);animation:pop .5s .8s cubic-bezier(.3,1.6,.5,1) forwards}
 .ld-name{font:800 22px var(--fd);letter-spacing:.14em;color:var(--navy);opacity:0;animation:fadein .6s 1s forwards}.ld-name b{color:var(--ind)}
-.ld-pct{margin-top:10px;font:700 14px 'DM Sans',sans-serif;color:var(--navy);letter-spacing:.04em}
+.ld-pct{margin-top:10px;font:700 14px 'Open Sans',sans-serif;color:var(--navy);letter-spacing:.04em}
 @keyframes draw{to{stroke-dashoffset:0}}@keyframes pop{to{transform:scale(1)}}@keyframes fadein{to{opacity:1}}
 #bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--peri);z-index:200;box-shadow:0 0 10px rgba(91,75,232,.55);transition:width .12s linear}
 
@@ -70,7 +70,7 @@ html,body{max-width:100%;overflow-x:clip}
 .menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;cursor:pointer}
 
 /* Buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;height:46px;min-width:180px;padding:0 26px;border-radius:999px;font:600 15px/1 'DM Sans',sans-serif;border:2px solid transparent;cursor:pointer;white-space:nowrap;transition:background .25s,color .25s,border-color .25s,box-shadow .25s}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:46px;min-width:180px;padding:0 26px;border-radius:999px;font:600 15px/1 'Open Sans',sans-serif;border:2px solid transparent;cursor:pointer;white-space:nowrap;transition:background .25s,color .25s,border-color .25s,box-shadow .25s}
 .btn-p{background:var(--ind);border-color:var(--ind);color:#fff;box-shadow:0 10px 24px rgba(91,75,232,.3)}.btn-p:hover{background:var(--indd);border-color:var(--indd);box-shadow:0 14px 30px rgba(91,75,232,.4)}
 .btn-o{background:rgba(255,255,255,.6);backdrop-filter:blur(10px);border-color:rgba(255,255,255,.9);color:var(--ink)}.btn-o:hover{background:#fff;border-color:var(--ind);color:var(--ind)}
 .btn-d{background:var(--navy);border-color:var(--navy);color:#fff;min-width:0;height:38px;padding:0 20px;font-size:14px}.btn-d:hover{background:var(--dk)}
@@ -379,7 +379,7 @@ body{background:linear-gradient(180deg,#f6f5fc,#ebe9fd 60%,#f2f0fd)}
 .fin{border-radius:26px;overflow:hidden;background:var(--navy)}
 .fin img{border-radius:0;aspect-ratio:4/3;object-fit:cover;transition:transform 1s var(--ease)}
 .frame:hover .fin img{transform:scale(1.07)}
-.fchip{position:absolute;z-index:3;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.93);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:14px;padding:9px 14px 9px 10px;font:600 13px 'DM Sans',sans-serif;color:var(--navy);box-shadow:0 12px 28px rgba(14,15,42,.22);animation:float 5s ease-in-out infinite}
+.fchip{position:absolute;z-index:3;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.93);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:14px;padding:9px 14px 9px 10px;font:600 13px 'Open Sans',sans-serif;color:var(--navy);box-shadow:0 12px 28px rgba(14,15,42,.22);animation:float 5s ease-in-out infinite}
 .fchip .ic{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff}.fchip .ui{width:16px;height:16px}
 .fchip.c1{left:-14px;top:12%}.fchip.c2{right:-10px;bottom:12%;animation-delay:-2.5s}
 @keyframes float{50%{transform:translateY(-8px)}}
@@ -769,6 +769,45 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
  .hero-bg{aspect-ratio:5/4;object-fit:cover;object-position:100% 50%;width:100%}
  .hero .hero-grid{margin-top:-22px}
 }
+
+/* ===== Milestones marquee: every card the same size ===== */
+.gm{align-items:stretch}
+.gm .gal{display:flex;flex-direction:column;height:auto}
+.gm .gal img{flex:none;width:100%;height:220px;object-fit:cover}
+.gm .gal div{flex:1;display:flex;flex-direction:column}
+.gm .gal h3{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gm .gal p{min-height:3em;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:700px){.gm .gal{flex-basis:250px}.gm .gal img{height:170px}}
+
+/* ===== Glow layer (web + mobile) ===== */
+@keyframes glowPulse{
+ 0%,100%{box-shadow:0 12px 30px rgba(91,75,232,.12),0 0 0 0 rgba(143,132,242,0)}
+ 50%{box-shadow:0 14px 34px rgba(91,75,232,.2),0 0 16px 1px rgba(143,132,242,.3);border-color:#c9c5f5}
+}
+.glow{animation:glowPulse 2.6s ease-in-out 1}
+@keyframes btnGlow{
+ 0%,100%{box-shadow:0 10px 24px rgba(var(--gl),.28)}
+ 50%{box-shadow:0 10px 28px rgba(var(--gl),.4)}
+}
+.btn-p{--gl:91,75,232;animation:btnGlow 4s ease-in-out infinite}
+.cta .btn-p{--gl:255,255,255}
+.btn-p:hover,.btn-p:active{animation:none}
+@keyframes icGlow{0%,100%{box-shadow:0 8px 18px rgba(91,75,232,.3)}50%{box-shadow:0 8px 20px rgba(91,75,232,.38),0 0 10px rgba(143,132,242,.35)}}
+.cat .ic{animation:icGlow 3.2s ease-in-out infinite}
+.cat:nth-child(2) .ic{animation-delay:.4s}.cat:nth-child(3) .ic{animation-delay:.8s}.cat:nth-child(4) .ic{animation-delay:1.2s}.cat:nth-child(5) .ic{animation-delay:1.6s}.cat:nth-child(6) .ic{animation-delay:2s}
+.head.drawn h2::after{box-shadow:0 0 8px rgba(91,75,232,.4)}
+@keyframes numGlow{0%,100%{text-shadow:0 0 12px rgba(143,132,242,.35)}50%{text-shadow:0 0 26px rgba(169,163,238,.9)}}
+@keyframes orb{0%,100%{opacity:.55;transform:translate(0,0) scale(1)}50%{opacity:.95;transform:translate(30px,24px) scale(1.15)}}
+.hero::before{content:"";position:absolute;left:-120px;top:-80px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(143,132,242,.5),transparent 70%);filter:blur(12px);z-index:-1;pointer-events:none;animation:none;opacity:.35}
+@media(prefers-reduced-motion:reduce){.glow,.btn-p,.cat .ic,.stat strong,.hero::before{animation:none!important}}
+
+/* Mini marquee for IT solutions + learning tracks (phones) */
+.grid>.dup{display:none}
+@media(max-width:700px){
+ .grid.mq{scroll-snap-type:none;scroll-behavior:auto}
+ .grid.mq>*{flex:0 0 68%;scroll-snap-align:none}
+ .grid.mq>.dup{display:flex}
+}
 </style>
 </head>
 <body class="lock">
@@ -1150,6 +1189,31 @@ $('#tk').innerHTML=K.concat(K).map(function(t){return'<span>'+t+'</span>'}).join
  ps.forEach(function(p){p.addEventListener('touchstart',function(){user=true},{passive:true});p.addEventListener('click',function(){user=true})});
  setInterval(function(){if(innerWidth>820||user||!vis||document.hidden)return;
   var k=0;ps.forEach(function(x,n){if(x.classList.contains('active'))k=n});on(ps[(k+1)%ps.length])},3800);
+})();
+
+// Glow when cards appear + mini auto-marquee for services / learning tracks on phones
+(function(){
+ var mob=matchMedia('(max-width:700px)');
+ ['#services .grid','.lgt.up .grid'].forEach(function(sel){
+  var g=$(sel);if(!g)return;
+  var kids=Array.prototype.slice.call(g.children);
+  kids.forEach(function(k){var c=k.cloneNode(true);c.classList.remove('rv','in','glow','tch','tilting');c.style.transitionDelay='';c.classList.add('dup');c.setAttribute('aria-hidden','true');$$('a,button',c).forEach(function(a){a.tabIndex=-1});g.appendChild(c)});
+  g.classList.add('mq');
+  if(reduce)return;
+  var pos=0,hold=false,last=0,rel,seen=true;
+  new IntersectionObserver(function(es){seen=es[0].isIntersecting}).observe(g);
+  function hd(){hold=true;clearTimeout(rel)}
+  function rl(){clearTimeout(rel);rel=setTimeout(function(){pos=g.scrollLeft;hold=false},1600)}
+  g.addEventListener('touchstart',hd,{passive:true});g.addEventListener('touchend',rl);g.addEventListener('touchcancel',rl);
+  (function tick(t){requestAnimationFrame(tick);
+   if(!mob.matches||hold||!seen||document.hidden){last=0;pos=g.scrollLeft;return}
+   var dt=last?Math.min(t-last,64):16;last=t;
+   var loop=g.children[kids.length].offsetLeft-g.children[0].offsetLeft;
+   if(loop<=0)return;
+   pos+=dt*0.035;if(pos>=loop)pos-=loop;g.scrollLeft=pos})(0);
+ });
+ var gio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('glow',e.isIntersecting)})},{threshold:.55});
+ $$('.card,.tcard,.pcard,.cat,.feat,.quote').forEach(function(el){gio.observe(el)});
 })();
 </script>
 </body>
