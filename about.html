@@ -1021,6 +1021,18 @@ h1,h2,h3,h4,p,li,strong,small,summary,dd{overflow-wrap:break-word}
  .site-header .nav-links>li>a:not(.btn),.site-header .dd-btn,.site-header .nav-links>li>a.active:not(.btn){font-size:17px;padding-top:15px;padding-bottom:15px}
  .site-header .dd a{font-size:15.5px;padding:12px 0}
 }
+
+/* ===== Desktop hero: bigger copy + wider photo so there is less empty space in the middle ===== */
+@media(min-width:1200px){
+ .hero-copy{max-width:min(47vw,700px)}
+ .hero h1{font-size:clamp(2.6rem,1rem + 3.5vw,4.4rem);margin-bottom:24px}
+ .hero .lead{font-size:clamp(1.1rem,.75rem + .7vw,1.4rem);max-width:none;margin-bottom:34px}
+ .hero .acts{gap:16px;margin-bottom:30px}
+ .hero .acts .btn{height:54px;min-width:210px;font-size:16.5px}
+ .hero .checklist{font-size:16.5px;gap:12px 32px}
+ .hero .checklist li::before{width:9px;height:9px}
+ .hero-bg{width:min(66%,1120px)}
+}
 </style>
 </head>
 <body class="ready">

@@ -525,6 +525,18 @@ h2{font-size:clamp(1.65rem,1.2rem + 1.7vw,2.4rem);line-height:1.2;margin-bottom:
  .res{font-size:13.5px;margin-bottom:14px}
  .alt::before,#feedback::before{width:260px;height:260px;right:-90px}
 }
+
+/* ===== Desktop hero: bigger copy + wider photo so there is less empty space in the middle ===== */
+@media(min-width:1200px){
+ .hero-copy{max-width:min(47vw,700px)}
+ .hero h1{font-size:clamp(2.6rem,1rem + 3.5vw,4.4rem);margin-bottom:24px}
+ .hero .lead{font-size:clamp(1.1rem,.75rem + .7vw,1.4rem);max-width:none;margin-bottom:34px}
+ .hero .acts{gap:16px;margin-bottom:30px}
+ .hero .acts .btn{height:54px;min-width:210px;font-size:16.5px}
+ .hero .checklist{font-size:16.5px;gap:12px 32px}
+ .hero .checklist li::before{width:9px;height:9px}
+ .hero-bg{width:min(66%,1120px)}
+}
 </style>
 </head>
 <body class="ready">
