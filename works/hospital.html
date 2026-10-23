@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/static/images/hospital.jpg" type="image/jpg">
+<title>APEX Medical Center - Excellence in Every Dimension</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,100;0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ====================================================
+   RESET & VARIABLES
+===================================================== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#04122B;
+  --navy-mid:#0A1F4A;
+  --navy-light:#122659;
+  --teal:#00C6B8;
+  --teal-dark:#009E92;
+  --teal-glow:rgba(0,198,184,0.15);
+  --sky:#E8F7F9;
+  --white:#FFFFFF;
+  --off-white:#F4F8FA;
+  --slate:#6B8299;
+  --text-dark:#0D1B2A;
+  --text-mid:#3A5068;
+  --red-alert:#FF4560;
+  --border-light:rgba(4,18,43,0.08);
+  --border-teal:rgba(0,198,184,0.3);
+  --pad-x: clamp(20px, 5vw, 80px);
+  --pad-section: clamp(60px, 8vw, 120px);
+}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--white);
+  color:var(--text-dark);
+  font-family:'Outfit',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--navy);}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:2px;}
+::selection{background:var(--teal);color:var(--navy);}
+
+/* ====================================================
+   LOADER
+===================================================== */
+#loader{
+  position:fixed;inset:0;z-index:99999;
+  background:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:20px;
+  transition:opacity 0.8s ease,visibility 0.8s ease;
+}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.loader-cross{
+  width:52px;height:52px;position:relative;
+  animation:crossPulse 1.5s ease infinite;
+}
+.loader-cross::before,.loader-cross::after{
+  content:'';position:absolute;background:var(--teal);border-radius:3px;
+}
+.loader-cross::before{width:100%;height:18%;top:41%;left:0;}
+.loader-cross::after{width:18%;height:100%;top:0;left:41%;}
+@keyframes crossPulse{0%,100%{transform:scale(1);}50%{transform:scale(0.85);opacity:0.6;}}
+.loader-text{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.loader-bar{width:180px;height:2px;background:rgba(255,255,255,0.1);overflow:hidden;}
+.loader-bar-fill{height:100%;width:0;background:var(--teal);animation:barLoad 2s ease forwards;}
+@keyframes barLoad{to{width:100%;}}
+
+/* ====================================================
+   ANNOUNCEMENT BAR
+===================================================== */
+.announcement{
+  background:var(--teal);color:var(--navy);
+  font-size:11px;font-weight:600;letter-spacing:1px;
+  text-align:center;padding:10px var(--pad-x);
+  text-transform:uppercase;position:relative;z-index:300;
+  line-height:1.6;
+}
+.announcement a{color:var(--navy);font-weight:800;}
+.ann-sep{margin:0 10px;opacity:0.5;}
+
+/* ====================================================
+   NAVIGATION
+===================================================== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 var(--pad-x);
+  background:rgba(4,18,43,0.0);
+  transition:background 0.4s ease,box-shadow 0.4s ease,padding 0.3s;
+}
+nav.scrolled{
+  background:rgba(4,18,43,0.97);
+  backdrop-filter:blur(24px);
+  box-shadow:0 1px 0 rgba(0,198,184,0.2);
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  height:68px;
+}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.logo-icon{
+  width:36px;height:36px;background:var(--teal);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;flex-shrink:0;
+}
+.logo-icon::before,.logo-icon::after{
+  content:'';position:absolute;background:var(--navy);border-radius:2px;
+}
+.logo-icon::before{width:55%;height:14%;top:43%;left:22.5%;}
+.logo-icon::after{width:14%;height:55%;top:22.5%;left:43%;}
+.logo-text{}
+.logo-name{font-size:18px;font-weight:800;color:var(--white);letter-spacing:1px;text-transform:uppercase;line-height:1;}
+.logo-name span{color:var(--teal);}
+.logo-sub{font-size:8px;letter-spacing:3px;color:rgba(255,255,255,0.4);text-transform:uppercase;display:block;margin-top:2px;}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+.nav-links a{
+  color:rgba(255,255,255,0.7);text-decoration:none;
+  font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;
+  position:relative;padding:4px 0;transition:color 0.3s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:1px;background:var(--teal);
+  transition:width 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-links a.active{color:var(--teal);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-book{
+  background:var(--teal);color:var(--navy);
+  padding:10px 20px;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;font-weight:700;text-decoration:none;
+  transition:background 0.3s;white-space:nowrap;
+}
+.nav-book:hover{background:var(--white);}
+.nav-emergency-btn{
+  display:flex;align-items:center;gap:6px;
+  background:var(--red-alert);color:var(--white);
+  padding:10px 16px;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;font-weight:700;text-decoration:none;
+  white-space:nowrap;
+}
+.nav-edot{width:7px;height:7px;background:var(--white);border-radius:50%;animation:blink 1s ease infinite;flex-shrink:0;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.25;}}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;padding:4px;
+}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* Mobile Menu */
+.mobile-menu{
+  position:fixed;inset:0;background:var(--navy);z-index:999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  padding:20px;
+}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-menu a{
+  font-family:'Fraunces',serif;font-size:clamp(28px,8vw,40px);font-weight:300;
+  color:var(--white);text-decoration:none;transition:color 0.3s;text-align:center;
+}
+.mobile-menu a:hover{color:var(--teal);}
+.mobile-menu-actions{display:flex;flex-direction:column;gap:12px;width:100%;max-width:280px;margin-top:16px;}
+.mobile-menu-actions a{
+  font-family:'Outfit',sans-serif;font-size:12px !important;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;padding:14px 20px;text-align:center;
+}
+.mobile-menu-actions a:first-child{background:var(--teal);color:var(--navy) !important;}
+.mobile-menu-actions a:last-child{background:var(--red-alert);color:var(--white) !important;}
+
+/* ====================================================
+   HERO
+===================================================== */
+.hero{
+  min-height:100svh;background:var(--navy);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-top:68px;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,198,184,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,198,184,0.04) 1px,transparent 1px);
+  background-size:50px 50px;
+  animation:gridShift 25s linear infinite;
+}
+@keyframes gridShift{from{background-position:0 0;}to{background-position:50px 50px;}}
+.hero-glow{
+  position:absolute;width:clamp(400px,60vw,800px);height:clamp(400px,60vw,800px);
+  background:radial-gradient(circle,rgba(0,198,184,0.1) 0%,transparent 70%);
+  top:-20%;right:-10%;pointer-events:none;
+  animation:glowPulse 7s ease infinite;
+}
+@keyframes glowPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+.hero-content{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;align-items:center;
+  padding:clamp(30px,5vw,80px) var(--pad-x) 0;
+  max-width:1400px;margin:0 auto;width:100%;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,198,184,0.1);border:1px solid var(--border-teal);
+  padding:7px 14px;margin-bottom:24px;
+  opacity:0;animation:fadeUp 0.8s ease 2.2s forwards;
+}
+.hero-badge-dot{width:5px;height:5px;background:var(--teal);border-radius:50%;animation:blink 1.2s ease infinite;}
+.hero-badge-text{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);font-weight:500;}
+.hero-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(38px,6vw,80px);
+  font-weight:300;line-height:1.0;
+  color:var(--white);margin-bottom:20px;
+  opacity:0;animation:fadeUp 0.9s ease 2.4s forwards;
+}
+.hero-title .italic{font-style:italic;}
+.hero-title .outline{
+  color:transparent;-webkit-text-stroke:1px var(--teal);
+}
+.hero-desc{
+  font-size:clamp(14px,1.5vw,16px);line-height:1.85;
+  color:rgba(255,255,255,0.55);
+  max-width:460px;margin-bottom:32px;
+  opacity:0;animation:fadeUp 0.9s ease 2.6s forwards;
+}
+.hero-actions{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  opacity:0;animation:fadeUp 0.9s ease 2.8s forwards;
+}
+.btn-primary{
+  background:var(--teal);color:var(--navy);
+  padding:14px 30px;font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;font-weight:700;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  position:relative;overflow:hidden;
+  transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:var(--white);transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.btn-primary:hover::before{transform:scaleX(1);}
+.btn-primary:hover{color:var(--navy);}
+.btn-primary span{position:relative;z-index:1;}
+.btn-outline{
+  padding:13px 28px;font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;font-weight:600;text-decoration:none;color:var(--white);
+  border:1px solid rgba(255,255,255,0.25);
+  transition:all 0.3s;
+}
+.btn-outline:hover{border-color:var(--teal);color:var(--teal);}
+
+/* Hero Right */
+.hero-right{
+  position:relative;
+  opacity:0;animation:fadeRight 1s ease 2.8s forwards;
+}
+.hero-img-frame{position:relative;height:clamp(340px,45vw,520px);}
+.hero-img-main{
+  position:absolute;top:0;right:0;
+  width:88%;height:90%;object-fit:cover;
+  clip-path:polygon(8% 0%,100% 0%,100% 92%,92% 100%,0% 100%,0% 8%);
+}
+.hero-img-accent{
+  position:absolute;bottom:0;left:0;
+  width:44%;height:42%;object-fit:cover;
+  border:3px solid var(--navy);
+  clip-path:polygon(0 0,90% 0,100% 10%,100% 100%,0 100%);
+}
+.hero-float-card{
+  position:absolute;
+  background:rgba(4,18,43,0.92);backdrop-filter:blur(20px);
+  border:1px solid var(--border-teal);
+  padding:16px 20px;
+}
+.hero-float-card.card1{top:24px;left:-16px;animation:float 4s ease infinite;}
+.hero-float-card.card2{bottom:48px;right:-16px;background:var(--teal);animation:float 4s ease 2s infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.float-num{font-size:clamp(26px,3vw,36px);font-weight:800;color:var(--teal);line-height:1;}
+.hero-float-card.card2 .float-num{color:var(--navy);}
+.float-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:4px;}
+.hero-float-card.card2 .float-label{color:rgba(4,18,43,0.65);}
+
+/* Hero Strip */
+.hero-strip{
+  position:relative;z-index:2;
+  margin-top:clamp(32px,4vw,60px);
+  background:rgba(0,198,184,0.06);
+  border-top:1px solid var(--border-teal);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  opacity:0;animation:fadeUp 0.8s ease 3.2s forwards;
+}
+.strip-item{
+  display:flex;align-items:center;gap:12px;
+  padding:20px var(--pad-x);
+  border-right:1px solid rgba(255,255,255,0.07);
+}
+.strip-item:last-child{border-right:none;}
+.strip-icon-wrap{
+  width:40px;height:40px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.strip-icon-wrap svg{width:22px;height:22px;stroke:var(--teal);fill:none;stroke-width:1.5;}
+.strip-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);}
+.strip-val{font-size:13px;font-weight:600;color:var(--white);margin-top:2px;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+@keyframes fadeRight{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:none;}}
+
+/* ====================================================
+   STATS BAND
+===================================================== */
+.stats-band{
+  background:var(--teal);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.stats-item{
+  padding:clamp(32px,5vw,52px) clamp(20px,3vw,40px);
+  border-right:1px solid rgba(4,18,43,0.12);
+  transition:background 0.3s;
+}
+.stats-item:last-child{border-right:none;}
+.stats-item:hover{background:rgba(4,18,43,0.06);}
+.stats-num{
+  font-size:clamp(36px,4.5vw,62px);font-weight:900;
+  color:var(--navy);line-height:1;margin-bottom:6px;
+}
+.stats-suffix{font-size:0.5em;font-weight:400;}
+.stats-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(4,18,43,0.65);font-weight:500;}
+.stats-desc{font-size:12px;color:rgba(4,18,43,0.5);margin-top:5px;line-height:1.5;}
+
+/* ====================================================
+   SECTION UTILITIES
+===================================================== */
+.section-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;}
+.section-tag-line{width:32px;height:2px;background:var(--teal);flex-shrink:0;}
+.section-tag-text{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);font-weight:600;}
+.section-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(28px,3.5vw,52px);
+  font-weight:300;line-height:1.1;color:var(--text-dark);margin-bottom:16px;
+}
+.section-title em{font-style:italic;color:var(--teal);}
+.section-title.light{color:var(--white);}
+.section-title.light em{color:var(--teal);}
+.section-body{font-size:15px;line-height:1.9;color:var(--text-mid);}
+.section-body.light{color:rgba(255,255,255,0.55);}
+
+/* ====================================================
+   SPECIALTIES
+===================================================== */
+.specialties{padding:var(--pad-section) var(--pad-x);background:var(--off-white);}
+.specialties-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:clamp(40px,6vw,72px);flex-wrap:wrap;gap:20px;
+}
+.specialties-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.spec-card{
+  background:var(--white);padding:clamp(28px,4vw,44px) clamp(20px,3vw,32px);
+  position:relative;overflow:hidden;
+  transition:all 0.5s cubic-bezier(0.16,1,0.3,1);
+  border-bottom:3px solid transparent;cursor:default;
+}
+.spec-card::before{
+  content:'';position:absolute;inset:0;background:var(--navy);
+  transform:translateY(100%);transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.spec-card:hover{border-bottom-color:var(--teal);}
+.spec-card:hover::before{transform:translateY(0);}
+.spec-icon{
+  width:56px;height:56px;background:var(--sky);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:24px;position:relative;z-index:1;
+  transition:background 0.3s ease 0.1s;
+}
+.spec-card:hover .spec-icon{background:rgba(0,198,184,0.15);}
+.spec-icon svg{width:26px;height:26px;stroke:var(--teal);fill:none;stroke-width:1.5;}
+.spec-name{
+  font-size:clamp(14px,1.5vw,18px);font-weight:600;color:var(--text-dark);
+  margin-bottom:8px;position:relative;z-index:1;
+  transition:color 0.3s ease 0.1s;
+}
+.spec-card:hover .spec-name{color:var(--white);}
+.spec-desc{
+  font-size:13px;line-height:1.7;color:var(--slate);
+  position:relative;z-index:1;transition:color 0.3s ease 0.1s;
+}
+.spec-card:hover .spec-desc{color:rgba(255,255,255,0.5);}
+.spec-num{
+  position:absolute;bottom:16px;right:20px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:44px;font-weight:300;color:rgba(4,18,43,0.04);z-index:0;
+  transition:color 0.3s;
+}
+.spec-card:hover .spec-num{color:rgba(255,255,255,0.04);}
+
+/* ====================================================
+   ABOUT
+===================================================== */
+.about{
+  padding:var(--pad-section) var(--pad-x);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(40px,7vw,100px);align-items:center;
+  background:var(--white);
+}
+.about-imgs{position:relative;height:clamp(360px,45vw,640px);}
+.about-img-main{
+  position:absolute;top:0;left:0;width:75%;height:80%;
+  object-fit:cover;display:block;
+}
+.about-img-sec{
+  position:absolute;bottom:0;right:0;width:55%;height:52%;
+  object-fit:cover;border:5px solid var(--white);
+}
+.about-badge{
+  position:absolute;top:50%;left:66%;transform:translate(-50%,-50%);
+  width:120px;height:120px;background:var(--navy);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:3;text-align:center;
+}
+.about-badge-num{font-size:38px;font-weight:900;color:var(--teal);line-height:1;}
+.about-badge-lbl{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:5px;}
+.about-text .section-title{margin-bottom:20px;}
+.about-text .section-body{margin-bottom:16px;}
+.about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0;}
+.pillar{
+  padding:18px;border:1px solid var(--border-light);
+  display:flex;gap:12px;align-items:flex-start;
+  transition:border-color 0.3s;
+}
+.pillar:hover{border-color:var(--teal);}
+.pillar-icon{
+  width:34px;height:34px;background:var(--sky);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.pillar-icon svg{width:16px;height:16px;stroke:var(--teal);fill:none;stroke-width:1.5;}
+.pillar-title{font-size:12px;font-weight:700;color:var(--text-dark);margin-bottom:3px;}
+.pillar-text{font-size:11px;color:var(--slate);line-height:1.5;}
+.about-cert{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 20px;background:var(--off-white);border-left:3px solid var(--teal);
+}
+.cert-logo{font-family:'JetBrains Mono',monospace;font-size:20px;color:var(--teal);}
+.cert-title{font-size:13px;font-weight:700;color:var(--text-dark);}
+.cert-sub{font-size:11px;color:var(--slate);}
+
+/* ====================================================
+   DEPARTMENTS – HORIZONTAL SCROLL
+===================================================== */
+.departments{padding:var(--pad-section) 0 var(--pad-section) var(--pad-x);background:var(--navy);overflow:hidden;}
+.dept-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding-right:var(--pad-x);margin-bottom:clamp(32px,5vw,60px);
+  flex-wrap:wrap;gap:16px;
+}
+.dept-hint{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);display:flex;align-items:center;gap:8px;
+}
+.dept-hint::before{content:'';display:block;width:32px;height:1px;background:rgba(255,255,255,0.2);}
+.dept-scroll{
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;padding-bottom:4px;
+}
+.dept-scroll::-webkit-scrollbar{display:none;}
+.dept-track{
+  display:flex;gap:16px;width:max-content;padding-right:var(--pad-x);
+  cursor:grab;
+}
+.dept-track:active{cursor:grabbing;}
+.dept-card{
+  width:clamp(260px,35vw,340px);flex-shrink:0;
+  position:relative;overflow:hidden;
+  height:clamp(340px,45vw,440px);
+}
+.dept-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  filter:brightness(0.55);
+}
+.dept-card:hover img{transform:scale(1.08);filter:brightness(0.4);}
+.dept-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(4,18,43,0.95) 0%,transparent 55%);
+}
+.dept-content{position:absolute;bottom:0;left:0;right:0;padding:clamp(20px,3vw,32px);}
+.dept-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;font-weight:600;}
+.dept-name{
+  font-family:'Fraunces',serif;font-size:clamp(18px,2.5vw,24px);
+  font-weight:300;color:var(--white);line-height:1.2;margin-bottom:8px;
+}
+.dept-desc{
+  font-size:12px;color:rgba(255,255,255,0.5);line-height:1.7;
+  max-height:0;overflow:hidden;
+  transition:max-height 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.dept-card:hover .dept-desc{max-height:80px;}
+.dept-bar{width:0;height:2px;background:var(--teal);margin-top:14px;transition:width 0.5s;}
+.dept-card:hover .dept-bar{width:48px;}
+
+/* ====================================================
+   TECHNOLOGY SECTION
+===================================================== */
+.technology{padding:var(--pad-section) var(--pad-x);background:var(--sky);}
+.tech-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:center;}
+.tech-img-wrap{position:relative;overflow:hidden;height:clamp(320px,42vw,560px);}
+.tech-img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  clip-path:polygon(0 0,0 0,0 100%,0% 100%);
+  transition:clip-path 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+.tech-img.revealed{clip-path:polygon(0 0,100% 0,100% 100%,0% 100%);}
+.tech-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,198,184,0.12),transparent 60%);
+  pointer-events:none;
+}
+.tech-text .section-title{margin-bottom:20px;}
+.tech-list{display:flex;flex-direction:column;gap:0;margin-top:28px;}
+.tech-row{
+  display:flex;align-items:center;gap:16px;
+  padding:16px 0;border-bottom:1px solid var(--border-light);
+}
+.tech-row:first-child{border-top:1px solid var(--border-light);}
+.tech-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);min-width:24px;}
+.tech-name{font-size:14px;font-weight:600;color:var(--text-dark);flex:1;}
+.tech-bar-wrap{height:3px;background:var(--border-light);flex:1;max-width:100px;border-radius:2px;overflow:hidden;}
+.tech-bar-fill{height:100%;width:0;background:var(--teal);transition:width 1.5s cubic-bezier(0.16,1,0.3,1);border-radius:2px;}
+
+/* ====================================================
+   DOCTORS
+===================================================== */
+.doctors{padding:var(--pad-section) var(--pad-x);background:var(--white);}
+.doctors-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:clamp(40px,5vw,64px);flex-wrap:wrap;gap:20px;
+}
+.doctors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.doc-card{
+  background:var(--off-white);overflow:hidden;
+  transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s;
+}
+.doc-card:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(4,18,43,0.12);}
+.doc-img-wrap{position:relative;overflow:hidden;height:clamp(240px,28vw,320px);}
+.doc-img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform 0.6s;}
+.doc-card:hover .doc-img{transform:scale(1.05);}
+.doc-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(4,18,43,0.5) 0%,transparent 50%);
+  opacity:0;transition:opacity 0.4s;
+}
+.doc-card:hover .doc-img-overlay{opacity:1;}
+.doc-social{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%) translateY(16px);
+  display:flex;gap:6px;opacity:0;transition:all 0.35s;
+}
+.doc-card:hover .doc-social{opacity:1;transform:translateX(-50%) translateY(0);}
+.social-btn{
+  width:32px;height:32px;background:rgba(0,198,184,0.9);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:var(--navy);text-decoration:none;
+}
+.doc-info{padding:18px 18px 22px;}
+.doc-spec{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:5px;}
+.doc-name{font-size:15px;font-weight:700;color:var(--text-dark);margin-bottom:3px;}
+.doc-exp{font-size:11px;color:var(--slate);}
+.doc-rating{
+  display:flex;align-items:center;gap:6px;margin-top:10px;
+  padding-top:10px;border-top:1px solid var(--border-light);
+}
+.stars{display:flex;gap:2px;}
+.star{width:10px;height:10px;background:var(--teal);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.rating-txt{font-size:10px;color:var(--slate);}
+
+/* ====================================================
+   PATIENT JOURNEY
+===================================================== */
+.journey{padding:var(--pad-section) var(--pad-x);background:var(--navy);position:relative;overflow:hidden;}
+.journey-bg{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(0,198,184,0.015) 40px,rgba(0,198,184,0.015) 80px);
+  pointer-events:none;
+}
+.journey-header{text-align:center;margin-bottom:clamp(48px,7vw,80px);position:relative;z-index:1;}
+.journey-header .section-tag{justify-content:center;}
+.journey-steps{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+}
+.journey-steps::before{
+  content:'';position:absolute;top:42px;left:10%;right:10%;
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--teal),var(--teal),transparent);
+}
+.journey-step{text-align:center;padding:0 clamp(8px,2vw,20px);}
+.step-circle{
+  width:84px;height:84px;
+  border:1px solid var(--border-teal);border-radius:50%;
+  margin:0 auto 24px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;background:var(--navy);
+  transition:all 0.4s;
+}
+.journey-step:hover .step-circle{
+  background:var(--teal);border-color:var(--teal);
+  box-shadow:0 0 32px rgba(0,198,184,0.3);
+}
+.step-circle svg{width:28px;height:28px;stroke:var(--teal);fill:none;stroke-width:1.5;transition:stroke 0.3s;}
+.journey-step:hover .step-circle svg{stroke:var(--navy);}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:2px;margin-bottom:8px;}
+.step-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:8px;}
+.step-desc{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.7;}
+
+/* ====================================================
+   TESTIMONIALS
+===================================================== */
+.testimonials{padding:var(--pad-section) var(--pad-x);background:var(--off-white);overflow:hidden;}
+.testimonials-header{margin-bottom:clamp(36px,5vw,64px);}
+.t-track-wrap{overflow:hidden;position:relative;}
+.t-track-wrap::after{
+  content:'';position:absolute;right:0;top:0;bottom:0;
+  width:80px;background:linear-gradient(to left,var(--off-white),transparent);
+  pointer-events:none;z-index:2;
+}
+.t-track{
+  display:flex;gap:20px;
+  animation:tScroll 40s linear infinite;
+  width:max-content;
+}
+.t-track:hover{animation-play-state:paused;}
+@keyframes tScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.t-card{
+  width:clamp(300px,38vw,380px);flex-shrink:0;
+  background:var(--white);padding:clamp(24px,3vw,40px);
+  border:1px solid var(--border-light);
+  transition:border-color 0.3s,box-shadow 0.3s;
+}
+.t-card:hover{border-color:var(--teal);box-shadow:0 16px 50px rgba(4,18,43,0.08);}
+.t-quote{font-size:48px;line-height:0.5;margin-bottom:20px;color:var(--teal);font-family:'Fraunces',serif;opacity:0.3;}
+.t-stars{display:flex;gap:3px;margin-bottom:14px;}
+.t-star{width:12px;height:12px;background:var(--teal);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.t-text{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:clamp(14px,1.5vw,16px);color:var(--text-dark);
+  line-height:1.75;margin-bottom:24px;font-weight:300;
+}
+.t-author{display:flex;align-items:center;gap:12px;}
+.t-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+.t-name{font-size:13px;font-weight:700;color:var(--text-dark);}
+.t-cond{font-size:10px;color:var(--teal);letter-spacing:1px;}
+
+/* ====================================================
+   APPOINTMENT
+===================================================== */
+.appointment{padding:var(--pad-section) var(--pad-x);background:var(--navy);position:relative;overflow:hidden;}
+.appt-bg-text{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Fraunces',serif;font-size:clamp(80px,15vw,200px);
+  font-weight:900;font-style:italic;
+  color:rgba(0,198,184,0.03);white-space:nowrap;pointer-events:none;
+}
+.appt-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:center;
+}
+.appt-text .section-title{margin-bottom:18px;}
+.appt-text .section-body{margin-bottom:32px;}
+.appt-checks{display:flex;flex-direction:column;gap:14px;}
+.appt-check{display:flex;align-items:center;gap:12px;}
+.check-box{
+  width:26px;height:26px;background:rgba(0,198,184,0.1);
+  border:1px solid var(--border-teal);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.check-box svg{width:13px;height:13px;stroke:var(--teal);fill:none;stroke-width:2;}
+.check-txt{font-size:13px;color:rgba(255,255,255,0.6);}
+.appt-form{
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border-teal);
+  padding:clamp(24px,4vw,44px);
+}
+.form-title{font-size:17px;font-weight:700;color:var(--white);margin-bottom:24px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+.form-group.full{grid-column:span 2;}
+.form-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:500;}
+.form-input,.form-select{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  padding:12px 14px;color:var(--white);
+  font-family:'Outfit',sans-serif;font-size:14px;
+  outline:none;transition:border-color 0.3s;
+  appearance:none;-webkit-appearance:none;width:100%;
+}
+.form-input::placeholder{color:rgba(255,255,255,0.2);}
+.form-input:focus,.form-select:focus{border-color:var(--teal);}
+.form-select option{background:var(--navy-mid);color:var(--white);}
+.form-submit{
+  width:100%;background:var(--teal);color:var(--navy);
+  border:none;padding:17px;font-family:'Outfit',sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  cursor:pointer;transition:background 0.3s;margin-top:6px;
+}
+.form-submit:hover{background:var(--white);}
+
+/* ====================================================
+   AWARDS STRIP
+===================================================== */
+.awards{
+  padding:clamp(32px,4vw,60px) var(--pad-x);
+  background:var(--white);
+  border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light);
+}
+.awards-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;}
+.awards-lbl{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--slate);}
+.awards-logos{display:flex;align-items:center;gap:clamp(20px,4vw,48px);flex-wrap:wrap;}
+.award-item{
+  font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  color:rgba(4,18,43,0.2);transition:color 0.3s;
+}
+.award-item:hover{color:var(--teal);}
+
+/* ====================================================
+   NEWS
+===================================================== */
+.news{padding:var(--pad-section) var(--pad-x);background:var(--off-white);}
+.news-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:clamp(36px,5vw,60px);flex-wrap:wrap;gap:20px;
+}
+.news-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:20px;}
+.news-card{background:var(--white);overflow:hidden;transition:box-shadow 0.4s;}
+.news-card:hover{box-shadow:0 20px 56px rgba(4,18,43,0.1);}
+.news-img-wrap{position:relative;overflow:hidden;}
+.news-img{width:100%;height:clamp(180px,22vw,240px);object-fit:cover;display:block;transition:transform 0.6s;}
+.news-card.featured .news-img{height:clamp(220px,28vw,340px);}
+.news-card:hover .news-img{transform:scale(1.04);}
+.news-cat{
+  position:absolute;bottom:14px;left:14px;
+  background:var(--teal);color:var(--navy);
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:700;padding:5px 10px;
+}
+.news-body{padding:clamp(18px,2.5vw,28px);}
+.news-date{font-size:11px;color:var(--slate);letter-spacing:1px;margin-bottom:8px;}
+.news-title{font-size:clamp(14px,1.6vw,17px);font-weight:700;color:var(--text-dark);line-height:1.4;margin-bottom:10px;}
+.news-card.featured .news-title{font-size:clamp(16px,2vw,22px);}
+.news-excerpt{font-size:13px;color:var(--slate);line-height:1.7;margin-bottom:18px;}
+.news-link{
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--teal);font-weight:600;text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;transition:gap 0.3s;
+}
+.news-link:hover{gap:12px;}
+.news-link::after{content:'→';}
+
+/* ====================================================
+   EMERGENCY BAND
+===================================================== */
+.emergency{
+  background:var(--red-alert);padding:clamp(24px,3vw,32px) var(--pad-x);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+}
+.emg-left{display:flex;align-items:center;gap:18px;}
+.emg-pulse{
+  width:48px;height:48px;background:rgba(255,255,255,0.2);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;flex-shrink:0;
+}
+.emg-pulse::before{
+  content:'';position:absolute;inset:-6px;border:1px solid rgba(255,255,255,0.3);
+  border-radius:50%;animation:pulseRing 1.5s ease infinite;
+}
+@keyframes pulseRing{0%{transform:scale(1);opacity:0.8;}100%{transform:scale(1.4);opacity:0;}}
+.emg-pulse svg{width:22px;height:22px;stroke:var(--white);fill:none;stroke-width:2;}
+.emg-title{font-size:clamp(16px,2vw,20px);font-weight:800;color:var(--white);}
+.emg-sub{font-size:12px;color:rgba(255,255,255,0.7);}
+.emg-num{font-size:clamp(24px,3.5vw,36px);font-weight:900;color:var(--white);letter-spacing:2px;}
+.btn-white{
+  background:var(--white);color:var(--red-alert);
+  padding:13px 28px;font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  font-weight:700;text-decoration:none;transition:all 0.3s;white-space:nowrap;
+}
+.btn-white:hover{background:var(--navy);color:var(--white);}
+
+/* ====================================================
+   CONTACT
+===================================================== */
+.contact{
+  padding:var(--pad-section) var(--pad-x);background:var(--white);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);
+}
+.contact-info .section-title{margin-bottom:20px;}
+.contact-info .section-body{margin-bottom:32px;}
+.contact-details{display:flex;flex-direction:column;gap:16px;}
+.contact-item{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:18px;border:1px solid var(--border-light);transition:border-color 0.3s;
+}
+.contact-item:hover{border-color:var(--teal);}
+.contact-icon{
+  width:42px;height:42px;background:var(--sky);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.contact-icon svg{width:18px;height:18px;stroke:var(--teal);fill:none;stroke-width:1.5;}
+.contact-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--slate);margin-bottom:3px;}
+.contact-val{font-size:14px;font-weight:500;color:var(--text-dark);line-height:1.5;}
+.map-wrap{
+  background:var(--sky);min-height:360px;
+  position:relative;overflow:hidden;
+}
+.map-grid{
+  width:100%;height:100%;min-height:360px;
+  background:var(--off-white);
+  background-image:
+    linear-gradient(rgba(0,198,184,0.1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,198,184,0.1) 1px,transparent 1px),
+    linear-gradient(rgba(0,198,184,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,198,184,0.04) 1px,transparent 1px);
+  background-size:60px 60px,60px 60px,12px 12px,12px 12px;
+  position:relative;
+}
+.map-pin{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  display:flex;flex-direction:column;align-items:center;
+}
+.map-pin-dot{
+  width:52px;height:52px;background:var(--navy);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 28px rgba(4,18,43,0.3);position:relative;
+}
+.map-pin-dot::before{
+  content:'';position:absolute;inset:-7px;border:1px solid rgba(4,18,43,0.15);
+  border-radius:50%;animation:pulseRing 2s ease infinite;
+}
+.map-pin-dot svg{width:22px;height:22px;stroke:var(--teal);fill:none;stroke-width:1.5;}
+.map-label{
+  background:var(--navy);color:var(--white);
+  padding:9px 18px;margin-top:10px;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  box-shadow:0 8px 28px rgba(4,18,43,0.2);white-space:nowrap;
+}
+
+/* ====================================================
+   FOOTER
+===================================================== */
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.05);}
+.footer-main{
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;
+  gap:clamp(32px,5vw,60px);
+  padding:clamp(48px,6vw,80px) var(--pad-x) clamp(36px,5vw,60px);
+}
+.footer-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.75;max-width:280px;margin-bottom:24px;}
+.footer-contact{display:flex;flex-direction:column;gap:7px;}
+.footer-cline{font-size:12px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:7px;}
+.footer-cline strong{color:var(--teal);}
+.footer-social{display:flex;gap:8px;margin-top:20px;}
+.fsoc{
+  width:34px;height:34px;border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.4);font-size:10px;font-weight:700;text-decoration:none;
+  transition:all 0.3s;
+}
+.fsoc:hover{border-color:var(--teal);color:var(--teal);}
+.footer-col-title{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:20px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:13px;transition:color 0.3s;}
+.footer-links a:hover{color:var(--white);}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.05);
+  padding:clamp(16px,2.5vw,24px) var(--pad-x);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.25);}
+.footer-cert{font-size:10px;color:var(--teal);letter-spacing:2px;font-weight:600;}
+.footer-legal{display:flex;gap:20px;}
+.footer-legal a{font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.3s;}
+.footer-legal a:hover{color:var(--white);}
+
+/* ====================================================
+   FLOATING WIDGET
+===================================================== */
+.fw{
+  position:fixed;bottom:clamp(16px,3vw,32px);right:clamp(16px,3vw,32px);
+  z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:10px;
+}
+.fw-menu{
+  display:flex;flex-direction:column;gap:8px;
+  transform:translateY(8px);opacity:0;pointer-events:none;
+  transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.fw-menu.open{transform:translateY(0);opacity:1;pointer-events:all;}
+.fw-btn{
+  display:flex;align-items:center;gap:8px;
+  background:var(--navy);color:var(--white);
+  padding:9px 14px;text-decoration:none;
+  font-size:11px;font-weight:600;letter-spacing:1px;
+  white-space:nowrap;border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 4px 16px rgba(4,18,43,0.3);
+  transition:background 0.3s;
+}
+.fw-btn:hover{background:var(--navy-light);}
+.fw-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.fw-toggle{
+  width:52px;height:52px;background:var(--teal);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  border:none;cursor:pointer;
+  box-shadow:0 6px 24px rgba(0,198,184,0.35);
+  transition:all 0.3s;
+}
+.fw-toggle:hover{transform:scale(1.07);}
+.fw-toggle svg{width:22px;height:22px;stroke:var(--navy);fill:none;stroke-width:2;}
+
+/* ====================================================
+   SCROLL REVEAL
+===================================================== */
+.fade-up{opacity:0;transform:translateY(44px);transition:opacity 0.85s cubic-bezier(0.16,1,0.3,1),transform 0.85s cubic-bezier(0.16,1,0.3,1);}
+.fade-left{opacity:0;transform:translateX(-44px);transition:opacity 0.85s cubic-bezier(0.16,1,0.3,1),transform 0.85s cubic-bezier(0.16,1,0.3,1);}
+.fade-right{opacity:0;transform:translateX(44px);transition:opacity 0.85s cubic-bezier(0.16,1,0.3,1),transform 0.85s cubic-bezier(0.16,1,0.3,1);}
+.fade-up.in,.fade-left.in,.fade-right.in{opacity:1;transform:none;}
+.d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}.d4{transition-delay:0.4s;}
+
+/* ====================================================
+   ██████████ RESPONSIVE ██████████
+===================================================== */
+
+/* ── Tablet landscape ── */
+@media(max-width:1200px){
+  .specialties-grid{grid-template-columns:repeat(2,1fr);}
+  .doctors-grid{grid-template-columns:repeat(2,1fr);}
+  .news-grid{grid-template-columns:1fr 1fr;}
+  .news-card:last-child{display:none;}
+  .footer-main{grid-template-columns:1fr 1fr;}
+  .journey-steps{grid-template-columns:repeat(3,1fr);row-gap:40px;}
+  .journey-steps::before{display:none;}
+}
+
+/* ── Tablet portrait ── */
+@media(max-width:900px){
+  /* NAV */
+  .nav-links,.nav-book,.nav-emergency-btn{display:none;}
+  .hamburger{display:flex;}
+
+  /* HERO */
+  .hero-content{grid-template-columns:1fr;padding-bottom:0;}
+  .hero-right{display:none;}
+  .hero-strip{grid-template-columns:repeat(2,1fr);}
+  .strip-item:nth-child(odd){border-right:1px solid rgba(255,255,255,0.07);}
+  .strip-item{padding:16px clamp(16px,3vw,40px);}
+
+  /* STATS */
+  .stats-band{grid-template-columns:repeat(2,1fr);}
+
+  /* ABOUT */
+  .about{grid-template-columns:1fr;gap:0;}
+  .about-imgs{height:clamp(320px,55vw,480px);margin-bottom:clamp(32px,5vw,60px);}
+
+  /* SPECIALTIES */
+  .specialties-header{flex-direction:column;align-items:flex-start;gap:16px;}
+
+  /* TECHNOLOGY */
+  .tech-inner{grid-template-columns:1fr;gap:40px;}
+  .tech-img-wrap{height:clamp(240px,40vw,360px);}
+
+  /* DOCTORS */
+  .doctors-header{flex-direction:column;align-items:flex-start;gap:16px;}
+
+  /* JOURNEY */
+  .journey-steps{grid-template-columns:repeat(2,1fr);gap:32px;}
+
+  /* APPOINTMENT */
+  .appt-inner{grid-template-columns:1fr;gap:40px;}
+
+  /* NEWS */
+  .news-header{flex-direction:column;align-items:flex-start;gap:16px;}
+  .news-grid{grid-template-columns:1fr;}
+  .news-card:last-child{display:block;}
+
+  /* EMERGENCY */
+  .emergency{flex-direction:column;text-align:center;}
+  .emg-left{justify-content:center;}
+
+  /* CONTACT */
+  .contact{grid-template-columns:1fr;gap:40px;}
+
+  /* FOOTER */
+  .footer-main{grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,40px);}
+  .footer-bottom{flex-direction:column;align-items:flex-start;}
+}
+
+/* ── Mobile large (≤680px) ── */
+@media(max-width:680px){
+  .announcement{font-size:10px;letter-spacing:0.5px;}
+  .ann-sep{display:block;height:0;overflow:hidden;margin:0;}
+
+  /* HERO */
+  .hero-title{font-size:clamp(34px,11vw,52px);}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:10px;}
+  .hero-actions .btn-primary,.hero-actions .btn-outline{width:100%;text-align:center;justify-content:center;}
+  .hero-strip{grid-template-columns:1fr 1fr;}
+  .strip-item{padding:14px 16px;}
+
+  /* STATS */
+  .stats-band{grid-template-columns:1fr 1fr;}
+  .stats-item{padding:28px 18px;}
+  .stats-num{font-size:clamp(30px,8vw,48px);}
+
+  /* SPECIALTIES */
+  .specialties-grid{grid-template-columns:1fr;}
+  .spec-card{padding:24px 20px;}
+
+  /* ABOUT */
+  .about-imgs{height:clamp(280px,70vw,400px);}
+  .about-pillars{grid-template-columns:1fr;}
+
+  /* DEPT */
+  .dept-header{flex-direction:column;align-items:flex-start;}
+  .dept-hint{display:none;}
+  .dept-card{width:clamp(240px,80vw,300px);}
+
+  /* TECH */
+  .tech-img.revealed{clip-path:polygon(0 0,100% 0,100% 100%,0% 100%);}
+
+  /* DOCTORS */
+  .doctors-grid{grid-template-columns:1fr 1fr;}
+  .doc-img-wrap{height:clamp(200px,40vw,280px);}
+  .doc-name{font-size:13px;}
+
+  /* JOURNEY */
+  .journey-steps{grid-template-columns:1fr;}
+  .step-circle{width:68px;height:68px;}
+  .step-circle svg{width:24px;height:24px;}
+
+  /* TESTIMONIALS */
+  .t-card{width:clamp(260px,85vw,340px);}
+
+  /* APPOINTMENT */
+  .form-grid{grid-template-columns:1fr;}
+  .form-group.full{grid-column:span 1;}
+
+  /* NEWS */
+  .news-grid{grid-template-columns:1fr;}
+
+  /* EMERGENCY */
+  .emg-num{font-size:clamp(22px,7vw,32px);}
+  .btn-white{width:100%;text-align:center;}
+
+  /* AWARDS */
+  .awards-inner{flex-direction:column;align-items:flex-start;}
+  .awards-logos{gap:clamp(14px,4vw,24px);}
+
+  /* CONTACT */
+  .contact-item{padding:14px;}
+
+  /* FOOTER */
+  .footer-main{grid-template-columns:1fr;}
+  .footer-legal{flex-wrap:wrap;gap:12px;}
+
+  /* FLOATING WIDGET */
+  .fw-btn{font-size:10px;padding:8px 12px;}
+}
+
+/* ── Mobile small (≤400px) ── */
+@media(max-width:400px){
+  .hero-title{font-size:clamp(28px,12vw,42px);}
+  .doctors-grid{grid-template-columns:1fr;}
+  .stats-band{grid-template-columns:1fr;}
+  .stats-item{border-right:none;border-bottom:1px solid rgba(4,18,43,0.12);}
+  .hero-strip{grid-template-columns:1fr;}
+  .strip-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOADER ══ -->
+<div id="loader">
+  <div class="loader-cross"></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  <div class="loader-text">APEX Medical Center</div>
+</div>
+
+<!-- ══ FLOATING WIDGET ══ -->
+<div class="fw">
+  <div class="fw-menu" id="fwMenu">
+    <a class="fw-btn" href="#appointment">
+      <span class="fw-dot" style="background:var(--teal)"></span>
+      Book Appointment
+    </a>
+    <a class="fw-btn" href="tel:108">
+      <span class="fw-dot" style="background:var(--red-alert)"></span>
+      Emergency: 108
+    </a>
+    <a class="fw-btn" href="#contact">
+      <span class="fw-dot" style="background:rgba(255,255,255,0.3)"></span>
+      Locate Us
+    </a>
+  </div>
+  <button class="fw-toggle" id="fwToggle" aria-label="Quick access">
+    <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
+  </button>
+</div>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#specialties" onclick="closeMM()">Specialties</a>
+  <a href="#doctors" onclick="closeMM()">Doctors</a>
+  <a href="#departments" onclick="closeMM()">Departments</a>
+  <a href="#about" onclick="closeMM()">About</a>
+  <a href="#contact" onclick="closeMM()">Contact</a>
+  <div class="mobile-menu-actions">
+    <a href="#appointment" onclick="closeMM()">Book Appointment</a>
+    <a href="tel:108" onclick="closeMM()">Emergency: 108</a>
+  </div>
+</div>
+
+<!-- ══ ANNOUNCEMENT BAR ══ -->
+<div class="announcement">
+  <span>New Wing Open: Advanced Robotic Surgery Center</span>
+  <span class="ann-sep">|</span>
+  <span>24/7 Emergency: <a href="tel:108">108</a></span>
+  <span class="ann-sep">|</span>
+  <span>Free Health Screenings Every Saturday</span>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <div class="logo-name">APE<span>X</span></div>
+        <span class="logo-sub">Medical Center</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#specialties">Specialties</a></li>
+      <li><a href="#doctors">Our Doctors</a></li>
+      <li><a href="#departments">Departments</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#appointment" class="nav-book">Book Now</a>
+      <a href="tel:108" class="nav-emergency-btn">
+        <span class="nav-edot"></span>Emergency
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span class="hero-badge-text">JCI Accredited — NABH Certified</span>
+      </div>
+      <h1 class="hero-title">
+        Where<br>
+        <span class="italic">Healing</span><br>
+        Meets <span class="outline">Science</span>
+      </h1>
+      <p class="hero-desc">APEX Medical Center brings together 600+ specialists, cutting-edge technology, and compassionate care across 42 clinical departments — redefining world-class healthcare.</p>
+      <div class="hero-actions">
+        <a href="#appointment" class="btn-primary"><span>Book Appointment</span></a>
+        <a href="#specialties" class="btn-outline">Explore Specialties</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-frame">
+        <img class="hero-img-main" src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=900&q=80" alt="Medical Excellence" loading="eager">
+        <img class="hero-img-accent" src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=500&q=80" alt="Patient Care" loading="lazy">
+        <div class="hero-float-card card1">
+          <div class="float-num"><span class="count" data-target="600">0</span>+</div>
+          <div class="float-label">Expert Physicians</div>
+        </div>
+        <div class="hero-float-card card2">
+          <div class="float-num"><span class="count" data-target="98">0</span>%</div>
+          <div class="float-label">Patient Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <div class="strip-item">
+      <div class="strip-icon-wrap"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <div><div class="strip-lbl">24/7 Emergency</div><div class="strip-val">Always Ready</div></div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+      <div><div class="strip-lbl">International Patients</div><div class="strip-val">70+ Countries</div></div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon-wrap"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <div><div class="strip-lbl">Tele-Consultation</div><div class="strip-val">Connect Anywhere</div></div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div><div class="strip-lbl">Accreditations</div><div class="strip-val">JCI, NABH, ISO</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS BAND ══ -->
+<div class="stats-band">
+  <div class="stats-item fade-up">
+    <div class="stats-num"><span class="count" data-target="42">0</span><span class="stats-suffix">+</span></div>
+    <div class="stats-lbl">Specialties</div>
+    <div class="stats-desc">Every dimension of modern medicine</div>
+  </div>
+  <div class="stats-item fade-up d1">
+    <div class="stats-num"><span class="count" data-target="1200">0</span><span class="stats-suffix">+</span></div>
+    <div class="stats-lbl">Beds</div>
+    <div class="stats-desc">Equipped with the latest tech</div>
+  </div>
+  <div class="stats-item fade-up d2">
+    <div class="stats-num"><span class="count" data-target="350000">0</span><span class="stats-suffix">+</span></div>
+    <div class="stats-lbl">Patients Annually</div>
+    <div class="stats-desc">From India and 70+ countries</div>
+  </div>
+  <div class="stats-item fade-up d3">
+    <div class="stats-num"><span class="count" data-target="28">0</span></div>
+    <div class="stats-lbl">Years of Excellence</div>
+    <div class="stats-desc">Setting benchmarks since 1996</div>
+  </div>
+</div>
+
+<!-- ══ SPECIALTIES ══ -->
+<section class="specialties" id="specialties">
+  <div class="specialties-header">
+    <div class="fade-left">
+      <div class="section-tag"><span class="section-tag-line"></span><span class="section-tag-text">Clinical Excellence</span></div>
+      <h2 class="section-title">World-Class<br><em>Specialties</em></h2>
+    </div>
+    <a href="#departments" class="btn-primary fade-right"><span>All Departments</span></a>
+  </div>
+  <div class="specialties-grid">
+    <div class="spec-card fade-up">
+      <div class="spec-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      <div class="spec-name">Cardiology &amp; Heart Surgery</div>
+      <div class="spec-desc">Comprehensive cardiac care including interventional procedures, bypass surgery, valve repair, and heart transplant programs.</div>
+      <div class="spec-num">01</div>
+    </div>
+    <div class="spec-card fade-up d1">
+      <div class="spec-icon"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+      <div class="spec-name">Neurosciences</div>
+      <div class="spec-desc">Advanced neurology and neurosurgery covering brain tumors, stroke, epilepsy, spinal disorders, and robotic spine surgery.</div>
+      <div class="spec-num">02</div>
+    </div>
+    <div class="spec-card fade-up d2">
+      <div class="spec-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+      <div class="spec-name">Oncology</div>
+      <div class="spec-desc">Integrated cancer care with medical, surgical, and radiation oncology, immunotherapy, and bone marrow transplant programs.</div>
+      <div class="spec-num">03</div>
+    </div>
+    <div class="spec-card fade-up d3">
+      <div class="spec-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+      <div class="spec-name">Transplant Sciences</div>
+      <div class="spec-desc">Kidney, liver, heart, and bone marrow transplantation with one of the highest success rates in Asia — 6,000+ performed.</div>
+      <div class="spec-num">04</div>
+    </div>
+    <div class="spec-card fade-up">
+      <div class="spec-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="spec-name">Orthopaedics &amp; Sports</div>
+      <div class="spec-desc">Joint replacements, arthroscopy, sports injury management, spine surgery, and advanced rehabilitation programs.</div>
+      <div class="spec-num">05</div>
+    </div>
+    <div class="spec-card fade-up d1">
+      <div class="spec-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
+      <div class="spec-name">Reproductive Medicine</div>
+      <div class="spec-desc">Comprehensive fertility and IVF programs, high-risk obstetrics, fetal medicine, and minimally invasive gynecological surgery.</div>
+      <div class="spec-num">06</div>
+    </div>
+    <div class="spec-card fade-up d2">
+      <div class="spec-icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div class="spec-name">Gastroenterology</div>
+      <div class="spec-desc">Diagnostic and therapeutic endoscopy, liver diseases, pancreatic disorders, and advanced GI surgery with robotic assistance.</div>
+      <div class="spec-num">07</div>
+    </div>
+    <div class="spec-card fade-up d3">
+      <div class="spec-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="spec-name">Paediatrics &amp; Neonatology</div>
+      <div class="spec-desc">Complete child health services including neonatal intensive care, paediatric surgery, and specialist services for complex conditions.</div>
+      <div class="spec-num">08</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="about" id="about">
+  <div class="about-imgs fade-left">
+    <img class="about-img-main" src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=900&q=80" alt="Hospital interior" loading="lazy">
+    <img class="about-img-sec" src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=600&q=80" alt="Doctor patient" loading="lazy">
+    <div class="about-badge">
+      <div class="about-badge-num">#1</div>
+      <div class="about-badge-lbl">Rated Hospital<br>South Asia</div>
+    </div>
+  </div>
+  <div class="about-text fade-right">
+    <div class="section-tag"><span class="section-tag-line"></span><span class="section-tag-text">Our Story</span></div>
+    <h2 class="section-title">Pioneering Medicine<br>Since <em>1996</em></h2>
+    <p class="section-body">Founded on the belief that exceptional healthcare should be accessible and compassionate, APEX Medical Center has grown from a single specialty clinic into one of Asia's most respected multi-specialty institutions.</p>
+    <p class="section-body" style="margin-top:14px;">We combine the precision of the world's most advanced medical technology with the warmth of a patient-first philosophy — because healing is as much about the human spirit as it is about clinical intervention.</p>
+    <div class="about-pillars">
+      <div class="pillar fade-up">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div><div class="pillar-title">Precision Medicine</div><div class="pillar-text">Genomics-guided treatment protocols for each patient</div></div>
+      </div>
+      <div class="pillar fade-up d1">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div><div class="pillar-title">Multidisciplinary Care</div><div class="pillar-text">Tumor boards ensuring holistic treatment decisions</div></div>
+      </div>
+      <div class="pillar fade-up d2">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+        <div><div class="pillar-title">Robotic Surgery</div><div class="pillar-text">Da Vinci &amp; ROSA for minimally invasive procedures</div></div>
+      </div>
+      <div class="pillar fade-up d3">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.58 1.32h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div><div class="pillar-title">24/7 Support</div><div class="pillar-text">Round-the-clock emergency &amp; specialist access</div></div>
+      </div>
+    </div>
+    <div class="about-cert fade-up">
+      <div class="cert-logo">[JCI]</div>
+      <div>
+        <div class="cert-title">Joint Commission International Accredited</div>
+        <div class="cert-sub">The highest global standard for hospital quality &amp; patient safety</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DEPARTMENTS ══ -->
+<section class="departments" id="departments">
+  <div class="dept-header">
+    <div class="fade-left">
+      <div class="section-tag"><span class="section-tag-line"></span><span class="section-tag-text">Explore</span></div>
+      <h2 class="section-title light">Our <em>Departments</em></h2>
+    </div>
+    <div class="dept-hint fade-right">Drag to explore</div>
+  </div>
+  <div class="dept-scroll">
+    <div class="dept-track" id="deptTrack">
+      <div class="dept-card">
+        <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=700&q=80" alt="Cardiac Centre" loading="lazy">
+        <div class="dept-overlay"></div>
+        <div class="dept-content">
+          <div class="dept-tag">Centre of Excellence</div>
+          <div class="dept-name">Cardiac Sciences Centre</div>
+          <div class="dept-desc">150-bed dedicated cardiac unit featuring hybrid cath labs, ECMO support, and world-class cardiac rehabilitation.</div>
+          <div class="dept-bar"></div>
+        </div>
+      </div>
+      <div class="dept-card">
+        <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=700&q=80" alt="Neuroscience" loading="lazy">
+        <div class="dept-overlay"></div>
+        <div class="dept-content">
+          <div class="dept-tag">Flagship Department</div>
+          <div class="dept-name">Brain &amp; Spine Institute</div>
+          <div class="dept-desc">Intraoperative MRI, 5 dedicated neuro ICU beds, and a specialized stroke rapid response team available 24/7.</div>
+          <div class="dept-bar"></div>
+        </div>
+      </div>
+      <div class="dept-card">
+        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&q=80" alt="Cancer Centre" loading="lazy">
+        <div class="dept-overlay"></div>
+        <div class="dept-content">
+          <div class="dept-tag">Comprehensive Program</div>
+          <div class="dept-name">Cancer Centre</div>
+          <div class="dept-desc">CyberKnife, proton therapy, and immunotherapy under one roof with tumor boards meeting three times weekly.</div>
+          <div class="dept-bar"></div>
+        </div>
+      </div>
+      <div class="dept-card">
+        <img src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=700&q=80" alt="Transplant" loading="lazy">
+        <div class="dept-overlay"></div>
+        <div class="dept-content">
+          <div class="dept-tag">Asia Leader</div>
+          <div class="dept-name">Transplant Institute</div>
+          <div class="dept-desc">6,500+ successful transplants since 2002 with outcomes rivaling the world's top transplant programs.</div>
+          <div class="dept-bar"></div>
+        </div>
+      </div>
+      <div class="dept-card">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=700&q=80" alt="Maternity" loading="lazy">
+        <div class="dept-overlay"></div>
+        <div class="dept-content">
+          <div class="dept-tag">Specialized Unit</div>
+          <div class="dept-name">Mother &amp; Child Institute</div>
+          <div class="dept-desc">Level IV NICU, fetal medicine unit, and a dedicated high-risk obstetrics program with 24/7 neonatologist coverage.</div>
+          <div class="dept-bar"></div>
+        </div>
+      </div>
+      <div class="dept-card">
+        <img src="https://images.unsplash.com/photo-1583324113626-70df0f4deaab?w=700&q=80" alt="Orthopaedics" loading="lazy">
+        <div class="dept-overlay"></div>
+        <div class="dept-content">
+          <div class="dept-tag">Sports Medicine Hub</div>
+          <div class="dept-name">Orthopaedics &amp; Sports</div>
+          <div class="dept-desc">National team physicians on our panel. Advanced joint preservation, resurfacing, and sports rehabilitation techniques.</div>
+          <div class="dept-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TECHNOLOGY ══ -->
+<section class="technology">
+  <div class="tech-inner">
+    <div class="tech-img-wrap fade-left">
+      <img class="tech-img" id="techImg" src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80" alt="Advanced Technology" loading="lazy">
+      <div class="tech-img-overlay"></div>
+    </div>
+    <div class="tech-text fade-right">
+      <div class="section-tag"><span class="section-tag-line"></span><span class="section-tag-text">Technology</span></div>
+      <h2 class="section-title">Powered by the<br>World's Most <em>Advanced</em><br>Medical Technology</h2>
+      <p class="section-body">Our investment in clinical technology is unmatched — from AI-assisted diagnostics to surgical robotics, every piece of equipment represents the cutting edge of modern medicine.</p>
+      <div class="tech-list">
+        <div class="tech-row">
+          <span class="tech-num">01</span>
+          <span class="tech-name">Da Vinci Robotic Surgery System</span>
+          <div class="tech-bar-wrap"><div class="tech-bar-fill" data-width="92%"></div></div>
+        </div>
+        <div class="tech-row">
+          <span class="tech-num">02</span>
+          <span class="tech-name">3T MRI &amp; 256-Slice CT Scanner</span>
+          <div class="tech-bar-wrap"><div class="tech-bar-fill" data-width="88%"></div></div>
+        </div>
+        <div class="tech-row">
+          <span class="tech-num">03</span>
+          <span class="tech-name">AI-Powered Diagnostic Imaging</span>
+          <div class="tech-bar-wrap"><div class="tech-bar-fill" data-width="85%"></div></div>
+        </div>
+        <div class="tech-row">
+          <span class="tech-num">04</span>
+          <span class="tech-name">CyberKnife Radiosurgery</span>
+          <div class="tech-bar-wrap"><div class="tech-bar-fill" data-width="80%"></div></div>
+        </div>
+        <div class="tech-row">
+          <span class="tech-num">05</span>
+          <span class="tech-name">Intraoperative MRI Suite</span>
+          <div class="tech-bar-wrap"><div class="tech-bar-fill" data-width="75%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DOCTORS ══ -->
+<section class="doctors" id="doctors">
+  <div class="doctors-header">
+    <div class="fade-left">
+      <div class="section-tag"><span class="section-tag-line"></span><span class="section-tag-text">Our Experts</span></div>
+      <h2 class="section-title">Trusted by Millions,<br><em>Led by the Best</em></h2>
+    </div>
+    <a href="#appointment" class="btn-primary fade-right"><span>Find a Doctor</span></a>
+  </div>
+  <div class="doctors-grid">
+    <div class="doc-card fade-up">
+      <div class="doc-img-wrap">
+        <img class="doc-img" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&q=80" alt="Dr. Rajesh Kumar" loading="lazy">
+        <div class="doc-img-overlay"></div>
+        <div class="doc-social">
+          <a class="social-btn" href="#">in</a>
+          <a class="social-btn" href="#">@</a>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="doc-spec">Cardiology</div>
+        <div class="doc-name">Dr. Rajesh Kumar</div>
+        <div class="doc-exp">32 Years Experience</div>
+        <div class="doc-rating">
+          <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+          <span class="rating-txt">4.9 (1,240)</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-card fade-up d1">
+      <div class="doc-img-wrap">
+        <img class="doc-img" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&q=80" alt="Dr. Priya Nair" loading="lazy">
+        <div class="doc-img-overlay"></div>
+        <div class="doc-social">
+          <a class="social-btn" href="#">in</a>
+          <a class="social-btn" href="#">@</a>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="doc-spec">Neurosurgery</div>
+        <div class="doc-name">Dr. Priya Nair</div>
+        <div class="doc-exp">24 Years Experience</div>
+        <div class="doc-rating">
+          <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+          <span class="rating-txt">4.8 (980)</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-card fade-up d2">
+      <div class="doc-img-wrap">
+        <img class="doc-img" src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=500&q=80" alt="Dr. Suresh Menon" loading="lazy">
+        <div class="doc-img-overlay"></div>
+        <div class="doc-social">
+          <a class="social-btn" href="#">in</a>
+          <a class="social-btn" href="#">@</a>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="doc-spec">Oncology</div>
+        <div class="doc-name">Dr. Suresh Menon</div>
+        <div class="doc-exp">28 Years Experience</div>
+        <div class="doc-rating">
+          <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+          <span class="rating-txt">4.9 (1,560)</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-card fade-up d3">
+      <div class="doc-img-wrap">
+        <img class="doc-img" src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=500&q=80" alt="Dr. Anika Sharma" loading="lazy">
+        <div class="doc-img-overlay"></div>
+        <div class="doc-social">
+          <a class="social-btn" href="#">in</a>
+          <a class="social-btn" href="#">@</a>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="doc-spec">Transplant Surgery</div>
+        <div class="doc-name">Dr. Anika Sharma</div>
+        <div class="doc-exp">18 Years Experience</div>
+        <div class="doc-rating">
+          <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+          <span class="rating-txt">5.0 (742)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PATIENT JOURNEY ══ -->
+<section class="journey">
+  <div class="journey-bg"></div>
+  <div class="journey-header">
+    <div class="section-tag"><span class="section-tag-line"></span><span class="section-tag-text">Your Experience</span></div>
+    <h2 class="section-title light">Your <em>Care Journey</em> at APEX</h2>
+  </div>
+  <div class="journey-steps">
+    <div class="journey-step fade-up">
+      <div class="step-circle"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.58 1.32h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <div class="step-num">Step — 01</div>
+      <div class="step-title">Book &amp; Consult</div>
+      <div class="step-desc">Call, walk-in, or book online. Meet your specialist in-person or via tele-consultation from anywhere.</div>
+    </div>
+    <div class="journey-step fade-up d1">
+      <div class="step-circle"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <div class="step-num">Step — 02</div>
+      <div class="step-title">Diagnosis</div>
+      <div class="step-desc">Same-day advanced diagnostics with AI-assisted reporting. Results in your patient portal within hours.</div>
+    </div>
+    <div class="journey-step fade-up d2">
+      <div class="step-circle"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+      <div class="step-num">Step — 03</div>
+      <div class="step-title">Care Planning</div>
+      <div class="step-desc">A multidisciplinary team reviews your case and develops a personalized treatment roadmap with full transparency.</div>
+    </div>
+    <div class="journey-step fade-up d3">
+      <div class="step-circle"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <div class="step-num">Step — 04</div>
+      <div class="step-title">Treatment</div>
+      <div class="step-desc">World-class surgical and medical interventions in dedicated, sterile, technologically superior operation suites.</div>
+    </div>
+    <div class="journey-step fade-up d4">
+      <div class="step-circle"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      <div class="step-num">Step — 05</div>
+      <div class="step-title">Recovery</div>
+      <div class="step-desc">Dedicated rehabilitation, post-procedure monitoring, and a lifetime of follow-up care through our wellness program.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testimonials">
+  <div class="testimonials-header fade-up">
+    <div class="section-tag"><span class="section-tag-line"></span><span class="section-tag-text">Patient Stories</span></div>
+    <h2 class="section-title">Real People,<br><em>Real Recoveries</em></h2>
+  </div>
+  <div class="t-track-wrap">
+    <div class="t-track">
+      <div class="t-card">
+        <div class="t-quote">"</div>
+        <div class="t-stars"><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div></div>
+        <p class="t-text">After being told my heart valve condition was inoperable at two other hospitals, Dr. Kumar's team performed a minimally invasive repair. I was walking the next day. APEX gave me my life back.</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Arjun Mehta" loading="lazy">
+          <div><div class="t-name">Arjun Mehta, 58</div><div class="t-cond">Cardiac Valve Surgery</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-quote">"</div>
+        <div class="t-stars"><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div></div>
+        <p class="t-text">We traveled from the UK specifically for APEX's liver transplant program after exhausting all options at home. The team's expertise and aftercare have been exceptional beyond our highest expectations.</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80" alt="Sarah Thompson" loading="lazy">
+          <div><div class="t-name">Sarah Thompson, 44</div><div class="t-cond">Liver Transplant, United Kingdom</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-quote">"</div>
+        <div class="t-stars"><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div></div>
+        <p class="t-text">My stage 3 brain tumor was treated with CyberKnife radiosurgery. Zero cuts, zero hospital stay, zero disruption to my family. I drove myself home. The technology here is simply unbelievable.</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Vikram Singh" loading="lazy">
+          <div><div class="t-name">Vikram Singh, 41</div><div class="t-cond">CyberKnife Radiosurgery</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-quote">"</div>
+        <div class="t-stars"><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div></div>
+        <p class="t-text">Three failed IVF cycles elsewhere and then one successful pregnancy at APEX. The reproductive medicine team's precision and compassionate support made all the difference. Our daughter is our miracle.</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&q=80" alt="Deepa Krishnan" loading="lazy">
+          <div><div class="t-name">Deepa Krishnan, 35</div><div class="t-cond">Reproductive Medicine, IVF</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-quote">"</div>
+        <div class="t-stars"><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div></div>
+        <p class="t-text">As a professional athlete, my ACL reconstruction had to be perfect. The sports medicine team at APEX got me back on the field in 14 weeks — four weeks ahead of any surgeon's estimate. Exceptional.</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Rohan Das" loading="lazy">
+          <div><div class="t-name">Rohan Das, 26</div><div class="t-cond">Sports Medicine, ACL</div></div>
+        </div>
+      </div>
+      <!-- Duplicate set for infinite loop -->
+      <div class="t-card">
+        <div class="t-quote">"</div>
+        <div class="t-stars"><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div></div>
+        <p class="t-text">After being told my heart valve condition was inoperable at two other hospitals, Dr. Kumar's team performed a minimally invasive repair. I was walking the next day. APEX gave me my life back.</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Arjun Mehta" loading="lazy">
+          <div><div class="t-name">Arjun Mehta, 58</div><div class="t-cond">Cardiac Valve Surgery</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-quote">"</div>
+        <div class="t-stars"><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div></div>
+        <p class="t-text">Three failed IVF cycles elsewhere and then one successful pregnancy at APEX. The team's precision and compassionate support made all the difference. Our daughter is our miracle.</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&q=80" alt="Deepa Krishnan" loading="lazy">
+          <div><div class="t-name">Deepa Krishnan, 35</div><div class="t-cond">Reproductive Medicine, IVF</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-quote">"</div>
+        <div class="t-stars"><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div></div>
+        <p class="t-text">We traveled from the UK specifically for APEX's liver transplant program after exhausting all options at home. The team's expertise and aftercare have been exceptional beyond our highest expectations.</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80" alt="Sarah Thompson" loading="lazy">
+          <div><div class="t-name">Sarah Thompson, 44</div><div class="t-cond">Liver Transplant, UK</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APPOINTMENT ══ -->
+<section class="appointment" id="appointment">
+  <div class="appt-bg-text">HEAL</div>
+  <div class="appt-inner">
+    <div class="appt-text fade-left">
+      <div class="section-tag"><span class="section-tag-line"></span><span class="section-tag-text">Appointments</span></div>
+      <h2 class="section-title light">Book Your<br><em>Consultation</em><br>Today</h2>
+      <p class="section-body light">Getting the care you need should be effortless. Book in under 2 minutes and receive instant confirmation with your dedicated patient coordinator's contact.</p>
+      <div class="appt-checks">
+        <div class="appt-check"><div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="check-txt">Confirmed within 30 minutes of booking</span></div>
+        <div class="appt-check"><div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="check-txt">Dedicated patient coordinator assigned</span></div>
+        <div class="appt-check"><div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="check-txt">In-person or video consultation available</span></div>
+        <div class="appt-check"><div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="check-txt">International patient services available</span></div>
+      </div>
+    </div>
+    <div class="appt-form fade-right">
+      <div class="form-title">Request an Appointment</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-lbl">First Name</label>
+          <input class="form-input" type="text" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Last Name</label>
+          <input class="form-input" type="text" placeholder="Smith">
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Phone Number</label>
+          <input class="form-input" type="tel" placeholder="+91 00000 00000">
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Email</label>
+          <input class="form-input" type="email" placeholder="john@email.com">
+        </div>
+        <div class="form-group full">
+          <label class="form-lbl">Select Specialty</label>
+          <select class="form-select">
+            <option value="">Choose a department</option>
+            <option>Cardiology</option>
+            <option>Neurosciences</option>
+            <option>Oncology</option>
+            <option>Orthopaedics</option>
+            <option>Transplant Surgery</option>
+            <option>Gastroenterology</option>
+            <option>Reproductive Medicine</option>
+            <option>Paediatrics</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Preferred Date</label>
+          <input class="form-input" type="date">
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Consultation Type</label>
+          <select class="form-select">
+            <option>In-Person</option>
+            <option>Video Consultation</option>
+          </select>
+        </div>
+      </div>
+      <button class="form-submit">Confirm Appointment Request</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ AWARDS ══ -->
+<div class="awards">
+  <div class="awards-inner">
+    <div class="awards-lbl">Recognized By</div>
+    <div class="awards-logos">
+      <div class="award-item">JCI Accredited</div>
+      <div class="award-item">NABH Certified</div>
+      <div class="award-item">ISO 9001:2015</div>
+      <div class="award-item">FICCI Healthcare</div>
+      <div class="award-item">Times Hospital Award</div>
+      <div class="award-item">Forbes Asia</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NEWS ══ -->
+<section class="news">
+  <div class="news-header">
+    <div class="fade-left">
+      <div class="section-tag"><span class="section-tag-line"></span><span class="section-tag-text">Health &amp; News</span></div>
+      <h2 class="section-title">Latest in <em>Health</em></h2>
+    </div>
+    <a href="#" class="btn-primary fade-right"><span>All Articles</span></a>
+  </div>
+  <div class="news-grid">
+    <div class="news-card featured fade-left">
+      <div class="news-img-wrap">
+        <img class="news-img" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80" alt="Robotic Surgery" loading="lazy">
+        <span class="news-cat">Innovation</span>
+      </div>
+      <div class="news-body">
+        <div class="news-date">February 2025</div>
+        <div class="news-title">APEX Performs Asia's First Fully Robotic Beating-Heart Bypass Surgery</div>
+        <div class="news-excerpt">A groundbreaking procedure using the Da Vinci Xi system to perform a quadruple bypass without stopping the patient's heart — a first for Asia.</div>
+        <a href="#" class="news-link">Read the Story</a>
+      </div>
+    </div>
+    <div class="news-card fade-up d1">
+      <div class="news-img-wrap">
+        <img class="news-img" src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=500&q=80" alt="Research" loading="lazy">
+        <span class="news-cat">Research</span>
+      </div>
+      <div class="news-body">
+        <div class="news-date">January 2025</div>
+        <div class="news-title">Cancer Immunotherapy Trial Shows 73% Response Rate</div>
+        <div class="news-excerpt">A Phase III clinical trial led by our oncology team demonstrates exceptional outcomes for advanced-stage lung cancer patients.</div>
+        <a href="#" class="news-link">Read More</a>
+      </div>
+    </div>
+    <div class="news-card fade-up d2">
+      <div class="news-img-wrap">
+        <img class="news-img" src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=500&q=80" alt="Health Tips" loading="lazy">
+        <span class="news-cat">Wellness</span>
+      </div>
+      <div class="news-body">
+        <div class="news-date">December 2024</div>
+        <div class="news-title">Five Warning Signs of a Silent Heart Attack You Should Never Ignore</div>
+        <div class="news-excerpt">Our lead cardiologist shares the subtle symptoms many dismiss as fatigue — and why acting within the first hour is critical.</div>
+        <a href="#" class="news-link">Read More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EMERGENCY BAND ══ -->
+<div class="emergency">
+  <div class="emg-left">
+    <div class="emg-pulse">
+      <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div>
+      <div class="emg-title">24/7 Emergency Care — Always Ready</div>
+      <div class="emg-sub">Our emergency department treats 400+ critical patients every day. Never hesitate to call.</div>
+    </div>
+  </div>
+  <div class="emg-num">108 / 1800-200-APEX</div>
+  <a href="tel:108" class="btn-white">Call Now</a>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact" id="contact">
+  <div class="contact-info fade-left">
+    <div class="section-tag"><span class="section-tag-line"></span><span class="section-tag-text">Visit Us</span></div>
+    <h2 class="section-title">Find <em>APEX</em><br>Medical Center</h2>
+    <p class="section-body">Conveniently located in the heart of the city with easy access from all major transport hubs. Free valet parking. International patient lounge on-site.</p>
+    <div class="contact-details">
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <div class="contact-lbl">Address</div>
+          <div class="contact-val">1, APEX Marg, Medical District,<br>Bengaluru, Karnataka 560001</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/></svg></div>
+        <div>
+          <div class="contact-lbl">Main Hospital</div>
+          <div class="contact-val">+91 80 2222 3333</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div>
+          <div class="contact-lbl">International Patients</div>
+          <div class="contact-val">international@apexmedical.in</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div>
+          <div class="contact-lbl">OPD Hours</div>
+          <div class="contact-val">Mon – Sat: 8:00 AM – 8:00 PM<br>Emergency: Open 24 Hours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="map-wrap fade-right">
+    <div class="map-grid">
+      <div class="map-pin">
+        <div class="map-pin-dot">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="map-label">APEX Medical Center</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-main">
+    <div>
+      <div class="footer-logo-wrap">
+        <div class="logo-icon"></div>
+        <div>
+          <div class="logo-name" style="font-size:17px;">APE<span>X</span></div>
+          <span class="logo-sub">Medical Center</span>
+        </div>
+      </div>
+      <p class="footer-tagline">Delivering world-class, compassionate healthcare to patients from across India and over 70 countries since 1996. Accredited by JCI, NABH, and ISO.</p>
+      <div class="footer-contact">
+        <div class="footer-cline"><strong>Emergency:</strong> 108 / 1800-200-APEX</div>
+        <div class="footer-cline"><strong>Appointments:</strong> +91 80 2222 3333</div>
+        <div class="footer-cline"><strong>Email:</strong> care@apexmedical.in</div>
+      </div>
+      <div class="footer-social">
+        <a class="fsoc" href="#">fb</a>
+        <a class="fsoc" href="#">tw</a>
+        <a class="fsoc" href="#">in</a>
+        <a class="fsoc" href="#">yt</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Specialties</div>
+      <ul class="footer-links">
+        <li><a href="#">Cardiology</a></li>
+        <li><a href="#">Neurosciences</a></li>
+        <li><a href="#">Oncology</a></li>
+        <li><a href="#">Orthopaedics</a></li>
+        <li><a href="#">Transplant</a></li>
+        <li><a href="#">View All 42 →</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Patient Services</div>
+      <ul class="footer-links">
+        <li><a href="#">Book Appointment</a></li>
+        <li><a href="#">Find a Doctor</a></li>
+        <li><a href="#">Patient Portal</a></li>
+        <li><a href="#">Health Packages</a></li>
+        <li><a href="#">International Patients</a></li>
+        <li><a href="#">Insurance &amp; TPA</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">About APEX</div>
+      <ul class="footer-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Leadership Team</a></li>
+        <li><a href="#">Research &amp; Innovation</a></li>
+        <li><a href="#">Accreditations</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">News &amp; Media</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 APEX Medical Center. All rights reserved.</div>
+    <div class="footer-cert">JCI Accredited | NABH Certified | ISO 9001:2015</div>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── LOADER ── */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2200);
+});
+
+/* ── NAV – scroll state + active link ── */
+const navbar = document.getElementById('navbar');
+const announcementH = document.querySelector('.announcement')?.offsetHeight || 0;
+
+// Keep nav transparent over hero, solid when scrolled
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Active link using IntersectionObserver
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+function setActive(id) {
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + id) a.classList.add('active');
+  });
+}
+const sectionObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+}, { rootMargin: '-25% 0px -65% 0px', threshold: 0 });
+document.querySelectorAll('section[id]').forEach(s => sectionObs.observe(s));
+
+/* ── MOBILE MENU ── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+function closeMM() {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── FLOATING WIDGET ── */
+let fwOpen = false;
+document.getElementById('fwToggle').addEventListener('click', () => {
+  fwOpen = !fwOpen;
+  document.getElementById('fwMenu').classList.toggle('open', fwOpen);
+});
+document.addEventListener('click', (e) => {
+  if (fwOpen && !e.target.closest('.fw')) {
+    fwOpen = false;
+    document.getElementById('fwMenu').classList.remove('open');
+  }
+});
+
+/* ── SCROLL REVEAL ── */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.fade-up,.fade-left,.fade-right').forEach(el => revealObs.observe(el));
+
+/* ── CLIP PATH + TECH BARS ── */
+const clipObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('revealed');
+      document.querySelectorAll('.tech-bar-fill').forEach(b => b.style.width = b.dataset.width);
+      clipObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.25 });
+const techImg = document.getElementById('techImg');
+if (techImg) clipObs.observe(techImg);
+
+/* ── COUNTER ANIMATION ── */
+function animCount(el, target, dur = 1800) {
+  let start = null;
+  const step = (ts) => {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const val = Math.floor(eased * target);
+    el.textContent = val >= 1000 ? val.toLocaleString('en-IN') : val;
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target >= 1000 ? target.toLocaleString('en-IN') : target;
+  };
+  requestAnimationFrame(step);
+}
+const countObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.count').forEach(el => animCount(el, parseInt(el.dataset.target)));
+      countObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.35 });
+document.querySelectorAll('.stats-band, .hero').forEach(el => countObs.observe(el));
+
+/* ── DEPARTMENT DRAG SCROLL ── */
+const deptScroll = document.querySelector('.dept-scroll');
+const deptTrack  = document.getElementById('deptTrack');
+let isDrag = false, startX, startScrollLeft;
+
+deptTrack.addEventListener('mousedown', e => {
+  isDrag = true; startX = e.pageX - deptScroll.offsetLeft;
+  startScrollLeft = deptScroll.scrollLeft;
+  deptTrack.style.userSelect = 'none';
+});
+window.addEventListener('mouseup', () => { isDrag = false; deptTrack.style.userSelect = ''; });
+window.addEventListener('mousemove', e => {
+  if (!isDrag) return;
+  e.preventDefault();
+  deptScroll.scrollLeft = startScrollLeft - (e.pageX - deptScroll.offsetLeft - startX) * 1.4;
+});
+// Touch (native scroll handles itself, we just add momentum feel)
+deptScroll.addEventListener('touchstart', e => {
+  startX = e.touches[0].pageX; startScrollLeft = deptScroll.scrollLeft;
+}, { passive: true });
+deptScroll.addEventListener('touchmove', e => {
+  deptScroll.scrollLeft = startScrollLeft - (e.touches[0].pageX - startX);
+}, { passive: true });
+
+/* ── PARALLAX hero glow on scroll ── */
+window.addEventListener('scroll', () => {
+  const g = document.querySelector('.hero-glow');
+  if (g) g.style.transform = `translateY(${window.pageYOffset * 0.15}px) scale(1)`;
+}, { passive: true });
+
+/* ── DOCTOR CARD 3D TILT ── */
+document.querySelectorAll('.doc-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    card.style.transform = `translateY(-6px) perspective(600px) rotateY(${x/28}deg) rotateX(${-y/28}deg)`;
+  });
+  card.addEventListener('mouseleave', () => card.style.transform = '');
+});
+</script>
+</body>
+</html>

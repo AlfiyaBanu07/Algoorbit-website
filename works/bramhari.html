@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bramhari Fashion Designer & Tailoring | Karkala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Raleway:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+<style>
+/* ========================================
+   BRAMHARI FASHION DESIGNER & TAILORING
+   Theme: Indian Royal Luxury
+   Palette: Deep Maroon · 24k Gold · Ivory · Crimson
+   Fonts: Rozha One · Lora · Raleway
+   ======================================== */
+
+:root{
+  --maroon:#5C0A20;
+  --maroon-deep:#3A0612;
+  --maroon-mid:#7A1030;
+  --gold:#C9922B;
+  --gold-light:#E8B84B;
+  --gold-pale:#F5DFA0;
+  --gold-shine:#FFF0B8;
+  --ivory:#FAF5EC;
+  --ivory-deep:#F0E8D5;
+  --ivory-dark:#DDD0B5;
+  --crimson:#B31B3A;
+  --crimson-light:#D4204A;
+  --white:#FFFDF8;
+  --ink:#1A0A08;
+  --ink-soft:#3D1A14;
+  --f-display:'Rozha One',serif;
+  --f-serif:'Lora',serif;
+  --f-ui:'Raleway',sans-serif;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  background:var(--ivory);
+  color:var(--ink);
+  font-family:var(--f-ui);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ─── GRAIN ─── */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:8000;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23g)' opacity='0.025'/%3E%3C/svg%3E");
+  background-size:250px;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--maroon-deep)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* ─── PROGRESS BAR ─── */
+#pgbar{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--crimson),var(--gold),var(--gold-light));
+  z-index:9999;transition:width .1s;
+}
+
+/* ─── CURSOR ─── */
+#cdot,#cring{position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
+#cdot{width:7px;height:7px;background:var(--gold);border-radius:50%;transition:transform .06s,background .3s}
+#cring{width:38px;height:38px;border:1.5px solid rgba(201,146,43,0.6);border-radius:50%;transition:all .2s cubic-bezier(.25,.46,.45,.94)}
+body.ch #cdot{transform:translate(-50%,-50%) scale(2.8);background:var(--crimson)}
+body.ch #cring{width:64px;height:64px;border-color:rgba(179,27,58,0.3)}
+
+/* ─── LOADER ─── */
+#loader{
+  position:fixed;inset:0;z-index:9990;display:flex;align-items:center;
+  justify-content:center;flex-direction:column;gap:8px;overflow:hidden;
+}
+#lc1,#lc2{
+  position:absolute;left:0;right:0;height:50%;
+  /* CHANGED: 1.1s → 0.45s, delay .5s → .05s */
+  transition:transform 0.45s cubic-bezier(.76,0,.24,1) .05s;
+}
+#lc1{top:0;background:var(--maroon-deep)}
+#lc2{bottom:0;background:var(--maroon-deep)}
+#loader.out #lc1{transform:translateY(-100%)}
+#loader.out #lc2{transform:translateY(100%)}
+.ld-ornament{
+  position:relative;z-index:2;
+  display:flex;align-items:center;gap:14px;
+  animation:ldOr .8s ease both;
+}
+.ld-line{width:50px;height:1px;background:var(--gold);animation:ldLine 0.5s ease .05s both}
+@keyframes ldLine{from{width:0}to{width:50px}}
+.ld-diamond{
+  width:8px;height:8px;background:var(--gold);
+  transform:rotate(45deg);
+  animation:ldSpin 2s linear infinite;
+}
+@keyframes ldSpin{to{transform:rotate(45deg) scale(1.3)rotate(-45deg)scale(1)}}
+.ld-name{
+  position:relative;z-index:2;
+  font-family:var(--f-display);font-size:clamp(1.8rem,6vw,3.5rem);
+  color:var(--ivory);letter-spacing:.05em;
+  clip-path:inset(0 100% 0 0);
+  /* CHANGED: 1s → 0.45s, delay .2s → .05s */
+  animation:ldReveal 0.45s cubic-bezier(.76,0,.24,1) .05s forwards;
+}
+.ld-sub{
+  position:relative;z-index:2;
+  font-family:var(--f-ui);font-size:.6rem;letter-spacing:.55em;
+  text-transform:uppercase;color:var(--gold);
+  /* CHANGED: delay 1s → .35s */
+  opacity:0;animation:ldFade .35s ease .35s forwards;
+}
+.ld-bar{
+  position:relative;z-index:2;width:200px;height:1px;
+  background:rgba(201,146,43,.15);margin-top:24px;overflow:hidden;
+}
+.ld-bar::after{
+  content:'';position:absolute;inset:0;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  /* CHANGED: 1.6s → 0.5s */
+  animation:ldBar 0.5s cubic-bezier(.76,0,.24,1) .05s forwards;
+}
+@keyframes ldReveal{to{clip-path:inset(0 0% 0 0)}}
+@keyframes ldFade{to{opacity:1}}
+@keyframes ldBar{to{transform:scaleX(1)}}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;inset:0 0 auto 0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:78px;
+  transition:all .5s cubic-bezier(.25,.46,.45,.94);
+}
+nav.scrolled{
+  background:rgba(58,6,18,.96);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(201,146,43,.2);
+  height:62px;
+  box-shadow:0 4px 40px rgba(58,6,18,.5);
+}
+.nav-logo-wrap{display:flex;flex-direction:column;line-height:1.1}
+.nav-logo{
+  font-family:var(--f-display);font-size:1.45rem;
+  color:var(--ivory);text-decoration:none;letter-spacing:.03em;
+}
+.nav-logo b{color:var(--gold-light)}
+.nav-logo-sub{
+  font-family:var(--f-ui);font-size:.45rem;letter-spacing:.5em;
+  text-transform:uppercase;color:rgba(232,184,75,.6);font-weight:500;
+}
+.nav-links{display:flex;list-style:none;gap:30px;align-items:center}
+.nav-links a{
+  font-family:var(--f-ui);font-size:.65rem;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(250,245,236,.65);text-decoration:none;
+  font-weight:500;position:relative;transition:color .3s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-3px;left:50%;right:50%;
+  height:1px;background:var(--gold);
+  transition:all .4s cubic-bezier(.25,.46,.45,.94);
+}
+.nav-links a:hover{color:var(--gold-light)}
+.nav-links a:hover::after{left:0;right:0}
+.nav-book{
+  background:var(--gold);color:var(--maroon-deep);
+  font-family:var(--f-ui);font-size:.62rem;letter-spacing:.22em;
+  text-transform:uppercase;font-weight:700;
+  padding:10px 24px;text-decoration:none;display:inline-block;
+  position:relative;overflow:hidden;transition:color .4s;
+  border:2px solid var(--gold);
+}
+.nav-book::before{
+  content:'';position:absolute;inset:0;background:var(--maroon);
+  transform:translateY(100%);transition:transform .45s cubic-bezier(.76,0,.24,1);
+}
+.nav-book:hover::before{transform:translateY(0)}
+.nav-book:hover{color:var(--gold)}
+.nav-book span{position:relative;z-index:1}
+.burger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:none;padding:4px;
+}
+.burger span{width:26px;height:1.5px;background:var(--ivory);display:block;transition:all .4s}
+.burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ─── MOBILE MENU ─── */
+#mmenu{
+  position:fixed;inset:0;background:var(--maroon-deep);z-index:490;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  transform:translateX(100%);transition:transform .65s cubic-bezier(.76,0,.24,1);
+}
+#mmenu.open{transform:translateX(0)}
+.mm-ornament{
+  display:flex;align-items:center;gap:12px;margin-bottom:10px;
+}
+.mm-ornament span{width:40px;height:1px;background:var(--gold)}
+.mm-ornament i{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);display:block}
+#mmenu a{
+  font-family:var(--f-display);font-size:clamp(2rem,7vw,3rem);
+  color:var(--ivory);text-decoration:none;transition:color .3s;
+  position:relative;
+}
+#mmenu a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+  background:var(--gold);transition:width .4s ease;
+}
+#mmenu a:hover{color:var(--gold)}
+#mmenu a:hover::after{width:100%}
+#mmenu .mm-cta{
+  margin-top:16px;background:var(--gold);color:var(--maroon-deep);
+  font-family:var(--f-ui);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
+  font-weight:700;padding:14px 36px;text-decoration:none;display:inline-block;
+}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;display:grid;
+  grid-template-columns:1fr 1fr;position:relative;overflow:hidden;
+}
+.hero-visual{position:relative;overflow:hidden;min-height:50vh}
+.hero-img{
+  width:100%;height:100%;object-fit:cover;
+  object-position:center top;
+  display:block;
+  transform:scale(1.08);
+  /* CHANGED: duration 1.8s → 0.7s, delay 1.8s → 0.15s */
+  animation:hReveal 0.7s cubic-bezier(.76,0,.24,1) .15s both;
+}
+@keyframes hReveal{
+  from{clip-path:inset(0 100% 0 0);transform:scale(1.15)}
+  to{clip-path:inset(0 0 0 0);transform:scale(1.08)}
+}
+.hero-img-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(58,6,18,0) 50%,var(--maroon-deep) 100%),
+             linear-gradient(to top,rgba(58,6,18,.7) 0%,transparent 40%);
+}
+.hero-content{
+  background:var(--maroon-deep);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px 7% 80px 6%;position:relative;overflow:hidden;
+}
+.hero-content::before{
+  content:'';position:absolute;top:-30%;right:-20%;
+  width:400px;height:400px;
+  border:1px solid rgba(201,146,43,.08);border-radius:50%;
+  animation:ringPulse 6s ease-in-out infinite;
+}
+.hero-content::after{
+  content:'';position:absolute;top:-15%;right:-10%;
+  width:280px;height:280px;
+  border:1px solid rgba(201,146,43,.05);border-radius:50%;
+  animation:ringPulse 6s ease-in-out infinite .5s;
+}
+@keyframes ringPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+
+/* CHANGED: all hero content animation delays drastically reduced */
+.hero-kicker{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--f-ui);font-size:.58rem;letter-spacing:.55em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:28px;
+  opacity:0;animation:slideIn .6s cubic-bezier(.76,0,.24,1) .4s forwards;
+}
+.hero-kicker::before{content:'';width:32px;height:1px;background:var(--gold)}
+.hero-kicker::after{content:'';width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
+.hero-h1{
+  font-family:var(--f-display);
+  font-size:clamp(2.8rem,5.5vw,6rem);
+  color:var(--ivory);line-height:1.0;margin-bottom:20px;
+}
+.hero-h1 .line{overflow:hidden;display:block}
+.hero-h1 .line span{
+  display:block;transform:translateY(110%);
+  animation:lineUp .9s cubic-bezier(.76,0,.24,1) both;
+}
+/* CHANGED: 2s/2.15s/2.3s → .15s/.28s/.4s */
+.hero-h1 .line:nth-child(1) span{animation-delay:.15s}
+.hero-h1 .line:nth-child(2) span{animation-delay:.28s;color:var(--gold-light);font-style:italic}
+.hero-h1 .line:nth-child(3) span{animation-delay:.4s}
+@keyframes lineUp{to{transform:translateY(0)}}
+@keyframes slideIn{to{opacity:1;transform:none}}
+
+/* CHANGED: 2.5s → .55s */
+.hero-divider{
+  display:flex;align-items:center;gap:14px;margin:24px 0;
+  opacity:0;animation:slideIn .6s cubic-bezier(.76,0,.24,1) .55s forwards;
+}
+.hero-divider::before,.hero-divider::after{content:'';flex:1;height:1px;background:rgba(201,146,43,.25)}
+.hero-divider i{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);display:block}
+
+/* CHANGED: 2.6s → .65s */
+.hero-desc{
+  font-family:var(--f-serif);font-size:1.05rem;line-height:1.95;
+  color:rgba(250,245,236,.6);max-width:400px;margin-bottom:36px;
+  opacity:0;animation:slideIn .6s cubic-bezier(.76,0,.24,1) .65s forwards;
+}
+/* CHANGED: 2.8s → .75s */
+.hero-actions{
+  display:flex;gap:14px;flex-wrap:wrap;
+  opacity:0;animation:slideIn .6s cubic-bezier(.76,0,.24,1) .75s forwards;
+}
+.btn-gold{
+  background:var(--gold);color:var(--maroon-deep);
+  font-family:var(--f-ui);font-size:.65rem;letter-spacing:.28em;
+  text-transform:uppercase;font-weight:700;padding:15px 36px;
+  text-decoration:none;display:inline-block;
+  position:relative;overflow:hidden;transition:color .4s;border:2px solid var(--gold);
+}
+.btn-gold::before{
+  content:'';position:absolute;inset:0;background:var(--gold-light);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .45s cubic-bezier(.76,0,.24,1);
+}
+.btn-gold:hover::before{transform:scaleX(1)}
+.btn-gold span{position:relative;z-index:1}
+.btn-outline-gold{
+  border:2px solid rgba(201,146,43,.5);color:var(--gold);
+  font-family:var(--f-ui);font-size:.65rem;letter-spacing:.28em;
+  text-transform:uppercase;font-weight:600;padding:15px 36px;
+  text-decoration:none;display:inline-block;transition:all .4s;
+}
+.btn-outline-gold:hover{border-color:var(--gold);background:rgba(201,146,43,.08);color:var(--gold-light)}
+
+/* CHANGED: 3.2s → .85s, float 4.2s → 1.65s */
+.hero-badge{
+  position:absolute;bottom:36px;right:7%;
+  background:var(--gold);color:var(--maroon-deep);
+  padding:18px 22px;text-align:center;
+  box-shadow:0 16px 60px rgba(201,146,43,.35);
+  opacity:0;animation:badgeIn .8s .85s forwards, floatBadge 4s 1.65s ease-in-out infinite;
+}
+@keyframes badgeIn{to{opacity:1}}
+@keyframes floatBadge{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.badge-num{font-family:var(--f-display);font-size:2rem;line-height:1;display:block}
+.badge-txt{font-family:var(--f-ui);font-size:.45rem;letter-spacing:.28em;text-transform:uppercase;font-weight:700;margin-top:4px;display:block}
+
+/* CHANGED: 3.5s → .9s */
+.hero-scroll{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:slideIn .8s .9s forwards;
+}
+.hero-scroll-txt{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(250,245,236,.3)}
+.scroll-pipe{width:1px;height:52px;background:linear-gradient(to bottom,var(--gold),transparent);animation:pipeAnim 1.8s ease-in-out infinite}
+@keyframes pipeAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ─── MARQUEE ─── */
+.marquee-section{
+  background:var(--maroon);overflow:hidden;
+  border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);
+}
+.mq-track{
+  display:flex;width:max-content;padding:16px 0;
+  animation:mqRoll 35s linear infinite;
+}
+.mq-item{
+  font-family:var(--f-serif);font-size:1rem;font-style:italic;
+  color:var(--gold-pale);white-space:nowrap;padding:0 44px;
+  display:flex;align-items:center;gap:44px;
+}
+.mq-item::after{content:'';width:6px;height:6px;background:var(--gold);transform:rotate(45deg);display:block}
+@keyframes mqRoll{to{transform:translateX(-50%)}}
+
+/* ─── UTILS ─── */
+.container{max-width:1260px;margin:0 auto;padding:0 5%}
+.sec{padding:110px 0}
+.kicker{
+  display:flex;align-items:center;gap:14px;
+  font-family:var(--f-ui);font-size:.58rem;letter-spacing:.55em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:600;
+}
+.kicker::before{content:'';width:28px;height:1px;background:var(--gold)}
+.kicker::after{content:'';width:5px;height:5px;background:var(--gold);transform:rotate(45deg);display:block}
+.kicker-light{color:var(--gold-light)}
+.kicker-light::before{background:var(--gold-light)}
+.kicker-light::after{background:var(--gold-light)}
+.display-h{
+  font-family:var(--f-display);
+  font-size:clamp(2.2rem,4.5vw,4.5rem);line-height:1.05;
+}
+.display-h em{font-style:italic;color:var(--gold)}
+.serif-p{
+  font-family:var(--f-serif);font-size:1.06rem;line-height:1.95;
+  color:rgba(26,10,8,.6);
+}
+.serif-p-light{color:rgba(250,245,236,.58)}
+.ornament{
+  display:flex;align-items:center;gap:14px;
+  margin:22px 0;
+}
+.ornament::before,.ornament::after{content:'';flex:1;height:1px;background:rgba(201,146,43,.25)}
+.ornament i{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);display:block}
+
+/* ─── REVEAL ─── */
+[data-r]{opacity:0;transition:opacity .9s cubic-bezier(.25,.46,.45,.94),transform .9s cubic-bezier(.25,.46,.45,.94)}
+[data-r="up"]{transform:translateY(55px)}
+[data-r="left"]{transform:translateX(-55px)}
+[data-r="right"]{transform:translateX(55px)}
+[data-r="scale"]{transform:scale(.9)}
+[data-r].on{opacity:1;transform:none}
+.d1{transition-delay:.08s!important}.d2{transition-delay:.16s!important}
+.d3{transition-delay:.24s!important}.d4{transition-delay:.34s!important}
+.d5{transition-delay:.44s!important}.d6{transition-delay:.54s!important}
+
+/* ─── ABOUT ─── */
+.about{background:var(--maroon-deep);color:var(--ivory)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.about-imgs{position:relative;height:580px}
+.ab-img1{position:absolute;top:0;left:0;width:70%;height:75%;object-fit:cover;object-position:center top;display:block}
+.ab-img2{position:absolute;bottom:0;right:0;width:57%;height:52%;object-fit:cover;display:block;border:5px solid var(--maroon-deep)}
+.ab-badge{
+  position:absolute;top:38%;left:-20px;
+  background:var(--gold);color:var(--maroon-deep);
+  padding:22px 18px;text-align:center;
+  box-shadow:0 20px 60px rgba(201,146,43,.4);
+  animation:floatBadge 5s ease-in-out infinite;
+}
+.ab-badge-n{font-family:var(--f-display);font-size:2.5rem;line-height:1;display:block}
+.ab-badge-t{font-family:var(--f-ui);font-size:.42rem;letter-spacing:.28em;text-transform:uppercase;font-weight:700;margin-top:5px;display:block}
+.about-text .kicker{color:var(--gold-light)}
+.about-text .kicker::before{background:var(--gold-light)}
+.about-text .kicker::after{background:var(--gold-light)}
+.about-text .serif-p{color:rgba(250,245,236,.62)}
+.about-text .ornament::before,.about-text .ornament::after{background:rgba(201,146,43,.2)}
+.about-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid rgba(201,146,43,.15);margin-top:36px;
+}
+.astat{
+  padding:24px 16px;text-align:center;
+  border-right:1px solid rgba(201,146,43,.15);
+  position:relative;overflow:hidden;transition:background .4s;
+}
+.astat:last-child{border-right:none}
+.astat::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.76,0,.24,1);
+}
+.astat:hover::before{transform:scaleX(1)}
+.astat:hover{background:rgba(201,146,43,.06)}
+.astat-num{font-family:var(--f-display);font-size:2.3rem;color:var(--gold);display:block;line-height:1.1}
+.astat-lbl{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(250,245,236,.35);margin-top:6px;display:block}
+
+/* ─── SERVICES ─── */
+.services{background:var(--ivory)}
+.services-intro{text-align:center;max-width:660px;margin:0 auto 64px}
+.services-intro .serif-p{margin-top:18px}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(92,10,32,.08)}
+.srv{
+  background:var(--ivory);padding:50px 34px;
+  position:relative;overflow:hidden;transition:background .4s;
+}
+.srv::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;
+  transition:transform .55s cubic-bezier(.76,0,.24,1);
+}
+.srv:hover::after{transform:scaleX(1)}
+.srv:hover{background:var(--ivory-deep)}
+.srv-no{
+  font-family:var(--f-display);font-size:4.5rem;
+  color:rgba(201,146,43,.08);position:absolute;top:12px;right:18px;line-height:1;
+}
+.srv-icon-wrap{
+  width:56px;height:56px;border:1.5px solid rgba(92,10,32,.2);
+  display:flex;align-items:center;justify-content:center;margin-bottom:26px;
+  transition:all .4s;
+}
+.srv:hover .srv-icon-wrap{background:var(--maroon);border-color:var(--maroon)}
+.srv-icon-wrap svg{width:22px;height:22px;stroke:var(--maroon);fill:none;stroke-width:1.5;transition:stroke .4s}
+.srv:hover .srv-icon-wrap svg{stroke:var(--gold)}
+.srv h3{font-family:var(--f-display);font-size:1.5rem;color:var(--maroon);margin-bottom:12px}
+.srv p{font-family:var(--f-serif);font-size:.97rem;color:rgba(26,10,8,.55);line-height:1.85}
+.srv-link{
+  display:inline-flex;align-items:center;gap:8px;margin-top:22px;
+  font-family:var(--f-ui);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--maroon);font-weight:600;text-decoration:none;transition:gap .35s;
+}
+.srv-link::after{content:'→';font-size:.9rem}
+.srv:hover .srv-link{gap:14px;color:var(--gold)}
+
+/* ─── COLLECTIONS ─── */
+.collections{background:var(--maroon-deep);padding:110px 0}
+.col-header{text-align:center;margin-bottom:60px}
+.col-header .kicker{justify-content:center}
+.col-header .kicker::before,.col-header .kicker::after{background:var(--gold-light)}
+.col-header .display-h{color:var(--ivory)}
+.col-header .display-h em{color:var(--gold-light)}
+.col-header .serif-p{color:rgba(250,245,236,.55);max-width:560px;margin:18px auto 0}
+
+.col-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-auto-rows:320px;
+  gap:16px;
+}
+.col-card{
+  position:relative;overflow:hidden;
+  border:1px solid rgba(201,146,43,.12);
+  cursor:none;
+}
+.col-card.tall{grid-row:span 2}
+.col-card img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;display:block;
+  transition:transform .9s cubic-bezier(.25,.46,.45,.94),filter .6s;
+}
+.col-card:hover img{transform:scale(1.07);filter:brightness(.85)}
+.col-card-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(58,6,18,.92) 0%,rgba(58,6,18,.2) 45%,transparent 100%);
+  transition:background .5s;
+}
+.col-card:hover .col-card-ov{
+  background:linear-gradient(to top,rgba(58,6,18,.97) 0%,rgba(58,6,18,.4) 55%,rgba(58,6,18,.1) 100%);
+}
+.col-card-body{
+  position:absolute;bottom:0;left:0;right:0;padding:28px 26px;
+  transform:translateY(10px);opacity:.9;
+  transition:transform .5s cubic-bezier(.25,.46,.45,.94),opacity .5s;
+}
+.col-card:hover .col-card-body{transform:translateY(0);opacity:1}
+.col-tag{
+  font-family:var(--f-ui);font-size:.5rem;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--gold);font-weight:600;
+  display:flex;align-items:center;gap:8px;margin-bottom:8px;
+}
+.col-tag::before{content:'';width:18px;height:1px;background:var(--gold)}
+.col-name{
+  font-family:var(--f-display);font-size:clamp(1.2rem,2.5vw,1.7rem);
+  color:var(--ivory);line-height:1.1;margin-bottom:8px;
+}
+.col-desc{
+  font-family:var(--f-serif);font-size:.88rem;color:rgba(250,245,236,.58);
+  line-height:1.75;margin-bottom:16px;
+  max-height:0;overflow:hidden;
+  transition:max-height .5s cubic-bezier(.25,.46,.45,.94);
+}
+.col-card:hover .col-desc{max-height:80px}
+.col-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--f-ui);font-size:.58rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);font-weight:600;
+  text-decoration:none;
+  transform:translateY(6px);opacity:0;
+  transition:all .4s cubic-bezier(.25,.46,.45,.94);
+}
+.col-card:hover .col-cta{opacity:1;transform:translateY(0)}
+.col-cta::after{content:'→';font-size:.9rem}
+.col-badge-chip{
+  position:absolute;top:18px;right:18px;
+  background:var(--gold);color:var(--maroon-deep);
+  font-family:var(--f-ui);font-size:.48rem;letter-spacing:.2em;
+  text-transform:uppercase;font-weight:700;padding:5px 12px;
+}
+
+.col-cta-section{text-align:center;margin-top:54px}
+
+/* ─── WHY US ─── */
+.why{background:var(--ivory)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.why-img-wrap{position:relative}
+.why-img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;display:block}
+.why-img-border{
+  position:absolute;top:16px;left:16px;right:-16px;bottom:-16px;
+  border:2px solid var(--gold);z-index:-1;
+}
+.why-quote-card{
+  position:absolute;bottom:-24px;right:-24px;
+  background:var(--maroon);color:var(--ivory);
+  padding:28px 26px;max-width:240px;
+  box-shadow:0 24px 80px rgba(92,10,32,.35);
+}
+.why-quote-txt{font-family:var(--f-serif);font-style:italic;font-size:1rem;line-height:1.65;color:var(--ivory-deep)}
+.why-quote-auth{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-top:12px}
+.why-features{margin-top:36px;display:flex;flex-direction:column;gap:0}
+.why-feat{
+  display:flex;gap:20px;align-items:flex-start;
+  padding:24px 0;border-bottom:1px solid rgba(92,10,32,.08);
+  transition:all .35s;
+}
+.why-feat:hover{padding-left:6px}
+.why-feat:last-child{border-bottom:none}
+.wf-num{
+  font-family:var(--f-display);font-size:1.4rem;color:var(--maroon);
+  min-width:36px;opacity:.25;line-height:1;
+}
+.wf-h{font-family:var(--f-display);font-size:1.25rem;color:var(--maroon);margin-bottom:6px}
+.wf-p{font-family:var(--f-serif);font-size:.95rem;color:rgba(26,10,8,.5);line-height:1.8}
+
+/* ─── PROCESS ─── */
+.process{background:var(--maroon-deep);color:var(--ivory)}
+.process-h{text-align:center;margin-bottom:64px}
+.process-h .kicker{justify-content:center}
+.process-steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  position:relative;gap:0;
+}
+.process-steps::before{
+  content:'';position:absolute;top:36px;left:12.5%;right:12.5%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);z-index:0;
+}
+.pstep{
+  text-align:center;padding:0 20px 50px;position:relative;z-index:1;
+}
+.pstep-circle{
+  width:70px;height:70px;border-radius:50%;
+  border:2px solid var(--gold);background:var(--maroon-deep);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 28px;
+  font-family:var(--f-ui);font-size:.65rem;font-weight:700;
+  letter-spacing:.1em;color:var(--gold);
+  box-shadow:0 0 0 6px rgba(201,146,43,.08);
+  transition:all .4s cubic-bezier(.34,1.56,.64,1);
+  position:relative;
+}
+.pstep:hover .pstep-circle{
+  background:var(--gold);color:var(--maroon-deep);
+  box-shadow:0 0 0 10px rgba(201,146,43,.15),0 12px 40px rgba(201,146,43,.3);
+  transform:scale(1.1);
+}
+.pstep-h{font-family:var(--f-display);font-size:1.4rem;color:var(--ivory);margin-bottom:12px}
+.pstep-p{font-family:var(--f-serif);font-size:.95rem;color:rgba(250,245,236,.5);line-height:1.8}
+
+/* ─── STATS STRIP ─── */
+.stats-strip{
+  background:var(--gold);padding:56px 5%;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--gold);
+}
+.ss-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(92,10,32,.15);max-width:1260px;margin:0 auto;width:100%}
+.ss-item{
+  background:var(--gold);padding:36px 20px;text-align:center;
+  position:relative;transition:background .4s;
+}
+.ss-item:hover{background:var(--gold-light)}
+.ss-num{font-family:var(--f-display);font-size:clamp(2.5rem,4.5vw,4rem);color:var(--maroon-deep);display:block;line-height:1}
+.ss-lbl{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(58,6,18,.65);margin-top:8px;display:block;font-weight:600}
+
+/* ─── FOUNDER MESSAGE ─── */
+.founder{background:var(--ivory-deep);padding:110px 0;position:relative;overflow:hidden}
+.founder::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:600px;height:600px;
+  border:1px solid rgba(201,146,43,.07);border-radius:50%;
+  pointer-events:none;
+}
+.founder::after{
+  content:'';position:absolute;bottom:-150px;left:-100px;
+  width:400px;height:400px;
+  border:1px solid rgba(201,146,43,.06);border-radius:50%;
+  pointer-events:none;
+}
+.founder-inner{
+  display:grid;grid-template-columns:1fr 1.4fr;
+  gap:80px;align-items:center;position:relative;z-index:1;
+}
+.founder-photo-wrap{position:relative}
+.founder-photo-frame{
+  position:relative;
+  padding:18px 18px 18px 18px;
+}
+.founder-photo-frame::before{
+  content:'';position:absolute;top:0;left:0;right:26px;bottom:26px;
+  border:2px solid var(--gold);z-index:0;
+}
+.founder-photo-frame::after{
+  content:'';position:absolute;top:26px;left:26px;right:0;bottom:0;
+  border:2px solid rgba(201,146,43,.25);z-index:0;
+}
+.founder-photo{
+  width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;
+  display:block;position:relative;z-index:1;
+  filter:sepia(.08) contrast(1.04);
+}
+.founder-gold-tag{
+  position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--maroon-deep);
+  font-family:var(--f-ui);font-size:.52rem;letter-spacing:.32em;
+  text-transform:uppercase;font-weight:700;padding:10px 22px;
+  white-space:nowrap;z-index:2;
+  box-shadow:0 10px 40px rgba(201,146,43,.4);
+}
+.founder-text{padding-top:10px}
+.founder-ornament{
+  display:flex;align-items:center;gap:14px;margin-bottom:28px;
+}
+.founder-ornament span{width:40px;height:1px;background:var(--gold)}
+.founder-ornament i{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);display:block}
+.founder-quote-mark{
+  font-family:var(--f-display);font-size:6rem;color:rgba(201,146,43,.15);
+  line-height:.6;margin-bottom:8px;display:block;
+}
+.founder-message{
+  font-family:var(--f-serif);font-size:1.18rem;line-height:2.0;
+  color:var(--ink);font-style:italic;
+  border-left:3px solid var(--gold);
+  padding-left:26px;margin-bottom:32px;
+}
+.founder-message strong{font-style:normal;color:var(--maroon);font-weight:600}
+.founder-sign-wrap{display:flex;align-items:center;gap:22px;margin-top:24px}
+.founder-sign-line{width:50px;height:1px;background:rgba(201,146,43,.4)}
+.founder-sign-info{}
+.founder-name{font-family:var(--f-display);font-size:1.4rem;color:var(--maroon);line-height:1.1}
+.founder-role{font-family:var(--f-ui);font-size:.52rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-top:5px;display:block}
+.founder-sub-role{font-family:var(--f-serif);font-size:.88rem;color:rgba(26,10,8,.45);font-style:italic;margin-top:3px;display:block}
+
+/* ─── LOOKBOOK ─── */
+.lookbook{background:var(--ivory);padding:110px 0}
+.lb-header{margin-bottom:54px}
+.lb-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-template-rows:240px 240px 240px;
+  gap:8px;
+}
+.lb-item{overflow:hidden;position:relative}
+.lb-item img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .9s cubic-bezier(.25,.46,.45,.94)}
+.lb-item:hover img{transform:scale(1.07)}
+.lb-item::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:rgba(92,10,32,0);transition:background .4s;
+}
+.lb-item:hover::before{background:rgba(92,10,32,.3)}
+.lb-item .lb-label{
+  position:absolute;bottom:16px;left:16px;z-index:2;
+  font-family:var(--f-ui);font-size:.5rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--ivory);font-weight:600;
+  opacity:0;transform:translateY(8px);transition:all .4s;
+}
+.lb-item:hover .lb-label{opacity:1;transform:translateY(0)}
+.lb-item .lb-bar{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.76,0,.24,1);
+}
+.lb-item:hover .lb-bar{transform:scaleX(1)}
+.li1{grid-column:1/5;grid-row:1/3}
+.li2{grid-column:5/9;grid-row:1/2}
+.li3{grid-column:9/13;grid-row:1/3}
+.li4{grid-column:5/7;grid-row:2/3}
+.li5{grid-column:7/9;grid-row:2/3}
+.li6{grid-column:1/5;grid-row:3/4}
+.li7{grid-column:5/9;grid-row:3/4}
+.li8{grid-column:9/13;grid-row:3/4}
+
+/* ─── TESTIMONIALS ─── */
+.testimonials{background:var(--maroon-deep);padding:110px 0}
+.test-h{text-align:center;margin-bottom:60px}
+.test-h .kicker{justify-content:center}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.test-card{
+  background:rgba(250,245,236,.03);
+  border:1px solid rgba(201,146,43,.12);
+  padding:44px 34px;position:relative;
+  transition:all .4s;
+}
+.test-card:hover{
+  background:rgba(201,146,43,.06);
+  border-color:rgba(201,146,43,.3);
+  transform:translateY(-5px);
+  box-shadow:0 24px 80px rgba(58,6,18,.4);
+}
+.test-top-ornament{width:40px;height:1px;background:var(--gold);margin-bottom:22px}
+.test-stars{display:flex;gap:4px;margin-bottom:20px}
+.test-star{
+  width:13px;height:13px;background:var(--gold);
+  clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+}
+.test-txt{
+  font-family:var(--f-serif);font-size:1.05rem;font-style:italic;
+  line-height:1.88;color:rgba(250,245,236,.72);margin-bottom:28px;
+}
+.test-author{display:flex;align-items:center;gap:14px}
+.test-av{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
+.test-name{font-family:var(--f-ui);font-size:.73rem;font-weight:600;color:var(--ivory);letter-spacing:.05em}
+.test-role{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,245,236,.35);margin-top:3px}
+.test-quote-bg{
+  position:absolute;top:16px;right:22px;
+  font-family:var(--f-display);font-size:5rem;color:rgba(201,146,43,.07);line-height:.8;
+}
+
+/* ─── CONTACT ─── */
+.contact{background:var(--ivory)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:70px;margin-top:60px;align-items:start}
+.c-info .serif-p{margin:18px 0 32px}
+.c-block{display:flex;gap:18px;margin-bottom:28px;align-items:flex-start}
+.c-icon{
+  width:48px;height:48px;border:1.5px solid rgba(201,146,43,.3);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:all .4s;
+}
+.c-block:hover .c-icon{background:var(--maroon);border-color:var(--maroon)}
+.c-icon svg{width:18px;height:18px;stroke:var(--maroon);fill:none;stroke-width:1.5;transition:stroke .4s}
+.c-block:hover .c-icon svg{stroke:var(--gold)}
+.c-lbl{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;font-weight:600}
+.c-val{font-family:var(--f-serif);font-size:1rem;color:rgba(26,10,8,.65);line-height:1.65}
+.c-val a{color:var(--maroon);text-decoration:none;font-weight:600}
+.c-val a:hover{color:var(--gold)}
+.whatsapp-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--maroon);color:var(--ivory);
+  font-family:var(--f-ui);font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:600;padding:14px 28px;text-decoration:none;margin-top:8px;
+  transition:all .4s;border:2px solid var(--maroon);
+}
+.whatsapp-btn:hover{background:transparent;color:var(--maroon)}
+.map-box{
+  margin-top:28px;height:190px;
+  background:var(--ivory-deep);
+  border:1.5px solid rgba(201,146,43,.25);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.map-box::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(92,10,32,.04) 0%,transparent 60%);
+}
+.map-inner{text-align:center;position:relative;z-index:1}
+.map-pin{font-size:1.5rem;display:block;margin-bottom:8px}
+.map-txt{font-family:var(--f-display);font-size:1rem;color:var(--maroon);margin-bottom:4px}
+.map-sub{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(26,10,8,.35)}
+
+/* ─── FORM ─── */
+.c-form{
+  background:var(--maroon-deep);padding:52px 44px;
+  border-top:3px solid var(--gold);
+}
+.form-title{font-family:var(--f-display);font-size:2.2rem;color:var(--ivory);margin-bottom:4px}
+.form-sub{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:36px;display:block}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-family:var(--f-ui);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:9px;font-weight:600}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:rgba(250,245,236,.04);
+  border:1px solid rgba(201,146,43,.18);color:var(--ivory);
+  padding:13px 17px;font-family:var(--f-serif);font-size:1rem;
+  outline:none;transition:border-color .35s;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg select option{background:var(--maroon-deep)}
+.fg textarea{height:110px;resize:vertical}
+.f-btn{
+  width:100%;background:var(--gold);color:var(--maroon-deep);
+  border:none;padding:17px;font-family:var(--f-ui);
+  font-size:.65rem;letter-spacing:.32em;text-transform:uppercase;
+  font-weight:700;cursor:none;position:relative;overflow:hidden;
+  transition:color .4s;
+}
+.f-btn::before{
+  content:'';position:absolute;inset:0;background:var(--gold-light);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.76,0,.24,1);
+}
+.f-btn:hover::before{transform:scaleX(1)}
+.f-btn span{position:relative;z-index:1}
+
+/* ─── FOOTER ─── */
+footer{background:var(--maroon-deep);border-top:2px solid var(--gold)}
+.footer-ornament{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  padding:28px 0;border-bottom:1px solid rgba(201,146,43,.1);
+}
+.footer-ornament span{width:60px;height:1px;background:rgba(201,146,43,.3)}
+.footer-ornament i{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);display:block}
+.footer-ornament .fo-txt{font-family:var(--f-display);font-size:1rem;color:var(--gold);letter-spacing:.1em}
+.footer-main{
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1.3fr;
+  gap:56px;padding:64px 5%;
+}
+.foot-brand{font-family:var(--f-display);font-size:1.9rem;color:var(--ivory);line-height:1}
+.foot-brand b{color:var(--gold)}
+.foot-tagline{font-family:var(--f-ui);font-size:.48rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(201,146,43,.5);margin-top:5px;display:block;margin-bottom:18px}
+.foot-desc{font-family:var(--f-serif);font-size:.95rem;color:rgba(250,245,236,.38);line-height:1.9}
+.foot-col-h{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:700}
+.foot-links{list-style:none}
+.foot-links li{margin-bottom:11px}
+.foot-links a{font-family:var(--f-serif);font-size:.97rem;color:rgba(250,245,236,.4);text-decoration:none;transition:color .3s}
+.foot-links a:hover{color:var(--gold)}
+.foot-addr{font-family:var(--f-serif);font-size:.95rem;color:rgba(250,245,236,.45);line-height:2;margin-bottom:10px}
+.foot-contact a{display:block;font-family:var(--f-ui);font-size:.75rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:.05em;margin-bottom:5px}
+.foot-social{display:flex;gap:10px;margin-top:20px}
+.fsoc{
+  width:38px;height:38px;border:1px solid rgba(201,146,43,.18);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--f-ui);font-size:.7rem;font-weight:700;
+  color:rgba(250,245,236,.35);text-decoration:none;transition:all .35s;
+}
+.fsoc:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,146,43,.08)}
+.footer-bottom{
+  border-top:1px solid rgba(201,146,43,.08);
+  padding:22px 5%;display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.foot-copy{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.12em;color:rgba(250,245,236,.2)}
+.foot-legal{display:flex;gap:20px;flex-wrap:wrap}
+.foot-legal a{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.15em;color:rgba(250,245,236,.2);text-decoration:none;transition:color .3s}
+.foot-legal a:hover{color:var(--gold)}
+
+/* ─── FLOATING CTA ─── */
+#float{
+  position:fixed;bottom:28px;right:28px;z-index:400;
+  background:var(--maroon);color:var(--gold);
+  font-family:var(--f-ui);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;
+  padding:13px 26px;text-decoration:none;
+  border:2px solid var(--gold);
+  box-shadow:0 10px 48px rgba(92,10,32,.45);
+  transform:translateY(90px);opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1);
+  display:flex;align-items:center;gap:8px;
+}
+#float.show{transform:translateY(0);opacity:1}
+#float::after{content:'→';font-size:1rem;transition:transform .3s}
+#float:hover::after{transform:translateX(4px)}
+
+/* ─── IMAGE FALLBACK ─── */
+img.img-error{
+  background:linear-gradient(135deg,var(--maroon-deep),var(--maroon-mid));
+  min-height:200px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1100px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-visual{height:70vw;min-height:400px;order:-1}
+  .hero-img{
+    animation:none!important;clip-path:none!important;
+    transform:none!important;
+    object-position:center 20%;
+  }
+  .hero-img-ov{background:linear-gradient(to bottom,rgba(58,6,18,.2),rgba(58,6,18,.65) 100%)}
+  .hero-content{padding:50px 5% 70px}
+  .hero-h1 .line span{animation:none!important;transform:none!important}
+  .hero-kicker,.hero-desc,.hero-actions,.hero-divider{animation:none!important;opacity:1!important}
+  .hero-badge{position:static;margin-top:28px;display:inline-block;animation:none;opacity:1}
+  .hero-scroll{display:none}
+  .about-grid,.why-grid,.contact-grid{grid-template-columns:1fr;gap:50px}
+  .about-imgs{height:380px}
+  .ab-badge{left:-8px}
+  .why-img-wrap{max-width:480px}
+  .footer-main{grid-template-columns:1fr 1fr;gap:40px}
+  .srv-grid{grid-template-columns:1fr 1fr}
+  .test-grid{grid-template-columns:1fr 1fr}
+  .process-steps{grid-template-columns:1fr 1fr}
+  .process-steps::before{display:none}
+  .ss-inner{grid-template-columns:1fr 1fr}
+  .col-grid{grid-template-columns:1fr 1fr;grid-auto-rows:280px}
+  .col-card.tall{grid-row:span 2}
+  .nav-links{display:none}
+  .nav-book{display:none}
+  .burger{display:flex}
+  .why-quote-card{right:-8px;bottom:-8px;max-width:200px}
+  .why-img-border{display:none}
+  .founder-inner{grid-template-columns:1fr;gap:50px}
+  .founder-photo-wrap{max-width:360px;margin:0 auto}
+}
+@media(max-width:768px){
+  .sec{padding:80px 0}
+  .collections{padding:80px 0}
+  .lookbook,.testimonials,.process,.founder{padding:80px 0}
+  .col-grid{grid-template-columns:1fr;grid-auto-rows:260px}
+  .col-card.tall{grid-row:span 1}
+  .col-card-body{opacity:1;transform:none}
+  .col-desc{max-height:60px}
+  .col-cta{opacity:1;transform:none}
+  .srv-grid{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr 1fr}
+  .ss-inner{grid-template-columns:1fr 1fr}
+  .lb-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto;
+  }
+  .li1,.li2,.li3,.li4,.li5,.li6,.li7,.li8{grid-column:auto;grid-row:auto;height:200px}
+  .footer-main{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center;align-items:center}
+  .f2{grid-template-columns:1fr}
+  .c-form{padding:36px 22px}
+  .about-stats{grid-template-columns:1fr}
+  .astat{border-right:none;border-bottom:1px solid rgba(201,146,43,.1)}
+  .astat:last-child{border-bottom:none}
+  #float{bottom:16px;right:16px;font-size:.52rem;padding:11px 18px}
+  .why-quote-card{position:static;margin-top:16px;max-width:100%}
+  .founder-message{font-size:1.05rem}
+}
+@media(max-width:480px){
+  .ss-inner{grid-template-columns:1fr 1fr}
+  .process-steps{grid-template-columns:1fr}
+  .hero-h1{font-size:clamp(2.4rem,10vw,3.5rem)}
+  .col-grid{grid-auto-rows:240px}
+  .lb-grid{grid-template-columns:1fr}
+  .li1,.li2,.li3,.li4,.li5,.li6,.li7,.li8{height:240px}
+  .about-imgs{height:320px}
+  .hero-actions{flex-direction:column}
+  .btn-gold,.btn-outline-gold{text-align:center;display:block}
+  .hero-visual{height:85vw;min-height:320px}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cdot"></div>
+<div id="cring"></div>
+
+<!-- PROGRESS -->
+<div id="pgbar"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div id="lc1"></div>
+  <div id="lc2"></div>
+  <div class="ld-ornament">
+    <div class="ld-line"></div>
+    <div class="ld-diamond"></div>
+    <div class="ld-line"></div>
+  </div>
+  <div class="ld-name">Bramhari</div>
+  <div class="ld-sub">Fashion Designer &amp; Tailoring</div>
+  <div class="ld-bar"></div>
+</div>
+
+<!-- FLOAT CTA -->
+<a href="#contact" id="float">Book Appointment</a>
+
+<!-- MOBILE MENU -->
+<div id="mmenu">
+  <div class="mm-ornament"><span></span><i></i><span></span></div>
+  <a href="#about">About Us</a>
+  <a href="#services">Services</a>
+  <a href="#collections">Collections</a>
+  <a href="#lookbook">Lookbook</a>
+  <a href="#founder">Our Story</a>
+  <a href="#contact">Contact</a>
+  <a href="tel:7676440681" class="mm-cta">Call Now</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo-wrap" style="text-decoration:none;">
+    <span class="nav-logo">BRAMH<b>A</b>RI</span>
+    <span class="nav-logo-sub">Fashion Designer &amp; Tailoring · Karkala</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#lookbook">Lookbook</a></li>
+    <li><a href="#founder">Our Story</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-book"><span>Book Consultation</span></a>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============================================================ HERO -->
+<div class="hero" id="home">
+  <div class="hero-visual">
+    <img
+      src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1400&q=85"
+      alt="Bramhari Fashion"
+      class="hero-img"
+      onerror="this.src='https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=1400&q=85'"
+    >
+    <div class="hero-img-ov"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-kicker">Est. 2010 &nbsp; Karkala, Karnataka</div>
+    <h1 class="hero-h1">
+      <span class="line"><span>Dressed</span></span>
+      <span class="line"><span>in Tradition</span></span>
+      <span class="line"><span>Stitched in Style</span></span>
+    </h1>
+    <div class="hero-divider"><i></i></div>
+    <p class="hero-desc">From the grandeur of a bridal lehenga to the sharpness of a tailored suit — Bramhari creates garments that carry your identity with grace, pride, and unmatched craftsmanship.</p>
+    <div class="hero-actions">
+      <a href="#collections" class="btn-gold"><span>View Collections</span></a>
+      <a href="#contact" class="btn-outline-gold">Book a Fitting</a>
+    </div>
+    <div class="hero-badge">
+      <span class="badge-num"><span class="cnt" data-t="14">0</span>+</span>
+      <span class="badge-txt">Years of Excellence</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="hero-scroll-txt">Scroll</span>
+    <div class="scroll-pipe"></div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="mq-track">
+    <div class="mq-item">Bridal Wear</div>
+    <div class="mq-item">Bespoke Tailoring</div>
+    <div class="mq-item">Lehenga &amp; Saree</div>
+    <div class="mq-item">Suits &amp; Sherwanis</div>
+    <div class="mq-item">Embroidery Work</div>
+    <div class="mq-item">Logo Printing</div>
+    <div class="mq-item">Dress Designing</div>
+    <div class="mq-item">Salwar Kameez</div>
+    <div class="mq-item">Alteration &amp; Fitting</div>
+    <div class="mq-item">Designer Blouses</div>
+    <div class="mq-item">Kurtas &amp; Churidars</div>
+    <div class="mq-item">Bridal Wear</div>
+    <div class="mq-item">Bespoke Tailoring</div>
+    <div class="mq-item">Lehenga &amp; Saree</div>
+    <div class="mq-item">Suits &amp; Sherwanis</div>
+    <div class="mq-item">Embroidery Work</div>
+    <div class="mq-item">Logo Printing</div>
+    <div class="mq-item">Dress Designing</div>
+    <div class="mq-item">Salwar Kameez</div>
+    <div class="mq-item">Alteration &amp; Fitting</div>
+    <div class="mq-item">Designer Blouses</div>
+    <div class="mq-item">Kurtas &amp; Churidars</div>
+  </div>
+</div>
+
+<!-- ============================================================ ABOUT -->
+<section class="about sec" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-imgs" data-r="left">
+        <img
+          src="/static/images/sharon/banner.png"
+          alt="Bramhari Atelier"
+          class="ab-img1"
+          onerror="this.style.background='linear-gradient(135deg,#5C0A20,#7A1030)';this.src=''"
+        >
+        <img
+          src="/static/images/sharon/banner2.png"
+          alt="Fabric Detail"
+          class="ab-img2"
+          onerror="this.style.background='linear-gradient(135deg,#C9922B,#3A0612)';this.src=''"
+        >
+        <div class="ab-badge">
+          <span class="ab-badge-n"><span class="cnt" data-t="14">0</span>+</span>
+          <span class="ab-badge-t">Years of Craft</span>
+        </div>
+      </div>
+      <div class="about-text" data-r="right">
+        <div class="kicker kicker-light">Our Story</div>
+        <h2 class="display-h" style="color:var(--ivory)">Where Every Stitch<br>Tells a <em>Story</em></h2>
+        <div class="ornament"><i></i></div>
+        <p class="serif-p serif-p-light">Bramhari Fashion Designer &amp; Tailoring has been the most trusted name in Karkala and the surrounding Udupi district for over 14 years. Founded with a deep passion for Indian textiles and impeccable craftsmanship, we have dressed brides, grooms, families, and professionals for their most important occasions.</p>
+        <p class="serif-p serif-p-light" style="margin-top:14px">Located in the heart of Karkala at Fortune Lotus, our studio is a place where your vision meets our expertise. Whether you walk in with a reference image or just a feeling, we craft garments that feel like they were always meant for you.</p>
+        <div class="about-stats">
+          <div class="astat">
+            <span class="astat-num"><span class="cnt" data-t="1800">0</span>+</span>
+            <span class="astat-lbl">Happy Clients</span>
+          </div>
+          <div class="astat">
+            <span class="astat-num"><span class="cnt" data-t="250">0</span>+</span>
+            <span class="astat-lbl">Bridal Orders</span>
+          </div>
+          <div class="astat">
+            <span class="astat-num"><span class="cnt" data-t="14">0</span>+</span>
+            <span class="astat-lbl">Years in Karkala</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SERVICES -->
+<section class="services sec" id="services">
+  <div class="container">
+    <div class="services-intro" data-r="up">
+      <div class="kicker">What We Offer</div>
+      <h2 class="display-h">Crafted for <em>Every Occasion</em></h2>
+      <p class="serif-p">From your wedding day to everyday elegance, Bramhari offers a complete range of fashion design and tailoring services — each delivered with patience, precision, and pride.</p>
+    </div>
+    <div class="srv-grid">
+
+      <div class="srv" data-r="up">
+        <div class="srv-no">01</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Bridal Wear</h3>
+        <p>Lehengas, bridal sarees, anarkalis, and gowns stitched with the love and detail your wedding day deserves. We make brides feel like royalty — because they are.</p>
+        <a href="#contact" class="srv-link">Enquire Now</a>
+      </div>
+
+      <div class="srv" data-r="up">
+        <div class="srv-no">02</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3>Custom Tailoring</h3>
+        <p>Perfectly fitted salwar kameez, churidars, kurtis, and blouses, stitched to your exact measurements. No two bodies are the same — and neither are our cuts.</p>
+        <a href="#contact" class="srv-link">Enquire Now</a>
+      </div>
+
+      <div class="srv" data-r="up">
+        <div class="srv-no">03</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Designer Blouses</h3>
+        <p>Exquisite saree blouses with mirror work, embroidery, and unique back designs. The perfect blouse can transform a saree from beautiful to breathtaking.</p>
+        <a href="#contact" class="srv-link">Enquire Now</a>
+      </div>
+
+      <div class="srv" data-r="up">
+        <div class="srv-no">04</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 3c0 0-1 2-1 5s1 5 1 5v8"/><path d="M9 8h6"/><circle cx="12" cy="21" r="1"/><path d="M15 6c1-1 2-2 2-3"/><path d="M9 6c-1-1-2-2-2-3"/></svg>
+        </div>
+        <h3>Embroidery Work</h3>
+        <p>Intricate hand and machine embroidery on any fabric — zari, zardosi, thread work, mirror work, and stone setting. We bring patterns to life with every needle and thread, adding richness and tradition to your garments.</p>
+        <a href="#contact" class="srv-link">Enquire Now</a>
+      </div>
+
+      <div class="srv" data-r="up">
+        <div class="srv-no">05</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="8" cy="10" r="2"/><path d="M14 8l2 2-4 4"/></svg>
+        </div>
+        <h3>Logo Printing &amp; Branding</h3>
+        <p>Custom logo printing and embroidery on uniforms, corporate shirts, sports jerseys, and institutional clothing. Make your team look sharp and unified — with your brand stitched in permanently.</p>
+        <a href="#contact" class="srv-link">Enquire Now</a>
+      </div>
+
+      <div class="srv" data-r="up">
+        <div class="srv-no">06</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 2s-2 2-4 4l-2 6h12l-2-6c-2-2-4-4-4-4z"/><path d="M6 12v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-8"/><path d="M9 7l-1 5M15 7l1 5"/></svg>
+        </div>
+        <h3>Dress Designing</h3>
+        <p>From concept sketches to finished garment — our designer works with you to create completely original outfits for special events, parties, and functions. Bring your dream outfit to life with a custom design that is uniquely yours.</p>
+        <a href="#contact" class="srv-link">Enquire Now</a>
+      </div>
+
+      <div class="srv" data-r="up">
+        <div class="srv-no">07</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+        </div>
+        <h3>Men's Ethnic Wear</h3>
+        <p>Kurta-pyjama sets, sherwanis, and Nehru jackets crafted in premium fabrics. Tailored to look sharp and move effortlessly — from Ganesh Chaturthi to wedding baraats.</p>
+        <a href="#contact" class="srv-link">Enquire Now</a>
+      </div>
+
+      <div class="srv" data-r="up">
+        <div class="srv-no">08</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <h3>Alteration &amp; Repair</h3>
+        <p>Need a perfect fit for a garment you already own? Or restoring a treasured heirloom saree? Our skilled hands breathe new life into old fabric with care and precision.</p>
+        <a href="#contact" class="srv-link">Enquire Now</a>
+      </div>
+
+      <div class="srv" data-r="up">
+        <div class="srv-no">09</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>School &amp; Uniform Stitching</h3>
+        <p>Durable, neat, and comfortable school uniforms and institutional clothing stitched in bulk or individually, trusted by families across Karkala for years.</p>
+        <a href="#contact" class="srv-link">Enquire Now</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ COLLECTIONS -->
+<section class="collections" id="collections">
+  <div class="container">
+    <div class="col-header" data-r="up">
+      <div class="kicker kicker-light">Our Work</div>
+      <h2 class="display-h">Explore Our<br><em>Collections</em></h2>
+      <p class="serif-p">Every piece in our studio is a labour of love. Browse our signature styles — from bridal grandeur to everyday elegance — and imagine yourself in them.</p>
+    </div>
+
+    <div class="col-grid">
+      <div class="col-card tall" data-r="up">
+        <img src="/static/images/sharon/bridal.jpg" alt="Bridal Lehenga" onerror="this.style.background='linear-gradient(135deg,#5C0A20,#7A1030)';this.alt='Bridal Collection'">
+        <div class="col-card-ov"></div>
+        <div class="col-badge-chip">Bestseller</div>
+        <div class="col-card-body">
+          <div class="col-tag">Bridal Collection</div>
+          <div class="col-name">Royal Bridal Lehenga</div>
+          <div class="col-desc">Hand-embroidered lehengas with zari and stone work — crafted for the bride who deserves nothing less than extraordinary.</div>
+          <a href="#contact" class="col-cta">Book a Fitting</a>
+        </div>
+      </div>
+      <div class="col-card" data-r="up">
+        <img src="/static/images/sharon/salwar.jpg" alt="Salwar Suit" onerror="this.style.background='linear-gradient(135deg,#3A0612,#5C0A20)';this.alt='Salwar Suit'">
+        <div class="col-card-ov"></div>
+        <div class="col-card-body">
+          <div class="col-tag">Festive Wear</div>
+          <div class="col-name">Designer Salwar Suit</div>
+          <div class="col-desc">Premium cotton and silk salwar suits stitched to your exact fit, perfect for festivals and family celebrations.</div>
+          <a href="#contact" class="col-cta">Enquire Now</a>
+        </div>
+      </div>
+      <div class="col-card" data-r="up">
+        <img src="/static/images/sharon/kurti.jpg" alt="Kurti" onerror="this.style.background='linear-gradient(135deg,#C9922B,#3A0612)';this.alt='Kurti'">
+        <div class="col-card-ov"></div>
+        <div class="col-badge-chip">Popular</div>
+        <div class="col-card-body">
+          <div class="col-tag">Everyday Wear</div>
+          <div class="col-name">Silk Kurti with Embroidery</div>
+          <div class="col-desc">Flowy, vibrant kurtis crafted in cotton, silk, and georgette — ideal for daily grace and casual occasions.</div>
+          <a href="#contact" class="col-cta">Enquire Now</a>
+        </div>
+      </div>
+
+      <div class="col-card" data-r="up">
+        <img src="/static/images/sharon/anrkali.png" alt="Anarkali" onerror="this.style.background='linear-gradient(135deg,#5C0A20,#C9922B)';this.alt='Anarkali'">
+        <div class="col-card-ov"></div>
+        <div class="col-card-body">
+          <div class="col-tag">Party Wear</div>
+          <div class="col-name">Designer Anarkali Suit</div>
+          <div class="col-desc">Floor-sweeping anarkalis with intricate thread work and breathable fabric — made to turn heads at every event.</div>
+          <a href="#contact" class="col-cta">Enquire Now</a>
+        </div>
+      </div>
+      <div class="col-card tall" data-r="up">
+        <img src="/static/images/sharon/blouse.png" alt="Saree Blouse" onerror="this.style.background='linear-gradient(135deg,#3A0612,#7A1030)';this.alt='Saree Blouse'">
+        <div class="col-card-ov"></div>
+        <div class="col-badge-chip">New</div>
+        <div class="col-card-body">
+          <div class="col-tag">Blouse Specialist</div>
+          <div class="col-name">Embroidered Saree Blouses</div>
+          <div class="col-desc">Mirror work, lace, cut-work, and embroidery — we create blouses that become the centrepiece of your entire look.</div>
+          <a href="#contact" class="col-cta">Book a Design Session</a>
+        </div>
+      </div>
+      <div class="col-card" data-r="up">
+        <img src="https://images.unsplash.com/photo-1614676471928-2ed0ad1061a4?w=700&q=85" alt="Mens Wear" onerror="this.style.background='linear-gradient(135deg,#5C0A20,#3A0612)';this.alt='Mens Wear'">
+        <div class="col-card-ov"></div>
+        <div class="col-card-body">
+          <div class="col-tag">Men's Wear</div>
+          <div class="col-name">Sherwani &amp; Kurta Sets</div>
+          <div class="col-desc">Wedding sherwanis and festival kurta-pyjamas tailored to absolute perfection for the modern Indian man.</div>
+          <a href="#contact" class="col-cta">Enquire Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-cta-section" data-r="up">
+      <p class="serif-p" style="margin-bottom:24px;color:rgba(250,245,236,.5)">See something that inspires you? Come visit our studio in Karkala and we will bring it to life.</p>
+      <a href="#contact" class="btn-gold"><span>Book a Free Consultation</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ WHY US -->
+<section class="why sec" id="why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-img-wrap" data-r="left">
+        <img src="/static/images/sharon/banner.png" alt="Bramhari Craftsmanship" class="why-img" onerror="this.style.background='linear-gradient(135deg,#5C0A20,#7A1030)'">
+        <div class="why-img-border"></div>
+        <div class="why-quote-card">
+          <p class="why-quote-txt">"Bramhari stitched my wedding lehenga and I have never felt more beautiful. The embroidery was stunning."</p>
+          <div class="why-quote-auth">Pooja Shetty — Karkala</div>
+        </div>
+      </div>
+      <div data-r="right">
+        <div class="kicker">Why Choose Bramhari</div>
+        <h2 class="display-h">The Bramhari<br><em>Promise</em></h2>
+        <div class="ornament"><i></i></div>
+        <p class="serif-p">We are not just a tailoring shop. We are your personal style partners — people who listen, understand, and create garments that make you feel proud every time you wear them.</p>
+        <div class="why-features">
+          <div class="why-feat">
+            <span class="wf-num">01</span>
+            <div>
+              <div class="wf-h">Perfect Fit, Every Time</div>
+              <p class="wf-p">We take detailed measurements and conduct multiple trials to ensure your garment fits your body — not the other way around. No guesswork. Only precision.</p>
+            </div>
+          </div>
+          <div class="why-feat">
+            <span class="wf-num">02</span>
+            <div>
+              <div class="wf-h">Premium Fabrics from Trusted Sources</div>
+              <p class="wf-p">We use only the finest silks, cottons, georgettes, and brocades sourced from leading fabric markets across Karnataka and India.</p>
+            </div>
+          </div>
+          <div class="why-feat">
+            <span class="wf-num">03</span>
+            <div>
+              <div class="wf-h">Delivered On Time — Always</div>
+              <p class="wf-p">We know your occasions are fixed. Whether it is a wedding, festival, or function — your garment will be ready when we promise, without compromise on quality.</p>
+            </div>
+          </div>
+          <div class="why-feat">
+            <span class="wf-num">04</span>
+            <div>
+              <div class="wf-h">Personal Attention to Every Client</div>
+              <p class="wf-p">From your first visit to your final fitting, you receive the full attention of our designer. We remember your preferences, your style, and your family's needs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PROCESS -->
+<section class="process sec" id="process">
+  <div class="container">
+    <div class="process-h" data-r="up">
+      <div class="kicker kicker-light">How It Works</div>
+      <h2 class="display-h" style="color:var(--ivory)">From Idea to <em>Your Wardrobe</em></h2>
+      <p class="serif-p serif-p-light" style="max-width:520px;margin:16px auto 0">Four simple steps stand between you and the garment of your dreams.</p>
+    </div>
+    <div class="process-steps">
+      <div class="pstep" data-r="up">
+        <div class="pstep-circle">STEP 1</div>
+        <div class="pstep-h">Visit Us</div>
+        <p class="pstep-p">Walk into our studio at Fortune Lotus, Karkala or call us on 7676440681 to schedule a visit at your convenience.</p>
+      </div>
+      <div class="pstep" data-r="up" style="transition-delay:.12s">
+        <div class="pstep-circle">STEP 2</div>
+        <div class="pstep-h">Design &amp; Choose</div>
+        <p class="pstep-p">Browse our reference designs, share your inspiration, choose your fabric and embellishments. We guide you at every step.</p>
+      </div>
+      <div class="pstep" data-r="up" style="transition-delay:.24s">
+        <div class="pstep-circle">STEP 3</div>
+        <div class="pstep-h">Stitching &amp; Fitting</div>
+        <p class="pstep-p">Our skilled tailors craft your garment with care. We call you for a trial fitting to ensure the perfect drape and fit before final stitching.</p>
+      </div>
+      <div class="pstep" data-r="up" style="transition-delay:.36s">
+        <div class="pstep-circle">STEP 4</div>
+        <div class="pstep-h">Collect &amp; Celebrate</div>
+        <p class="pstep-p">Your garment is pressed, packed, and ready for you. Wear it with pride — and return to us for your next occasion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div style="background:var(--gold);padding:60px 5%">
+  <div class="ss-inner">
+    <div class="ss-item"><span class="ss-num"><span class="cnt" data-t="1800">0</span>+</span><span class="ss-lbl">Happy Clients</span></div>
+    <div class="ss-item"><span class="ss-num"><span class="cnt" data-t="14">0</span>+</span><span class="ss-lbl">Years in Business</span></div>
+    <div class="ss-item"><span class="ss-num"><span class="cnt" data-t="250">0</span>+</span><span class="ss-lbl">Bridal Outfits</span></div>
+    <div class="ss-item"><span class="ss-num"><span class="cnt" data-t="98">0</span>%</span><span class="ss-lbl">Client Satisfaction</span></div>
+  </div>
+</div>
+
+<!-- ============================================================ FOUNDER MESSAGE -->
+<section class="founder" id="founder">
+  <div class="container">
+    <div class="founder-inner">
+      <div data-r="left">
+        <div class="founder-photo-wrap">
+          <div class="founder-photo-frame">
+            <img
+              src="/static/images/sharon/sharon.png"
+              alt="Bramhari — Owner"
+              class="founder-photo"
+              onerror="this.style.background='linear-gradient(160deg,#5C0A20,#3A0612)'"
+            >
+          </div>
+          <div class="founder-gold-tag">The Heart Behind Bramhari</div>
+        </div>
+      </div>
+
+      <div class="founder-text" data-r="right">
+        <div class="kicker">A Message From Our Family</div>
+        <h2 class="display-h" style="margin-bottom:24px">
+          Built on <em>Amma's</em><br>Dream
+        </h2>
+
+        <div class="founder-ornament"><span></span><i></i><span></span></div>
+
+        <span class="founder-quote-mark">"</span>
+
+        <blockquote class="founder-message">
+          Bramhari was born from my mother's hands and her boundless love for this craft. She started this studio with nothing but a needle, a dream, and an unshakeable belief that every person deserves to feel beautiful in what they wear.<br><br>
+          Today, I carry forward that same belief - with the same care, the same eye for detail, and the same warmth she poured into every garment. <strong>Every stitch we make is dedicated to her</strong> and to the trust our clients place in us, year after year.<br><br>
+          When you walk into Bramhari, you are not just a customer. You are family. And we will always dress you like one.
+        </blockquote>
+
+        <div class="founder-sign-wrap">
+          <div class="founder-sign-line"></div>
+          <div class="founder-sign-info">
+            <div class="founder-name">Sharon</div>
+            <span class="founder-role">Owner &amp; Designer · Bramhari</span>
+            <span class="founder-sub-role">Son of the Founder · Est. 2010</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ LOOKBOOK -->
+<section class="lookbook" id="lookbook">
+  <div class="container">
+    <div class="lb-header" data-r="up">
+      <div class="kicker">Our Work</div>
+      <h2 class="display-h">The <em>Lookbook</em></h2>
+      <p class="serif-p" style="max-width:520px;margin-top:16px">A glimpse into the garments we have brought to life — each one a memory stitched in fabric.</p>
+    </div>
+    <div class="lb-grid">
+      <div class="lb-item li1" data-r="up">
+        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=85" alt="Bridal" onerror="this.style.background='linear-gradient(135deg,#5C0A20,#7A1030)'">
+        <span class="lb-label">Bridal</span><div class="lb-bar"></div>
+      </div>
+      <div class="lb-item li2" data-r="up" style="transition-delay:.08s">
+        <img src="https://images.unsplash.com/photo-1551803091-e20673f15770?w=700&q=85" alt="Embroidery" onerror="this.style.background='linear-gradient(135deg,#C9922B,#3A0612)'">
+        <span class="lb-label">Embroidery</span><div class="lb-bar"></div>
+      </div>
+      <div class="lb-item li3" data-r="up" style="transition-delay:.14s">
+        <img src="https://images.unsplash.com/photo-1566479179817-0b1a15b01f3c?w=800&q=85" alt="Evening Wear" onerror="this.style.background='linear-gradient(135deg,#3A0612,#5C0A20)'">
+        <span class="lb-label">Evening Wear</span><div class="lb-bar"></div>
+      </div>
+      <div class="lb-item li4" data-r="up" style="transition-delay:.18s">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=85" alt="Designer Wear" onerror="this.style.background='linear-gradient(135deg,#5C0A20,#C9922B)'">
+        <span class="lb-label">Designer</span><div class="lb-bar"></div>
+      </div>
+      <div class="lb-item li5" data-r="up" style="transition-delay:.22s">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=85" alt="Ethnic" onerror="this.style.background='linear-gradient(135deg,#7A1030,#C9922B)'">
+        <span class="lb-label">Ethnic</span><div class="lb-bar"></div>
+      </div>
+      <div class="lb-item li6" data-r="up" style="transition-delay:.1s">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=85" alt="Lifestyle" onerror="this.style.background='linear-gradient(135deg,#3A0612,#7A1030)'">
+        <span class="lb-label">Lifestyle</span><div class="lb-bar"></div>
+      </div>
+      <div class="lb-item li7" data-r="up" style="transition-delay:.2s">
+        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=700&q=85" alt="Festive" onerror="this.style.background='linear-gradient(135deg,#5C0A20,#3A0612)'">
+        <span class="lb-label">Festive</span><div class="lb-bar"></div>
+      </div>
+      <div class="lb-item li8" data-r="up" style="transition-delay:.28s">
+        <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=700&q=85" alt="Indo-Western" onerror="this.style.background='linear-gradient(135deg,#C9922B,#5C0A20)'">
+        <span class="lb-label">Indo-Western</span><div class="lb-bar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="test-h" data-r="up">
+      <div class="kicker kicker-light">Happy Clients</div>
+      <h2 class="display-h" style="color:var(--ivory)">What Our Clients <em>Say</em></h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card" data-r="up">
+        <div class="test-quote-bg">"</div>
+        <div class="test-top-ornament"></div>
+        <div class="test-stars"><div class="test-star"></div><div class="test-star"></div><div class="test-star"></div><div class="test-star"></div><div class="test-star"></div></div>
+        <p class="test-txt">I had my bridal lehenga stitched at Bramhari and the result was absolutely stunning. The embroidery, the fit, the finishing — everything was beyond my expectations. Every relative at my wedding asked where I got it done. I confidently said Bramhari, Karkala.</p>
+        <div class="test-author">
+          <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=200&q=80" alt="Pooja Shetty" class="test-av" onerror="this.style.background='#5C0A20'">
+          <div>
+            <div class="test-name">Pooja Shetty</div>
+            <div class="test-role">Karkala — Bridal Client</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card" data-r="up" style="transition-delay:.12s">
+        <div class="test-quote-bg">"</div>
+        <div class="test-top-ornament"></div>
+        <div class="test-stars"><div class="test-star"></div><div class="test-star"></div><div class="test-star"></div><div class="test-star"></div><div class="test-star"></div></div>
+        <p class="test-txt">I needed a set of matching salwar kameez for my daughter's school functions and got them done at Bramhari. The stitching was neat, the fabric they suggested was of excellent quality, and they were delivered a full two days before the event. Highly recommend.</p>
+        <div class="test-author">
+          <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=200&q=80" alt="Latha Prabhu" class="test-av" onerror="this.style.background='#5C0A20'">
+          <div>
+            <div class="test-name">Latha Prabhu</div>
+            <div class="test-role">Kukkundoor — Regular Client</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card" data-r="up" style="transition-delay:.24s">
+        <div class="test-quote-bg">"</div>
+        <div class="test-top-ornament"></div>
+        <div class="test-stars"><div class="test-star"></div><div class="test-star"></div><div class="test-star"></div><div class="test-star"></div><div class="test-star"></div></div>
+        <p class="test-txt">Got my sherwani stitched for my brother's wedding from Bramhari. The fit was sharp and the fabric was smooth and comfortable throughout the long day. Many guests complimented me. The team is professional and gives good suggestions. Will surely return.</p>
+        <div class="test-author">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80" alt="Suresh Rao" class="test-av" onerror="this.style.background='#5C0A20'">
+          <div>
+            <div class="test-name">Suresh Rao</div>
+            <div class="test-role">Udupi — Wedding Guest</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CONTACT -->
+<section class="contact sec" id="contact">
+  <div class="container">
+    <div data-r="up">
+      <div class="kicker">Visit Us Today</div>
+      <h2 class="display-h">Come, Let Us<br><em>Create Together</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="c-info" data-r="left">
+        <p class="serif-p">Walk into our studio and experience the Bramhari difference for yourself. Bring your ideas, your inspirations, or simply your curiosity — we will take it from there.</p>
+
+        <div class="c-block">
+          <div class="c-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="c-lbl">Studio Address</div>
+            <p class="c-val">
+              Bramhari Fashion Designer &amp; Tailoring<br>
+              Fortune Lotus, Main Road<br>
+              Jodurasthe Kukkundoor<br>
+              <strong>Karkala — 576 117, Karnataka</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="c-block">
+          <div class="c-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="c-lbl">Call or WhatsApp</div>
+            <p class="c-val">
+              <a href="tel:7676440681">76764 40681</a><br>
+              <span style="font-size:.88rem;color:rgba(26,10,8,.45)">Call or WhatsApp — We respond quickly</span>
+            </p>
+            <a href="https://wa.me/917676440681?text=Hello%20Bramhari!%20I%20would%20like%20to%20book%20a%20consultation." class="whatsapp-btn" target="_blank">Chat on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="c-block">
+          <div class="c-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="c-lbl">Studio Hours</div>
+            <p class="c-val">
+              Monday – Saturday: 9:30 AM – 7:30 PM<br>
+              Sunday: 10:00 AM – 2:00 PM
+            </p>
+          </div>
+        </div>
+
+        <div class="map-box">
+          <div class="map-inner">
+            <span class="map-pin">&#9679;</span>
+            <div class="map-txt">Bramhari Fashion Designer &amp; Tailoring</div>
+            <div class="map-sub">Fortune Lotus, Main Road, Kukkundoor, Karkala — 576117</div>
+          </div>
+        </div>
+      </div>
+
+      <div data-r="right">
+        <div class="c-form">
+          <div class="form-title">Book a Consultation</div>
+          <span class="form-sub">Free First Visit</span>
+          <div class="f2">
+            <div class="fg"><label>Your Name</label><input type="text" placeholder="Full name"></div>
+            <div class="fg"><label>Phone / WhatsApp</label><input type="tel" placeholder="76764 40681"></div>
+          </div>
+          <div class="f2">
+            <div class="fg"><label>Service Needed</label>
+              <select>
+                <option>Select a service</option>
+                <option>Bridal Lehenga</option>
+                <option>Salwar Kameez / Kurti</option>
+                <option>Designer Blouse</option>
+                <option>Men's Ethnic Wear</option>
+                <option>Embroidery Work</option>
+                <option>Logo Printing &amp; Branding</option>
+                <option>Dress Designing</option>
+                <option>Alteration / Repair</option>
+                <option>School Uniform</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="fg"><label>Preferred Visit Date</label><input type="date"></div>
+          </div>
+          <div class="f2">
+            <div class="fg"><label>Occasion</label>
+              <select>
+                <option>Select occasion</option>
+                <option>Wedding / Bridal</option>
+                <option>Festival</option>
+                <option>Family Function</option>
+                <option>Daily Wear</option>
+                <option>Corporate / Uniform</option>
+                <option>School / Uniform</option>
+              </select>
+            </div>
+            <div class="fg"><label>Budget Range</label>
+              <select>
+                <option>Select range</option>
+                <option>Under 2,000</option>
+                <option>2,000 – 8,000</option>
+                <option>8,000 – 25,000</option>
+                <option>25,000 – 75,000</option>
+                <option>75,000+</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>Tell Us What You Have in Mind</label><textarea placeholder="Describe your style, occasion, preferred fabric, reference design, or any special requirements..."></textarea></div>
+          <button class="f-btn" id="fbtn"><span>Confirm My Appointment</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FOOTER -->
+<footer>
+  <div class="footer-ornament">
+    <span></span>
+    <div class="ld-diamond" style="background:var(--gold);animation:none"></div>
+    <span class="fo-txt">Bramhari Fashion — Est. Karkala</span>
+    <div class="ld-diamond" style="background:var(--gold);animation:none"></div>
+    <span></span>
+  </div>
+  <div class="footer-main container">
+    <div>
+      <div class="foot-brand">BRAMH<b>A</b>RI</div>
+      <span class="foot-tagline">Fashion Designer &amp; Tailoring · Karkala</span>
+      <p class="foot-desc">Bramhari has been the most trusted fashion designer and tailor in Karkala for over 14 years. Serving brides, families, and professionals across Karkala, Kukkundoor, Udupi, and beyond with pride.</p>
+      <div class="foot-social">
+        <a href="#" class="fsoc">Ig</a>
+        <a href="#" class="fsoc">Fb</a>
+        <a href="https://wa.me/917676440681" class="fsoc">Wa</a>
+      </div>
+    </div>
+    <div>
+      <div class="foot-col-h">Services</div>
+      <ul class="foot-links">
+        <li><a href="#services">Bridal Wear</a></li>
+        <li><a href="#services">Custom Tailoring</a></li>
+        <li><a href="#services">Designer Blouses</a></li>
+        <li><a href="#services">Embroidery Work</a></li>
+        <li><a href="#services">Logo Printing</a></li>
+        <li><a href="#services">Dress Designing</a></li>
+        <li><a href="#services">Men's Ethnic Wear</a></li>
+        <li><a href="#services">Alteration &amp; Repair</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-h">Navigate</div>
+      <ul class="foot-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#lookbook">Lookbook</a></li>
+        <li><a href="#founder">Our Story</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#testimonials">Client Reviews</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-h">Find Us</div>
+      <p class="foot-addr">
+        Fortune Lotus, Main Road<br>
+        Jodurasthe Kukkundoor<br>
+        Karkala — 576 117<br>
+        Karnataka, India
+      </p>
+      <div class="foot-contact">
+        <a href="tel:7676440681">76764 40681</a>
+        <a href="https://wa.me/917676440681" style="font-size:.68rem;font-weight:500;color:rgba(201,146,43,.6);letter-spacing:.05em">WhatsApp Available</a>
+      </div>
+      <div style="margin-top:16px">
+        <div class="foot-col-h" style="margin-bottom:8px">Hours</div>
+        <p class="foot-addr">Mon – Sat: 9:30 AM – 7:30 PM<br>Sunday: 10:00 AM – 2:00 PM</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="foot-copy">© 2025 Bramhari Fashion Designer &amp; Tailoring, Karkala. All rights reserved.</span>
+    <div class="foot-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="#contact">Book Appointment</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── LOADER ── */
+function dismissLoader(){
+  const loader=document.getElementById('loader');
+  if(!loader||loader.style.display==='none')return;
+  loader.classList.add('out');
+  setTimeout(()=>{loader.style.display='none';},600);
+}
+if(document.readyState==='complete'){
+  setTimeout(dismissLoader,400);
+}else{
+  window.addEventListener('load',()=>setTimeout(dismissLoader,400));
+  // Failsafe: force dismiss after 3s no matter what
+  setTimeout(dismissLoader,3000);
+}
+
+/* ── CURSOR ── */
+const cdot=document.getElementById('cdot');
+const cring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cdot.style.left=mx+'px'; cdot.style.top=my+'px';
+});
+(function raf(){
+  rx+=(mx-rx)*.13; ry+=(my-ry)*.13;
+  cring.style.left=rx+'px'; cring.style.top=ry+'px';
+  requestAnimationFrame(raf);
+})();
+document.querySelectorAll('a,button,input,select,textarea,.srv,.col-card,.test-card,.astat,.pstep,.lb-item,.why-feat').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
+});
+
+/* ── NAV ── */
+const nav=document.getElementById('nav');
+const fl=document.getElementById('float');
+const pg=document.getElementById('pgbar');
+window.addEventListener('scroll',()=>{
+  const sy=window.scrollY;
+  const dh=document.documentElement.scrollHeight-window.innerHeight;
+  pg.style.width=(sy/dh*100)+'%';
+  sy>60?nav.classList.add('scrolled'):nav.classList.remove('scrolled');
+  sy>500?fl.classList.add('show'):fl.classList.remove('show');
+},{passive:true});
+
+/* ── BURGER ── */
+const burger=document.getElementById('burger');
+const mm=document.getElementById('mmenu');
+burger.addEventListener('click',()=>{
+  burger.classList.toggle('open');
+  mm.classList.toggle('open');
+});
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  burger.classList.remove('open'); mm.classList.remove('open');
+}));
+
+/* ── REVEAL ── */
+const rEls=document.querySelectorAll('[data-r]');
+const rObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rObs.unobserve(e.target);}});
+},{threshold:.08,rootMargin:'0px 0px -50px 0px'});
+rEls.forEach(el=>rObs.observe(el));
+
+/* ── COUNTERS ── */
+const cnts=document.querySelectorAll('.cnt');
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target,t=+el.dataset.t,dur=1800;
+      const s=performance.now();
+      (function run(now){
+        const p=Math.min((now-s)/dur,1);
+        const ease=1-Math.pow(1-p,4);
+        el.textContent=Math.floor(ease*t).toLocaleString('en-IN');
+        if(p<1)requestAnimationFrame(run);
+        else el.textContent=t.toLocaleString('en-IN');
+      })(s);
+      cObs.unobserve(el);
+    }
+  });
+},{threshold:.5});
+cnts.forEach(c=>cObs.observe(c));
+
+/* ── PARALLAX ── */
+window.addEventListener('scroll',()=>{
+  const sy=window.scrollY;
+  const hero=document.querySelector('.hero-img');
+  if(hero&&sy<window.innerHeight&&window.innerWidth>1100){
+    hero.style.transform=`scale(1.08) translateY(${sy*.08}px)`;
+  }
+},{passive:true});
+
+/* ── COLLECTIONS: always-visible on mobile ── */
+function checkColCards(){
+  const isMobile=window.innerWidth<768;
+  document.querySelectorAll('.col-card').forEach(card=>{
+    if(isMobile){
+      const body=card.querySelector('.col-card-body');
+      const desc=card.querySelector('.col-desc');
+      const cta=card.querySelector('.col-cta');
+      if(body){body.style.opacity='1';body.style.transform='none';}
+      if(desc){desc.style.maxHeight='80px';}
+      if(cta){cta.style.opacity='1';cta.style.transform='none';}
+    }
+  });
+}
+checkColCards();
+window.addEventListener('resize',checkColCards);
+
+/* ── PROCESS CIRCLE HOVER ── */
+document.querySelectorAll('.pstep').forEach(s=>{
+  s.addEventListener('mouseenter',()=>{
+    s.querySelector('.pstep-circle').style.transform='scale(1.12) rotate(8deg)';
+  });
+  s.addEventListener('mouseleave',()=>{
+    s.querySelector('.pstep-circle').style.transform='';
+  });
+});
+
+/* ── FORM ── */
+document.getElementById('fbtn').addEventListener('click',e=>{
+  e.preventDefault();
+  const btn=document.getElementById('fbtn');
+  btn.innerHTML='<span>Appointment Confirmed! We will call you shortly.</span>';
+  btn.style.background='var(--maroon)';
+  btn.style.color='var(--gold)';
+  setTimeout(()=>{
+    btn.innerHTML='<span>Confirm My Appointment</span>';
+    btn.style.background=''; btn.style.color='';
+  },5000);
+});
+
+/* ── SERVICE CARDS 3D TILT ── */
+document.querySelectorAll('.srv').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const rx2=((e.clientY-r.top)/r.height-.5)*7;
+    const ry2=-((e.clientX-r.left)/r.width-.5)*7;
+    card.style.transform=`perspective(800px) rotateX(${rx2}deg) rotateY(${ry2}deg) translateZ(6px)`;
+  });
+  card.addEventListener('mouseleave',()=>card.style.transform='');
+});
+
+/* ── STAGGER REVEAL ── */
+document.querySelectorAll('.srv-grid').forEach(grid=>{
+  grid.querySelectorAll('.srv').forEach((el,i)=>{el.style.transitionDelay=(i*0.07)+'s';});
+});
+document.querySelectorAll('.test-grid').forEach(grid=>{
+  grid.querySelectorAll('.test-card').forEach((el,i)=>{el.style.transitionDelay=(i*0.12)+'s';});
+});
+document.querySelectorAll('.col-grid').forEach(grid=>{
+  grid.querySelectorAll('.col-card').forEach((el,i)=>{el.style.transitionDelay=(i*0.09)+'s';});
+});
+</script>
+</body>
+</html>

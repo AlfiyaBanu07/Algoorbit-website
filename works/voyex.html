@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voyex Travels - Pioneer the Extraordinary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Outfit:wght@200;300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest:   #1A3A2A;
+  --forest-d: #0F2218;
+  --forest-m: #254D38;
+  --cream:    #F7F3EE;
+  --cream-d:  #EDE7DC;
+  --terra:    #C4622D;
+  --terra-l:  #E8845A;
+  --sand:     #D4B896;
+  --charcoal: #1E1E1E;
+  --mid:      #5A6B60;
+  --white:    #FFFFFF;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--charcoal);overflow-x:hidden;cursor:none;}
+.cur{position:fixed;width:12px;height:12px;background:var(--terra);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;}
+.cur-ring{position:fixed;width:44px;height:44px;border:1.5px solid var(--terra);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .12s ease-out;}
+body:has(a:hover) .cur,body:has(button:hover) .cur{width:22px;height:22px;background:var(--forest);}
+body:has(a:hover) .cur-ring,body:has(button:hover) .cur-ring{width:66px;height:66px;border-color:var(--forest);}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:var(--cream);}::-webkit-scrollbar-thumb{background:var(--forest);}
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--forest-d);z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .7s,visibility .7s;}
+#loader.gone{opacity:0;visibility:hidden;}
+.loader-word{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;letter-spacing:.3rem;background:linear-gradient(135deg,var(--sand),var(--terra-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.loader-line{width:220px;height:2px;background:rgba(212,184,150,.15);overflow:hidden;}
+.loader-line-fill{height:100%;width:0;background:linear-gradient(90deg,var(--terra),var(--sand));animation:fillBar 1.6s ease forwards;}
+@keyframes fillBar{to{width:100%;}}
+.loader-sub{font-size:.65rem;letter-spacing:.35rem;text-transform:uppercase;color:rgba(212,184,150,.4);}
+/* NOISE */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:9000;padding:28px 72px;display:flex;align-items:center;justify-content:space-between;transition:all .5s ease;}
+nav.stuck{background:rgba(247,243,238,.95);backdrop-filter:blur(16px);padding:16px 72px;border-bottom:1px solid rgba(26,58,42,.08);box-shadow:0 4px 40px rgba(26,58,42,.06);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-icon{width:38px;height:38px;}
+.logo-icon svg{width:100%;height:100%;}
+.logo-text{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;letter-spacing:.12rem;color:var(--forest-d);}
+.logo-text span{color:var(--terra);}
+.nav-links{display:flex;gap:42px;list-style:none;}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.18rem;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .3s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1.5px;background:var(--terra);transform:scaleX(0);transform-origin:right;transition:transform .35s;}
+.nav-links a:hover{color:var(--forest);}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left;}
+.nav-btn{background:var(--forest);color:var(--cream);border:none;padding:13px 30px;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.18rem;text-transform:uppercase;cursor:none;transition:all .35s;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);}
+.nav-btn:hover{background:var(--terra);transform:translateY(-2px);box-shadow:0 12px 40px rgba(196,98,45,.3);}
+.ham{display:none;flex-direction:column;gap:6px;cursor:none;}
+.ham span{display:block;width:26px;height:1.5px;background:var(--forest);transition:all .3s;}
+/* MOBILE NAV */
+.mob-nav{position:fixed;inset:0;background:var(--forest-d);z-index:8999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;transform:translateY(-100%);transition:transform .6s cubic-bezier(.77,0,.175,1);}
+.mob-nav.open{transform:translateY(0);}
+.mob-nav a{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;font-style:italic;color:var(--cream);text-decoration:none;transition:color .3s;}
+.mob-nav a:hover{color:var(--terra-l);}
+.mob-close{position:absolute;top:28px;right:28px;background:none;border:none;color:var(--sand);font-size:2rem;cursor:pointer;line-height:1;}
+/* HERO */
+#hero{height:100vh;min-height:700px;position:relative;overflow:hidden;display:flex;align-items:flex-end;}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=90') center/cover;transform:scale(1.08);will-change:transform;}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(15,34,24,.85) 0%,rgba(15,34,24,.4) 55%,rgba(15,34,24,.15) 100%);}
+.hero-slant{position:absolute;bottom:-2px;left:0;right:0;z-index:2;height:120px;background:var(--cream);clip-path:polygon(0 100%,100% 100%,100% 0);}
+.hero-inner{position:relative;z-index:3;padding:0 72px 160px;max-width:1400px;width:100%;}
+.hero-tag{display:inline-flex;align-items:center;gap:14px;font-size:.65rem;font-weight:600;letter-spacing:.35rem;text-transform:uppercase;color:var(--terra-l);margin-bottom:24px;opacity:0;transform:translateY(16px);}
+.hero-tag-line{width:36px;height:1px;background:var(--terra-l);}
+.hero-h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(4rem,9.5vw,10rem);line-height:.92;letter-spacing:-.03em;color:var(--white);margin-bottom:32px;opacity:0;transform:translateY(36px);}
+.hero-h1 em{font-style:italic;color:var(--terra-l);}
+.hero-row{display:flex;align-items:center;gap:48px;flex-wrap:wrap;opacity:0;transform:translateY(20px);}
+.hero-desc{max-width:420px;font-size:1.05rem;font-weight:300;line-height:1.85;color:rgba(247,243,238,.7);}
+.hero-ctas{display:flex;gap:16px;flex-shrink:0;}
+.btn-fill{background:var(--terra);color:var(--white);border:none;padding:18px 44px;font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.18rem;text-transform:uppercase;cursor:none;text-decoration:none;display:inline-block;transition:all .35s;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);}
+.btn-fill:hover{background:var(--forest);transform:translateY(-3px);box-shadow:0 16px 48px rgba(26,58,42,.35);}
+.btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(247,243,238,.35);padding:18px 44px;font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.18rem;text-transform:uppercase;cursor:none;text-decoration:none;display:inline-block;transition:all .35s;}
+.btn-ghost:hover{border-color:var(--white);transform:translateY(-3px);}
+.hero-scroll{position:absolute;right:72px;bottom:160px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:.6rem;letter-spacing:.3rem;text-transform:uppercase;color:rgba(247,243,238,.4);writing-mode:vertical-rl;}
+.hero-scroll::before{content:'';display:block;width:1px;height:60px;background:linear-gradient(to bottom,transparent,var(--terra-l));animation:scrollPulse 2s ease infinite;}
+@keyframes scrollPulse{0%,100%{opacity:.3;height:40px}50%{opacity:1;height:70px}}
+.hero-floater{position:absolute;right:72px;top:50%;transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:30px;align-items:flex-end;}
+.hero-stat{text-align:right;}
+.hero-stat-n{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--white);line-height:1;}
+.hero-stat-n sup{font-size:1.2rem;vertical-align:super;color:var(--terra-l);}
+.hero-stat-l{font-size:.6rem;letter-spacing:.25rem;text-transform:uppercase;color:rgba(247,243,238,.4);}
+/* TICKER */
+.ticker{background:var(--terra);padding:14px 0;overflow:hidden;}
+.ticker-track{display:flex;gap:48px;animation:tick 28s linear infinite;white-space:nowrap;}
+.ticker-track:hover{animation-play-state:paused;}
+.ticker-item{font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.25rem;text-transform:uppercase;color:var(--white);flex-shrink:0;display:flex;align-items:center;gap:24px;}
+.ticker-item::after{content:'◆';font-size:.4rem;opacity:.5;}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* EYEBROW / HEADING */
+.eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.35rem;text-transform:uppercase;color:var(--terra);display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.eyebrow::before{content:'';width:32px;height:2px;background:var(--terra);}
+.eyebrow.lt{color:var(--terra-l);}
+.eyebrow.lt::before{background:var(--terra-l);}
+.heading{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.4rem,4.5vw,5rem);line-height:1.05;letter-spacing:-.02em;color:var(--forest-d);}
+.heading em{font-style:italic;color:var(--terra);}
+.heading.lt{color:var(--cream);}
+.heading.lt em{color:var(--terra-l);}
+/* REVEAL */
+.rv{opacity:0;transform:translateY(44px);transition:opacity .85s ease,transform .85s ease;}
+.rv.in{opacity:1;transform:translateY(0);}
+.rvl{opacity:0;transform:translateX(-44px);transition:opacity .85s ease,transform .85s ease;}
+.rvl.in{opacity:1;transform:translateX(0);}
+.rvr{opacity:0;transform:translateX(44px);transition:opacity .85s ease,transform .85s ease;}
+.rvr.in{opacity:1;transform:translateX(0);}
+/* ABOUT */
+#about{padding:140px 72px;background:var(--cream);position:relative;overflow:hidden;}
+#about::before{content:'VOYEX';position:absolute;right:-80px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:22vw;font-weight:900;color:rgba(26,58,42,.04);pointer-events:none;line-height:1;white-space:nowrap;}
+.about-wrap{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;}
+.about-visual{position:relative;height:640px;}
+.about-main-img{position:absolute;top:0;left:0;width:72%;height:82%;object-fit:cover;box-shadow:0 32px 80px rgba(26,58,42,.18);}
+.about-accent-img{position:absolute;bottom:0;right:0;width:56%;height:56%;object-fit:cover;border:6px solid var(--cream);box-shadow:0 20px 60px rgba(26,58,42,.14);}
+.about-badge{position:absolute;top:52%;left:55%;transform:translate(-50%,-50%);background:var(--terra);color:var(--white);padding:22px 28px;text-align:center;z-index:2;box-shadow:0 16px 48px rgba(196,98,45,.4);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);}
+.about-badge .bnum{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;line-height:1;display:block;}
+.about-badge .blbl{font-size:.6rem;letter-spacing:.25rem;text-transform:uppercase;opacity:.75;}
+.about-text p{font-size:1.05rem;font-weight:300;line-height:2;color:var(--mid);margin:22px 0;}
+.about-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;}
+.about-pill{border:1.5px solid rgba(26,58,42,.2);padding:10px 22px;font-size:.72rem;font-weight:500;letter-spacing:.12rem;text-transform:uppercase;color:var(--forest-m);transition:all .3s;cursor:default;}
+.about-pill:hover{background:var(--forest);color:var(--cream);border-color:var(--forest);}
+.about-cta-row{display:flex;align-items:center;gap:32px;margin-top:44px;}
+.btn-forest{background:var(--forest);color:var(--cream);border:none;padding:17px 42px;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.18rem;text-transform:uppercase;cursor:none;text-decoration:none;display:inline-block;transition:all .35s;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);}
+.btn-forest:hover{background:var(--terra);transform:translateY(-2px);box-shadow:0 14px 44px rgba(196,98,45,.3);}
+.about-link{font-size:.8rem;font-weight:600;color:var(--terra);letter-spacing:.1rem;text-decoration:none;display:flex;align-items:center;gap:10px;border-bottom:1px solid transparent;transition:border-color .3s;}
+.about-link:hover{border-color:var(--terra);}
+/* DESTINATIONS */
+#destinations{padding:140px 72px;background:var(--forest-d);position:relative;}
+.dest-hdr{max-width:1300px;margin:0 auto 70px;display:flex;justify-content:space-between;align-items:flex-end;}
+.btn-ghost-cream{background:transparent;color:var(--cream);border:1.5px solid rgba(247,243,238,.3);padding:14px 32px;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.18rem;text-transform:uppercase;cursor:none;text-decoration:none;display:inline-block;transition:all .3s;}
+.btn-ghost-cream:hover{border-color:var(--terra-l);color:var(--terra-l);}
+.dest-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(12,1fr);gap:16px;}
+.dc{position:relative;overflow:hidden;cursor:none;}
+.dc:nth-child(1){grid-column:span 5;grid-row:span 2;min-height:600px;}
+.dc:nth-child(2){grid-column:span 7;min-height:290px;}
+.dc:nth-child(3){grid-column:span 3;min-height:290px;}
+.dc:nth-child(4){grid-column:span 4;min-height:290px;}
+.dc:nth-child(5){grid-column:span 5;min-height:290px;}
+.dc:nth-child(6){grid-column:span 4;min-height:290px;}
+.dc:nth-child(7){grid-column:span 3;min-height:290px;}
+.dc img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;display:block;}
+.dc:hover img{transform:scale(1.08);}
+.dc-layer{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,34,24,.92) 0%,transparent 55%);transition:background .4s;}
+.dc:hover .dc-layer{background:linear-gradient(to top,rgba(15,34,24,.97) 0%,rgba(15,34,24,.2) 60%);}
+.dc-info{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;}
+.dc-region{font-size:.6rem;letter-spacing:.28rem;text-transform:uppercase;color:var(--terra-l);margin-bottom:5px;}
+.dc-name{font-family:'Playfair Display',serif;font-weight:700;color:var(--white);font-size:1.6rem;line-height:1.1;margin-bottom:6px;}
+.dc:nth-child(1) .dc-name{font-size:2.6rem;}
+.dc-price{font-size:.78rem;color:rgba(247,243,238,.55);}
+.dc-price strong{color:var(--terra-l);font-size:.95rem;}
+.dc-hover{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0) rotate(45deg);width:56px;height:56px;background:var(--terra);display:flex;align-items:center;justify-content:center;transition:transform .4s cubic-bezier(.34,1.56,.64,1);}
+.dc-hover svg{width:18px;height:18px;fill:none;stroke:var(--white);stroke-width:2;transform:rotate(-45deg);}
+.dc:hover .dc-hover{transform:translate(-50%,-50%) scale(1) rotate(0deg);}
+/* EXPERIENCES */
+#experiences{padding:140px 72px;background:var(--cream-d);}
+.exp-wrap{max-width:1300px;margin:0 auto;}
+.exp-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;}
+.exp-filter{display:flex;gap:0;border:1.5px solid rgba(26,58,42,.15);}
+.exp-filter button{padding:11px 24px;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.15rem;text-transform:uppercase;background:transparent;border:none;border-right:1.5px solid rgba(26,58,42,.15);color:var(--mid);cursor:none;transition:all .3s;}
+.exp-filter button:last-child{border-right:none;}
+.exp-filter button.on{background:var(--forest);color:var(--cream);}
+.exp-filter button:hover:not(.on){background:var(--forest-m);color:var(--cream);}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.ec{background:var(--white);overflow:hidden;transition:transform .4s ease,box-shadow .4s ease;box-shadow:0 4px 24px rgba(26,58,42,.06);}
+.ec:hover{transform:translateY(-10px);box-shadow:0 24px 72px rgba(26,58,42,.15);}
+.ec-imgbox{overflow:hidden;height:240px;position:relative;}
+.ec-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+.ec:hover .ec-img{transform:scale(1.06);}
+.ec-tag-box{position:absolute;bottom:16px;left:16px;background:var(--terra);color:var(--white);padding:5px 14px;font-size:.6rem;font-weight:700;letter-spacing:.2rem;text-transform:uppercase;}
+.ec-body{padding:26px;}
+.ec-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--forest-d);margin-bottom:10px;line-height:1.25;}
+.ec-desc{font-size:.85rem;line-height:1.85;color:var(--mid);margin-bottom:22px;}
+.ec-foot{display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid rgba(26,58,42,.08);}
+.ec-price{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--forest);}
+.ec-dur{font-size:.72rem;color:var(--mid);letter-spacing:.08rem;}
+.ec-go{width:42px;height:42px;background:var(--forest-d);display:flex;align-items:center;justify-content:center;transition:all .3s;cursor:none;flex-shrink:0;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
+.ec:hover .ec-go{background:var(--terra);}
+.ec-go svg{width:15px;height:15px;fill:none;stroke:var(--white);stroke-width:2.5;}
+/* WHY */
+#why{padding:140px 72px;background:var(--forest);position:relative;overflow:hidden;}
+#why::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 80% 50%,rgba(196,98,45,.12),transparent);}
+.why-wrap{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.why-visual{position:relative;height:680px;}
+.why-main-img{width:100%;height:100%;object-fit:cover;filter:brightness(.8);}
+.why-chip{position:absolute;bottom:40px;left:-28px;background:var(--terra);padding:28px 32px;clip-path:polygon(14px 0,100% 0,100% 100%,0 100%,0 14px);box-shadow:0 20px 60px rgba(196,98,45,.5);}
+.why-chip .chip-n{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;color:var(--white);line-height:1;display:block;}
+.why-chip .chip-l{font-size:.6rem;letter-spacing:.22rem;text-transform:uppercase;color:rgba(247,243,238,.75);}
+.why-list{display:flex;flex-direction:column;gap:0;}
+.why-item{padding:26px 0;border-bottom:1px solid rgba(247,243,238,.08);display:grid;grid-template-columns:52px 1fr;gap:20px;transition:padding-left .3s,border-color .3s;cursor:default;}
+.why-item:hover{padding-left:12px;border-bottom-color:rgba(196,98,45,.4);}
+.why-n{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:rgba(247,243,238,.12);line-height:1;transition:color .3s;}
+.why-item:hover .why-n{color:var(--terra-l);}
+.why-h{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;color:var(--cream);margin-bottom:7px;}
+.why-p{font-size:.85rem;font-weight:300;line-height:1.85;color:rgba(247,243,238,.5);}
+/* STATS */
+#stats{background:var(--terra);padding:80px 72px;}
+.stats-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.stat-box{padding:28px 40px;border-right:1px solid rgba(247,243,238,.2);text-align:center;}
+.stat-box:last-child{border-right:none;}
+.stat-n{font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:var(--white);line-height:1;display:flex;align-items:flex-start;justify-content:center;}
+.stat-sup{font-size:2rem;padding-top:.5rem;color:rgba(247,243,238,.6);}
+.stat-l{font-size:.68rem;font-weight:600;letter-spacing:.25rem;text-transform:uppercase;color:rgba(247,243,238,.65);margin-top:8px;}
+/* TESTIMONIALS */
+#testimonials{padding:140px 72px;background:var(--cream);overflow:hidden;}
+.test-wrap{max-width:1300px;margin:0 auto;}
+.test-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;}
+.test-track-wrap{overflow:hidden;}
+.test-track{display:flex;transition:transform .65s cubic-bezier(.25,.46,.45,.94);}
+.test-card{min-width:calc(33.333% - 13px);margin-right:20px;flex-shrink:0;background:var(--white);padding:44px;position:relative;border-bottom:4px solid transparent;transition:border-color .3s;box-shadow:0 4px 24px rgba(26,58,42,.05);}
+.test-card:hover{border-bottom-color:var(--terra);}
+.test-stars{color:var(--terra);font-size:.85rem;letter-spacing:3px;margin-bottom:20px;}
+.test-q{font-family:'Playfair Display',serif;font-size:4rem;line-height:.6;color:var(--terra);opacity:.25;margin-bottom:16px;}
+.test-body{font-family:'Instrument Serif',serif;font-size:1.15rem;font-style:italic;line-height:1.8;color:var(--forest-d);margin-bottom:30px;}
+.test-author{display:flex;align-items:center;gap:14px;}
+.test-av{width:50px;height:50px;border-radius:50%;object-fit:cover;border:3px solid var(--terra-l);}
+.test-name{font-size:.9rem;font-weight:600;color:var(--forest-d);}
+.test-role{font-size:.72rem;color:var(--terra);letter-spacing:.05rem;}
+.test-controls{display:flex;align-items:center;gap:14px;margin-top:40px;}
+.t-btn{width:50px;height:50px;background:none;border:1.5px solid rgba(26,58,42,.2);cursor:none;display:flex;align-items:center;justify-content:center;transition:all .3s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
+.t-btn:hover{background:var(--forest);border-color:var(--forest);}
+.t-btn:hover svg{stroke:var(--cream);}
+.t-btn svg{width:18px;height:18px;fill:none;stroke:var(--forest);stroke-width:2;}
+.t-dots{display:flex;gap:8px;margin-left:auto;}
+.t-dot{width:7px;height:7px;background:rgba(26,58,42,.15);border-radius:50%;cursor:none;transition:all .3s;}
+.t-dot.on{background:var(--terra);width:26px;border-radius:4px;}
+/* PACKAGES */
+#packages{padding:140px 72px;background:var(--cream-d);}
+.pkg-wrap{max-width:1300px;margin:0 auto;}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;}
+.pkg-card{padding:48px 40px;border:1.5px solid rgba(26,58,42,.1);background:var(--white);position:relative;transition:all .4s;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%);}
+.pkg-card:hover{box-shadow:0 24px 72px rgba(26,58,42,.12);transform:translateY(-8px);border-color:rgba(196,98,45,.3);}
+.pkg-card.hero-pkg{background:var(--forest-d);color:var(--cream);border-color:transparent;}
+.pkg-type{font-size:.62rem;font-weight:700;letter-spacing:.3rem;text-transform:uppercase;color:var(--terra);margin-bottom:16px;}
+.pkg-card.hero-pkg .pkg-type{color:var(--terra-l);}
+.pkg-name{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;margin-bottom:6px;color:var(--forest-d);}
+.pkg-card.hero-pkg .pkg-name{color:var(--cream);}
+.pkg-price{font-family:'Playfair Display',serif;font-size:3.8rem;font-weight:900;line-height:1;color:var(--terra);margin-bottom:4px;}
+.pkg-note{font-size:.75rem;color:var(--mid);margin-bottom:32px;}
+.pkg-card.hero-pkg .pkg-note{color:rgba(247,243,238,.5);}
+.pkg-div{width:36px;height:2px;background:rgba(26,58,42,.12);margin-bottom:28px;}
+.pkg-card.hero-pkg .pkg-div{background:rgba(247,243,238,.15);}
+.pkg-list{list-style:none;margin-bottom:40px;}
+.pkg-list li{padding:9px 0;font-size:.84rem;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(26,58,42,.06);color:var(--mid);}
+.pkg-card.hero-pkg .pkg-list li{border-color:rgba(247,243,238,.06);color:rgba(247,243,238,.7);}
+.pkg-list li::before{content:'';width:18px;height:18px;flex-shrink:0;border-radius:50%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C4622D' stroke-width='2.5'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/12px no-repeat;border:1.5px solid rgba(196,98,45,.25);}
+.pkg-card.hero-pkg .pkg-list li::before{border-color:rgba(196,98,45,.5);}
+.pkg-btn{width:100%;padding:16px;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.2rem;text-transform:uppercase;border:1.5px solid rgba(26,58,42,.2);background:transparent;color:var(--forest-d);cursor:none;transition:all .3s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);}
+.pkg-btn:hover{background:var(--terra);border-color:var(--terra);color:var(--white);}
+.pkg-card.hero-pkg .pkg-btn{border-color:rgba(247,243,238,.25);color:var(--cream);}
+.pkg-card.hero-pkg .pkg-btn:hover{background:var(--terra);border-color:var(--terra);}
+.pkg-badge{position:absolute;top:22px;right:22px;background:var(--terra);color:var(--white);padding:4px 14px;font-size:.6rem;font-weight:700;letter-spacing:.2rem;text-transform:uppercase;}
+/* PROCESS */
+#process{padding:140px 72px;background:var(--forest-d);}
+.proc-wrap{max-width:1300px;margin:0 auto;}
+.proc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:80px;position:relative;}
+.proc-steps::before{content:'';position:absolute;top:38px;left:10%;right:10%;height:1px;background:linear-gradient(to right,transparent,rgba(212,184,150,.25),transparent);}
+.proc-step{padding:0 28px;text-align:center;}
+.proc-num{width:76px;height:76px;border-radius:50%;border:1.5px solid rgba(212,184,150,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--sand);background:var(--forest-d);transition:all .3s;position:relative;z-index:1;}
+.proc-step:hover .proc-num{background:var(--terra);border-color:var(--terra);color:var(--white);}
+.proc-h{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--cream);margin-bottom:10px;}
+.proc-p{font-size:.83rem;font-weight:300;line-height:1.85;color:rgba(247,243,238,.45);}
+/* GALLERY */
+#gallery{padding:140px 72px;background:var(--cream);overflow:hidden;}
+.gal-wrap{max-width:1300px;margin:0 auto;}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:260px 260px;gap:14px;margin-top:56px;}
+.gi{overflow:hidden;position:relative;cursor:none;}
+.gi:nth-child(1){grid-column:span 2;grid-row:span 2;}
+.gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .65s ease;}
+.gi:hover img{transform:scale(1.12);}
+.gi-ov{position:absolute;inset:0;background:rgba(15,34,24,0);display:flex;align-items:center;justify-content:center;transition:background .4s;}
+.gi:hover .gi-ov{background:rgba(15,34,24,.45);}
+.gi-icon{width:52px;height:52px;background:var(--terra);display:flex;align-items:center;justify-content:center;transform:scale(0) rotate(45deg);transition:transform .4s cubic-bezier(.34,1.56,.64,1);clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
+.gi-icon svg{width:18px;height:18px;fill:none;stroke:var(--white);stroke-width:2.5;transform:rotate(-45deg);}
+.gi:hover .gi-icon{transform:scale(1) rotate(0deg);}
+/* PARTNERS */
+#partners{padding:64px 72px;background:var(--cream-d);border-top:1px solid rgba(26,58,42,.06);}
+.par-wrap{max-width:1300px;margin:0 auto;}
+.par-lbl{text-align:center;font-size:.62rem;letter-spacing:.35rem;text-transform:uppercase;color:var(--mid);opacity:.5;margin-bottom:36px;}
+.par-logos{display:flex;justify-content:center;align-items:center;gap:52px;flex-wrap:wrap;}
+.par-logo{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.3rem;text-transform:uppercase;color:rgba(26,58,42,.15);transition:color .3s;cursor:default;}
+.par-logo:hover{color:rgba(26,58,42,.4);}
+/* CTA */
+#cta{padding:140px 72px;position:relative;overflow:hidden;}
+.cta-bg-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80') center/cover;}
+.cta-bg-img::after{content:'';position:absolute;inset:0;background:rgba(15,34,24,.87);}
+.cta-inner{position:relative;z-index:2;max-width:720px;margin:0 auto;text-align:center;}
+.cta-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,6rem);font-weight:900;color:var(--white);line-height:1;margin:20px 0 24px;}
+.cta-title em{font-style:italic;color:var(--terra-l);}
+.cta-sub{font-size:1.05rem;font-weight:300;line-height:1.85;color:rgba(247,243,238,.6);margin-bottom:48px;max-width:480px;margin-left:auto;margin-right:auto;}
+.cta-form{display:flex;max-width:520px;margin:0 auto 20px;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.cta-input{flex:1;padding:18px 22px;background:rgba(247,243,238,.06);border:1px solid rgba(247,243,238,.15);border-right:none;color:var(--white);font-family:'Outfit',sans-serif;font-size:.9rem;outline:none;}
+.cta-input::placeholder{color:rgba(247,243,238,.3);}
+.cta-input:focus{border-color:rgba(247,243,238,.35);background:rgba(247,243,238,.1);}
+.cta-go{padding:18px 30px;background:var(--terra);border:1px solid var(--terra);color:var(--white);font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18rem;text-transform:uppercase;cursor:none;transition:all .3s;white-space:nowrap;}
+.cta-go:hover{background:var(--forest);border-color:var(--forest);}
+.cta-priv{font-size:.72rem;color:rgba(247,243,238,.28);}
+/* FOOTER */
+footer{background:var(--forest-d);padding:80px 72px 36px;}
+.foot-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;padding-bottom:56px;border-bottom:1px solid rgba(247,243,238,.07);}
+.foot-brand-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;letter-spacing:.12rem;color:var(--cream);}
+.foot-brand-logo span{color:var(--terra-l);}
+.foot-brand p{font-size:.85rem;font-weight:300;line-height:1.85;color:rgba(247,243,238,.4);margin-top:16px;max-width:280px;}
+.foot-socials{display:flex;gap:10px;margin-top:28px;}
+.foot-soc{width:40px;height:40px;border:1px solid rgba(247,243,238,.12);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:rgba(247,243,238,.3);text-decoration:none;transition:all .3s;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%);}
+.foot-soc:hover{border-color:var(--terra-l);color:var(--terra-l);background:rgba(196,98,45,.1);}
+.foot-col h4{font-size:.62rem;font-weight:700;letter-spacing:.3rem;text-transform:uppercase;color:var(--terra-l);margin-bottom:22px;}
+.foot-col ul{list-style:none;}
+.foot-col li{margin-bottom:12px;}
+.foot-col a{font-size:.84rem;font-weight:300;color:rgba(247,243,238,.4);text-decoration:none;transition:color .3s;}
+.foot-col a:hover{color:var(--cream);}
+.foot-btm{max-width:1300px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:rgba(247,243,238,.22);}
+.foot-btm a{color:var(--terra-l);text-decoration:none;}
+.foot-btm a:hover{text-decoration:underline;}
+.foot-btm-links{display:flex;gap:24px;}
+/* RESPONSIVE */
+@media(max-width:1100px){
+  nav{padding:20px 36px;}
+  nav.stuck{padding:14px 36px;}
+  .nav-links,.nav-btn{display:none;}
+  .ham{display:flex;}
+  #about,#destinations,#experiences,#why,#testimonials,#packages,#process,#gallery,#stats,#partners,#cta{padding:100px 36px;}
+  footer{padding:64px 36px 28px;}
+  .about-wrap{grid-template-columns:1fr;gap:60px;}
+  .about-visual{height:440px;}
+  .why-wrap{grid-template-columns:1fr;}
+  .why-visual{height:420px;}
+  .dest-grid{grid-template-columns:1fr 1fr;}
+  .dc:nth-child(1){grid-column:span 2;min-height:340px;}
+  .dc:nth-child(2){grid-column:span 2;}
+  .dc:nth-child(3),.dc:nth-child(4),.dc:nth-child(5),.dc:nth-child(6),.dc:nth-child(7){grid-column:span 1;}
+  .exp-grid{grid-template-columns:1fr 1fr;}
+  .pkg-grid{grid-template-columns:1fr;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .stat-box{border-right:none;border-bottom:1px solid rgba(247,243,238,.15);}
+  .stat-box:last-child{border-bottom:none;}
+  .proc-steps{grid-template-columns:1fr 1fr;}
+  .proc-steps::before{display:none;}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:200px;}
+  .gi:nth-child(1){grid-column:span 2;height:300px;}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+  .test-card{min-width:calc(50% - 10px);}
+  .dest-hdr{flex-direction:column;align-items:flex-start;gap:20px;}
+  .hero-inner{padding:0 36px 140px;}
+  .hero-floater{display:none;}
+  .hero-scroll{right:36px;}
+  .exp-top{flex-direction:column;align-items:flex-start;gap:20px;}
+  .test-hdr{flex-direction:column;align-items:flex-start;gap:20px;}
+}
+@media(max-width:640px){
+  nav{padding:16px 20px;}
+  #about,#destinations,#experiences,#why,#testimonials,#packages,#process,#gallery,#stats,#partners,#cta{padding:80px 20px;}
+  footer{padding:50px 20px 24px;}
+  .hero-inner{padding:0 20px 120px;}
+  .hero-scroll{display:none;}
+  .hero-ctas{flex-direction:column;}
+  .btn-fill,.btn-ghost{width:100%;text-align:center;}
+  .about-visual{height:320px;}
+  .dest-grid{grid-template-columns:1fr;}
+  .dc:nth-child(1),.dc:nth-child(2){grid-column:span 1;}
+  .exp-grid{grid-template-columns:1fr;}
+  .proc-steps{grid-template-columns:1fr;}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:150px;}
+  .gi:nth-child(1){grid-column:span 2;height:200px;}
+  .foot-grid{grid-template-columns:1fr;gap:36px;}
+  .foot-btm{flex-direction:column;gap:12px;text-align:center;}
+  .foot-btm-links{flex-wrap:wrap;justify-content:center;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .test-card{min-width:100%;}
+  .cta-form{flex-direction:column;}
+  .cta-input{border-right:1px solid rgba(247,243,238,.15);}
+  .exp-filter{flex-wrap:wrap;}
+  .exp-filter button{border-right:none;border-bottom:1px solid rgba(26,58,42,.1);}
+  .pkg-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-word">VOYEX</div>
+  <div class="loader-line"><div class="loader-line-fill"></div></div>
+  <div class="loader-sub">Pioneer the Extraordinary</div>
+</div>
+
+<!-- CURSOR -->
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" id="mobClose">&#x2715;</button>
+  <a href="#about" onclick="closeMob()">About</a>
+  <a href="#destinations" onclick="closeMob()">Destinations</a>
+  <a href="#experiences" onclick="closeMob()">Experiences</a>
+  <a href="#packages" onclick="closeMob()">Packages</a>
+  <a href="#cta" onclick="closeMob()">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 4L34 19L19 34L4 19L19 4Z" stroke="#1A3A2A" stroke-width="1.5"/>
+        <path d="M19 11L27 19L19 27L11 19L19 11Z" fill="#C4622D"/>
+      </svg>
+    </div>
+    <span class="logo-text">VOY<span>EX</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#experiences">Experiences</a></li>
+    <li><a href="#why">Why Voyex</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#cta">Contact</a></li>
+  </ul>
+  <button class="nav-btn" onclick="document.querySelector('#cta').scrollIntoView({behavior:'smooth'})">Plan My Journey</button>
+  <div class="ham" id="ham" onclick="openMob()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-slant"></div>
+  <div class="hero-inner">
+    <div class="hero-tag" id="hTag">
+      <span class="hero-tag-line"></span>Award-Winning Global Travel Agency — Est. 2001<span class="hero-tag-line"></span>
+    </div>
+    <h1 class="hero-h1" id="hH1">Pioneer<br>the <em>Extra-<br>ordinary</em></h1>
+    <div class="hero-row" id="hRow">
+      <p class="hero-desc">From the ancient temples of Kyoto to the raw wilderness of Patagonia — Voyex transforms travel into a force that reshapes who you are.</p>
+      <div class="hero-ctas">
+        <a href="#destinations" class="btn-fill">Explore Destinations</a>
+        <a href="#packages" class="btn-ghost">View Packages</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll Down</div>
+  <div class="hero-floater">
+    <div class="hero-stat"><div class="hero-stat-n">195<sup>+</sup></div><div class="hero-stat-l">Countries</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">50K<sup>+</sup></div><div class="hero-stat-l">Happy Travelers</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">4.9<sup>★</sup></div><div class="hero-stat-l">Client Rating</div></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Bespoke Itineraries</span><span class="ticker-item">195 Countries</span>
+    <span class="ticker-item">24/7 Elite Concierge</span><span class="ticker-item">Private Villas</span>
+    <span class="ticker-item">Luxury Retreats</span><span class="ticker-item">Exclusive Access</span>
+    <span class="ticker-item">Award-Winning Agency</span>
+    <span class="ticker-item">Bespoke Itineraries</span><span class="ticker-item">195 Countries</span>
+    <span class="ticker-item">24/7 Elite Concierge</span><span class="ticker-item">Private Villas</span>
+    <span class="ticker-item">Luxury Retreats</span><span class="ticker-item">Exclusive Access</span>
+    <span class="ticker-item">Award-Winning Agency</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-visual rvl">
+      <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=900&q=80" alt="Travel" class="about-main-img">
+      <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=600&q=80" alt="Experience" class="about-accent-img">
+      <div class="about-badge"><span class="bnum">24+</span><span class="blbl">Years of Excellence</span></div>
+    </div>
+    <div class="rvr">
+      <div class="eyebrow">Our Story</div>
+      <h2 class="heading">Travel Is Not <em>What You Do.</em> It's Who You Become.</h2>
+      <p>Voyex was built on a radical idea: that travel done right is the most transformative force in a human life. For over two decades, we've crafted journeys for those who refuse to settle for ordinary — executives, artists, families, and adventurers who demand depth, beauty, and meaning from every destination.</p>
+      <p>We don't book holidays. We architect experiences so immersive, so exquisitely personal, that they become the stories you tell for the rest of your life. Every detail is curated by specialists who have lived and breathed these destinations themselves.</p>
+      <div class="about-pills">
+        <div class="about-pill">Expert Curation</div><div class="about-pill">White-Glove Service</div>
+        <div class="about-pill">Exclusive Access</div><div class="about-pill">Verified Luxury</div>
+        <div class="about-pill">24/7 Concierge</div><div class="about-pill">Personal Chef Available</div>
+      </div>
+      <div class="about-cta-row">
+        <a href="#why" class="btn-forest">Discover Our Difference</a>
+        <a href="#experiences" class="about-link">View Experiences &#8594;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section id="destinations">
+  <div class="dest-hdr rv">
+    <div>
+      <div class="eyebrow lt">Handpicked Destinations</div>
+      <h2 class="heading lt">Where Does Your<br><em>Story Begin?</em></h2>
+    </div>
+    <a href="#packages" class="btn-ghost-cream">All Destinations</a>
+  </div>
+  <div class="dest-grid">
+    <div class="dc rv" style="transition-delay:.05s">
+      <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=900&q=80" alt="Santorini">
+      <div class="dc-layer"></div>
+      <div class="dc-info"><div class="dc-region">Europe — Greece</div><div class="dc-name">Santorini</div><div class="dc-price">From <strong>$2,490</strong> / person</div></div>
+      <div class="dc-hover"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </div>
+    <div class="dc rv" style="transition-delay:.1s">
+      <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1000&q=80" alt="Tokyo">
+      <div class="dc-layer"></div>
+      <div class="dc-info"><div class="dc-region">Asia — Japan</div><div class="dc-name">Tokyo</div><div class="dc-price">From <strong>$3,190</strong> / person</div></div>
+      <div class="dc-hover"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </div>
+    <div class="dc rv" style="transition-delay:.15s">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80" alt="Maldives">
+      <div class="dc-layer"></div>
+      <div class="dc-info"><div class="dc-region">Indian Ocean</div><div class="dc-name">Maldives</div><div class="dc-price">From <strong>$4,750</strong> / person</div></div>
+      <div class="dc-hover"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </div>
+    <div class="dc rv" style="transition-delay:.2s">
+      <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=700&q=80" alt="Rome">
+      <div class="dc-layer"></div>
+      <div class="dc-info"><div class="dc-region">Europe — Italy</div><div class="dc-name">Rome</div><div class="dc-price">From <strong>$1,890</strong> / person</div></div>
+      <div class="dc-hover"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </div>
+    <div class="dc rv" style="transition-delay:.25s">
+      <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=700&q=80" alt="Kyoto">
+      <div class="dc-layer"></div>
+      <div class="dc-info"><div class="dc-region">Asia — Japan</div><div class="dc-name">Kyoto</div><div class="dc-price">From <strong>$2,980</strong> / person</div></div>
+      <div class="dc-hover"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </div>
+    <div class="dc rv" style="transition-delay:.3s">
+      <img src="https://images.unsplash.com/photo-1550236520-7050f3582da0?w=700&q=80" alt="Bali">
+      <div class="dc-layer"></div>
+      <div class="dc-info"><div class="dc-region">Southeast Asia</div><div class="dc-name">Bali</div><div class="dc-price">From <strong>$1,650</strong> / person</div></div>
+      <div class="dc-hover"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </div>
+    <div class="dc rv" style="transition-delay:.35s">
+      <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=700&q=80" alt="Seychelles">
+      <div class="dc-layer"></div>
+      <div class="dc-info"><div class="dc-region">Africa — Seychelles</div><div class="dc-name">Seychelles</div><div class="dc-price">From <strong>$5,200</strong> / person</div></div>
+      <div class="dc-hover"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section id="experiences">
+  <div class="exp-wrap">
+    <div class="exp-top">
+      <div>
+        <div class="eyebrow rv">Curated Experiences</div>
+        <h2 class="heading rv">Journey Beyond<br><em>the Predictable</em></h2>
+      </div>
+      <div class="exp-filter rv">
+        <button class="on" onclick="filterEx(this,'all')">All</button>
+        <button onclick="filterEx(this,'luxury')">Luxury</button>
+        <button onclick="filterEx(this,'adventure')">Adventure</button>
+        <button onclick="filterEx(this,'cultural')">Cultural</button>
+        <button onclick="filterEx(this,'wellness')">Wellness</button>
+      </div>
+    </div>
+    <div class="exp-grid">
+      <div class="ec rv" data-cat="luxury" style="transition-delay:.05s">
+        <div class="ec-imgbox"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&q=80" alt="Villa" class="ec-img"><div class="ec-tag-box">Luxury Retreat</div></div>
+        <div class="ec-body"><div class="ec-title">Private Overwater Villa in the Maldives</div><div class="ec-desc">Surrender to absolute seclusion in a glass-floor villa suspended above crystalline waters, with a personal butler, private chef, and unlimited seaplane excursions.</div><div class="ec-foot"><div><div class="ec-price">$8,900</div><div class="ec-dur">7 Nights / Per Person</div></div><div class="ec-go"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div></div>
+      </div>
+      <div class="ec rv" data-cat="adventure" style="transition-delay:.15s">
+        <div class="ec-imgbox"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=700&q=80" alt="Safari" class="ec-img"><div class="ec-tag-box">Wildlife Adventure</div></div>
+        <div class="ec-body"><div class="ec-title">Private Safari, Serengeti National Park</div><div class="ec-desc">Track the Great Migration with a dedicated wildlife expert from a luxury tented camp. Witness nature's most spectacular show from an exclusive vantage point.</div><div class="ec-foot"><div><div class="ec-price">$6,400</div><div class="ec-dur">10 Nights / Per Couple</div></div><div class="ec-go"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div></div>
+      </div>
+      <div class="ec rv" data-cat="cultural" style="transition-delay:.25s">
+        <div class="ec-imgbox"><img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=700&q=80" alt="Tokyo" class="ec-img"><div class="ec-tag-box">Cultural Immersion</div></div>
+        <div class="ec-body"><div class="ec-title">Ancient Temples and Modern Tokyo</div><div class="ec-desc">Experience Japan's profound duality — from private tea ceremonies in Kyoto's centuries-old tea houses to exclusive access to Tokyo's most innovative dining scenes.</div><div class="ec-foot"><div><div class="ec-price">$5,200</div><div class="ec-dur">12 Nights / Per Person</div></div><div class="ec-go"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div></div>
+      </div>
+      <div class="ec rv" data-cat="wellness" style="transition-delay:.05s">
+        <div class="ec-imgbox"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=80" alt="Wellness" class="ec-img"><div class="ec-tag-box">Wellness Journey</div></div>
+        <div class="ec-body"><div class="ec-title">Bali Spiritual Wellness Retreat</div><div class="ec-desc">Restore your mind, body, and spirit at Bali's most revered wellness sanctuaries. Guided meditation, sound healing, and ancient Balinese healing ceremonies await.</div><div class="ec-foot"><div><div class="ec-price">$3,800</div><div class="ec-dur">8 Nights / Per Person</div></div><div class="ec-go"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div></div>
+      </div>
+      <div class="ec rv" data-cat="adventure" style="transition-delay:.15s">
+        <div class="ec-imgbox"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80" alt="Alps" class="ec-img"><div class="ec-tag-box">Alpine Adventure</div></div>
+        <div class="ec-body"><div class="ec-title">Swiss Alps Helicopter Skiing</div><div class="ec-desc">Carve pristine virgin powder on the Swiss Alps' most exclusive backcountry runs with helicopter access, certified mountain guide, and a Michelin-star après-ski dinner.</div><div class="ec-foot"><div><div class="ec-price">$12,500</div><div class="ec-dur">5 Days / Per Person</div></div><div class="ec-go"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div></div>
+      </div>
+      <div class="ec rv" data-cat="luxury" style="transition-delay:.25s">
+        <div class="ec-imgbox"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&q=80" alt="Amalfi" class="ec-img"><div class="ec-tag-box">Coastal Luxury</div></div>
+        <div class="ec-body"><div class="ec-title">Private Yacht on the Amalfi Coast</div><div class="ec-desc">Command your own private superyacht along the Amalfi coastline, anchoring at secret grottos, dining with renowned local chefs, and sleeping beneath Italian stars.</div><div class="ec-foot"><div><div class="ec-price">$18,000</div><div class="ec-dur">7 Days / Yacht Charter</div></div><div class="ec-go"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY VOYEX -->
+<section id="why">
+  <div class="why-wrap">
+    <div class="why-visual rvl">
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=80" alt="Travel" class="why-main-img">
+      <div class="why-chip"><span class="chip-n">98%</span><span class="chip-l">Client Satisfaction Rate</span></div>
+    </div>
+    <div class="rvr">
+      <div class="eyebrow lt">Why Choose Voyex</div>
+      <h2 class="heading lt">The Standard Others<br><em>Aspire To</em></h2>
+      <div class="why-list" style="margin-top:44px">
+        <div class="why-item"><div class="why-n">01</div><div><div class="why-h">Destination Mastery</div><p class="why-p">Our specialists don't just know destinations — they live them. Every itinerary is crafted by an expert who has personally walked every path, dined at every table, and forged deep local relationships that unlock doors others cannot.</p></div></div>
+        <div class="why-item"><div class="why-n">02</div><div><div class="why-h">Zero-Compromise Luxury</div><p class="why-p">Every hotel, transfer, and restaurant is personally inspected and held to the strictest standards. If it doesn't meet our benchmark, it doesn't make the itinerary — period.</p></div></div>
+        <div class="why-item"><div class="why-n">03</div><div><div class="why-h">Absolute Personalization</div><p class="why-p">No two journeys are the same. Your itinerary is built entirely around your passions, pace, and preferences. Whether it's a midnight helicopter flight over the Sahara or a private audience with a Shaolin monk — we make it happen.</p></div></div>
+        <div class="why-item"><div class="why-n">04</div><div><div class="why-h">24/7 Elite Concierge</div><p class="why-p">From booking to return, your dedicated travel manager is available around the clock. Flight delays, weather changes, spontaneous detours — we handle everything so you only have to be present.</p></div></div>
+        <div class="why-item"><div class="why-n">05</div><div><div class="why-h">Exclusive Partnerships</div><p class="why-p">Over 24 years, we've forged partnerships with the world's finest hotels, private airlines, and cultural institutions, granting our clients access to experiences that simply don't exist for ordinary travelers.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-box rv"><div class="stat-n"><span class="counter" data-t="50000">0</span><span class="stat-sup">+</span></div><div class="stat-l">Travelers Served</div></div>
+    <div class="stat-box rv" style="transition-delay:.1s"><div class="stat-n"><span class="counter" data-t="195">0</span></div><div class="stat-l">Countries Covered</div></div>
+    <div class="stat-box rv" style="transition-delay:.2s"><div class="stat-n"><span class="counter" data-t="98">0</span><span class="stat-sup">%</span></div><div class="stat-l">Client Satisfaction</div></div>
+    <div class="stat-box rv" style="transition-delay:.3s"><div class="stat-n"><span class="counter" data-t="24">0</span><span class="stat-sup">+</span></div><div class="stat-l">Years of Excellence</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="test-wrap">
+    <div class="test-hdr">
+      <div><div class="eyebrow">Client Stories</div><h2 class="heading">Voices of <em>Experience</em></h2></div>
+    </div>
+    <div class="test-track-wrap">
+      <div class="test-track" id="testTrack">
+        <div class="test-card"><div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="test-q">"</div><p class="test-body">Voyex didn't just plan a trip. They orchestrated a symphony of experiences across Italy that I still dream about three years later. The private after-hours access to the Vatican alone made it worth every penny.</p><div class="test-author"><img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&q=80" alt="Sarah" class="test-av"><div><div class="test-name">Sarah Montgomery</div><div class="test-role">CEO, Meridian Capital — New York</div></div></div></div>
+        <div class="test-card"><div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="test-q">"</div><p class="test-body">I've traveled extensively for business for 20 years. Voyex is the first agency that truly understood what luxury means to me. The Maldives experience they arranged was perfection in every dimension.</p><div class="test-author"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="James" class="test-av"><div><div class="test-name">James Harrington</div><div class="test-role">Managing Director, Harrington &amp; Co. — London</div></div></div></div>
+        <div class="test-card"><div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="test-q">"</div><p class="test-body">Our honeymoon was beyond anything we imagined. Voyex handled every detail with such precision — from the rose petal arrangement in Santorini to the surprise sunset dinner on a private boat. Absolute perfection.</p><div class="test-author"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Priya" class="test-av"><div><div class="test-name">Priya Sharma</div><div class="test-role">Architect &amp; Entrepreneur — Mumbai</div></div></div></div>
+        <div class="test-card"><div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="test-q">"</div><p class="test-body">The Japan itinerary Voyex designed for our family was a masterpiece. Ryokan stays in Kyoto, tea ceremony with a 9th-generation tea master, private samurai demonstrations. Our children talk about it constantly.</p><div class="test-author"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="David" class="test-av"><div><div class="test-name">David Chen</div><div class="test-role">Founder, Pacific Ventures — Singapore</div></div></div></div>
+        <div class="test-card"><div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="test-q">"</div><p class="test-body">I wanted the impossible — a private trekking permit to Bhutan during festival season with luxury lodges and a personal photographer. Voyex delivered in three weeks. I'm still in awe of what they pulled off.</p><div class="test-author"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80" alt="Elena" class="test-av"><div><div class="test-name">Elena Kovacs</div><div class="test-role">Fashion Designer — Milan and Paris</div></div></div></div>
+      </div>
+    </div>
+    <div class="test-controls">
+      <button class="t-btn" onclick="tLeft()"><svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg></button>
+      <button class="t-btn" onclick="tRight()"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+      <div class="t-dots" id="tDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="pkg-wrap">
+    <div class="eyebrow rv">Pricing and Packages</div>
+    <h2 class="heading rv">Your Journey,<br><em>Your Terms</em></h2>
+    <p class="rv" style="margin-top:18px;font-size:1rem;font-weight:300;color:var(--mid);max-width:520px;line-height:1.9">Every package is a starting framework. Your dedicated specialist will sculpt the perfect itinerary around your vision, with no detail too small.</p>
+    <div class="pkg-grid">
+      <div class="pkg-card rv" style="transition-delay:.05s">
+        <div class="pkg-type">Signature</div><div class="pkg-name">The Explorer</div>
+        <div class="pkg-price">$2,490</div><div class="pkg-note">per person, double occupancy</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-list"><li>7-night guided itinerary</li><li>4-star hotel accommodations</li><li>All internal transfers included</li><li>Daily breakfast included</li><li>Dedicated travel manager</li><li>Major attraction entry</li><li>24/7 emergency support</li></ul>
+        <button class="pkg-btn">Begin Your Journey</button>
+      </div>
+      <div class="pkg-card hero-pkg rv" style="transition-delay:.15s">
+        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-type">Premium</div><div class="pkg-name">The Connoisseur</div>
+        <div class="pkg-price" style="color:var(--terra-l)">$5,900</div><div class="pkg-note">per person, double occupancy</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-list"><li>12-night bespoke itinerary</li><li>5-star and boutique hotels</li><li>Private airport transfers</li><li>All meals at curated restaurants</li><li>Personal 24/7 concierge</li><li>Exclusive cultural experiences</li><li>Private guided excursions</li><li>Travel insurance included</li></ul>
+        <button class="pkg-btn">Experience Excellence</button>
+      </div>
+      <div class="pkg-card rv" style="transition-delay:.25s">
+        <div class="pkg-type">Ultra-Luxury</div><div class="pkg-name">The Sovereign</div>
+        <div class="pkg-price">$15,000</div><div class="pkg-note">per person, completely bespoke</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-list"><li>Fully custom itinerary — no limits</li><li>Private villas and ultra-luxury resorts</li><li>Private jet transfers available</li><li>Personal chef and dietary service</li><li>Dedicated destination specialist</li><li>VIP and behind-the-scenes access</li><li>Private photography and videography</li><li>Complete travel insurance suite</li><li>Curated gifts and welcome amenities</li></ul>
+        <button class="pkg-btn">Craft Your Legacy</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="proc-wrap">
+    <div class="eyebrow lt rv">How It Works</div>
+    <h2 class="heading lt rv">Your Path to<br><em>Extraordinary</em></h2>
+    <div class="proc-steps">
+      <div class="proc-step rv" style="transition-delay:.08s"><div class="proc-num">01</div><div class="proc-h">Consultation</div><p class="proc-p">Share your vision with a dedicated travel specialist who listens deeply — not just where you want to go, but who you want to become on this journey.</p></div>
+      <div class="proc-step rv" style="transition-delay:.18s"><div class="proc-num">02</div><div class="proc-h">Curation</div><p class="proc-p">Your specialist crafts a detailed, personalized itinerary presenting hand-selected hotels, experiences, and hidden gems curated specifically for you.</p></div>
+      <div class="proc-step rv" style="transition-delay:.28s"><div class="proc-num">03</div><div class="proc-h">Refinement</div><p class="proc-p">We refine every detail until your itinerary is flawless. Timing, pacing, alternatives, seasonal considerations — nothing is left to chance.</p></div>
+      <div class="proc-step rv" style="transition-delay:.38s"><div class="proc-num">04</div><div class="proc-h">Experience</div><p class="proc-p">Travel in total confidence while your concierge manages every detail in real time. Your only task is to be present and savor every remarkable moment.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gal-wrap">
+    <div class="eyebrow rv">Visual Journeys</div>
+    <h2 class="heading rv">A Glimpse of <em>What Awaits</em></h2>
+    <div class="gal-grid">
+      <div class="gi rv"><img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=900&q=80" alt="Gallery"><div class="gi-ov"><div class="gi-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div></div>
+      <div class="gi rv" style="transition-delay:.06s"><img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=700&q=80" alt="Gallery"><div class="gi-ov"><div class="gi-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div></div>
+      <div class="gi rv" style="transition-delay:.12s"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=700&q=80" alt="Gallery"><div class="gi-ov"><div class="gi-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div></div>
+      <div class="gi rv" style="transition-delay:.18s"><img src="https://images.unsplash.com/photo-1502791451862-7bd8c1df43a7?w=700&q=80" alt="Gallery"><div class="gi-ov"><div class="gi-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div></div>
+      <div class="gi rv" style="transition-delay:.24s"><img src="https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=700&q=80" alt="Gallery"><div class="gi-ov"><div class="gi-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div></div>
+      <div class="gi rv" style="transition-delay:.3s"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=700&q=80" alt="Gallery"><div class="gi-ov"><div class="gi-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div></div>
+      <div class="gi rv" style="transition-delay:.36s"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=700&q=80" alt="Gallery"><div class="gi-ov"><div class="gi-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="par-wrap">
+    <p class="par-lbl">Trusted by the world's most discerning luxury travel brands</p>
+    <div class="par-logos">
+      <div class="par-logo">Four Seasons</div><div class="par-logo">Aman Resorts</div>
+      <div class="par-logo">Emirates</div><div class="par-logo">Ritz-Carlton</div>
+      <div class="par-logo">Bulgari Hotels</div><div class="par-logo">Belmond</div>
+      <div class="par-logo">Singita</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-bg-img"></div>
+  <div class="cta-inner">
+    <div class="eyebrow" style="justify-content:center;color:var(--terra-l)"><span style="background:var(--terra-l);width:32px;height:2px;display:inline-block"></span>Start Your Journey</div>
+    <h2 class="cta-title">Your Next Chapter<br><em>Begins Here</em></h2>
+    <p class="cta-sub">Speak with a Voyex travel specialist today and take the first step toward the journey you have always imagined. No obligation, just inspiration.</p>
+    <div class="cta-form">
+      <input type="email" class="cta-input" placeholder="Your email address">
+      <button class="cta-go">Get Started</button>
+    </div>
+    <p class="cta-priv">We respect your privacy. No spam — ever. Only the extraordinary.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="logo-icon" style="width:34px;height:34px"><svg viewBox="0 0 38 38" fill="none"><path d="M19 4L34 19L19 34L4 19L19 4Z" stroke="#D4B896" stroke-width="1.5"/><path d="M19 11L27 19L19 27L11 19L19 11Z" fill="#C4622D"/></svg></div>
+        <span class="foot-brand-logo">VOY<span>EX</span></span>
+      </div>
+      <p>Voyex Travels has been crafting extraordinary journeys for over two decades, connecting discerning travelers with the world's most breathtaking destinations and experiences.</p>
+      <div class="foot-socials">
+        <a href="#" class="foot-soc">Li</a><a href="#" class="foot-soc">Ig</a>
+        <a href="#" class="foot-soc">Fb</a><a href="#" class="foot-soc">Tw</a>
+      </div>
+    </div>
+    <div class="foot-col"><h4>Destinations</h4><ul><li><a href="#">Europe</a></li><li><a href="#">Asia Pacific</a></li><li><a href="#">Americas</a></li><li><a href="#">Middle East</a></li><li><a href="#">Africa</a></li><li><a href="#">Oceania</a></li></ul></div>
+    <div class="foot-col"><h4>Experiences</h4><ul><li><a href="#">Luxury Retreats</a></li><li><a href="#">Adventure Travel</a></li><li><a href="#">Cultural Immersion</a></li><li><a href="#">Wellness Journeys</a></li><li><a href="#">Honeymoon Packages</a></li><li><a href="#">Family Escapes</a></li></ul></div>
+    <div class="foot-col"><h4>Company</h4><ul><li><a href="#">Our Story</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Partners</a></li><li><a href="#">Sustainability</a></li><li><a href="#">Contact Us</a></li></ul></div>
+  </div>
+  <div class="foot-btm">
+    <p>&copy; 2025 Voyex Travels. All rights reserved. Pioneering the extraordinary since 2001.</p>
+    <div class="foot-btm-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a></div>
+  </div>
+</footer>
+
+<script>
+/* LOADER */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{document.getElementById('loader').classList.add('gone');animateHero();},1900);
+});
+function animateHero(){
+  ['hTag','hH1','hRow'].forEach((id,i)=>{
+    const el=document.getElementById(id);if(!el)return;
+    setTimeout(()=>{el.style.transition='opacity 1s ease,transform 1s ease';el.style.opacity='1';el.style.transform='translateY(0)';},i*220);
+  });
+}
+/* CURSOR */
+const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function f(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(f);})();
+/* NAV */
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('stuck',window.scrollY>50);});
+/* PARALLAX */
+window.addEventListener('scroll',()=>{const bg=document.getElementById('heroBg');if(bg)bg.style.transform=`scale(1.08) translateY(${window.scrollY*.28}px)`;});
+/* OBSERVE */
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');});},{threshold:.12});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>io.observe(el));
+/* COUNTERS */
+const cio=new IntersectionObserver(e=>{
+  e.forEach(x=>{
+    if(x.isIntersecting&&!x.target.dataset.done){
+      x.target.dataset.done=1;const t=parseInt(x.target.dataset.t),s=Date.now(),d=2200;
+      (function tick(){const p=Math.min((Date.now()-s)/d,1),v=Math.floor((1-Math.pow(1-p,3))*t);
+        x.target.textContent=v.toLocaleString();if(p<1)requestAnimationFrame(tick);})();
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(c=>cio.observe(c));
+/* SLIDER */
+let tSlide=0;
+const tTrack=document.getElementById('testTrack');
+const tCards=tTrack?[...tTrack.querySelectorAll('.test-card')]:[];
+const tDotsW=document.getElementById('tDots');
+function tVis(){return window.innerWidth<=640?1:window.innerWidth<=1100?2:3;}
+function buildDots(){if(!tDotsW)return;tDotsW.innerHTML='';const n=Math.ceil(tCards.length/tVis());for(let i=0;i<n;i++){const d=document.createElement('div');d.className='t-dot'+(i===0?' on':'');d.onclick=()=>goT(i);tDotsW.appendChild(d);}}
+function syncT(){const max=Math.max(0,tCards.length-tVis());tSlide=Math.min(tSlide,max);const w=tCards[0]?tCards[0].offsetWidth+20:0;tTrack.style.transform=`translateX(-${tSlide*w}px)`;document.querySelectorAll('.t-dot').forEach((d,i)=>d.classList.toggle('on',i===tSlide));}
+function goT(i){tSlide=i;syncT();}
+function tLeft(){if(tSlide>0){tSlide--;syncT();}}
+function tRight(){const max=Math.ceil(tCards.length/tVis())-1;if(tSlide<max){tSlide++;syncT();}}
+setInterval(tRight,5200);buildDots();window.addEventListener('resize',()=>{buildDots();syncT();});
+/* FILTER */
+function filterEx(btn,cat){
+  document.querySelectorAll('.exp-filter button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.querySelectorAll('.ec').forEach(c=>{const show=cat==='all'||c.dataset.cat===cat;c.style.transition='opacity .35s,transform .35s';if(show){c.style.display='';c.style.opacity='0';c.style.transform='translateY(16px)';setTimeout(()=>{c.style.opacity='1';c.style.transform='translateY(0)';},30);}else{c.style.display='none';}});
+}
+/* MOB NAV */
+function openMob(){document.getElementById('mobNav').classList.add('open');}
+function closeMob(){document.getElementById('mobNav').classList.remove('open');}
+document.getElementById('mobClose').onclick=closeMob;
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});closeMob();}});});
+</script>
+</body>
+</html>
