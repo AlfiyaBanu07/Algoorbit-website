@@ -386,6 +386,151 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
 @media(max-width:380px){.logo-text{font-size:15px}.ring-c{width:104px;height:104px}.ring-c strong{font-size:1.7rem}}
 @media(hover:none){.card:hover{transform:none}.card:hover .ci img,.cell:hover img,.cell:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}.marq{animation:none}.orbit g,.badge-chip,.faq-vis .fchip{animation:none}}
+
+/* =====================================================================
+   CHANGE 1 · Mobile hero image (phones only, desktop and tablet untouched)
+   UPDATED: the picture is zoomed in a bit more, moved a little to the
+   RIGHT, and the person sits in the CENTER of the frame.
+
+   --hero-x    : which part of the picture is shown.
+                 0% = left side, 50% = middle, 100% = right side.
+                 LOWER value  -> picture moves to the RIGHT
+                 HIGHER value -> picture moves to the LEFT
+   --hero-y    : vertical focus of the crop. 0% = top, 50% = middle.
+   --hero-zoom : zoom level. 1 = none, 1.3 = a bit more, 1.5 = a lot.
+   --hero-ox / --hero-oy : the point the zoom grows from (50% 50% = center).
+   --hero-shift: extra nudge of the whole picture to the RIGHT after zoom.
+                 0% = none, 3% = small, 6% = more. Negative = to the LEFT.
+
+   Fine-tuning guide:
+     person still too far LEFT  -> RAISE --hero-shift (e.g. 6%) or LOWER --hero-x
+     person too far RIGHT       -> LOWER --hero-shift (e.g. 0%) or RAISE --hero-x
+     want more / less zoom      -> change --hero-zoom (1.2 to 1.5)
+     head cut at the top        -> LOWER --hero-y  (e.g. 20%)
+   ===================================================================== */
+:root{--hero-x:0%;--hero-y:50%;--hero-zoom:1.45;--hero-ox:50%;--hero-oy:45%;--hero-shift:7%}
+@media(max-width:700px){
+ .hero-vis{aspect-ratio:5/4;overflow:hidden}
+ .hero-vis>img{
+  display:block;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:var(--hero-x) var(--hero-y)!important;
+  transform-origin:var(--hero-ox) var(--hero-oy);
+  translate:var(--hero-shift) 0;
+  scale:var(--hero-zoom);
+ }
+}
+
+/* =====================================================================
+   CHANGE 2 · Cards in every card section keep moving one by one (all devices)
+   JS wraps the cards in .mq-track and repeats them for a seamless loop.
+   Hover or touch pauses the movement.
+   ===================================================================== */
+.grid.mq,.cul.mq{
+  display:block;
+  overflow:hidden;
+  padding:14px 0 22px;
+  margin:-14px 0 -22px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%);
+}
+.mq-track{
+  display:flex;
+  align-items:stretch;
+  width:max-content;
+  animation:mqmove var(--mq-dur,40s) linear infinite;
+  will-change:transform;
+}
+.mq:hover .mq-track,.mq:focus-within .mq-track,.mq.hold .mq-track{animation-play-state:paused}
+.grid.mq .mq-track>*{
+  flex:0 0 clamp(270px,26vw,340px);
+  width:clamp(270px,26vw,340px);
+  margin-right:20px;
+  height:auto;
+  grid-row:auto;grid-column:auto;
+}
+.grid.mq .mq-track .feature{grid-template-columns:1fr;gap:18px}
+.cul.mq .mq-track>*{
+  flex:0 0 clamp(260px,24vw,320px);
+  width:clamp(260px,24vw,320px);
+  height:260px;
+  margin-right:16px;
+  grid-row:auto;grid-column:auto;
+}
+@keyframes mqmove{to{transform:translateX(-50%)}}
+@media(max-width:700px){
+ .grid.mq,.cul.mq{margin-left:calc(-1*clamp(16px,4vw,24px));margin-right:calc(-1*clamp(16px,4vw,24px))}
+ .grid.mq .mq-track>*{flex-basis:76vw;width:76vw;max-width:320px;margin-right:14px}
+ .cul.mq .mq-track>*{flex-basis:70vw;width:70vw;max-width:300px;height:240px;margin-right:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ .mq-track{animation:none!important;transform:none!important}
+}
+
+/* =====================================================================
+   CHANGE 3 · Navigation dropdown: same look and behaviour as the Home page
+   Desktop: soft white glass panel, rounded 16px, opens on hover or click,
+            items turn navy with white text and slide in on hover.
+   Mobile : slide-down menu with larger tap targets, dropdown opens inline.
+   (The old consultancy-style dropdown block was removed.)
+   ===================================================================== */
+.dropdown-menu{
+  position:absolute;top:100%;left:-14px;
+  min-width:230px;max-width:calc(100vw - 32px);
+  margin-top:0;
+  background:rgba(255,255,255,.95);
+  border:1px solid var(--line);
+  box-shadow:0 14px 32px rgba(20,21,46,.1);
+  padding:8px 0;border-radius:16px;
+  opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:.2s;
+}
+.has-dropdown.open .dropdown-menu{opacity:1;visibility:visible;transform:none}
+.dropdown-menu a{display:block;padding:10px 18px;font-size:14px;line-height:1.5;font-weight:500;color:var(--ink);transition:background .25s,color .25s,padding-left .25s var(--ease)}
+.dropdown-menu a:hover{background:var(--navy);color:#fff;padding-left:24px}
+@media(min-width:821px){
+ .has-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:none}
+ .has-dropdown:hover .dropdown-trigger{color:#fff}
+ .has-dropdown:hover .dropdown-trigger::after{transform:scaleX(1)}
+}
+@media(max-width:820px){
+ .site-header .nav-inner{height:56px;padding-inline:18px}
+ .menu-toggle{width:40px;height:40px;border-radius:12px}
+ #navWrap{
+  display:block;top:56px;max-height:calc(100dvh - 56px);
+  visibility:hidden;opacity:0;transform:translateY(-8px);
+  transition:opacity .25s,transform .3s var(--ease),visibility .25s;
+ }
+ #navWrap.open{display:block;visibility:visible;opacity:1;transform:none}
+ .nav-links{gap:0;padding:8px 20px 24px}
+ .nav-links>li>a:not(.btn),.dropdown-trigger,.nav-links>li>a.active{font-size:17px;padding-top:15px;padding-bottom:15px}
+ .dropdown-menu{
+  position:static;opacity:1;visibility:visible;transform:none;
+  box-shadow:none;border:0;border-radius:0;
+  display:none;padding:0 0 10px 14px;margin:0;background:none;max-width:none;
+ }
+ .has-dropdown.open .dropdown-menu{display:block}
+ .dropdown-menu a{font-size:15.5px;padding:12px 0;color:#c9cae9}
+ .dropdown-menu a:hover{background:rgba(255,255,255,.08);color:#fff;padding-left:0}
+}
+
+/* =====================================================================
+   CHANGE 4 · Footer on mobile: same layout as the Home page
+   Brand block full width on top, link columns in two columns below,
+   centred copyright bar, extra bottom room for the floating WhatsApp button.
+   (Phones only. Desktop and tablet footer are untouched.)
+   ===================================================================== */
+@media(max-width:700px){
+ .site-footer{padding-bottom:78px}
+ .fgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 18px;padding-bottom:28px}
+ .fgrid>div:first-child{grid-column:1/-1}
+ .fgrid li{margin-bottom:12px}
+ .fbot{flex-direction:column;align-items:center;text-align:center;padding:18px 0}
+ .wa-float{right:16px;bottom:16px;width:52px;height:52px}
+ .wa-float svg{width:26px;height:26px}
+}
+@media(max-width:640px){.wordmark{font-size:28px}}
 </style>
 </head>
 <body>
@@ -781,6 +926,7 @@ document.querySelectorAll('.stats-section').forEach(function(el){cio.observe(el)
 requestAnimationFrame(function(){requestAnimationFrame(function(){document.body.classList.add('ready')})});
 
 // Scroll progress + header + hero image drift
+// (on phones the hero picture position comes from the CSS variables, which override this drift)
 var hdr=document.querySelector('.site-header'),hero=document.querySelector('.hero'),heroImg=document.querySelector('.hero-vis>img');
 addEventListener('scroll',function(){
  var h=document.documentElement.scrollHeight-innerHeight;
@@ -789,14 +935,15 @@ addEventListener('scroll',function(){
  if(heroImg&&scrollY<900&&!reduce)heroImg.style.objectPosition='right calc(50% + '+scrollY*.05+'px)';
 },{passive:true});
 
-// Mobile menu + dropdown
+// Mobile menu + services dropdown (same behaviour as the Home page)
 var tg=document.getElementById('menuToggle'),nav=document.getElementById('navWrap');
 tg.addEventListener('click',function(){var o=nav.classList.toggle('open');tg.setAttribute('aria-expanded',o)});
 document.querySelectorAll('.dropdown-trigger').forEach(function(b){b.addEventListener('click',function(){
  var li=b.parentElement,o=!li.classList.contains('open');
  document.querySelectorAll('.has-dropdown').forEach(function(x){x.classList.remove('open');x.firstElementChild.setAttribute('aria-expanded','false')});
  if(o){li.classList.add('open');b.setAttribute('aria-expanded','true')}})});
-document.addEventListener('click',function(e){if(!e.target.closest('.has-dropdown'))document.querySelectorAll('.has-dropdown').forEach(function(x){x.classList.remove('open')})});
+document.addEventListener('click',function(e){if(!e.target.closest('.has-dropdown'))document.querySelectorAll('.has-dropdown').forEach(function(x){x.classList.remove('open');x.firstElementChild.setAttribute('aria-expanded','false')})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.has-dropdown').forEach(function(x){x.classList.remove('open');x.firstElementChild.setAttribute('aria-expanded','false')})}});
 
 // Scroll reveal
 if(!reduce){
@@ -908,6 +1055,58 @@ function showApplySuccess(){
   if(txt)txt.textContent='Closing in '+secs+' second'+(secs!==1?'s':'')+'...';
   if(secs<=0){clearInterval(iv);closeApplyModal()}},1000);
 }
+
+// ===== Cards in every card section keep moving one by one (all devices) =====
+(function(){
+ if(reduce)return;
+
+ // a copy of a card for the loop (hover light and tilt still follow the cursor on copies)
+ function mk(k){
+  var c=k.cloneNode(true);
+  c.classList.remove('reveal','in','tilting');
+  c.style.transitionDelay='';
+  c.setAttribute('aria-hidden','true');
+  Array.prototype.forEach.call(c.querySelectorAll('a,button,input'),function(a){a.tabIndex=-1});
+  if(c.classList.contains('card')||c.classList.contains('quote')){
+   var tilt=c.classList.contains('card');
+   c.addEventListener('mousemove',function(e){
+    var r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+    c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
+    if(tilt){c.style.setProperty('--ry',((x/r.width-.5)*6)+'deg');c.style.setProperty('--rx',((.5-y/r.height)*6)+'deg');c.classList.add('tilting')}});
+   c.addEventListener('mouseleave',function(){c.classList.remove('tilting');c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')});
+  }
+  return c;
+ }
+
+ document.querySelectorAll('.grid,.cul').forEach(function(g){
+  var kids=Array.prototype.slice.call(g.children);
+  if(!kids.length)return;
+  kids.forEach(function(k){
+   k.classList.remove('reveal','in');k.style.transitionDelay='';
+   if(typeof rio!=='undefined'){try{rio.unobserve(k)}catch(e){}}
+  });
+  var track=document.createElement('div');
+  track.className='mq-track';
+  kids.forEach(function(k){track.appendChild(k)});
+  g.appendChild(track);
+  g.classList.add('mq');
+
+  // repeat the set until it is wider than any screen, then double it for a seamless loop
+  var setW=track.scrollWidth||1;
+  var reps=Math.max(1,Math.min(8,Math.ceil(Math.max(innerWidth,1920)/setW)));
+  for(var r=1;r<reps;r++){kids.forEach(function(k){track.appendChild(mk(k))})}
+  Array.prototype.slice.call(track.children).forEach(function(k){track.appendChild(mk(k))});
+
+  // constant, calm speed (about 45px per second)
+  track.style.setProperty('--mq-dur',Math.max(20,Math.round(track.scrollWidth/2/45))+'s');
+
+  // touching the strip pauses it, releasing resumes it
+  var rel;
+  g.addEventListener('touchstart',function(){clearTimeout(rel);g.classList.add('hold')},{passive:true});
+  function rl(){clearTimeout(rel);rel=setTimeout(function(){g.classList.remove('hold')},1600)}
+  g.addEventListener('touchend',rl);g.addEventListener('touchcancel',rl);
+ });
+})();
 </script>
 </body>
 </html>

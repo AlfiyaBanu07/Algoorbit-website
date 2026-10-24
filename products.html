@@ -475,6 +475,183 @@ header .menu-btn{color:#fff;border-color:rgba(255,255,255,.3);width:38px;height:
  .stats strong{font-size:1.3rem}
  .ao-foot .wordmark{font-size:28px}
 }
+
+/* =====================================================================
+   Round 3 · (1) hero image centered on mobile  (2) continuously moving cards
+   ===================================================================== */
+
+/* (1) Mobile / tablet only: put the person in the CENTER of the hero image.
+   The photo has the person at ~42% from the left, so the box is cropped
+   to 4:3 and shifted with --hero-x so he lands in the middle (no zoom/scale).
+     person still too far LEFT  -> LOWER --hero-x (e.g. 8%)
+     person still too far RIGHT -> RAISE --hero-x (e.g. 25%) */
+:root{--hero-x:15%}
+@media(max-width:960px){
+ .hero-bg{
+  display:block;
+  width:100%;
+  max-width:100%;
+  margin-left:auto;
+  margin-right:auto;
+  left:auto;right:auto;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  object-position:var(--hero-x) 50%;
+  transform:none;
+  scale:1;
+ }
+ @keyframes heroInMob{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+ .hero-bg{animation:heroInMob .9s var(--ease) both}
+}
+@media(max-width:640px){
+ .hero-bg{aspect-ratio:4/3;object-position:var(--hero-x) 50%}
+}
+@media(max-width:380px){
+ .hero-bg{aspect-ratio:4/3;object-position:var(--hero-x) 50%}
+}
+
+/* ---------------------------------------------------------------------
+   Round 4 · PHONES ONLY (max-width:700px): hero image
+   - person centered in the frame
+   - image nudged a little to the RIGHT
+   - very small zoom (1.08), zoomed around the center of the frame
+   Desktop and tablet are untouched.
+   Tune with these variables:
+     --hero-x    : horizontal focus. LOWER (e.g. 4%) = picture moves more to the RIGHT,
+                   HIGHER (e.g. 20%) = picture moves back to the LEFT
+     --hero-y    : vertical focus. 0% = top of the picture, 50% = middle
+     --hero-zoom : 1 = no zoom, 1.08 = tiny zoom, 1.15 = little zoom
+     --hero-oy   : vertical anchor of the zoom (40% keeps heads from being cut)
+   --------------------------------------------------------------------- */
+@media(max-width:700px){
+ .hero{--hero-x:0%;--hero-y:50%;--hero-zoom:1.08;--hero-oy:40%}
+ .hero-bg{
+  margin:0 auto;
+  object-position:var(--hero-x) var(--hero-y);
+  transform-origin:50% var(--hero-oy);
+  scale:var(--hero-zoom);
+  /* clip the zoomed picture back to its original frame so it never covers the text below */
+  clip-path:inset(
+   calc((1 - 1 / var(--hero-zoom)) * var(--hero-oy))
+   calc((1 - 1 / var(--hero-zoom)) * 50%)
+   calc((1 - 1 / var(--hero-zoom)) * (100% - var(--hero-oy)))
+   calc((1 - 1 / var(--hero-zoom)) * 50%)
+  );
+ }
+}
+
+/* (2) Cards auto-move one by one (continuous, seamless loop) */
+.g3.mq,.g4.mq{
+  display:block;
+  overflow:hidden;
+  padding:14px 0 22px;
+  margin-top:-14px;
+  margin-bottom:-22px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%);
+}
+.cta .g3.mq{max-width:1000px;margin:0 auto 36px;padding:14px 0 22px}
+.mq-track{
+  display:flex;
+  align-items:stretch;
+  width:max-content;
+  animation:mqmove var(--mq-dur,30s) linear infinite;
+  will-change:transform;
+}
+.mq:hover .mq-track,.mq:focus-within .mq-track{animation-play-state:paused}
+.mq-track>*{
+  flex:0 0 clamp(250px,26vw,340px);
+  width:clamp(250px,26vw,340px);
+  margin-right:20px;
+  height:auto;
+}
+@keyframes mqmove{to{transform:translateX(-50%)}}
+@media(max-width:960px){
+ .g3.mq>*:last-child:nth-child(odd){grid-column:auto}
+ .mq-track>*{flex-basis:clamp(240px,42vw,320px);width:clamp(240px,42vw,320px)}
+}
+@media(max-width:640px){
+ .mq-track>*{flex-basis:78vw;width:78vw;max-width:320px;margin-right:16px}
+}
+@media(prefers-reduced-motion:reduce){
+ .g3.mq,.g4.mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+ .mq-track{animation:none!important;transform:none!important}
+}
+
+/* =====================================================================
+   Services dropdown: same look and behaviour as consultancy.html
+   ===================================================================== */
+.dd-menu{
+  position:absolute;top:100%;left:-14px;
+  min-width:240px;max-width:calc(100vw - 32px);
+  background:#fff;
+  border:1px solid #e5e7eb;border-top:3px solid #5b4be8;
+  border-radius:8px;padding:4px 0;
+  box-shadow:0 14px 30px rgba(0,0,0,.1);
+  opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:.2s;
+}
+.dd-menu.open{opacity:1;visibility:visible;transform:none}
+.dd-menu a{
+  display:block;padding:12px 22px;border-radius:0;
+  font-size:16px;line-height:1.4;font-weight:400;
+  color:#14152e;
+  transition:background .2s,color .2s;
+}
+.dd-menu a:hover{background:#ecebfc;color:#5b4be8}
+.dd-menu a.on{color:#5b4be8;background:transparent;font-weight:700}
+.dd-menu a.on:hover{background:#ecebfc;color:#5b4be8}
+
+/* Keep the "Services" trigger highlighted while the dropdown is open */
+.dd:hover>button,.dd:has(.dd-menu.open)>button{color:#fff}
+
+/* Desktop: also open on hover, like consultancy */
+@media(min-width:961px){
+  .dd:hover .dd-menu{opacity:1;visibility:visible;transform:none}
+}
+
+/* Mobile / tablet: transparent dark panel with light links, like consultancy */
+@media(max-width:960px){
+  header .dd-menu{
+    position:static;opacity:1;visibility:visible;transform:none;
+    display:none;width:100%;min-width:0;max-width:none;
+    margin:0;padding:0 0 10px 14px;
+    background:none;border:0;border-radius:0;box-shadow:none;
+  }
+  header .dd-menu.open{display:block}
+  header .dd-menu a{color:#c9cae9;font-size:15.5px;padding:12px 0}
+  header .dd-menu a:hover,
+  header .dd-menu a.on:hover{background:rgba(255,255,255,.08);color:#fff}
+  header .dd-menu a.on{color:#fff}
+}
+
+/* =====================================================================
+   MOBILE FOOTER: same as the index page (phones only, max-width 700px)
+   Desktop and tablet footer are untouched.
+   ===================================================================== */
+@media(max-width:700px){
+ .ao-foot{padding:44px 0 78px}
+ .ao-foot .fgrid{grid-template-columns:1fr 1fr;gap:26px 18px;padding-bottom:28px}
+ .ao-foot .fgrid>div:first-child{grid-column:1/-1}
+ .ao-foot h4{margin-bottom:16px}
+ .ao-foot h4.lg{margin-top:26px}
+ .ao-foot li{margin-bottom:12px}
+ .ao-foot p{max-width:none}
+ .ao-foot .wordmark{font-size:28px}
+ .ao-foot .social{gap:10px;margin-top:26px}
+ .ao-foot .social a{width:42px;height:42px}
+ .ao-foot .fbot{flex-direction:column;align-items:center;text-align:center;padding:18px 0;gap:10px}
+}
+
+/* =====================================================================
+   MOBILE HERO HEADING UNDERLINE (phones only, same as the Consultancy page)
+   "transform industries" is shown on its own line with the animated
+   gradient underline drawn right under it. Desktop and tablet untouched.
+   ===================================================================== */
+@media(max-width:700px){
+ .hero h1 em{display:block;width:fit-content;max-width:100%;margin-top:6px;position:relative}
+ .hero h1 em::after{content:"";position:absolute;left:0;bottom:-.06em;width:100%;height:.08em;border-radius:4px;background:linear-gradient(90deg,var(--peri),var(--red));transform:scaleX(0);transform-origin:left;animation:uline .9s 1s var(--ease) forwards}
+}
 </style>
 </head>
 <body>
@@ -757,6 +934,30 @@ document.addEventListener('click',function(){dm.classList.remove('open');db.setA
 function orbit(host,cls){if(!host)return;var d=document.createElement('div');d.className='orbit '+cls;d.setAttribute('aria-hidden','true');d.innerHTML='<svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="290"/><circle class="dash2" cx="300" cy="300" r="215"/><circle cx="300" cy="300" r="140"/><g class="o1"><circle class="dot" cx="300" cy="10" r="7"/></g><g class="o2"><circle class="dot" cx="515" cy="300" r="5"/></g><g class="o3"><circle class="dot" cx="300" cy="440" r="4"/></g></svg>';host.prepend(d)}
 orbit(document.querySelector('.hero'),'hero-orbit');orbit(document.querySelector('.cta'),'cta-orbit');
 </script>
+
+<script>
+/* Cards: continuous one-by-one moving slider (every .g3 / .g4 card group).
+   Cards are wrapped in a track and duplicated once for a seamless infinite loop. */
+(function(){
+ document.querySelectorAll('.g3,.g4').forEach(function(g){
+  var items=[].slice.call(g.children);
+  if(!items.length)return;
+  var track=document.createElement('div');
+  track.className='mq-track';
+  items.forEach(function(it){track.appendChild(it)});
+  items.forEach(function(it){
+   var c=it.cloneNode(true);
+   c.setAttribute('aria-hidden','true');
+   [].forEach.call(c.querySelectorAll('a,button,input'),function(x){x.setAttribute('tabindex','-1')});
+   track.appendChild(c);
+  });
+  g.appendChild(track);
+  g.classList.add('mq');
+  track.style.setProperty('--mq-dur',(items.length*6)+'s');
+ });
+})();
+</script>
+
 <script>
 /* UI enhancements: scroll progress bar, sticky header state, reveal on scroll, heading underline */
 (function(){
@@ -768,7 +969,10 @@ var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInte
 document.querySelectorAll('.head').forEach(function(el){dio.observe(el)});
 if(!reduce){
 var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('reveal','in');el.style.transitionDelay=''},1300)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.head,.card,.step,.t,.feat li,.met,.cols>div,.trio,.shots .shot').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('reveal');el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)})}
+document.querySelectorAll('.head,.card,.step,.t,.feat li,.met,.cols>div,.trio,.shots .shot').forEach(function(el){
+ /* cards inside the moving slider are always visible (they travel in and out of view) */
+ if(el.closest('.mq'))return;
+ var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('reveal');el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)})}
 })();
 </script>
 
