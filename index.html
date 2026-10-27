@@ -130,7 +130,7 @@ h2{font-size:clamp(1.65rem,1.2rem + 1.7vw,2.4rem);line-height:1.2;margin-bottom:
 .ic{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--soft);color:var(--ind);flex:none}
 .cat-sec{padding:clamp(40px,6vw,64px) 0 0}
 .cat-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.cat-head h2{font-size:1.5rem;margin:0}
-.cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;max-width:1000px;margin-inline:auto}
 .cat{display:flex;flex-direction:column;align-items:center;text-align:center;padding:24px 14px;height:100%;transition:border-color .25s,box-shadow .25s}
 .cat:hover{border-color:var(--vio);box-shadow:0 14px 32px rgba(91,75,232,.14)}
 .cat .ic{margin-bottom:14px}.cat:nth-child(even) .ic{background:var(--glass)}
@@ -207,7 +207,7 @@ h2{font-size:clamp(1.65rem,1.2rem + 1.7vw,2.4rem);line-height:1.2;margin-bottom:
 .tech{padding:clamp(40px,6vw,64px) 0;overflow:hidden}
 .tech h2{font-size:clamp(1.2rem,1rem + 1vw,1.55rem);text-align:center;margin-bottom:8px;padding-inline:16px}
 .tech>p{text-align:center;color:var(--mute);font-size:14px;margin-bottom:24px}
-.tech .marq+.marq{margin-top:12px}.marq.rev{animation-direction:reverse;animation-duration:34s}.tech:hover .marq{animation-play-state:paused}
+.tech .marq+.marq{margin-top:12px}.marq.rev{animation-direction:reverse;animation-duration:34s}
 .tech .marq span{display:inline-flex;align-items:center;gap:9px;margin:0 6px;padding:8px 20px;background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:999px;font-weight:500;font-size:14px;white-space:nowrap}
 .tech .marq img{width:22px;height:22px}
 
@@ -248,7 +248,7 @@ h2{font-size:clamp(1.65rem,1.2rem + 1.7vw,2.4rem);line-height:1.2;margin-bottom:
 .fbot{border-top:1px solid #26284f;padding:20px 0;font-size:13px;color:#9092ae}.fbot strong{color:#ddd;font-weight:600}
 
 /* Responsive */
-@media(max-width:1180px){.cats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){.cats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:1000px){.grid,.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:minmax(0,1fr);gap:40px}.vis{max-width:640px;margin-inline:auto;width:calc(100% - 16px)}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.fgrid>div:first-child{grid-column:1/-1}.partners{grid-template-columns:repeat(3,minmax(0,1fr))}.gal{flex-basis:calc((100% - 22px)/2)}.quote{flex-basis:calc((100% - 22px)/2)}}
 @media(max-width:820px){.menu-toggle{display:inline-flex;align-items:center;justify-content:center}
  #navWrap{position:absolute;top:72px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);display:none;max-height:calc(100vh - 72px);overflow:auto}#navWrap.open{display:block}
@@ -260,10 +260,10 @@ h2{font-size:clamp(1.65rem,1.2rem + 1.7vw,2.4rem);line-height:1.2;margin-bottom:
 @media(max-width:700px){.grid,.g2{grid-template-columns:minmax(0,1fr)}.cats{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.cat-head{flex-direction:column;align-items:flex-start;gap:8px}.fgrid{grid-template-columns:minmax(0,1fr);gap:28px}}
 @media(max-width:640px){.acts,.cta-acts{flex-direction:column;align-items:stretch}.acts .btn,.cta-acts .btn,.faq-cta .btn,.two .btn{width:100%;max-width:420px}.cta-acts{align-items:center}.partners{grid-template-columns:repeat(2,minmax(0,1fr))}.gal{flex-basis:86%}.quote{flex-basis:88%}.tgrid{grid-template-columns:1fr}.wordmark{font-size:28px}}
 @media(max-width:380px){.cats{grid-template-columns:minmax(0,1fr)}}
-@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}.marq{animation:none}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}.marq{animation:none}html{scroll-behavior:auto}.tech .marq{animation:marq 60s linear infinite!important}.tech .marq.rev{animation-direction:reverse!important}}
 
 /* ===== Motion layer ===== */
-.site-header{animation:hdrIn .8s var(--ease) 1.6s both}
+.site-header{animation:hdrIn .8s var(--ease) .1s both}
 @keyframes hdrIn{from{transform:translateY(-100%);opacity:0}}
 .nav-links>li>a:not(.btn)::after,.dd-btn::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:2px;background:var(--ind);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
 .nav-links>li>a:not(.btn):hover::after,.nav-links a.active::after,.dd-btn:hover::after{transform:scaleX(1)}
@@ -272,7 +272,7 @@ h2{font-size:clamp(1.65rem,1.2rem + 1.7vw,2.4rem);line-height:1.2;margin-bottom:
 .btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
 .head h2::after{content:"";display:block;width:0;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--peri),var(--ind));margin-top:14px;transition:width .9s var(--ease) .3s}
 .head.c h2::after{margin-inline:auto}.head.drawn h2::after{width:56px}
-.link::after{content:"\2192";margin-left:6px;transition:transform .3s var(--ease)}.link:hover::after{transform:translateX(5px)}.card .link::after{content:none}
+.link::after{content:"";margin-left:0;transition:transform .3s var(--ease)}.link:hover::after{transform:translateX(5px)}.card .link::after{content:none}
 .card>img{object-position:50% 50%}
 .ps .chip::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#37d67a;margin-right:7px;animation:ping 2s infinite}
 @keyframes ping{0%{box-shadow:0 0 0 0 rgba(55,214,122,.6)}70%{box-shadow:0 0 0 7px rgba(55,214,122,0)}100%{box-shadow:0 0 0 0 rgba(55,214,122,0)}}
@@ -819,6 +819,7 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
  .site-header .dd a{font-size:15.5px;padding:12px 0}
 }
 
+<<<<<<< HEAD
 /* =====================================================================
    MOBILE HERO HEADING UNDERLINE (phones only, same as the Consultancy page)
    "Practical learning" is shown on its own line with the animated
@@ -829,9 +830,131 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
  .hero h1 em::after{content:"";position:absolute;left:0;bottom:-.06em;width:100%;height:.08em;border-radius:4px;background:linear-gradient(90deg,var(--peri),var(--ind));transform:scaleX(0);transform-origin:left}
  .ready .hero h1 em::after{animation:uline .9s 1.1s var(--ease) forwards}
 }
+=======
+/* ===== Polish: smoother motion, nicer effects, tidy mobile ===== */
+.tech .marq,.tech .marq:hover,.tech:hover .marq,.tech:active .marq{animation-play-state:running!important}
+.tech .marq span{transition:transform .35s var(--ease),box-shadow .35s,background .35s}
+.tech .marq span:hover{transform:translateY(-4px) scale(1.06);background:#fff;box-shadow:0 12px 24px rgba(91,75,232,.22)}
+.tech{-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.hero h1 em{background:linear-gradient(90deg,var(--ind),#82c8eb,var(--ind));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 6s linear infinite}
+@keyframes shimmer{to{background-position:200% 0}}
+.hero::after{content:"";position:absolute;right:8%;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(130,200,235,.45),transparent 70%);filter:blur(14px);z-index:-1;pointer-events:none;animation:orb 9s ease-in-out infinite}
+.cat{position:relative;overflow:hidden;padding:30px 18px}
+.cat::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(-130%);transition:transform .8s var(--ease);pointer-events:none}
+.cat:hover::before{transform:translateX(130%)}
+.cat .ic{width:54px;height:54px;border-radius:16px}
+.cat strong{font-size:15.5px}
+.stat strong{animation:numGlow 3.5s ease-in-out infinite}
+.path.active{box-shadow:0 24px 50px rgba(14,15,42,.35)}
+.faq details{transition:border-color .25s,box-shadow .35s,transform .35s var(--ease)}
+.faq details:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(91,75,232,.16)}
+.cta{position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;width:420px;height:420px;left:-120px;bottom:-200px;border-radius:50%;background:radial-gradient(circle,rgba(169,163,238,.4),transparent 70%);animation:orb 10s ease-in-out infinite;pointer-events:none}
+.cta>*{position:relative}
+@media(max-width:700px){
+ .cat{padding:20px 12px}
+ .cat .ic{width:46px;height:46px}
+ .cat strong{font-size:14px}
+ .hero::after{display:none}
+ .tech .marq span{padding:8px 16px}
+}
+
+/* ===== WOW layer ===== */
+.hero h1{font-size:clamp(2.1rem,1rem + 3vw,3.7rem)}
+.pcv{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+
+.cglow{position:fixed;left:0;top:0;width:460px;height:460px;margin:-230px 0 0 -230px;border-radius:50%;pointer-events:none;z-index:60;background:radial-gradient(circle,rgba(143,132,242,.2),transparent 65%);opacity:0;transition:opacity .5s;will-change:transform}
+.cglow.on{opacity:1}
+@media(hover:none),(pointer:coarse){.cglow{display:none}}
+.btn{transition:background .25s,color .25s,border-color .25s,box-shadow .25s,transform .3s var(--ease),translate .25s var(--ease)}
+
+/* headline words rise one by one */
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.w>span{display:inline-block;transform:translateY(115%) rotate(4deg);transform-origin:left bottom;transition:transform .85s var(--ease) calc(var(--i)*.07s)}
+h2.wd .w>span{transform:none}
+
+/* big outlined text band */
+.bigmq{overflow:hidden;padding:26px 0;background:linear-gradient(90deg,#f6f5fc,#ecebfd);border-block:1px solid var(--line)}
+.bm{animation-duration:42s}
+.bm span{display:inline-flex;align-items:center;gap:44px;padding-right:44px;font:800 clamp(3rem,8vw,6.5rem)/1 var(--fd);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:2px rgba(91,75,232,.55);transition:color .4s,-webkit-text-stroke-color .4s}
+.bm span::after{content:"";width:.14em;height:.14em;border-radius:50%;background:var(--peri);-webkit-text-stroke:0}
+.bm span:nth-child(even){color:var(--ind);-webkit-text-stroke:0}
+.bm span:hover{color:var(--navy);-webkit-text-stroke:0}
+@media(max-width:700px){.bigmq{padding:18px 0}.bm span{-webkit-text-stroke-width:1.5px;gap:28px;padding-right:28px}}
+
+/* dark services: richer depth */
+#services.dk::after{content:"";position:absolute;width:520px;height:520px;right:-160px;top:-140px;border-radius:50%;background:radial-gradient(circle,rgba(130,200,235,.28),transparent 70%);animation:orb 11s ease-in-out infinite;pointer-events:none}
+#services .card{box-shadow:0 20px 44px rgba(0,0,0,.4)}
+
+/* stats */
+.stats{position:relative;overflow:hidden}
+.stats::before{content:"";position:absolute;width:560px;height:560px;left:50%;top:-260px;margin-left:-280px;border-radius:50%;background:radial-gradient(circle,rgba(91,75,232,.45),transparent 70%);animation:orb 12s ease-in-out infinite;pointer-events:none}
+.stats>.wrap{position:relative}
+.stat{transition:background .4s,transform .4s var(--ease)}
+.stat:hover{background:rgba(255,255,255,.06);transform:translateY(-4px)}
+.stat strong{background:linear-gradient(180deg,#fff,#b9b4ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat strong i{-webkit-text-fill-color:var(--vio)}
+
+/* testimonials + milestones */
+.gal{transition:transform .5s var(--ease),box-shadow .4s}
+.quote::after{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:linear-gradient(90deg,var(--ind),#82c8eb);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.quote:hover::after{transform:scaleX(1)}
+
+/* ===== More motion ===== */
+/* nav links drop in on load (desktop) */
+@keyframes navIn{from{opacity:0;transform:translateY(-10px)}}
+@media(min-width:821px){.ready .nav-links>li{animation:navIn .7s var(--ease) both}
+ .ready .nav-links>li:nth-child(1){animation-delay:.25s}.ready .nav-links>li:nth-child(2){animation-delay:.32s}.ready .nav-links>li:nth-child(3){animation-delay:.39s}.ready .nav-links>li:nth-child(4){animation-delay:.46s}.ready .nav-links>li:nth-child(5){animation-delay:.53s}.ready .nav-links>li:nth-child(6){animation-delay:.6s}}
+
+/* button ripple */
+.btn .rp{position:absolute;width:220px;height:220px;margin:-110px 0 0 -110px;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);animation:rp .7s ease-out forwards;pointer-events:none}
+.btn-o .rp,.cta .btn-p .rp{background:rgba(91,75,232,.25)}
+@keyframes rp{to{transform:scale(1);opacity:0}}
+
+/* product images wipe open when scrolled into view */
+.wr .pcard .ps{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s var(--ease) .1s}
+.wr .pcard.seen .ps{clip-path:inset(0)}
+.wr .pcard .ps img{transform:scale(1.25)}
+.wr .pcard.seen .ps img{transform:scale(1)}
+.wr .pcard.seen:hover .ps img{transform:scale(1.1) rotate(1.5deg)}
+
+/* step tiles pop in one by one */
+.wr .tgrid .tstat{opacity:0;transform:translateY(26px) scale(.9);transition:opacity .6s var(--ease),transform .6s var(--ease),background .35s,border-color .35s}
+.wr .tgrid.go .tstat{opacity:1;transform:none;transition-delay:calc(var(--k)*.14s),calc(var(--k)*.14s),0s,0s}
+.wr .tgrid.done .tstat{transition-delay:0s}
+.wr .tgrid.done .tstat:hover{transform:translateY(-4px)}
+.wr .mosaic figure{opacity:0;transform:scale(.85);transition:opacity .6s var(--ease),transform .7s var(--ease)}
+.wr .mosaic.go figure{opacity:1;transform:none;transition-delay:calc(var(--k)*.12s)}
+
+/* help panels: slow zoom on the open one */
+.path.active::before{animation:kenb 14s ease-in-out infinite alternate}
+@keyframes kenb{from{transform:scale(1.05)}to{transform:scale(1.18) translateX(-2%)}}
+
+/* big text band reacts to scroll speed */
+.bm span{transform:skewX(var(--sk,0deg));transition:transform .25s ease-out,color .4s,-webkit-text-stroke-color .4s}
+
+/* stars twinkle, rings turn */
+.rs{display:inline-block;animation:tw 3.2s ease-in-out infinite}
+@keyframes tw{50%{opacity:.65;filter:brightness(1.25);transform:scale(1.06)}}
+.cta::after,.stats::after{content:"";position:absolute;right:-140px;top:-140px;width:440px;height:440px;border:1.5px dashed rgba(255,255,255,.22);border-radius:50%;animation:spin 46s linear infinite;pointer-events:none}
+.stats::after{right:auto;left:-160px;top:auto;bottom:-200px;width:480px;height:480px}
+
+/* tiles and icons */
+.cat:hover .ic{animation:icPop .6s var(--ease)}
+.feat:hover .ic{transform:rotate(-8deg) scale(1.1)}
+.feat .ic{transition:transform .4s var(--ease)}
+.tags span{transition:transform .3s var(--ease),background .3s}
+.tags span:hover{transform:translateY(-3px)}
+.checklist li{transition:transform .3s var(--ease)}
+.checklist li:hover{transform:translateX(4px)}
+.social a:hover{animation:icPop .5s var(--ease)}
+.faq details[open]{box-shadow:0 14px 32px rgba(91,75,232,.16)}
+.wa-float{animation:waPulse 2.5s ease-in-out infinite,waBob 4s ease-in-out infinite}
+@keyframes waBob{50%{translate:0 -6px}}
+>>>>>>> 8887dbf (home ,about mobile view  updted)
 </style>
 </head>
-<body class="lock">
+<body class="ready">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></symbol>
@@ -853,11 +976,6 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
 </svg>
 
-<div id="loader" role="status" aria-label="Loading ALGO ORBIT"><div class="ld">
- <svg class="ld-mark" viewBox="0 0 40 40" aria-hidden="true"><rect x=".5" y=".5" width="39" height="39" rx="10"/><line x1="13.5" y1="28" x2="21.5" y2="12.5"/><circle cx="30" cy="27.5" r="5"/></svg>
- <div class="ld-name"><b>ALGO</b>ORBIT</div>
- <div class="ld-line"><i></i></div>
-</div></div>
 <div id="bar"></div>
 
 <header class="site-header">
@@ -871,7 +989,7 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
    <ul class="nav-links">
     <li><a href="index.html" class="active" aria-current="page">Home</a></li>
     <li><a href="about.html">About</a></li>
-    <li class="has-dd"><button class="dd-btn" type="button" aria-expanded="false">Services ▾</button>
+    <li class="has-dd"><button class="dd-btn" type="button" aria-expanded="false">Services</button>
      <div class="dd"><a href="consultancy.html">IT Consultancy</a><a href="training.html">Enterprise Training</a><a href="products.html">Products</a></div></li>
     <li><a href="our-work.html">Our Work</a></li>
     <li><a href="careers.html">Careers</a></li>
@@ -887,9 +1005,9 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
  <div class="wrap hero-grid">
   <div class="hero-copy">
    <h1>Technology solutions for business. <em>Practical learning</em> for learners.</h1>
-   <p class="lead">We engineer scalable digital products for businesses and deliver hands-on, mentor-led programs that build applied engineering skills.</p>
+   <p class="lead">We build software for businesses and teach practical tech skills to learners.</p>
    <div class="acts"><a href="contact.html" class="btn btn-p">Schedule free consultation</a><a href="#services" class="btn btn-o">Explore services</a></div>
-   <ul class="checklist"><li>Mentor-led programs</li><li>Production-grade products</li><li>Syllabus-aligned training</li></ul>
+   <ul class="checklist"><li>Guided by mentors</li><li>Reliable products</li><li>Training for your syllabus</li></ul>
   </div>
  </div>
 </section>
@@ -901,22 +1019,20 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
   <div class="cat-head"><h2 id="sv">Popular services</h2></div>
   <div class="cats">
    <a class="cat" href="services.html#software"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><strong>Software Development</strong><small>Custom digital products</small></a>
-   <a class="cat" href="consultancy.html"><span class="ic"><svg class="ui"><use href="#i-compass"/></svg></span><strong>IT Consulting</strong><small>Architecture and cloud</small></a>
    <a class="cat" href="training.html"><span class="ic"><svg class="ui"><use href="#i-users"/></svg></span><strong>Corporate Training</strong><small>Team upskilling</small></a>
    <a class="cat" href="consultancy.html#placement"><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><strong>Campus Placement</strong><small>Placement training</small></a>
-   <a class="cat" href="consultancy.html#vac"><span class="ic"><svg class="ui"><use href="#i-book"/></svg></span><strong>Value-Added Courses</strong><small>Syllabus-aligned modules</small></a>
-   <a class="cat" href="consultancy.html#fdp"><span class="ic"><svg class="ui"><use href="#i-board"/></svg></span><strong>Faculty Development</strong><small>Programs for educators</small></a>
+   <a class="cat" href="consultancy.html#vac"><span class="ic"><svg class="ui"><use href="#i-book"/></svg></span><strong>Extra Courses</strong><small>Matches your syllabus</small></a>
   </div>
  </div>
 </section>
 
-<section class="sec lgt" id="services">
+<section class="sec dk" id="services">
  <div class="wrap">
-  <div class="head c"><h2>Full-spectrum IT solutions for modern enterprises</h2><p>Consulting, engineering, and education, covering every touchpoint of your digital journey.</p></div>
+  <div class="head c"><h2>IT solutions for modern businesses</h2><p>Consulting, engineering, and education, covering every touchpoint of your digital journey.</p></div>
   <div class="grid">
    <div class="card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="IT consulting and architecture" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-compass"/></svg></span><h3>IT Consulting &amp; Architecture</h3><p>Strategic technology planning and digital transformation roadmaps built around your business goals.</p><ul class="ck"><li>Cloud &amp; Infrastructure Strategy</li><li>System Architecture Design</li><li>Tech Stack Optimization</li></ul><a href="consultancy.html" class="link">Learn more</a></div></div>
-   <div class="card"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Product development" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>Product Development</h3><p>End-to-end software engineering from ideation to launch. Web, mobile, and enterprise platforms.</p><ul class="ck"><li>Custom Software Solutions</li><li>SaaS Platform Development</li><li>API &amp; Integration Services</li></ul><a href="products.html" class="link">Learn more</a></div></div>
-   <div class="card"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80" alt="Enterprise and campus training" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><h3>Enterprise &amp; Campus Training</h3><p>Immersive, project-first training for corporate teams and college students.</p><ul class="ck"><li>Industry Upskilling Programs</li><li>College Programs &amp; Internships</li><li>Bootcamps &amp; Workshops</li></ul><a href="training.html" class="link">Learn more</a></div></div>
+   <div class="card"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Product development" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>Product Development</h3><p>Software built from idea to launch. Web, mobile and business platforms.</p><ul class="ck"><li>Custom Software Solutions</li><li>SaaS Platform Development</li><li>API &amp; Integration Services</li></ul><a href="products.html" class="link">Learn more</a></div></div>
+   <div class="card"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80" alt="Enterprise and campus training" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><h3>Enterprise &amp; Campus Training</h3><p>Practical training for company teams and college students.</p><ul class="ck"><li>Industry Upskilling Programs</li><li>College Programs &amp; Internships</li><li>Bootcamps &amp; Workshops</li></ul><a href="training.html" class="link">Learn more</a></div></div>
   </div>
  </div>
 </section>
@@ -926,19 +1042,8 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
   <div class="head"><h2>How can we help you?</h2><p>Choose the engagement model that matches your current priorities.</p></div>
   <div class="paths" id="paths">
    <article class="path active" tabindex="0" style="--bg:url('https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1000&q=80')"><h3>For businesses: software built around your operations</h3><p>Custom software engineering, cloud integration and architecture consulting, delivered against clear timelines.</p><a class="pl" href="services.html">Explore solutions</a></article>
-   <article class="path" tabindex="0" style="--bg:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80')"><h3>For institutions: programs aligned to your syllabus</h3><p>Placement preparation tracks, value-added modules and faculty development for colleges and universities.</p><a class="pl" href="consultancy.html">View programs</a></article>
-   <article class="path" tabindex="0" style="--bg:url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1000&q=80')"><h3>For learners: skills you can show in an interview</h3><p>Hands-on project tracks in Full-Stack, Flutter and AI, built to develop demonstrable technical competency.</p><a class="pl" href="training.html">Explore tracks</a></article>
-  </div>
- </div>
-</section>
-
-<section class="sec lgt up">
- <div class="wrap">
-  <div class="bar-row"><div class="head"><h2>Featured learning tracks</h2><p>Hands-on, mentor-led programs that build applied engineering skills.</p></div><a href="training.html" class="link">View all tracks</a></div>
-  <div class="grid">
-   <article class="tcard"><div class="tv"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80" alt="Interview and placement preparation session" loading="lazy"><span class="chip">For learners</span></div><div class="cb"><h3>Placement Preparation</h3><p>Structured preparation for technical interviews and campus placement rounds.</p><div class="tags"><span>Mentor-led</span><span>Interview prep</span></div><a href="training.html#placement" class="btn btn-o">Explore track</a></div></article>
-   <article class="tcard"><div class="tv"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80" alt="Developer writing full-stack code" loading="lazy"><span class="chip">For learners</span></div><div class="cb"><h3>Full-Stack Development</h3><p>Project-based track covering front-end, back-end, and deployment fundamentals.</p><div class="tags"><span>Project-based</span><span>Full-Stack</span></div><a href="training.html#fullstack" class="btn btn-o">Explore track</a></div></article>
-   <article class="tcard"><div class="tv"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=80" alt="Mobile app being built on a smartphone" loading="lazy"><span class="chip">For learners</span></div><div class="cb"><h3>Mobile App Development</h3><p>Build cross-platform mobile apps with Flutter through guided, hands-on projects.</p><div class="tags"><span>Flutter</span><span>Hands-on</span></div><a href="training.html#mobile" class="btn btn-o">Explore track</a></div></article>
+   <article class="path" tabindex="0" style="--bg:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80')"><h3>For institutions: programs aligned to your syllabus</h3><p>Placement training, extra courses and faculty programs for colleges.</p><a class="pl" href="consultancy.html">View programs</a></article>
+   <article class="path" tabindex="0" style="--bg:url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1000&q=80')"><h3>For learners: skills you can show in an interview</h3><p>Hands on projects in Web, Flutter and AI that build skills you can show.</p><a class="pl" href="training.html">Explore tracks</a></article>
   </div>
  </div>
 </section>
@@ -947,10 +1052,10 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
  <div class="wrap two">
   <div>
    <h2>Shaping the next generation of tech professionals</h2>
-   <p class="sub">Whether you’re a corporate team that needs to upskill, or a college that wants to give students real industry exposure, our structured, mentor-led programs deliver.</p>
+   <p class="sub">Whether you are a company team or a college, our mentors help you learn by building real projects.</p>
    <div class="feats">
-    <div class="feat"><span class="ic"><svg class="ui"><use href="#i-brief"/></svg></span><div><strong>Corporate Upskilling</strong><p>Tailored programs in full-stack dev, cloud, AI tools, and agile practices.</p></div><img class="fi" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=300&q=70" alt="" loading="lazy"></div>
-    <div class="feat"><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><div><strong>College Programs</strong><p>Internships, final-year projects, and campus workshops that bridge academics and industry.</p></div><img class="fi" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=300&q=70" alt="" loading="lazy"></div>
+    <div class="feat"><span class="ic"><svg class="ui"><use href="#i-brief"/></svg></span><div><strong>Corporate Upskilling</strong><p>Programs in web development, cloud and AI for your team.</p></div><img class="fi" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=300&q=70" alt="" loading="lazy"></div>
+    <div class="feat"><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><div><strong>College Programs</strong><p>Internships, final year projects and campus workshops.</p></div><img class="fi" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=300&q=70" alt="" loading="lazy"></div>
     <div class="feat"><span class="ic"><svg class="ui"><use href="#i-book"/></svg></span><div><strong>Certified Bootcamps</strong><p>Intensive programs with live projects, mentorship, and placement support.</p></div><img class="fi" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=300&q=70" alt="" loading="lazy"></div>
    </div>
    <a href="training.html" class="btn btn-p">Explore training programs</a>
@@ -961,7 +1066,7 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
     <figure><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=400&q=70" alt="" loading="lazy"><figcaption><svg class="ui"><use href="#i-users"/></svg>Mentors</figcaption></figure>
     <figure><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=400&q=70" alt="" loading="lazy"><figcaption><svg class="ui"><use href="#i-rocket"/></svg>Launch</figcaption></figure>
    </div>
-   <h3>How a program runs</h3><p class="ts">Structured, mentor-led, project-first.</p>
+   <h3>How a program runs</h3><p class="ts">Guided by mentors. Built around projects.</p>
    <div class="tgrid">
     <div class="tstat"><svg class="ui"><use href="#i-compass"/></svg><strong>Assess</strong><span>Skill baseline and learning goals</span></div>
     <div class="tstat"><svg class="ui"><use href="#i-book"/></svg><strong>Learn</strong><span>Concepts taught through live examples</span></div>
@@ -974,52 +1079,22 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
 </section>
 
 <section class="tech" aria-label="Technologies">
- <h2>Technologies we master</h2><p>Cutting-edge tools. Enterprise-grade results.</p>
+ <h2>Technologies we master</h2><p>Modern tools. Reliable results.</p>
  <div class="marq" id="marq"></div><div class="marq rev" id="marq2"></div>
 </section>
 
 <section class="sec lgt split">
  <div class="wrap">
-  <div class="head"><h2>In-house digital products</h2><p>Production platforms developed by our engineering team.</p></div>
+  <div class="head"><h2>Our digital products</h2><p>Production platforms developed by our engineering team.</p></div>
   <div class="grid g2">
    <article class="pcard"><div class="ps"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="PureDine restaurant platform" loading="lazy"><span class="chip">Live product</span></div><div class="cb"><h3>PureDine</h3><p>Integrated restaurant platform covering table management, smart billing, and live kitchen inventory analytics.</p><div class="tags"><span>Billing</span><span>Inventory</span><span>Analytics</span></div><a href="products.html#puredine" class="btn btn-o">Learn more</a></div></article>
-   <article class="pcard"><div class="ps"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1200&q=80" alt="TrionCam civic platform" loading="lazy"><span class="chip">Live product</span></div><div class="cb"><h3>TrionCam</h3><p>Civic engagement platform delivering data aggregation, verified community feeds, and local operational clarity.</p><div class="tags"><span>Civic tech</span><span>Mobile MVP</span><span>Real-time</span></div><a href="products.html#trioncam" class="btn btn-o">Learn more</a></div></article>
+   <article class="pcard"><div class="ps"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1200&q=80" alt="TrionCam civic platform" loading="lazy"><span class="chip">Live product</span></div><div class="cb"><h3>TrionCam</h3><p>Civic engagement platform delivering data aggregation, verified community feeds, and local operational clarity.</p><div class="tags"><span>Civic tech</span><span>Mobile MVP</span><span>Live updates</span></div><a href="products.html#trioncam" class="btn btn-o">Learn more</a></div></article>
   </div>
  </div>
 </section>
 
 
-<section class="sec alt">
- <div class="wrap two">
-  <div>
-   <h2>Practical learning, built around real projects</h2>
-   <p class="sub">Mentor-led programs where every concept is applied to a working project, from first commit to deployment.</p>
-   <ul class="checks"><li>Mentor-led, hands-on sessions</li><li>Project tracks in Full-Stack, Flutter, and AI</li><li>Aligned with technical syllabi</li></ul>
-   <a href="training.html" class="btn btn-p">Start learning today</a>
-  </div>
-  <div class="vis">
-   <div class="frame"><div class="fin"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="ALGO ORBIT training session" loading="lazy"></div></div>
-   <span class="fchip c1"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span>Live projects</span>
-   <span class="fchip c2"><span class="ic"><svg class="ui"><use href="#i-users"/></svg></span>Mentor reviews</span>
-  </div>
- </div>
-</section>
-
-<section class="sec">
- <div class="wrap two">
-  <div class="vis l"><div class="frame"><div class="fin"><img src="https://www.algoorbit.in/static/images/hero-img1.png" alt="ALGO ORBIT team" loading="lazy"></div></div></div>
-  <div>
-   <h2>Your technology partner for measurable growth</h2>
-   <p class="sub">Deep technical expertise meets real business strategy, delivering outcomes that matter.</p>
-   <div class="feats">
-    <div class="feat"><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><div><strong>Enterprise-Grade Delivery</strong><p>Battle-tested architectures built for scale, security, and peak performance.</p></div></div>
-    <div class="feat"><span class="ic"><svg class="ui"><use href="#i-users"/></svg></span><div><strong>Seasoned Expert Team</strong><p>Domain experts with proven track records across industries.</p></div></div>
-    <div class="feat"><span class="ic"><svg class="ui"><use href="#i-shield"/></svg></span><div><strong>Security-First Mindset</strong><p>GDPR, HIPAA, SOC 2 compliant practices embedded in every layer.</p></div></div>
-    <div class="feat"><span class="ic"><svg class="ui"><use href="#i-help"/></svg></span><div><strong>Dedicated Long-Term Support</strong><p>We stay with you post-launch, monitoring, optimizing, and evolving.</p></div></div>
-   </div>
-  </div>
- </div>
-</section>
+<div class="bigmq" aria-hidden="true"><div class="marq bm" id="bm"></div></div>
 
 <!-- The only place on the page with ratings and counts -->
 <section class="stats" aria-label="Our impact">
@@ -1039,13 +1114,13 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
   <div class="head"><h2>Milestones and collaborations</h2><p>Partnerships, workshops, and programs from our journey so far.</p></div>
   <div class="gal-wrap"><div class="marq gm" id="galTrack">
    <article class="gal"><img src="https://www.algoorbit.in/static/images/events/mou1.png" alt="Strategic partnerships"><div><h3>Strategic Partnerships</h3><p>Collaborating with industry and institutions across sectors.</p></div></article>
-   <article class="gal"><img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt="Industry workshops"><div><h3>Industry Workshops</h3><p>Hands-on sessions that connect academia with real-world practice.</p></div></article>
-   <article class="gal"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="Innovation programs"><div><h3>Innovation Programs</h3><p>In-house research and development, and client pilots.</p></div></article>
-   <article class="gal"><img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80" alt="Campus training"><div><h3>Campus Training</h3><p>Mentor-led, project-first learning for the next generation.</p></div></article>
+   <article class="gal"><img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt="Industry workshops"><div><h3>Industry Workshops</h3><p>Practical sessions that connect colleges with industry.</p></div></article>
+   <article class="gal"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="Innovation programs"><div><h3>Innovation Programs</h3><p>Research, development and client pilots.</p></div></article>
+   <article class="gal"><img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80" alt="Campus training"><div><h3>Campus Training</h3><p>Learning by building real projects.</p></div></article>
    <article class="gal" aria-hidden="true"><img src="https://www.algoorbit.in/static/images/events/mou1.png" alt=""><div><h3>Strategic Partnerships</h3><p>Collaborating with industry and institutions across sectors.</p></div></article>
-   <article class="gal" aria-hidden="true"><img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt=""><div><h3>Industry Workshops</h3><p>Hands-on sessions that connect academia with real-world practice.</p></div></article>
-   <article class="gal" aria-hidden="true"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt=""><div><h3>Innovation Programs</h3><p>In-house research and development, and client pilots.</p></div></article>
-   <article class="gal" aria-hidden="true"><img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80" alt=""><div><h3>Campus Training</h3><p>Mentor-led, project-first learning for the next generation.</p></div></article>
+   <article class="gal" aria-hidden="true"><img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt=""><div><h3>Industry Workshops</h3><p>Practical sessions that connect colleges with industry.</p></div></article>
+   <article class="gal" aria-hidden="true"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt=""><div><h3>Innovation Programs</h3><p>Research, development and client pilots.</p></div></article>
+   <article class="gal" aria-hidden="true"><img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80" alt=""><div><h3>Campus Training</h3><p>Learning by building real projects.</p></div></article>
   </div></div>
  </div>
 </section>
@@ -1054,7 +1129,7 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
  <div class="wrap">
   <div class="head c"><h2>Trusted by industry leaders</h2><p>Real results from real partnerships.</p></div>
   <div class="t-track" id="tTrack">
-   <figure class="quote"><div class="who"><img src="https://www.algoorbit.in/static/images/review/riya.png" alt="" loading="lazy"><span><strong>Riya Fernandes</strong><small>Owner, Brew &amp; Bean Café</small></span></div><p>“Algo Orbit completely transformed how we run our café. The management system they built handles orders, staff scheduling, and payments seamlessly. The team was professional, fast, and genuinely cared about our success. Night-and-day difference for our operations.”</p><div class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</div></figure>
+   <figure class="quote"><div class="who"><img src="https://www.algoorbit.in/static/images/review/riya.png" alt="" loading="lazy"><span><strong>Riya Fernandes</strong><small>Owner, Brew &amp; Bean Café</small></span></div><p>“Algo Orbit completely transformed how we run our café. The management system they built handles orders, staff scheduling, and payments seamlessly. The team was professional, fast, and genuinely cared about our success. A big difference for our operations.”</p><div class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</div></figure>
    <figure class="quote"><div class="who"><img src="https://www.algoorbit.in/static/images/review/meera.png" alt="" loading="lazy"><span><strong>Dr. Meera Rao</strong><small>Harmony Health Clinic</small></span></div><p>“The clinic management system Algo Orbit delivered was clean, practical, and exceeded every expectation. Patient scheduling, records, and billing, all in one intuitive system. Our staff adopted it in days. I’d recommend them without hesitation.”</p><div class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</div></figure>
    <figure class="quote"><div class="who"><img src="https://www.algoorbit.in/static/images/review/prajna.jpg" alt="" loading="lazy"><span><strong>Prajna Mendon</strong><small>NMAMIT Nitte</small></span></div><p>“The training program at Algo Orbit didn’t just teach me to code; it taught me to think like a developer. Real projects, real mentors, real feedback. I landed my first job offer before the program even ended. Best investment in my career, hands down.”</p><div class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</div></figure>
   </div>
@@ -1068,9 +1143,9 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
   <div class="faq">
    <details><summary><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><span>What industries do you serve?</span></summary><p>We serve healthcare, finance, retail, manufacturing, education, and government. Solutions are customized for each industry’s requirements and compliance standards.</p></details>
    <details><summary><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><span>Do you build fully custom software?</span></summary><p>Absolutely. Custom software is our core. From web apps and mobile apps to complex enterprise systems, we design, build, and scale solutions for your exact requirements.</p></details>
-   <details><summary><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><span>Do you offer training for college students?</span></summary><p>Yes. We run internships, final-year project guidance, workshops, and placement-focused bootcamps for colleges and their students.</p></details>
-   <details><summary><span class="ic"><svg class="ui"><use href="#i-clock"/></svg></span><span>What is your typical project timeline?</span></summary><p>Small projects typically take 2–3 months; enterprise solutions 6–12 months. We provide detailed milestones during the initial discovery phase.</p></details>
-   <details><summary><span class="ic"><svg class="ui"><use href="#i-help"/></svg></span><span>What post-launch support do you provide?</span></summary><p>We offer comprehensive post-launch support including maintenance, performance monitoring, feature updates, and dedicated technical assistance, ensuring your systems evolve with your business.</p></details>
+   <details><summary><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><span>Do you offer training for college students?</span></summary><p>Yes. We run internships, final year project help, workshops, and bootcamps focused on placements for colleges and their students.</p></details>
+   <details><summary><span class="ic"><svg class="ui"><use href="#i-clock"/></svg></span><span>What is your typical project timeline?</span></summary><p>Small projects typically take 2 to 3 months; larger solutions 6 to 12 months. We provide detailed milestones during the initial discovery phase.</p></details>
+   <details><summary><span class="ic"><svg class="ui"><use href="#i-help"/></svg></span><span>What support do you give after launch?</span></summary><p>We keep supporting you after launch with maintenance, monitoring, new features and technical help, so your system grows with your business.</p></details>
   </div>
   <div class="faq-cta"><p>Still have questions?</p><a href="contact.html" class="btn btn-p">Contact our team</a></div>
  </div>
@@ -1078,7 +1153,7 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
 
 <div class="cta">
  <h2>Ready to transform your business?</h2>
- <p>Whether you need enterprise consulting, a custom product built, or a world-class training program, we’re ready to make it happen.</p>
+ <p>Whether you need enterprise consulting, a custom product built, or a great training program, we’re ready to make it happen.</p>
  <div class="cta-acts"><a href="contact.html" class="btn btn-p">Schedule consultation</a><a href="about.html" class="btn btn-o">Learn more about us</a></div>
 </div>
 </main>
@@ -1111,18 +1186,8 @@ h1,h2,h3,h4,p,li,strong,small,summary{overflow-wrap:break-word}
 var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-// Loader: desktop only, skipped on phones
-(function(){
- var L=$('#loader'),b=document.body;
- function show(){b.classList.remove('lock');b.classList.add('ready')}
- if(matchMedia('(max-width:820px)').matches||reduce){L.style.display='none';show();return}
- var loaded=false,s=Date.now();
- addEventListener('load',function(){loaded=true});
- (function w(){
-  if(loaded&&Date.now()-s>1300){L.classList.add('done');show();setTimeout(function(){L.style.display='none'},900)}
-  else setTimeout(w,60)
- })();
-})();
+// Loader removed: page animations start immediately
+document.body.classList.add('ready');
 
 // Scroll progress + header shadow
 addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-innerHeight;
@@ -1215,7 +1280,7 @@ $('#tk').innerHTML=K.concat(K).map(function(t){return'<span>'+t+'</span>'}).join
 // Glow when cards appear + mini auto-marquee for services / learning tracks on phones
 (function(){
  var mob=matchMedia('(max-width:700px)');
- ['#services .grid','.lgt.up .grid'].forEach(function(sel){
+ ['#services .grid'].forEach(function(sel){
   var g=$(sel);if(!g)return;
   var kids=Array.prototype.slice.call(g.children);
   kids.forEach(function(k){var c=k.cloneNode(true);c.classList.remove('rv','in','glow','tch','tilting');c.style.transitionDelay='';c.classList.add('dup');c.setAttribute('aria-hidden','true');$$('a,button',c).forEach(function(a){a.tabIndex=-1});g.appendChild(c)});
@@ -1236,6 +1301,68 @@ $('#tk').innerHTML=K.concat(K).map(function(t){return'<span>'+t+'</span>'}).join
  var gio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('glow',e.isIntersecting)})},{threshold:.55});
  $$('.card,.tcard,.pcard,.cat,.feat,.quote').forEach(function(el){gio.observe(el)});
 })();
+
+// ===== WOW layer =====
+// Headline words rise one by one
+$$('.head h2,.two h2,.cta h2,.stats h2,.cat-head h2').forEach(function(h){
+ var words=h.textContent.trim().split(/\s+/);if(!words.length)return;
+ h.setAttribute('aria-label',words.join(' '));
+ h.innerHTML=words.map(function(w,i){return'<span class="w" aria-hidden="true" style="--i:'+i+'"><span>'+w.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span></span>'}).join(' ');
+ if(reduce){h.classList.add('wd')}});
+if(!reduce){var wio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('wd');wio.unobserve(e.target)}})},{threshold:.4});
+ $$('.head h2,.two h2,.cta h2,.stats h2,.cat-head h2').forEach(function(h){wio.observe(h)})}
+
+// Big outlined text band
+(function(){var W=['DESIGN','BUILD','TEACH','SCALE','SHIP'];$('#bm').innerHTML=W.concat(W).map(function(t){return'<span>'+t+'</span>'}).join('')})();
+
+// Hero: interactive particle network
+(function(){
+ var h=$('.hero');if(!h||reduce)return;
+ var c=document.createElement('canvas');c.className='pcv';c.setAttribute('aria-hidden','true');h.insertBefore(c,h.firstChild);
+ var x=c.getContext('2d'),W=0,H=0,P=[],dpr=Math.min(window.devicePixelRatio||1,2),mx=-999,my=-999,vis=true,
+     N=matchMedia('(max-width:700px)').matches?20:48;
+ function size(){W=h.clientWidth;H=h.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}
+ size();addEventListener('resize',size);
+ for(var i=0;i<N;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:1.2+Math.random()*1.8});
+ h.addEventListener('mousemove',function(e){var r=h.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top});
+ h.addEventListener('mouseleave',function(){mx=my=-999});
+ new IntersectionObserver(function(es){vis=es[0].isIntersecting}).observe(h);
+ (function loop(){requestAnimationFrame(loop);if(!vis||document.hidden)return;
+  x.clearRect(0,0,W,H);
+  for(var i=0;i<N;i++){var p=P[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+   var dm=Math.hypot(p.x-mx,p.y-my);if(dm<150){p.x+=(mx-p.x)*.012;p.y+=(my-p.y)*.012;x.strokeStyle='rgba(91,75,232,'+(.5*(1-dm/150))+')';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(mx,my);x.stroke()}
+   x.fillStyle='rgba(91,75,232,.55)';x.beginPath();x.arc(p.x,p.y,p.r,0,6.283);x.fill();
+   for(var j=i+1;j<N;j++){var q=P[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<130){x.strokeStyle='rgba(91,75,232,'+(.22*(1-d/130))+')';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}}
+ })();
+})();
+
+// Desktop only: cursor glow + magnetic buttons
+if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce){
+ var g=document.createElement('div');g.className='cglow';document.body.appendChild(g);
+ addEventListener('mousemove',function(e){g.style.transform='translate3d('+e.clientX+'px,'+e.clientY+'px,0)';g.classList.add('on')},{passive:true});
+ document.addEventListener('mouseleave',function(){g.classList.remove('on')});
+ $$('.hero .btn,.cta .btn,.two .btn,.faq-cta .btn').forEach(function(b){
+  b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.25)+'px '+((e.clientY-r.top-r.height/2)*.35)+'px'});
+  b.addEventListener('mouseleave',function(){b.style.translate='0 0'})})}
+
+// ===== More motion =====
+document.body.classList.add('wr');
+// Button ripple
+document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(!b)return;
+ var r=b.getBoundingClientRect(),d=document.createElement('span');d.className='rp';
+ d.style.left=(e.clientX-r.left)+'px';d.style.top=(e.clientY-r.top)+'px';b.appendChild(d);setTimeout(function(){d.remove()},750)});
+// Reveal groups: product images, step tiles, mosaic
+(function(){
+ $$('.tgrid .tstat,.mosaic figure').forEach(function(el,i){el.style.setProperty('--k',Array.prototype.indexOf.call(el.parentNode.children,el))});
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var t=e.target;
+  if(t.classList.contains('pcard')){t.classList.add('seen')}else{t.classList.add('go');if(t.classList.contains('tgrid'))setTimeout(function(){t.classList.add('done')},1200)}
+  io.unobserve(t)})},{threshold:.25});
+ $$('.pcard,.tgrid,.mosaic').forEach(function(el){if(reduce){el.classList.add('seen','go','done')}else io.observe(el)})
+})();
+// Big text band leans with scroll speed
+(function(){if(reduce)return;var last=scrollY,sk=0,t;var bm=$('.bigmq');
+ addEventListener('scroll',function(){var v=scrollY-last;last=scrollY;sk=Math.max(-12,Math.min(12,v*.6));
+  bm.style.setProperty('--sk',(-sk)+'deg');clearTimeout(t);t=setTimeout(function(){bm.style.setProperty('--sk','0deg')},120)},{passive:true})})();
 </script>
 </body>
 </html>
