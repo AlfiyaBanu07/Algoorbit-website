@@ -85,9 +85,6 @@ button,input,textarea{font-family:var(--fb)}
 .hero-vis{position:absolute;top:0;right:0;z-index:-1;width:min(66%,1120px);height:100%}
 .hero-vis>img{width:100%;height:100%;object-fit:cover;object-position:right center;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%);mask-image:linear-gradient(90deg,transparent 0,#000 22%);animation:imgIn 1.2s var(--ease) .1s both}
 @keyframes imgIn{from{opacity:0;transform:translateX(48px) scale(1.03)}}
-.badge-chip{position:absolute;right:clamp(16px,4vw,64px);bottom:clamp(20px,4vw,44px);z-index:3;display:flex;gap:14px;align-items:center;background:rgba(255,255,255,.93);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:16px;padding:12px 20px 12px 14px;box-shadow:0 12px 28px rgba(14,15,42,.25);animation:float 5s ease-in-out infinite}
-.badge-chip .cat-ic{width:40px;height:40px;margin:0}
-.badge-chip strong{display:block;font:600 14.5px/1.3 var(--fd);color:var(--navy)}.badge-chip small{color:var(--mute);font-size:13px}
 .hero-grid{width:100%;padding:clamp(40px,6vw,72px) 24px clamp(110px,10vw,130px) clamp(24px,5vw,88px)}
 .hero-copy{max-width:540px;position:relative;z-index:2}
 .hero h1{font-size:clamp(2.1rem,1rem + 3vw,3.7rem);font-weight:600;line-height:1.1;letter-spacing:-.03em;margin-bottom:20px;animation:unmask 1.1s var(--ease) .15s both}
@@ -95,7 +92,7 @@ button,input,textarea{font-family:var(--fb)}
 @keyframes unmask{from{clip-path:inset(0 0 100% 0);transform:translateY(30px)}to{clip-path:inset(0 0 -10% 0);transform:none}}
 .lead{font-size:clamp(1rem,.95rem + .25vw,1.12rem);color:var(--mute);max-width:520px;margin-bottom:30px;line-height:1.75}
 .acts{display:flex;flex-wrap:wrap;gap:14px}
-.hero-copy>:not(h1){animation:fadeUp .9s var(--ease) both}.hero-copy>:nth-child(2){animation-delay:.4s}.hero-copy>:nth-child(3){animation-delay:.55s}
+.hero-copy>:not(h1){animation:fadeUp .9s var(--ease) both}.hero-copy .lead{animation-delay:.4s}.hero-copy .acts{animation-delay:.55s}
 .hero-stats{position:absolute;left:clamp(24px,5vw,88px);bottom:clamp(18px,3vw,36px);z-index:3;display:flex;gap:12px}
 .hs{min-width:120px;padding:12px 18px;border-radius:18px;background:rgba(14,15,42,.74);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.18);color:#fff;box-shadow:0 16px 36px rgba(14,15,42,.35);transition:transform .4s var(--ease),background .4s}
 .hs:hover{transform:translateY(-5px);background:rgba(91,75,232,.88)}
@@ -165,9 +162,15 @@ button,input,textarea{font-family:var(--fb)}
 .feature img{width:100%;height:190px;object-fit:cover;border-radius:18px;background:var(--navy);transition:transform .8s var(--ease)}
 .card:hover .feature img{transform:scale(1.04)}
 
+/* Launchpad ("Why Us") cards: all the same size, each with an image */
+.lp{grid-auto-rows:1fr}
+.lp .card{height:100%}
+.lp .card .ci{height:190px;flex:none}
+.lp .card p{flex:1}
+
 /* Numbers */
 .rings{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}.ring{text-align:center}
-.ring-c{width:156px;height:156px;border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.2);background:radial-gradient(circle at 50% 40%,rgba(91,75,232,.3),transparent 70%);box-shadow:0 0 0 8px rgba(255,255,255,.03);transition:border-color .3s,box-shadow .3s,transform .4s var(--ease)}
+.ring-c{position:relative;width:156px;height:156px;border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.2);background:radial-gradient(circle at 50% 40%,rgba(91,75,232,.3),transparent 70%);box-shadow:0 0 0 8px rgba(255,255,255,.03);transition:border-color .3s,box-shadow .3s,transform .4s var(--ease)}
 .ring:hover .ring-c{border-color:var(--peri);box-shadow:0 0 0 8px rgba(143,132,242,.16);transform:translateY(-4px)}
 .ring-c strong{font:800 2.6rem var(--fd);color:#fff;line-height:1;font-variant-numeric:tabular-nums}.ring-c strong i{color:var(--vio);font-style:normal;font-size:.7em}
 .ring h3{color:#fff;font-size:1.1rem;margin-bottom:4px}.ring p{color:#b4b6dc;font-size:14px}
@@ -191,15 +194,6 @@ button,input,textarea{font-family:var(--fb)}
 .tags{display:flex;flex-wrap:wrap;gap:8px}.tags span{font-size:12px;font-weight:500;border:1px solid var(--line);background:rgba(255,255,255,.8);border-radius:20px;padding:3px 11px;color:#2a2c52;transition:background .3s,color .3s}
 .job:hover .tags span{background:var(--navy);color:#fff;border-color:var(--navy)}
 .general{border:1px dashed var(--vio);border-radius:24px;padding:28px 24px;text-align:center;background:linear-gradient(180deg,#fff,#f6f5ff);box-shadow:0 8px 24px rgba(91,75,232,.08)}.general p{color:var(--mute);margin-bottom:14px}
-
-/* Culture */
-.cul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:220px;gap:16px}
-.cell{position:relative;overflow:hidden;border-radius:24px;background:var(--navy);border:1px solid rgba(255,255,255,.12);box-shadow:0 14px 34px rgba(0,0,0,.35);transition:border-color .4s,box-shadow .4s,transform .5s var(--ease)}
-.cell:hover{border-color:var(--peri);box-shadow:0 22px 48px rgba(91,75,232,.4);transform:translateY(-5px)}
-.cell img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}.cell:hover img{transform:scale(1.07)}
-.cell .ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,15,42,.92) 0,rgba(14,15,42,.4) 50%,transparent 100%);display:flex;align-items:flex-end;padding:22px;color:#fff}
-.cell h3{color:#fff;font-size:1.1rem}.cell p{font-size:13.5px;color:#d0d1ee}
-.cell .badge{position:absolute;top:14px;right:14px;background:rgba(14,15,42,.78);backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:3px 12px;font-size:11.5px;font-weight:600}
 
 /* Timeline (dark) */
 .tl{position:relative;max-width:860px;margin:0 auto;padding-left:clamp(36px,6vw,52px)}
@@ -232,7 +226,7 @@ button,input,textarea{font-family:var(--fb)}
 .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff;display:grid;place-items:center;font:700 13px var(--fd);flex:none}
 .who strong{display:block;font:600 14.5px/1.3 var(--fd)}.who small{color:var(--mute);font-size:13px}
 
-/* FAQ */
+/* FAQ (with icons) */
 .faq-wrap{display:grid;grid-template-columns:5fr 7fr;gap:clamp(36px,5vw,64px);align-items:center;max-width:1040px;margin:0 auto}.faq-wrap>*{min-width:0}
 .faq-vis{position:relative;max-width:420px;width:calc(100% - 16px);margin:0 auto}
 .faq-vis::before{content:"";position:absolute;inset:20px -12px -12px 20px;background:var(--glass);border-radius:28px}
@@ -241,10 +235,15 @@ button,input,textarea{font-family:var(--fb)}
 .fchip .cat-ic{width:30px;height:30px;border-radius:9px;margin:0;animation:none;box-shadow:none}.fchip .ui{width:16px;height:16px}
 .faq details{background:rgba(255,255,255,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);margin-bottom:12px;border:1px solid rgba(255,255,255,.9);border-radius:18px;padding:0 24px;box-shadow:0 8px 28px rgba(91,75,232,.08);transition:border-color .25s,box-shadow .35s,transform .35s var(--ease)}
 .faq details:hover{transform:translateY(-2px);border-color:var(--vio)}.faq details[open]{border-color:var(--ind);box-shadow:0 14px 32px rgba(91,75,232,.16)}
-.faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;font:600 1rem/1.45 var(--fd);color:var(--navy);position:relative}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 40px 16px 0;font:600 1rem/1.45 var(--fd);color:var(--navy);position:relative}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:6px;top:12px;font-size:1.6rem;font-weight:400;color:var(--ind);transition:transform .25s}.faq details[open] summary::after{transform:rotate(45deg)}
-.faq details p{padding:0 0 20px;color:var(--mute)}.faq details[open] p{animation:fadeUp .45s var(--ease)}
+.faq summary::after{content:"+";position:absolute;right:6px;top:50%;translate:0 -50%;font-size:1.6rem;line-height:1;font-weight:400;color:var(--ind);transition:transform .25s}.faq details[open] summary::after{transform:rotate(45deg)}
+.fq-ic{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--soft);color:var(--ind);flex:none;transition:background .3s,color .3s,transform .4s var(--ease),box-shadow .3s}
+.fq-ic .ui{width:1.15em;height:1.15em}
+.fq-t{min-width:0}
+.faq details:hover .fq-ic{transform:rotate(-6deg) scale(1.06)}
+.faq details[open] .fq-ic{background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff;box-shadow:0 8px 18px rgba(91,75,232,.3);transform:none}
+.faq details p{padding:0 0 20px 54px;color:var(--mute)}.faq details[open] p{animation:fadeUp .45s var(--ease)}
 
 /* CTA */
 .cta-band{position:relative;overflow:hidden;color:#fff;text-align:center;padding:clamp(64px,9vw,96px) 24px;background:radial-gradient(600px 300px at 85% 0,rgba(130,200,235,.35),transparent 70%),linear-gradient(120deg,#14163f,#4538c4 62%,#5b4be8)}
@@ -316,13 +315,13 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
 @keyframes cntDown{from{width:100%}to{width:0}}
 
 /* Responsive */
-.grid>.dup,.cul>.dup{display:none}
+.grid>.dup{display:none}
 @media(max-width:1100px){.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:1000px){
  .hero{flex-direction:column;align-items:stretch;min-height:0}.hero-orbit,.hero::after{display:none}
  .hero-vis{position:relative;width:100%;height:auto;aspect-ratio:16/9;z-index:0}.hero-vis>img{-webkit-mask-image:none;mask-image:none}
  .hero-grid{order:1;padding:28px 24px 20px}.hero-stats{position:static;order:2;padding:0 24px 28px;flex-wrap:wrap}.hero-copy,.lead{max-width:100%}
- .grid,.cul,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}.cul{grid-auto-rows:200px}.cul .cell:last-child{grid-column:auto!important}
+ .grid,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
  .rings{grid-template-columns:repeat(2,1fr);row-gap:44px}
  .faq-wrap{grid-template-columns:minmax(0,1fr)}.faq-vis{max-width:520px}.faq-vis img{aspect-ratio:16/10}
  .fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.fgrid>div:first-child{grid-column:1/-1}
@@ -349,21 +348,20 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
  .acts{flex-direction:column;gap:10px}.acts .btn,.cta-acts .btn,.general .btn{width:100%;min-width:0}
  .cta-acts{flex-direction:column;align-items:stretch;max-width:340px;margin:0 auto}.general .btn{max-width:340px}
  .hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0 20px 24px}.hs{min-width:0;padding:12px 10px;border-radius:14px;text-align:center}.hs strong{font-size:1.25rem}.hs small{font-size:10.5px;letter-spacing:0;display:block}
- .badge-chip{right:10px;bottom:10px;padding:8px 12px;gap:10px;max-width:calc(100% - 20px)}.badge-chip .cat-ic{width:34px;height:34px}.badge-chip strong{font-size:13px}.badge-chip small{font-size:12px}
  .ticker{height:46px}.marq span{padding:0 18px;gap:36px;font-size:11px}
  .rings{gap:32px 12px}.ring-c{width:116px;height:116px}.ring-c strong{font-size:1.9rem}.ring h3{font-size:1rem}.ring p{font-size:13px}
  .job{padding:22px 18px;gap:16px}.job>.cat-ic{width:52px!important;height:52px!important}.job-top{gap:8px}
  .tl-n{font-size:2rem}.tl::before,.tl-line{left:10px}.tl{padding-left:34px}.tl-dot{left:-34px;width:20px;height:20px;top:28px}
- .faq details{padding:0 16px}.faq summary{font-size:15px}.fchip{left:8px}
+ .faq details{padding:0 16px}.faq summary{font-size:15px;gap:12px}.fq-ic{width:36px;height:36px;border-radius:10px}.faq details p{padding-left:48px}.fchip{left:8px}
  .blob{width:240px;height:240px}
  /* continuous moving strips, every card the same size */
- .grid>.dup{display:flex}.cul>.dup{display:block}
+ .grid>.dup{display:flex}
  .mqw{overflow:hidden}
- .grid.mq,.cul.mq{display:flex;flex-wrap:nowrap;gap:0;width:max-content;max-width:none;margin:0 0 0 -20px;padding:8px 0 26px;align-items:stretch;animation:mqmove var(--mqd,42s) linear infinite;will-change:transform}
- .grid.mq.paused,.cul.mq.paused{animation-play-state:paused}
+ .grid.mq{display:flex;flex-wrap:nowrap;gap:0;width:max-content;max-width:none;margin:0 0 0 -20px;padding:8px 0 26px;align-items:stretch;animation:mqmove var(--mqd,42s) linear infinite;will-change:transform}
+ .grid.mq.paused{animation-play-state:paused}
  .grid.mq>*{flex:0 0 min(84vw,340px);width:min(84vw,340px);margin:0 14px 0 0;grid-row:auto;grid-column:auto;opacity:1!important;transform:none!important;transition:none}
- .cul.mq>*{flex:0 0 min(78vw,320px);width:min(78vw,320px);height:260px;margin:0 14px 0 0;grid-row:auto!important;grid-column:auto!important;opacity:1!important;transform:none!important}
  .grid.mq .ci,.grid.mq .row2 .ci{height:180px}.grid.mq .feature{grid-template-columns:1fr;gap:16px}
+ .lp.mq .card .ci{height:180px}
  .fgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 18px;padding-bottom:28px}.site-footer{padding-bottom:78px}
  .fbot{flex-direction:column;align-items:center;text-align:center;padding:18px 0}
  .wa-float{right:16px;bottom:16px;width:52px;height:52px}.wa-float svg{width:26px;height:26px}.wordmark{font-size:28px}
@@ -372,21 +370,16 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
 }
 @keyframes mqmove{to{transform:translateX(-50%)}}
 @media(max-width:380px){.logo-text{font-size:15px}.hs strong{font-size:1.1rem}.ring-c{width:104px;height:104px}.ring-c strong{font-size:1.7rem}}
-@media(hover:none){.card:hover,.quote:hover,.cell:hover,.tl-card:hover{transform:none}}
+@media(hover:none){.card:hover,.quote:hover,.tl-card:hover{transform:none}}
 @media(hover:hover) and (pointer:coarse){.cglow{display:none}}
 @media(prefers-reduced-motion:reduce){
  *{animation-duration:.01s!important;transition-duration:.01s!important}html{scroll-behavior:auto}.marq{animation:none}
  .blob,.cat-ic,.btn-primary,.btn-light,.eyebrow,.rs,.hs strong,.hero h1 em{animation:none!important}
- .grid.mq,.cul.mq{animation:none!important;width:auto;overflow-x:auto}.grid>.dup,.cul>.dup{display:none!important}.mqw{overflow:visible}
+ .grid.mq{animation:none!important;width:auto;overflow-x:auto}.grid>.dup{display:none!important}.mqw{overflow:visible}
 }
 
 /* =====================================================================
    DESKTOP ONLY (1001px and wider): hero text far LEFT, person image far RIGHT
-   - Text block is released from the centered 1200px wrap and pinned left
-   - Image sits only in the right 44% and never goes under the text
-   Tune the person's position inside the image with --hero-x-desk:
-     person too far RIGHT -> RAISE it (e.g. 40%)   too far LEFT -> LOWER it (e.g. 20%)
-   Tune how far left the text sits with --copy-pad (smaller = more left)
    ===================================================================== */
 @media(min-width:1001px){
  .hero{--hero-x-desk:30%;--hero-y-desk:20%;--copy-pad:clamp(20px,2.6vw,44px)}
@@ -396,7 +389,6 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
  .hero .hero-vis{left:56%;right:0;top:0;width:44%;max-width:none;height:100%}
  .hero .hero-vis>img{object-fit:cover;object-position:var(--hero-x-desk) var(--hero-y-desk);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%);mask-image:linear-gradient(90deg,transparent 0,#000 12%)}
  .hero .hero-stats{left:var(--copy-pad)}
- .hero .badge-chip{right:clamp(16px,2.6vw,44px)}
  .hero::after{z-index:-2;right:2%;bottom:-160px}
  .hero-orbit{opacity:.4;right:-220px}
  .hero h1{font-size:clamp(2.2rem,1rem + 2.6vw,3.6rem);margin-bottom:20px}
@@ -406,6 +398,102 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
 @media(min-width:1600px){
  .hero{min-height:720px}
  .hero .hero-copy{max-width:680px}
+}
+
+/* =====================================================================
+   PROFESSIONAL MOTION LAYER
+   ===================================================================== */
+@keyframes pageIn{from{opacity:0}}
+@keyframes mdIn{from{opacity:0}}
+@keyframes aurora{to{transform:translate3d(-6%,8%,0) rotate(12deg) scale(1.08)}}
+@keyframes okPop{from{transform:scale(.4);opacity:0}60%{transform:scale(1.12)}}
+body{animation:pageIn .7s ease both}
+
+.hero::before{content:"";position:absolute;top:-20%;right:-10%;width:72%;height:130%;z-index:-2;pointer-events:none;background:radial-gradient(40% 40% at 30% 30%,rgba(143,132,242,.30),transparent 70%),radial-gradient(36% 36% at 70% 66%,rgba(130,200,235,.28),transparent 70%);animation:aurora 16s ease-in-out infinite alternate}
+
+.logo-mark{transition:transform .5s var(--ease)}.site-logo:hover .logo-mark{transform:rotate(-10deg) scale(1.08)}
+
+.section:not(.dk)::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(91,75,232,.11) 1px,transparent 1.3px);background-size:26px 26px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent)}
+
+.btn .ui{transition:transform .35s var(--ease)}.btn:hover .ui{transform:translateX(4px)}.btn[href="#openings"]:hover .ui{transform:translateY(4px)}
+
+.card::after{content:"";position:absolute;left:0;top:0;width:100%;height:3px;z-index:2;background:linear-gradient(90deg,#fff,#82c8eb);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease);pointer-events:none}
+.card:is(:hover,.tch)::after{transform:scaleX(1)}
+@media(hover:hover) and (pointer:fine){
+ .card.tilt:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px);transition:transform .2s ease-out,box-shadow .4s,border-color .4s}
+ .quote.tilt:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px);transition:transform .2s ease-out,box-shadow .4s,border-color .3s}
+}
+
+.rv.rv-l:not(.in){transform:translateX(-40px)}
+.rv.rv-r:not(.in){transform:translateX(40px)}
+.rv.rv-s:not(.in){transform:translateY(20px) scale(.94)}
+
+.rg{position:absolute;left:-2px;top:-2px;width:calc(100% + 4px);height:calc(100% + 4px);transform:rotate(-90deg);pointer-events:none;overflow:visible}
+.rg-fg{fill:none;stroke:var(--peri);stroke-width:3;stroke-linecap:round;stroke-dasharray:339.3;stroke-dashoffset:339.3;filter:drop-shadow(0 0 6px rgba(143,132,242,.75));transition:stroke-dashoffset 1.9s var(--ease) .2s}
+.ring.on .rg-fg{stroke-dashoffset:calc(339.3px * (1 - var(--p,.9)))}
+
+.job-cols li{transition:opacity .6s var(--ease) calc(var(--k,0)*.06s + .3s),transform .6s var(--ease) calc(var(--k,0)*.06s + .3s)}
+.tags span{transition:background .3s,color .3s,border-color .3s,opacity .5s var(--ease) calc(var(--k,0)*.07s + .6s),transform .5s var(--ease) calc(var(--k,0)*.07s + .6s)}
+.job.pre:not(.seen) .job-cols li{opacity:0;transform:translateX(-14px)}
+.job.pre:not(.seen) .tags span{opacity:0;transform:translateY(8px)}
+.job>.cat-ic{transition:background .3s,transform .5s var(--ease)}.job:hover>.cat-ic{transform:rotate(-6deg) scale(1.06)}
+
+.tl-card{transition:transform .5s var(--ease),border-color .4s,box-shadow .4s,background .4s}
+.tl-item.active .tl-card{border-color:rgba(143,132,242,.45)}
+.tl-n{background:linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.06));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+.av{transition:transform .4s var(--ease)}.quote:hover .av{transform:scale(1.1) rotate(-5deg)}
+
+.faq-vis.pre img{clip-path:inset(0 100% 0 0 round 28px);transition:clip-path 1.2s var(--ease)}
+.faq-vis.pre.shown img{clip-path:inset(0 0 0 0 round 28px)}
+.faq-vis.pre::before{opacity:0;transform:translate(26px,26px);transition:opacity .9s var(--ease) .4s,transform .9s var(--ease) .4s}
+.faq-vis.pre.shown::before{opacity:1;transform:none}
+
+.site-footer{position:relative}
+.site-footer::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--peri),#82c8eb,var(--peri),transparent);background-size:200% 100%;animation:shimmer 6s linear infinite}
+
+#applyModal{animation:mdIn .35s ease both}
+#applyModal.show #apFormWrap :is(.av-field,.av-btn,.trust){animation:fadeUp .6s var(--ease) both;animation-delay:calc(var(--n,0)*.05s + .2s)}
+#applyModal.show .ap-feat{animation:fadeUp .6s var(--ease) both}
+#applyModal.show .ap-feat:nth-child(1){animation-delay:.3s}#applyModal.show .ap-feat:nth-child(2){animation-delay:.4s}#applyModal.show .ap-feat:nth-child(3){animation-delay:.5s}
+#applySuccess[style*="flex"] .ok-ic{animation:okPop .7s var(--ease) both}
+
+@media(max-width:700px){
+ .rv.rv-l:not(.in){transform:translateX(-24px)}.rv.rv-r:not(.in){transform:translateX(24px)}
+ .hero::before{width:100%;right:-30%}
+}
+@media(prefers-reduced-motion:reduce){
+ body{animation:none}
+ .hero::before,.site-footer::before{animation:none!important}
+ .rg-fg{transition:none}
+}
+
+/* =====================================================================
+   LAUNCHPAD ("Why Us") cards: show every image in FULL (no cropping)
+   Works on desktop, tablet and the mobile moving strip
+   ===================================================================== */
+.lp .card .ci,
+.lp.mq .card .ci,
+.grid.mq.lp .ci{
+  height:auto;
+  aspect-ratio:auto;
+  flex:none;
+  background:var(--navy);
+}
+.lp .card .ci img,
+.lp.mq .card .ci img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  object-position:center;
+}
+.lp .card:is(:hover,.tch) .ci img{transform:scale(1.03)}
+.lp .card h3{margin-top:2px}
+.lp .card p{flex:1}
+@media(max-width:700px){
+  .lp.mq .card .ci{height:auto}
+  .lp.mq>*{height:auto;align-self:stretch}
 }
 </style>
 </head>
@@ -434,6 +522,7 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
  <symbol id="i-brief" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+ <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 8h6M9 11.5h6M9 8c3.6 0 3.6 5 0 5l4.5 3.5"/></symbol>
  <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></symbol>
  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 17v3h16v-3"/></symbol>
@@ -475,7 +564,6 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
  <div class="orbit hero-orbit" aria-hidden="true"><svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="290"/><circle class="d2" cx="300" cy="300" r="215"/><circle cx="300" cy="300" r="140"/><g class="o1"><circle class="dot" cx="300" cy="10" r="7"/></g><g class="o2"><circle class="dot" cx="515" cy="300" r="5"/></g><g class="o3"><circle class="dot" cx="300" cy="440" r="4"/></g></svg></div>
  <div class="hero-vis">
   <img src="assets/images/careers.png" alt="Team Collaboration" fetchpriority="high" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1400&q=80'">
-  <div class="badge-chip"><span class="cat-ic soft"><svg class="ui"><use href="#i-award"/></svg></span><div><strong>Best Workplace</strong><small>2024 Award Winner</small></div></div>
  </div>
  <div class="wrap hero-grid">
   <div class="hero-copy">
@@ -502,10 +590,10 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
  <div class="wrap">
   <div class="section-head"><span class="eyebrow">Our Numbers</span><h2>Built on Real Results</h2><p>Numbers that prove we're serious about growth for our clients and our people.</p></div>
   <div class="rings">
-   <div class="ring"><div class="ring-c"><strong><span data-count="200">200</span><i>+</i></strong></div><h3>Projects Delivered</h3><p>Across industries globally</p></div>
-   <div class="ring"><div class="ring-c"><strong><span data-count="50">50</span><i>+</i></strong></div><h3>Team Members</h3><p>And growing fast</p></div>
-   <div class="ring"><div class="ring-c"><strong><span data-count="98">98</span><i>%</i></strong></div><h3>% Satisfaction</h3><p>Employee happiness score</p></div>
-   <div class="ring"><div class="ring-c"><strong><span data-count="30">30</span><i>+</i></strong></div><h3>Interns Hired Full-Time</h3><p>Internship to full-time rate</p></div>
+   <div class="ring"><div class="ring-c"><svg class="rg" viewBox="0 0 120 120" aria-hidden="true"><circle class="rg-fg" cx="60" cy="60" r="54" style="--p:.92"/></svg><strong><span data-count="200">200</span><i>+</i></strong></div><h3>Projects Delivered</h3><p>Across industries globally</p></div>
+   <div class="ring"><div class="ring-c"><svg class="rg" viewBox="0 0 120 120" aria-hidden="true"><circle class="rg-fg" cx="60" cy="60" r="54" style="--p:.72"/></svg><strong><span data-count="50">50</span><i>+</i></strong></div><h3>Team Members</h3><p>And growing fast</p></div>
+   <div class="ring"><div class="ring-c"><svg class="rg" viewBox="0 0 120 120" aria-hidden="true"><circle class="rg-fg" cx="60" cy="60" r="54" style="--p:.98"/></svg><strong><span data-count="98">98</span><i>%</i></strong></div><h3>% Satisfaction</h3><p>Employee happiness score</p></div>
+   <div class="ring"><div class="ring-c"><svg class="rg" viewBox="0 0 120 120" aria-hidden="true"><circle class="rg-fg" cx="60" cy="60" r="54" style="--p:.6"/></svg><strong><span data-count="30">30</span><i>+</i></strong></div><h3>Interns Hired Full-Time</h3><p>Internship to full-time rate</p></div>
   </div>
  </div>
 </section>
@@ -514,13 +602,13 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
 <section class="section">
  <div class="wrap">
   <div class="section-head"><span class="eyebrow">Why Us</span><h2>More Than a Job. A Launchpad.</h2><p>We've built an environment where talented people do their best work and grow beyond what they thought possible.</p></div>
-  <div class="grid">
-   <div class="card row2"><div class="ci"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Career growth" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-rocket"/></svg></span><h3>Accelerated Career Growth</h3><p>Join and grow 3× faster than the industry average. Our structured mentorship, internal mobility, and fast-track programs are built to push you to your ceiling and beyond.</p></div>
-   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-brain"/></svg></span><h3>Learn from Industry Experts</h3><p>Workshops, tech talks, 1-on-1 mentors, and a ₹20k+ annual upskilling budget. Stay ahead of the curve, always.</p></div>
-   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-globe"/></svg></span><h3>Real-World Impact</h3><p>Your code ships to real users. Your campaigns run live. Your videos get real views. No dummy projects here.</p></div>
-   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-bolt"/></svg></span><h3>Ownership from Day 1</h3><p>No coffee-fetching internships. You own features, campaigns, and deliverables from the moment you join.</p></div>
-   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-hand"/></svg></span><h3>Collaborative &amp; Inclusive</h3><p>Flat hierarchy, open Slack channels, weekly all-hands, and a team that genuinely celebrates your wins.</p></div>
-   <div class="card span2"><div class="feature"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80" alt="Tech workspace" loading="lazy"><div><span class="eyebrow">For Interns &amp; Early Careers</span><h3 style="font-size:1.4rem">We Bet on Potential, Not Just Pedigree</h3><p style="margin-top:8px">We've hired interns from tier-2 colleges who outperform IIT graduates. What we look for: hunger to learn, ability to execute, and a bias for action. If that's you we want to talk.</p></div></div></div>
+  <div class="grid lp">
+   <div class="card"><div class="ci"><img src="assets/images/career growth.png" alt="Team planning career growth" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-rocket"/></svg></span><h3>Accelerated Career Growth</h3><p>Join and grow 3× faster than the industry average. Our structured mentorship, internal mobility, and fast-track programs are built to push you to your ceiling and beyond.</p></div>
+   <div class="card"><div class="ci"><img src="assets/images/industry.png" alt="Learning from industry experts" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-brain"/></svg></span><h3>Learn from Industry Experts</h3><p>Workshops, tech talks, 1-on-1 mentors, and a ₹20k+ annual upskilling budget. Stay ahead of the curve, always.</p></div>
+   <div class="card"><div class="ci"><img src="assets/images/real-world.png" alt="Analytics dashboard showing real impact" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-globe"/></svg></span><h3>Real-World Impact</h3><p>Your code ships to real users. Your campaigns run live. Your videos get real views. No dummy projects here.</p></div>
+   <div class="card"><div class="ci"><img src="assets/images/teamwork.png" alt="Team members owning their work" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-bolt"/></svg></span><h3>Ownership from Day 1</h3><p>No coffee-fetching internships. You own features, campaigns, and deliverables from the moment you join.</p></div>
+   <div class="card"><div class="ci"><img src="assets/images/inclusive.png" alt="Collaborative and inclusive team" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-hand"/></svg></span><h3>Collaborative &amp; Inclusive</h3><p>Flat hierarchy, open Slack channels, weekly all-hands, and a team that genuinely celebrates your wins.</p></div>
+   <div class="card"><div class="ci"><img src="assets/images/team meeting.png" alt="Developer workspace" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-cap"/></svg></span><h3>Potential Over Pedigree</h3><p>We've hired interns from tier-2 colleges who outperform IIT graduates. We look for hunger to learn, ability to execute, and a bias for action. If that's you, we want to talk.</p></div>
   </div>
  </div>
 </section>
@@ -606,20 +694,6 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
  </div>
 </section>
 
-<!-- Culture -->
-<section class="section dk">
- <div class="wrap">
-  <div class="section-head"><span class="eyebrow">Life at Algo Orbit</span><h2>Where Work Feels Different</h2><p>A look inside the energy, the people, and the space where we do our best work.</p></div>
-  <div class="cul">
-   <div class="cell" style="grid-row:span 2"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80" alt="Collaboration" loading="lazy"><div class="ov"><div><h3>Deep Collaboration</h3><p>Ideas flow here</p></div></div><span class="badge">Team Work</span></div>
-   <div class="cell"><img src="https://www.algoorbit.in/static/images/background/deep.png" alt="Focus" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=700&q=80'"><div class="ov"><div><h3>Focus Mode</h3><p>When it's time to ship</p></div></div><span class="badge">Deep Work</span></div>
-   <div class="cell"><img src="https://www.algoorbit.in/static/images/background/hang.png" alt="Events" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=700&q=80'"><div class="ov"><div><h3>Team Hangouts</h3><p>We celebrate wins big</p></div></div><span class="badge">Culture</span></div>
-   <div class="cell"><img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=700&q=80" alt="Office" loading="lazy"><div class="ov"><div><h3>Modern Space</h3><p>Built for creators</p></div></div><span class="badge">Office</span></div>
-   <div class="cell" style="grid-column:span 2"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=80" alt="Innovation" loading="lazy"><div class="ov"><div><h3>Innovation at the Core</h3><p>We build things that didn't exist before</p></div></div><span class="badge">Innovation</span></div>
-  </div>
- </div>
-</section>
-
 <!-- Perks -->
 <section class="section">
  <div class="wrap">
@@ -674,11 +748,11 @@ textarea.av-inp{resize:none;min-height:88px;line-height:1.6}
     <span class="fchip"><span class="cat-ic"><svg class="ui"><use href="#i-mail"/></svg></span>connect@algoorbit.com</span>
    </div>
    <div class="faq" id="faqContainer">
-    <details><summary>Is this a paid internship?</summary><p>Yes, internships at Algo Orbit are paid. The stipend varies by role and is discussed during the final conversation round. We believe your time and skills deserve fair compensation.</p></details>
-    <details><summary>Can I do this remotely?</summary><p>Most roles support hybrid or fully remote arrangements. For video editing and digital marketing, remote is standard. For full stack, it depends on the project. We'll clarify during the first call.</p></details>
-    <details><summary>What's the duration of the internship?</summary><p>Typically 2–6 months with the option to extend. High performers are considered for full-time Pre-Placement Offers (PPO) at the end of their internship.</p></details>
-    <details><summary>Do I need a portfolio or GitHub to apply?</summary><p>Highly recommended but not mandatory. A GitHub profile for developers or a video reel for editors significantly improves your shortlist chances. Even personal projects count — it shows initiative.</p></details>
-    <details><summary>How do I apply?</summary><p>Click any "Apply Now" button on this page, fill out the form, attach your resume, and tell us why you're excited about Algo Orbit. We respond within 48 hours.</p></details>
+    <details><summary><span class="fq-ic"><svg class="ui"><use href="#i-coin"/></svg></span><span class="fq-t">Is this a paid internship?</span></summary><p>Yes, internships at Algo Orbit are paid. The stipend varies by role and is discussed during the final conversation round. We believe your time and skills deserve fair compensation.</p></details>
+    <details><summary><span class="fq-ic"><svg class="ui"><use href="#i-laptop"/></svg></span><span class="fq-t">Can I do this remotely?</span></summary><p>Most roles support hybrid or fully remote arrangements. For video editing and digital marketing, remote is standard. For full stack, it depends on the project. We'll clarify during the first call.</p></details>
+    <details><summary><span class="fq-ic"><svg class="ui"><use href="#i-clock"/></svg></span><span class="fq-t">What's the duration of the internship?</span></summary><p>Typically 2–6 months with the option to extend. High performers are considered for full-time Pre-Placement Offers (PPO) at the end of their internship.</p></details>
+    <details><summary><span class="fq-ic"><svg class="ui"><use href="#i-brief"/></svg></span><span class="fq-t">Do I need a portfolio or GitHub to apply?</span></summary><p>Highly recommended but not mandatory. A GitHub profile for developers or a video reel for editors significantly improves your shortlist chances. Even personal projects count — it shows initiative.</p></details>
+    <details><summary><span class="fq-ic"><svg class="ui"><use href="#i-send"/></svg></span><span class="fq-t">How do I apply?</span></summary><p>Click any "Apply Now" button on this page, fill out the form, attach your resume, and tell us why you're excited about Algo Orbit. We respond within 48 hours.</p></details>
    </div>
   </div>
  </div>
@@ -796,7 +870,13 @@ function countUp(el){var t=+el.dataset.count,s=null;(function step(ts){s=s||ts;v
 if(!reduce){var cio=new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){$$('[data-count]',e.target).forEach(countUp);o.unobserve(e.target)}})},{threshold:.35});
  $$('.hero-stats,.stats-section').forEach(function(el){$$('[data-count]',el).forEach(function(n){n.textContent='0'});cio.observe(el)})}
 
-// Scroll progress, header, hero image drift (desktop keeps the CSS position variable; phones use the CSS variables)
+// Progress rings around the numbers
+(function(){var rs=$$('.ring');
+ if(reduce){rs.forEach(function(r){r.classList.add('on')});return}
+ var pio=new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');o.unobserve(e.target)}})},{threshold:.4});
+ rs.forEach(function(r){pio.observe(r)})})();
+
+// Scroll progress, header, hero image drift
 var hdr=$('.site-header'),heroImg=$('.hero-vis>img');
 addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-innerHeight;$('#bar').style.width=(h>0?scrollY/h*100:0)+'%';hdr.classList.toggle('scrolled',scrollY>40);
  if(heroImg&&scrollY<900&&!reduce){var hx=innerWidth>1000?'var(--hero-x-desk)':'right';var hy=innerWidth>1000?'calc(var(--hero-y-desk) + '+scrollY*.05+'px)':'calc(50% + '+scrollY*.05+'px)';heroImg.style.objectPosition=hx+' '+hy}},{passive:true});
@@ -808,9 +888,10 @@ $$('.dd-btn').forEach(function(b){b.onclick=function(){var li=b.parentNode,o=!li
 document.addEventListener('click',function(e){if(!e.target.closest('.has-dd'))$$('.has-dd').forEach(function(x){x.classList.remove('open')})});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')$$('.has-dd').forEach(function(x){x.classList.remove('open')})});
 
-// Mobile: build continuous moving strips FIRST (clones), so every later handler covers them too
+// Mobile: build continuous moving strips FIRST (clones), so every later handler covers them too.
+// The duplicated cards are hidden on desktop by CSS (.grid>.dup{display:none}), so desktop shows only the original cards.
 (function(){
- $$('.grid,.cul').forEach(function(g){
+ $$('.grid').forEach(function(g){
   var kids=Array.prototype.slice.call(g.children);
   kids.forEach(function(k){var c=k.cloneNode(true);c.classList.add('dup');c.setAttribute('aria-hidden','true');
    $$('a,button,input',c).forEach(function(x){x.setAttribute('tabindex','-1')});g.appendChild(c)});
@@ -833,11 +914,28 @@ $$('.card,.quote,.job').forEach(function(c){
   c.addEventListener('touchmove',function(){clearTimeout(t)},{passive:true});c.addEventListener('touchend',end);c.addEventListener('touchcancel',end)}
 });
 
-// Scroll reveal + heading underline (not on cloned cards)
-if(!reduce){var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('rv','in');el.style.transitionDelay=''},1500)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
- $$('.section-head,.card:not(.dup),.quote:not(.dup),.cell:not(.dup),.job,.general,.tl-item,.ring,.faq details').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('rv');el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)})}
+// Scroll reveal (with directional / scale variants) + heading underline (not on cloned cards)
+if(!reduce){var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('rv','in','rv-l','rv-r','rv-s');el.style.transitionDelay=''},1500)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+ var jn=0;
+ $$('.section-head,.card:not(.dup),.quote:not(.dup),.job,.general,.tl-item,.ring,.faq details').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('rv');
+  if(el.classList.contains('job'))el.classList.add(jn++%2?'rv-r':'rv-l');
+  else if(el.classList.contains('tl-item'))el.classList.add('rv-l');
+  else if(el.tagName==='DETAILS')el.classList.add('rv-r');
+  else if(el.classList.contains('quote')||el.classList.contains('ring'))el.classList.add('rv-s');
+  el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)})}
 var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('drawn');dio.unobserve(e.target)}})},{threshold:.6});
 $$('.section-head').forEach(function(el){dio.observe(el)});
+
+// Job cards: staggered skills + tags
+(function(){var js=$$('.job');
+ js.forEach(function(j){$$('.job-cols ul',j).forEach(function(u){$$('li',u).forEach(function(li,k){li.style.setProperty('--k',k)})});$$('.tags span',j).forEach(function(t,k){t.style.setProperty('--k',k)});if(!reduce)j.classList.add('pre')});
+ if(reduce)return;
+ var jio=new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');o.unobserve(e.target)}})},{threshold:.15});
+ js.forEach(function(j){jio.observe(j)})})();
+
+// FAQ image mask reveal
+(function(){var v=$('.faq-vis');if(!v||reduce)return;v.classList.add('pre');
+ new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){v.classList.add('shown');o.disconnect()}})},{threshold:.25}).observe(v)})();
 
 // Headline words rise one by one
 (function(){
@@ -870,12 +968,15 @@ $$('.section.dk').forEach(function(s){s.addEventListener('mousemove',function(e)
    for(var j=i+1;j<N;j++){var q=P[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<130){x.strokeStyle='rgba(91,75,232,'+(.22*(1-d/130))+')';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}}})();
 })();
 
-// Desktop only: cursor glow + magnetic hero buttons
+// Desktop only: cursor glow + magnetic hero buttons + 3D card tilt
 if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce){
  var g=document.createElement('div');g.className='cglow';document.body.appendChild(g);
  addEventListener('mousemove',function(e){g.style.transform='translate3d('+e.clientX+'px,'+e.clientY+'px,0)';g.classList.add('on')},{passive:true});
  document.addEventListener('mouseleave',function(){g.classList.remove('on')});
- $$('.hero .btn,.cta-band .btn').forEach(function(b){b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.25)+'px '+((e.clientY-r.top-r.height/2)*.35)+'px'});b.addEventListener('mouseleave',function(){b.style.translate='0 0'})})}
+ $$('.hero .btn,.cta-band .btn').forEach(function(b){b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.25)+'px '+((e.clientY-r.top-r.height/2)*.35)+'px'});b.addEventListener('mouseleave',function(){b.style.translate='0 0'})});
+ $$('.card:not(.dup),.quote:not(.dup)').forEach(function(c){c.classList.add('tilt');
+  c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.style.setProperty('--ry',(px*6).toFixed(2)+'deg');c.style.setProperty('--rx',(-py*6).toFixed(2)+'deg')});
+  c.addEventListener('mouseleave',function(){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')})})}
 
 // Button ripple
 document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(!b)return;var r=b.getBoundingClientRect(),d=document.createElement('span');d.className='rp';d.style.left=(e.clientX-r.left)+'px';d.style.top=(e.clientY-r.top)+'px';b.appendChild(d);setTimeout(function(){d.remove()},750)});
@@ -895,14 +996,15 @@ $$('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){va
 function openApplyModal(roleName){
  var modal=$('#applyModal'),wrap=$('#apWrap');
  $('#roleInput').value=roleName;$('#apModalTitle').textContent=roleName;$('#apRoleLabel').textContent=roleName;
- modal.style.display='flex';document.body.classList.add('lock');
+ $$('#apFormWrap .av-field,#apFormWrap .av-btn,#apFormWrap .trust').forEach(function(f,k){f.style.setProperty('--n',k)});
+ modal.style.display='flex';modal.classList.add('show');document.body.classList.add('lock');
  setTimeout(function(){wrap.style.transform='scale(1) translateY(0)';wrap.style.opacity='1'},10);
 }
 function closeApplyModal(){
  var modal=$('#applyModal'),wrap=$('#apWrap');
  wrap.style.transform='scale(.92) translateY(30px)';wrap.style.opacity='0';
  setTimeout(function(){
-  modal.style.display='none';document.body.classList.remove('lock');
+  modal.style.display='none';modal.classList.remove('show');document.body.classList.remove('lock');
   var f=$('#applyForm'),s=$('#applySuccess'),fw=$('#apFormWrap');
   if(f)f.reset();clearFile();if(s)s.style.display='none';if(fw)fw.style.display='block';
  },450);

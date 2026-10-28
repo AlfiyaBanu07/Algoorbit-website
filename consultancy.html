@@ -117,7 +117,8 @@ h2 em{font-style:normal;color:var(--ind)}
 
 /* Cards: light, ink bloom on hover (About style) */
 .card,.ind,.quote,.pc{position:relative;overflow:hidden;height:100%;border-radius:24px;display:flex;flex-direction:column}
-.card-img{width:100%;height:170px;object-fit:cover;background:var(--navy);flex:none;transition:transform .9s var(--ease),filter .6s}
+/* Card images show in full (no cropping): natural height, contain */
+.card-img{width:100%;height:auto;object-fit:contain;object-position:center;display:block;background:var(--navy);flex:none;transition:transform .9s var(--ease),filter .6s}
 .cb{padding:24px 26px 28px;display:flex;flex-direction:column;flex:1;align-items:flex-start}
 .card h3{font-size:1.2rem;margin-bottom:10px}.card p{color:var(--mute);font-size:15px;margin-bottom:18px}.card .tags,.card .ck{margin-top:auto}
 .card h3::after{content:"";display:block;width:26px;height:3px;margin-top:10px;border-radius:3px;background:linear-gradient(90deg,var(--ind),#82c8eb);transition:width .5s var(--ease),background .4s}
@@ -300,7 +301,7 @@ h2 em{font-style:normal;color:var(--ind)}
 @media(max-width:1180px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:1000px){
  .hero{flex-direction:column;align-items:stretch;min-height:0}.orbit,.hero::after{display:none}
- .hero-bg{position:relative;width:100%;height:auto;aspect-ratio:16/9;-webkit-mask-image:none;mask-image:none}
+ .hero-bg{position:relative;width:100%;height:auto;aspect-ratio:2/1;-webkit-mask-image:none;mask-image:none}
  .hero-grid{order:1;padding:28px 24px 20px}.hero-stats{position:static;order:2;padding:0 24px 28px;flex-wrap:wrap}
  .hero-copy,.lead{max-width:100%}
  .grid,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -321,7 +322,7 @@ h2 em{font-style:normal;color:var(--ind)}
 }
 @media(max-width:700px){
  body{font-size:15.5px}.wrap{padding:0 20px}.sec{padding:48px 0}h2{font-size:1.6rem}
- .hero-bg{aspect-ratio:5/4;object-position:right center;-webkit-mask-image:linear-gradient(180deg,#000 88%,transparent);mask-image:linear-gradient(180deg,#000 88%,transparent)}
+ .hero-bg{aspect-ratio:4/3;object-position:right center;-webkit-mask-image:linear-gradient(180deg,#000 88%,transparent);mask-image:linear-gradient(180deg,#000 88%,transparent)}
  .hero-grid{padding:6px 20px 20px}.hero h1{font-size:clamp(1.9rem,8.6vw,2.3rem)}
  .hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0 20px 24px}.hs{min-width:0;padding:12px 10px;border-radius:14px}.hs strong{font-size:1.25rem}.hs small{font-size:10.5px;letter-spacing:0;display:block}
  .btn{white-space:normal;min-width:0;height:auto;min-height:48px;padding:12px 22px;line-height:1.25}
@@ -414,7 +415,7 @@ h2.wd .w>span{transform:none}
  .hero .acts .btn{height:54px;min-width:210px;font-size:16.5px}
  .hero .checklist{font-size:16.5px;gap:12px 32px}
  .hero .checklist li::before{width:9px;height:9px}
- .hero-bg{width:min(66%,1120px)}
+ .hero-bg{width:min(50%,860px)}
 }
 @media(max-width:700px){
  .lead{font-size:16px;margin-bottom:22px}.acts{gap:10px;margin-bottom:20px}
@@ -444,7 +445,7 @@ h2.wd .w>span{transform:none}
  .sec .wrap .grid.mq{display:flex;flex-wrap:nowrap;gap:0;width:max-content;max-width:none;margin:0;padding:8px 0 26px;overflow:visible;scroll-snap-type:none;align-items:stretch;animation:mqmove var(--mqd,42s) linear infinite;will-change:transform}
  .sec .wrap .grid.mq>*{flex:0 0 min(84vw,340px);width:min(84vw,340px);height:auto;margin:0 14px 0 0;scroll-snap-align:none;align-self:stretch;opacity:1!important;transform:none!important;transition:none}
  .sec .wrap .grid.mq.paused{animation-play-state:paused}
- .sec .wrap .grid.mq .card-img{height:180px}
+ .sec .wrap .grid.mq .card-img{height:auto}
  .sec .wrap .grid.mq .ind-shot{height:160px}
  .hero-bg{animation:kb 1.8s var(--ease) both}
  .checklist li{animation:fadeUp .7s var(--ease) both}
@@ -468,6 +469,54 @@ h2.wd .w>span{transform:none}
  .sec .wrap .grid.mq{animation:none!important;width:auto;overflow-x:auto}
  .grid>.dup{display:none!important}.mqw{overflow:visible}
 }
+
+/* =====================================================================
+   UPDATES: FAQ icons (mobile + desktop)
+   ===================================================================== */
+.faq summary{display:flex;align-items:center;gap:14px;padding:16px 40px 16px 0}
+.faq summary::after{top:50%;margin-top:-.95rem}
+.qi{position:relative;display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:12px;color:var(--ind);background:linear-gradient(135deg,#ecebff,#dcd8ff);border:1px solid rgba(91,75,232,.18);box-shadow:inset 0 1px 0 #fff,0 4px 10px rgba(91,75,232,.1);transition:background .35s var(--ease),color .35s,transform .45s var(--ease),box-shadow .35s}
+.qi .ui{width:19px;height:19px;stroke-width:1.9}
+.faq details:hover .qi{transform:translateY(-1px) scale(1.05)}
+.faq details[open] .qi{background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff;border-color:transparent;box-shadow:0 8px 18px rgba(91,75,232,.32)}
+.faq details[open] .qi .ui{animation:icPop .6s var(--ease)}
+.faq details p{padding-left:54px}
+.faq summary span.qt{flex:1;min-width:0}
+@media(max-width:700px){
+ .faq summary{gap:11px;padding:14px 34px 14px 0}
+ .qi{width:34px;height:34px;border-radius:10px}.qi .ui{width:16px;height:16px}
+ .faq details p{padding-left:45px}
+}
+
+/* =====================================================================
+   UPDATES: DESKTOP ONLY (min-width:1001px)
+   CHANGED: the ticker reel right after the hero now keeps moving
+   continuously on desktop (same as the Careers page). The static-row
+   override that used to stop it was removed. Only the Technology
+   Arsenal strip remains a static row on desktop.
+   ===================================================================== */
+@media(min-width:1001px){
+ .hero-bg{width:min(50%,860px)}
+ /* Process section: no banner image */
+ #process .banner{display:none}
+ /* Why Choose Us: removed on desktop */
+ .why-sec{display:none}
+ /* Tech strip: clean static row (no duplicated items) */
+ .tech .marq .cp,.grid>.dup{display:none!important}
+ .tech .marq{animation:none;width:auto;max-width:1200px;margin:0 auto;flex-wrap:wrap;justify-content:center;gap:10px 4px;padding:0 24px}
+ .tech{-webkit-mask-image:none;mask-image:none}
+}
+
+/* =====================================================================
+   UPDATES: Professional polish (all screens)
+   ===================================================================== */
+.price{display:flex;align-items:baseline;gap:2px}
+.price::before{content:none}
+.pc .btn{transition:background .25s,color .25s,border-color .25s,box-shadow .25s,transform .3s var(--ease)}
+.pf{transition:padding-left .3s var(--ease)}.pc:hover .pf:not(.dim){padding-left:4px}
+.tl-card h3,.card h3,.feat strong{letter-spacing:-.015em}
+.quote .who img{box-shadow:0 0 0 3px #fff,0 0 0 5px rgba(91,75,232,.25)}
+@media(prefers-reduced-motion:reduce){.qi,.pf{transition:none}}
 </style>
 </head>
 <body>
@@ -484,6 +533,9 @@ h2.wd .w>span{transform:none}
  <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></symbol>
  <symbol id="i-help" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v5H5a1 1 0 0 1-1-1zM20 14h-3v5h2a1 1 0 0 0 1-1z"/></symbol>
  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+ <symbol id="i-dollar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14.8 9.2c-.4-1-1.4-1.6-2.8-1.6-1.6 0-2.8.8-2.8 2.1 0 3 5.8 1.4 5.8 4.4 0 1.3-1.2 2.2-3 2.2-1.5 0-2.6-.7-3-1.8M12 6v1.6M12 16.4V18"/></symbol>
+ <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></symbol>
+ <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0 5 5L21 12.6 12.6 21a2.1 2.1 0 0 1-3-3L18 9.6M14.7 6.3a4 4 0 0 1 5-3.4l-2.6 2.6.9 2.5 2.5.9 2.6-2.6a4 4 0 0 1-3.4 5"/></symbol>
  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></symbol>
  <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.5v.01M12 16v-5.5M12 13c0-1.5 1-2.6 2.5-2.6S17 11.4 17 13v3"/></symbol>
  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5v.01"/></symbol>
@@ -537,12 +589,12 @@ h2.wd .w>span{transform:none}
  <div class="wrap">
   <div class="head c"><span class="eyebrow">One Partner. Everything Digital.</span><h2>Whatever It Is <em>We Build It.</em></h2><p>Don't juggle 5 vendors. One team. One bill. Your entire digital product designed, engineered, and launched.</p></div>
   <div class="grid">
-   <div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80" alt="Website and web app development" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-globe"/></svg></span><h3>Websites &amp; Web Apps</h3><p>Blazing-fast, SEO-optimised websites and complex web portals from static landing pages to full enterprise dashboards.</p><div class="tags"><span>Next.js</span><span>React</span><span>Django</span></div></div></div>
-   <div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" alt="Mobile application development" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-phone"/></svg></span><h3>Mobile Applications</h3><p>Native iOS &amp; Android and cross-platform apps that users love. Fast, offline-ready, and beautifully polished.</p><div class="tags"><span>Flutter</span><span>React Native</span></div></div></div>
-   <div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="SaaS dashboards" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><h3>SaaS Platforms</h3><p>Multi-tenant SaaS from scratch with auth, billing, dashboards, and APIs. Ship in weeks, not quarters.</p><div class="tags"><span>Node.js</span><span>AWS</span></div></div></div>
-   <div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" alt="E-commerce checkout" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-cart"/></svg></span><h3>E-Commerce Stores</h3><p>High-converting online stores with smart inventory, payments, and personalised shopping experiences.</p><div class="tags"><span>Custom</span><span>Shopify</span></div></div></div>
-   <div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="AI and automation" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-bulb"/></svg></span><h3>AI &amp; Automation</h3><p>Custom AI integrations, intelligent chatbots, automation pipelines, and ML-powered business workflows.</p><div class="tags"><span>LangChain</span><span>OpenAI</span></div></div></div>
-   <div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="ERP and CRM servers" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-server"/></svg></span><h3>ERP &amp; CRM Systems</h3><p>End-to-end enterprise management with inventory, HR, billing, and CRM tailored precisely to your workflow.</p><div class="tags"><span>Odoo</span><span>Custom ERP</span></div></div></div>
+   <div class="card"><img class="card-img" src="assets/images/Modern Web.png" alt="Website and web app development" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-globe"/></svg></span><h3>Websites &amp; Web Apps</h3><p>Blazing-fast, SEO-optimised websites and complex web portals from static landing pages to full enterprise dashboards.</p><div class="tags"><span>Next.js</span><span>React</span><span>Django</span></div></div></div>
+   <div class="card"><img class="card-img" src="assets/images/Mobile App.png" alt="Mobile application development" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-phone"/></svg></span><h3>Mobile Applications</h3><p>Native iOS &amp; Android and cross-platform apps that users love. Fast, offline-ready, and beautifully polished.</p><div class="tags"><span>Flutter</span><span>React Native</span></div></div></div>
+   <div class="card"><img class="card-img" src="assets/images/SaaS.png" alt="SaaS dashboards" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><h3>SaaS Platforms</h3><p>Multi-tenant SaaS from scratch with auth, billing, dashboards, and APIs. Ship in weeks, not quarters.</p><div class="tags"><span>Node.js</span><span>AWS</span></div></div></div>
+   <div class="card"><img class="card-img" src="assets/images/E-Commerce.png" alt="E-commerce checkout" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-cart"/></svg></span><h3>E-Commerce Stores</h3><p>High-converting online stores with smart inventory, payments, and personalised shopping experiences.</p><div class="tags"><span>Custom</span><span>Shopify</span></div></div></div>
+   <div class="card"><img class="card-img" src="assets/images/AI.png" alt="AI and automation" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-bulb"/></svg></span><h3>AI &amp; Automation</h3><p>Custom AI integrations, intelligent chatbots, automation pipelines, and ML-powered business workflows.</p><div class="tags"><span>LangChain</span><span>OpenAI</span></div></div></div>
+   <div class="card"><img class="card-img" src="assets/images/ERP & CRM.png" alt="ERP and CRM servers" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-server"/></svg></span><h3>ERP &amp; CRM Systems</h3><p>End-to-end enterprise management with inventory, HR, billing, and CRM tailored precisely to your workflow.</p><div class="tags"><span>Odoo</span><span>Custom ERP</span></div></div></div>
   </div>
  </div>
 </section>
@@ -551,9 +603,9 @@ h2.wd .w>span{transform:none}
  <div class="wrap">
   <div class="head c"><span class="eyebrow">Who We Work With</span><h2>Wherever You Are in <em>Your Journey</em></h2><p>First-time founders. Growing SMBs. Fortune-equivalent enterprises. The size doesn't matter — the ambition does.</p></div>
   <div class="grid">
-   <div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Startup team collaborating" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-rocket"/></svg></span><h3>Early-Stage Startups</h3><p>Got an idea but no tech team? We become your CTO and engineering team. MVP in 6 to 8 weeks, at startup budgets.</p><ul class="ck"><li>MVP development in 6 to 8 weeks</li><li>Tech co-founder advisory</li><li>Investor-ready architecture</li><li>Startup-friendly pricing</li></ul></div></div>
-   <div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80" alt="Small business planning session" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-cart"/></svg></span><h3>Small &amp; Medium Businesses</h3><p>Ready to go digital or upgrade? We build websites, booking systems, inventory tools, and custom software with clear ROI from day one.</p><ul class="ck"><li>Professional business websites</li><li>Booking &amp; billing automation</li><li>E-commerce &amp; online payments</li><li>Ongoing support &amp; growth</li></ul></div></div>
-   <div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Modern enterprise office" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-server"/></svg></span><h3>Enterprises &amp; Corporates</h3><p>Mission-critical, large-scale systems built to perform under pressure. Trusted by enterprises across industries.</p><ul class="ck"><li>Digital transformation strategy</li><li>Cloud migration &amp; architecture</li><li>Enterprise-grade security</li><li>24/7 SLA-backed support</li></ul></div></div>
+   <div class="card"><img class="card-img" src="assets/images/Collaborative.png" alt="Startup team collaborating" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-rocket"/></svg></span><h3>Early-Stage Startups</h3><p>Got an idea but no tech team? We become your CTO and engineering team. MVP in 6 to 8 weeks, at startup budgets.</p><ul class="ck"><li>MVP development in 6 to 8 weeks</li><li>Tech co-founder advisory</li><li>Investor-ready architecture</li><li>Startup-friendly pricing</li></ul></div></div>
+   <div class="card"><img class="card-img" src="assets/images/Small Business.png" alt="Small business planning session" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-cart"/></svg></span><h3>Small &amp; Medium Businesses</h3><p>Ready to go digital or upgrade? We build websites, booking systems, inventory tools, and custom software with clear ROI from day one.</p><ul class="ck"><li>Professional business websites</li><li>Booking &amp; billing automation</li><li>E-commerce &amp; online payments</li><li>Ongoing support &amp; growth</li></ul></div></div>
+   <div class="card"><img class="card-img" src="assets/images/enterprise.png" alt="Modern enterprise office" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-server"/></svg></span><h3>Enterprises &amp; Corporates</h3><p>Mission-critical, large-scale systems built to perform under pressure. Trusted by enterprises across industries.</p><ul class="ck"><li>Digital transformation strategy</li><li>Cloud migration &amp; architecture</li><li>Enterprise-grade security</li><li>24/7 SLA-backed support</li></ul></div></div>
   </div>
  </div>
 </section>
@@ -573,7 +625,7 @@ h2.wd .w>span{transform:none}
  </div>
 </section>
 
-<section class="sec alt">
+<section class="sec alt why-sec">
  <div class="wrap two">
   <div class="vis photos">
    <img src="https://www.algoorbit.in/static/images/work.jpeg" alt="Algo Orbit team at work" loading="lazy">
@@ -631,11 +683,11 @@ h2.wd .w>span{transform:none}
  <div class="wrap">
   <div class="head c"><span class="eyebrow">Transparent Pricing</span><h2>Simple Plans, <em>No Hidden Costs.</em></h2><p>Starting prices shown. Every project is unique — final pricing depends on your requirements, scope, and complexity.</p></div>
   <div class="grid">
-   <div class="pc"><span class="eyebrow">Starter</span><small>Starting from</small><div class="price">₹1,200</div><div class="fee">One-time project fee</div><button type="button" onclick="openScheduleModal()" class="btn btn-o btn-b">Get a Free Quote →</button>
+   <div class="pc"><span class="eyebrow">Starter</span><small>Starting from</small><div class="price">$1,200</div><div class="fee">One-time project fee</div><button type="button" onclick="openScheduleModal()" class="btn btn-o btn-b">Get a Free Quote →</button>
     <div class="pf">Business website up to 5 pages</div><div class="pf">Mobile-responsive design</div><div class="pf">SEO setup and on-page optimisation</div><div class="pf">Contact form and basic integrations</div><div class="pf">30 days post-launch support</div><div class="pf">Source code ownership</div><div class="pf dim">Custom backend or API</div><div class="pf dim">Mobile application</div></div>
-   <div class="pc pop"><span class="pop-b">★ Most Popular</span><span class="eyebrow" style="margin-top:12px">Premium</span><small>Starting from</small><div class="price">₹2,800</div><div class="fee">One-time project fee</div><button type="button" onclick="openScheduleModal()" class="btn btn-p btn-b">Get a Free Quote →</button>
+   <div class="pc pop"><span class="pop-b">★ Most Popular</span><span class="eyebrow" style="margin-top:12px">Premium</span><small>Starting from</small><div class="price">$2,800</div><div class="fee">One-time project fee</div><button type="button" onclick="openScheduleModal()" class="btn btn-p btn-b">Get a Free Quote →</button>
     <div class="pf">Full web app or MVP, unlimited pages</div><div class="pf">Custom backend and REST APIs</div><div class="pf">Database design and admin dashboard</div><div class="pf">Auth, payments and third-party integrations</div><div class="pf">Cloud deployment on AWS or GCP</div><div class="pf">60 days post-launch support</div><div class="pf">Weekly demos and progress reports</div><div class="pf">Full code and IP ownership</div></div>
-   <div class="pc"><span class="eyebrow">Enterprise</span><small>Starting from</small><div class="price">₹4,999</div><div class="fee">Custom scoped engagement</div><button type="button" onclick="openScheduleModal()" class="btn btn-o btn-b">Contact Sales →</button>
+   <div class="pc"><span class="eyebrow">Enterprise</span><small>Starting from</small><div class="price">$4,999</div><div class="fee">Custom scoped engagement</div><button type="button" onclick="openScheduleModal()" class="btn btn-o btn-b">Contact Sales →</button>
     <div class="pf">Everything in Premium</div><div class="pf">Mobile app for iOS and Android</div><div class="pf">AI and automation integrations</div><div class="pf">ERP, CRM, or SaaS platform build</div><div class="pf">Dedicated project manager</div><div class="pf">Security audit and compliance</div><div class="pf">SLA-backed 24/7 support</div><div class="pf">Flexible payment milestones</div></div>
   </div>
   <div class="note"><span class="ic">!</span><div><strong>Pricing varies based on project scope and requirements</strong><p>The prices above are starting points. Your final quote depends on features, complexity, integrations, timeline, and team size. We will give you a precise fixed-price proposal within 48 hours of your discovery call — with no surprises, ever.</p></div></div>
@@ -663,11 +715,11 @@ h2.wd .w>span{transform:none}
     <span class="fchip c2"><span class="ic"><svg class="ui"><use href="#i-mail"/></svg></span>connect@algoorbit.in</span>
    </div>
    <div class="faq">
-    <details><summary>How much does a project cost?</summary><p>Starter projects begin from ₹1,200. MVP or web apps from ₹2,800. Enterprise platforms from ₹4,999. All final quotes are fixed price with no surprises and you will receive a detailed breakdown in your proposal within 48 hours.</p></details>
-    <details><summary>How long does development take?</summary><p>Simple websites take 1 to 2 weeks. MVPs and apps take 6 to 10 weeks. Enterprise platforms take 3 to 6 months. We always provide a milestone timeline upfront, and we hit them.</p></details>
-    <details><summary>We are an early-stage startup. Can you work with us?</summary><p>Absolutely. We love working with founders. Startup-friendly pricing, flexible payment plans, and we can act as your technical co-founder. Many of our best projects started with just an idea.</p></details>
-    <details><summary>Do I own the code after the project?</summary><p>100% yes. Full source code, documentation, and IP ownership transfers to you on final payment. No vendor lock-in, ever.</p></details>
-    <details><summary>What about maintenance after launch?</summary><p>We offer flexible monthly retainer plans covering hosting, security updates, bug fixes, and feature additions. Think of us as your ongoing tech team, not a one-off vendor.</p></details>
+    <details><summary><span class="qi" aria-hidden="true"><svg class="ui"><use href="#i-dollar"/></svg></span><span class="qt">How much does a project cost?</span></summary><p>Starter projects begin from $1,200. MVP or web apps from $2,800. Enterprise platforms from $4,999. All final quotes are fixed price with no surprises and you will receive a detailed breakdown in your proposal within 48 hours.</p></details>
+    <details><summary><span class="qi" aria-hidden="true"><svg class="ui"><use href="#i-clock"/></svg></span><span class="qt">How long does development take?</span></summary><p>Simple websites take 1 to 2 weeks. MVPs and apps take 6 to 10 weeks. Enterprise platforms take 3 to 6 months. We always provide a milestone timeline upfront, and we hit them.</p></details>
+    <details><summary><span class="qi" aria-hidden="true"><svg class="ui"><use href="#i-rocket"/></svg></span><span class="qt">We are an early-stage startup. Can you work with us?</span></summary><p>Absolutely. We love working with founders. Startup-friendly pricing, flexible payment plans, and we can act as your technical co-founder. Many of our best projects started with just an idea.</p></details>
+    <details><summary><span class="qi" aria-hidden="true"><svg class="ui"><use href="#i-code"/></svg></span><span class="qt">Do I own the code after the project?</span></summary><p>100% yes. Full source code, documentation, and IP ownership transfers to you on final payment. No vendor lock-in, ever.</p></details>
+    <details><summary><span class="qi" aria-hidden="true"><svg class="ui"><use href="#i-wrench"/></svg></span><span class="qt">What about maintenance after launch?</span></summary><p>We offer flexible monthly retainer plans covering hosting, security updates, bug fixes, and feature additions. Think of us as your ongoing tech team, not a one-off vendor.</p></details>
    </div>
   </div>
  </div>
@@ -759,10 +811,11 @@ h2.wd .w>span{transform:none}
 <script>
 var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-function fill(id,a){$(id).innerHTML=a.concat(a).map(function(t){return'<span>'+t+'</span>'}).join('')}
+// Marquee: second copy is tagged .cp (the ticker needs it for the seamless loop; only the tech strip hides it on desktop)
+function fill(id,a){$(id).innerHTML=a.concat(a).map(function(t,i){return'<span'+(i>=a.length?' class="cp"':'')+'>'+t+'</span>'}).join('')}
 fill('#tk',['Website Design','Mobile Apps','SaaS Platforms','E-Commerce','Cloud Solutions','AI Integration','ERP Systems','API Development','UI/UX Design','CRM Platforms']);
 var LG={'React':'react','Node.js':'nodejs','Python':'python','AWS':'amazonwebservices','Docker':'docker','GCP':'googlecloud','Azure':'azure','PostgreSQL':'postgresql','Linux':'linux'};
-(function(){var a=Object.keys(LG);$('#tech').innerHTML=a.concat(a).map(function(t){return'<span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/'+LG[t]+'/'+LG[t]+'-original.svg" alt="" width="22" height="22" loading="lazy" onerror="this.remove()">'+t+'</span>'}).join('')})();
+(function(){var a=Object.keys(LG);$('#tech').innerHTML=a.concat(a).map(function(t,i){return'<span'+(i>=a.length?' class="cp"':'')+'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/'+LG[t]+'/'+LG[t]+'-original.svg" alt="" width="22" height="22" loading="lazy" onerror="this.remove()">'+t+'</span>'}).join('')})();
 
 // Count-up
 function countUp(el){var t=+el.dataset.count,s=null;(function step(ts){s=s||ts;var k=Math.min((ts-s)/1600,1);el.textContent=Math.floor((1-Math.pow(1-k,3))*t);if(k<1)requestAnimationFrame(step);else el.textContent=t})(performance.now())}
@@ -857,24 +910,32 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce){
 // button ripple
 document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(!b)return;var r=b.getBoundingClientRect(),d=document.createElement('span');d.className='rp';d.style.left=(e.clientX-r.left)+'px';d.style.top=(e.clientY-r.top)+'px';b.appendChild(d);setTimeout(function(){d.remove()},750)});
 
-// ===== MOBILE: continuous moving card strips + touch hover =====
+// ===== MOBILE: continuous moving card strips (duplicates are created ONLY on mobile) =====
 (function(){
  var mqs=['#services .grid','.sec.alt.lgt .grid','.sec.dk .grid.g4','#pricing .grid','.sec.alt:not(.lgt) .grid'];
- mqs.forEach(function(sel){
-  var g=$(sel);if(!g||g.classList.contains('mq'))return;
-  var kids=Array.prototype.slice.call(g.children);
-  kids.forEach(function(k){
-   var c=k.cloneNode(true);
-   c.classList.remove('rv','in','tilting','glow');c.style.transitionDelay='';c.classList.add('dup');c.setAttribute('aria-hidden','true');
-   Array.prototype.forEach.call(c.querySelectorAll('a,button'),function(x){x.setAttribute('tabindex','-1')});
-   g.appendChild(c)});
-  g.classList.add('mq');g.parentNode.classList.add('mqw');
-  g.style.setProperty('--mqd',(kids.length*8)+'s');
-  var rel;
-  function hold(){clearTimeout(rel);g.classList.add('paused')}
-  function free(){clearTimeout(rel);rel=setTimeout(function(){g.classList.remove('paused')},1400)}
-  g.addEventListener('touchstart',hold,{passive:true});g.addEventListener('touchend',free);g.addEventListener('touchcancel',free);
- });
+ var mm=matchMedia('(max-width:700px)');
+ function build(){
+  mqs.forEach(function(sel){
+   var g=$(sel);if(!g||g.classList.contains('mq'))return;
+   var kids=Array.prototype.slice.call(g.children);
+   kids.forEach(function(k){
+    var c=k.cloneNode(true);
+    c.classList.remove('rv','in','tilting','glow');c.style.transitionDelay='';c.classList.add('dup');c.setAttribute('aria-hidden','true');
+    Array.prototype.forEach.call(c.querySelectorAll('a,button'),function(x){x.setAttribute('tabindex','-1')});
+    g.appendChild(c)});
+   g.classList.add('mq');g.parentNode.classList.add('mqw');
+   g.style.setProperty('--mqd',(kids.length*8)+'s');
+   if(!g._bound){g._bound=1;var rel;
+    var hold=function(){clearTimeout(rel);g.classList.add('paused')};
+    var free=function(){clearTimeout(rel);rel=setTimeout(function(){g.classList.remove('paused')},1400)};
+    g.addEventListener('touchstart',hold,{passive:true});g.addEventListener('touchend',free);g.addEventListener('touchcancel',free)}
+  })}
+ function destroy(){
+  $$('.grid>.dup').forEach(function(d){d.remove()});
+  $$('.grid.mq').forEach(function(g){g.classList.remove('mq','paused');g.style.removeProperty('--mqd');if(g.parentNode)g.parentNode.classList.remove('mqw')})}
+ function sync(){destroy();if(mm.matches&&!reduce)build()}
+ sync();
+ if(mm.addEventListener)mm.addEventListener('change',sync);else if(mm.addListener)mm.addListener(sync);
  $$('.hov').forEach(function(c){var t;
   c.addEventListener('touchstart',function(e){var p=e.touches[0],r=c.getBoundingClientRect();
    c.style.setProperty('--mx',(p.clientX-r.left)+'px');c.style.setProperty('--my',(p.clientY-r.top)+'px');
