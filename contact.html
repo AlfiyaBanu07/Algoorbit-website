@@ -286,6 +286,44 @@ h2.wd .w>span{transform:none}
 @media(max-width:380px){.logo-text{font-size:15px}.hero h1{font-size:1.85rem}}
 @media(hover:none),(pointer:coarse){.cglow{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}.marq{animation:none}html{scroll-behavior:auto}.mq{animation:none!important;width:auto;overflow-x:auto}.dup{display:none!important}}
+
+/* ===== Enhancement layer (shared look & feel) ===== */
+::selection{background:rgba(91,75,232,.22);color:var(--navy)}
+.site-header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;pointer-events:none;background:linear-gradient(90deg,transparent,var(--peri),#82c8eb,var(--peri),transparent);opacity:.8}
+.spot{position:absolute;inset:0;z-index:1;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(280px circle at var(--px,50%) var(--py,50%),rgba(143,132,242,.22),rgba(130,200,235,.08) 45%,transparent 70%)}
+:hover>.spot{opacity:1}
+.quote,.eng-item,.stat{position:relative}
+.totop{position:fixed;left:22px;bottom:24px;z-index:140;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ind);cursor:pointer;box-shadow:0 10px 26px rgba(91,75,232,.22);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .35s,transform .45s var(--ease),background .25s,color .25s}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:var(--ind);color:#fff}
+.totop svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:700px){.totop{display:none}}
+@media(hover:none){.btn:active,.cat:active,.card:active{scale:.98}}
+
+/* ===== Contact: coloured brand icons + polish ===== */
+.cats a.cat[href^="mailto"] .ic,.igrid .card.info:nth-child(2) .ic{background:linear-gradient(135deg,#ea4335,#ff8a5c);box-shadow:0 8px 18px rgba(234,67,53,.34)}
+.cats a.cat[href^="tel"] .ic,.igrid .card.info:nth-child(3) .ic{background:linear-gradient(135deg,#0ea5e9,#2563eb);box-shadow:0 8px 18px rgba(37,99,235,.34)}
+.cats a.cat[href*="whatsapp"] .ic{background:linear-gradient(135deg,#25d366,#128c7e);box-shadow:0 8px 18px rgba(37,211,102,.38)}
+.cats a.cat[href="#contact-form"] .ic{background:linear-gradient(135deg,#f59e0b,#f97316);box-shadow:0 8px 18px rgba(249,115,22,.34)}
+.igrid .card.info:nth-child(1) .ic{background:linear-gradient(135deg,#ef4444,#f97316);box-shadow:0 8px 18px rgba(239,68,68,.32)}
+.cats a.cat[href^="mailto"]:hover{box-shadow:0 22px 44px rgba(234,67,53,.22)}
+.cats a.cat[href^="tel"]:hover{box-shadow:0 22px 44px rgba(37,99,235,.22)}
+.cats a.cat[href*="whatsapp"]:hover{box-shadow:0 22px 44px rgba(37,211,102,.28)}
+.cats a.cat[href="#contact-form"]:hover{box-shadow:0 22px 44px rgba(249,115,22,.24)}
+.cinfo .socgrid a{min-height:52px;color:#fff;transition:transform .35s var(--ease),box-shadow .35s,filter .3s}
+.cinfo .socgrid a[aria-label="LinkedIn"]{background:linear-gradient(135deg,#0a66c2,#378fe9);box-shadow:0 8px 18px rgba(10,102,194,.36)}
+.cinfo .socgrid a[aria-label="Instagram"]{background:radial-gradient(circle at 30% 108%,#fdf497 0,#fdf497 8%,#fd5949 45%,#d6249f 62%,#285aeb 92%);box-shadow:0 8px 18px rgba(214,36,159,.36)}
+.cinfo .socgrid a[aria-label="Facebook"]{background:linear-gradient(135deg,#1877f2,#4a9bff);box-shadow:0 8px 18px rgba(24,119,242,.36)}
+.cinfo .socgrid a[aria-label="WhatsApp"]{background:linear-gradient(135deg,#25d366,#128c7e);box-shadow:0 8px 18px rgba(37,211,102,.38)}
+.cinfo .socgrid a:hover{transform:translateY(-5px) scale(1.08) rotate(-3deg);filter:saturate(1.15) brightness(1.05)}
+.formbox{border-top:3px solid var(--ind)}
+@supports selector(:user-valid){
+ .inp:user-valid{border-color:#22c55e;background:#fff}.inp:user-valid~.ui:not(.chev){color:#22c55e}
+ .inp:user-invalid{border-color:#ef4444;background:#fff7f7}.inp:user-invalid~.ui:not(.chev){color:#ef4444}
+}
+.cinfo .card.info{transition:transform .45s var(--ease),box-shadow .45s}
+.cinfo .card.info:hover{translate:6px 0}
+@media(max-width:700px){.cinfo .card.info:hover{translate:none}.cinfo .socgrid{gap:10px}}
 </style>
 </head>
 <body>
@@ -569,6 +607,20 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
   c.addEventListener('touchmove',function(){clearTimeout(t)},{passive:true});c.addEventListener('touchend',end);c.addEventListener('touchcancel',end)});
  var m=$('#mbar');
  if(m)addEventListener('scroll',function(){var f=$('.cta'),near=f&&f.getBoundingClientRect().top<innerHeight,form=$('#contact-form'),fr=form&&form.getBoundingClientRect(),inForm=fr&&fr.top<innerHeight*.8&&fr.bottom>innerHeight*.2,on=scrollY>420&&!near&&!inForm;m.classList.toggle('show',on);document.body.classList.toggle('bar-on',on)},{passive:true});
+})();
+
+/* ===== Enhancement layer JS ===== */
+(function(){
+ var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))},
+  reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,
+  fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+ if(fine&&!reduce){$$('.cat,.card,.quote,.eng-item,.stat').forEach(function(c){
+  var s=document.createElement('i');s.className='spot';s.setAttribute('aria-hidden','true');c.appendChild(s);
+  c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--px',(e.clientX-r.left)+'px');c.style.setProperty('--py',(e.clientY-r.top)+'px')})})}
+ var t=document.createElement('button');t.className='totop';t.type='button';t.setAttribute('aria-label','Back to top');
+ t.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+ t.onclick=function(){scrollTo({top:0,behavior:reduce?'auto':'smooth'})};document.body.appendChild(t);
+ addEventListener('scroll',function(){t.classList.toggle('show',scrollY>700)},{passive:true});
 })();
 </script>
 </body>
