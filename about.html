@@ -1226,7 +1226,7 @@ h2.wd .w>span{transform:none}
 .dbtn:hover::after{transform:translateX(5px)}
 .dbtn:active{background:#000;transform:scale(.97)}
 /* entrance: cards rise in 3D, one after another */
-.lgt.wwd .card.rv{transform:perspective(900px) translateY(60px) rotateX(14deg) scale(.94);transition:opacity .9s var(--ease),transform 1s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .3s}
+.lgt.wwd .card.rv{opacity:0;transform:translateY(36px) scale(.95);transition:opacity .7s var(--ease),transform .9s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .3s}
 .lgt.wwd .card.rv.in{opacity:1;transform:none}
 
 /* ---------- Who we work with: colour curtain over the photo, cursor ring, side entrance ---------- */
@@ -1542,6 +1542,28 @@ h2 .w:hover>span{color:var(--ind)}
 .fbot a{position:relative}
 .fbot a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--vio);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
 .fbot a:hover::after{transform:scaleX(1)}
+/* ---------- What we do: richer hover (3D tilt, light sweep over photo, colour wash, filled tag and button) ---------- */
+@keyframes sheenX{from{transform:translateX(-140%) skewX(-18deg)}to{transform:translateX(340%) skewX(-18deg)}}
+.lgt.wwd{--ih:170px}
+.lgt.wwd .hov:hover{transform:translateY(-8px);background:linear-gradient(160deg,#fff,#ece9ff)}
+.lgt.wwd .card .sh{position:absolute;left:0;top:0;width:100%;height:var(--ih);z-index:2;overflow:hidden;pointer-events:none}
+.lgt.wwd .card .sh::before{content:"";position:absolute;top:0;bottom:0;left:0;width:42%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-140%) skewX(-18deg)}
+.lgt.wwd .hov:hover .sh::before,.lgt.wwd .hov.tch .sh::before{animation:sheenX 1s var(--ease) forwards}
+.lgt.wwd .wn{transition:background .4s,color .4s,transform .5s var(--ease),box-shadow .4s}
+.lgt.wwd .hov:hover .wn{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;transform:scale(1.12) rotate(-4deg);box-shadow:0 10px 22px rgba(var(--glow),.55)}
+/* NEW hover: a colour fill rises from the bottom of the card (no tilt) */
+.lgt.wwd .cb{isolation:isolate}
+.lgt.wwd .cb::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(160deg,var(--a),var(--b));clip-path:inset(100% 0 0 0);transition:clip-path .7s var(--ease)}
+.lgt.wwd .hov:hover .cb::before{clip-path:inset(0)}
+.lgt.wwd .card h3,.lgt.wwd .card p{transition:color .4s ease .12s}
+.lgt.wwd .hov:hover h3{color:#fff}
+.lgt.wwd .hov:hover p{color:rgba(255,255,255,.92)}
+.lgt.wwd .hov:hover .cb h3::after{width:68px;background:#fff}
+.lgt.wwd .hov:hover .ic{background:#fff;color:var(--b);transform:scale(1.1);animation:none;box-shadow:0 10px 22px rgba(14,15,42,.25)}
+.lgt.wwd .hov:hover>img{transform:scale(1.1) translateY(-2%);filter:saturate(1.15)}
+.lgt.wwd .hov:hover .dbtn{background:#0e0f2a;border-color:rgba(255,255,255,.5);padding-right:28px;box-shadow:0 12px 26px rgba(14,15,42,.4)}
+.lgt.wwd .hov:hover .dbtn::after{transform:translateX(6px)}
+@media(max-width:700px){.lgt.wwd{--ih:180px}.lgt.wwd .hov:hover{transform:none}}
 </style>
 </head>
 <body class="ready">
@@ -2031,6 +2053,14 @@ $$('.sec.dk').forEach(function(sec){sec.addEventListener('mousemove',function(e)
  h.addEventListener('mousemove',function(e){var r=h.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
   bg.style.translate=(x*-22)+'px '+(y*-14)+'px'});
  h.addEventListener('mouseleave',function(){bg.style.translate='0 0'});
+})();
+// What we do: light sweep element
+(function(){
+ var cards=$$('.lgt.wwd .card');if(!cards.length)return;
+ var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+ cards.forEach(function(c){
+  var sh=document.createElement('i');sh.className='sh';sh.setAttribute('aria-hidden','true');c.insertBefore(sh,c.firstChild);
+  });
 })();
 </script>
 </body>
