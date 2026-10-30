@@ -79,7 +79,8 @@ header .wrap.nav{max-width:none;margin:0;width:100%;padding-left:clamp(16px,2.6v
 .hero h1{font-size:clamp(2rem,1.1rem + 2.7vw,3.5rem);line-height:1.1;letter-spacing:-.03em;margin-bottom:20px;animation:unmask 1.1s var(--ease) .15s both}
 @keyframes unmask{from{clip-path:inset(0 0 100% 0);transform:translateY(30px)}to{clip-path:inset(0 0 -10% 0);transform:none}}
 .hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--ind),#82c8eb,var(--ind));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 6s linear infinite;text-decoration:none}
-.hero h1 em::before,.hero h1 em::after{content:none!important;display:none!important}
+.hero h1 em::before{content:none!important;display:none!important}
+@media(min-width:701px){.hero h1 em::after{content:none!important;display:none!important}}
 .hero-copy>:not(h1){animation:fadeUp .9s var(--ease) both}.hero-copy>:nth-child(2){animation-delay:.4s}.hero-copy>:nth-child(3){animation-delay:.55s}.hero-copy>:nth-child(4){animation-delay:.7s}
 .lead{font-size:clamp(.97rem,.95rem + .25vw,1.1rem);color:var(--mute);max-width:620px;line-height:1.7}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:32px}
@@ -399,6 +400,357 @@ footer{background:#0a0b20;color:#b9bbd2;padding:clamp(44px,6vw,68px) 0 0;font-si
  .card.hov::after,.step.hov::after,.t.hov::after{left:20px;right:20px}
 }
 @media(prefers-reduced-motion:reduce){.ico::after,.stats div::after,.met::after,.badge small:first-child::before,.vis::before,.dk .g4::before,#trioncam-workflow .g3::before,.cta .btn.l{animation:none!important}}
+
+/* =====================================================================
+   PRODUCTS: enhancement layer (additive only, nothing in products.html is removed)
+   Brings the About-page look: animated card bars, rotating light borders,
+   number badges, floating chips, glowing flow route, vertical mobile cards.
+   Load AFTER the page's own <style> block.
+   ===================================================================== */
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spinAng{to{--ang:360deg}}
+@keyframes barFlow{to{background-position:200% 0}}
+@keyframes cardGlow{0%,100%{box-shadow:0 12px 30px rgba(91,75,232,.12),0 0 0 0 rgba(143,132,242,0)}50%{box-shadow:0 14px 34px rgba(91,75,232,.2),0 0 16px 1px rgba(143,132,242,.3)}}
+@keyframes nodePulse{0%,100%{box-shadow:0 0 0 5px rgba(14,15,42,.9),0 10px 24px rgba(0,0,0,.4),0 0 14px rgba(143,132,242,.35)}50%{box-shadow:0 0 0 5px rgba(14,15,42,.9),0 10px 24px rgba(0,0,0,.4),0 0 32px rgba(143,132,242,.85)}}
+@keyframes stepPulse{0%,18%,100%{border-color:rgba(255,255,255,.1)}9%{border-color:var(--peri);box-shadow:0 0 0 5px rgba(143,132,242,.2),0 14px 30px rgba(0,0,0,.3)}}
+@keyframes chipFloat{50%{transform:translateY(-8px)}}
+@keyframes ping3{0%{box-shadow:0 0 0 0 rgba(55,214,122,.6)}70%{box-shadow:0 0 0 7px rgba(55,214,122,0)}100%{box-shadow:0 0 0 0 rgba(55,214,122,0)}}
+
+/* ---------- colour cycle used by bars, rings, badges ---------- */
+.g3>*,.g4>*,.feat li{--a:#8f84f2;--b:#5b4be8;--glow:91,75,232}
+.g3>*:nth-child(3n+2),.g4>*:nth-child(3n+2){--a:#82c8eb;--b:#2a8fcf;--glow:47,167,224}
+.g3>*:nth-child(3n+3),.g4>*:nth-child(3n+3){--a:#a9a3ee;--b:#7a6df0;--glow:143,132,242}
+
+/* ---------- cards: flowing top bar, rotating light border, number badge ---------- */
+.hov>i.bar{position:absolute;left:0;right:0;top:0;height:4px;z-index:3;pointer-events:none;border-radius:0;
+ background:linear-gradient(90deg,var(--a),var(--b),var(--a));background-size:200% 100%;animation:barFlow 3s linear infinite}
+.hov>i.ring{position:absolute;inset:0;border-radius:inherit;padding:2px;z-index:3;pointer-events:none;opacity:.75;
+ background:conic-gradient(from var(--ang),transparent 0 64%,var(--a) 84%,var(--b) 100%);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+ animation:spinAng 6s linear infinite;transition:opacity .4s}
+.hov:hover>i.ring,.hov.tch>i.ring{opacity:1;animation-duration:2s}
+.hov>.wn{position:absolute;right:16px;top:18px;z-index:4;font:700 12px/1 var(--fd);letter-spacing:.08em;color:var(--b);background:#fff;padding:7px 12px;border-radius:99px;box-shadow:0 6px 16px rgba(14,15,42,.16);transition:background .4s,color .4s,transform .5s var(--ease)}
+.hov:hover>.wn,.hov.tch>.wn{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;transform:scale(1.12) rotate(-4deg)}
+.card .ico,.feat .ico{background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 10px 22px rgba(var(--glow),.4)}
+.card h4::after,.step h4::after{background:linear-gradient(90deg,var(--a),var(--b))}
+.hov:hover .ico,.hov.tch .ico{transform:rotate(-8deg) scale(1.1)}
+.card.glow,.step.glow,.t.glow{animation:cardGlow 2.6s ease-in-out 1}
+
+/* ---------- product image frames: animated border + floating chips ---------- */
+.vis .frame>i.ring.hv,.shot>i.ring.hv{opacity:0;padding:3px;--a:#5b4be8;--b:#82c8eb;
+ background:conic-gradient(from var(--ang),#5b4be8,#82c8eb,#fff,#a9a3ee,#5b4be8);animation:spinAng 3.5s linear infinite}
+.vis .frame:hover>i.ring.hv,.shot:hover>i.ring.hv{opacity:1}
+.vis .frame>i.ring.hv,.shot>i.ring.hv{position:absolute;inset:0;border-radius:inherit;z-index:3;pointer-events:none;transition:opacity .4s;
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+.fchip{position:absolute;z-index:4;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.93);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:14px;padding:9px 14px 9px 10px;font:600 13px var(--fb);color:var(--navy);box-shadow:0 12px 28px rgba(14,15,42,.22);animation:chipFloat 5s ease-in-out infinite;transition:scale .35s var(--ease),box-shadow .35s}
+.fchip:hover{scale:1.08;box-shadow:0 16px 34px rgba(91,75,232,.35)}
+.fchip .ic{display:grid;place-items:center;min-width:30px;height:30px;padding:0 4px;border-radius:9px;background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff;font:800 10px var(--fd)}
+.fchip.c1{left:-14px;top:14%}.fchip.c2{right:-10px;bottom:30%;animation-delay:-2.5s}
+.pgrid.rev .fchip.c1{left:auto;right:-14px}.pgrid.rev .fchip.c2{right:auto;left:-10px}
+.badge small:first-child::before{animation:ping3 2s infinite}
+
+/* ---------- hero checklist (About style) ---------- */
+.checklist{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:22px;font:500 14px var(--fb)}
+.checklist li{display:flex;align-items:center;gap:8px;transition:transform .3s var(--ease)}
+.checklist li::before{content:"";width:8px;height:8px;background:var(--ind);border-radius:50%}
+.checklist li:hover{transform:translateX(4px)}
+
+/* ---------- onboarding (dark): glowing route with pulsing round nodes ---------- */
+.dk .step{animation:stepPulse 10s ease-in-out infinite}
+.dk .g4>.step:nth-child(2){animation-delay:2.5s}.dk .g4>.step:nth-child(3){animation-delay:5s}.dk .g4>.step:nth-child(4){animation-delay:7.5s}
+.dk .step:hover,.dk .step.tch{animation:none}
+.dk .step .ico{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#2b2e78,#0e0f2a);color:#fff;animation:nodePulse 3.6s ease-in-out infinite}
+.dk .hov:hover .ico,.dk .hov.tch .ico{background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff}
+.dk .step>.wn{background:rgba(143,132,242,.2);color:#cfcaff;box-shadow:none}
+
+/* ---------- headings, metrics, footer polish ---------- */
+h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 .w:hover>span{color:#82c8eb}
+.met div strong{transition:transform .45s var(--ease)}.met div:hover strong{transform:scale(1.08)}
+.t .res{display:inline-block;padding:6px 14px;border-radius:99px;background:rgba(91,75,232,.1);transition:background .4s}
+.hov:hover .res,.hov.tch .res{background:rgba(255,255,255,.16)}
+.cols h4{background:linear-gradient(90deg,var(--ind),#82c8eb);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cols h4,.cols li strong{letter-spacing:-.01em}
+.fg li a{position:relative}
+.wordmark{transition:letter-spacing .45s var(--ease)}.wordmark:hover{letter-spacing:.09em}
+.fb a{position:relative}.fb a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--vio);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}.fb a:hover::after{transform:scaleX(1)}
+.trio div{position:relative;overflow:hidden}
+.trio div::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.7) 50%,transparent 65%);transform:translateX(-130%);transition:transform .8s var(--ease)}
+.trio div:hover::after{transform:translateX(130%)}
+
+/* ---------- sticky action bar (phones) ---------- */
+.mbar{display:none}
+
+/* ---------- tablets ---------- */
+@media(max-width:1000px){.fchip.c1,.pgrid.rev .fchip.c1{left:10px;right:auto}.fchip.c2,.pgrid.rev .fchip.c2{right:10px;left:auto}}
+
+/* =====================================================================
+   PHONES: every card group is one vertical column, one card after another.
+   Overrides the horizontal moving rows. No sideways scrolling anywhere.
+   (The "Trusted by industry leaders" row is the one exception, see the
+   TESTIMONIAL MARQUEE block at the very end of this stylesheet.)
+   ===================================================================== */
+@media(max-width:700px){
+ .mqw{overflow:visible}
+ .g3,.g4,.mq,.cta .g3.mq{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:16px;width:100%!important;max-width:none;margin:0!important;padding:0!important;animation:none!important;transform:none!important}
+ .mq>*{flex:none;width:100%!important;max-width:none;margin:0!important;grid-column:auto!important;transition:translate .7s var(--ease),filter .7s var(--ease),box-shadow .4s}
+ .mq>.dup,.dup{display:none!important}
+ /* each card slides up as it enters the screen */
+ body.mrx .mq>*:not(.mr){translate:0 38px;filter:blur(5px)}
+ .mq>*.mr{translate:0 0;filter:none}
+ /* unique card look: accent rail on the left + number badge */
+ .card,.step,.t{box-shadow:inset 4px 0 0 var(--a),0 12px 30px rgba(91,75,232,.12);border-radius:22px}
+ .dk .step,.cta .card{box-shadow:inset 4px 0 0 var(--a),0 14px 34px rgba(0,0,0,.35)}
+ .step{text-align:left;align-items:flex-start}
+ .step .ico{margin-bottom:14px}
+ .hov>.wn{right:14px;top:16px}
+ .card:active,.step:active,.t:active{transform:scale(.98);transition:transform .15s}
+ /* photo cards in the product blocks */
+ .vis .frame{border-radius:22px}
+ .fchip{font-size:11.5px;padding:6px 10px 6px 7px;gap:6px;border-radius:12px;max-width:calc(100% - 16px)}
+ .fchip .ic{min-width:24px;height:24px;border-radius:8px;font-size:9px}
+ .fchip.c1,.pgrid.rev .fchip.c1{left:8px;right:auto;top:10%}.fchip.c2,.pgrid.rev .fchip.c2{right:8px;left:auto;bottom:34%}
+ .checklist{gap:8px 16px;margin-top:18px;font-size:13.5px}
+ .checklist li{padding:8px 14px;border-radius:99px;background:rgba(255,255,255,.75);border:1px solid #fff;white-space:nowrap}
+ .checklist li::before{width:6px;height:6px}
+ .dk .step .ico{width:54px;height:54px}
+ /* sticky call-to-action */
+ .mbar{display:flex;position:fixed;left:16px;right:16px;bottom:max(12px,env(safe-area-inset-bottom));z-index:90;width:auto;max-width:none;transform:translateY(140%);transition:transform .4s var(--ease);box-shadow:0 12px 28px rgba(14,15,42,.35)}
+ .mbar.show{transform:none}
+ body.bar-on .wa{bottom:80px}
+}
+
+@media(prefers-reduced-motion:reduce){.hov>i.bar,.hov>i.ring,.dk .step,.dk .step .ico,.fchip,.card.glow,.step.glow,.t.glow{animation:none!important}body.mrx .mq>*:not(.mr){translate:none;filter:none}}
+
+/* =====================================================================
+   NEW 1: HERO animations + professional hover effects (About-page style)
+   Works on desktop (mouse) and mobile (effects auto-play as you scroll)
+   ===================================================================== */
+
+/* cursor / finger spotlight inside the hero */
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(520px circle at var(--sx,30%) var(--sy,40%),rgba(143,132,242,.24),transparent 62%);opacity:0;transition:opacity .5s}
+.hero:hover::before,.hero.spot::before{opacity:1}
+
+/* hero picture drifts with the mouse / scroll (set from JS through "translate") */
+.hero-bg{transition:translate .5s ease-out}
+
+/* the stat card after the checklist was injected is now the 5th child: keep the entrance stagger */
+.hero-copy>:nth-child(5){animation-delay:.85s}
+
+/* floating glass chips on the hero picture */
+.hero .fchip.hc1{left:57%;top:17%}
+.hero .fchip.hc2{right:5%;bottom:20%;left:auto;animation-delay:-2.5s}
+.hero .fchip.hc1,.hero .fchip.hc2{animation-name:chipFloat,fadeUp;animation-duration:5s,.9s;animation-timing-function:ease-in-out,var(--ease);animation-iteration-count:infinite,1;animation-fill-mode:none,both}
+.hero .fchip.hc1{animation-delay:0s,1.1s}
+.hero .fchip.hc2{animation-delay:-2.5s,1.3s}
+.fchip.hc1 .ic::after,.fchip.hc2 .ic::after{content:none}
+
+/* stat tiles: flowing top line, number grows on hover, lift + colour on touch */
+.stats div::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;z-index:1;background:linear-gradient(90deg,var(--peri),#82c8eb,var(--ind),var(--peri));background-size:200% 100%;animation:barFlow 3s linear infinite;pointer-events:none}
+.stats div strong{transform-origin:left center;transition:transform .45s var(--ease)}
+.stats div:is(:hover,.tch) strong{transform:scale(1.1)}
+.stats div.tch{transform:translateY(-5px);background:rgba(91,75,232,.88)}
+
+/* hero buttons: dark on press (phones) */
+.hero .btn:active{background:var(--navy);border-color:var(--navy);color:#fff}
+
+/* checklist: pill that lights up with a growing dot (desktop) */
+@media(min-width:701px){
+ .checklist li{padding:6px 14px 6px 12px;border-radius:99px;border:1px solid transparent;transition:transform .3s var(--ease),background .3s,border-color .3s,box-shadow .3s}
+ .checklist li::before{transition:transform .3s var(--ease),box-shadow .3s}
+ .checklist li:is(:hover,.tch){transform:translateX(6px);background:rgba(255,255,255,.85);border-color:var(--vio);box-shadow:0 8px 20px rgba(91,75,232,.16)}
+ .checklist li:is(:hover,.tch)::before{transform:scale(1.6);box-shadow:0 0 0 4px rgba(91,75,232,.18)}
+}
+
+/* phones: chips sit on the picture, checklist pills enter one by one and light up while scrolling */
+@media(max-width:1000px){
+ .hero .fchip.hc1{left:14px;top:calc(75vw * .12)}
+ .hero .fchip.hc2{right:14px;left:auto;bottom:auto;top:calc(75vw * .54)}
+}
+@media(max-width:700px){
+ .hero .fchip.hc1{left:10px}
+ .hero .fchip.hc2{right:10px}
+ .checklist li{animation:fadeUp .7s var(--ease) both;transition:transform .3s var(--ease),background .3s,border-color .3s,box-shadow .3s}
+ .checklist li:nth-child(1){animation-delay:.95s}.checklist li:nth-child(2){animation-delay:1.1s}.checklist li:nth-child(3){animation-delay:1.25s}
+ .checklist li.tch{background:#fff;border-color:var(--vio);box-shadow:0 8px 18px rgba(91,75,232,.18);transform:translateY(-2px)}
+ .checklist li.tch::before{transform:scale(1.5);box-shadow:0 0 0 4px rgba(91,75,232,.18)}
+}
+@media(prefers-reduced-motion:reduce){.stats div::before,.hero .fchip.hc1,.hero .fchip.hc2,.checklist li{animation:none!important}}
+
+/* =====================================================================
+   NEW 2: TESTIMONIAL MARQUEE (phones only)
+   "Trusted by industry leaders": the three cards move continuously in
+   a horizontal loop (like the About page). Every other card group on
+   the page stays as a vertical column. Desktop and tablet are unchanged.
+   The loop uses "translate" (not "transform") so it is not blocked by
+   the vertical-stack rules above.
+   ===================================================================== */
+@keyframes tqmove{to{translate:-50% 0}}
+@media(max-width:700px){
+ .tq{overflow:hidden;margin:0 calc(var(--gut) * -1);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%)}
+ .tq .g3.mq{display:flex!important;flex-wrap:nowrap!important;grid-template-columns:none!important;gap:0!important;width:max-content!important;max-width:none!important;margin:0!important;padding:10px 0 28px!important;align-items:stretch;animation:tqmove var(--mqd,24s) linear infinite!important;will-change:translate}
+ .tq .g3.mq.paused{animation-play-state:paused!important}
+ .tq .mq>*{flex:0 0 min(84vw,340px)!important;width:min(84vw,340px)!important;max-width:none!important;margin:0 14px 0 0!important;opacity:1!important;filter:none!important;translate:none!important;align-self:stretch}
+ .tq .mq>.dup{display:flex!important}
+}
+
+/* =====================================================================
+   NEW 3: ABOUT-PAGE MOBILE LOOK (phones only, additive)
+   - Hero heading: highlighted words on their own line with the same
+     animated gradient UNDERLINE as the About page hero
+   - Press feedback and hover effects that auto-play as items reach the
+     middle of the screen
+   - The finger-following glow (the square-looking patch that appeared
+     while scrolling on phones) has been REMOVED
+   Desktop / tablet are untouched.
+   ===================================================================== */
+@keyframes uline{to{transform:scaleX(1)}}
+@keyframes kbIn{from{opacity:0;transform:scale(1.1)}to{opacity:1;transform:none}}
+.cglow.t{display:none!important}
+@media(max-width:700px){
+ /* hero underline (same as About) */
+ .hero h1 em{display:block;width:fit-content;max-width:100%;margin-top:6px;position:relative}
+ .hero h1 em::after{content:"";display:block;position:absolute;left:0;bottom:-.06em;width:100%;height:.08em;border-radius:4px;background:linear-gradient(90deg,var(--peri),var(--ind));transform:scaleX(0);transform-origin:left;animation:uline .9s 1.1s var(--ease) forwards}
+
+ /* simple, tidy touch behaviour like About */
+ *{-webkit-tap-highlight-color:transparent}
+ .btn:active{background:var(--navy);border-color:var(--navy);color:#fff}
+ .trio div:active,.met div:active,.shot:active,.vis .frame:active{transform:scale(.98);transition:transform .15s}
+
+ /* items that light up automatically while scrolling (same as About) */
+ .trio div.tch{transform:translateY(-4px);box-shadow:0 14px 30px rgba(91,75,232,.18)}
+ .trio div.tch::after{transform:translateX(130%)}
+ .met div.tch{background:rgba(255,255,255,.06);transform:translateY(-4px)}
+ .met div.tch strong{transform:scale(1.08)}
+ .vis .frame.tch,.shot.tch{transform:translateY(-6px);box-shadow:0 30px 70px rgba(91,75,232,.32)}
+ .vis .frame.tch::after{transform:translateX(120%)}
+ .vis .frame.tch>i.ring.hv,.shot.tch>i.ring.hv{opacity:1}
+ .cols li.tch{padding-left:12px;border-left-color:var(--ind);background:linear-gradient(90deg,rgba(91,75,232,.06),transparent)}
+ .fchip.tch{scale:1.08;box-shadow:0 16px 34px rgba(91,75,232,.35)}
+}
+@media(prefers-reduced-motion:reduce){.hero h1 em::after{animation:none!important;transform:scaleX(1)}}
+
+/* =====================================================================
+   TOUCH SCREENS: no touch spotlights / patches while scrolling
+   (hero touch spotlight and dark-section hover patch are switched off)
+   ===================================================================== */
+@media(hover:none),(pointer:coarse){
+ .hero::before,.hero.spot::before,.hero:hover::before{opacity:0!important}
+ .dk::after,.dk:hover::after{opacity:0!important}
+}
+
+/* =====================================================================
+   NEW 4: UNIQUE CARD DESIGNS PER SECTION (additive, desktop + mobile)
+   Every card container now has its own signature:
+   - PureDine feature list ..... connected rail, squircle icon, tag chip, slide arrow
+   - Restaurant feature cards .. watermark monogram, corner-cut icon, benefit chip
+   - TrionCam columns .......... ticket panels with numbered rows
+   - TrionCam workflow ......... journey progress track (33% / 67% / 100%)
+   - Technology cards .......... round icons + live equalizer chip
+   - Onboarding steps .......... day stamp chips on the glowing route
+   - Testimonials .............. verified footer row + big star watermark
+   - Metrics ................... animated gauge under each number
+   - CTA cards ................. glass cards with included chip
+   Nothing above was removed or changed in logic.
+   ===================================================================== */
+@keyframes eqBar{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+@keyframes wmDrift{50%{transform:translate(-8px,-6px) rotate(-5deg)}}
+@keyframes dotBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+@keyframes railMove{to{background-position:0 24px}}
+@keyframes arrowNudge{50%{transform:translateX(5px)}}
+@keyframes gaugeSweep{0%{background-position:0 0}100%{background-position:200% 0}}
+
+/* shared: chip at the bottom of a card */
+.hov .meta{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin-top:auto;font:600 11.5px/1 var(--fd);letter-spacing:.04em;padding:8px 13px;border-radius:99px;color:var(--b);background:rgba(var(--glow),.1);border:1px solid rgba(var(--glow),.24);transition:background .4s,color .4s,border-color .4s}
+.hov .meta::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none;animation:dotBlink 2s ease-in-out infinite}
+.hov .meta.has-eq::before{display:none}
+.card p,.step p{margin-bottom:16px}
+.step .meta{align-self:center}
+.hov:is(:hover,.tch) .meta{color:#fff;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.34)}
+.dk .hov .meta{color:#cfcaff;background:rgba(143,132,242,.16);border-color:rgba(143,132,242,.38)}
+.cta .hov .meta{color:#fff;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.34)}
+.dk .hov:is(:hover,.tch) .meta,.cta .hov:is(:hover,.tch) .meta{color:var(--ind);background:rgba(91,75,232,.1);border-color:rgba(91,75,232,.3)}
+
+/* shared: faded monogram watermark */
+.hov>i.wm{position:absolute;right:-4px;bottom:-16px;z-index:0;font:800 88px/1 var(--fd);font-style:normal;letter-spacing:-.05em;color:rgba(var(--glow),.08);pointer-events:none;animation:wmDrift 9s ease-in-out infinite;transition:color .5s,scale .6s var(--ease)}
+.hov:is(:hover,.tch)>i.wm{color:rgba(255,255,255,.12);scale:1.14}
+.dk .hov:is(:hover,.tch)>i.wm,.cta .hov:is(:hover,.tch)>i.wm{color:rgba(91,75,232,.1)}
+.dk .hov>i.wm,.cta .hov>i.wm{color:rgba(255,255,255,.06)}
+
+/* equalizer */
+.eq{display:inline-flex;align-items:flex-end;gap:2px;height:12px}
+.eq b{display:block;width:3px;height:100%;border-radius:2px;background:currentColor;transform-origin:bottom;animation:eqBar 1.1s ease-in-out infinite;animation-delay:var(--d,0s)}
+
+/* ---- 1. PureDine feature list: connected rail + squircle icon + arrow ---- */
+.feat{position:relative}
+.feat::before{content:"";position:absolute;left:38px;top:30px;bottom:30px;width:2px;background:repeating-linear-gradient(180deg,rgba(91,75,232,.5) 0 6px,transparent 6px 12px);background-size:2px 24px;animation:railMove 1.2s linear infinite;opacity:.55;pointer-events:none}
+.feat li{padding-right:56px}
+.feat li .ico{border-radius:16px 16px 16px 5px;width:48px;height:48px}
+.feat li .meta{margin-top:10px;padding:6px 11px;font-size:10.5px}
+.hov>i.cx{position:absolute;right:16px;top:50%;margin-top:-17px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;font:700 15px/1 var(--fd);font-style:normal;color:var(--b);background:rgba(var(--glow),.1);transition:background .4s,color .4s,transform .4s var(--ease)}
+.feat li:hover>i.cx,.feat li.tch>i.cx{background:#fff;color:var(--ind);animation:arrowNudge 1s ease-in-out infinite}
+
+/* ---- 2. Restaurant feature cards: corner-cut icon ---- */
+#restaurant-features .card .ico{border-radius:18px 18px 18px 4px;width:50px;height:50px}
+#restaurant-features .card{border-top:0}
+#restaurant-features .card::after{left:0!important;right:0!important}
+
+/* ---- 3. TrionCam columns: ticket panels with numbered rows ---- */
+.cols>div{position:relative;background:rgba(255,255,255,.62);border:1px solid #fff;border-radius:22px;padding:20px 18px 8px;box-shadow:0 14px 34px rgba(91,75,232,.12);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);overflow:hidden}
+.cols>div::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--peri),var(--ind),#82c8eb,var(--peri));background-size:200% 100%;animation:barFlow 3s linear infinite}
+.cols>div:last-child::before{background:linear-gradient(90deg,#82c8eb,#2a8fcf,var(--peri),#82c8eb);background-size:200% 100%}
+.cols>div::after{content:"";position:absolute;right:-30px;bottom:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(143,132,242,.22),transparent 70%);pointer-events:none}
+.cols ul{counter-reset:cn}
+.cols li{counter-increment:cn;display:grid;grid-template-columns:34px 1fr;column-gap:12px;align-items:start}
+.cols li::before{content:counter(cn,decimal-leading-zero);grid-row:1/3;display:grid;place-items:center;width:34px;height:34px;border-radius:11px;font:700 11px var(--fd);color:#fff;background:linear-gradient(135deg,var(--peri),var(--ind));box-shadow:0 6px 14px rgba(91,75,232,.3);transition:transform .4s var(--ease),border-radius .4s}
+.cols>div:last-child li::before{background:linear-gradient(135deg,#82c8eb,#2a8fcf);box-shadow:0 6px 14px rgba(47,167,224,.32)}
+.cols li strong,.cols li span{grid-column:2}
+.cols li:hover::before,.cols li.tch::before{transform:rotate(-8deg) scale(1.12);border-radius:50%}
+.cols li:last-child{border-bottom:0}
+
+/* ---- 4. TrionCam workflow: journey progress track ---- */
+.hov>i.trk{display:block;width:100%;height:7px;margin-top:auto;border-radius:7px;background:rgba(var(--glow),.14);overflow:hidden;transition:background .4s}
+.hov>i.trk b{display:block;height:100%;width:var(--p,50%);border-radius:inherit;background:linear-gradient(90deg,var(--a),var(--b),var(--a));background-size:200% 100%;animation:gaugeSweep 3s linear infinite}
+.hov .trk+.meta{margin-top:14px}
+.hov:is(:hover,.tch)>i.trk{background:rgba(255,255,255,.22)}
+.hov:is(:hover,.tch)>i.trk b{background:linear-gradient(90deg,#fff,#82c8eb,#fff);background-size:200% 100%}
+#trioncam-workflow .step .ico{border-radius:50%}
+
+/* ---- 5. Technology cards: round icon + live equalizer ---- */
+#trioncam .g4>.card .ico{border-radius:50%;width:52px;height:52px}
+#trioncam .g4>.card{border-radius:26px 26px 26px 8px}
+
+/* ---- 6. Onboarding (dark): day stamps ---- */
+.dk .step .meta{font-size:11px}
+
+/* ---- 7. Testimonials: verified footer row ---- */
+.t .tfoot{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:auto}
+.t .tfoot .res{margin:0}
+.t .tfoot .meta{margin-top:0;align-self:center}
+.t>i.wm{font-size:120px;right:6px;bottom:-30px}
+
+/* ---- 8. Metrics: animated gauge ---- */
+.met .mtr{display:block;width:56%;height:4px;margin:14px auto 0;border-radius:4px;background:rgba(255,255,255,.14);overflow:hidden}
+.met .mtr b{display:block;height:100%;width:var(--p,80%);border-radius:inherit;background:linear-gradient(90deg,#8f84f2,#82c8eb,#fff,#82c8eb,#8f84f2);background-size:200% 100%;animation:gaugeSweep 2.6s linear infinite}
+
+/* ---- 9. CTA cards: glass with chip ---- */
+.cta .card{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.cta .card .ico{border-radius:16px 16px 16px 4px;min-width:52px;width:auto;padding:0 10px}
+
+/* ---- phones ---- */
+@media(max-width:700px){
+ .feat::before{left:34px}
+ .feat li{padding-right:54px}
+ .hov>i.wm{font-size:68px;right:0;bottom:-10px}
+ .t>i.wm{font-size:90px}
+ .step .meta{align-self:flex-start}
+ .cols>div{padding:18px 14px 6px}
+ .cols li{grid-template-columns:32px 1fr;column-gap:11px}
+ .cols li::before{width:32px;height:32px}
+ .met .mtr{width:62%}
+ .hov .meta{font-size:11px;padding:7px 12px}
+}
+@media(prefers-reduced-motion:reduce){.feat::before,.hov .meta::before,.eq b,.hov>i.wm,.hov>i.trk b,.met .mtr b,.cols>div::before,.feat li:hover>i.cx,.feat li.tch>i.cx{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -446,6 +798,8 @@ footer{background:#0a0b20;color:#b9bbd2;padding:clamp(44px,6vw,68px) 0 0;font-si
 </div>
 </div>
 </div>
+<span class="fchip hc1" aria-hidden="true"><span class="ic">PD</span>PureDine &middot; Live now</span>
+<span class="fchip hc2" aria-hidden="true"><span class="ic">TC</span>TrionCam &middot; Coming soon</span>
 </section>
 
 <div class="ticker" aria-hidden="true"><div class="tk" id="tk"></div></div>
@@ -596,6 +950,7 @@ footer{background:#0a0b20;color:#b9bbd2;padding:clamp(44px,6vw,68px) 0 0;font-si
 <h2>Trusted by industry leaders</h2>
 <p class="lead">Real results from real businesses transforming their operations</p>
 </div>
+<div class="tq">
 <div class="g3">
 <div class="t">
 <div class="who"><img src="https://www.algoorbit.in/static/images/review/p1.jpg" alt="Rajesh Kumar" loading="lazy"><div><h4 style="margin:0">Rajesh Kumar</h4><small>Owner, Spice Garden</small><span class="stars">★★★★★</span></div></div>
@@ -611,6 +966,7 @@ footer{background:#0a0b20;color:#b9bbd2;padding:clamp(44px,6vw,68px) 0 0;font-si
 <div class="who"><img src="https://www.algoorbit.in/static/images/review/p3.jpg" alt="Arjun Patel" loading="lazy"><div><h4 style="margin:0">Arjun Patel</h4><small>Owner, Coastal Kitchen</small><span class="stars">★★★★★</span></div></div>
 <blockquote>"The data insights are invaluable. We can now identify our bestsellers, optimize pricing, and plan inventory more effectively. Revenue has grown by 35% since we started using the platform."</blockquote>
 <div class="res">Data-Driven Growth</div>
+</div>
 </div>
 </div>
 <div class="met">
@@ -745,8 +1101,7 @@ var dm=Math.hypot(p.x-mx,p.y-my);if(dm<150){p.x+=(mx-p.x)*.012;p.y+=(my-p.y)*.01
 x.fillStyle='rgba(91,75,232,.55)';x.beginPath();x.arc(p.x,p.y,p.r,0,6.283);x.fill();
 for(var j=i+1;j<N;j++){var q=P[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<130){x.strokeStyle='rgba(91,75,232,'+(.22*(1-d/130))+')';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}}})()})();
 
-/* hero image parallax (desktop) */
-if(!reduce){var hb=Q('.hero-bg'),hr=Q('.hero');addEventListener('scroll',function(){if(innerWidth>1000&&scrollY<hr.offsetHeight)hb.style.setProperty('translate','0 '+Math.min(26,scrollY*.08)+'px')},{passive:true})}
+/* hero image: scroll + mouse movement (desktop) is handled in the hero script at the end of the page */
 
 /* product images + screenshots: gentle scroll parallax (desktop and mobile) */
 (function(){if(reduce)return;var imgs=QA('.vis .frame img,.shot img'),busy=false;if(!imgs.length)return;
@@ -768,9 +1123,144 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
 </script>
 
 <script>
-/* ===== 3. Mobile only: card groups move continuously, all cards the same size.
+/* =====================================================================
+   PRODUCTS: enhancement layer (additive). Runs BEFORE the mobile row builder
+   so that cloned cards (used by the testimonial marquee) carry the same
+   top bar and rotating border as the originals.
+   Adds: animated card bars + rotating borders + number badges, floating chips
+   on product images, hero checklist, soft glow on scroll, phone rise-in,
+   and a sticky "Schedule a Demo" bar on phones.
+   ===================================================================== */
+(function(){
+ var Q=function(s,r){return(r||document).querySelector(s)},QA=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+ /* hero checklist */
+ var acts=Q('.hero-copy .acts');
+ if(acts&&!Q('.hero-copy .checklist')){
+  acts.insertAdjacentHTML('afterend','<ul class="checklist"><li>Cloud-based platforms</li><li>5-7 day launch</li><li>Dedicated support</li></ul>');
+ }
+
+ /* card decoration: flowing bar, rotating border, number badge (originals only, never the phone duplicates) */
+ QA('.g3,.g4').forEach(function(g){
+  var n=0;
+  Array.prototype.forEach.call(g.children,function(c){
+   if(c.classList.contains('dup')||!c.matches('.card,.step,.t')||c.querySelector(':scope>i.bar'))return;
+   n++;
+   c.insertAdjacentHTML('afterbegin','<i class="bar" aria-hidden="true"></i><i class="ring" aria-hidden="true"></i>');
+   if(!c.classList.contains('t'))c.insertAdjacentHTML('beforeend','<span class="wn" aria-hidden="true">'+(n<10?'0'+n:n)+'</span>');
+  });
+ });
+
+ /* animated border on product photos and screenshots */
+ QA('.vis .frame,.shot').forEach(function(f){f.insertAdjacentHTML('beforeend','<i class="ring hv" aria-hidden="true"></i>')});
+
+ /* floating chips on the two product visuals */
+ var chips=[
+  [['QR','QR ordering'],['KD','Live kitchen display']],
+  [['GEO','Geo-tagged reports'],['MAP','Live issue map']]
+ ];
+ QA('.pgrid>.vis').forEach(function(v,i){
+  var c=chips[i];if(!c)return;
+  v.insertAdjacentHTML('beforeend','<span class="fchip c1"><span class="ic">'+c[0][0]+'</span>'+c[0][1]+'</span><span class="fchip c2"><span class="ic">'+c[1][0]+'</span>'+c[1][1]+'</span>');
+ });
+
+ /* soft glow when cards scroll into view */
+ if('IntersectionObserver' in window&&!reduce){
+  var gio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('glow',e.isIntersecting)})},{threshold:.55});
+  QA('.card,.step,.t').forEach(function(el){if(!el.classList.contains('dup'))gio.observe(el)});
+
+  /* phones: cards rise in one after another as you scroll down the page */
+  document.body.classList.add('mrx');
+  var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('mr');rio.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+  QA('.g3>*,.g4>*').forEach(function(el){if(!el.classList.contains('dup'))rio.observe(el)});
+ }
+
+ /* sticky action bar (phones only, CSS hides it elsewhere) */
+ var bar=document.createElement('a');
+ bar.className='btn mbar';bar.href='contact.html';bar.textContent='Schedule a Demo';
+ document.body.appendChild(bar);
+ addEventListener('scroll',function(){
+  var cta=Q('.cta'),near=cta&&cta.getBoundingClientRect().top<innerHeight,on=scrollY>420&&!near;
+  bar.classList.toggle('show',on);document.body.classList.toggle('bar-on',on);
+ },{passive:true});
+})();
+</script>
+
+<script>
+/* =====================================================================
+   NEW 4: UNIQUE CARD DESIGNS PER SECTION (additive)
+   Runs BEFORE the mobile row builder so that the cloned cards of the
+   testimonial marquee carry the same decorations as the originals.
+   Each section gets its own signature element:
+   feature list -> arrow + tag chip | restaurant cards -> watermark + chip
+   workflow -> progress track + chip | technology -> equalizer chip
+   onboarding -> day stamp | testimonials -> verified footer + watermark
+   metrics -> gauge | CTA cards -> included chip
+   ===================================================================== */
+(function(){
+ var Q=function(s,r){return(r||document).querySelector(s)},QA=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+ function chip(txt,eq){
+  var inner=eq?'<span class="eq" aria-hidden="true"><b style="--d:0s"></b><b style="--d:.2s"></b><b style="--d:.4s"></b><b style="--d:.15s"></b></span>':'';
+  return '<span class="meta'+(eq?' has-eq':'')+'">'+inner+txt+'</span>';
+ }
+ function monogram(c){
+  var ic=c.querySelector('.ico');if(!ic||c.querySelector(':scope>i.wm'))return;
+  c.insertAdjacentHTML('afterbegin','<i class="wm" aria-hidden="true">'+ic.textContent+'</i>');
+ }
+ function decorate(sel,tags,opts){
+  opts=opts||{};
+  QA(sel).forEach(function(c,i){
+   if(c.classList.contains('dup')||c.querySelector('.meta'))return;
+   var t=tags[i];if(!t)return;
+   if(opts.target==='div'){var d=c.querySelector(':scope>div');if(d)d.insertAdjacentHTML('beforeend',chip(t,opts.eq))}
+   else c.insertAdjacentHTML('beforeend',chip(t,opts.eq));
+   if(opts.wm)monogram(c);
+   if(opts.track)c.querySelector('.meta').insertAdjacentHTML('beforebegin','<i class="trk" aria-hidden="true"><b style="--p:'+opts.track[i]+'%"></b></i>');
+  });
+ }
+
+ /* 1. PureDine feature list: tag chip + slide arrow */
+ decorate('#restaurant .feat>li',['No app needed','Fully managed','Live insights','Zero order errors'],{target:'div'});
+ QA('#restaurant .feat>li').forEach(function(li){if(!li.querySelector(':scope>i.cx'))li.insertAdjacentHTML('beforeend','<i class="cx" aria-hidden="true">&rarr;</i>')});
+
+ /* 2. Restaurant feature cards: watermark + benefit chip */
+ decorate('#restaurant-features .g3>.card',['Responsive','Real-time sync','UPI · Cards · Cash','Instant alerts','Ratings & reviews','Always on'],{wm:true});
+
+ /* 3. TrionCam workflow: journey progress track + chip */
+ decorate('#trioncam-workflow .g3>.step',['Citizen action','Joint review','Official action'],{track:[34,68,100]});
+
+ /* 4. Technology cards: live equalizer chip */
+ decorate('#trioncam .g4>.card',['Live','Ranked','Social','Rewards'],{eq:true});
+
+ /* 5. Onboarding steps: day stamps */
+ decorate('.dk .g4>.step',['Day 1','Day 2-3','Day 4-5','Day 6-7']);
+
+ /* 6. Testimonials: verified footer row + star watermark */
+ QA('.tq .g3>.t').forEach(function(t){
+  if(t.classList.contains('dup')||t.querySelector('.tfoot'))return;
+  var r=t.querySelector('.res');if(!r)return;
+  var f=document.createElement('div');f.className='tfoot';
+  t.insertBefore(f,r);f.appendChild(r);f.insertAdjacentHTML('beforeend',chip('Verified client'));
+  t.insertAdjacentHTML('afterbegin','<i class="wm" aria-hidden="true">&#9733;</i>');
+ });
+
+ /* 7. Metrics: animated gauge under each number */
+ var gv=[72,86,99,96];
+ QA('.met>div').forEach(function(d,i){if(!d.querySelector('.mtr'))d.insertAdjacentHTML('beforeend','<i class="mtr" aria-hidden="true"><b style="--p:'+(gv[i]||80)+'%"></b></i>')});
+
+ /* 8. CTA cards: included chip + watermark */
+ decorate('.cta .g3>.card',['Fast track','Always on','Enterprise grade'],{wm:true});
+})();
+</script>
+
+<script>
+/* ===== 3. Mobile only: card groups are prepared as moving rows.
    Duplicate cards are created ONLY on phones (max-width:700px) and removed again on bigger screens,
-   so desktop and tablet never show any repeated cards. ===== */
+   so desktop and tablet never show any repeated cards.
+   On phones only the "Trusted by industry leaders" row actually moves sideways (see CSS .tq);
+   all other groups are shown as a vertical column. ===== */
 (function(){
 var mm=matchMedia('(max-width:700px)');
 function build(){
@@ -778,7 +1268,7 @@ function build(){
   if(g.classList.contains('mq'))return;
   var kids=Array.prototype.slice.call(g.children);if(!kids.length)return;
   kids.forEach(function(k){var c=k.cloneNode(true);
-   c.classList.remove('reveal','in','tch','rl','rr','rz');c.style.transitionDelay='';c.classList.add('dup');c.setAttribute('aria-hidden','true');
+   c.classList.remove('reveal','in','tch','rl','rr','rz','glow');c.style.transitionDelay='';c.classList.add('dup');c.setAttribute('aria-hidden','true');
    Array.prototype.forEach.call(c.querySelectorAll('a,button'),function(a){a.tabIndex=-1});
    g.appendChild(c)});
   g.classList.add('mq');
@@ -805,6 +1295,62 @@ document.addEventListener('touchstart',function(e){var c=e.target.closest('.hov'
 function end(e){clearTimeout(t);var c=e.target.closest&&e.target.closest('.hov');if(c)setTimeout(function(){c.classList.remove('tch')},900)}
 document.addEventListener('touchend',end);document.addEventListener('touchcancel',end);
 document.addEventListener('touchmove',function(){clearTimeout(t)},{passive:true});
+})();
+</script>
+
+<script>
+/* =====================================================================
+   NEW: HERO animations + hover effects (desktop and mobile)
+   - spotlight that follows the mouse (desktop)
+   - hero picture drifts with the mouse and scroll (desktop)
+   - stat tiles and checklist pills light up automatically while you
+     scroll on phones / touch screens (same idea as the About page)
+   ===================================================================== */
+(function(){
+ var hr=Q('.hero'),hb=Q('.hero-bg');if(!hr)return;
+
+ /* spotlight (mouse only: no touch spotlight on phones) */
+ function sp(e){var r=hr.getBoundingClientRect();hr.style.setProperty('--sx',(e.clientX-r.left)+'px');hr.style.setProperty('--sy',(e.clientY-r.top)+'px')}
+ hr.addEventListener('mousemove',sp);
+
+ /* hero picture: scroll parallax + mouse drift (desktop) */
+ if(hb&&!reduce){
+  var sy=0,mx=0,my=0;
+  function apply(){hb.style.setProperty('translate',mx+'px '+(my+sy)+'px')}
+  addEventListener('scroll',function(){sy=(innerWidth>1000&&scrollY<hr.offsetHeight)?Math.min(26,scrollY*.08):0;apply()},{passive:true});
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+   hr.addEventListener('mousemove',function(e){if(innerWidth<=1000)return;var r=hr.getBoundingClientRect();mx=((e.clientX-r.left)/r.width-.5)*-22;my=((e.clientY-r.top)/r.height-.5)*-14;apply()});
+   hr.addEventListener('mouseleave',function(){mx=my=0;apply()});
+  }
+ }
+
+ /* phones / touch: tiles and pills play their hover effect as they cross the middle of the screen */
+ if(reduce||!('IntersectionObserver' in window))return;
+ if(!matchMedia('(max-width:1000px),(hover:none)').matches)return;
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-35% 0px -35% 0px'});
+ QA('.hero .stats div,.hero .checklist li').forEach(function(el){io.observe(el)});
+})();
+</script>
+
+<script>
+/* =====================================================================
+   NEW: About-page mobile experience (phones / touch screens)
+   - hover effects auto-play as items reach the middle of the screen
+     (cards, trio chips, metrics, product photos, TrionCam list items)
+   - The finger-following glow was REMOVED (it showed as a square patch
+     while scrolling on phones)
+   Desktop behaviour is unchanged.
+   ===================================================================== */
+(function(){
+ var Q=function(s,r){return(r||document).querySelector(s)},QA=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ if(reduce)return;
+
+ /* hover effects play automatically as items cross the middle of the screen */
+ if(!('IntersectionObserver' in window))return;
+ if(!matchMedia('(max-width:900px),(hover:none)').matches)return;
+ var tio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
+ QA('.hov,.trio div,.met div,.vis .frame,.shot,.cols li,.fchip').forEach(function(el){if(!el.classList.contains('dup'))tio.observe(el)});
 })();
 </script>
 </body>

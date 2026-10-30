@@ -79,7 +79,6 @@ header.scrolled{box-shadow:0 12px 30px rgba(0,0,0,.4)}
 @keyframes imgIn{from{opacity:0;transform:translateX(48px) scale(1.03)}}
 @keyframes kb{from{opacity:0;transform:scale(1.1)}to{opacity:1;transform:none}}
 .pcv{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-/* hero copy: full-width container so the text sits at the far left edge on desktop (same left edge as the top bar) */
 .hg{width:100%;max-width:none;margin:0;padding:clamp(24px,3vw,40px) 24px clamp(40px,5vw,64px) var(--padx)}
 .hero-copy{max-width:560px;position:relative;z-index:2}
 .hero h1{font-size:clamp(2rem,1.1rem + 2.5vw,3.3rem);line-height:1.1;letter-spacing:-.03em;margin-bottom:20px;animation:unmask 1.1s var(--ease) .15s both}
@@ -100,7 +99,7 @@ header.scrolled{box-shadow:0 12px 30px rgba(0,0,0,.4)}
 .hero-orbit{width:680px;height:680px;right:-140px;top:50%;margin-top:-340px;opacity:.55}
 @media(min-width:1200px){.hero-copy{max-width:min(47vw,700px)}.hero h1{font-size:clamp(2.6rem,1rem + 3.5vw,4.2rem);margin-bottom:24px}.hero .lead{font-size:clamp(1.1rem,.75rem + .7vw,1.3rem);max-width:none}.hero .acts .btn{height:54px;min-width:210px;font-size:16.5px}}
 
-/* ticker (continuously moving reel on every screen size, same as the Careers page) */
+/* ticker */
 .ticker{position:relative;height:62px;display:flex;align-items:center;overflow:hidden;background:linear-gradient(90deg,#090a1e,#15174a 50%,#090a1e);border-top:1px solid rgba(143,132,242,.3);border-bottom:1px solid rgba(143,132,242,.3)}
 .ticker::before,.ticker::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
 .ticker::before{left:0;background:linear-gradient(90deg,#090a1e,transparent)}.ticker::after{right:0;background:linear-gradient(270deg,#090a1e,transparent)}
@@ -289,13 +288,415 @@ footer{background:#0a0b20;color:#b9bbd2;padding:clamp(44px,6vw,68px) 0 0;font-si
  #aud .cimg img{aspect-ratio:auto;height:auto;object-fit:contain}
 }
 
-/* "Built for three very different goals": remove the white patches (Enterprises / Students / Colleges) from the images.
-   The label now sits just below the image as a clean pill, so the picture stays 100% clear. */
+/* "Built for three very different goals": label sits just below the image as a clean pill */
 #aud .cimg{display:flex;flex-direction:column;align-items:flex-start;margin-bottom:6px}
 #aud .cimg img{align-self:stretch}
 #aud .cimg span{position:static;order:2;display:inline-block;line-height:1.5;margin:16px 0 0 26px;padding:4px 14px;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:rgba(91,75,232,.1);color:var(--ind);border:1px solid rgba(91,75,232,.2);box-shadow:none;transition:background .4s ease .1s,color .4s ease .1s,border-color .4s ease .1s}
 #aud .c:hover .cimg span,#aud .c.tch .cimg span{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.3)}
 @media(max-width:380px){#aud .cimg span{margin-left:18px}}
+
+/* =====================================================================
+   UPGRADE LAYER (About-page style): added on top, nothing above removed
+   ===================================================================== */
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spinAng{to{--ang:360deg}}
+@keyframes barFlow{to{background-position:200% 0}}
+@keyframes sheenX{from{transform:translateX(-140%) skewX(-18deg)}to{transform:translateX(340%) skewX(-18deg)}}
+@keyframes numGlow{0%,100%{text-shadow:0 0 12px rgba(143,132,242,.35)}50%{text-shadow:0 0 26px rgba(169,163,238,.9)}}
+@keyframes bobIc{50%{transform:translateY(-5px)}}
+
+.g3>.c{--a:#8f84f2;--b:#5b4be8;--glow:91,75,232}
+.g3>.c:nth-child(3n+2){--a:#82c8eb;--b:#2a8fcf;--glow:47,167,224}
+.g3>.c:nth-child(3n+3){--a:#a9a3ee;--b:#7a6df0;--glow:143,132,242}
+.g3>.c:not(.q)::after{content:"";position:absolute;left:0;right:0;top:0;height:4px;z-index:3;pointer-events:none;background:linear-gradient(90deg,var(--a),var(--b),var(--a));background-size:200% 100%;animation:barFlow 3s linear infinite}
+.sec:not(.dk) .g3>.c::before{background:linear-gradient(150deg,var(--a),var(--b))}
+.sec:not(.dk) .g3>.c:hover,.sec:not(.dk) .g3>.c.tch{border-color:rgba(var(--glow),.8);box-shadow:0 26px 54px rgba(var(--glow),.4)}
+.sec:not(.dk) .c .ic{background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 10px 22px rgba(var(--glow),.4)}
+.sec:not(.dk) .c:hover .ic,.sec:not(.dk) .c.tch .ic{background:#fff;color:var(--b)}
+.c .ic{animation:bobIc 4.2s ease-in-out infinite}
+.dk .c .ic{animation:bobIc 4.2s ease-in-out infinite}
+.g3>.c:nth-child(2) .ic{animation-delay:-1.1s}.g3>.c:nth-child(3) .ic{animation-delay:-2.2s}
+.c h3::after{content:"";display:block;width:26px;height:3px;margin-top:9px;border-radius:3px;background:linear-gradient(90deg,var(--a),var(--b));transition:width .5s var(--ease),background .4s}
+.c:hover h3::after,.c.tch h3::after{width:68px;background:linear-gradient(90deg,#fff,#82c8eb)}
+.dk .c:hover h3::after,.dk .c.tch h3::after{background:linear-gradient(90deg,var(--a),var(--b))}
+.q h3::after{display:none}
+.c .cimg::before{content:"";position:absolute;top:0;bottom:0;left:0;width:42%;z-index:2;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-140%) skewX(-18deg)}
+.c:hover .cimg::before,.c.tch .cimg::before{animation:sheenX 1s var(--ease) forwards}
+.c .wn{position:absolute;z-index:4;right:12px;bottom:12px;font:700 12px/1 var(--fd);letter-spacing:.08em;font-style:normal;color:var(--b);background:#fff;padding:7px 12px;border-radius:99px;box-shadow:0 6px 16px rgba(14,15,42,.18);transition:background .4s,color .4s,transform .5s var(--ease)}
+.c:hover .wn,.c.tch .wn{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;transform:scale(1.1) rotate(-4deg)}
+#aud .wn{display:none}
+.pop{box-shadow:0 8px 18px rgba(91,75,232,.4)}
+.tg:hover{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;border-color:transparent}
+.c .bd{background:rgba(var(--glow),.12);color:var(--b)}
+.chips span:hover{background:var(--navy);color:#fff}
+.chips span:hover::before{background:var(--vio)}
+.hero-fl strong{animation:numGlow 3.5s ease-in-out infinite}
+.hero-fl{border-color:rgba(143,132,242,.5)}
+.sp .st{background:rgba(255,255,255,.72);border:1px solid #fff;border-radius:18px;padding:14px 16px;margin-bottom:10px;box-shadow:0 6px 18px rgba(91,75,232,.08);align-items:center;transition:transform .35s var(--ease),background .3s,border-color .3s,box-shadow .3s}
+.sp .st:last-child{border:1px solid #fff;margin-bottom:0}
+.sp .st:hover{background:#fff;border-color:var(--vio);box-shadow:0 14px 30px rgba(91,75,232,.18)}
+.sp .st .ic{animation:none;transition:transform .45s var(--ease)}
+.sp .st:hover .ic{transform:rotate(-8deg) scale(1.1)}
+.pic{padding:4px;border:0;background:linear-gradient(135deg,rgba(143,132,242,.6),rgba(130,200,235,.6));border-radius:30px;overflow:visible;transition:transform .6s var(--ease),box-shadow .5s}
+.pic img{border-radius:26px}
+.pic:hover{background:conic-gradient(from var(--ang),#5b4be8,#82c8eb,#fff,#a9a3ee,#5b4be8);animation:spinAng 3.5s linear infinite;transform:translateY(-6px);box-shadow:0 30px 70px rgba(91,75,232,.4)}
+.pic .fl{right:22px;bottom:22px}
+.vb{position:relative}
+.vb::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;pointer-events:none;background:conic-gradient(from var(--ang),transparent 0 62%,#8f84f2 82%,#5b4be8);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:spinAng 6s linear infinite}
+.tl{position:relative;counter-reset:t}
+.tl>div{counter-increment:t;overflow:hidden}
+.tl>div::after{content:"0" counter(t);position:absolute;right:18px;top:8px;font:800 2.4rem/1 var(--fd);color:rgba(91,75,232,.13);transition:color .4s,transform .5s var(--ease)}
+.tl>div:hover::after{color:rgba(91,75,232,.4);transform:scale(1.15)}
+.tl>div.on::before{background:var(--ind);box-shadow:0 0 0 1px var(--ind),0 0 0 8px rgba(143,132,242,.28);transform:scale(1.12)}
+.tl-line{position:absolute;left:-2px;top:0;width:2px;height:0;z-index:2;background:linear-gradient(var(--peri),#82c8eb);box-shadow:0 0 12px rgba(143,132,242,.7);pointer-events:none}
+.tl>div h3{padding-right:46px}
+.stats-b{position:relative;overflow:hidden;color:#fff;text-align:center;padding:clamp(60px,9vw,96px) 0;background:linear-gradient(rgba(14,15,42,.92),rgba(20,21,58,.96)),radial-gradient(700px 380px at 90% 0,rgba(91,75,232,.42),transparent 70%),#0e0f2a}
+.stats-b::before{content:"";position:absolute;width:560px;height:560px;left:50%;top:-260px;margin-left:-280px;border-radius:50%;background:radial-gradient(circle,rgba(91,75,232,.45),transparent 70%);animation:orb 12s ease-in-out infinite;pointer-events:none}
+.stats-b::after{content:"";position:absolute;left:-160px;bottom:-200px;width:480px;height:480px;border:1.5px dashed rgba(255,255,255,.22);border-radius:50%;animation:spin 46s linear infinite;pointer-events:none}
+.stats-b>.wrap{position:relative;z-index:1}
+.stats-b h2{color:#fff;margin-bottom:clamp(30px,4vw,48px)}
+.sb-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:1040px;margin:0 auto}
+.sb{position:relative;padding:18px 20px;border-left:1px solid rgba(255,255,255,.14);transition:background .4s,transform .4s var(--ease)}
+.sb:first-child{border-left:0}
+.sb:hover{background:rgba(255,255,255,.06);transform:translateY(-4px)}
+.sb strong{display:block;font:700 clamp(2.4rem,1.4rem + 3vw,4rem)/1.05 var(--fd);background:linear-gradient(180deg,#fff,#b9b4ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:numGlow 3.5s ease-in-out infinite}
+.sb strong i{font-style:normal;-webkit-text-fill-color:var(--vio)}
+.sb small{display:block;margin-top:8px;font-size:15px;color:#b9bbdc}
+.sb::after{content:"";position:absolute;left:25%;right:25%;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--peri),transparent);transform:scaleX(0);transition:transform .5s var(--ease)}
+.sb:hover::after{transform:scaleX(1)}
+.wordmark{transition:letter-spacing .45s var(--ease)}.wordmark:hover{letter-spacing:.09em}
+.fb a{position:relative}.fb a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--vio);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}.fb a:hover::after{transform:scaleX(1)}
+.mbar{display:none}
+@media(max-width:900px){.sb-g{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}.sb:nth-child(odd){border-left:0}}
+@media(max-width:700px){
+ .wrap:has(>.mq){overflow:visible}
+ .mq,.g3.mq,.g2.mq,.g4.mq{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:18px!important;width:100%!important;max-width:100%!important;padding:0!important;margin:0!important;animation:none!important;transform:none!important}
+ .mq>*,.g3.mq>*{flex:none!important;width:100%!important;max-width:100%;margin:0!important;grid-column:auto!important}
+ .mq>.dup,.dup{display:none!important}
+ .g3>.c{border-radius:22px;padding:22px;box-shadow:0 12px 28px rgba(var(--glow),.16),inset 3px 0 0 var(--a)}
+ .g3>.c .cimg{margin:-22px -22px 16px}
+ .c .wn{right:10px;bottom:10px}
+ .c:active{transform:scale(.98)!important;transition:transform .15s!important}
+ .chips{flex-wrap:nowrap;overflow-x:auto;margin:26px -20px 0;padding:0 20px 6px;scrollbar-width:none}
+ .chips::-webkit-scrollbar{display:none}.chips span{flex:none;white-space:nowrap}
+ .sp .st{padding:12px 14px}
+ .pic{border-radius:24px}.pic img{border-radius:20px}
+ .tl>div::after{font-size:1.9rem}
+ .stats-b{padding:52px 0}
+ .sb,.sb:first-child,.sb:nth-child(odd){padding:18px 12px;border:1px solid rgba(255,255,255,.14);border-radius:16px;background:rgba(255,255,255,.05)}
+ .sb strong{font-size:2.2rem}.sb small{font-size:13px}
+ .sb:last-child{grid-column:1/-1}
+ .mbar{display:flex;position:fixed;left:16px;right:16px;bottom:max(12px,env(safe-area-inset-bottom));z-index:90;width:auto;max-width:none;transform:translateY(140%);transition:transform .4s var(--ease);box-shadow:0 12px 28px rgba(14,15,42,.35)}
+ .mbar.show{transform:none}
+ body.bar-on .wa{bottom:80px}
+ footer{padding-bottom:84px}
+}
+@media(prefers-reduced-motion:reduce){.g3>.c::after,.c .ic,.vb::after,.pic:hover,.sb strong,.hero-fl strong,.stats-b::before,.stats-b::after{animation:none!important}}
+
+/* =====================================================================
+   ENHANCEMENT ROUND 2 (About-page style): arch photo cards, per-section
+   hover animations, floating chips, touch-scroll effects. Added only.
+   ===================================================================== */
+@keyframes ringSpin{to{--ang:360deg}}
+
+/* ---------- "Who we train": arch photo cards with glass body (like About > Who we work with) ---------- */
+#aud .c{overflow:visible;padding:0 24px 28px;border-radius:30px;border-color:#fff;
+ background:linear-gradient(160deg,rgba(255,255,255,.96),color-mix(in srgb,var(--a) 22%,#fff));box-shadow:0 18px 40px rgba(var(--glow),.22)}
+#aud .c::before,#aud .c::after{display:none}
+#aud .cimg{display:block;position:relative;margin:10px -14px 0;height:300px;line-height:0;border-radius:999px 999px 24px 24px;overflow:hidden;
+ background:linear-gradient(150deg,var(--a),var(--b));box-shadow:0 18px 38px rgba(var(--glow),.3)}
+#aud .cimg::after{display:block;content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(var(--glow),.45) 0%,rgba(var(--glow),.08) 45%,rgba(14,15,42,.5) 100%);pointer-events:none;transition:opacity .5s}
+#aud .c:is(:hover,.tch) .cimg::after{opacity:.5}
+#aud .cimg img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;filter:saturate(1.15) contrast(1.03);transition:transform 1s var(--ease),filter .6s}
+#aud .c:is(:hover,.tch) .cimg img{transform:scale(1.1);filter:saturate(1.3) contrast(1.05)}
+#aud .cimg span{position:absolute;order:0;left:50%;top:22px;margin:0;transform:translateX(-50%);white-space:nowrap;z-index:3;line-height:1;
+ padding:8px 14px;font:700 11px/1 var(--fd);letter-spacing:.14em;color:#fff;border:1px solid rgba(255,255,255,.55);
+ background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 8px 18px rgba(var(--glow),.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#aud .c:is(:hover,.tch) .cimg span{background:linear-gradient(135deg,var(--b),var(--a));color:#fff;border-color:#fff}
+#aud .ic{position:relative;z-index:4;margin:-30px 0 14px;width:54px;height:54px;border-radius:16px;box-shadow:0 12px 24px rgba(var(--glow),.5);border:3px solid #fff}
+#aud .c:is(:hover,.tch) .ic{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;transform:rotate(-8deg) scale(1.1)}
+#aud .c:is(:hover,.tch) h3{color:var(--navy)}
+#aud .c:is(:hover,.tch) p{color:var(--mute)}
+#aud .c:is(:hover,.tch) p.more{color:var(--b)}
+#aud .c:is(:hover,.tch) h3::after{background:linear-gradient(90deg,var(--a),var(--b))}
+#aud .c:is(:hover,.tch){border-color:rgba(var(--glow),.7);box-shadow:0 30px 60px rgba(var(--glow),.42)}
+#aud p.more{display:inline-flex;gap:6px;color:var(--b);transition:gap .35s var(--ease),color .3s}
+#aud .c:is(:hover,.tch) p.more{gap:12px}
+@media(min-width:1001px){#aud .c:nth-child(2){margin-top:48px;height:calc(100% - 48px)}#aud{align-items:start;padding-top:6px}}
+@media(max-width:700px){#aud .cimg{height:250px}#aud .c{padding:0 20px 24px}#aud .cimg{margin:8px -12px 0}}
+
+/* ---------- A different hover animation for each card section (like About) ---------- */
+#boot .c::before,#cert .c::before,#fdp .c::before,#ws .c::before{transition:clip-path .65s var(--ease)}
+#boot .c::before{clip-path:inset(100% 0 0 0)}
+#boot .c:is(:hover,.tch)::before{clip-path:inset(0)}
+#boot .c:is(:hover,.tch){transform:translateY(-12px)}
+#cert .c::before{clip-path:inset(0 50% 0 50%)}
+#cert .c:is(:hover,.tch)::before{clip-path:inset(0)}
+#cert .c:is(:hover,.tch){transform:translateY(-6px) scale(1.03)}
+#fdp .c::before{clip-path:inset(0 100% 0 0)}
+#fdp .c:is(:hover,.tch)::before{clip-path:inset(0)}
+#fdp .c:is(:hover,.tch) .cimg img{transform:scale(1.12) translateX(-3%)}
+#ws .c::before{clip-path:inset(0 0 100% 0)}
+#ws .c:is(:hover,.tch)::before{clip-path:inset(0)}
+#ws .c:is(:hover,.tch) .cimg img{transform:scale(1.12) translateY(-3%)}
+#corp .c:is(:hover,.tch){transform:translateY(-8px) rotateX(2deg)}
+
+/* ---------- Floating glass chips on the image frames (like About) ---------- */
+.pic .fchip{position:absolute;z-index:3;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.93);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:14px;padding:9px 14px 9px 10px;font:600 13px var(--fb);color:var(--navy);box-shadow:0 12px 28px rgba(14,15,42,.22);animation:float 5s ease-in-out infinite;transition:scale .35s var(--ease)}
+.pic .fchip i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff;display:grid;place-items:center;font:800 .7rem var(--fd);font-style:normal}
+.pic .fchip:hover{scale:1.08}
+.pic .fchip.c1{left:-10px;top:12%}
+.pic .fchip.c2{right:-8px;top:34%;animation-delay:-2.5s}
+@media(max-width:700px){.pic .fchip{font-size:11.5px;padding:6px 10px 6px 7px;border-radius:12px}.pic .fchip i{width:24px;height:24px}.pic .fchip.c1{left:6px}.pic .fchip.c2{right:6px}}
+
+/* ---------- Headline words light up under the cursor + more life ---------- */
+.w>span{transition:transform .85s var(--ease) calc(var(--i)*.07s),color .3s}
+h2 .w:hover>span{color:var(--ind)}
+.dk h2 .w:hover>span,.stats-b h2 .w:hover>span{color:var(--vio)}
+.cta h2 .w:hover>span{color:#82c8eb}
+.hero-bg{transition:translate .6s ease-out}
+.st h3,.tl h3{transition:color .3s}.sp .st:hover h3{color:var(--ind)}
+.tl>div:hover h3{color:var(--ind)}
+.gr{transition:transform .5s var(--ease),box-shadow .4s}.gr:hover{transform:translateY(-4px);box-shadow:0 22px 44px rgba(91,75,232,.2)}
+.stats-b .tag{background-image:linear-gradient(90deg,var(--vio),#fff,var(--vio))}
+.center .btn,.acts .btn{letter-spacing:.01em}
+
+/* touch devices: the cursor-glow follows the finger */
+.cglow.t{display:block;width:260px;height:260px;margin:-130px 0 0 -130px}
+@media(prefers-reduced-motion:reduce){.pic .fchip{animation:none!important}}
+
+/* =====================================================================
+   ENHANCEMENT ROUND 3 (About-page style): dashed arch rings, dark
+   "How we onboard" route, glowing step cards, quote accent bars,
+   image parallax, extra hover life. Added only; nothing above removed.
+   ===================================================================== */
+
+/* ---------- Who we train: dashed arch outline that lifts on hover (like About > Who we work with) ---------- */
+#aud .c::before{display:block;content:"";position:absolute;left:-2px;right:-2px;top:2px;bottom:auto;height:322px;z-index:0;pointer-events:none;
+ background:none;clip-path:none;border:2px dashed rgba(var(--glow),.5);border-radius:999px 999px 38px 38px;
+ transition:transform .7s var(--ease),border-color .4s}
+#aud .c:is(:hover,.tch)::before{clip-path:none;transform:translateY(-8px) scale(1.025);border-color:rgb(var(--glow))}
+#aud .cimg{z-index:1}
+#aud .c:is(:hover,.tch) .cimg{transform:translateY(-8px);box-shadow:0 30px 60px rgba(var(--glow),.5)}
+#aud .cimg{transition:transform .7s var(--ease),box-shadow .5s}
+#aud .c:is(:hover,.tch) .ic{box-shadow:0 14px 28px rgba(var(--glow),.6)}
+@media(max-width:700px){#aud .c::before{height:272px}#aud .c:is(:hover,.tch)::before,#aud .c:is(:hover,.tch) .cimg{transform:none}}
+
+/* ---------- Light photo cards: colour flow on the number tag + soft entrance glow ---------- */
+.g3>.c:not(.q):not(#aud>.c){border-color:rgba(var(--glow),.22)}
+.sec:not(.dk) .g3>.c:not(.q):not(#aud>.c){background:radial-gradient(340px circle at var(--mx) -20%,rgba(var(--glow),.16),transparent 62%),linear-gradient(160deg,#fff,#ece9ff)}
+.sec:not(.dk) .g3>.c:not(.q):not(#aud>.c):hover{background:linear-gradient(160deg,#fff,#ece9ff)}
+.c .wn{box-shadow:0 8px 18px rgba(var(--glow),.35)}
+
+/* ---------- Dark corporate cards: light-tracking border + brighter tags ---------- */
+.dk .g3>.c{--mx:50%;--my:50%}
+.dk .g3>.c:not(.q)::after{height:3px;opacity:.9}
+.dk .g3>.c .tg{transition:transform .3s var(--ease),background .3s,color .3s,border-color .3s}
+.dk .g3>.c .tg:hover{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;border-color:transparent}
+.dk .c .wn{background:rgba(255,255,255,.95)}
+
+/* ---------- Delivery / verification / readiness lists: a glow travels through the rows ---------- */
+@keyframes stepPulse{0%,18%,100%{border-color:#fff}9%{border-color:var(--peri);box-shadow:0 0 0 5px rgba(143,132,242,.18),0 10px 24px rgba(91,75,232,.14)}}
+.sp .st{animation:stepPulse 10s ease-in-out infinite}
+.sp .st:nth-child(2){animation-delay:2.5s}.sp .st:nth-child(3){animation-delay:5s}.sp .st:nth-child(4){animation-delay:7.5s}.sp .st:nth-child(5){animation-delay:9s}
+.sp .st:hover,.sp .st.tch{animation:none;background:linear-gradient(90deg,rgba(143,132,242,.28),rgba(255,255,255,.95));border-color:var(--vio);transform:translateX(8px)}
+.sp .st.tch .ic{transform:rotate(-8deg) scale(1.1)}
+.sp .st.tch h3{color:var(--ind)}
+
+/* ---------- Testimonials: coloured accent bar + lift (like About quotes) ---------- */
+.q{background:linear-gradient(90deg,var(--a),var(--b)) top/100% 4px no-repeat,linear-gradient(160deg,#fff,#ece9ff)}
+.q:hover,.q.tch{background:linear-gradient(90deg,var(--a),var(--b)) top/100% 4px no-repeat,linear-gradient(150deg,var(--a),var(--b))}
+.q .av{box-shadow:0 8px 18px rgba(91,75,232,.35);transition:transform .45s var(--ease)}
+.q:hover .av,.q.tch .av{transform:rotate(-8deg) scale(1.1)}
+
+/* ---------- "From inquiry to excellence": dark route section (like About > How we work / Journey) ---------- */
+.dk .tl{border-left-color:rgba(255,255,255,.14)}
+.dk .tl>div{background:linear-gradient(160deg,#1c1e50,#12132f);border-color:rgba(255,255,255,.1);box-shadow:0 14px 34px rgba(0,0,0,.35)}
+.dk .tl>div:hover{border-color:var(--peri);box-shadow:0 20px 44px rgba(91,75,232,.4)}
+.dk .tl>div::before{background:var(--navy);border:3px solid #4a4c80;box-shadow:none;transition:all .5s}
+.dk .tl>div.on::before{border-color:var(--peri);background:var(--ind);box-shadow:0 0 0 7px rgba(143,132,242,.2);transform:scale(1.12)}
+.dk .tl>div::after{color:rgba(255,255,255,.14)}
+.dk .tl>div:hover::after{color:var(--vio)}
+.dk .tl p{color:#b4b6dc}
+.dk .tl>div:hover h3{color:var(--vio)}
+.dk .tl>div.on h3{color:#fff}
+.dk .tl>div:hover{transform:translateX(8px)}
+.dk .tl-line{left:-2px;background:linear-gradient(var(--peri),#82c8eb);box-shadow:0 0 12px rgba(143,132,242,.7)}
+@keyframes ping2{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.3);opacity:0}}
+.tl>div .dotp{display:none}
+.dk .tl>div.on::before{animation:none}
+.tl>div::before{z-index:2}
+
+/* ---------- Image frames: parallax-ready + glow ring ---------- */
+.pic img{scale:1.12}
+.pic:hover img{transform:none}
+.pic{box-shadow:0 22px 56px rgba(91,75,232,.26)}
+
+/* ---------- Certificate verify box + input polish ---------- */
+.vb h3{display:flex;align-items:center;gap:10px}
+.vb h3::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--ind);box-shadow:0 0 0 4px rgba(91,75,232,.18);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(91,75,232,.5)}70%{box-shadow:0 0 0 8px rgba(91,75,232,0)}100%{box-shadow:0 0 0 0 rgba(91,75,232,0)}}
+.vr.ok,.vr.er{animation:fadeUp .5s var(--ease)}
+
+/* ---------- Hero + CTA life ---------- */
+.hero-fl{transition:transform .4s var(--ease),background .4s}
+.hero-fl:hover{background:#fff}
+.cta .btn.l,.cta .btn.g{letter-spacing:.01em}
+.cta .tag{display:inline-block}
+.ticker .marq span{transition:color .3s}
+.ticker .marq span:hover{color:#fff}
+.stats-b .sb strong{transition:transform .45s var(--ease)}
+.stats-b .sb:hover strong{transform:scale(1.08)}
+.head .lead{max-width:640px}
+
+@media(prefers-reduced-motion:reduce){.sp .st,.vb h3::before{animation:none!important}}
+
+/* =====================================================================
+   ENHANCEMENT ROUND 4 (About "Who we work with" style): WHO WE TRAIN
+   Arch photo + floating glass panel + dashed arch outline + a light that
+   keeps travelling around the photo border. Added only; the sections
+   below this block are untouched.
+   ===================================================================== */
+#aud{gap:clamp(22px,3.4vw,48px);align-items:start;padding-top:14px}
+#aud>.c{--ph:340px;display:block;height:auto;padding:0;border:0;border-radius:0;overflow:visible;background:none;box-shadow:none;
+ transition:opacity .9s var(--ease),transform .9s var(--ease)}
+/* dashed arch outline behind the photo (lifts on hover) */
+#aud>.c::before{display:block;content:"";position:absolute;left:-10px;right:-10px;top:-10px;bottom:auto;width:auto;height:calc(var(--ph) + 20px);z-index:0;pointer-events:none;
+ background:none;clip-path:none;border:2px dashed rgba(var(--glow),.5);border-radius:999px 999px 38px 38px;
+ transition:transform .7s var(--ease),border-color .4s}
+/* moving light that runs around the photo border */
+#aud>.c::after{display:block;content:"";position:absolute;left:-5px;right:-5px;top:-5px;bottom:auto;width:auto;height:calc(var(--ph) + 10px);z-index:3;pointer-events:none;
+ padding:4px;border-radius:999px 999px 34px 34px;opacity:1;
+ background:conic-gradient(from var(--ang),transparent 0 52%,var(--a) 74%,var(--b) 90%,#fff 100%);background-size:auto;
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+ mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+ animation:spinAng 4.5s linear infinite;transition:transform .7s var(--ease)}
+#aud>.c:is(:hover,.tch)::before{transform:translateY(-8px) scale(1.025);border-color:rgb(var(--glow))}
+#aud>.c:is(:hover,.tch)::after{transform:translateY(-8px);animation-duration:1.8s}
+/* photo */
+#aud>.c .cimg{display:block;position:relative;z-index:1;margin:0;height:var(--ph);line-height:0;border-radius:999px 999px 30px 30px;overflow:hidden;
+ background:linear-gradient(150deg,var(--a),var(--b));box-shadow:0 22px 46px rgba(var(--glow),.3);transition:transform .7s var(--ease),box-shadow .5s}
+#aud>.c:is(:hover,.tch) .cimg{transform:translateY(-8px);box-shadow:0 30px 60px rgba(var(--glow),.5)}
+#aud>.c .cimg img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;filter:saturate(1.15) contrast(1.03)}
+#aud>.c:is(:hover,.tch) .cimg img{transform:scale(1.1);filter:saturate(1.3) contrast(1.05)}
+/* floating glass panel */
+#aud>.c .ai{position:relative;z-index:4;margin:-76px 14px 0;padding:42px 22px 24px;border-radius:24px;display:flex;flex-direction:column;align-items:flex-start;
+ background:linear-gradient(160deg,rgba(255,255,255,.95),color-mix(in srgb,var(--a) 24%,#fff));
+ -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid #fff;box-shadow:0 18px 40px rgba(var(--glow),.22);
+ transition:transform .6s var(--ease),box-shadow .5s}
+#aud>.c:is(:hover,.tch) .ai{transform:translateY(-6px);box-shadow:0 26px 54px rgba(var(--glow),.4)}
+#aud>.c .ai>.ic{position:absolute;left:22px;top:-26px;margin:0;width:52px;height:52px;border-radius:16px;border:0;
+ background:linear-gradient(135deg,var(--a),var(--b));color:#fff;box-shadow:0 10px 22px rgba(var(--glow),.5)}
+#aud>.c:is(:hover,.tch) .ai>.ic{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;transform:rotate(-8deg) scale(1.1)}
+#aud>.c .ai h3{font-size:1.2rem;margin-bottom:8px}
+#aud>.c .ai p{color:#4a4c6b;font-size:.92rem;margin-bottom:0}
+#aud>.c .ai p.more{margin-top:16px;color:var(--b)}
+#aud>.c:is(:hover,.tch) .ai h3{color:var(--navy)}
+#aud>.c:is(:hover,.tch) .ai p{color:#4a4c6b}
+#aud>.c:is(:hover,.tch) .ai p.more{color:var(--b)}
+/* hover / touch: the card itself no longer lifts, its parts do */
+#aud>.c:is(:hover,.tch){transform:none;border:0;box-shadow:none}
+/* staggered middle card on desktop */
+@media(min-width:1001px){#aud>.c:nth-child(2){margin-top:56px;height:auto}}
+/* tablet + phone: one arch per row, centred */
+@media(max-width:1000px){
+ #aud{grid-template-columns:minmax(0,1fr);gap:56px;max-width:460px;margin-inline:auto}
+ #aud>.c:nth-child(n){margin-top:0;height:auto}
+ #aud>.c{--ph:300px}
+}
+@media(max-width:700px){
+ #aud>.c{--ph:260px;padding:0;border-radius:0;box-shadow:none}
+ #aud>.c .cimg{margin:0}
+ #aud>.c .ai{margin:-64px 10px 0;padding:40px 18px 20px}
+ #aud>.c::before{height:calc(var(--ph) + 20px)}
+ #aud>.c:is(:hover,.tch)::before,#aud>.c:is(:hover,.tch)::after,#aud>.c:is(:hover,.tch) .cimg,#aud>.c:is(:hover,.tch) .ai{transform:none}
+}
+@media(prefers-reduced-motion:reduce){#aud>.c::after{animation:none!important}}
+
+/* =====================================================================
+   ENHANCEMENT ROUND 5 (NEW, About-page style)
+   1. Moving light running around every photo container (all sections)
+   2. Inset rounded photos, glass count tags, richer card hovers
+   3. Client Stories: continuously moving cards on MOBILE ONLY
+   Added only; nothing above was removed or edited.
+   ===================================================================== */
+
+/* ---------- 1. Moving light around photo containers (cards + image frames) ---------- */
+/* photo sits inset inside the card as a rounded frame, like the About page cards */
+.g3>.c:not(.q):not(#aud>.c) .cimg{margin:0 0 18px;border-radius:18px;box-shadow:0 14px 30px rgba(var(--glow),.28);transition:box-shadow .5s,transform .6s var(--ease)}
+.g3>.c:not(.q):not(#aud>.c):is(:hover,.tch) .cimg{box-shadow:0 20px 40px rgba(var(--glow),.45)}
+/* the travelling light (element injected by script so it never clashes with existing pseudo-elements) */
+.cring{position:absolute;inset:0;z-index:6;pointer-events:none;border-radius:inherit;padding:3px;
+ background:conic-gradient(from var(--ang),transparent 0 54%,var(--a,#8f84f2) 76%,var(--b,#5b4be8) 90%,#fff 100%);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+ mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+ animation:spinAng 4.5s linear infinite}
+.c:is(:hover,.tch) .cring{animation-duration:1.8s}
+/* image frames (.pic): light travels around the whole frame */
+.pic>.cring{border-radius:30px;padding:4px;z-index:5;
+ background:conic-gradient(from var(--ang),transparent 0 50%,#5b4be8 72%,#82c8eb 88%,#fff 100%)}
+.pic:hover>.cring{opacity:0}
+/* dark sections: brighter light so it reads on navy */
+.dk .cring{background:conic-gradient(from var(--ang),transparent 0 50%,var(--a,#8f84f2) 72%,#fff 94%,#fff 100%)}
+
+/* ---------- 2. About-style polish on the same cards ---------- */
+.g3>.c:not(.q):not(#aud>.c){border-radius:26px}
+.g3>.c:not(.q):not(#aud>.c) .wn{left:14px;right:auto;top:14px;bottom:auto}
+.g3>.c:not(.q):not(#aud>.c) .cimg span:not(.wn){left:auto;right:12px;top:12px}
+.g3>.c:not(.q):not(#aud>.c) .pop{top:auto;bottom:12px;right:auto;left:12px}
+.g3>.c:not(.q):not(#aud>.c) .cimg img{filter:saturate(1.1) contrast(1.02)}
+.g3>.c:not(.q):not(#aud>.c):is(:hover,.tch) .cimg img{filter:saturate(1.28) contrast(1.05)}
+.g3>.c .ic{border-radius:16px}
+.head .tag{padding:6px 16px;border-radius:999px;background-color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.9);box-shadow:0 6px 16px rgba(91,75,232,.1);-webkit-text-fill-color:transparent}
+.dk .head .tag{background-color:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18);box-shadow:none}
+.center .btn{box-shadow:0 12px 28px rgba(91,75,232,.34)}
+.sp .st .ic,.st .ic{border-radius:15px}
+.hero-fl,.fl{border-radius:20px}
+
+/* ---------- 3. Client Stories: moving cards on mobile only ---------- */
+/* desktop / tablet stay exactly as before; this block only runs on phones */
+@media(max-width:700px){
+ .wrap:has(>#testi.mq){overflow:hidden!important}
+ #testi.g3.mq{display:flex!important;flex-wrap:nowrap!important;gap:0!important;width:max-content!important;max-width:none!important;
+  grid-template-columns:none!important;padding:10px 0 28px!important;margin:0!important;
+  animation:mqmove var(--mqd,26s) linear infinite!important;transform:none;will-change:transform}
+ #testi.g3.mq.paused{animation-play-state:paused!important}
+ #testi.g3.mq>*{flex:0 0 min(84vw,340px)!important;width:min(84vw,340px)!important;max-width:none!important;margin:0 14px 0 0!important;
+  align-self:stretch;opacity:1!important;transform:none!important;grid-column:auto!important}
+ #testi.g3.mq>.dup{display:flex!important}
+ #testi.g3>.c.q{box-shadow:0 14px 30px rgba(var(--glow),.2)}
+}
+@media(prefers-reduced-motion:reduce){.cring{animation:none!important}#testi.g3.mq{animation:none!important;width:100%!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:18px!important}#testi.g3.mq>.dup{display:none!important}}
+
+/* =====================================================================
+   ENHANCEMENT ROUND 6 (NEW)
+   1. Hero heading underline on phones (same animated underline as About)
+   2. Client Stories: continuously moving cards on phones only
+      (moves with the "translate" property, because the earlier phone
+       rules force transform:none!important, which blocks any transform animation)
+   Added only; nothing above was removed or edited.
+   ===================================================================== */
+@keyframes uline{to{transform:scaleX(1)}}
+@keyframes mqslide{to{translate:-50% 0}}
+
+@media(max-width:700px){
+ /* highlighted words sit on their own line with the animated underline drawing in */
+ .hero h1 em{display:block;width:fit-content;max-width:100%;margin-top:6px;position:relative}
+ .hero h1 em::after{content:""!important;display:block!important;position:absolute;left:0;bottom:-.06em;width:100%;height:.08em;border-radius:4px;
+  background:linear-gradient(90deg,var(--peri),var(--ind));-webkit-text-fill-color:initial;transform:scaleX(0);transform-origin:left;
+  animation:uline .9s 1.1s var(--ease) forwards}
+
+ /* Client Stories: continuous loop */
+ .wrap:has(>#testi.mq){overflow:hidden!important}
+ #testi.g3.mq{display:flex!important;flex-wrap:nowrap!important;gap:0!important;width:max-content!important;max-width:none!important;
+  grid-template-columns:none!important;padding:10px 0 28px!important;margin:0!important;
+  animation:mqslide var(--mqd,24s) linear infinite!important;will-change:translate}
+ #testi.g3.mq.paused{animation-play-state:paused!important}
+ #testi.g3.mq>*{flex:0 0 min(84vw,340px)!important;width:min(84vw,340px)!important;max-width:none!important;margin:0 14px 0 0!important;
+  align-self:stretch;opacity:1!important;grid-column:auto!important}
+ #testi.g3.mq>.dup{display:flex!important}
+}
+@media(prefers-reduced-motion:reduce){.hero h1 em::after{animation:none!important;transform:scaleX(1)}}
 </style>
 </head>
 <body>
@@ -339,9 +740,9 @@ footer{background:#0a0b20;color:#b9bbd2;padding:clamp(44px,6vw,68px) 0 0;font-si
 <section class="sec" id="audience"><div class="wrap">
 <div class="head"><span class="tag">Who We Train</span><h2>Built for three very different goals</h2><p class="lead">Whether you are upskilling a workforce, launching a career, or preparing an entire graduating batch, there is a structured path designed specifically for you.</p></div>
 <div class="g3" id="aud">
-<a class="c" href="#corporate"><div class="cimg"><img src="assets/images/corporate.png" alt="Enterprise training" loading="lazy"><span>Enterprises</span></div><span class="ic">01</span><h3>For Enterprises</h3><p>Corporate training across cloud, full stack, data, security, product and leadership, mapped to the tools your teams use in production, with measurable ROI reporting.</p><p class="more">Explore corporate training →</p></a>
-<a class="c" href="#students"><div class="cimg"><img src="assets/images/students.png" alt="Student bootcamps" loading="lazy"><span>Students</span></div><span class="ic">02</span><h3>For Students</h3><p>Placement-focused bootcamps in Flutter, MERN, Frontend, Software Engineering, Competitive Programming and Placement Readiness, backed by QR-verified certifications.</p><p class="more">Explore student bootcamps →</p></a>
-<a class="c" href="#colleges"><div class="cimg"><img src="assets/images/colleges.png" alt="College programs" loading="lazy"><span>Colleges</span></div><span class="ic">03</span><h3>For Colleges</h3><p>Faculty Development Programs, a full DSA plus development Placement Readiness curriculum, and technology workshops delivered directly on your campus.</p><p class="more">Explore college programs →</p></a>
+<a class="c" href="#corporate"><div class="cimg"><img src="assets/images/corporate.png" alt="Enterprise training" loading="lazy"><span>Enterprises</span></div><div class="ai"><span class="ic">01</span><h3>For Enterprises</h3><p>Corporate training across cloud, full stack, data, security, product and leadership, mapped to the tools your teams use in production, with measurable ROI reporting.</p><p class="more">Explore corporate training →</p></div></a>
+<a class="c" href="#students"><div class="cimg"><img src="assets/images/students.png" alt="Student bootcamps" loading="lazy"><span>Students</span></div><div class="ai"><span class="ic">02</span><h3>For Students</h3><p>Placement-focused bootcamps in Flutter, MERN, Frontend, Software Engineering, Competitive Programming and Placement Readiness, backed by QR-verified certifications.</p><p class="more">Explore student bootcamps →</p></div></a>
+<a class="c" href="#colleges"><div class="cimg"><img src="assets/images/colleges.png" alt="College programs" loading="lazy"><span>Colleges</span></div><div class="ai"><span class="ic">03</span><h3>For Colleges</h3><p>Faculty Development Programs, a full DSA plus development Placement Readiness curriculum, and technology workshops delivered directly on your campus.</p><p class="more">Explore college programs →</p></div></a>
 </div></div></section>
 
 <section class="sec dk" id="corporate"><div class="wrap">
@@ -409,7 +810,7 @@ footer{background:#0a0b20;color:#b9bbd2;padding:clamp(44px,6vw,68px) 0 0;font-si
 <a href="https://g.page/r/ALGOORBIT" target="_blank" rel="noopener" class="btn o">Read All Reviews</a></div>
 </div></section>
 
-<section class="sec"><div class="wrap">
+<section class="sec dk"><div class="wrap">
 <div class="head"><span class="tag">How We Onboard You</span><h2>From inquiry to excellence</h2><p class="lead">Exactly what happens when an enterprise, a student, or a college partners with Algo Orbit.</p></div>
 <div class="tl" id="tl"></div>
 </div></section>
@@ -571,9 +972,8 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
 </script>
 
 <script>
-/* ===== 3. Mobile only: card rows move continuously, all cards the same size.
-   Duplicate cards are created ONLY on phones (max-width:700px) and removed again on bigger screens,
-   so desktop and tablet never show any repeated cards. (The ticker reel above is separate and always moves.) ===== */
+/* ===== 3. Mobile card handling (original). Duplicates are built only on phones; the upgrade CSS
+   stacks them vertically and hides the duplicates, so cards no longer move sideways. ===== */
 (function(){
 var ids=['aud','corp','boot','cert','fdp','ws','testi'];
 var mm=matchMedia('(max-width:700px)');
@@ -608,6 +1008,103 @@ document.addEventListener('touchstart',function(e){var c=e.target.closest('.c');
 function end(e){clearTimeout(t);var c=e.target.closest&&e.target.closest('.c');if(c)setTimeout(function(){c.classList.remove('tch')},900)}
 document.addEventListener('touchend',end);document.addEventListener('touchcancel',end);
 document.addEventListener('touchmove',function(){clearTimeout(t)},{passive:true});
+})();
+</script>
+
+<script>
+/* ===== 4. Upgrade layer (About-page style) ===== */
+(function(){
+ /* number tags on photo cards */
+ ['corp','boot','cert','fdp','ws'].forEach(function(id){var g=document.getElementById(id);if(!g)return;
+  QA(':scope>.c:not(.dup)',g).forEach(function(c,i){var im=Q('.cimg',c);if(!im||Q('.wn',c))return;
+   var t=document.createElement('i');t.className='wn';t.setAttribute('aria-hidden','true');t.textContent=(i<9?'0':'')+(i+1);im.appendChild(t)})});
+
+ /* Impact band (count-up) before the final CTA */
+ var cta=Q('.cta'),data=[[2500,'+','Learners trained'],[50,'+','Enterprise clients'],[12,'+','College partners'],[92,'%','Placement rate']];
+ if(cta){var s=document.createElement('section');s.className='stats-b';s.setAttribute('aria-label','Training impact');
+  s.innerHTML='<div class="wrap"><span class="tag">Training Impact</span><h2>Results that speak for themselves</h2><div class="sb-g">'+
+   data.map(function(d){return'<div class="sb"><strong><span data-n="'+d[0]+'">'+d[0].toLocaleString('en-IN')+'</span><i>'+d[1]+'</i></strong><small>'+d[2]+'</small></div>'}).join('')+'</div></div>';
+  cta.parentNode.insertBefore(s,cta);
+  if(!reduce&&'IntersectionObserver' in window){var ns=QA('[data-n]',s);ns.forEach(function(n){n.textContent='0'});
+   new IntersectionObserver(function(es,o){if(es[0].isIntersecting){ns.forEach(function(el){var t=+el.dataset.n,st=null;
+    (function f(ts){st=st||ts;var k=Math.min((ts-st)/1600,1);el.textContent=Math.floor((1-Math.pow(1-k,3))*t).toLocaleString('en-IN');if(k<1)requestAnimationFrame(f);else el.textContent=t.toLocaleString('en-IN')})(performance.now())});o.disconnect()}},{threshold:.35}).observe(s)}}
+
+ /* Timeline: glowing progress line + active steps */
+ var tl=Q('#tl');
+ if(tl){var line=document.createElement('i');line.className='tl-line';line.setAttribute('aria-hidden','true');tl.insertBefore(line,tl.firstChild);
+  var up=function(){var r=tl.getBoundingClientRect(),h=innerHeight;line.style.height=Math.min(Math.max(h*.6-r.top,0),r.height)+'px';
+   QA(':scope>div',tl).forEach(function(d){d.classList.toggle('on',d.getBoundingClientRect().top<h*.7)})};
+  addEventListener('scroll',up,{passive:true});addEventListener('resize',up);up()}
+
+ /* Mobile sticky action bar */
+ var m=document.createElement('a');m.className='btn mbar';m.href='contact.html';m.textContent='Talk to Our Team';document.body.appendChild(m);
+ addEventListener('scroll',function(){var near=cta&&cta.getBoundingClientRect().top<innerHeight,on=scrollY>420&&!near;m.classList.toggle('show',on);document.body.classList.toggle('bar-on',on)},{passive:true});
+})();
+</script>
+<script>
+/* ===== 5. Enhancement round 2 (About-page style) ===== */
+(function(){
+ /* floating chips on the two image frames */
+ var chips=[[['DS','Live mentor-led labs'],['QR','Verified certificates']],[['92','Placement rate'],['1:1','Mock interviews']]];
+ QA('.pic').forEach(function(p,i){var c=chips[i%2];if(!c||Q('.fchip',p))return;
+  p.insertAdjacentHTML('beforeend','<span class="fchip c1"><i>'+c[0][0]+'</i>'+c[0][1]+'</span><span class="fchip c2"><i>'+c[1][0]+'</i>'+c[1][1]+'</span>')});
+
+ /* hero picture drifts with the mouse (desktop) */
+ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce){
+  var h=Q('.hero'),bg=Q('.hero-bg');
+  if(h&&bg){h.addEventListener('mousemove',function(e){if(innerWidth<=1000)return;var r=h.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;bg.style.translate=(x*-22)+'px '+(y*-14)+'px'});
+   h.addEventListener('mouseleave',function(){bg.style.translate='0 0'})}}
+
+ /* touch / small screens: hover effects play automatically as cards reach the middle of the screen */
+ if(matchMedia('(max-width:900px),(hover:none)').matches&&!reduce&&'IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
+  QA('.c:not(.dup),.st,.tl>div,.sb,.vb').forEach(function(el){io.observe(el)});
+  var g2=document.createElement('div');g2.className='cglow t';document.body.appendChild(g2);
+  function mv(e){var p=e.touches[0];g2.style.transform='translate3d('+p.clientX+'px,'+p.clientY+'px,0)';g2.classList.add('on')}
+  addEventListener('touchstart',mv,{passive:true});addEventListener('touchmove',mv,{passive:true});
+  addEventListener('touchend',function(){setTimeout(function(){g2.classList.remove('on')},500)});
+ }
+})();
+</script>
+<script>
+/* ===== 6. Enhancement round 3 (About-page style): parallax photos + hero count-up ===== */
+(function(){
+ /* image frames drift slowly as you scroll (like About photos) */
+ if(!reduce){var imgs=QA('.pic img'),busy=false;
+  if(imgs.length){
+   var u=function(){busy=false;imgs.forEach(function(im){var r=im.getBoundingClientRect();if(r.bottom<-100||r.top>innerHeight+100)return;
+    im.style.translate='0 '+(((r.top+r.height/2-innerHeight/2)/innerHeight)*-22)+'px'})};
+   addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(u)}},{passive:true});u()}}
+
+ /* hero floating "92%" counts up once */
+ var fl=Q('.hero-fl strong');
+ if(fl&&!reduce&&'IntersectionObserver' in window){
+  var tgt=parseInt(fl.textContent,10)||0,suf=fl.textContent.replace(/[0-9]/g,'');fl.textContent='0'+suf;
+  new IntersectionObserver(function(es,o){if(es[0].isIntersecting){var st=null;
+   (function f(ts){st=st||ts;var k=Math.min((ts-st)/1600,1);fl.textContent=Math.floor((1-Math.pow(1-k,3))*tgt)+suf;if(k<1)requestAnimationFrame(f);else fl.textContent=tgt+suf})(performance.now());o.disconnect()}},{threshold:.4}).observe(fl)}
+
+ /* dark route section: nodes light up as the line reaches them (adds the same "active" state About uses) */
+ QA('.dk .tl>div').forEach(function(d){d.setAttribute('data-step','1')});
+})();
+</script>
+<script>
+/* ===== 7. Enhancement round 5 (NEW): moving light on every photo container ===== */
+(function(){
+ /* adds the travelling-light ring to each card photo (not the "Who we train" arches, which already have their own)
+    and to each image frame. Runs after the phone duplicates exist, so duplicated cards get it too. */
+ function addRings(){
+  QA('.cimg').forEach(function(im){
+   if(im.closest('#aud'))return;
+   if(Q(':scope>.cring',im))return;
+   var r=document.createElement('i');r.className='cring';r.setAttribute('aria-hidden','true');im.appendChild(r)});
+  QA('.pic').forEach(function(p){
+   if(Q(':scope>.cring',p))return;
+   var r=document.createElement('i');r.className='cring';r.setAttribute('aria-hidden','true');p.appendChild(r)})}
+ addRings();
+ /* phone duplicates are rebuilt when the viewport crosses the breakpoint; re-check afterwards */
+ var mm=matchMedia('(max-width:700px)');
+ var again=function(){setTimeout(addRings,60)};
+ if(mm.addEventListener)mm.addEventListener('change',again);else if(mm.addListener)mm.addListener(again);
 })();
 </script>
 </body>
