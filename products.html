@@ -1471,7 +1471,7 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
  document.body.appendChild(tt);
  tt.addEventListener('click',function(){scrollTo({top:0,behavior:R?'auto':'smooth'})});
 
- /* scroll frame: smart header, progress ring, curtain, hero fade/zoom, WhatsApp boost */
+ /* scroll frame: smart header, progress ring, curtain, hero zoom, WhatsApp boost */
  var hdr=Q('header'),nav=Q('#nav'),prg=Q('.prg',tt),hero=Q('.hero'),hc=Q('.hero-copy'),hb=Q('.hero-bg'),wa=Q('.wa');
  var cur=QA('.sec.dk,.cta');if(!R)cur.forEach(function(s){s.classList.add('cur')});
  var last=scrollY,hidden=false,run=false,wt;
@@ -1487,7 +1487,7 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
   if(!R)cur.forEach(function(s){var r=s.getBoundingClientRect(),p=end?1:ease(cl((h-r.top)/(h*.38)));
    s.style.setProperty('--p',p.toFixed(3));s.classList.toggle('full',p>=.999)});
   if(!R&&hero&&sy<h*1.4){var k=Math.min(sy/(h*.8),1);
-   if(hc)hc.style.opacity=(1-k*.9).toFixed(3);
+   /* hero text no longer fades out to white while scrolling (opacity fade removed) */
    if(hb&&innerWidth>1000)hb.style.scale=(1+Math.min(sy/h,1)*.08).toFixed(4)}
  }
  function kick(){if(!run){run=true;requestAnimationFrame(frame)}}
