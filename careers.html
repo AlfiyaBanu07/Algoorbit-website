@@ -1008,6 +1008,191 @@ h2 .w:hover>span{color:var(--ind)}
 }
 @media(prefers-reduced-motion:reduce){.hs::before,.ring::before,.rtag::before,.cm::before,.rc-in>i.cb,.grid-4 .card>i.wm,.tlp .trk b,.dk .general,.card:is(:hover,.tch) .lpf .ar{animation:none!important}.tl-item.active .tlp .trk b{transition:none}}
 
+
+/* ===== Openings: compact cards that open into the full card ===== */
+.roles{gap:18px}
+.rc-more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.rc-more-in{overflow:hidden;min-height:0;opacity:0;transform:translateY(-10px);transition:opacity .45s var(--ease),transform .6s var(--ease)}
+.rc.open .rc-more{grid-template-rows:1fr}
+.rc.open .rc-more-in{opacity:1;transform:none;transition-delay:.12s}
+.rc-in{padding:clamp(18px,2.6vw,26px) clamp(20px,3vw,34px)}
+.rc-top{margin-bottom:14px}
+.rc-head{margin-bottom:0;gap:20px}
+.rc-ic{width:64px;height:64px}.rc-ic .ui{width:27px;height:27px}.rc-ic::before{inset:-6px}
+.rc-head h3{font-size:clamp(1.2rem,1rem + 1vw,1.55rem);margin-bottom:8px}
+.rc-head>div{flex:1}
+.rc-toggle{flex:none;margin-left:auto;min-width:0;height:44px;padding:0 20px;background:rgba(255,255,255,.08);border-color:rgba(var(--glow),.7);color:#fff;box-shadow:0 0 0 0 rgba(var(--glow),.5)}
+.rc-toggle:hover,.rc-toggle:focus-visible{background:linear-gradient(135deg,var(--a),var(--b));border-color:transparent;color:#fff;box-shadow:0 10px 24px rgba(var(--glow),.45)}
+.rc-toggle .ui{width:16px;height:16px;transition:transform .45s var(--ease)}
+.rc-toggle:hover .ui{transform:translateY(3px)}
+.rc-toggle .t-close{display:none}
+.rc.open .rc-toggle{background:linear-gradient(135deg,var(--a),var(--b));border-color:transparent}
+.rc.open .rc-toggle .t-open{display:none}.rc.open .rc-toggle .t-close{display:inline}
+.rc.open .rc-toggle .ui{transform:rotate(180deg)}
+.rc-desc{margin-top:22px}
+.rc.open{box-shadow:0 36px 80px rgba(var(--glow),.38)}
+/* panel items replay each time the card opens */
+.rc.seen .rc-panel li{animation:none}
+.rc.open .rc-panel li{animation:liIn .6s var(--ease) backwards;animation-delay:calc(var(--k,0)*.06s + .25s)}
+.rc.pre:not(.seen) .rc-panel li{opacity:1}
+@media(max-width:700px){
+ .rc-head{flex-wrap:wrap;gap:14px}
+ .rc-head>div{flex:1 1 calc(100% - 80px)}
+ .rc-toggle{width:100%;margin-left:0;order:3}
+ .rc-in{padding:18px 16px 18px}
+ .rc-desc{margin-top:18px}
+}
+@media(prefers-reduced-motion:reduce){.rc-more,.rc-more-in{transition:none}.rc.open .rc-panel li{animation:none}}
+
+/* ===== WhatsApp floating button: glowing halo + expanding rings ===== */
+.wa-float{isolation:isolate;overflow:visible;animation:waGlow 2.4s ease-in-out infinite,waBob 4s ease-in-out infinite}
+.wa-float::before,.wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;z-index:-1;pointer-events:none;border:2px solid rgba(37,211,102,.75);background:radial-gradient(circle,rgba(37,211,102,.35),transparent 70%);animation:waRing 2.4s ease-out infinite}
+.wa-float::after{animation-delay:1.2s}
+.wa-float svg{filter:drop-shadow(0 0 6px rgba(255,255,255,.7));animation:waIcon 3s ease-in-out infinite}
+.wa-float:hover{transform:scale(1.14);box-shadow:0 0 34px 10px rgba(37,211,102,.95),0 0 80px 26px rgba(37,211,102,.5)}
+.wa-float.hot{animation:waGlow 1s ease-in-out infinite,waBob 4s ease-in-out infinite}
+.wa-float.hot::before,.wa-float.hot::after{animation-duration:1.2s}.wa-float.hot::after{animation-delay:.6s}
+@keyframes waGlow{0%,100%{box-shadow:0 0 14px 2px rgba(37,211,102,.55),0 0 34px 8px rgba(37,211,102,.28),0 8px 24px rgba(37,211,102,.45)}50%{box-shadow:0 0 26px 6px rgba(37,211,102,.9),0 0 64px 18px rgba(37,211,102,.42),0 8px 24px rgba(37,211,102,.55)}}
+@keyframes waRing{0%{transform:scale(1);opacity:.85}100%{transform:scale(2.1);opacity:0}}
+@keyframes waIcon{0%,86%,100%{transform:rotate(0)}90%{transform:rotate(-14deg)}94%{transform:rotate(12deg)}98%{transform:rotate(-6deg)}}
+@media(prefers-reduced-motion:reduce){.wa-float,.wa-float::before,.wa-float::after,.wa-float svg{animation:none!important}}
+
+/* Why Us: 4 cards in a 2x2 grid */
+@media(min-width:701px){.grid.lp{grid-template-columns:repeat(2,minmax(0,1fr))}.lp .card .ci{height:220px}}
+
+/* =====================================================================
+   OPEN LAYOUTS: no boxes. Why Us, Perks, Quotes, FAQ and Timeline
+   ===================================================================== */
+/* shared: strip every card box, bloom, flowing bar, spinning border */
+.lp .card,.grid-4 .card,.quote{background:none!important;border:0;border-radius:0;box-shadow:none!important;backdrop-filter:none;-webkit-backdrop-filter:none;overflow:visible;transform:none!important;height:auto}
+.lp .card::before,.lp .card::after,.grid-4 .card::before,.grid-4 .card::after,.quote::after,
+.lp .card>i.bar,.lp .card>i.ring,.grid-4 .card>i.bar,.grid-4 .card>i.ring,.grid-4 .card>i.wm,.quote>i.bar,.quote>i.ring,
+.lp .ci::before,.lp .ci::after,.lp .card>.cat-ic::after,.grid-4 .card>.cat-ic::after{display:none!important}
+.lp .card:is(:hover,.tch) h3,.grid-4 .card:is(:hover,.tch) h3{color:var(--navy)}
+.lp .card:is(:hover,.tch) p,.grid-4 .card:is(:hover,.tch) p{color:var(--mute)}
+.lp .card h3::after,.grid-4 .card h3::after{content:"";display:block;width:28px;height:3px;border-radius:3px;margin-top:10px;background:linear-gradient(90deg,var(--a),var(--b));transition:width .5s var(--ease)}
+.lp .card:is(:hover,.tch) h3::after,.grid-4 .card:is(:hover,.tch) h3::after{width:64px;background:linear-gradient(90deg,var(--a),var(--b))}
+.lp>.card>.wn,.grid-4>.card>.wn{background:none!important;box-shadow:none;padding:0;color:transparent!important;-webkit-text-stroke:1.3px rgba(var(--glow),.4);font:800 2.4rem/1 var(--fd);letter-spacing:0;transition:color .6s,-webkit-text-stroke-color .4s}
+.lp>.card:is(:hover,.tch)>.wn,.grid-4>.card:is(:hover,.tch)>.wn{transform:none;color:rgba(var(--glow),.18)!important;-webkit-text-stroke-color:rgba(var(--glow),.8)}
+
+/* Why Us: small round photo + text rows, 2 columns */
+.grid.lp{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto;gap:6px clamp(36px,6vw,80px)}
+.lp .card{position:relative;display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:24px;align-content:center;padding:26px 56px 26px 0;border-bottom:1px dashed rgba(91,75,232,.28)}
+.lp .card .ci{grid-row:1/4;grid-column:1;align-self:center;width:96px;height:96px;margin:0;border-radius:50%;overflow:hidden;border:3px solid #fff;background:var(--navy);box-shadow:0 0 0 2px var(--a),0 14px 28px rgba(var(--glow),.32)!important;transition:transform .6s var(--ease)}
+.lp .card .ci img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .9s var(--ease)}
+.lp .card:is(:hover,.tch) .ci{transform:scale(1.07) rotate(-4deg)}.lp .card:is(:hover,.tch) .ci img{transform:scale(1.15)}
+.lp .card>.cat-ic{grid-column:2;width:34px;height:34px;border-radius:11px;margin:0 0 8px;animation:none}
+.lp .card>.cat-ic .ui{width:18px;height:18px}
+.lp .card h3{grid-column:2;margin:0 0 6px;font-size:1.1rem}
+.lp .card p{grid-column:2;font-size:14.5px;line-height:1.6;margin:0;color:var(--mute)}
+.lp>.card>.wn{position:absolute;left:auto;right:0;top:22px}
+
+.lp .card .lpf{display:none!important}
+/* Perks: open icon grid with a drawn underline */
+.grid.grid-4{gap:38px 34px}
+.grid-4 .card{position:relative;padding:0 0 6px}
+.grid-4 .card>.cat-ic{width:56px;height:56px;border-radius:50%;margin:0 0 16px;animation:none}
+.grid-4 .card:is(:hover,.tch)>.cat-ic{transform:translateY(-4px) rotate(-8deg);background:linear-gradient(135deg,var(--a),var(--b));color:#fff}
+.grid-4 .card h3{margin-bottom:6px;font-size:1.08rem}
+.grid-4 .card p{font-size:14.5px;margin:0;color:var(--mute)}
+.grid-4>.card>.wn{position:absolute;right:0;top:0;font-size:1.9rem}
+
+.grid-4 .card .cm,.lp .card .cm,.quote .cm{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;margin-top:10px;color:var(--b)!important;font-weight:700;letter-spacing:.04em}
+.grid-4 .card .cm::before{display:none}
+/* Quotes: open pull-quotes with a coloured rail */
+.quote{position:relative;padding:4px 0 0 26px;border-left:3px solid rgba(var(--glow),.55)}
+.quote::before{left:20px;right:auto;top:-22px;font-size:86px;color:rgba(var(--glow),.2)}
+.quote p{font-size:15.5px}
+.quote:is(:hover,.tch){border-left-color:var(--a)}
+
+/* FAQ: plain list, no Q labels, no boxes */
+.faq details{background:none!important;backdrop-filter:none;-webkit-backdrop-filter:none;border:0;border-bottom:1px solid rgba(91,75,232,.2);border-radius:0;box-shadow:none!important;margin:0;padding:0;transform:none!important}
+.faq details::before{display:none!important}
+.faq details[open]{border-left:0;border-bottom-color:var(--ind)}
+.faq details:hover{border-color:rgba(91,75,232,.2)}.faq details[open]:hover{border-bottom-color:var(--ind)}
+.faq details[open] .fq-t{color:var(--ind)}
+.faq summary{padding:18px 40px 18px 0}
+.faq details p{padding:0 0 20px 54px}
+
+/* Timeline: text sits straight on the line, no boxes */
+.tl-card{background:none!important;border:0!important;border-radius:0;box-shadow:none!important;backdrop-filter:none;padding:2px 0 8px}
+.tl-card:hover{transform:translateX(8px);box-shadow:none}
+.tl-item{padding-bottom:8px;margin-bottom:22px;border-bottom:1px dashed rgba(255,255,255,.12)}.tl-item:last-child{border-bottom:0}
+
+/* ===== scroll reveal (added by script) ===== */
+.sr{opacity:0!important;translate:0 34px!important;filter:blur(6px)!important;transition:opacity .8s var(--ease) var(--d,0s),translate .9s var(--ease) var(--d,0s),filter .8s var(--ease) var(--d,0s),scale .8s var(--ease) var(--d,0s)}
+.sr.sr-l{translate:-52px 0!important}.sr.sr-r{translate:52px 0!important}.sr.sr-s{translate:0 22px!important;scale:.88}
+.sr.in{opacity:1!important;translate:0 0!important;filter:none!important;scale:1}
+.sr.in .cat-ic{animation:icPop .7s var(--ease) calc(var(--d,0s) + .25s) backwards}
+.lp .card.sr.in>.wn,.grid-4 .card.sr.in>.wn{animation:wnFill 1.2s var(--ease) calc(var(--d,0s) + .3s) backwards}
+@keyframes wnFill{from{opacity:0;transform:translateY(10px)}}
+.quote.sr.in::before{animation:qPop .8s var(--ease) calc(var(--d,0s) + .2s) backwards}
+@keyframes qPop{from{opacity:0;transform:scale(.4) rotate(-12deg)}}
+.faq-vis{will-change:transform}
+
+/* ===== phones: clean single column, no boxes, no side-swipe strips ===== */
+@media(max-width:700px){
+ .grid.lp{grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+ .lp .card{grid-template-columns:72px minmax(0,1fr);column-gap:16px;padding:20px 44px 20px 0;border-left:0}
+ .lp .card .ci{width:72px;height:72px;margin:0;border-width:2px}
+ .lp .card>.cat-ic{width:30px;height:30px;margin:0 0 6px;border:0}
+ .lp .card h3{font-size:1.02rem}.lp .card p{font-size:14px}
+ .lp>.card>.wn{top:18px;font-size:1.8rem}
+ .grid.grid-4{gap:0!important}
+ .grid-4 .card{grid-template-columns:48px minmax(0,1fr);column-gap:14px;padding:18px 40px 18px 0;border-bottom:1px dashed rgba(91,75,232,.25);border-left:0}
+ .grid-4 .card>.cat-ic{width:48px;height:48px;margin:0}
+ .grid-4 .card>h3{padding-right:0;margin-bottom:4px;font-size:1.02rem}
+ .grid-4>.card>.wn{top:16px;right:0;font-size:1.5rem}
+ .grid.t-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;margin:0!important;padding:0!important;overflow:visible;scroll-snap-type:none;gap:30px!important}
+ .grid.t-grid>.quote{flex:none;padding:2px 0 0 20px;opacity:1}
+ .t-dots{display:none!important}
+ .quote{border-left-width:3px;border-radius:0;padding:2px 0 0 20px}
+ .quote::before{left:14px;font-size:70px;top:-18px}
+ .faq summary{font-size:15px;padding:16px 34px 16px 0}.faq details p{padding:0 0 18px 0}
+ .faq-vis{max-width:340px}
+ .tl-card{padding:0 0 6px}.tl-item{margin-bottom:18px}
+ body.mrx .grid>.card:not(.mr),body.mrx .grid>.quote:not(.mr){translate:none;filter:none}
+}
+@media(prefers-reduced-motion:reduce){.sr{opacity:1!important;translate:none!important;filter:none!important;scale:1;transition:none}.sr.in .cat-ic,.quote.sr.in::before,.lp .card.sr.in>.wn,.grid-4 .card.sr.in>.wn{animation:none}}
+
+/* ===== Perks on phones: lively 2-column staggered tiles with glowing icons ===== */
+@keyframes pFloat{50%{translate:0 -6px}}
+@media(max-width:700px){
+ .grid.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:22px 12px!important;margin:0 0 34px!important}
+ .grid-4 .card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:26px 12px 20px;border:0;
+  background:radial-gradient(120% 90% at 50% 0%,rgba(var(--glow),.2),transparent 72%)!important}
+ .grid-4 .card:nth-child(even){margin-top:34px}
+ .grid-4 .card>.cat-ic{width:64px;height:64px;margin:0 0 14px;box-shadow:0 0 0 8px rgba(var(--glow),.13),0 14px 26px rgba(var(--glow),.45);animation:pFloat 3.6s ease-in-out infinite}
+ .grid-4 .card:nth-child(even)>.cat-ic{animation-delay:-1.8s}
+ .grid-4 .card>.cat-ic .ui{width:26px;height:26px}
+ .grid-4 .card>h3{font-size:.98rem;line-height:1.25;margin:0 0 6px;padding:0}
+ .grid-4 .card>h3::after{margin:10px auto 0;width:34px}
+ .grid-4 .card:is(:hover,.tch)>h3::after{width:56px}
+ .grid-4 .card>p{font-size:13px;line-height:1.55}
+ .grid-4 .card .cm{margin-top:10px;font-size:11px;align-self:center}
+ .grid-4 .card{border-radius:26px}
+ .grid-4>.card>.wn{top:10px;left:12px;right:auto;font-size:1.25rem}
+ .grid-4 .card:is(:hover,.tch)>.cat-ic{transform:scale(1.1) rotate(-8deg)}
+}
+@media(prefers-reduced-motion:reduce){.grid-4 .card>.cat-ic{animation:none!important}}
+
+/* ===== Launchpad on phones: roadmap rail with numbered nodes, text, then a slim photo ===== */
+@media(max-width:700px){
+ .grid.lp{position:relative;padding-left:0!important}
+ .grid.lp::before,.grid.lp::after{content:"";position:absolute;left:17px;top:24px;width:2px;border-radius:2px;pointer-events:none}
+ .grid.lp::before{bottom:40px;background:rgba(91,75,232,.18)}
+ .grid.lp::after{height:calc((100% - 64px)*var(--f,0));background:linear-gradient(#8f84f2,#82c8eb);box-shadow:0 0 10px rgba(91,75,232,.45);transition:height .25s linear}
+ .lp .card{display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:12px;align-items:center;padding:0 0 34px 52px;border:0;border-bottom:0}
+ .lp .card:last-child{padding-bottom:0}
+ .lp>.card>.wn,.lp>.card:is(:hover,.tch)>.wn{position:absolute;left:0;top:-2px;right:auto;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;font:700 13px/1 var(--fd);letter-spacing:0;color:#fff!important;-webkit-text-stroke:0;background:linear-gradient(135deg,var(--a),var(--b))!important;box-shadow:0 0 0 5px #f1effd,0 8px 18px rgba(var(--glow),.4)!important;transform:none}
+ .lp .card>.cat-ic{grid-column:1;grid-row:1;width:32px;height:32px;margin:0;border-radius:10px;box-shadow:0 6px 14px rgba(var(--glow),.35)}
+ .lp .card>.cat-ic .ui{width:17px;height:17px}
+ .lp .card h3{grid-column:2;grid-row:1;margin:0;font-size:1.08rem;line-height:1.25}
+ .lp .card h3::after{display:none}
+ .lp .card p{grid-column:1/-1;grid-row:2;margin:10px 0 0;font-size:14.5px;line-height:1.65}
+ .lp .card .ci{grid-column:1/-1;grid-row:3;width:100%;height:140px;margin:16px 0 0;border:0;border-radius:18px;box-shadow:0 14px 28px rgba(var(--glow),.28)!important}
+ .lp .card:is(:hover,.tch) .ci{transform:none}
+}
 </style>
 </head>
 <body>
@@ -1091,28 +1276,10 @@ h2 .w:hover>span{color:var(--ind)}
    <ul class="checklist"><li>Mentor-led growth</li><li>Certificate + LOR</li><li>PPO opportunity</li></ul>
   </div>
  </div>
- <div class="hero-stats">
-  <div class="hs"><strong><span data-count="50">50</span></strong><small>Team Members</small></div>
-  <div class="hs"><strong><span data-count="15">15</span></strong><small>Departments</small></div>
-  <div class="hs"><strong><span data-count="98">98</span></strong><small>% Satisfaction</small></div>
- </div>
 </section>
 
 <!-- Ticker -->
 <div class="ticker" aria-hidden="true"><div class="marq" id="tk"></div></div>
-
-<!-- Our Numbers -->
-<section class="stats-section" aria-label="Our numbers">
- <div class="wrap">
-  <div class="section-head"><span class="eyebrow">Our Numbers</span><h2>Built on Real Results</h2><p>Numbers that prove we're serious about growth for our clients and our people.</p></div>
-  <div class="rings">
-   <div class="ring"><div class="ring-c"><svg class="rg" viewBox="0 0 120 120" aria-hidden="true"><circle class="rg-fg" cx="60" cy="60" r="54" style="--p:.92"/></svg><strong><span data-count="200">200</span><i>+</i></strong></div><h3>Projects Delivered</h3><p>Across industries globally</p></div>
-   <div class="ring"><div class="ring-c"><svg class="rg" viewBox="0 0 120 120" aria-hidden="true"><circle class="rg-fg" cx="60" cy="60" r="54" style="--p:.72"/></svg><strong><span data-count="50">50</span><i>+</i></strong></div><h3>Team Members</h3><p>And growing fast</p></div>
-   <div class="ring"><div class="ring-c"><svg class="rg" viewBox="0 0 120 120" aria-hidden="true"><circle class="rg-fg" cx="60" cy="60" r="54" style="--p:.98"/></svg><strong><span data-count="98">98</span><i>%</i></strong></div><h3>% Satisfaction</h3><p>Employee happiness score</p></div>
-   <div class="ring"><div class="ring-c"><svg class="rg" viewBox="0 0 120 120" aria-hidden="true"><circle class="rg-fg" cx="60" cy="60" r="54" style="--p:.6"/></svg><strong><span data-count="30">30</span><i>+</i></strong></div><h3>Interns Hired Full-Time</h3><p>Internship to full-time rate</p></div>
-  </div>
- </div>
-</section>
 
 <!-- Why Us -->
 <section class="section">
@@ -1123,8 +1290,6 @@ h2 .w:hover>span{color:var(--ind)}
    <div class="card"><div class="ci"><img src="assets/images/industry.png" alt="Learning from industry experts" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-brain"/></svg></span><h3>Learn from Industry Experts</h3><p>Workshops, tech talks, 1-on-1 mentors, and a ₹20k+ annual upskilling budget. Stay ahead of the curve, always.</p></div>
    <div class="card"><div class="ci"><img src="assets/images/real-world.png" alt="Analytics dashboard showing real impact" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-globe"/></svg></span><h3>Real-World Impact</h3><p>Your code ships to real users. Your campaigns run live. Your videos get real views. No dummy projects here.</p></div>
    <div class="card"><div class="ci"><img src="assets/images/teamwork.png" alt="Team members owning their work" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-bolt"/></svg></span><h3>Ownership from Day 1</h3><p>No coffee-fetching internships. You own features, campaigns, and deliverables from the moment you join.</p></div>
-   <div class="card"><div class="ci"><img src="assets/images/inclusive.png" alt="Collaborative and inclusive team" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-hand"/></svg></span><h3>Collaborative &amp; Inclusive</h3><p>Flat hierarchy, open Slack channels, weekly all-hands, and a team that genuinely celebrates your wins.</p></div>
-   <div class="card"><div class="ci"><img src="assets/images/team meeting.png" alt="Developer workspace" loading="lazy"></div><span class="cat-ic"><svg class="ui"><use href="#i-cap"/></svg></span><h3>Potential Over Pedigree</h3><p>We've hired interns from tier-2 colleges who outperform IIT graduates. We look for hunger to learn, ability to execute, and a bias for action. If that's you, we want to talk.</p></div>
   </div>
  </div>
 </section>
@@ -1141,7 +1306,9 @@ h2 .w:hover>span{color:var(--ind)}
      <div class="rc-head">
       <span class="rc-ic"><span><svg class="ui"><use href="#i-film"/></svg></span></span>
       <div><h3>Video Editing Intern</h3><div class="rc-chips"><span class="chip red">Internship</span><span class="chip">Any Degree</span></div></div>
+      <button class="btn rc-toggle" type="button" aria-expanded="false" aria-controls="rcm1"><span class="t-open">View details</span><span class="t-close">Hide details</span><svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
      </div>
+     <div class="rc-more" id="rcm1"><div class="rc-more-in">
      <p class="rc-desc">Create scroll-stopping content that drives real engagement from professional brand ads to viral reels. You'll work directly with our marketing team to bring our clients' stories to life.</p>
      <div class="rc-grid">
       <div class="rc-panel"><h4 class="rc-h"><b>A</b>Required Skills<em>06</em></h4><ul>
@@ -1152,7 +1319,7 @@ h2 .w:hover>span{color:var(--ind)}
      <div class="rc-foot">
       <div class="rc-tags"><span>Premiere Pro</span><span>After Effects</span><span>DaVinci</span><span>Reels</span></div>
       <div class="rc-act"><small>Reply within 48 hrs</small><button class="btn rc-btn" type="button" onclick="openApplyModal('Video Editing Intern','fa-film')">Apply Now <svg class="ui"><use href="#i-arrow"/></svg></button></div>
-     </div>
+     </div></div></div>
     </div>
    </article>
    <article class="rc" style="--a:#82c8eb;--b:#2a8fcf;--glow:47,167,224">
@@ -1161,7 +1328,9 @@ h2 .w:hover>span{color:var(--ind)}
      <div class="rc-head">
       <span class="rc-ic"><span><svg class="ui"><use href="#i-code"/></svg></span></span>
       <div><h3>Full Stack Developer Intern</h3><div class="rc-chips"><span class="chip red">Internship</span><span class="chip">B.Tech / BCA / MCA</span></div></div>
+      <button class="btn rc-toggle" type="button" aria-expanded="false" aria-controls="rcm2"><span class="t-open">View details</span><span class="t-close">Hide details</span><svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
      </div>
+     <div class="rc-more" id="rcm2"><div class="rc-more-in">
      <p class="rc-desc">Build features that go live. Work across front-end and back-end to ship real products used by real customers. Computer Science stream students currently pursuing B.Tech, BCA, or MCA welcome.</p>
      <div class="rc-grid">
       <div class="rc-panel"><h4 class="rc-h"><b>A</b>Required Skills<em>06</em></h4><ul>
@@ -1172,7 +1341,7 @@ h2 .w:hover>span{color:var(--ind)}
      <div class="rc-foot">
       <div class="rc-tags"><span>React</span><span>Node.js</span><span>MongoDB</span><span>Python</span></div>
       <div class="rc-act"><small>Reply within 48 hrs</small><button class="btn rc-btn" type="button" onclick="openApplyModal('Full Stack Developer Intern','fa-code')">Apply Now <svg class="ui"><use href="#i-arrow"/></svg></button></div>
-     </div>
+     </div></div></div>
     </div>
    </article>
    <article class="rc" style="--a:#c4a1ff;--b:#8b5cf6;--glow:139,92,246">
@@ -1181,7 +1350,9 @@ h2 .w:hover>span{color:var(--ind)}
      <div class="rc-head">
       <span class="rc-ic"><span><svg class="ui"><use href="#i-mega"/></svg></span></span>
       <div><h3>Digital Marketing Intern</h3><div class="rc-chips"><span class="chip red">Internship</span><span class="chip">Any Degree</span></div></div>
+      <button class="btn rc-toggle" type="button" aria-expanded="false" aria-controls="rcm3"><span class="t-open">View details</span><span class="t-close">Hide details</span><svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
      </div>
+     <div class="rc-more" id="rcm3"><div class="rc-more-in">
      <p class="rc-desc">Drive real marketing results. Run SEO strategies, manage social media, craft content, and analyse what actually works. This is a hands-on role you'll own campaigns from day one.</p>
      <div class="rc-grid">
       <div class="rc-panel"><h4 class="rc-h"><b>A</b>Required Skills<em>05</em></h4><ul>
@@ -1192,7 +1363,7 @@ h2 .w:hover>span{color:var(--ind)}
      <div class="rc-foot">
       <div class="rc-tags"><span>SEO</span><span>Social Media</span><span>Google Ads</span><span>Analytics</span></div>
       <div class="rc-act"><small>Reply within 48 hrs</small><button class="btn rc-btn" type="button" onclick="openApplyModal('Digital Marketing Intern','fa-bullhorn')">Apply Now <svg class="ui"><use href="#i-arrow"/></svg></button></div>
-     </div>
+     </div></div></div>
     </div>
    </article>
   </div>
@@ -1430,7 +1601,7 @@ $$('.card,.quote,.job').forEach(function(c){
 // Scroll reveal (with directional / scale variants) + heading underline (not on cloned cards)
 if(!reduce){var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('rv','in','rv-l','rv-r','rv-s');el.style.transitionDelay=''},1500)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
  var jn=0;
- $$('.section-head,.card:not(.dup),.quote:not(.dup),.job,.general,.tl-item,.ring,.faq details').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('rv');
+ $$('.section-head,.job,.general,.tl-item').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('rv');
   if(el.classList.contains('job'))el.classList.add(jn++%2?'rv-r':'rv-l');
   else if(el.classList.contains('tl-item'))el.classList.add('rv-l');
   else if(el.tagName==='DETAILS')el.classList.add('rv-r');
@@ -1487,7 +1658,7 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce){
  addEventListener('mousemove',function(e){g.style.transform='translate3d('+e.clientX+'px,'+e.clientY+'px,0)';g.classList.add('on')},{passive:true});
  document.addEventListener('mouseleave',function(){g.classList.remove('on')});
  $$('.hero .btn,.cta-band .btn').forEach(function(b){b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.25)+'px '+((e.clientY-r.top-r.height/2)*.35)+'px'});b.addEventListener('mouseleave',function(){b.style.translate='0 0'})});
- $$('.card:not(.dup),.quote:not(.dup)').forEach(function(c){c.classList.add('tilt');
+ $$('.no-tilt').forEach(function(c){c.classList.add('tilt');
   c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.style.setProperty('--ry',(px*6).toFixed(2)+'deg');c.style.setProperty('--rx',(-py*6).toFixed(2)+'deg')});
   c.addEventListener('mouseleave',function(){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')})})}
 
@@ -1753,6 +1924,59 @@ function showApplySuccess(){
  var q=['Shipped in week two','Brand campaigns on day three','Real ads + strong LOR'];
  QA('.t-grid>.quote').forEach(function(c,i){if(q[i]&&!c.querySelector('.cm'))c.insertAdjacentHTML('beforeend',chip(q[i]))});
 })();
+</script>
+
+<script>
+/* Openings: View details toggles the card open (one at a time) */
+(function(){
+ var cards=Array.prototype.slice.call(document.querySelectorAll('.rc'));
+ cards.forEach(function(c){
+  var b=c.querySelector('.rc-toggle');if(!b)return;
+  b.addEventListener('click',function(){
+   var o=!c.classList.contains('open');
+   cards.forEach(function(x){x.classList.remove('open');var t=x.querySelector('.rc-toggle');if(t)t.setAttribute('aria-expanded','false')});
+   if(o){c.classList.add('open');b.setAttribute('aria-expanded','true');
+    setTimeout(function(){var r=c.getBoundingClientRect();if(r.top<70||r.top>innerHeight*.5)window.scrollTo({top:scrollY+r.top-90,behavior:'smooth'})},120)}
+  })});
+ /* WhatsApp button glows brighter while scrolling */
+ var wa=document.querySelector('.wa-float'),wt;
+ if(wa)addEventListener('scroll',function(){wa.classList.add('hot');clearTimeout(wt);wt=setTimeout(function(){wa.classList.remove('hot')},700)},{passive:true});
+})();
+</script>
+
+<script>
+/* Scroll effects for the open layouts: staggered reveals + gentle parallax */
+(function(){
+ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var $$=function(q){return Array.prototype.slice.call(document.querySelectorAll(q))};
+ if(reduce||!('IntersectionObserver' in window))return;
+ var wide=innerWidth>700;
+ function tag(sel,fn){$$(sel).forEach(function(el,i){el.classList.add('sr');fn(el,i);io.observe(el)})}
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);el.classList.add('in');
+  setTimeout(function(){el.classList.remove('sr','sr-l','sr-r','sr-s','in');el.style.removeProperty('--d')},2200)})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+ /* Why Us: rows slide in from alternating sides */
+ tag('.lp>.card',function(el,i){el.classList.add(wide?(i%2?'sr-r':'sr-l'):'sr-l');el.style.setProperty('--d',(wide?(i>>1)*.12:0)+'s')});
+ /* Perks: pop in with a stagger */
+ tag('.grid-4>.card',function(el,i){el.classList.add('sr-s');el.style.setProperty('--d',((wide?i%4:i%2)*.09)+'s')});
+ /* Quotes: rise one after another */
+ tag('.t-grid>.quote',function(el,i){el.style.setProperty('--d',(i*.14)+'s')});
+ /* FAQ: slide in from the right */
+ tag('.faq details',function(el,i){el.classList.add('sr-r');el.style.setProperty('--d',(i*.08)+'s')});
+ /* Parallax: FAQ photo drifts, Why Us photos shift inside their circles */
+ var fv=document.querySelector('.faq-vis'),thumbs=$$('.lp .ci img'),tick=false;
+ function par(){tick=false;var vh=innerHeight;
+  if(fv&&wide){var r=fv.getBoundingClientRect();if(r.bottom>0&&r.top<vh)fv.style.translate='0 '+(((r.top+r.height/2-vh/2)/vh)*-34).toFixed(1)+'px'}
+  thumbs.forEach(function(im){var r=im.parentNode.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;
+   im.style.objectPosition='50% '+(50+((r.top+r.height/2-vh/2)/vh)*40).toFixed(1)+'%'})}
+ addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(par)}},{passive:true});par();
+})();
+</script>
+
+<script>
+/* Launchpad rail fills as you scroll down the list (phones) */
+(function(){var g=document.querySelector('.grid.lp');if(!g||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ var t=false;function u(){t=false;if(innerWidth>700)return;var r=g.getBoundingClientRect(),vh=innerHeight,f=(vh*.62-r.top)/r.height;g.style.setProperty('--f',Math.max(0,Math.min(1,f)).toFixed(3))}
+ addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u)}},{passive:true});addEventListener('resize',u);u()})();
 </script>
 </body>
 </html>
