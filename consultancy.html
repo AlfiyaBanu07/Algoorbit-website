@@ -626,14 +626,6 @@ h2 em{font-style:normal;color:var(--ind)}
 
 /* =====================================================================
    ROUND 2 (NEW): creative, unique card containers in every section.
-   Added only; nothing above was removed or edited.
-   1. Services  : inset rounded photo wrapped by a travelling light
-   2. Who we work with : the light also runs around the arch photo
-   3. Process   : each step node gets a dashed orbit ring
-   4. Industries: inset photo + travelling light + corner arrow
-   5. Pricing   : tier colours, glowing corner, travelling light border
-   6. Testimonials: tier colours, resting accent bar, orbiting avatar ring
-   7. FAQ / Why-us / Stats / Hero stats / Modal: accent bars + light rings
    ===================================================================== */
 
 /* ---------- shared travelling light (element injected by script on photo containers) ---------- */
@@ -991,8 +983,8 @@ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 var K=['Website Design','Mobile Apps','SaaS Platforms','E-Commerce','Cloud Solutions','AI Integration','ERP Systems','API Development','UI/UX Design','CRM Platforms'];
 $('#tk').innerHTML=K.concat(K).map(function(t){return'<span>'+t+'</span>'}).join('');
 
-function countUp(el){var t=+el.dataset.count,s=null;(function step(ts){s=s||ts;var k=Math.min((ts-s)/1600,1);el.textContent=Math.floor((1-Math.pow(1-k,3))*t);if(k<1)requestAnimationFrame(step);else el.textContent=t})(performance.now())}
-if(!reduce){var cio=new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){$$('[data-count]',e.target).forEach(countUp);o.unobserve(e.target)}})},{threshold:.35});
+function countUp(el){var id=el._id=(el._id||0)+1,t=+el.dataset.count,s=null;(function step(ts){if(el._id!==id)return;s=s||ts;var k=Math.min((ts-s)/1600,1);el.textContent=Math.floor((1-Math.pow(1-k,3))*t);if(k<1)requestAnimationFrame(step);else el.textContent=t})(performance.now())}
+if(!reduce){var cio=new IntersectionObserver(function(es){es.forEach(function(e){$$('[data-count]',e.target).forEach(function(n){if(e.intersectionRatio>=.35){if(!n._on){n._on=1;countUp(n)}}else if(!e.isIntersecting){n._on=0;n._id=(n._id||0)+1;n.textContent='0'}})})},{threshold:[0,.35]});
  $$('.hero-stats,.stats').forEach(function(el){$$('[data-count]',el).forEach(function(n){n.textContent='0'});cio.observe(el)})}
 
 addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-innerHeight;$('#bar').style.width=(h>0?scrollY/h*100:0)+'%';$('.site-header').classList.toggle('scrolled',scrollY>40)},{passive:true});
@@ -1006,13 +998,15 @@ document.addEventListener('click',function(e){if(!e.target.closest('.has-dd'))$$
 $$('.card').forEach(function(c){var s=document.createElement('i');s.className='sh';s.setAttribute('aria-hidden','true');c.insertBefore(s,c.firstChild)});
 
 // Scroll reveal
-if(!reduce){var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('rv','in');el.style.transitionDelay=''},1500)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
- $$('.head,.card,.arch,.ind,.pc,.quote,.note,.faq details,.stat,.vis').forEach(function(el){var i=[].indexOf.call(el.parentNode.children,el);el.classList.add('rv');el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)})}
-var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('drawn');dio.unobserve(e.target)}})},{threshold:.6});
+if(!reduce){var rio=new IntersectionObserver(function(es){es.forEach(function(e){var el=e.target;
+  if(e.intersectionRatio>=.12){if(el._v)return;el._v=1;if(!el.classList.contains('rv')){el.classList.add('rv');el.style.transitionDelay=el._d}void el.offsetWidth;el.classList.add('in');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('rv','in');el.style.transitionDelay=''},1500)}
+  else if(!e.isIntersecting){el._v=0;clearTimeout(el._t);el.classList.remove('in');el.classList.add('rv');el.style.transitionDelay=el._d}})},{threshold:[0,.12],rootMargin:'0px 0px -40px 0px'});
+ $$('.head,.card,.arch,.ind,.pc,.quote,.note,.faq details,.stat,.vis').forEach(function(el){var i=[].indexOf.call(el.parentNode.children,el);el._d=(i%4)*.1+'s';el.classList.add('rv');el.style.transitionDelay=el._d;rio.observe(el)})}
+var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio>=.6)e.target.classList.add('drawn');else if(!e.isIntersecting)e.target.classList.remove('drawn')})},{threshold:[0,.6]});
 $$('.head').forEach(function(el){dio.observe(el)});
 
 // Process flow draws itself
-(function(){var f=$('#flow');if(!f||reduce)return;f.classList.add('pre');new IntersectionObserver(function(es,o){if(es[0].isIntersecting){f.classList.add('go');o.disconnect()}},{threshold:.25}).observe(f)})();
+(function(){var f=$('#flow');if(!f||reduce)return;f.classList.add('pre');new IntersectionObserver(function(es){var e=es[es.length-1];if(e.intersectionRatio>=.25)f.classList.add('go');else if(!e.isIntersecting)f.classList.remove('go')},{threshold:[0,.25]}).observe(f)})();
 
 // Touch: play the card hover effect when it reaches the middle of the screen
 if(matchMedia('(hover:none)').matches&&!reduce){var tio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
@@ -1049,7 +1043,7 @@ $$('.sec.dk').forEach(function(sec){sec.addEventListener('mousemove',function(e)
   function wrap(t){return t.split(/\s+/).filter(Boolean).map(function(w){return'<span class="w" aria-hidden="true" style="--i:'+(i++)+'"><span>'+esc(w)+'</span></span>'}).join(' ')}
   var out='';[].forEach.call(h.childNodes,function(n){if(n.nodeType===3)out+=wrap(n.textContent)+' ';else if(n.nodeType===1&&n.tagName==='EM')out+='<em>'+wrap(n.textContent)+'</em> '});
   h.setAttribute('aria-label',label);h.innerHTML=out;if(reduce)h.classList.add('wd')});
- if(!reduce){var wio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('wd');wio.unobserve(e.target)}})},{threshold:.4});heads.forEach(function(h){wio.observe(h)})}
+ if(!reduce){var wio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio>=.4)e.target.classList.add('wd');else if(!e.isIntersecting)e.target.classList.remove('wd')})},{threshold:[0,.4]});heads.forEach(function(h){wio.observe(h)})}
 })();
 (function(){var h=$('.hero');if(!h||reduce)return;
  var c=document.createElement('canvas');c.className='pcv';c.setAttribute('aria-hidden','true');h.insertBefore(c,h.firstChild);
@@ -1098,7 +1092,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
  // Who we work with: entrance
  var ar=$('#arches');
  if(ar&&!reduce&&'IntersectionObserver' in window){ar.classList.add('pre');
-  new IntersectionObserver(function(es,o){if(es[0].isIntersecting){ar.classList.add('go');o.disconnect()}},{threshold:.2}).observe(ar)}
+  new IntersectionObserver(function(es){var e=es[es.length-1];if(e.intersectionRatio>=.2)ar.classList.add('go');else if(!e.isIntersecting)ar.classList.remove('go')},{threshold:[0,.2]}).observe(ar)}
 
  // Pricing: spotlight + tilt, hero picture drift
  if(fine&&!reduce){
@@ -1213,9 +1207,9 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
 .fg li a:hover::after{transform:scaleX(1)}
 .fchip{transition:scale .3s var(--ease),box-shadow .3s}
 
-/* 6. Header: smart hide/show */
-header{transition:transform .45s var(--ease),box-shadow .3s}
-header.hide{transform:translateY(-100%)}
+/* 6. Header: stays fixed at the top at all times (smart hide on scroll REMOVED) */
+header{transition:box-shadow .3s}
+header.hide{transform:none}
 
 /* 7. Dark bands and CTA unfold from rounded card to full width */
 .cur{--cr:56px;clip-path:inset(0 calc((1 - var(--p,1)) * 5%) round calc((1 - var(--p,1)) * var(--cr)))}
@@ -1269,18 +1263,19 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
 
  /* image mask reveal */
  if(!R&&hasIO){
-  var mio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){QA('.mk',e.target).forEach(function(i){i.classList.add('on')});mio.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  var mio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio>=.15)QA('.mk',e.target).forEach(function(i){i.classList.add('on')});else if(!e.isIntersecting)QA('.mk',e.target).forEach(function(i){i.classList.remove('on')})})},{threshold:[0,.15],rootMargin:'0px 0px -6% 0px'});
   QA('.vis .frame img,.shot img').forEach(function(im){im.classList.add('mk');mio.observe(im.parentNode)});
 
   /* staggered pop-in groups (skips hero and phone duplicates) */
   var groups=['.trio div','.cols li','.trust span','.fg>div','.fb','.social a','.hov>.wn'];
-  var sio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;
-   el.classList.add('sx-in');sio.unobserve(el);
-   el.addEventListener('animationend',function(){el.classList.remove('sx','sx-in');el.style.removeProperty('--k')},{once:true})})},{threshold:.2,rootMargin:'0px 0px -30px 0px'});
+  var sio=new IntersectionObserver(function(es){es.forEach(function(e){var el=e.target;
+   if(e.intersectionRatio>=.2){if(el._v)return;el._v=1;if(!el.classList.contains('sx')){el.classList.add('sx');el.style.setProperty('--k',el._k)}void el.offsetWidth;el.classList.add('sx-in');
+    el.addEventListener('animationend',function(){el.classList.remove('sx','sx-in');el.style.removeProperty('--k')},{once:true})}
+   else if(!e.isIntersecting){el._v=0;el.classList.remove('sx-in');el.classList.add('sx');el.style.setProperty('--k',el._k)}})},{threshold:[0,.2],rootMargin:'0px 0px -30px 0px'});
   groups.forEach(function(g){QA(g).forEach(function(el){
    if(el.closest('.hero')||el.closest('.dup'))return;
    var i=Array.prototype.indexOf.call(el.parentNode.children,el);
-   el.classList.add('sx');el.style.setProperty('--k',i%6);sio.observe(el)})});
+   el._k=i%6;el.classList.add('sx');el.style.setProperty('--k',i%6);sio.observe(el)})});
  }
 
  /* back to top */
@@ -1289,23 +1284,23 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
  document.body.appendChild(tt);
  tt.addEventListener('click',function(){scrollTo({top:0,behavior:R?'auto':'smooth'})});
 
- /* scroll frame: smart header, progress ring, curtain, hero image zoom, WhatsApp boost
-    (the hero text fade-out on scroll was removed, so the hero no longer turns white) */
- var hdr=Q('header'),nav=Q('#nav'),prg=Q('.prg',tt),hero=Q('.hero'),hb=Q('.hero-bg'),wa=Q('.wa');
+ /* scroll frame: progress ring, curtain, hero fade/zoom, WhatsApp boost.
+    The header is intentionally NOT hidden on scroll any more: it stays visible at all times. */
+ var hdr=Q('header'),nav=Q('#nav'),prg=Q('.prg',tt),hero=Q('.hero'),hc=Q('.hero-copy'),hb=Q('.hero-bg'),wa=Q('.wa');
  var cur=QA('.sec.dk,.cta');if(!R)cur.forEach(function(s){s.classList.add('cur')});
  var last=scrollY,hidden=false,run=false,wt;
  function ease(t){return t*t*(3-2*t)}function cl(v){return Math.max(0,Math.min(1,v))}
  function frame(){
   run=false;var sy=scrollY,h=innerHeight,dh=document.documentElement.scrollHeight-h,end=sy>=dh-4;
   if(!R&&hdr){var d=sy-last;if(Math.abs(d)>6){
-   var busy=(nav&&nav.classList.contains('open'))||Q('.dd.open')||hdr.matches(':focus-within');
-   if(d>0&&sy>240&&!busy)hidden=true;else if(d<0||sy<=120)hidden=false;
+   hidden=false;
    hdr.classList.toggle('hide',hidden);last=sy}}
   tt.classList.toggle('show',sy>h*.8);
   prg.style.strokeDashoffset=(138.23*(1-(dh>0?sy/dh:0))).toFixed(2);
   if(!R)cur.forEach(function(s){var r=s.getBoundingClientRect(),p=end?1:ease(cl((h-r.top)/(h*.38)));
    s.style.setProperty('--p',p.toFixed(3));s.classList.toggle('full',p>=.999)});
-  if(!R&&hero&&sy<h*1.4){
+  if(!R&&hero&&sy<h*1.4){var k=Math.min(sy/(h*.8),1);
+   if(hc)hc.style.opacity=(1-k*.9).toFixed(3);
    if(hb&&innerWidth>1000)hb.style.scale=(1+Math.min(sy/h,1)*.08).toFixed(4)}
  }
  function kick(){if(!run){run=true;requestAnimationFrame(frame)}}
@@ -1314,5 +1309,19 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
 })();
 </script>
 
+<style id="repeat-anim">
+/* Hero entrance animations restart every time the hero comes back into view */
+.hero.noanim h1,.hero.noanim .hero-copy>:not(h1),.hero.noanim .chips li,.hero.noanim .hero-media .hero-bg{animation:none!important}
+</style>
+<script id="repeat-anim-js">
+(function(){
+ var h=document.querySelector('.hero');
+ if(!h||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ new IntersectionObserver(function(es){var e=es[es.length-1];
+  if(!e.isIntersecting)h.classList.add('noanim');
+  else if(e.intersectionRatio>=.3&&h.classList.contains('noanim')){void h.offsetWidth;h.classList.remove('noanim')}
+ },{threshold:[0,.3]}).observe(h);
+})();
+</script>
 </body>
 </html>

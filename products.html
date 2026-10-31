@@ -1025,7 +1025,7 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
 <a href="https://wa.me/919482119446" class="wa" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"><svg class="ui"><use href="#i-wa"/></svg></a>
 
 <script>
-/* ===== 1. Header, brand marquee, count-up ===== */
+/* ===== 1. Header, brand marquee, count-up (count-up now replays every time it enters the screen) ===== */
 var mb=document.getElementById('mb'),nav=document.getElementById('nav'),db=document.getElementById('ddb'),dm=document.getElementById('ddm');
 mb.onclick=function(){var o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o)};
 db.onclick=function(e){e.stopPropagation();var o=dm.classList.toggle('open');db.setAttribute('aria-expanded',o);db.parentElement.classList.toggle('open',o)};
@@ -1038,10 +1038,12 @@ document.onclick=function(){dm.classList.remove('open');db.parentElement.classLi
   b+='<span class="bn">'+N+'</span><span class="kw">'+k+'</span>'});
  var tk=document.getElementById('tk');if(tk)tk.innerHTML=a+b;
  if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver' in window))return;
- function run(n){var s=null;(function step(ts){s=s||ts;var k=Math.min((ts-s)/1500,1),v=n._t*(1-Math.pow(1-k,3));
+ function run(n){var id=n._id=(n._id||0)+1,s=null;(function step(ts){if(n._id!==id)return;s=s||ts;var k=Math.min((ts-s)/1500,1),v=n._t*(1-Math.pow(1-k,3));
   n.nodeValue=(n._d?v.toFixed(n._d):Math.floor(v).toLocaleString('en-IN'))+n._s;
   if(k<1)requestAnimationFrame(step);else n.nodeValue=n._o})(performance.now())}
- var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){io.unobserve(e.target);run(e.target._n)}})},{threshold:.6});
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){var n=e.target._n;
+  if(e.intersectionRatio>=.6){if(!n._on){n._on=1;run(n)}}
+  else if(!e.isIntersecting){n._on=0;n._id=(n._id||0)+1;n.nodeValue='0'+n._s}})},{threshold:[0,.6]});
  [].forEach.call(document.querySelectorAll('.stats strong,.met strong'),function(el){
   var n=el.firstChild;if(!n||n.nodeType!==3)return;
   var o=n.nodeValue.trim(),m=o.match(/^(\d+(?:\.\d+)?)(.*)$/);if(!m)return;
@@ -1067,31 +1069,35 @@ QA('.sec.dk').forEach(function(s){s.addEventListener('mousemove',function(e){var
 /* card hover: cursor position drives the ink bloom */
 QA('.card,.step,.t,.feat li').forEach(function(c){c.classList.add('hov');function p(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}c.addEventListener('mouseenter',p);c.addEventListener('mousemove',p)});
 
-/* heading underline draw */
-var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('drawn');dio.unobserve(e.target)}})},{threshold:.6});
+/* heading underline draw (replays every time the heading re-enters the screen) */
+var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio>=.6)e.target.classList.add('drawn');else if(!e.isIntersecting)e.target.classList.remove('drawn')})},{threshold:[0,.6]});
 QA('.head').forEach(function(el){dio.observe(el)});
 
-/* scroll reveal: directional + staggered (images slide in from the side, cards rise and scale in) */
-if(!reduce){var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('reveal','in');el.style.transitionDelay=''},1700)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+/* scroll reveal: directional + staggered. It now REPLAYS on every scroll: each block resets when it leaves the screen
+   and animates in again when it comes back (scrolling down or up). After each reveal finishes, the reveal class is
+   removed again so the normal hover effects keep working. */
+if(!reduce){var rio=new IntersectionObserver(function(es){es.forEach(function(e){var el=e.target;
+ if(e.intersectionRatio>=.1){if(el._v)return;el._v=1;if(!el.classList.contains('reveal')){el.classList.add('reveal');el.style.transitionDelay=el._d}void el.offsetWidth;el.classList.add('in');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('reveal','in');el.style.transitionDelay=''},1700)}
+ else if(!e.isIntersecting){el._v=0;clearTimeout(el._t);el.classList.remove('in');el.classList.add('reveal');el.style.transitionDelay=el._d}})},{threshold:[0,.1],rootMargin:'0px 0px -40px 0px'});
 QA('.head,.hov,.met,.cols>div,.trio,.shot,.vis .frame').forEach(function(el){
  var i=Array.prototype.indexOf.call(el.parentNode.children,el),v='';
  if(el.matches('.vis .frame'))v=el.closest('.pgrid.rev')?'rl':'rr';
  else if(el.matches('.cols>div'))v=i%2?'rr':'rl';
  else if(el.matches('.g3>.hov,.g4>.hov'))v='rz';
  el.classList.add('reveal');if(v)el.classList.add(v);
- el.style.transitionDelay=(i%4)*.12+'s';rio.observe(el)})}
+ el._d=(i%4)*.12+'s';el.style.transitionDelay=el._d;rio.observe(el)})}
 
 /* soft glow when blocks scroll into view */
 (function(){var g=new IntersectionObserver(function(es){es.forEach(function(e){e.target.style.animation=e.isIntersecting?'glowPulse 2.6s ease-in-out 1':''})},{threshold:.55});QA('.met').forEach(function(el){g.observe(el)})})();
 var st=document.createElement('style');st.textContent='@keyframes glowPulse{0%,100%{box-shadow:0 24px 60px rgba(14,15,42,.3)}50%{box-shadow:0 24px 60px rgba(14,15,42,.3),0 0 26px 2px rgba(143,132,242,.4)}}';document.head.appendChild(st);
 
-/* headline words rise one by one */
+/* headline words rise one by one (replays every time) */
 (function(){function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 var heads=QA('.head h2,.pgrid h2,.cta h2');
 heads.forEach(function(h){var i=0,label=h.textContent.replace(/\s+/g,' ').trim();
  h.innerHTML=label.split(' ').filter(Boolean).map(function(w){return'<span class="w" aria-hidden="true" style="--i:'+(i++)+'"><span>'+esc(w)+'</span></span>'}).join(' ');
  h.setAttribute('aria-label',label);if(reduce)h.classList.add('wd')});
-if(!reduce){var w=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('wd');w.unobserve(e.target)}})},{threshold:.4});heads.forEach(function(h){w.observe(h)})}})();
+if(!reduce){var w=new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio>=.4)e.target.classList.add('wd');else if(!e.isIntersecting)e.target.classList.remove('wd')})},{threshold:[0,.4]});heads.forEach(function(h){w.observe(h)})}})();
 
 /* hero particle network */
 (function(){var h=Q('.hero');if(!h||reduce)return;
@@ -1135,8 +1141,8 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
    so that cloned cards (used by the testimonial marquee) carry the same
    top bar and rotating border as the originals.
    Adds: animated card bars + rotating borders + number badges, floating chips
-   on product images, hero checklist, soft glow on scroll, phone rise-in,
-   and a sticky "Schedule a Demo" bar on phones.
+   on product images, hero checklist, soft glow on scroll, phone rise-in
+   (now replays on every scroll), and a sticky "Schedule a Demo" bar on phones.
    ===================================================================== */
 (function(){
  var Q=function(s,r){return(r||document).querySelector(s)},QA=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
@@ -1177,9 +1183,9 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
   var gio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('glow',e.isIntersecting)})},{threshold:.55});
   QA('.card,.step,.t').forEach(function(el){if(!el.classList.contains('dup'))gio.observe(el)});
 
-  /* phones: cards rise in one after another as you scroll down the page */
+  /* phones: cards rise in one after another as you scroll, and replay every time you scroll up or down */
   document.body.classList.add('mrx');
-  var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('mr');rio.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+  var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio>=.12)e.target.classList.add('mr');else if(!e.isIntersecting)e.target.classList.remove('mr')})},{threshold:[0,.12],rootMargin:'0px 0px -30px 0px'});
   QA('.g3>*,.g4>*').forEach(function(el){if(!el.classList.contains('dup'))rio.observe(el)});
  }
 
@@ -1456,20 +1462,21 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
  /* card light-sweep element */
  QA('.card,.step,.t,.feat li').forEach(function(c){if(!c.querySelector(':scope>i.cshine'))c.insertAdjacentHTML('beforeend','<i class="cshine" aria-hidden="true"></i>')});
 
- /* image mask reveal */
+ /* image mask reveal (replays every time the image re-enters the screen) */
  if(!R&&hasIO){
-  var mio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){QA('.mk',e.target).forEach(function(i){i.classList.add('on')});mio.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  var mio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio>=.15)QA('.mk',e.target).forEach(function(i){i.classList.add('on')});else if(!e.isIntersecting)QA('.mk',e.target).forEach(function(i){i.classList.remove('on')})})},{threshold:[0,.15],rootMargin:'0px 0px -6% 0px'});
   QA('.vis .frame img,.shot img').forEach(function(im){im.classList.add('mk');mio.observe(im.parentNode)});
 
-  /* staggered pop-in groups (skips hero and phone duplicates) */
+  /* staggered pop-in groups (skips hero and phone duplicates); replays on every scroll in/out */
   var groups=['.trio div','.cols li','.trust span','.fg>div','.fb','.social a','.hov>.wn'];
-  var sio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;
-   el.classList.add('sx-in');sio.unobserve(el);
-   el.addEventListener('animationend',function(){el.classList.remove('sx','sx-in');el.style.removeProperty('--k')},{once:true})})},{threshold:.2,rootMargin:'0px 0px -30px 0px'});
+  var sio=new IntersectionObserver(function(es){es.forEach(function(e){var el=e.target;
+   if(e.intersectionRatio>=.2){if(el._v)return;el._v=1;if(!el.classList.contains('sx')){el.classList.add('sx');el.style.setProperty('--k',el._k)}void el.offsetWidth;el.classList.add('sx-in');
+    el.addEventListener('animationend',function(){el.classList.remove('sx','sx-in');el.style.removeProperty('--k')},{once:true})}
+   else if(!e.isIntersecting){el._v=0;el.classList.remove('sx-in');el.classList.add('sx');el.style.setProperty('--k',el._k)}})},{threshold:[0,.2],rootMargin:'0px 0px -30px 0px'});
   groups.forEach(function(g){QA(g).forEach(function(el){
    if(el.closest('.hero')||el.closest('.dup'))return;
    var i=Array.prototype.indexOf.call(el.parentNode.children,el);
-   el.classList.add('sx');el.style.setProperty('--k',i%6);sio.observe(el)})});
+   el._k=i%6;el.classList.add('sx');el.style.setProperty('--k',i%6);sio.observe(el)})});
  }
 
  /* back to top */
@@ -1487,7 +1494,7 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
   run=false;var sy=scrollY,h=innerHeight,dh=document.documentElement.scrollHeight-h,end=sy>=dh-4;
   if(!R&&hdr){var d=sy-last;if(Math.abs(d)>6){
    var busy=(nav&&nav.classList.contains('open'))||Q('.dd.open')||hdr.matches(':focus-within');
-   if(d>0&&sy>240&&!busy)hidden=true;else if(d<0||sy<=120)hidden=false;
+   hidden=false; /* header always visible: no hide on scroll */
    hdr.classList.toggle('hide',hidden);last=sy}}
   tt.classList.toggle('show',sy>h*.8);
   prg.style.strokeDashoffset=(138.23*(1-(dh>0?sy/dh:0))).toFixed(2);
@@ -1556,7 +1563,29 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
 .hov:hover,.hov.tch{box-shadow:0 18px 40px rgba(69,56,196,.28)}
 .btn:hover{transform:translateY(-1px)}
 .reveal{transform:translateY(24px)}
+
+/* ---- 4. Header stays fixed: never slides away on scroll (mobile + desktop) ---- */
+header,header.hide,header.scrolled{position:sticky;top:0;transform:none!important}
 </style>
+
+<style id="repeat-anim">
+/* =====================================================================
+   REPEAT ANIMATIONS: the hero entrance animations restart every time the
+   hero comes back into view (scrolling up and down). Additive only.
+   ===================================================================== */
+.hero.noanim h1,.hero.noanim .hero-copy>:not(h1),.hero.noanim .chips li,.hero.noanim .checklist li,.hero.noanim .stats div,
+.hero.noanim .hero-bg,.hero.noanim .fchip.hc1,.hero.noanim .fchip.hc2{animation:none!important}
+</style>
+<script id="repeat-anim-js">
+(function(){
+ var h=document.querySelector('.hero');
+ if(!h||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ new IntersectionObserver(function(es){var e=es[es.length-1];
+  if(!e.isIntersecting)h.classList.add('noanim');
+  else if(e.intersectionRatio>=.3&&h.classList.contains('noanim')){void h.offsetWidth;h.classList.remove('noanim')}
+ },{threshold:[0,.3]}).observe(h);
+})();
+</script>
 
 </body>
 </html>
