@@ -17,6 +17,8 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%230e0f2a'/%3E%3Cline x1='13.5' y1='28' x2='21.5' y2='12.5' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='27.5' r='5' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.algoorbit.in" crossorigin>
+<link rel="preload" as="image" href="assets/images/about.png" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
@@ -1749,7 +1751,7 @@ h2,.head h2{font-size:clamp(1.65rem,1.2rem + 1.7vw,2.4rem);line-height:1.2;lette
  .rail a:hover::after,.rail a:focus-visible::after{opacity:1;transform:translate(0,-50%)}
 }
 /* more motion: image mask reveal, staggered lists, word-by-word text scrub */
-.mk{clip-path:inset(0 0 100% 0);transition:clip-path .9s cubic-bezier(.22,1,.36,1)}
+.mk{clip-path:inset(0 0 100% 0);transition:clip-path .6s cubic-bezier(.22,1,.36,1)}
 .mk.on{clip-path:inset(0 0 0 0)}
 .lst>li{opacity:0;transform:translateX(-16px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
 .lst.lv>li{opacity:1;transform:none;transition-delay:calc(var(--k)*90ms)}
@@ -1978,12 +1980,12 @@ body:has(.card:hover,.tl-card:hover,.minis div:hover,.steps5 li:hover) .cglow{op
   </div>
   <div class="sgrid">
    <div>
-    <figure><img width="800" height="450" src="assets/images/1.png" alt="Team" loading="lazy"></figure>
-    <figure><img width="800" height="450" src="assets/images/2.png" alt="Innovation" loading="lazy"></figure>
+    <figure><img width="800" height="450" src="assets/images/1.png" alt="Team" decoding="async"></figure>
+    <figure><img width="800" height="450" src="assets/images/2.png" alt="Innovation" decoding="async"></figure>
    </div>
    <div>
-    <figure><img width="800" height="450" src="assets/images/3.png" alt="Collaboration" loading="lazy"></figure>
-    <figure><img width="800" height="450" src="assets/images/4.png" alt="Technology" loading="lazy"></figure>
+    <figure><img width="800" height="450" src="assets/images/3.png" alt="Collaboration" decoding="async"></figure>
+    <figure><img width="800" height="450" src="assets/images/4.png" alt="Technology" decoding="async"></figure>
    </div>
   </div>
  </div>
@@ -1994,7 +1996,7 @@ body:has(.card:hover,.tl-card:hover,.minis div:hover,.steps5 li:hover) .cglow{op
  <div class="wrap">
   <div class="two">
    <div class="vis l">
-    <div class="frame"><div class="fin"><img width="800" height="450" src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="ALGO ORBIT campus programs" loading="lazy"></div></div>
+    <div class="frame"><div class="fin"><img width="800" height="450" src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="ALGO ORBIT campus programs" decoding="async"></div></div>
     <span class="fchip c1"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span>Project-first model</span>
     <span class="fchip c2"><span class="ic"><svg class="ui"><use href="#i-users"/></svg></span>Hands-on engineering</span>
    </div>
@@ -2014,12 +2016,12 @@ body:has(.card:hover,.tl-card:hover,.minis div:hover,.steps5 li:hover) .cglow{op
  <div class="wrap">
   <div class="head c"><span class="eyebrow">Purpose &amp; Direction</span><h2>Our mission &amp; vision</h2></div>
   <div class="grid g2">
-   <div class="card"><img width="800" height="450" src="assets/images/mission.png" alt="Team working towards a shared mission" loading="lazy"><div class="cb">
+   <div class="card"><img width="800" height="450" src="assets/images/mission.png" alt="Team working towards a shared mission" decoding="async"><div class="cb">
     <div class="mv-top"><span class="ic"><svg class="ui"><use href="#i-target"/></svg></span><h3>Mission</h3></div>
     <p>To help organizations grow through reliable technology, built in close partnership with the people who use it.</p>
     <p class="in-practice"><b>In practice:</b> empower organizations by solving practical problems through structured engineering, while enabling learners to build real-world, industry-ready capabilities.</p>
    </div></div>
-   <div class="card"><img width="800" height="450" src="assets/images/vision.png" alt="Modern office representing our vision" loading="lazy"><div class="cb">
+   <div class="card"><img width="800" height="450" src="assets/images/vision.png" alt="Modern office representing our vision" decoding="async"><div class="cb">
     <div class="mv-top"><span class="ic"><svg class="ui"><use href="#i-eye"/></svg></span><h3>Vision</h3></div>
     <p>To be a technology partner organizations trust for dependable delivery, honest communication and measurable results.</p>
     <p class="in-practice"><b>In practice:</b> a premier partner for dependable digital transformation and applied, outcome-based technical training.</p>
@@ -2037,10 +2039,10 @@ body:has(.card:hover,.tl-card:hover,.minis div:hover,.steps5 li:hover) .cglow{op
  <div class="wrap">
   <div class="head c"><h2>What we do</h2><p>Delivering end-to-end execution across product engineering and practical training.</p></div>
   <div class="grid g4">
-   <div class="card"><span class="wn">01</span><img width="800" height="450" src="assets/images/prod.png" alt="Software engineering team" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>Software &amp; Product Engineering</h3><p>High-performance web applications, responsive cross-platform apps, and custom operational software.</p><a href="products.html" class="dbtn">Learn more</a></div></div>
-   <div class="card"><span class="wn">02</span><img width="800" height="450" src="assets/images/it.png" alt="Technology consulting session" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-compass"/></svg></span><h3>Technology Consulting</h3><p>System architecture design, technology stack evaluation, and modernization roadmaps.</p><a href="consultancy.html" class="dbtn">Learn more</a></div></div>
-   <div class="card"><span class="wn">03</span><img width="800" height="450" src="assets/images/insti.png" alt="Institutional training workshop" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-board"/></svg></span><h3>Institutional Training</h3><p>Custom placement training, value-added modules, and faculty development programs.</p><a href="institutions.html" class="dbtn">Learn more</a></div></div>
-   <div class="card"><span class="wn">04</span><img width="800" height="450" src="assets/images/learn.png" alt="Students building projects" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><h3>Student Skill Building</h3><p>Practical, mentor-led bootcamps focusing on project implementation and modern toolsets.</p><a href="learners.html" class="dbtn">Learn more</a></div></div>
+   <div class="card"><span class="wn">01</span><img width="800" height="450" src="assets/images/prod.png" alt="Software engineering team" decoding="async"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>Software &amp; Product Engineering</h3><p>High-performance web applications, responsive cross-platform apps, and custom operational software.</p><a href="products.html" class="dbtn">Learn more</a></div></div>
+   <div class="card"><span class="wn">02</span><img width="800" height="450" src="assets/images/it.png" alt="Technology consulting session" decoding="async"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-compass"/></svg></span><h3>Technology Consulting</h3><p>System architecture design, technology stack evaluation, and modernization roadmaps.</p><a href="consultancy.html" class="dbtn">Learn more</a></div></div>
+   <div class="card"><span class="wn">03</span><img width="800" height="450" src="assets/images/insti.png" alt="Institutional training workshop" decoding="async"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-board"/></svg></span><h3>Institutional Training</h3><p>Custom placement training, value-added modules, and faculty development programs.</p><a href="institutions.html" class="dbtn">Learn more</a></div></div>
+   <div class="card"><span class="wn">04</span><img width="800" height="450" src="assets/images/learn.png" alt="Students building projects" decoding="async"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><h3>Student Skill Building</h3><p>Practical, mentor-led bootcamps focusing on project implementation and modern toolsets.</p><a href="learners.html" class="dbtn">Learn more</a></div></div>
   </div>
  </div>
 </section>
@@ -2051,9 +2053,9 @@ body:has(.card:hover,.tl-card:hover,.minis div:hover,.steps5 li:hover) .cglow{op
   <div class="head c"><span class="eyebrow">Our Journey</span><h2>How ALGO ORBIT has grown</h2></div>
   <div class="tl" id="tl">
    <div class="tl-line" id="tlLine"></div>
-   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img width="800" height="450" class="tl-img" src="assets/images/enter.png" alt="Founding team at work" loading="lazy"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-rocket"/></svg></span><span class="tl-n">01</span><span class="tl-fy">FY-2023</span></div><h3>Foundation</h3><p>ALGO ORBIT was founded to change how businesses approach technology. We formed our first partnerships and built our core team.</p></div></div></div>
-   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img width="800" height="450" class="tl-img" src="assets/images/prod.png" alt="Team planning product launches" loading="lazy"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><span class="tl-n">02</span><span class="tl-fy">FY-2024</span></div><h3>Product Launches</h3><p>Launched flagship products <b>KX26 NetaWatch</b> and <b>Restaurant POS</b>. Grew to 50+ enterprise clients across multiple sectors.</p></div></div></div>
-   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img width="800" height="450" class="tl-img" src="assets/images/bus.png" alt="Growing organisation and office" loading="lazy"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-award"/></svg></span><span class="tl-n">03</span><span class="tl-fy">FY-2025</span></div><h3>Scale and Training</h3><p>Reached 120+ project deliveries with 99% client satisfaction, and launched specialised enterprise training programs.</p></div></div></div>
+   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img width="800" height="450" class="tl-img" src="assets/images/enter.png" alt="Founding team at work" decoding="async"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-rocket"/></svg></span><span class="tl-n">01</span><span class="tl-fy">FY-2023</span></div><h3>Foundation</h3><p>ALGO ORBIT was founded to change how businesses approach technology. We formed our first partnerships and built our core team.</p></div></div></div>
+   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img width="800" height="450" class="tl-img" src="assets/images/prod.png" alt="Team planning product launches" decoding="async"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><span class="tl-n">02</span><span class="tl-fy">FY-2024</span></div><h3>Product Launches</h3><p>Launched flagship products <b>KX26 NetaWatch</b> and <b>Restaurant POS</b>. Grew to 50+ enterprise clients across multiple sectors.</p></div></div></div>
+   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img width="800" height="450" class="tl-img" src="assets/images/bus.png" alt="Growing organisation and office" decoding="async"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-award"/></svg></span><span class="tl-n">03</span><span class="tl-fy">FY-2025</span></div><h3>Scale and Training</h3><p>Reached 120+ project deliveries with 99% client satisfaction, and launched specialised enterprise training programs.</p></div></div></div>
   </div>
  </div>
 </section>
@@ -2064,7 +2066,7 @@ body:has(.card:hover,.tl-card:hover,.minis div:hover,.steps5 li:hover) .cglow{op
   <div class="head c"><span class="eyebrow">Leadership</span><h2>Meet the founder</h2><p>The engineering depth and business sense behind ALGO ORBIT.</p></div>
   <div class="founder">
    <div class="f-photo">
-    <div class="frame"><div class="fin"><img width="800" height="450" src="https://www.algoorbit.in/static/images/nishan-n3.png" alt="Nishan H Kamath, Founder and CEO of ALGO ORBIT" loading="lazy"></div></div>
+    <div class="frame"><div class="fin"><img width="800" height="450" src="https://www.algoorbit.in/static/images/nishan-n3.png" alt="Nishan H Kamath, Founder and CEO of ALGO ORBIT" decoding="async"></div></div>
     <div class="f-tag"><i></i><strong>Nishan H Kamath</strong><small>&middot; Founder &amp; CEO</small></div>
    </div>
    <div>
@@ -2102,21 +2104,21 @@ body:has(.card:hover,.tl-card:hover,.minis div:hover,.steps5 li:hover) .cglow{op
   <div class="orbs" id="orbs">
    <svg class="orbs-line" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="obg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#5b4be8"/><stop offset=".5" stop-color="#2a8fcf"/><stop offset="1" stop-color="#7a6df0"/></linearGradient></defs><path d="M149 159 C 300 159, 360 215, 500 215 S 700 159, 851 159"/></svg>
    <article class="ob" style="--k:0;--a:#8f84f2;--b:#5b4be8;--glow:91,75,232">
-    <a class="ob-pic" href="services.html" aria-label="Enterprises: view services"><span class="ob-ring" aria-hidden="true"></span><span class="ob-img"><img width="800" height="450" src="assets/images/bus.png" alt="Modern enterprise office" loading="lazy"></span><span class="ob-n" aria-hidden="true">01</span></a>
+    <a class="ob-pic" href="services.html" aria-label="Enterprises: view services"><span class="ob-ring" aria-hidden="true"></span><span class="ob-img"><img width="800" height="450" src="assets/images/bus.png" alt="Modern enterprise office" decoding="async"></span><span class="ob-n" aria-hidden="true">01</span></a>
     <span class="ob-tag">For businesses</span>
     <h3>Enterprises</h3>
     <p>Custom software, cloud integration and architecture consulting, delivered against clear timelines.</p>
     <a class="ob-link" href="services.html">View services</a>
    </article>
    <article class="ob" style="--k:1;--a:#82c8eb;--b:#2a8fcf;--glow:47,167,224">
-    <a class="ob-pic" href="institutions.html" aria-label="Colleges and institutions: view programs"><span class="ob-ring" aria-hidden="true"></span><span class="ob-img"><img width="800" height="450" src="assets/images/insti.png" alt="College team collaborating" loading="lazy"></span><span class="ob-n" aria-hidden="true">02</span></a>
+    <a class="ob-pic" href="institutions.html" aria-label="Colleges and institutions: view programs"><span class="ob-ring" aria-hidden="true"></span><span class="ob-img"><img width="800" height="450" src="assets/images/insti.png" alt="College team collaborating" decoding="async"></span><span class="ob-n" aria-hidden="true">02</span></a>
     <span class="ob-tag">For institutions</span>
     <h3>Colleges &amp; Institutions</h3>
     <p>Placement training, value-added courses and faculty development aligned with technical syllabi.</p>
     <a class="ob-link" href="institutions.html">View programs</a>
    </article>
    <article class="ob" style="--k:2;--a:#a9a3ee;--b:#7a6df0;--glow:122,109,240">
-    <a class="ob-pic" href="learners.html" aria-label="Students and learners: explore tracks"><span class="ob-ring" aria-hidden="true"></span><span class="ob-img"><img width="800" height="450" src="assets/images/learn.png" alt="Students working on laptops" loading="lazy"></span><span class="ob-n" aria-hidden="true">03</span></a>
+    <a class="ob-pic" href="learners.html" aria-label="Students and learners: explore tracks"><span class="ob-ring" aria-hidden="true"></span><span class="ob-img"><img width="800" height="450" src="assets/images/learn.png" alt="Students working on laptops" decoding="async"></span><span class="ob-n" aria-hidden="true">03</span></a>
     <span class="ob-tag">For learners</span>
     <h3>Students &amp; Learners</h3>
     <p>Hands-on tracks in Placement Preparation, Full-Stack and Mobile App Development.</p>
@@ -2148,7 +2150,7 @@ body:has(.card:hover,.tl-card:hover,.minis div:hover,.steps5 li:hover) .cglow{op
   <div class="head c"><span class="eyebrow">FAQ</span><h2>Frequently asked questions</h2><p>Quick answers about ALGO ORBIT and how we work.</p></div>
   <div class="faq-wrap">
    <div class="vis l">
-    <div class="frame"><div class="fin"><img width="800" height="450" src="assets/images/index.png" alt="ALGO ORBIT team ready to answer your questions" loading="lazy"></div></div>
+    <div class="frame"><div class="fin"><img width="800" height="450" src="assets/images/index.png" alt="ALGO ORBIT team ready to answer your questions" decoding="async"></div></div>
     <span class="fchip c1"><span class="ic"><svg class="ui"><use href="#i-help"/></svg></span>Quick answers</span>
     <span class="fchip c2"><span class="ic"><svg class="ui"><use href="#i-mail"/></svg></span>connect@algoorbit.in</span>
    </div>
@@ -2468,7 +2470,7 @@ $$('.sec.dk').forEach(function(sec){sec.addEventListener('mousemove',function(e)
  // image mask reveal + staggered lists + text scrub setup
  var scr=[];
  if(!R&&'IntersectionObserver' in window){
-  var mio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){$$('.mk',e.target).forEach(function(im){im.classList.add('on')});mio.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  var mio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){$$('.mk',e.target).forEach(function(im){im.classList.add('on')});mio.unobserve(e.target)}})},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
   $$('.fin img,.f-photo img,.sgrid img,.tl-img,.ob-img img').forEach(function(im){im.classList.add('mk');mio.observe(im.parentNode)});
   var lio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var l=e.target;l.classList.add('lv');lio.unobserve(l);setTimeout(function(){l.classList.remove('lst','lv');$$('li',l).forEach(function(li){li.style.removeProperty('--k')})},1800)}})},{threshold:.3});
   $$('.checks,.fgrid ul').forEach(function(l){$$(':scope>li',l).forEach(function(li,i){li.style.setProperty('--k',i)});l.classList.add('lst');lio.observe(l)});
@@ -2579,6 +2581,115 @@ $$('.sec.dk').forEach(function(sec){sec.addEventListener('mousemove',function(e)
  Array.prototype.forEach.call(document.querySelectorAll('.card,.tl-card,.minis div,.steps5 li'),function(c){
   var s=document.createElement('i');s.className='cshine';s.setAttribute('aria-hidden','true');c.appendChild(s);
   });
+})();
+</script>
+<script id="scroll-replay-all">
+/* =====================================================================
+   SCROLL ANIMATIONS THAT KEEP WORKING (no more play-once)
+   Everything that used to animate only the first time it appeared now
+   replays whenever it comes back into view, scrolling down or up:
+   reveals, heading words + underline, staggered pop-ins, image masks,
+   route/arch/orb/step reveals and number count-ups.
+   Cards also keep drifting at different speeds while you scroll
+   (same effect as the Careers page).
+   ===================================================================== */
+(function(){
+ if((typeof reduce!=='undefined'&&reduce)||!('IntersectionObserver' in window))return;
+ var QA=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+ try{if(typeof rio!=='undefined'&&rio&&rio.disconnect)rio.disconnect()}catch(e){}
+
+ /* generic watcher: on() when visible enough, off() once fully out of view */
+ function watch(els,th,on,off){
+  if(!els.length)return;
+  var o=new IntersectionObserver(function(es){es.forEach(function(e){
+   if(e.intersectionRatio>=th||(e.isIntersecting&&e.intersectionRect.height>=innerHeight*.3))on(e.target);
+   else if(!e.isIntersecting)off(e.target);
+  })},{threshold:[0,th]});
+  els.forEach(function(el){o.observe(el)});
+ }
+
+ /* ---- 1. scroll reveals: hide again when out of view, play again on return ---- */
+ var rv=QA('.rv');
+ rv.forEach(function(el){el._dl=el.style.transitionDelay||'';el.style.transitionDelay='';el._on=false;el.classList.add('rv');el.classList.remove('in')});
+ if(rv.length){
+  var TH=[0,.03,.06,.09,.12,.2,.3,.4,.5];
+  var ro=new IntersectionObserver(function(es){es.forEach(function(e){
+   var el=e.target,enough=e.intersectionRatio>=.12||(e.isIntersecting&&e.intersectionRect.height>=innerHeight*.25);
+   if(!el._on&&enough){
+    el._on=true;clearTimeout(el._t);
+    el.classList.add('rv');el.style.transitionDelay=el._dl;el.classList.add('in');
+    /* after the entrance, free the element so hover effects work */
+    el._t=setTimeout(function(){el.classList.remove('rv','in');el.style.transitionDelay=''},1500);
+   }else if(el._on&&!e.isIntersecting){
+    el._on=false;clearTimeout(el._t);el.style.transitionDelay='';
+    el.classList.add('rv');el.classList.remove('in');
+   }
+  })},{threshold:TH,rootMargin:'0px 0px -40px 0px'});
+  rv.forEach(function(el){ro.observe(el)});
+ }
+
+ /* ---- 2. heading underline + words rise: replay ---- */
+ watch(QA('.head,.section-head'),.5,function(el){el.classList.add('drawn')},function(el){el.classList.remove('drawn')});
+ var hs=[];QA('.w').forEach(function(w){var h=w.parentNode;if(hs.indexOf(h)<0)hs.push(h)});
+ watch(hs,.4,function(el){el.classList.add('wd')},function(el){el.classList.remove('wd')});
+
+ /* ---- 3. staggered pop-ins (chips, tiles, list rows...) ---- */
+ QA('.sx').forEach(function(el){
+  el._sxc=['sx','sx-l','sx-r'].filter(function(c){return el.classList.contains(c)});
+  el._k=el.style.getPropertyValue('--k')||'0';el._sx=false;
+ });
+ watch(QA('.sx'),.2,function(el){
+  if(el._sx)return;el._sx=true;
+  el.style.setProperty('--k',el._k);el.classList.remove('sx-in');
+  el.classList.add.apply(el.classList,el._sxc);void el.offsetWidth;el.classList.add('sx-in');
+  el.addEventListener('animationend',function(){el.classList.remove('sx','sx-in','sx-l','sx-r');el.style.removeProperty('--k')},{once:true});
+ },function(el){
+  if(!el._sx)return;el._sx=false;
+  el.classList.add.apply(el.classList,el._sxc);el.classList.remove('sx-in');el.style.setProperty('--k',el._k);
+ });
+
+ /* ---- 4. image masks, routes, arches, orbs, product cards ---- */
+ watch(QA('img.mk'),.02,function(el){el.classList.add('on')},function(){});  /* reveal once, stay visible when scrolling back up */
+ watch(QA('#arches,#flow,#orbs,.mosaic'),.2,function(el){el.classList.add('go')},function(el){el.classList.remove('go')});
+ watch(QA('.tgrid'),.25,function(el){
+  if(el.classList.contains('go'))return;el.classList.add('go');clearTimeout(el._d);el._d=setTimeout(function(){el.classList.add('done')},1200);
+ },function(el){clearTimeout(el._d);el.classList.remove('go','done')});
+ watch(QA('.pcard'),.25,function(el){el.classList.add('seen')},function(el){el.classList.remove('seen')});
+
+ /* ---- 5. number count-ups run again every time ---- */
+ if(typeof countUp==='function'){
+  var cn=QA('[data-count]');cn.forEach(function(el){el._st=0;el._once=false});
+  watch(cn,.5,function(el){
+   if(el._st===1)return;el._st=1;
+   if(el._once)countUp(el);el._once=true;   /* first time is handled by the page's own code */
+  },function(el){
+   if(el._st!==1)return;el._st=0;
+   if(el._once)el.textContent='0';
+  });
+ }
+
+ /* ---- 6. cards keep drifting at different speeds while you scroll ---- */
+ var skip='.mq,.mqw,.marq,.tk,#tTrack,.dup,[aria-hidden="true"],.strips,#strips,.hero,.hpm,.ticker,header,footer';
+ var cards=QA('.card,.quote,.cat,.stat,.feat,.proj,.eng-item,.gt,.flag,.pcard,.tcard,.tstat,.formbox,.dk-i,.rt,.mapbox').filter(function(el){
+  if(el.closest(skip))return false;
+  var cs=getComputedStyle(el);
+  return cs.position!=='fixed'&&cs.position!=='sticky'&&(!cs.translate||cs.translate==='none');
+ });
+ cards.forEach(function(el){
+  el._ty=0;el._dp=[6,12,18][Array.prototype.indexOf.call(el.parentNode.children,el)%3];
+ });
+ var busy=false;
+ function drift(){
+  busy=false;var vh=innerHeight,k=innerWidth>700?1:.6;
+  cards.forEach(function(el){
+   var r=el.getBoundingClientRect();
+   if(r.bottom<-80||r.top>vh+80)return;
+   var base=r.top+r.height/2-el._ty,ty=((base-vh/2)/vh)*-el._dp*k;
+   el._ty=ty;el.style.translate='0 '+ty.toFixed(1)+'px';
+  });
+ }
+ addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(drift)}},{passive:true});
+ addEventListener('resize',drift);drift();
 })();
 </script>
 </body>

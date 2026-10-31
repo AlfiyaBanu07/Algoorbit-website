@@ -1978,5 +1978,386 @@ function showApplySuccess(){
  var t=false;function u(){t=false;if(innerWidth>700)return;var r=g.getBoundingClientRect(),vh=innerHeight,f=(vh*.62-r.top)/r.height;g.style.setProperty('--f',Math.max(0,Math.min(1,f)).toFixed(3))}
  addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u)}},{passive:true});addEventListener('resize',u);u()})();
 </script>
+<style id="product-cards-layer">
+/* =====================================================================
+   PRODUCT-STYLE CARDS (additive, loaded last so it wins)
+   Why Us, Perks, Testimonials and the Hiring timeline now use the same
+   card language as the Products page: boxed card, flowing top bar, rotating
+   light border on hover, ink-bloom hover, number pill, watermark, chip,
+   light sweep and icon wiggle. Works on desktop and phones.
+   ===================================================================== */
+@keyframes icWig{20%{rotate:-12deg}45%{rotate:10deg}70%{rotate:-6deg}100%{rotate:0deg}}
+
+/* ---------- boxed card base ---------- */
+body .lp .card,body .grid-4 .card,body .quote{
+ display:flex!important;flex-direction:column;align-items:stretch;position:relative;overflow:hidden!important;height:auto;
+ padding:28px 24px 24px!important;text-align:left;
+ border:1px solid #fff!important;border-radius:24px!important;
+ background:linear-gradient(160deg,#fff,#ece9ff)!important;
+ box-shadow:0 12px 30px rgba(91,75,232,.12),inset 0 1px 0 #fff!important;
+ transition:transform .3s var(--ease),box-shadow .4s,border-color .4s,opacity .8s var(--ease) var(--d,0s),translate .9s var(--ease) var(--d,0s),filter .8s var(--ease) var(--d,0s),scale .8s var(--ease) var(--d,0s);
+}
+body .lp .card:is(:hover,.tch),body .grid-4 .card:is(:hover,.tch),body .quote:is(:hover,.tch){
+ transform:translateY(-6px)!important;border-color:var(--peri)!important;box-shadow:0 18px 40px rgba(69,56,196,.3)!important}
+body .grid.lp,body .grid.grid-4,body .grid.t-grid{gap:24px!important}
+body .grid.lp,body .grid.grid-4,body .grid.t-grid{grid-auto-rows:auto}
+
+/* ---------- ink bloom (follows the cursor / auto-plays on touch) ---------- */
+body .lp .card::before,body .grid-4 .card::before,body .quote::after{
+ display:block!important;content:"";position:absolute;inset:0;left:0;top:0;width:auto;height:auto;z-index:0;pointer-events:none;
+ background:linear-gradient(150deg,#4a46c4,#2f3391);
+ clip-path:circle(0 at var(--mx,50%) var(--my,50%));transform:none;transition:clip-path .55s var(--ease)}
+body .lp .card:is(:hover,.tch)::before,body .grid-4 .card:is(:hover,.tch)::before,body .quote:is(:hover,.tch)::after{
+ clip-path:circle(150% at var(--mx,50%) var(--my,50%))}
+
+/* ---------- flowing top bar + rotating light border ---------- */
+body .lp .card>i.bar,body .grid-4 .card>i.bar,body .quote>i.bar{display:block!important;animation:none!important}
+body .lp .card>i.ring,body .grid-4 .card>i.ring,body .quote>i.ring{display:block!important;opacity:0;animation:none!important}
+body .lp .card:is(:hover,.tch)>i.ring,body .grid-4 .card:is(:hover,.tch)>i.ring,body .quote:is(:hover,.tch)>i.ring{opacity:1;animation:spinAng 2.4s linear infinite!important}
+
+/* ---------- number pill ---------- */
+body .grid.lp>.card>.wn,body .grid.grid-4>.card>.wn{
+ position:absolute;left:auto;right:16px;top:18px;width:auto;height:auto;display:block;z-index:4;
+ font:700 12px/1 var(--fd);letter-spacing:.08em;color:var(--b)!important;-webkit-text-stroke:0;
+ background:#fff!important;padding:7px 12px;border-radius:99px;box-shadow:0 6px 16px rgba(14,15,42,.16)!important;transform:none;
+ transition:background .4s,color .4s,transform .5s var(--ease)}
+body .grid.lp>.card:is(:hover,.tch)>.wn,body .grid.grid-4>.card:is(:hover,.tch)>.wn{
+ background:linear-gradient(135deg,var(--a),var(--b))!important;color:#fff!important;-webkit-text-stroke:0;transform:scale(1.12) rotate(-4deg)}
+
+/* ---------- icons ---------- */
+body .lp .card>.cat-ic,body .grid-4 .card>.cat-ic{
+ display:grid;place-items:center;position:relative;z-index:5;flex:none;width:50px;height:50px;margin:0 0 16px;border:0;
+ border-radius:16px 16px 16px 5px;color:#fff;animation:none!important;
+ background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 10px 22px rgba(var(--glow),.4);
+ transition:transform .35s var(--ease),background .3s,color .3s}
+body .lp .card>.cat-ic{width:54px;height:54px;margin:-27px 0 14px;border:3px solid #fff}
+body .lp .card>.cat-ic .ui,body .grid-4 .card>.cat-ic .ui{width:1.3em;height:1.3em}
+body .lp .card:is(:hover,.tch)>.cat-ic,body .grid-4 .card:is(:hover,.tch)>.cat-ic{background:#fff;color:var(--ind);transform:rotate(-8deg) scale(1.1)}
+body .lp .card:is(:hover,.tch)>.cat-ic .ui,body .grid-4 .card:is(:hover,.tch)>.cat-ic .ui{animation:icWig .7s var(--ease)}
+
+/* ---------- Why Us photo (full width on top of the card) ---------- */
+body .lp .card .ci{
+ position:relative;flex:none;align-self:stretch;width:auto;height:auto;aspect-ratio:16/10;margin:-28px -24px 0;
+ border:0;border-radius:0;overflow:hidden;background:var(--navy);box-shadow:none!important;transform:none}
+body .lp .card .ci img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+body .lp .card:is(:hover,.tch) .ci{transform:none}
+body .lp .card:is(:hover,.tch) .ci img{transform:scale(1.08)}
+body .lp .card .ci::before,body .lp .card .ci::after{display:block!important}
+
+/* ---------- text ---------- */
+body .lp .card h3,body .grid-4 .card h3{margin:0 0 8px;padding:0;font-size:1.12rem;transition:color .4s .1s}
+body .lp .card p,body .grid-4 .card p{margin:0 0 16px;font-size:14.5px;line-height:1.65;color:var(--mute);transition:color .4s .1s}
+body .lp .card p{flex:1}
+body .lp .card h3::after,body .grid-4 .card h3::after{display:block!important;width:26px;margin:10px 0 0!important;background:linear-gradient(90deg,var(--a),var(--b));transition:width .5s var(--ease),background .4s}
+body .lp .card:is(:hover,.tch) h3,body .grid-4 .card:is(:hover,.tch) h3{color:#fff}
+body .lp .card:is(:hover,.tch) p,body .grid-4 .card:is(:hover,.tch) p{color:#e3e4ff}
+body .lp .card:is(:hover,.tch) h3::after,body .grid-4 .card:is(:hover,.tch) h3::after{width:60px;background:linear-gradient(90deg,#fff,#82c8eb)}
+
+/* ---------- footer row / chips ---------- */
+body .lp .card .lpf{display:flex!important;margin-top:auto;padding-top:14px;border-top:1px solid rgba(var(--glow),.2)}
+body .lp .card:is(:hover,.tch) .lpf{border-top-color:rgba(255,255,255,.28)}
+body .lp .card .cm,body .grid-4 .card .cm,body .quote .cm{
+ display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin-top:auto;padding:8px 13px!important;border-radius:99px;
+ font:600 11.5px/1 var(--fd);letter-spacing:.04em;color:var(--b)!important;
+ background:rgba(var(--glow),.1)!important;border:1px solid rgba(var(--glow),.24)!important;box-shadow:none!important;
+ transition:background .4s,color .4s,border-color .4s}
+body .lp .card .lpf .cm{margin-top:0}
+body .quote .cm{margin-top:14px}
+body .lp .card .cm::before,body .grid-4 .card .cm::before,body .quote .cm::before{display:block!important;content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none;animation:none}
+body .lp .card:is(:hover,.tch) .cm,body .grid-4 .card:is(:hover,.tch) .cm,body .quote:is(:hover,.tch) .cm{
+ color:#fff!important;background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.34)!important}
+
+/* ---------- watermark monogram ---------- */
+body .lp .card>i.wm,body .grid-4 .card>i.wm{
+ display:block!important;position:absolute;right:-4px;bottom:-16px;z-index:0;font:800 88px/1 var(--fd);font-style:normal;letter-spacing:-.05em;
+ color:rgba(var(--glow),.08);pointer-events:none;animation:none!important;transition:color .5s,scale .6s var(--ease)}
+body .lp .card:is(:hover,.tch)>i.wm,body .grid-4 .card:is(:hover,.tch)>i.wm{color:rgba(255,255,255,.12);scale:1.14}
+
+/* ---------- light sweep + growing accent line (all card types) ---------- */
+.card>i.cshine,.quote>i.cshine,.tl-card>i.cshine{position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;overflow:hidden;opacity:0;
+ background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(130,200,235,.1) 45%,transparent 70%);
+ clip-path:polygon(0 0,0 0,0 0);transition:opacity .35s,clip-path .7s var(--ease)}
+i.cshine::before{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,var(--ind),#82c8eb);transition:width .6s var(--ease)}
+i.cshine::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-140%) skewX(-18deg)}
+.card:is(:hover,.tch)>i.cshine,.quote:is(:hover,.tch)>i.cshine,.tl-card:is(:hover,.tch)>i.cshine{opacity:1;clip-path:polygon(0 0,260% 0,0 260%)}
+.card:is(:hover,.tch)>i.cshine::before,.quote:is(:hover,.tch)>i.cshine::before,.tl-card:is(:hover,.tch)>i.cshine::before{width:100%}
+.card:is(:hover,.tch)>i.cshine::after,.quote:is(:hover,.tch)>i.cshine::after,.tl-card:is(:hover,.tch)>i.cshine::after{animation:sheenX 1s var(--ease) forwards}
+
+/* ---------- testimonials ---------- */
+body .quote::before{left:auto;right:20px;top:8px;z-index:1;font-size:86px;color:var(--soft);transition:color .4s}
+body .quote:is(:hover,.tch)::before{color:rgba(255,255,255,.25)}
+body .quote p{margin:0 0 18px;font-size:15px;transition:color .4s .1s}
+body .quote .who strong{transition:color .4s .1s}
+body .quote .who small{transition:color .4s .1s}
+body .quote:is(:hover,.tch) p{color:#f1f1ff}
+body .quote:is(:hover,.tch) .who strong{color:#fff}
+body .quote:is(:hover,.tch) .who small{color:#d4d5f2}
+
+/* ---------- hiring timeline: boxed dark cards ---------- */
+body .tl-card{
+ background:linear-gradient(160deg,#1c1e50,#12132f)!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:22px!important;
+ box-shadow:0 14px 34px rgba(0,0,0,.35)!important;padding:clamp(20px,3vw,28px) clamp(20px,3vw,32px)!important}
+body .tl-card:is(:hover,.tch){border-color:var(--peri)!important;box-shadow:0 20px 44px rgba(91,75,232,.4)!important}
+body .tl-item{border-bottom:0;padding-bottom:0}
+
+/* ---------- phones: one vertical column, accent rail on the left ---------- */
+@media(max-width:700px){
+ body .grid.lp,body .grid.grid-4,body .grid.t-grid{grid-template-columns:minmax(0,1fr)!important;gap:16px!important;margin:0!important;padding:0!important}
+ body .grid.grid-4{margin:0 0 34px!important}
+ body .grid.lp::before,body .grid.lp::after{display:none!important}
+ body .grid-4 .card:nth-child(even){margin-top:0}
+ body .lp .card,body .grid-4 .card,body .quote{
+  box-shadow:inset 4px 0 0 var(--a),0 12px 30px rgba(91,75,232,.12)!important;padding:26px 22px 22px!important}
+ body .lp .card .ci{margin:-26px -22px 0}
+ body .grid-4 .card>.cat-ic{width:50px;height:50px;margin:0 0 14px;animation:none!important}
+ body .grid-4 .card .cm{align-self:flex-start}
+ body .grid-4 .card>h3,body .lp .card h3{font-size:1.08rem}
+ body .grid.t-grid>.quote{flex:none;padding:26px 22px 22px!important}
+ body .tl-card{padding:20px 20px 18px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ body .lp .card:is(:hover,.tch)>i.ring,body .grid-4 .card:is(:hover,.tch)>i.ring,body .quote:is(:hover,.tch)>i.ring,
+ body .lp .card:is(:hover,.tch)>.cat-ic .ui,body .grid-4 .card:is(:hover,.tch)>.cat-ic .ui{animation:none!important}
+ .card:is(:hover,.tch)>i.cshine::after,.quote:is(:hover,.tch)>i.cshine::after,.tl-card:is(:hover,.tch)>i.cshine::after{animation:none}
+}
+
+/* ---------- phones: Perks & Benefits in a 2 x 2 grid ---------- */
+@media(max-width:700px){
+ body .grid.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+ body .grid-4 .card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;padding:18px 14px 16px!important;border-radius:20px}
+ body .grid-4 .card>.cat-ic{width:44px;height:44px;margin:0 0 12px}
+ body .grid-4 .card>h3{font-size:.95rem;line-height:1.25;margin:0 0 6px}
+ body .grid-4 .card>h3::after{margin-top:8px!important;width:24px}
+ body .grid-4 .card>p{font-size:12.5px;line-height:1.5;margin:0}
+}
+</style>
+
+<script>
+/* Product-style cards: light-sweep layer, watermark monograms for Why Us,
+   and auto-play of the hover effect on touch screens for testimonials. */
+(function(){
+ var QA=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+ QA('.lp>.card,.grid-4>.card,.quote,.tl-card').forEach(function(c){
+  if(!c.querySelector(':scope>i.cshine'))c.insertAdjacentHTML('beforeend','<i class="cshine" aria-hidden="true"></i>');
+ });
+ QA('.lp>.card').forEach(function(c){
+  if(c.querySelector(':scope>i.wm'))return;
+  var h=c.querySelector('h3');
+  c.insertAdjacentHTML('afterbegin','<i class="wm" aria-hidden="true">'+(h?h.textContent.charAt(0):'')+'</i>');
+ });
+ if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ if(!matchMedia('(max-width:900px),(hover:none)').matches)return;
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
+ QA('.quote').forEach(function(el){io.observe(el)});
+})();
+</script>
+
+<style id="why-us-compact">
+/* Why Us: slightly smaller cards */
+body .grid.lp{gap:20px!important}
+body .lp .card{padding:22px 20px 18px!important}
+body .lp .card .ci{aspect-ratio:21/9;margin:-22px -20px 0}
+body .lp .card>.cat-ic{width:46px;height:46px;margin:-23px 0 10px;border-width:3px;border-radius:14px 14px 14px 4px}
+body .lp .card>.cat-ic .ui{width:1.15em;height:1.15em}
+body .lp .card h3{font-size:1.02rem;margin-bottom:6px}
+body .lp .card h3::after{margin-top:8px!important}
+body .lp .card p{font-size:13.5px;line-height:1.55;margin-bottom:12px}
+body .lp .card .lpf{padding-top:10px}
+body .lp .card>i.wm{font-size:68px}
+body .grid.lp>.card>.wn{top:12px;right:12px;padding:6px 10px;font-size:11px}
+@media(max-width:700px){
+ body .lp .card{padding:20px 18px 16px!important}
+ body .lp .card .ci{aspect-ratio:2/1;margin:-20px -18px 0}
+}
+</style>
+<style id="hiring-marquee">
+/* =====================================================================
+   HIRING PROCESS: continuous "conveyor" marquee (desktop + mobile)
+   Five step cards linked by glowing connectors slide past in an endless,
+   fast loop. Pauses on hover / touch. The old vertical timeline stays in
+   the HTML as a no-JS fallback.
+   ===================================================================== */
+@keyframes hpmMove{to{transform:translateX(-33.3333%)}}
+@keyframes hpmFlow{to{background-position:24px 0}}
+@keyframes hpmDot{0%{left:0;opacity:0}15%,85%{opacity:1}100%{left:calc(100% - 10px);opacity:0}}
+@keyframes hpmBar{to{background-position:200% 0}}
+.hp-on .tl{display:none}
+.hpm{position:relative;overflow:hidden;margin:0 calc(var(--gutter,24px) * -1);padding:18px 0 26px;
+ -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+.hpm-track{display:flex;align-items:stretch;width:max-content;animation:hpmMove var(--hpd,15s) linear infinite;will-change:transform}
+
+/* card */
+.hpm-card{--a:#8f84f2;--b:#5b4be8;--glow:91,75,232;position:relative;flex:0 0 330px;display:flex;flex-direction:column;overflow:hidden;isolation:isolate;
+ padding:26px 24px 22px;border-radius:24px;background:radial-gradient(360px circle at 100% 0,rgba(var(--glow),.34),transparent 62%),linear-gradient(165deg,#1c1e54,#0b0c27);
+ border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 46px rgba(0,0,0,.4);transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.hpm-card:nth-of-type(5n+2){--a:#82c8eb;--b:#2a8fcf;--glow:47,167,224}
+.hpm-card:nth-of-type(5n+3){--a:#c4a1ff;--b:#8b5cf6;--glow:139,92,246}
+.hpm-card:nth-of-type(5n+4){--a:#a9a3ee;--b:#7a6df0;--glow:143,132,242}
+.hpm-card:hover{transform:translateY(-6px);border-color:rgba(var(--glow),.8);box-shadow:0 26px 56px rgba(var(--glow),.4)}
+.hpm-card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--a),var(--b),var(--a));background-size:200% 100%;animation:hpmBar 3s linear infinite}
+.hpm-card::after{content:attr(data-n);position:absolute;right:16px;top:-6px;z-index:-1;font:800 110px/1 var(--fd);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.4px rgba(207,202,255,.2);pointer-events:none}
+.hpm-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}
+.hpm-ic{display:grid;place-items:center;width:54px;height:54px;color:#fff;background:linear-gradient(135deg,var(--a),var(--b));clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);filter:drop-shadow(0 8px 18px rgba(var(--glow),.55))}
+.hpm-ic .ui{width:24px;height:24px}
+.hpm-st{font:600 11px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.14em;color:#b9b4ff}
+.hpm-st b{color:#fff}
+.hpm-fy{align-self:flex-start;font:600 11px var(--fb);letter-spacing:.06em;text-transform:uppercase;color:#e6e3ff;background:rgba(var(--glow),.22);border:1px solid rgba(var(--glow),.55);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+.hpm-card h3{color:#fff;font-size:1.2rem;margin-bottom:8px}
+.hpm-card p{color:#b4b6dc;font-size:14.5px;line-height:1.65;flex:1}
+.hpm-trk{display:block;height:5px;border-radius:5px;background:rgba(255,255,255,.1);margin-top:18px;overflow:hidden}
+.hpm-trk b{display:block;height:100%;width:var(--p,50%);border-radius:inherit;background:linear-gradient(90deg,var(--a),var(--b))}
+
+/* connector between cards */
+.hpm-link{position:relative;flex:0 0 74px;align-self:center;height:4px;margin:0 -2px}
+.hpm-link i{position:absolute;inset:0;border-radius:4px;background:repeating-linear-gradient(90deg,rgba(143,132,242,.8) 0 8px,transparent 8px 16px);background-size:24px 4px;animation:hpmFlow .6s linear infinite}
+.hpm-link b{position:absolute;top:-3px;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 14px 3px rgba(143,132,242,.9);animation:hpmDot 1.4s ease-in-out infinite}
+.hpm-link::after{content:"";position:absolute;right:-2px;top:-5px;width:10px;height:10px;border-top:3px solid var(--peri);border-right:3px solid var(--peri);transform:rotate(45deg)}
+
+@media(max-width:700px){
+ .hpm{padding:12px 0 20px;margin:0 -20px}
+ .hpm-track{animation-duration:var(--hpdm,13s)}
+ .hpm-card{flex-basis:272px;padding:22px 20px 18px;border-radius:22px}
+ .hpm-card::after{font-size:92px}
+ .hpm-ic{width:48px;height:48px}.hpm-ic .ui{width:21px;height:21px}
+ .hpm-card h3{font-size:1.1rem}.hpm-card p{font-size:14px}
+ .hpm-link{flex-basis:52px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hpm{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+ .hpm-track{animation:none}.hpm-card::before,.hpm-link i,.hpm-link b{animation:none}
+ .hpm [data-dup]{display:none}
+}
+</style>
+
+<script>
+/* Hiring process marquee: built from the existing timeline items */
+(function(){
+ var tl=document.getElementById('tl');if(!tl)return;
+ var items=Array.prototype.slice.call(tl.querySelectorAll('.tl-item'));if(items.length<2)return;
+ var sec=tl.closest('.section'),wrap=tl.parentNode,N=items.length;
+ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+ var set=items.map(function(it,i){
+  var use=it.querySelector('.cat-ic use'),icon=use?use.getAttribute('href'):'#i-check',
+   n=(it.querySelector('.tl-n')||{}).textContent||('0'+(i+1)),fy=(it.querySelector('.tl-fy')||{}).textContent||'',
+   t=(it.querySelector('h3')||{}).textContent||'',p=(it.querySelector('p')||{}).textContent||'',pc=Math.round((i+1)/N*100);
+  return '<article class="hpm-card" data-n="'+esc(n)+'"><div class="hpm-top"><span class="hpm-ic"><svg class="ui" aria-hidden="true"><use href="'+icon+'"/></svg></span><span class="hpm-st">STEP <b>'+esc(n)+'</b> / 0'+N+'</span></div>'
+   +'<span class="hpm-fy">'+esc(fy)+'</span><h3>'+esc(t)+'</h3><p>'+esc(p)+'</p><i class="hpm-trk" aria-hidden="true"><b style="--p:'+pc+'%"></b></i></article>'
+   +'<span class="hpm-link" aria-hidden="true"><i></i><b></b></span>';
+ }).join('');
+ var m=document.createElement('div');m.className='hpm';m.setAttribute('role','region');m.setAttribute('aria-label','Hiring process steps');
+ var tr='<div class="hpm-track">'+set+'<div style="display:contents" data-dup aria-hidden="true">'+set+'</div><div style="display:contents" data-dup aria-hidden="true">'+set+'</div></div>';
+ m.innerHTML=tr;wrap.insertBefore(m,tl);sec.classList.add('hp-on');
+})();
+</script>
+<style id="scroll-replay">
+/* =====================================================================
+   SCROLL EFFECTS THAT KEEP WORKING (no more play-once)
+   - Cards, quotes, FAQ rows re-animate every time they enter the screen,
+     scrolling down OR up (they slide in from the side they come from)
+   - Cards keep drifting at different speeds while you scroll (parallax)
+   - Section titles, underline, role cards and FAQ photo replay too
+   ===================================================================== */
+@media(prefers-reduced-motion:no-preference){
+ body .lp .card.rx,body .grid-4 .card.rx,body .quote.rx,body .faq details.rx,body .general.rx{
+  transition:opacity .7s var(--ease),transform .6s var(--ease),scale .8s var(--ease),box-shadow .4s,border-color .4s!important}
+ body .lp .card.rx:not(.rx-in),body .grid-4 .card.rx:not(.rx-in),body .quote.rx:not(.rx-in),body .faq details.rx:not(.rx-in),body .general.rx:not(.rx-in){
+  opacity:0!important;scale:.93;transform:translateY(var(--rvy,48px))!important}
+ body .lp .card.rx.rx-in,body .grid-4 .card.rx.rx-in,body .quote.rx.rx-in,body .faq details.rx.rx-in,body .general.rx.rx-in{opacity:1!important;scale:1}
+}
+</style>
+
+<script>
+(function(){
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver' in window))return;
+ var QA=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+ var wide=function(){return innerWidth>700};
+
+ /* ---- 1. cards / quotes / faq rows: replay on every entry, both directions ---- */
+ var els=QA('.lp>.card,.grid-4>.card,.t-grid>.quote,.faq details,.general');
+ els.forEach(function(el,i){
+  el.classList.remove('sr','sr-l','sr-r','sr-s','in','rv','rv-l','rv-r','rv-s');
+  el.style.removeProperty('--d');
+  el._i=Array.prototype.indexOf.call(el.parentNode.children,el);
+  el._ty=0;el._dp=[8,16,24][el._i%3];
+  el.classList.add('rx');
+ });
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){
+  var el=e.target;
+  if(e.intersectionRatio>=.15){
+   if(el.classList.contains('rx-in'))return;
+   el.style.transitionDelay=((el._i%4)*.09)+'s';
+   el.classList.add('rx-in');
+   clearTimeout(el._t);el._t=setTimeout(function(){el.style.transitionDelay=''},1000);
+  }else{
+   el.style.setProperty('--rvy',(e.boundingClientRect.top<0?-48:48)+'px');
+   el.style.transitionDelay='';
+   el.classList.remove('rx-in');
+   el.style.translate='';el._ty=0;
+  }
+ })},{threshold:[0,.15],rootMargin:'0px 0px -4% 0px'});
+ els.forEach(function(el){io.observe(el)});
+
+ /* ---- 2. continuous parallax drift while scrolling ---- */
+ var busy=false;
+ function drift(){
+  busy=false;var vh=innerHeight,k=wide()?1:.6;
+  els.forEach(function(el){
+   if(!el.classList.contains('rx-in'))return;
+   var r=el.getBoundingClientRect();if(r.bottom<-80||r.top>vh+80)return;
+   var base=r.top+r.height/2-el._ty,ty=((base-vh/2)/vh)*-el._dp*k;
+   el._ty=ty;el.style.translate='0 '+ty.toFixed(1)+'px';
+  });
+ }
+ addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(drift)}},{passive:true});
+ addEventListener('resize',drift);
+
+ /* ---- 3. titles, underline, role cards, FAQ photo: replay both ways ---- */
+ function toggler(sel,cls,th){
+  var o=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle(cls,e.isIntersecting)})},{threshold:th});
+  QA(sel).forEach(function(el){o.observe(el)});
+ }
+ toggler('.section-head','drawn',.5);
+ toggler('.section-head h2,.cta-band h2','wd',.4);
+ toggler('.rc','seen',.12);
+ toggler('.faq-vis','shown',.25);
+})();
+</script>
+<style id="roles-compact">
+/* Current Openings: smaller role cards */
+#openings>.wrap{max-width:860px!important}
+body .roles{gap:14px}
+body .rc{border-radius:24px}
+body .rc-in{border-radius:22.5px;padding:14px 22px 16px}
+body .rc-top{margin-bottom:8px}
+body .rc-id{font-size:11px}
+body .rc-head{gap:16px}
+body .rc-ic{width:48px;height:48px}
+body .rc-ic::before{inset:-5px}
+body .rc-ic .ui{width:21px;height:21px}
+body .rc-head h3{font-size:clamp(1.05rem,.95rem + .6vw,1.3rem);margin-bottom:6px}
+body .rc .chip{font-size:11px;min-height:23px;padding:2px 10px}
+body .rc-toggle{height:38px;padding:0 16px;font-size:13.5px}
+body .rc-desc{margin-top:16px;margin-bottom:18px;font-size:14px;line-height:1.65}
+body .rc-grid{gap:12px;margin-bottom:18px}
+body .rc-panel{padding:14px 16px 8px;border-radius:16px}
+body .rc-h{margin-bottom:10px;font-size:10.5px}
+body .rc-panel li{padding:6px 8px;margin:0 -8px 1px;font-size:13.5px}
+body .rc-foot{padding-top:16px;gap:12px}
+body .rc-tags span{font-size:11px;padding:6px 10px}
+body .rc-btn{height:40px;padding:0 22px;font-size:14px}
+body .rc-in>i.cb{width:14px;height:14px}
+body .rc:is(:hover,.tch) .rc-in>i.cb{width:24px;height:24px}
+@media(max-width:700px){
+ body .roles{gap:12px}
+ body .rc-in{padding:12px 14px 14px}
+ body .rc-ic{width:42px;height:42px}
+ body .rc-ic .ui{width:18px;height:18px}
+ body .rc-head{gap:12px}
+ body .rc-head h3{font-size:1.05rem}
+ body .rc-toggle{height:38px}
+ body .rc-desc{margin-top:14px;font-size:13.5px}
+ body .rc-panel li{font-size:13px}
+}
+</style>
 </body>
 </html>
