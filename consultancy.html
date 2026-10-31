@@ -1172,5 +1172,147 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
  $$('.ind-shot').forEach(function(s){ring(s,'ci')});
 })();
 </script>
+<style id="about-layer">
+:root{--e1:cubic-bezier(.22,1,.36,1)}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+
+/* 1. Fade-up reveal: 700ms, 120ms stagger (stagger delay is set by the page's own script) */
+.reveal{transform:translateY(40px);transition:opacity .7s var(--e1),transform .7s var(--e1)}
+.reveal.rl{transform:translateX(-40px)}.reveal.rr{transform:translateX(40px)}.reveal.rz{transform:translateY(30px) scale(.94)}
+.reveal.in,.reveal.in.rl,.reveal.in.rr,.reveal.in.rz{opacity:1;transform:none}
+
+/* 2. Image mask reveal 900ms */
+.mk{clip-path:inset(0 0 100% 0);transition:clip-path .9s var(--e1),transform .9s var(--ease)}
+.mk.on{clip-path:inset(0)}
+
+/* 3. Staggered pop-in for chips, tiles, list rows, footer */
+.sx{opacity:0}
+.sx.sx-in{animation:sxPop .7s var(--e1) both;animation-delay:calc(var(--k,0)*120ms)}
+@keyframes sxPop{from{opacity:0;transform:translateY(26px) scale(.9)}to{opacity:1;transform:none}}
+
+/* 4. Card hover: lift 300ms + soft shadow, light sweep, growing accent line, icon wiggle */
+.hov{transition:transform .3s var(--e1),box-shadow .3s,border-color .3s}
+.hov>i.cshine{position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;overflow:hidden;opacity:0;
+ background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(130,200,235,.1) 45%,transparent 70%);
+ clip-path:polygon(0 0,0 0,0 0);transition:opacity .35s,clip-path .7s var(--ease)}
+.hov>i.cshine::before{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,var(--ind),#82c8eb);transition:width .6s var(--ease)}
+.hov>i.cshine::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-140%) skewX(-18deg)}
+.hov:hover>i.cshine,.hov.tch>i.cshine{opacity:1;clip-path:polygon(0 0,260% 0,0 260%)}
+.hov:hover>i.cshine::before,.hov.tch>i.cshine::before{width:100%}
+.hov:hover>i.cshine::after,.hov.tch>i.cshine::after{animation:sheenX 1s var(--ease) forwards}
+@keyframes sheenX{from{transform:translateX(-140%) skewX(-18deg)}to{transform:translateX(340%) skewX(-18deg)}}
+@keyframes icWig{20%{rotate:-12deg}45%{rotate:10deg}70%{rotate:-6deg}100%{rotate:0deg}}
+.hov:hover .ico .ui,.hov.tch .ico .ui{animation:icWig .7s var(--ease)}
+
+/* 5. Buttons 250ms slight scale, social icons, footer link underline, product image zoom */
+.btn{transition:background .25s,color .25s,border-color .25s,box-shadow .25s,transform .25s var(--e1),translate .25s var(--e1)}
+.btn:hover{transform:translateY(-2px) scale(1.03)}
+.social a:hover{animation:icPop .5s var(--ease)}
+.fg li a{position:relative}
+.fg li a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--vio);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.fg li a:hover::after{transform:scaleX(1)}
+.fchip{transition:scale .3s var(--ease),box-shadow .3s}
+
+/* 6. Header: smart hide/show */
+header{transition:transform .45s var(--ease),box-shadow .3s}
+header.hide{transform:translateY(-100%)}
+
+/* 7. Dark bands and CTA unfold from rounded card to full width */
+.cur{--cr:56px;clip-path:inset(0 calc((1 - var(--p,1)) * 5%) round calc((1 - var(--p,1)) * var(--cr)))}
+.cur.full{clip-path:none}
+
+/* 8. Back-to-top with progress ring */
+.totop{position:fixed;left:24px;bottom:24px;z-index:140;width:48px;height:48px;padding:0;border:0;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px rgba(20,21,46,.18);opacity:0;visibility:hidden;transform:translateY(16px) scale(.9);transition:opacity .35s,transform .35s var(--ease),visibility .35s,background .25s,color .25s}
+.totop.show{opacity:1;visibility:visible;transform:none}
+.totop:hover{background:var(--navy);color:#fff}
+.totop .ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.totop .trk{fill:none;stroke:var(--line);stroke-width:2.5}
+.totop .prg{fill:none;stroke:var(--ind);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:138.23;stroke-dashoffset:138.23}
+.totop .ui{position:relative;width:18px;height:18px}
+
+/* 9. WhatsApp: glowing halo + expanding rings (brighter while scrolling) */
+.wa{isolation:isolate;overflow:visible;animation:waGlow 2.4s ease-in-out infinite,waBob 4s ease-in-out infinite}
+.wa::before,.wa::after{content:"";position:absolute;inset:0;border-radius:50%;z-index:-1;pointer-events:none;border:2px solid rgba(37,211,102,.75);background:radial-gradient(circle,rgba(37,211,102,.35),transparent 70%);animation:waRing 2.4s ease-out infinite}
+.wa::after{animation-delay:1.2s}
+.wa.hot{animation-duration:1s,4s}
+@keyframes waGlow{0%,100%{box-shadow:0 0 14px 2px rgba(37,211,102,.55),0 0 34px 8px rgba(37,211,102,.28),0 8px 24px rgba(37,211,102,.45)}50%{box-shadow:0 0 26px 6px rgba(37,211,102,.9),0 0 64px 18px rgba(37,211,102,.42),0 8px 24px rgba(37,211,102,.55)}}
+@keyframes waRing{0%{transform:scale(1);opacity:.85}100%{transform:scale(2.1);opacity:0}}
+
+/* 10. Section titles: words light up under the cursor */
+h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 .w:hover>span{color:#82c8eb}
+
+/* MOBILE: scroll-up blur REMOVED (cards now just glide up, no blur, no backdrop blur) */
+@media(max-width:700px){
+ body.mrx .mq>*:not(.mr){filter:none!important;translate:0 28px}
+ .mq>*{filter:none!important;transition:translate .7s var(--e1),box-shadow .4s!important}
+ *,*::before,*::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+ .vis::before,.blob,.hero::after{filter:none!important}
+ header{background:rgba(14,15,42,.97)}
+ .cur{--cr:28px}
+ .totop{left:16px;bottom:16px;width:44px;height:44px}
+ body.bar-on .totop{bottom:84px}
+ .btn:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .mk{clip-path:none!important}.sx{opacity:1}.sx.sx-in{animation:none}.cur{clip-path:none!important}
+ .wa,.wa::before,.wa::after,.hov:hover .ico .ui{animation:none!important}
+}
+</style>
+
+<script id="about-layer-js">
+(function(){
+ var Q=function(s,r){return(r||document).querySelector(s)},QA=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+ var R=matchMedia('(prefers-reduced-motion:reduce)').matches,hasIO='IntersectionObserver' in window;
+
+ /* card light-sweep element */
+ QA('.card,.step,.t,.feat li').forEach(function(c){if(!c.querySelector(':scope>i.cshine'))c.insertAdjacentHTML('beforeend','<i class="cshine" aria-hidden="true"></i>')});
+
+ /* image mask reveal */
+ if(!R&&hasIO){
+  var mio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){QA('.mk',e.target).forEach(function(i){i.classList.add('on')});mio.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  QA('.vis .frame img,.shot img').forEach(function(im){im.classList.add('mk');mio.observe(im.parentNode)});
+
+  /* staggered pop-in groups (skips hero and phone duplicates) */
+  var groups=['.trio div','.cols li','.trust span','.fg>div','.fb','.social a','.hov>.wn'];
+  var sio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;
+   el.classList.add('sx-in');sio.unobserve(el);
+   el.addEventListener('animationend',function(){el.classList.remove('sx','sx-in');el.style.removeProperty('--k')},{once:true})})},{threshold:.2,rootMargin:'0px 0px -30px 0px'});
+  groups.forEach(function(g){QA(g).forEach(function(el){
+   if(el.closest('.hero')||el.closest('.dup'))return;
+   var i=Array.prototype.indexOf.call(el.parentNode.children,el);
+   el.classList.add('sx');el.style.setProperty('--k',i%6);sio.observe(el)})});
+ }
+
+ /* back to top */
+ var tt=document.createElement('button');tt.type='button';tt.className='totop';tt.setAttribute('aria-label','Back to top');
+ tt.innerHTML='<svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="trk" cx="24" cy="24" r="22"/><circle class="prg" cx="24" cy="24" r="22"/></svg><svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+ document.body.appendChild(tt);
+ tt.addEventListener('click',function(){scrollTo({top:0,behavior:R?'auto':'smooth'})});
+
+ /* scroll frame: smart header, progress ring, curtain, hero image zoom, WhatsApp boost
+    (the hero text fade-out on scroll was removed, so the hero no longer turns white) */
+ var hdr=Q('header'),nav=Q('#nav'),prg=Q('.prg',tt),hero=Q('.hero'),hb=Q('.hero-bg'),wa=Q('.wa');
+ var cur=QA('.sec.dk,.cta');if(!R)cur.forEach(function(s){s.classList.add('cur')});
+ var last=scrollY,hidden=false,run=false,wt;
+ function ease(t){return t*t*(3-2*t)}function cl(v){return Math.max(0,Math.min(1,v))}
+ function frame(){
+  run=false;var sy=scrollY,h=innerHeight,dh=document.documentElement.scrollHeight-h,end=sy>=dh-4;
+  if(!R&&hdr){var d=sy-last;if(Math.abs(d)>6){
+   var busy=(nav&&nav.classList.contains('open'))||Q('.dd.open')||hdr.matches(':focus-within');
+   if(d>0&&sy>240&&!busy)hidden=true;else if(d<0||sy<=120)hidden=false;
+   hdr.classList.toggle('hide',hidden);last=sy}}
+  tt.classList.toggle('show',sy>h*.8);
+  prg.style.strokeDashoffset=(138.23*(1-(dh>0?sy/dh:0))).toFixed(2);
+  if(!R)cur.forEach(function(s){var r=s.getBoundingClientRect(),p=end?1:ease(cl((h-r.top)/(h*.38)));
+   s.style.setProperty('--p',p.toFixed(3));s.classList.toggle('full',p>=.999)});
+  if(!R&&hero&&sy<h*1.4){
+   if(hb&&innerWidth>1000)hb.style.scale=(1+Math.min(sy/h,1)*.08).toFixed(4)}
+ }
+ function kick(){if(!run){run=true;requestAnimationFrame(frame)}}
+ addEventListener('scroll',function(){kick();if(wa){wa.classList.add('hot');clearTimeout(wt);wt=setTimeout(function(){wa.classList.remove('hot')},700)}},{passive:true});
+ addEventListener('resize',kick);kick();
+})();
+</script>
+
 </body>
 </html>

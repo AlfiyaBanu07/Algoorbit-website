@@ -751,6 +751,13 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
 }
 @media(prefers-reduced-motion:reduce){.feat::before,.hov .meta::before,.eq b,.hov>i.wm,.hov>i.trk b,.met .mtr b,.cols>div::before,.feat li:hover>i.cx,.feat li.tch>i.cx{animation:none!important}}
 
+/* WhatsApp: same glow + expanding rings as the Consultancy page */
+.wa{isolation:isolate;overflow:visible;animation:waGlow 2.4s ease-in-out infinite,waBob 4s ease-in-out infinite!important;transition:transform .3s var(--ease),bottom .4s var(--ease)}
+.wa::before,.wa::after{display:block!important;animation:waRing 2.4s ease-out infinite!important}
+.wa::after{animation-delay:1.2s!important}
+.wa.hot{animation:waGlow 1s ease-in-out infinite,waBob 4s ease-in-out infinite!important}
+@media(prefers-reduced-motion:reduce){.wa,.wa.hot,.wa::before,.wa::after{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -1536,8 +1543,13 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
 .hero .fchip.hc1,.hero .fchip.hc2{animation:fadeUp .9s var(--ease) 1.1s both!important}
 .feat li:hover>i.cx,.feat li.tch>i.cx{animation:none!important}
 .cglow{display:none!important}                                                      /* cursor-following glow */
-.wa,.wa.hot{animation:none!important}.wa::before,.wa::after{display:none!important}
-.wa{box-shadow:0 8px 20px rgba(37,211,102,.35)}
+/* WhatsApp button: same glowing halo + expanding rings as the Consultancy page (mobile + desktop).
+   The old rules that switched the WhatsApp animation off in this layer were replaced by these. */
+.wa{isolation:isolate;overflow:visible;animation:waGlow 2.4s ease-in-out infinite,waBob 4s ease-in-out infinite!important}
+.wa.hot{animation:waGlow 1s ease-in-out infinite,waBob 4s ease-in-out infinite!important}
+.wa::before,.wa::after{display:block!important;animation:waRing 2.4s ease-out infinite!important}
+.wa::after{animation-delay:1.2s!important}
+@media(prefers-reduced-motion:reduce){.wa,.wa.hot,.wa::before,.wa::after{animation:none!important}}
 .vis .frame>i.ring.hv,.shot>i.ring.hv{animation-duration:6s!important}
 
 /* ---- 3. Tidier surfaces ---- */
