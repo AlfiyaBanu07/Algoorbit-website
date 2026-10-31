@@ -480,6 +480,43 @@ h2.wd .w>span{transform:none}
  .site-header .sd a.ov{background:linear-gradient(135deg,var(--ind),var(--peri));border-color:transparent;font-weight:600}
  .site-header .dd a.active,.site-header .sd a.active{background:rgba(143,132,242,.28);border-color:var(--peri);color:#fff}
 }
+
+/* =====================================================================
+   Top bar like About + WhatsApp glow + card roaming-light border + scroll animations
+   ===================================================================== */
+#bar{background:linear-gradient(90deg,var(--ind),var(--peri) 60%,#82c8eb)}
+.site-header{background:rgba(14,15,42,.97);-webkit-backdrop-filter:none;backdrop-filter:none;transition:transform .45s var(--ease),box-shadow .3s}
+.site-header::after{display:none}
+.site-header.hide{transform:translateY(-100%)}
+
+/* WhatsApp button: glowing halo + expanding rings (brighter while scrolling) */
+.wa,.wa-float{isolation:isolate;overflow:visible;animation:waGlow 2.4s ease-in-out infinite,waBob 4s ease-in-out infinite}
+.wa::before,.wa::after,.wa-float::before,.wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;z-index:-1;pointer-events:none;border:2px solid rgba(37,211,102,.75);background:radial-gradient(circle,rgba(37,211,102,.35),transparent 70%);animation:waRing 2.4s ease-out infinite}
+.wa::after,.wa-float::after{animation-delay:1.2s}
+@keyframes waBob{50%{translate:0 -6px}}
+@keyframes waGlow{0%,100%{box-shadow:0 0 14px 2px rgba(37,211,102,.55),0 0 34px 8px rgba(37,211,102,.28),0 8px 24px rgba(37,211,102,.45)}50%{box-shadow:0 0 26px 6px rgba(37,211,102,.9),0 0 64px 18px rgba(37,211,102,.42),0 8px 24px rgba(37,211,102,.55)}}
+@keyframes waRing{0%{transform:scale(1);opacity:.85}100%{transform:scale(2.1);opacity:0}}
+@keyframes waIcon{0%,86%,100%{transform:rotate(0)}90%{transform:rotate(-14deg)}94%{transform:rotate(12deg)}98%{transform:rotate(-6deg)}}
+.wa svg,.wa-float svg{filter:drop-shadow(0 0 6px rgba(255,255,255,.7));animation:waIcon 3s ease-in-out infinite}
+.wa:hover,.wa-float:hover{transform:scale(1.14);box-shadow:0 0 34px 10px rgba(37,211,102,.95),0 0 80px 26px rgba(37,211,102,.5)}
+.wa.hot,.wa-float.hot{animation:waGlow 1s ease-in-out infinite,waBob 4s ease-in-out infinite}
+.wa.hot::before,.wa.hot::after,.wa-float.hot::before,.wa-float.hot::after{animation-duration:1.2s}
+.wa.hot::after,.wa-float.hot::after{animation-delay:.6s}
+
+/* Cards: border with roaming coloured lights on hover / when scrolled into the middle on touch */
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes rlrot{to{--ang:360deg}}
+body i.rl{position:absolute;inset:0;z-index:6;border-radius:inherit;padding:3px;pointer-events:none;opacity:0;transition:opacity .45s;
+ background:conic-gradient(from var(--ang),#5b4be8,#82c8eb,#a9a3ee,#5b4be8);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+ animation:rlrot 2.6s linear infinite}
+:hover>i.rl,.mf>i.rl,.tch>i.rl{opacity:1}
+
+/* Staggered pop-in for small items */
+.sx{opacity:0}
+.sx.sx-in{animation:sxPop .75s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--k,0)*70ms)}
+@keyframes sxPop{from{opacity:0;transform:translateY(26px) scale(.86)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.wa,.wa::before,.wa::after,.wa svg,.wa-float,.wa-float::before,.wa-float::after,.wa-float svg,i.rl{animation:none!important}.sx{opacity:1}.sx.sx-in{animation:none}}
 </style>
 </head>
 <body>
@@ -516,8 +553,7 @@ h2.wd .w>span{transform:none}
     <li><a href="about.html">About</a></li>
     <li class="has-dd"><button class="dd-btn" type="button" aria-expanded="false">Services<i class="tri" aria-hidden="true"></i></button>
      <div class="dd"><a href="consultancy.html">IT Consultancy</a>
-      <div class="has-sub"><button class="sub-btn" type="button" aria-expanded="false" aria-haspopup="true">Training<i class="tri" aria-hidden="true"></i></button>
-       <div class="sd"><a class="ov" href="training.html">Training overview</a><a href="training-institution.html">For Institutions</a><a href="training-corporate.html">For Corporate</a><a href="training-learner.html">For Learners</a></div></div>
+      <a href="training.html">Training</a>
       <a href="products.html">Products</a></div></li>
     <li><a href="our-work.html">Our Work</a></li>
     <li><a href="careers.html">Careers</a></li>
@@ -771,6 +807,32 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
  q('.sub-btn').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var li=b.parentNode,o=!li.classList.contains('open');li.classList.toggle('open',o);b.setAttribute('aria-expanded',o)})});
  document.addEventListener('click',function(e){if(!e.target.closest('.has-dd'))q('.has-sub').forEach(function(x){x.classList.remove('open')})});
  var f=location.pathname.split('/').pop()||'index.html';q('.dd a').forEach(function(a){if(a.getAttribute('href')===f){a.classList.add('active');a.setAttribute('aria-current','page')}})})();
+// ===== Top bar like About, WhatsApp glow, card light border, scroll animations =====
+(function(){
+ var R=matchMedia('(prefers-reduced-motion:reduce)').matches,
+  hdr=document.querySelector('.site-header'),nv=document.getElementById('navWrap'),last=scrollY,hid=false;
+ if(hdr&&!R)addEventListener('scroll',function(){var sy=scrollY,d=sy-last;
+  if(Math.abs(d)>6){var busy=(nv&&nv.classList.contains('open'))||document.querySelector('.has-dd.open')||hdr.matches(':focus-within');
+   if(d>0&&sy>240&&!busy)hid=true;else if(d<0||sy<=120)hid=false;
+   hdr.classList.toggle('hide',hid);last=sy}},{passive:true});
+ var wa=document.querySelector('.wa,.wa-float');
+ if(wa){var wt;addEventListener('scroll',function(){wa.classList.add('hot');clearTimeout(wt);wt=setTimeout(function(){wa.classList.remove('hot')},700)},{passive:true})}
+ var cards=Array.prototype.slice.call(document.querySelectorAll('.quote,.eng-item,.xr,.qrow,.dk-i,.rt,.proj,.flag'));
+ cards.forEach(function(c){var i=document.createElement('i');i.className='rl';i.setAttribute('aria-hidden','true');c.appendChild(i)});
+ if(!R&&'IntersectionObserver' in window&&matchMedia('(hover:none),(max-width:900px)').matches){
+  var mo=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('mf',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
+  cards.forEach(function(c){mo.observe(c)})}
+ if(R||!('IntersectionObserver' in window))return;
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;
+  el.classList.add('sx-in');io.unobserve(el);
+  el.addEventListener('animationend',function(){el.classList.remove('sx','sx-in');el.style.removeProperty('--k')},{once:true})})},{threshold:.2,rootMargin:'0px 0px -30px 0px'});
+ ['.tags span','.pts li','.assure span','.rb .socgrid a','.lbt .btn','.fsub','.rchip'].forEach(function(s){
+  Array.prototype.forEach.call(document.querySelectorAll(s),function(el,i){if(el.closest('.hero'))return;el.classList.add('sx');el.style.setProperty('--k',i%6);io.observe(el)})});
+ var blobs=Array.prototype.slice.call(document.querySelectorAll('.blob')),busy2=false;
+ function upd(){busy2=false;var vh=innerHeight;blobs.forEach(function(b,i){var p=b.parentNode.getBoundingClientRect();if(p.bottom<0||p.top>vh)return;
+  b.style.translate='0 '+(((p.top+p.height/2-vh/2)/vh)*(i%2?-70:70)).toFixed(1)+'px'})}
+ addEventListener('scroll',function(){if(!busy2){busy2=true;requestAnimationFrame(upd)}},{passive:true});upd();
+})();
 </script>
 </body>
 </html>

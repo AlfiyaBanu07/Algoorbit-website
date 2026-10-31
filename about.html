@@ -1601,9 +1601,301 @@ h2 .w:hover>span{color:var(--ind)}
  .site-header .sd a.ov{background:linear-gradient(135deg,var(--ind),var(--peri));border-color:transparent;font-weight:600}
  .site-header .dd a.active,.site-header .sd a.active{background:rgba(143,132,242,.28);border-color:var(--peri);color:#fff}
 }
+
+/* =====================================================================
+   REVIEW PASS: no blur, lighter hovers, ad-style scroll flow, standards
+   ===================================================================== */
+:root{--std-r:24px;--std-sec:clamp(60px,8vw,100px)}
+*,*::before,*::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* Header */
+.site-header,.btn-o,/* Glass surfaces */
+.card,.cat,.tcard,.pcard,.quote,.gal,.partners div,.faq details,.mosaic figcaption,.fchip,.f-tag,.hs,.hero::after,/* drifting colour blobs */
+.blob,.f-photo::before,.strip>.ic,.arch .tg,.arch .ai{filter:none!important}
+.blob,.hero::after,.cta::before,.cta::after,.stats::before,.stats::after,.lgt.wwd .card::before,.lgt.wwd .card::after{animation:none!important}
+.site-header{background:rgba(14,15,42,.97)}
+.btn-o{background:rgba(255,255,255,.85)}
+.skip{position:absolute;left:12px;top:-64px;z-index:2000;background:#fff;color:var(--navy);padding:10px 16px;border-radius:10px;font-weight:600;box-shadow:0 8px 24px rgba(14,15,42,.2);transition:top .2s}
+.skip:focus{top:12px}
+
+/* lighter hover: one gentle lift + soft shadow */
+.card,.quote{transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.card:hover,.quote:hover{transform:translateY(-6px);border-color:var(--ind);box-shadow:0 14px 30px rgba(91,75,232,.16)}
+.dk .card:hover{border-color:var(--peri);box-shadow:0 16px 34px rgba(0,0,0,.4)}
+.faq summary{transition:color .25s}.faq summary:hover{color:var(--ind)}
+
+/* ad-style reveal: 700ms fade-up, 120ms stagger */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.two>div.rv:not(.vis):not(.train){transform:translateX(-40px)}
+.train.rv,.vis.rv{transform:translateX(40px)}.vis.l.rv{transform:translateX(-40px)}
+.feat.rv{transform:translateX(-30px)}
+.stat.rv{transform:translateY(30px)}
+@media(max-width:768px){.rv,.two>div.rv:not(.vis):not(.train),.train.rv,.vis.rv,.vis.l.rv,.feat.rv{transform:translateY(28px)}}
+.rv.in,.vis.rv.in,.feat.rv.in{opacity:1!important;transform:none!important}
+.ready .hero-copy>:not(h1){animation:in .7s var(--ease) both}
+.ready .hero-copy>:nth-child(2){animation-delay:.35s}.ready .hero-copy>:nth-child(3){animation-delay:.47s}.ready .hero-copy>:nth-child(4){animation-delay:.59s}
+@keyframes imgIn{from{opacity:0;transform:scale(1.08)}}
+.ready .hero-bg{animation:imgIn 1.2s var(--ease) .15s both}
+.hero-bg,.orbit,.hero-copy{backface-visibility:hidden}
+
+/* standards: one type scale, centred section heads, one button size */
+h2,.head h2{font-size:clamp(1.65rem,1.2rem + 1.7vw,2.4rem);line-height:1.2;letter-spacing:-.025em}
+.head{margin-inline:auto;text-align:center;margin-bottom:clamp(32px,4vw,48px)}
+.head h2::after{margin-inline:auto}
+.head p,.sub{font-size:1.02rem;line-height:1.7}
+.card,.quote{border-radius:var(--std-r)}
+.faq details{border-radius:20px}
+@media(min-width:701px){.btn{height:48px;min-width:190px;font-size:15px}.btn-d{height:40px;min-width:0}}
+.btn:focus-visible,.link:focus-visible,.nav-links a:focus-visible,.dd-btn:focus-visible{outline:2px solid var(--ind);outline-offset:3px}
+.dk .btn:focus-visible,.cta .btn:focus-visible,.site-header :focus-visible{outline-color:#fff}
+.dots button{position:relative}.dots button::before{content:"";position:absolute;inset:-18px -6px}
+.fgrid li a:focus-visible,.fbot a:focus-visible,.social a:focus-visible{outline:2px solid var(--vio);outline-offset:3px;border-radius:6px}
+@media(max-width:700px){h2,.head h2{font-size:1.6rem}.head p,.sub{font-size:15px}}
+
+/* MOBILE SCROLL EFFECTS */
+@media(max-width:700px){
+ .rv{opacity:0;transform:translateY(38px) scale(.96)}
+ .feat.rv:nth-child(odd){transform:translateX(-32px)}.feat.rv:nth-child(even){transform:translateX(32px)}
+ .rv.in,.feat.rv.in{opacity:1!important;transform:none!important}
+ .stat.rv{transform:translateY(30px) scale(.9)}
+ .faq details.rv{transform:translateY(26px)}
+ .fgrid>div.rv,.fbot.rv{transform:translateY(24px)}
+ .card,.arch,.tl-card,.minis div,.faq details,.f-quote{transition:box-shadow .45s,border-color .45s,transform .45s var(--ease)}
+ .mf{border-color:var(--ind)!important;box-shadow:0 14px 30px rgba(91,75,232,.2)!important}
+ .dk .mf{border-color:var(--peri)!important;box-shadow:0 14px 30px rgba(0,0,0,.45)!important}
+ .card:hover,.quote:hover{transform:none}
+}
+.lgt.wwd .card:hover{transform:translateY(-6px)}
+
+/* =====================================================================
+   WHO WE WORK WITH: orbit circles, no boxes
+   ===================================================================== */
+.wwo{overflow:hidden}
+.orbs{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,4vw,56px);align-items:start;max-width:1040px;margin:0 auto;padding-top:24px}
+.orbs-line{position:absolute;left:0;top:0;width:100%;height:300px;pointer-events:none;z-index:0;overflow:visible;transition:opacity 1s ease .3s}
+.orbs-line path{fill:none;stroke:url(#obg);stroke-width:2.5;stroke-dasharray:7 9;vector-effect:non-scaling-stroke;animation:obDash 1.6s linear infinite}
+@keyframes obDash{to{stroke-dashoffset:-32}}
+.ob{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center}
+.ob:nth-of-type(2){margin-top:56px}
+.ob-pic{position:relative;display:block;width:min(100%,270px);aspect-ratio:1;margin-bottom:38px}
+.ob-pic::before{content:"";position:absolute;inset:-36px;border-radius:50%;border:1px solid rgba(var(--glow),.18);pointer-events:none}
+.ob-img{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:linear-gradient(150deg,var(--a),var(--b));box-shadow:0 24px 48px rgba(var(--glow),.32);transition:transform .7s var(--ease),box-shadow .5s}
+.ob-img img{width:100%;height:100%;object-fit:cover;filter:saturate(1.12);transition:transform 1s var(--ease)}
+.ob-img::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(var(--glow),.35),rgba(var(--glow),.05) 55%,rgba(14,15,42,.3));transition:opacity .5s}
+.ob-ring{position:absolute;inset:-16px;border-radius:50%;border:2px dashed rgba(var(--glow),.5);animation:spin 26s linear infinite;transition:border-color .4s;pointer-events:none}
+.ob-ring::after{content:"";position:absolute;top:-7px;left:50%;margin-left:-6px;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 0 14px rgba(var(--glow),.85)}
+.ob-n{position:absolute;right:4%;bottom:6%;z-index:2;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));color:#fff;font:800 13px var(--fd);letter-spacing:.04em;border:3px solid var(--bg);box-shadow:0 8px 18px rgba(var(--glow),.45);transition:transform .5s var(--ease)}
+.ob-tag{display:block;font:700 11.5px/1 var(--fd);letter-spacing:.16em;text-transform:uppercase;color:var(--b);margin-bottom:10px}
+.ob h3{font-size:clamp(1.25rem,1.1rem + .6vw,1.5rem);margin-bottom:10px}
+.ob p{color:var(--mute);font-size:15px;max-width:30ch;margin:0 auto 16px}
+.ob-link{position:relative;display:inline-flex;align-items:center;gap:8px;padding-bottom:4px;font:600 15px var(--fd);color:var(--b);background:linear-gradient(var(--b),var(--b)) left bottom/0 2px no-repeat;transition:background-size .4s var(--ease)}
+.ob-link::after{content:"\2192";transition:transform .35s var(--ease)}
+.ob:is(:hover,.tch) .ob-img{transform:scale(1.05);box-shadow:0 32px 60px rgba(var(--glow),.5)}
+.ob:is(:hover,.tch) .ob-img img{transform:scale(1.12)}
+.ob:is(:hover,.tch) .ob-img::after{opacity:.35}
+.ob:is(:hover,.tch) .ob-ring{animation-duration:7s;border-color:rgb(var(--glow))}
+.ob:is(:hover,.tch) .ob-n{transform:scale(1.15) rotate(-8deg)}
+.ob:is(:hover,.tch) .ob-link,.ob-link:hover,.ob-link:focus-visible{background-size:100% 2px}
+.ob:is(:hover,.tch) .ob-link::after{transform:translateX(5px)}
+.ob-pic:focus-visible{outline:3px solid var(--b);outline-offset:10px;border-radius:50%}
+/* entrance: circles pop in one after another, the dotted route fades in */
+.orbs.pre .ob{opacity:0;transform:translateY(46px) scale(.86)}
+.orbs.pre .orbs-line{opacity:0}
+.orbs.pre.go .ob{opacity:1;transform:none;transition:opacity .8s var(--ease) calc(var(--k)*.18s),transform 1s cubic-bezier(.16,1,.3,1) calc(var(--k)*.18s)}
+.orbs.pre.go .orbs-line{opacity:1}
+@media(max-width:900px){
+ .orbs{grid-template-columns:minmax(0,1fr);gap:64px;max-width:380px;padding-top:36px}
+ .orbs-line{display:none}
+ .ob:nth-of-type(2){margin-top:0}
+ .ob-pic{width:min(100%,240px)}
+}
+@media(prefers-reduced-motion:reduce){.ob-ring,.orbs-line path{animation:none!important}.orbs.pre .ob,.orbs.pre .orbs-line{opacity:1;transform:none}}
+
+/* =====================================================================
+   SCROLL EXPERIENCE LAYER (same as Home)
+   ===================================================================== */
+#bar{background:linear-gradient(90deg,var(--ind),var(--peri) 60%,#82c8eb)}
+.site-header{transition:transform .45s var(--ease),box-shadow .3s}
+.site-header.hide{transform:translateY(-100%)}
+.scue{display:none}
+@media(min-width:1024px){
+ .scue{display:block;position:absolute;left:50%;bottom:16px;z-index:3;width:24px;height:38px;margin-left:-12px;border:2px solid rgba(20,21,46,.45);border-radius:14px;background:rgba(255,255,255,.75);transition:opacity .4s,transform .4s var(--ease)}
+ .scue::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:3px;background:var(--ind);animation:scueDot 1.8s var(--ease) infinite}
+ .scue.gone{opacity:0;transform:translateY(8px);pointer-events:none}
+}
+@keyframes scueDot{0%{opacity:0;transform:translateY(0)}30%{opacity:1}80%{opacity:0;transform:translateY(14px)}100%{opacity:0}}
+/* dark bands unfold from rounded cards to full width */
+.cur{--cr:56px;clip-path:inset(0 calc((1 - var(--p,1)) * 5%) round calc((1 - var(--p,1)) * var(--cr)))}
+.cur.full{clip-path:none}
+@media(max-width:700px){.cur{--cr:28px}}
+/* back to top with progress ring */
+.totop{position:fixed;left:24px;bottom:24px;z-index:140;width:48px;height:48px;padding:0;border:0;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px rgba(20,21,46,.18);opacity:0;visibility:hidden;transform:translateY(16px) scale(.9);transition:opacity .35s,transform .35s var(--ease),visibility .35s,background .25s,color .25s}
+.totop.show{opacity:1;visibility:visible;transform:none}
+.totop:hover{background:var(--navy);color:#fff}
+.totop .ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.totop .trk{fill:none;stroke:var(--line);stroke-width:2.5}
+.totop .prg{fill:none;stroke:var(--ind);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:138.23;stroke-dashoffset:138.23}
+.totop .ui{position:relative;width:18px;height:18px}
+@media(max-width:700px){.totop{left:16px;bottom:16px;width:44px;height:44px}body.bar-on .totop{bottom:84px}}
+/* section rail (large screens) */
+.rail{display:none}
+@media(min-width:1320px){
+ .rail{position:fixed;right:16px;top:50%;z-index:120;display:flex;flex-direction:column;gap:2px;padding:10px 6px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;box-shadow:0 10px 28px rgba(20,21,46,.12);opacity:0;visibility:hidden;transform:translate(14px,-50%);transition:opacity .4s,transform .5s var(--ease),visibility .4s}
+ .rail.show{opacity:1;visibility:visible;transform:translate(0,-50%)}
+ .rail a{position:relative;display:block;width:18px;height:18px}
+ .rail a::before{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3.5px;border-radius:50%;background:#c9c8e6;transition:transform .3s var(--ease),background .3s}
+ .rail a:hover::before{background:var(--peri);transform:scale(1.3)}
+ .rail a.on::before{background:var(--ind);transform:scale(1.55)}
+ .rail a::after{content:attr(data-l);position:absolute;right:calc(100% + 12px);top:50%;transform:translate(6px,-50%);padding:6px 11px;border-radius:8px;background:var(--navy);color:#fff;font:600 12px/1 var(--fd);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s,transform .25s var(--ease)}
+ .rail a:hover::after,.rail a:focus-visible::after{opacity:1;transform:translate(0,-50%)}
+}
+/* more motion: image mask reveal, staggered lists, word-by-word text scrub */
+.mk{clip-path:inset(0 0 100% 0);transition:clip-path .9s cubic-bezier(.22,1,.36,1)}
+.mk.on{clip-path:inset(0 0 0 0)}
+.lst>li{opacity:0;transform:translateX(-16px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.lst.lv>li{opacity:1;transform:none;transition-delay:calc(var(--k)*90ms)}
+.sw{opacity:.28;transition:opacity .35s}
+.sw.lit{opacity:1}
+.hero-copy{will-change:opacity,translate}
+@media(max-width:700px){.lst>li{transform:translateY(14px)}.lst.lv>li{transform:none}}
+@media(prefers-reduced-motion:reduce){.scue::after{animation:none}.cur{clip-path:none!important}.site-header{transition:none}.mk,.lst>li,.sw{clip-path:none!important;opacity:1!important;transform:none!important}}
+
+/* =====================================================================
+   WhatsApp button: glowing halo + expanding rings (brighter while scrolling)
+   ===================================================================== */
+.wa-float{isolation:isolate;overflow:visible;
+ animation:waGlow 2.4s ease-in-out infinite,waBob 4s ease-in-out infinite;
+ transition:transform .3s var(--ease),bottom .4s var(--ease),filter .4s}
+.wa-float::before,.wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;z-index:-1;pointer-events:none;
+ border:2px solid rgba(37,211,102,.75);background:radial-gradient(circle,rgba(37,211,102,.35),transparent 70%);
+ animation:waRing 2.4s ease-out infinite}
+.wa-float::after{animation-delay:1.2s}
+@keyframes waGlow{
+ 0%,100%{box-shadow:0 0 14px 2px rgba(37,211,102,.55),0 0 34px 8px rgba(37,211,102,.28),0 8px 24px rgba(37,211,102,.45)}
+ 50%{box-shadow:0 0 26px 6px rgba(37,211,102,.9),0 0 64px 18px rgba(37,211,102,.42),0 8px 24px rgba(37,211,102,.55)}}
+@keyframes waRing{0%{transform:scale(1);opacity:.85}100%{transform:scale(2.1);opacity:0}}
+.wa-float svg{filter:drop-shadow(0 0 6px rgba(255,255,255,.7));animation:waIcon 3s ease-in-out infinite}
+@keyframes waIcon{0%,86%,100%{transform:rotate(0)}90%{transform:rotate(-14deg)}94%{transform:rotate(12deg)}98%{transform:rotate(-6deg)}}
+.wa-float:hover{transform:scale(1.14);box-shadow:0 0 34px 10px rgba(37,211,102,.95),0 0 80px 26px rgba(37,211,102,.5)}
+.wa-float.hot{animation:waGlow 1s ease-in-out infinite,waBob 4s ease-in-out infinite}
+.wa-float.hot::before,.wa-float.hot::after{animation-duration:1.2s}
+.wa-float.hot::after{animation-delay:.6s}
+
+/* =====================================================================
+   Extra scroll animations (staggered pops, scroll-linked rings and blobs)
+   ===================================================================== */
+.sx{opacity:0}
+.sx.sx-in{animation:sxPop .75s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--k,0)*70ms)}
+.sx.sx-l.sx-in{animation-name:sxLeft}
+.sx.sx-r.sx-in{animation-name:sxRight}
+@keyframes sxPop{from{opacity:0;transform:translateY(26px) scale(.86)}to{opacity:1;transform:none}}
+@keyframes sxLeft{from{opacity:0;transform:translateX(-36px)}to{opacity:1;transform:none}}
+@keyframes sxRight{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+.ob-ring,.blob{will-change:rotate,translate}
+/* browsers with scroll-driven animations: headings and photos glide as they cross the viewport */
+@supports(animation-timeline:view()){
+ .sgrid figure,.tl-card,.f-quote{animation:sxScrub linear both;animation-timeline:view();animation-range:entry 0% cover 28%}
+ @keyframes sxScrub{from{opacity:.25;scale:.94}to{opacity:1;scale:1}}
+}
+@media(prefers-reduced-motion:reduce){
+ .wa-float,.wa-float::before,.wa-float::after,.wa-float svg{animation:none!important}
+ .sx{opacity:1}.sx.sx-in{animation:none}
+}
+
+/* =====================================================================
+   Card effects: cursor spotlight, light sweep, growing accent line, icon wiggle
+   ===================================================================== */
+.tl-card,.minis div,.steps5 li{position:relative;overflow:hidden}
+.cshine{position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;overflow:hidden;opacity:0;transition:opacity .35s,clip-path .7s var(--ease);
+ background:linear-gradient(135deg,rgba(143,132,242,.28),rgba(130,200,235,.1) 45%,transparent 70%);clip-path:polygon(0 0,0 0,0 0)}
+.card:hover>.cshine,.tl-card:hover>.cshine,.minis div:hover>.cshine,.steps5 li:hover>.cshine,
+.card.mf>.cshine,.tl-card.tch>.cshine,.minis div.tch>.cshine,.steps5 li.tch>.cshine{clip-path:polygon(0 0,260% 0,0 260%)}
+body:has(.card:hover,.tl-card:hover,.minis div:hover,.steps5 li:hover) .cglow{opacity:0!important}
+.cshine::before{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,var(--ind),#82c8eb);transition:width .6s var(--ease)}
+.cshine::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-140%) skewX(-18deg)}
+.dk .cshine,.tl-card>.cshine,.steps5 li>.cshine{background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(143,132,242,.12) 45%,transparent 70%)}
+.card:hover>.cshine,.tl-card:hover>.cshine,.minis div:hover>.cshine,.steps5 li:hover>.cshine,
+.card.mf>.cshine,.tl-card.tch>.cshine,.minis div.tch>.cshine,.steps5 li.tch>.cshine{opacity:1}
+.card:hover>.cshine::before,.tl-card:hover>.cshine::before,.minis div:hover>.cshine::before,.steps5 li:hover>.cshine::before,
+.card.mf>.cshine::before,.tl-card.tch>.cshine::before,.minis div.tch>.cshine::before{width:100%}
+.card:hover>.cshine::after,.tl-card:hover>.cshine::after,.minis div:hover>.cshine::after,.steps5 li:hover>.cshine::after,
+.card.mf>.cshine::after,.tl-card.tch>.cshine::after,.minis div.tch>.cshine::after{animation:sheenX 1s var(--ease) forwards}
+@keyframes icWiggle{20%{rotate:-12deg}45%{rotate:10deg}70%{rotate:-6deg}100%{rotate:0deg}}
+.card:hover .ic .ui,.tl-card:hover .ic .ui,.card.mf .ic .ui{animation:icWiggle .7s var(--ease)}
+/* =====================================================================
+   Mission & Vision: glowing orbiting border, rising glow, spinning icon, highlighted "in practice"
+   ===================================================================== */
+.sec.dk .grid.g2 .card>.cshine,.lgt.wwd .card>.cshine{background:none}
+.sec.dk .grid.g2 .card::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .6s;
+ background:radial-gradient(120% 70% at 50% 110%,rgba(91,75,232,.55),rgba(130,200,235,.18) 45%,transparent 70%)}
+.sec.dk .grid.g2 .card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;z-index:4;pointer-events:none;opacity:0;transition:opacity .5s;
+ background:conic-gradient(from var(--ang),transparent 0 50%,#82c8eb 76%,#a9a3ee 90%,#fff 100%);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+ animation:spinAng 3s linear infinite}
+.sec.dk .grid.g2 .card .cb{position:relative;z-index:1}
+.sec.dk .grid.g2 .card:hover::before,.sec.dk .grid.g2 .card:hover::after,.sec.dk .grid.g2 .card.mf::before,.sec.dk .grid.g2 .card.mf::after{opacity:1}
+.sec.dk .grid.g2 .card>img{transition:transform 1s var(--ease),filter .6s}
+.sec.dk .grid.g2 .card:hover>img,.sec.dk .grid.g2 .card.mf>img{transform:scale(1.09);filter:brightness(1.05) saturate(1.2)}
+.sec.dk .grid.g2 .card:hover .mv-top .ic,.sec.dk .grid.g2 .card.mf .mv-top .ic{animation:icSpin .9s var(--ease);background:linear-gradient(135deg,var(--ind),#82c8eb);color:#fff;box-shadow:0 0 22px rgba(130,200,235,.6)}
+@keyframes icSpin{from{transform:rotate(-360deg) scale(.7)}to{transform:none}}
+.sec.dk .grid.g2 .card .mv-top h3{transition:letter-spacing .5s var(--ease),color .3s}
+.sec.dk .grid.g2 .card:hover .mv-top h3{letter-spacing:.06em}
+.sec.dk .grid.g2 .in-practice{border-radius:12px;transition:background .5s,padding .5s var(--ease),box-shadow .5s;padding:14px 0 0}
+.sec.dk .grid.g2 .card:hover .in-practice,.sec.dk .grid.g2 .card.mf .in-practice{background:rgba(143,132,242,.16);padding:14px 14px 14px 18px;box-shadow:inset 3px 0 0 #82c8eb}
+.sec.dk .grid.g2 .card:hover .in-practice b{color:#82c8eb}
+
+/* =====================================================================
+   What we do: photo gets a slanted cut, number badge flips, text and button stagger in
+   ===================================================================== */
+.lgt.wwd .card>img{clip-path:polygon(0 0,100% 0,100% 100%,0 100%);transition:transform .9s var(--ease),filter .6s,clip-path .7s var(--ease)}
+.lgt.wwd .card:hover>img{clip-path:polygon(0 0,100% 0,100% 84%,0 100%)}
+.lgt.wwd .wn{transform-style:preserve-3d}
+.lgt.wwd .card:hover .wn{animation:wnFlip .7s var(--ease)}
+@keyframes wnFlip{from{transform:rotateY(-180deg) scale(.6)}to{transform:rotateY(0) scale(1.12)}}
+.lgt.wwd .card .cb h3,.lgt.wwd .card .cb p,.lgt.wwd .card .dbtn{transition:transform .55s var(--ease),color .4s ease .12s,letter-spacing .5s var(--ease),padding .35s,background .35s,box-shadow .35s}
+.lgt.wwd .card:hover .cb h3{transform:translateY(-6px);letter-spacing:.01em}
+.lgt.wwd .card:hover .cb p{transform:translateY(-4px)}
+.lgt.wwd .card:hover .dbtn{transform:translateY(-2px) scale(1.04)}
+.lgt.wwd .card:hover .ic{animation:icBounce .7s var(--ease)!important}
+@keyframes icBounce{0%{transform:translateY(0)}35%{transform:translateY(-14px) rotate(-10deg)}65%{transform:translateY(2px) rotate(6deg)}100%{transform:scale(1.1)}}
+@media(prefers-reduced-motion:reduce){.sec.dk .grid.g2 .card::after{animation:none}.lgt.wwd .card:hover .wn,.lgt.wwd .card:hover .ic{animation:none!important}}
+
+/* =====================================================================
+   What we do v2: card flips from light to dark when touched, border with roaming coloured lights
+   (no slanted/curved photo cuts, no tilt)
+   ===================================================================== */
+.lgt.wwd .card>img,.lgt.wwd .card:hover>img{clip-path:none!important}
+.lgt.wwd .card .cb{position:relative;z-index:1}
+.lgt.wwd .card>img{position:relative;z-index:1}
+.lgt.wwd .card{transition:transform .4s var(--ease),box-shadow .5s,border-color .4s,background .5s}
+.lgt.wwd .cb::before{background:linear-gradient(165deg,#1d1f48,#0b0c26 80%);clip-path:inset(0 0 100% 0);transition:clip-path .65s var(--ease)}
+.lgt.wwd .card:is(:hover,.mf) .cb::before{clip-path:inset(0)}
+.lgt.wwd .card:is(:hover,.mf) .cb h3{color:#fff}
+.lgt.wwd .card:is(:hover,.mf) .cb p{color:#c9cae9}
+.lgt.wwd .card:is(:hover,.mf) .cb h3::after{width:68px;background:linear-gradient(90deg,#82c8eb,#f08a3c,#ff5fa2)}
+.lgt.wwd .card:is(:hover,.mf) .ic{background:linear-gradient(135deg,#fff,#dcd9ff);color:#4538c4;box-shadow:0 0 22px rgba(255,255,255,.45)}
+.lgt.wwd .card:is(:hover,.mf) .dbtn{background:#fff;color:#0e0f2a;border-color:#fff}
+.lgt.wwd .card:is(:hover,.mf) .dbtn:hover{background:var(--ind);color:#fff;border-color:var(--ind)}
+.lgt.wwd .card:is(:hover,.mf) .wn{background:#fff;color:#0e0f2a}
+/* roaming light border */
+.lgt.wwd .card::after{padding:3px;opacity:.35;z-index:5;
+ background:conic-gradient(from var(--ang),#5b4be8,#82c8eb,#37d67a,#f0d23c,#f08a3c,#ff5fa2,#a9a3ee,#5b4be8);
+ animation:spinAng 7s linear infinite!important;transition:opacity .45s}
+.lgt.wwd .card:is(:hover,.mf)::after{opacity:1;animation-duration:2.4s!important}
+.lgt.wwd .card:is(:hover,.mf){border-color:transparent;box-shadow:0 0 0 1px rgba(255,255,255,.2),0 20px 46px rgba(14,15,42,.45),0 0 34px rgba(130,200,235,.35)}
+@media(prefers-reduced-motion:reduce){.lgt.wwd .card::after{animation:none!important}}
+
+/* section dots rail removed */
+.rail{display:none!important}
+
+/* card entrance: gentle 3D flip-up, one after another */
+@keyframes cardIn{from{opacity:0;transform:perspective(900px) translateY(40px) rotateX(14deg) scale(.95)}to{opacity:1;transform:none}}
+.cin{opacity:0}
+.cin.cin-go{animation:cardIn .85s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--k,0)*110ms)}
+@media(prefers-reduced-motion:reduce){.cshine::after{animation:none!important}.cin{opacity:1}.cin.cin-go{animation:none}.card:hover .ic .ui{animation:none}}
 </style>
 </head>
 <body class="ready">
+<a class="skip" href="#main">Skip to content</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></symbol>
@@ -1645,10 +1937,7 @@ h2 .w:hover>span{color:var(--ind)}
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html" class="active" aria-current="page">About</a></li>
     <li class="has-dd"><button class="dd-btn" type="button" aria-expanded="false">Services<i class="tri" aria-hidden="true"></i></button>
-     <div class="dd"><a href="consultancy.html">IT Consultancy</a>
-      <div class="has-sub"><button class="sub-btn" type="button" aria-expanded="false" aria-haspopup="true">Training<i class="tri" aria-hidden="true"></i></button>
-       <div class="sd"><a class="ov" href="training.html">Training overview</a><a href="training-institution.html">For Institutions</a><a href="training-corporate.html">For Corporate</a><a href="training-learner.html">For Learners</a></div></div>
-      <a href="products.html">Products</a></div></li>
+     <div class="dd"><a href="consultancy.html">IT Consultancy</a><a href="training.html">Training</a><a href="products.html">Products</a></div></li>
     <li><a href="our-work.html">Our Work</a></li>
     <li><a href="careers.html">Careers</a></li>
     <li><a href="contact.html">Contact</a></li>
@@ -1657,7 +1946,7 @@ h2 .w:hover>span{color:var(--ind)}
  </div>
 </header>
 
-<main>
+<main id="main">
 
 <!-- Hero -->
 <section class="hero">
@@ -1665,12 +1954,13 @@ h2 .w:hover>span{color:var(--ind)}
  <img class="hero-bg" src="assets/images/about.png" alt="ALGO ORBIT team collaborating on technology projects" width="1600" height="900" fetchpriority="high">
  <div class="wrap hero-grid">
   <div class="hero-copy">
-   <h1>We are <em>Algo Orbit</em></h1>
-   <p class="lead">Transforming businesses through innovative technology solutions, strategic consulting, and continuous partnership, and building skills through practical, mentor-led learning.</p>
-   <div class="acts"><a href="contact.html" class="btn btn-p">Talk to our team</a><a href="our-work.html" class="btn btn-o">Explore our work</a></div>
+   <h1>We are <em>ALGO ORBIT</em></h1>
+   <p class="lead">A Karkala-based team that builds software for businesses and trains the next generation of developers through practical, mentor-led learning.</p>
+   <div class="acts"><a href="contact.html" class="btn btn-p">Book a free consultation</a><a href="our-work.html" class="btn btn-o">Explore our work</a></div>
    <ul class="checklist"><li>Project-first delivery</li><li>Industry-aligned training</li><li>Transparent milestones</li></ul>
   </div>
  </div>
+ <a class="scue" href="#sec-2" aria-label="Scroll to content"></a>
 </section>
 
 <div class="ticker" aria-hidden="true"><div class="marq tk" id="tk"></div></div>
@@ -1680,20 +1970,20 @@ h2 .w:hover>span{color:var(--ind)}
  <div class="wrap two">
   <div class="story-copy">
    <span class="eyebrow">Our Story</span>
-   <h2>Building tomorrow's technology today</h2>
-   <p>Founded in 2023, <strong>Algo Orbit</strong> emerged from a simple yet powerful vision: to make enterprise-grade technology accessible to organizations of all sizes.</p>
-   <p>We recognized that businesses needed more than just software. They needed strategic partners who could translate complex technology into tangible business value. Today, we serve <span class="rd">50+ enterprise clients</span> across multiple industries.</p>
-   <p>Our approach combines technical excellence with business intelligence, ensuring every solution we deliver is not just technically sound, but strategically aligned with your goals.</p>
+   <h2>Practical technology, built to last</h2>
+   <p>Founded in 2023, <strong>ALGO ORBIT</strong> began with a simple aim: to make enterprise-grade technology accessible to organizations of every size.</p>
+   <p>Businesses needed more than software. They needed a partner who could turn complex technology into practical results. Today we work with <span class="rd">50+ enterprise clients</span> across multiple industries.</p>
+   <p>We pair engineering depth with business context, so every solution is technically sound and tied to your goals.</p>
    <div class="chips"><span><svg class="ui"><use href="#i-check"/></svg>Innovation First</span><span><svg class="ui"><use href="#i-check"/></svg>Client Success</span><span><svg class="ui"><use href="#i-check"/></svg>Quality Driven</span></div>
   </div>
   <div class="sgrid">
    <div>
-    <figure><img src="assets/images/1.png" alt="Team" loading="lazy"></figure>
-    <figure><img src="assets/images/2.png" alt="Innovation" loading="lazy"></figure>
+    <figure><img width="800" height="450" src="assets/images/1.png" alt="Team" loading="lazy"></figure>
+    <figure><img width="800" height="450" src="assets/images/2.png" alt="Innovation" loading="lazy"></figure>
    </div>
    <div>
-    <figure><img src="assets/images/3.png" alt="Collaboration" loading="lazy"></figure>
-    <figure><img src="assets/images/4.png" alt="Technology" loading="lazy"></figure>
+    <figure><img width="800" height="450" src="assets/images/3.png" alt="Collaboration" loading="lazy"></figure>
+    <figure><img width="800" height="450" src="assets/images/4.png" alt="Technology" loading="lazy"></figure>
    </div>
   </div>
  </div>
@@ -1704,7 +1994,7 @@ h2 .w:hover>span{color:var(--ind)}
  <div class="wrap">
   <div class="two">
    <div class="vis l">
-    <div class="frame"><div class="fin"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="ALGO ORBIT campus programs" loading="lazy"></div></div>
+    <div class="frame"><div class="fin"><img width="800" height="450" src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="ALGO ORBIT campus programs" loading="lazy"></div></div>
     <span class="fchip c1"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span>Project-first model</span>
     <span class="fchip c2"><span class="ic"><svg class="ui"><use href="#i-users"/></svg></span>Hands-on engineering</span>
    </div>
@@ -1724,14 +2014,14 @@ h2 .w:hover>span{color:var(--ind)}
  <div class="wrap">
   <div class="head c"><span class="eyebrow">Purpose &amp; Direction</span><h2>Our mission &amp; vision</h2></div>
   <div class="grid g2">
-   <div class="card"><img src="assets/images/mission.png" alt="Team working towards a shared mission" loading="lazy"><div class="cb">
+   <div class="card"><img width="800" height="450" src="assets/images/mission.png" alt="Team working towards a shared mission" loading="lazy"><div class="cb">
     <div class="mv-top"><span class="ic"><svg class="ui"><use href="#i-target"/></svg></span><h3>Mission</h3></div>
-    <p>To empower organizations with technology solutions that drive efficiency, innovation, and sustainable growth through strategic partnership and technical excellence.</p>
+    <p>To help organizations grow through reliable technology, built in close partnership with the people who use it.</p>
     <p class="in-practice"><b>In practice:</b> empower organizations by solving practical problems through structured engineering, while enabling learners to build real-world, industry-ready capabilities.</p>
    </div></div>
-   <div class="card"><img src="assets/images/vision.png" alt="Modern office representing our vision" loading="lazy"><div class="cb">
+   <div class="card"><img width="800" height="450" src="assets/images/vision.png" alt="Modern office representing our vision" loading="lazy"><div class="cb">
     <div class="mv-top"><span class="ic"><svg class="ui"><use href="#i-eye"/></svg></span><h3>Vision</h3></div>
-    <p>To be the most trusted technology partner, recognized for transforming businesses through innovation, integrity, and measurable impact across industries.</p>
+    <p>To be a technology partner organizations trust for dependable delivery, honest communication and measurable results.</p>
     <p class="in-practice"><b>In practice:</b> a premier partner for dependable digital transformation and applied, outcome-based technical training.</p>
    </div></div>
   </div>
@@ -1747,10 +2037,10 @@ h2 .w:hover>span{color:var(--ind)}
  <div class="wrap">
   <div class="head c"><h2>What we do</h2><p>Delivering end-to-end execution across product engineering and practical training.</p></div>
   <div class="grid g4">
-   <div class="card"><span class="wn">01</span><img src="assets/images/prod.png" alt="Software engineering team" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>Software &amp; Product Engineering</h3><p>High-performance web applications, responsive cross-platform apps, and custom operational software.</p><a href="products.html" class="dbtn">Learn more</a></div></div>
-   <div class="card"><span class="wn">02</span><img src="assets/images/it.png" alt="Technology consulting session" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-compass"/></svg></span><h3>Technology Consulting</h3><p>System architecture design, technology stack evaluation, and modernization roadmaps.</p><a href="consultancy.html" class="dbtn">Learn more</a></div></div>
-   <div class="card"><span class="wn">03</span><img src="assets/images/insti.png" alt="Institutional training workshop" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-board"/></svg></span><h3>Institutional Training</h3><p>Custom placement training, value-added modules, and faculty development programs.</p><a href="institutions.html" class="dbtn">Learn more</a></div></div>
-   <div class="card"><span class="wn">04</span><img src="assets/images/learn.png" alt="Students building projects" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><h3>Student Skill Building</h3><p>Practical, mentor-led bootcamps focusing on project implementation and modern toolsets.</p><a href="learners.html" class="dbtn">Learn more</a></div></div>
+   <div class="card"><span class="wn">01</span><img width="800" height="450" src="assets/images/prod.png" alt="Software engineering team" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>Software &amp; Product Engineering</h3><p>High-performance web applications, responsive cross-platform apps, and custom operational software.</p><a href="products.html" class="dbtn">Learn more</a></div></div>
+   <div class="card"><span class="wn">02</span><img width="800" height="450" src="assets/images/it.png" alt="Technology consulting session" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-compass"/></svg></span><h3>Technology Consulting</h3><p>System architecture design, technology stack evaluation, and modernization roadmaps.</p><a href="consultancy.html" class="dbtn">Learn more</a></div></div>
+   <div class="card"><span class="wn">03</span><img width="800" height="450" src="assets/images/insti.png" alt="Institutional training workshop" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-board"/></svg></span><h3>Institutional Training</h3><p>Custom placement training, value-added modules, and faculty development programs.</p><a href="institutions.html" class="dbtn">Learn more</a></div></div>
+   <div class="card"><span class="wn">04</span><img width="800" height="450" src="assets/images/learn.png" alt="Students building projects" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><h3>Student Skill Building</h3><p>Practical, mentor-led bootcamps focusing on project implementation and modern toolsets.</p><a href="learners.html" class="dbtn">Learn more</a></div></div>
   </div>
  </div>
 </section>
@@ -1758,12 +2048,12 @@ h2 .w:hover>span{color:var(--ind)}
 <!-- Timeline -->
 <section class="sec dk">
  <div class="wrap">
-  <div class="head c"><span class="eyebrow">Our Journey</span><h2>Evolution of AlgoOrbit</h2></div>
+  <div class="head c"><span class="eyebrow">Our Journey</span><h2>How ALGO ORBIT has grown</h2></div>
   <div class="tl" id="tl">
    <div class="tl-line" id="tlLine"></div>
-   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img class="tl-img" src="assets/images/enter.png" alt="Founding team at work" loading="lazy"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-rocket"/></svg></span><span class="tl-n">01</span><span class="tl-fy">FY-2023</span></div><h3>The Genesis</h3><p>Algo Orbit was founded with a vision to transform how businesses approach technology. Established our first partnerships and built our core team.</p></div></div></div>
-   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img class="tl-img" src="assets/images/prod.png" alt="Team planning product launches" loading="lazy"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><span class="tl-n">02</span><span class="tl-fy">FY-2024</span></div><h3>Strategic Velocity</h3><p>Launched flagship products <b>KX26 NetaWatch</b> and <b>Restaurant POS</b>. Scaled to 50+ enterprise clients across high-impact sectors.</p></div></div></div>
-   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img class="tl-img" src="assets/images/bus.png" alt="Growing organisation and office" loading="lazy"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-award"/></svg></span><span class="tl-n">03</span><span class="tl-fy">FY-2025</span></div><h3>Global Influence</h3><p>Achieved 120+ successful project deliveries with 99% client satisfaction. Established specialized enterprise training and market-dominating tech stacks.</p></div></div></div>
+   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img width="800" height="450" class="tl-img" src="assets/images/enter.png" alt="Founding team at work" loading="lazy"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-rocket"/></svg></span><span class="tl-n">01</span><span class="tl-fy">FY-2023</span></div><h3>Foundation</h3><p>ALGO ORBIT was founded to change how businesses approach technology. We formed our first partnerships and built our core team.</p></div></div></div>
+   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img width="800" height="450" class="tl-img" src="assets/images/prod.png" alt="Team planning product launches" loading="lazy"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><span class="tl-n">02</span><span class="tl-fy">FY-2024</span></div><h3>Product Launches</h3><p>Launched flagship products <b>KX26 NetaWatch</b> and <b>Restaurant POS</b>. Grew to 50+ enterprise clients across multiple sectors.</p></div></div></div>
+   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><img width="800" height="450" class="tl-img" src="assets/images/bus.png" alt="Growing organisation and office" loading="lazy"><div class="tl-body"><div class="tl-top"><span class="ic"><svg class="ui"><use href="#i-award"/></svg></span><span class="tl-n">03</span><span class="tl-fy">FY-2025</span></div><h3>Scale and Training</h3><p>Reached 120+ project deliveries with 99% client satisfaction, and launched specialised enterprise training programs.</p></div></div></div>
   </div>
  </div>
 </section>
@@ -1771,15 +2061,15 @@ h2 .w:hover>span{color:var(--ind)}
 <!-- Founder -->
 <section class="sec alt">
  <div class="wrap">
-  <div class="head c"><span class="eyebrow">Leadership</span><h2>The mind behind innovation</h2><p>The engineering rigor and business instinct driving Algo Orbit forward.</p></div>
+  <div class="head c"><span class="eyebrow">Leadership</span><h2>Meet the founder</h2><p>The engineering depth and business sense behind ALGO ORBIT.</p></div>
   <div class="founder">
    <div class="f-photo">
-    <div class="frame"><div class="fin"><img src="https://www.algoorbit.in/static/images/nishan-n3.png" alt="Nishan H Kamath, Founder and CEO of Algo Orbit" loading="lazy"></div></div>
+    <div class="frame"><div class="fin"><img width="800" height="450" src="https://www.algoorbit.in/static/images/nishan-n3.png" alt="Nishan H Kamath, Founder and CEO of ALGO ORBIT" loading="lazy"></div></div>
     <div class="f-tag"><i></i><strong>Nishan H Kamath</strong><small>&middot; Founder &amp; CEO</small></div>
    </div>
    <div>
     <h3 class="f-name">Nishan H <em>Kamath</em></h3>
-    <p class="f-bio">Founded Algo Orbit to close the gap between sharp engineering and real business outcomes, building products personally while leading teams and client relationships with the same standard he holds himself to.</p>
+    <p class="f-bio">Founded ALGO ORBIT to close the gap between sharp engineering and real business outcomes, building products personally while leading teams and client relationships with the same standard he holds himself to.</p>
     <blockquote class="f-quote">"I lead the way I'd want to be led, so every client gets the same standard, from me or my team."</blockquote>
     <div class="f-label">What he brings to the table</div>
     <div class="skills"><span>Business Strategy</span><span>Team Building</span><span>Client Relations</span><span>Sales &amp; Growth</span><span>Product Vision</span><span>Full-Stack Engineering</span><span>AI / ML</span></div>
@@ -1796,7 +2086,7 @@ h2 .w:hover>span{color:var(--ind)}
 <!-- Impact -->
 <section class="stats" aria-label="Our impact">
  <div class="wrap">
-  <h2>Impact that speaks</h2>
+  <h2>Our work in numbers</h2>
   <div class="stats-band">
    <div class="stat"><strong><span data-count="100">100</span><i>+</i></strong><small>Projects delivered</small></div>
    <div class="stat"><strong><span data-count="3000">3,000</span><i>+</i></strong><small>Professionals trained</small></div>
@@ -1806,13 +2096,32 @@ h2 .w:hover>span{color:var(--ind)}
 </section>
 
 <!-- Who we work with -->
-<section class="sec lgt wwk">
+<section class="sec wwo" id="who-we-work-with">
  <div class="wrap">
   <div class="head c"><h2>Who we work with</h2><p>Choose the path that matches your goals.</p></div>
-  <div class="arches" id="arches">
-   <article class="arch" style="--k:0;--a:#8f84f2;--b:#5b4be8;--glow:91,75,232"><div class="ph"><img src="assets/images/bus.png" alt="Modern enterprise office" loading="lazy"><span class="tg">For businesses</span></div><div class="ai"><span class="ic"><svg class="ui"><use href="#i-brief"/></svg></span><h3>Enterprises</h3><p>Custom software, cloud integration and architecture consulting, delivered against clear timelines.</p><a href="services.html" class="dbtn">View services</a></div></article>
-   <article class="arch" style="--k:1;--a:#82c8eb;--b:#2a8fcf;--glow:47,167,224"><div class="ph"><img src="assets/images/insti.png" alt="College team collaborating" loading="lazy"><span class="tg">For institutions</span></div><div class="ai"><span class="ic"><svg class="ui"><use href="#i-cap"/></svg></span><h3>Colleges &amp; Institutions</h3><p>Placement training, value-added courses and faculty development aligned with technical syllabi.</p><a href="institutions.html" class="dbtn">View programs</a></div></article>
-   <article class="arch" style="--k:2;--a:#a9a3ee;--b:#7a6df0;--glow:143,132,242"><div class="ph"><img src="assets/images/learn.png" alt="Students working on laptops" loading="lazy"><span class="tg">For learners</span></div><div class="ai"><span class="ic"><svg class="ui"><use href="#i-board"/></svg></span><h3>Students &amp; Learners</h3><p>Hands-on tracks in Placement Preparation, Full-Stack and Mobile App Development.</p><a href="learners.html" class="dbtn">Explore tracks</a></div></article>
+  <div class="orbs" id="orbs">
+   <svg class="orbs-line" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="obg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#5b4be8"/><stop offset=".5" stop-color="#2a8fcf"/><stop offset="1" stop-color="#7a6df0"/></linearGradient></defs><path d="M149 159 C 300 159, 360 215, 500 215 S 700 159, 851 159"/></svg>
+   <article class="ob" style="--k:0;--a:#8f84f2;--b:#5b4be8;--glow:91,75,232">
+    <a class="ob-pic" href="services.html" aria-label="Enterprises: view services"><span class="ob-ring" aria-hidden="true"></span><span class="ob-img"><img width="800" height="450" src="assets/images/bus.png" alt="Modern enterprise office" loading="lazy"></span><span class="ob-n" aria-hidden="true">01</span></a>
+    <span class="ob-tag">For businesses</span>
+    <h3>Enterprises</h3>
+    <p>Custom software, cloud integration and architecture consulting, delivered against clear timelines.</p>
+    <a class="ob-link" href="services.html">View services</a>
+   </article>
+   <article class="ob" style="--k:1;--a:#82c8eb;--b:#2a8fcf;--glow:47,167,224">
+    <a class="ob-pic" href="institutions.html" aria-label="Colleges and institutions: view programs"><span class="ob-ring" aria-hidden="true"></span><span class="ob-img"><img width="800" height="450" src="assets/images/insti.png" alt="College team collaborating" loading="lazy"></span><span class="ob-n" aria-hidden="true">02</span></a>
+    <span class="ob-tag">For institutions</span>
+    <h3>Colleges &amp; Institutions</h3>
+    <p>Placement training, value-added courses and faculty development aligned with technical syllabi.</p>
+    <a class="ob-link" href="institutions.html">View programs</a>
+   </article>
+   <article class="ob" style="--k:2;--a:#a9a3ee;--b:#7a6df0;--glow:122,109,240">
+    <a class="ob-pic" href="learners.html" aria-label="Students and learners: explore tracks"><span class="ob-ring" aria-hidden="true"></span><span class="ob-img"><img width="800" height="450" src="assets/images/learn.png" alt="Students working on laptops" loading="lazy"></span><span class="ob-n" aria-hidden="true">03</span></a>
+    <span class="ob-tag">For learners</span>
+    <h3>Students &amp; Learners</h3>
+    <p>Hands-on tracks in Placement Preparation, Full-Stack and Mobile App Development.</p>
+    <a class="ob-link" href="learners.html">Explore tracks</a>
+   </article>
   </div>
  </div>
 </section>
@@ -1839,7 +2148,7 @@ h2 .w:hover>span{color:var(--ind)}
   <div class="head c"><span class="eyebrow">FAQ</span><h2>Frequently asked questions</h2><p>Quick answers about ALGO ORBIT and how we work.</p></div>
   <div class="faq-wrap">
    <div class="vis l">
-    <div class="frame"><div class="fin"><img src="assets/images/index.png" alt="ALGO ORBIT team ready to answer your questions" loading="lazy"></div></div>
+    <div class="frame"><div class="fin"><img width="800" height="450" src="assets/images/index.png" alt="ALGO ORBIT team ready to answer your questions" loading="lazy"></div></div>
     <span class="fchip c1"><span class="ic"><svg class="ui"><use href="#i-help"/></svg></span>Quick answers</span>
     <span class="fchip c2"><span class="ic"><svg class="ui"><use href="#i-mail"/></svg></span>connect@algoorbit.in</span>
    </div>
@@ -1854,9 +2163,9 @@ h2 .w:hover>span{color:var(--ind)}
 </section>
 
 <div class="cta">
- <h2>Ready to start your transformation?</h2>
- <p>Let's discuss how Algo Orbit can help your organization achieve its technology goals and drive meaningful business outcomes. Whether you require software engineering or campus training, we are ready to discuss your goals.</p>
- <div class="cta-acts"><a href="contact.html" class="btn btn-p">Get in touch</a><a href="services.html" class="btn btn-o">Explore services</a></div>
+ <h2>Have a project or training need in mind?</h2>
+ <p>Tell us what you need, whether that is consulting, a custom product or a training program, and we will reply with a clear next step.</p>
+ <div class="cta-acts"><a href="contact.html" class="btn btn-p">Book a free consultation</a><a href="services.html" class="btn btn-o">Explore our services</a></div>
 </div>
 </main>
 
@@ -1865,7 +2174,7 @@ h2 .w:hover>span{color:var(--ind)}
   <div class="fgrid">
    <div>
     <a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><span>ALGO</span><b>ORBIT</b></a>
-    <p>Empowering businesses with innovative digital solutions. From restaurant management to civic engagement platforms, we build technology that drives real impact.</p>
+    <p>We build software for businesses and teach practical tech skills. Our products range from restaurant management to civic engagement platforms.</p>
     <div class="social">
      <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ui"><use href="#i-linkedin"/></svg></a>
      <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ui"><use href="#i-instagram"/></svg></a>
@@ -1874,14 +2183,15 @@ h2 .w:hover>span{color:var(--ind)}
     </div>
    </div>
    <div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-   <div><h4>Products</h4><ul><li><a href="products.html#puredine">Restaurant System</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
-   <div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="training.html">Internships</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+   <div><h4>Products</h4><ul><li><a href="products.html#puredine">PureDine</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
+   <div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="training-institution.html">For Institutions</a></li><li><a href="training-corporate.html">For Corporate</a></li><li><a href="training-learner.html">For Learners</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
   </div>
   <div class="fbot"><p>&copy; 2026 <strong>ALGOORBIT INNOVATIONS PRIVATE LIMITED</strong> All rights reserved.</p><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></div>
  </div>
 </footer>
 
-<a href="contact.html" class="btn btn-p mbar" id="mbar">Talk to our team</a>
+<button type="button" class="totop" id="totop" aria-label="Back to top"><svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="trk" cx="24" cy="24" r="22"/><circle class="prg" cx="24" cy="24" r="22"/></svg><svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<a href="contact.html" class="btn btn-p mbar" id="mbar">Book a free consultation</a>
 <a href="https://wa.me/919482119446" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></a>
 
 <script>
@@ -1899,14 +2209,14 @@ $$('.dd-btn').forEach(function(b){b.onclick=function(){var li=b.parentNode,o=!li
 document.addEventListener('click',function(e){if(!e.target.closest('.has-dd'))$$('.has-dd').forEach(function(x){x.classList.remove('open')})});
 
 // Count-up (final values stay in the HTML; animation runs when scrolled into view)
-function countUp(el){var t=+el.dataset.count,s=null;(function step(ts){s=s||ts;var k=Math.min((ts-s)/1600,1);el.textContent=Math.floor((1-Math.pow(1-k,3))*t).toLocaleString('en-IN');if(k<1)requestAnimationFrame(step);else el.textContent=t.toLocaleString('en-IN')})(performance.now())}
+function countUp(el){var t=+el.dataset.count,s=null;(function step(ts){s=s||ts;var k=Math.min((ts-s)/1500,1);el.textContent=Math.floor((1-Math.pow(1-k,3))*t).toLocaleString('en-IN');if(k<1)requestAnimationFrame(step);else el.textContent=t.toLocaleString('en-IN')})(performance.now())}
 if(!reduce){
  var cio=new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){$$('[data-count]',e.target).forEach(countUp);o.unobserve(e.target)}})},{threshold:.35});
  $$('.stats,.minis,.fstats').forEach(function(el){$$('[data-count]',el).forEach(function(n){n.textContent='0'});cio.observe(el)});
 }
 
 // Card hover: cursor position for the fill effect + gentle tilt
-$$('.card').forEach(function(c){c.classList.add('hov');
+$$('.__none').forEach(function(c){c.classList.add('hov');
  function pos(e){var r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');return{r:r,x:x,y:y}}
  c.addEventListener('mouseenter',pos);
  c.addEventListener('mousemove',function(e){var p=pos(e);
@@ -1915,7 +2225,7 @@ $$('.card').forEach(function(c){c.classList.add('hov');
 
 // Scroll reveal
 if(!reduce){var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('rv','in');el.style.transitionDelay=''},1500)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
- $$('.head,.card,.chips,.story-copy,.sgrid,.vis,.two>div:not(.vis),.minis div,.profile,.tl-item,.f-photo,.founder>div:last-child,.steps5 li,.faq details,.stat,.cta>*').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('rv');el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)})}
+ $$('.head,.card,.chips,.story-copy,.sgrid,.vis,.two>div:not(.vis),.minis div,.profile,.tl-item,.f-photo,.founder>div:last-child,.steps5 li,.faq details,.stat,.cta>*').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('rv');el.style.transitionDelay=(i%4)*.12+'s';rio.observe(el)})}
 
 // Heading underline
 var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('drawn');dio.unobserve(e.target)}})},{threshold:.6});
@@ -2038,7 +2348,7 @@ $$('.sec.dk,.sec.alt').forEach(function(sec){
  sec.insertAdjacentHTML('afterbegin','<i class="blob b1" aria-hidden="true"></i><i class="blob b2" aria-hidden="true"></i>')});
 $$('.sec.dk').forEach(function(sec){sec.addEventListener('mousemove',function(e){var r=sec.getBoundingClientRect();
  sec.style.setProperty('--sx',(e.clientX-r.left)+'px');sec.style.setProperty('--sy',(e.clientY-r.top)+'px')})});
-(function(){if(reduce)return;var imgs=$$('.fin img'),busy=false;if(!imgs.length)return;
+(function(){if(reduce)return;var imgs=$$('.__none'),busy=false;if(!imgs.length)return;
  function u(){busy=false;imgs.forEach(function(im){var r=im.getBoundingClientRect();if(r.bottom<-100||r.top>innerHeight+100)return;
   im.style.translate='0 '+(((r.top+r.height/2-innerHeight/2)/innerHeight)*-26)+'px'})}
  addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(u)}},{passive:true});u()})();
@@ -2091,8 +2401,8 @@ $$('.sec.dk').forEach(function(sec){sec.addEventListener('mousemove',function(e)
  if(!matchMedia('(hover:hover) and (pointer:fine)').matches||reduce)return;
  var h=$('.hero'),bg=$('.hero-bg');if(!h||!bg)return;
  h.addEventListener('mousemove',function(e){var r=h.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-  bg.style.translate=(x*-22)+'px '+(y*-14)+'px'});
- h.addEventListener('mouseleave',function(){bg.style.translate='0 0'});
+  void 0});
+ h.addEventListener('mouseleave',function(){void 0});
 })();
 // What we do: light sweep element
 (function(){
@@ -2107,6 +2417,169 @@ $$('.sec.dk').forEach(function(sec){sec.addEventListener('mousemove',function(e)
  q('.sub-btn').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var li=b.parentNode,o=!li.classList.contains('open');li.classList.toggle('open',o);b.setAttribute('aria-expanded',o)})});
  document.addEventListener('click',function(e){if(!e.target.closest('.has-dd'))q('.has-sub').forEach(function(x){x.classList.remove('open')})});
  var f=location.pathname.split('/').pop()||'index.html';q('.dd a').forEach(function(a){if(a.getAttribute('href')===f){a.classList.add('active');a.setAttribute('aria-current','page')}})})();
+
+// ===== Review pass: smooth parallax, ready state, mobile in-view focus =====
+(function(){
+ document.body.classList.add('ready');
+ if(reduce)return;
+ var T=[],run=false,first=true;
+ function add(sel,sp,o){o=o||{};$$(sel).forEach(function(el){
+  if(o.scale){var pn=el.parentNode,ov=pn&&getComputedStyle(pn).overflow;if(!/hidden|clip/.test(ov||''))return;el.style.scale=o.scale}
+  el.style.willChange='translate';T.push({el:el,sp:sp,o:o,cur:0,tgt:0,on:true})})}
+ add('.hero-bg',.14,{mode:'hero'});add('.orbit',.22,{mode:'hero'});add('.hero-copy',.05,{mode:'hero'});
+ add('.fin img',.06,{scale:1.2,clamp:1});add('.f-photo img',.06,{scale:1.2,clamp:1});add('.sgrid img',.05,{scale:1.2,clamp:1});add('.arch .ph img',.05,{scale:1.2,clamp:1});
+ function frame(){
+  run=false;var vh=innerHeight,k=innerWidth<700?.55:1,sy=scrollY,moving=false,i,t,r,c,v,m;
+  for(i=0;i<T.length;i++){t=T[i];
+   if(t.o.mode==='hero'){t.on=sy<vh*1.3;t.tgt=t.on?sy*t.sp*k:0;continue}
+   r=t.el.getBoundingClientRect();c=r.top+r.height/2-t.cur;
+   t.on=c>-vh*.6&&c<vh*1.6;if(!t.on)continue;
+   v=-(c-vh/2)*t.sp*k;m=t.o.clamp?t.el.offsetHeight*(t.o.scale-1)/2-1:(t.o.max||999);v=Math.max(-m,Math.min(m,v));t.tgt=v}
+  for(i=0;i<T.length;i++){t=T[i];if(!t.on&&!(t.o.mode==='hero'&&t.cur!==0))continue;
+   if(first)t.cur=t.tgt;else t.cur+=(t.tgt-t.cur)*.14;
+   if(Math.abs(t.tgt-t.cur)>.15)moving=true;else t.cur=t.tgt;
+   t.el.style.translate='0 '+t.cur.toFixed(2)+'px'}
+  first=false;if(moving)kick()}
+ function kick(){if(!run){run=true;requestAnimationFrame(frame)}}
+ addEventListener('scroll',kick,{passive:true});addEventListener('resize',kick);kick();
+ if(matchMedia('(max-width:700px)').matches){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('mf',e.isIntersecting)})},{rootMargin:'-38% 0px -38% 0px',threshold:0});
+  $$('.card,.arch,.tl-card,.minis div,.faq details,.f-quote').forEach(function(el){io.observe(el)})}
+})();
+
+// ===== Who we work with: circles pop in; on touch the circle in the middle of the screen plays the hover effect =====
+(function(){
+ var R=typeof reduce!=='undefined'&&reduce,o=$('#orbs');if(!o||R||!('IntersectionObserver' in window))return;
+ o.classList.add('pre');
+ new IntersectionObserver(function(es,io){if(es[0].isIntersecting){o.classList.add('go');io.disconnect()}},{threshold:.2}).observe(o);
+ if(matchMedia('(max-width:900px),(hover:none)').matches){
+  var t=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
+  $$('.ob',o).forEach(function(el){t.observe(el)})}
+})();
+
+// ===== Scroll experience layer (same effects as Home) =====
+(function(){
+ var R=typeof reduce!=='undefined'&&reduce;
+ var hdr=$('.site-header'),nav=$('#navWrap'),totop=$('#totop'),prg=totop&&$('.prg',totop),cue=$('.scue');
+ var secs=$$('main>section,main>.cta'),cur=$$('.sec.dk,.stats,.cta');
+ var hero=$('.hero'),hc=$('.hero-copy'),hb=$('.hero-bg');
+ if(!R)cur.forEach(function(s){s.classList.add('cur')});
+
+ // image mask reveal + staggered lists + text scrub setup
+ var scr=[];
+ if(!R&&'IntersectionObserver' in window){
+  var mio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){$$('.mk',e.target).forEach(function(im){im.classList.add('on')});mio.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  $$('.fin img,.f-photo img,.sgrid img,.tl-img,.ob-img img').forEach(function(im){im.classList.add('mk');mio.observe(im.parentNode)});
+  var lio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var l=e.target;l.classList.add('lv');lio.unobserve(l);setTimeout(function(){l.classList.remove('lst','lv');$$('li',l).forEach(function(li){li.style.removeProperty('--k')})},1800)}})},{threshold:.3});
+  $$('.checks,.fgrid ul').forEach(function(l){$$(':scope>li',l).forEach(function(li,i){li.style.setProperty('--k',i)});l.classList.add('lst');lio.observe(l)});
+  $$('.story-copy p').slice(0,3).forEach(function(p){
+   var ws=[],tw=document.createTreeWalker(p,NodeFilter.SHOW_TEXT),nodes=[],n;
+   while(n=tw.nextNode())if(n.nodeValue.trim())nodes.push(n);
+   nodes.forEach(function(t){var f=document.createDocumentFragment();
+    t.nodeValue.split(/(\s+)/).forEach(function(part){if(!part)return;if(/^\s+$/.test(part)){f.appendChild(document.createTextNode(part))}else{var s=document.createElement('span');s.className='sw';s.textContent=part;f.appendChild(s);ws.push(s)}});
+    t.parentNode.replaceChild(f,t)});
+   if(ws.length)scr.push({p:p,w:ws,n:0})});
+ }
+
+ // section rail
+ var names=['Home','Our story','Who we are','Mission','What we do','Journey','Founder','Impact','Who we work with','How we work','FAQ','Contact'];
+ var rail=document.createElement('nav');rail.className='rail';rail.setAttribute('aria-label','Page sections');
+ var dots=secs.map(function(s,i){
+  if(!s.id)s.id='sec-'+(i+1);
+  var h=$('h2',s),label=secs.length===names.length?names[i]:(i===0?'Home':(h?h.textContent.trim().slice(0,28):'Section '+(i+1)));
+  var a=document.createElement('a');a.href='#'+s.id;a.setAttribute('data-l',label);a.setAttribute('aria-label',label);
+  rail.appendChild(a);return a});
+ document.body.appendChild(rail);
+
+ // marquee speed follows scroll speed
+ var anims=[],got=false,rate=1,lt=performance.now(),last=scrollY,hdrLast=scrollY,hidden=false,run=false,active=-1;
+ function collect(){anims=[];$$('.marq').forEach(function(el){try{el.getAnimations().forEach(function(a){if(a.animationName&&/marq/.test(a.animationName))anims.push(a)})}catch(e){}});got=true}
+ function ease(t){return t*t*(3-2*t)}
+ function clamp(v){return Math.max(0,Math.min(1,v))}
+
+ function frame(t){
+  run=false;
+  var sy=scrollY,h=innerHeight,dh=document.documentElement.scrollHeight-h,atEnd=sy>=dh-4;
+
+  // smart header
+  if(hdr&&!R){var d=sy-hdrLast;
+   if(Math.abs(d)>6){
+    var busy=(nav&&nav.classList.contains('open'))||$('.has-dd.open')||hdr.matches(':focus-within');
+    if(d>0&&sy>240&&!busy)hidden=true;else if(d<0||sy<=120)hidden=false;
+    hdr.classList.toggle('hide',hidden);hdrLast=sy}
+  }else hdrLast=sy;
+
+  // back to top + cue
+  if(totop){totop.classList.toggle('show',sy>h*.8);prg.style.strokeDashoffset=(138.23*(1-(dh>0?sy/dh:0))).toFixed(2)}
+  if(cue)cue.classList.toggle('gone',sy>60);
+
+  // curtain
+  if(!R)cur.forEach(function(s){var r=s.getBoundingClientRect(),p=atEnd?1:ease(clamp((h-r.top)/(h*.38)));
+   s.style.setProperty('--p',p.toFixed(3));s.classList.toggle('full',p>=.999)});
+
+  // hero: copy fades, picture zooms gently as you leave
+  if(!R&&hero&&sy<h*1.4){var k=Math.min(sy/(h*.8),1);
+   if(hc)hc.style.opacity=(1-k*.9).toFixed(3);
+   if(hb)hb.style.scale=(1+Math.min(sy/h,1)*.08).toFixed(4)}
+
+  // text scrub
+  scr.forEach(function(s){var r=s.p.getBoundingClientRect();if(r.bottom<0||r.top>h)return;
+   var p=Math.min(1,Math.max(0,(h*.88-r.top)/(h*.45+r.height*.5))),n=Math.round(p*s.w.length);
+   if(n!==s.n){var i,lo=Math.min(n,s.n),hi=Math.max(n,s.n);for(i=lo;i<hi;i++)s.w[i].classList.toggle('lit',n>s.n);s.n=n}});
+
+  // velocity marquee
+  if(!R){if(!got)collect();
+   var dt=Math.max(16,(t||performance.now())-lt),v=Math.abs(sy-last)/dt;lt=t||performance.now();last=sy;
+   var target=1+Math.min(v*2.2,4);rate+=(target-rate)*(target>rate?.18:.06);
+   if(Math.abs(rate-1)<.02)rate=1;
+   anims.forEach(function(a){a.playbackRate=rate})}
+
+  // section rail
+  var idx=0;secs.forEach(function(s,i){if(s.getBoundingClientRect().top<=h*.4)idx=i});
+  if(atEnd)idx=secs.length-1;
+  if(idx!==active){active=idx;dots.forEach(function(a,i){a.classList.toggle('on',i===idx);if(i===idx)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')})}
+  rail.classList.toggle('show',sy>h*.35);
+  if(rate!==1)kick()}
+ function kick(){if(!run){run=true;requestAnimationFrame(frame)}}
+ addEventListener('scroll',kick,{passive:true});addEventListener('resize',kick);addEventListener('load',function(){got=false;kick()});kick();
+ setInterval(function(){if(rate!==1)kick()},120);
+ if(totop)totop.addEventListener('click',function(){scrollTo({top:0,behavior:R?'auto':'smooth'})});
+ if(cue)cue.addEventListener('click',function(e){e.preventDefault();var t=secs[1]||secs[0];t.scrollIntoView({behavior:R?'auto':'smooth'})});
+})();
+
+// ===== WhatsApp glow boost while scrolling + extra scroll animations =====
+(function(){
+ var R=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var wa=document.querySelector('.wa-float');
+ if(wa){var wt;addEventListener('scroll',function(){wa.classList.add('hot');clearTimeout(wt);wt=setTimeout(function(){wa.classList.remove('hot')},700)},{passive:true})}
+ if(R||!('IntersectionObserver' in window))return;
+
+ // staggered pop-in for chips, skills, founder stats and buttons
+ var groups=[['.chips span','sx'],['.skills span','sx'],['.fstats div','sx'],['.f-links .btn','sx sx-r'],['.checklist li','sx'],['.edu','sx sx-l'],['.faq-wrap .fchip','sx']];
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;
+  el.classList.add('sx-in');io.unobserve(el);
+  el.addEventListener('animationend',function(){el.classList.remove('sx','sx-in','sx-l','sx-r');el.style.removeProperty('--k')},{once:true})})},{threshold:.2,rootMargin:'0px 0px -30px 0px'});
+ groups.forEach(function(g){Array.prototype.forEach.call(document.querySelectorAll(g[0]),function(el,i){
+  if(el.closest('.hero'))return;
+  g[1].split(' ').forEach(function(c){el.classList.add(c)});
+  el.style.setProperty('--k',i%8);io.observe(el)})});
+
+ // scroll-linked: orbit rings turn and colour blobs drift with the page
+ var rings=Array.prototype.slice.call(document.querySelectorAll('.ob-ring')),
+     blobs=Array.prototype.slice.call(document.querySelectorAll('.blob')),busy=false;
+ function upd(){busy=false;var vh=innerHeight;
+  rings.forEach(function(r){var b=r.getBoundingClientRect();if(b.bottom<0||b.top>vh)return;r.style.rotate=((b.top/vh)*180).toFixed(1)+'deg'});
+  blobs.forEach(function(b,i){var p=b.parentNode.getBoundingClientRect();if(p.bottom<0||p.top>vh)return;
+   var k=((p.top+p.height/2-vh/2)/vh)*(i%2?-70:70);b.style.translate='0 '+k.toFixed(1)+'px'})}
+ addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(upd)}},{passive:true});upd();
+})();
+
+// ===== Card effects: spotlight follows the cursor =====
+(function(){
+ Array.prototype.forEach.call(document.querySelectorAll('.card,.tl-card,.minis div,.steps5 li'),function(c){
+  var s=document.createElement('i');s.className='cshine';s.setAttribute('aria-hidden','true');c.appendChild(s);
+  });
+})();
 </script>
 </body>
 </html>
