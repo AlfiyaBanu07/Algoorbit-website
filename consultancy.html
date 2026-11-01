@@ -1044,7 +1044,7 @@ $$('.sec.dk').forEach(function(sec){sec.addEventListener('mousemove',function(e)
   h.setAttribute('aria-label',label);h.innerHTML=out;if(reduce)h.classList.add('wd')});
  if(!reduce){var wio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio>=.4)e.target.classList.add('wd');else if(!e.isIntersecting)e.target.classList.remove('wd')})},{threshold:[0,.4]});heads.forEach(function(h){wio.observe(h)})}
 })();
-(function(){var h=$('.hero');if(!h||reduce)return;
+(function(){var h=$('.hero');if(!h||reduce||matchMedia('(max-width:1000px),(hover:none)').matches)return;
  var c=document.createElement('canvas');c.className='pcv';c.setAttribute('aria-hidden','true');h.insertBefore(c,h.firstChild);
  var x=c.getContext('2d'),W=0,H=0,P=[],dpr=Math.min(window.devicePixelRatio||1,2),mx=-999,my=-999,vis=true,N=matchMedia('(max-width:700px)').matches?20:48;
  function size(){W=h.clientWidth;H=h.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}
@@ -1147,7 +1147,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
  if(!matchMedia('(hover:none),(pointer:coarse)').matches||reduce)return;
  var g=document.createElement('div');g.className='cglow t';document.body.appendChild(g);
  function mv(e){var p=e.touches[0];g.style.transform='translate3d('+p.clientX+'px,'+p.clientY+'px,0)';g.classList.add('on');
-  var sec=e.target.closest&&e.target.closest('.sec.dk');if(sec){var r=sec.getBoundingClientRect();sec.style.setProperty('--sx',(p.clientX-r.left)+'px');sec.style.setProperty('--sy',(p.clientY-r.top)+'px')}}
+  /* section spotlight write removed on touch: it restyled whole sections on every touchmove and made scrolling stutter */}
  addEventListener('touchstart',mv,{passive:true});addEventListener('touchmove',mv,{passive:true});
  function end(){setTimeout(function(){g.classList.remove('on')},500)}
  addEventListener('touchend',end);addEventListener('touchcancel',end);
@@ -1688,7 +1688,7 @@ html{overscroll-behavior-y:none}
 
  /* scroll: relative position of tall sections drives the background parallax (one rAF per frame) */
  var secs=QA('.sec.dk,.sec.alt,.stats'),run=false;
- function par(){run=false;var vh=innerHeight;secs.forEach(function(s){var r=s.getBoundingClientRect();if(r.bottom<-200||r.top>vh+200)return;s.style.setProperty('--sp',r.top.toFixed(0))})}
+ function par(){run=false;if(matchMedia('(max-width:1000px),(hover:none)').matches)return;var vh=innerHeight;secs.forEach(function(s){var r=s.getBoundingClientRect();if(r.bottom<-200||r.top>vh+200)return;s.style.setProperty('--sp',r.top.toFixed(0))})}
  addEventListener('scroll',function(){if(!run){run=true;requestAnimationFrame(par)}},{passive:true});
  addEventListener('resize',par);par();
 })();
@@ -1782,6 +1782,76 @@ body{animation:plPageIn .6s ease backwards}
   function clear(e){if(e.target.classList)e.target.classList.remove('pl-bad')}
   form.addEventListener('input',clear);form.addEventListener('change',clear);
  }
+})();
+</script>
+
+<!-- =====================================================================
+     CARD + SCROLL POLISH LAYER (additive, loaded last so it wins the cascade).
+     1) Image cards: no lines, rings, sweeps or tilt inside photos - clean,
+        consistent ratios and soft shadows on desktop and mobile.
+     2) Mobile/touch: heavy decorative loops and big-area effects are switched
+        off so scrolling stays smooth. Nothing is removed from the code.
+     ===================================================================== -->
+<style id="card-scroll-polish">
+/* ---------- 1. Image cards: clean and professional ---------- */
+/* travelling light rings, sheen sweeps, flowing top bars and spinning borders that crossed the photos */
+.cring,.sh{display:none!important}
+.card::before,.card::after,.ind::before,.ind::after{display:none!important}
+.arch::before,.arch::after{display:none!important}
+/* striped overlay on the arch photos */
+.ph::before{display:none!important}
+.ph::after{background:linear-gradient(180deg,rgba(14,15,42,0) 55%,rgba(14,15,42,.38))}
+/* FAQ photo frame keeps a calm gradient border on hover (no spinning line) */
+.frame:hover{background:linear-gradient(135deg,rgba(143,132,242,.6),rgba(130,200,235,.6));animation:none}
+
+/* consistent photo ratio, radius and shadow */
+#services .card .card-img{height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:16px;box-shadow:0 10px 24px rgba(14,15,42,.16)}
+.ind-shot{height:auto;aspect-ratio:16/10;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,.28)}
+.ind-shot img{height:100%}
+.ph{box-shadow:0 18px 40px rgba(var(--glow),.26)}
+
+/* calm hover: gentle zoom only, no perspective tilt */
+#services .card:hover .card-img,#services .card.tch .card-img{transform:scale(1.04);filter:saturate(1.12)}
+#services .card-img{backface-visibility:hidden}
+#services .card{overflow:hidden}
+.arch:is(:hover,.tch) .ph img{transform:scale(1.05)}
+.ind:hover .ind-shot img,.ind.tch .ind-shot img{transform:scale(1.05);filter:none}
+.frame:hover .fin img{transform:none}
+
+@media(max-width:700px){
+ #services .card .card-img{height:auto;aspect-ratio:16/10}
+ .ind-shot{height:auto;aspect-ratio:16/10}
+ .ind-shot img{height:100%}
+}
+
+/* ---------- 2. Smooth scrolling on phones, tablets and touch devices ---------- */
+@media(max-width:1000px),(hover:none){
+ /* big-area effects that repaint while scrolling */
+ .blob,.pcv,.cglow{display:none!important}
+ .cur{clip-path:none!important}
+ .ticker,.tech{-webkit-mask-image:none!important;mask-image:none!important}
+ /* endless decorative loops */
+ .stats::before,.stats::after,.cta::before,.cta::after,.hero::after,
+ .btn-p,.cta .btn-l,.wa,.wa::before,.wa::after,.hs strong,.hs::before,.stat::before,.eyebrow,.rs,
+ .fchip,.chip,.faq .qi,.pop-b,.orbit .dot,.fn::before,.fn::after,.pc::after,.quote .who::before,
+ .head.drawn h2::after,.head.drawn .eyebrow::before{animation:none!important}
+ /* below-the-fold height guesses caused the page to jump and feel stuck */
+ #pricing,#faq{content-visibility:visible!important}
+ /* never block taps while scrolling */
+ body.is-scrolling main,body.is-scrolling .site-footer{pointer-events:auto!important}
+ .rv,.hero-bg,.wa,.totop{will-change:auto}
+}
+</style>
+<script id="card-scroll-polish-js">
+(function(){
+ /* touch devices: the "play hover effect in the middle of the screen" lift on image cards made them jump while scrolling */
+ if(!matchMedia('(hover:none)').matches||!('MutationObserver' in window))return;
+ var sel='.card,.ind,.arch';
+ var mo=new MutationObserver(function(ms){ms.forEach(function(m){var el=m.target;if(el.classList.contains('tch'))el.classList.remove('tch')})});
+ Array.prototype.slice.call(document.querySelectorAll(sel)).forEach(function(el){
+  el.classList.remove('tch');
+  mo.observe(el,{attributes:true,attributeFilter:['class']});
+ });
 })();
 </script>
 
