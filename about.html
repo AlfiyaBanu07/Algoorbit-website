@@ -1894,6 +1894,9 @@ body:has(.card:hover,.tl-card:hover,.minis div:hover,.steps5 li:hover) .cglow{op
 .cin{opacity:0}
 .cin.cin-go{animation:cardIn .85s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--k,0)*110ms)}
 @media(prefers-reduced-motion:reduce){.cshine::after{animation:none!important}.cin{opacity:1}.cin.cin-go{animation:none}.card:hover .ic .ui{animation:none}}
+
+/* Top bar: fixed to the top of the screen on every page */
+.site-header,.site-header.hide{position:fixed;top:0;left:0;right:0;width:100%;transform:none!important}
 </style>
 <style id="v6">
 /* ============ 1. Marquee line (glow, centre highlight, follows scroll) ============ */
@@ -2927,6 +2930,12 @@ if(!R){
  addEventListener('scroll',pkick,{passive:true});addEventListener('resize',pkick);addEventListener('load',pkick);pkick();
 }
 })();
+</script>
+<script id="fixed-header">
+(function(){var h=document.querySelector('.site-header');if(!h)return;
+ function fit(){document.body.style.paddingTop=h.offsetHeight+'px'}
+ fit();addEventListener('resize',fit);addEventListener('load',fit);
+ if(window.ResizeObserver)new ResizeObserver(fit).observe(h)})();
 </script>
 </body>
 </html>

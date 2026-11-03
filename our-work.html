@@ -748,6 +748,55 @@ body i.rl{position:absolute;inset:0;z-index:6;border-radius:inherit;padding:3px;
  .eng-item:nth-child(even) .eng-body::before,.eng-item:nth-child(even) .eng-body h3{text-align:right}
  #eng .eng-body::before{-webkit-text-stroke-color:var(--a)}
 }
+
+/* ===== Our Work revisions ===== */
+/* 1. no table overlays on Explore photos */
+.mk{display:none!important}
+
+/* 2. Featured: framed cards */
+.flags{gap:34px}
+.flag{border:0;border-radius:30px;padding:0;background:linear-gradient(135deg,#8f84f2,#82c8eb 50%,#5b4be8);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.12)}
+.flag>img{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);border-radius:24px}
+.flag::before{display:none!important}
+.flag::after{display:block!important;content:"";position:absolute;inset:20px;z-index:3;pointer-events:none;border-radius:16px;height:auto;
+ background:
+  linear-gradient(#fff,#fff) top left/26px 2px,linear-gradient(#fff,#fff) top left/2px 26px,
+  linear-gradient(#fff,#fff) top right/26px 2px,linear-gradient(#fff,#fff) top right/2px 26px,
+  linear-gradient(#fff,#fff) bottom left/26px 2px,linear-gradient(#fff,#fff) bottom left/2px 26px,
+  linear-gradient(#fff,#fff) bottom right/26px 2px,linear-gradient(#fff,#fff) bottom right/2px 26px;
+ background-repeat:no-repeat;opacity:.7;transition:inset .5s var(--ease),opacity .4s}
+.flag:hover::after{inset:14px;opacity:1}
+.flag .ov{inset:auto 22px 22px;border-radius:20px;z-index:4}
+@media(min-width:1001px){.flags{align-items:start}.flag{height:470px}.flag:nth-child(2){margin-top:56px}}
+
+/* Mobile: the two projects sit side by side as two columns */
+@media(max-width:700px){
+ .flags{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px;align-items:stretch}
+ .flags .flag,.flags .flag:nth-child(2){height:auto;margin-top:0;display:flex;flex-direction:column;padding:4px;border-radius:20px;background:linear-gradient(135deg,#8f84f2,#82c8eb 50%,#5b4be8)}
+ .flags .flag>img{position:relative;inset:auto;width:100%;height:150px;border-radius:16px 16px 0 0}
+ .flags .flag::after{inset:12px;bottom:auto;height:130px;opacity:.6;background-size:16px 2px,2px 16px,16px 2px,2px 16px,16px 2px,2px 16px,16px 2px,2px 16px}
+ .flags .flag .ov{position:static;inset:auto;display:flex;flex:1;padding:12px 11px 13px;border:0;border-radius:0 0 16px 16px;background:#14163f;backdrop-filter:none;-webkit-backdrop-filter:none}
+ .flags .flag:hover .ov{transform:none;background:#14163f}
+ .flags .flag .chip{font-size:10px;padding:3px 9px;align-self:flex-start;margin-bottom:8px}
+ .flags .flag h3{font-size:1rem;line-height:1.25;margin-bottom:12px}
+ .flags .flag .ov p{display:none!important}
+ .flags .flag .vb{margin-top:auto;align-self:stretch;text-align:center;font-size:12px;padding:8px 6px}
+}
+/* 3. Selected engagements: no spinning ring around the photo */
+.eng-img::before,#eng .eng-img::before,.eng-item:hover .eng-img::before{display:none!important;content:none!important;animation:none!important}
+.eng-img img,#eng .eng-img img{box-shadow:0 18px 40px rgba(0,0,0,.35)!important}
+
+/* 4. Footer logo */
+.wordmark{display:inline-flex;align-items:center;gap:0}
+.wordmark .logo-mark{width:42px;height:42px;margin-right:12px;flex:none}
+@media(max-width:700px){.wordmark{font-size:28px}.wordmark .logo-mark{width:38px;height:38px}}
+
+/* 5. Parallax (same scroll depth as Home / About) */
+.flag img,.proj>img,.eng-img img{scale:1.16}
+.hero-bg,.orbit,.hero-copy,.head,.cta>*{will-change:translate}
+
+/* Top bar always stays visible */
+.site-header,.site-header.hide{position:sticky;top:0;transform:none!important}
 </style>
 </head>
 <body class="ready">
@@ -809,7 +858,7 @@ body i.rl{position:absolute;inset:0;z-index:6;border-radius:inherit;padding:3px;
 
 <section class="cat-sec xp-sec" aria-labelledby="wk"><div class="wrap">
 <div class="head c"><span class="eyebrow">Where we work</span><h2 id="wk">Explore our work</h2><p>Hover a path to preview what we have built, then jump straight in.</p></div>
-<div class="xp" id="xp"><div class="xp-view" aria-hidden="true"><div class="xs on"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy" onerror="this.remove()"><div class="mk"><b><i></i>Live orders</b><p>Table 04 · Cappuccino<em>Served</em></p><p>Table 07 · Cold brew<em>Preparing</em></p><p>Staff payout<em>Ready</em></p></div></div><div class="xs"><img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy" onerror="this.remove()"><div class="mk"><b><i></i>Today’s schedule</b><p>10:30 · Consultation<em>Checked in</em></p><p>11:15 · Follow-up<em>Waiting</em></p><p>Invoice<em>Paid</em></p></div></div><div class="xs"><img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt="" loading="lazy" onerror="this.remove()"><div class="mk"><b><i></i>Bootcamp journey</b><p>Foundations<em>Done</em></p><p>Full-Stack project<em>Building</em></p><p>Demo day<em>Next</em></p></div></div><div class="xs g"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="" loading="lazy" onerror="this.remove()"><div class="gt"><div class="av"><img src="https://www.algoorbit.in/static/images/review/riya.png" alt=""><img src="https://www.algoorbit.in/static/images/review/meera.png" alt=""><img src="https://www.algoorbit.in/static/images/review/prajna.jpg" alt=""></div><h3>Partner feedback</h3><p>Real results from real partnerships.</p><span class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div><div class="xs g"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy" onerror="this.remove()"><div class="gt"><svg class="ui"><use href="#i-mail"/></svg><h3>Let’s build together</h3><p>Talk to our team at connect@algoorbit.in</p></div></div></div><ul class="xp-list"><li><a class="xr on" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-cafe"/></svg></span><span class="xt"><strong>Café System</strong><small>Food &amp; Beverage</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-clinic"/></svg></span><span class="xt"><strong>Clinic System</strong><small>Healthcare</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><span class="xt"><strong>Campus Training</strong><small>Education</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="#feedback"><span class="ic"><svg class="ui"><use href="#i-check"/></svg></span><span class="xt"><strong>Feedback</strong><small>Partners and learners</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="contact.html"><span class="ic"><svg class="ui"><use href="#i-mail"/></svg></span><span class="xt"><strong>Contact</strong><small>Talk to our team</small></span><span class="xg">&rarr;</span></a></li></ul></div></div></section>
+<div class="xp" id="xp"><div class="xp-view" aria-hidden="true"><div class="xs on"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy" onerror="this.remove()"></div><div class="xs"><img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy" onerror="this.remove()"></div><div class="xs"><img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt="" loading="lazy" onerror="this.remove()"></div><div class="xs g"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="" loading="lazy" onerror="this.remove()"><div class="gt"><div class="av"><img src="https://www.algoorbit.in/static/images/review/riya.png" alt=""><img src="https://www.algoorbit.in/static/images/review/meera.png" alt=""><img src="https://www.algoorbit.in/static/images/review/prajna.jpg" alt=""></div><h3>Partner feedback</h3><p>Real results from real partnerships.</p><span class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div><div class="xs g"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy" onerror="this.remove()"><div class="gt"><svg class="ui"><use href="#i-mail"/></svg><h3>Let’s build together</h3><p>Talk to our team at connect@algoorbit.in</p></div></div></div><ul class="xp-list"><li><a class="xr on" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-cafe"/></svg></span><span class="xt"><strong>Café System</strong><small>Food &amp; Beverage</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-clinic"/></svg></span><span class="xt"><strong>Clinic System</strong><small>Healthcare</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><span class="xt"><strong>Campus Training</strong><small>Education</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="#feedback"><span class="ic"><svg class="ui"><use href="#i-check"/></svg></span><span class="xt"><strong>Feedback</strong><small>Partners and learners</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="contact.html"><span class="ic"><svg class="ui"><use href="#i-mail"/></svg></span><span class="xt"><strong>Contact</strong><small>Talk to our team</small></span><span class="xg">&rarr;</span></a></li></ul></div></div></section>
 
 <section class="sec dk">
  <div class="wrap">
@@ -861,7 +910,7 @@ body i.rl{position:absolute;inset:0;z-index:6;border-radius:inherit;padding:3px;
  <div class="wrap">
   <div class="fgrid">
    <div>
-    <a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><span>ALGO</span><b>ORBIT</b></a>
+    <a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10"/><line x1="13.5" y1="28" x2="21.5" y2="12.5"/><circle cx="30" cy="27.5" r="5"/></svg><span>ALGO</span><b>ORBIT</b></a>
     <p>Empowering businesses with innovative digital solutions. From restaurant management to civic engagement platforms, we build technology that drives real impact.</p>
     <div class="social">
      <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ui"><use href="#i-linkedin"/></svg></a>
@@ -1203,6 +1252,74 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
  }
  addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(drift)}},{passive:true});
  addEventListener('resize',drift);drift();
+})();
+</script>
+
+<script id="parallax-depth">
+(function(){
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ var Q=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+ var hero=document.querySelector('.hero'),bg=document.querySelector('.hero-bg'),orb=document.querySelector('.orbit'),cp=document.querySelector('.hero-copy');
+ var busy=false;
+ function run(){
+  busy=false;var vh=innerHeight,m=innerWidth>700?1:.55,y=scrollY;
+  /* hero layers move at different speeds */
+  if(hero&&y<hero.offsetHeight+80){
+   if(bg)bg.style.translate='0 '+(y*.22*m).toFixed(1)+'px';
+   if(orb)orb.style.translate='0 '+(y*-.12*m).toFixed(1)+'px';
+   if(cp)cp.style.translate='0 '+(y*.1*m).toFixed(1)+'px';
+  }
+  /* photos slide inside their frames */
+  Q('.flag img,.proj>img,.eng-img img').forEach(function(im){
+   var f=im.parentNode,r=f.getBoundingClientRect();
+   if(r.bottom<-60||r.top>vh+60||!r.height)return;
+   var k=(r.top+r.height/2-vh/2)/vh,max=Math.min(r.height*.07,34)*m;
+   im.style.translate='0 '+(Math.max(-1,Math.min(1,k))*-max).toFixed(1)+'px';
+  });
+  /* section headings glide a little slower than the page */
+  Q('.head,.cta>h2').forEach(function(h){
+   var r=h.getBoundingClientRect();if(r.bottom<-60||r.top>vh+60)return;
+   h.style.translate='0 '+(((r.top+r.height/2-vh/2)/vh)*-14*m).toFixed(1)+'px';
+  });
+ }
+ addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(run)}},{passive:true});
+ addEventListener('resize',run);run();
+})();
+</script>
+
+<script id="parallax-sides">
+/* Text slides in from the left / right as you scroll, and drifts out the other way */
+(function(){
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ var Q=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+ var items=[];
+ function add(el,dir){if(el&&!el.closest('.hero,header,footer'))items.push({el:el,dir:dir})}
+ Q('.head').forEach(function(h,i){var f=i%2?-1:1;
+  add(h.querySelector('.eyebrow'),-f);add(h.querySelector('h2'),f);add(h.querySelector('p'),-f)});
+ Q('.eng-item').forEach(function(it,i){var f=i%2?-1:1;
+  add(it.querySelector('.eng-body'),f);add(it.querySelector('.eng-img'),-f)});
+ var cta=document.querySelector('.cta');
+ if(cta)Array.prototype.forEach.call(cta.children,function(c,i){add(c,i%2?1:-1)});
+ add(document.querySelector('.toolbar'),-1);
+ items.forEach(function(o){o.el.style.willChange='translate'});
+ var busy=false;
+ function clamp(v){return Math.max(0,Math.min(1,v))}
+ function run(){
+  busy=false;var vh=innerHeight,dist=innerWidth>700?80:34;
+  items.forEach(function(o){
+   var r=o.el.getBoundingClientRect();
+   if(!r.height||r.bottom<-120||r.top>vh+120){return}
+   var c=r.top+r.height/2,
+    inn=clamp((c-vh*.55)/(vh*.42)),      /* entering from the bottom */
+    out=clamp((vh*.18-c)/(vh*.3));       /* leaving through the top  */
+   var x=o.dir*(inn-out)*dist,
+    y=o.el.matches('.head>h2')?0:0;
+   var cur=o.el.style.translate.split(' ');
+   o.el.style.translate=x.toFixed(1)+'px '+(cur[1]||'0px');
+  });
+ }
+ addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(run)}},{passive:true});
+ addEventListener('resize',run);run();
 })();
 </script>
 </body>
