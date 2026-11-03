@@ -759,10 +759,126 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
 @media(prefers-reduced-motion:reduce){.wa,.wa.hot,.wa::before,.wa::after{animation:none!important}}
 
 </style>
+
+<style id="consultancy-motion-parity">
+/* Consultancy-inspired motion polish for Products. Additive only. */
+:root{--product-ease:cubic-bezier(.22,1,.36,1)}
+@media (prefers-reduced-motion:no-preference){
+  header{transition:box-shadow .35s var(--product-ease),background .35s}
+  header.scrolled{box-shadow:0 14px 34px rgba(0,0,0,.32)}
+  .hero .hero-bg{will-change:transform}
+  .sec,.cta{position:relative;isolation:isolate}
+  .sec>.wrap,.cta>.wrap{position:relative;z-index:1}
+  .vis .frame,.shot{transform-style:preserve-3d;will-change:transform}
+  .vis .frame img,.shot img{backface-visibility:hidden}
+  .feat li,.trio>div,.cols>div,.met>div,.stats>div{
+    transition:transform .42s var(--product-ease),box-shadow .42s var(--product-ease),border-color .35s,background .35s;
+  }
+  .feat li:hover{transform:translateX(7px);box-shadow:0 14px 30px rgba(91,75,232,.16)}
+  .trio>div:hover,.met>div:hover,.stats>div:hover{transform:translateY(-5px)}
+  .cols>div:hover{transform:translateY(-5px);box-shadow:0 20px 42px rgba(91,75,232,.17)}
+  .card,.step,.t,.hov{transition-timing-function:var(--product-ease)}
+  .card:hover,.step:hover,.t:hover,.hov:hover{box-shadow:0 22px 48px rgba(69,56,196,.25)}
+  .btn{transition:transform .3s var(--product-ease),box-shadow .3s,border-color .25s,background .25s,color .25s}
+  .btn:hover{transform:translateY(-2px)}
+  .logo svg{transition:transform .5s var(--product-ease)}
+  .logo:hover svg{transform:rotate(-8deg) scale(1.08)}
+  .links>a,.dd>button{transition:color .25s,transform .35s var(--product-ease)}
+  .links>a:hover,.dd>button:hover{transform:translateY(-1px)}
+  .menu a{position:relative;overflow:hidden}
+  .menu a::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.2),transparent);transform:translateX(-120%);transition:transform .7s var(--product-ease)}
+  .menu a:hover::after{transform:translateX(120%)}
+  .ticker .tk span{transition:color .3s}
+  .ticker .tk span:hover{color:#fff}
+  .vis .frame:hover,.shot:hover{box-shadow:0 30px 70px rgba(91,75,232,.3)}
+  .vis .frame:hover img,.shot:hover img{transform:scale(1.045)}
+}
+@media (max-width:1000px),(hover:none){
+  .vis .frame,.shot,.feat li,.trio>div,.cols>div,.met>div,.stats>div{will-change:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero .hero-bg,.logo svg,.vis .frame,.shot{will-change:auto;transform:none!important}
+  .vis .frame img,.shot img{transition:none!important}
+}
+</style>
+
+
+<style id="products-final-polish">
+/* Consultancy page footer styling, carried across to Products. */
+.site-footer{background:#0a0b20;color:#b9bbd2;padding:clamp(44px,6vw,68px) 0 0;font-size:14.5px}
+.site-footer .fgrid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;padding-bottom:44px}
+.site-footer .fgrid h4{color:#fff;font-size:13px;margin-bottom:16px;letter-spacing:.06em}
+.site-footer .fgrid h4.lg{margin-top:26px}
+.site-footer .fgrid li{margin-bottom:10px}
+.site-footer .fgrid li a{display:inline-block;transition:color .2s,transform .25s cubic-bezier(.65,0,.2,1)}
+.site-footer .fgrid li a:hover{color:#fff;transform:translateX(4px)}
+.site-footer .fgrid p{max-width:420px;line-height:1.7}
+.site-footer .wordmark{display:inline-block;font:800 32px var(--fd);letter-spacing:.03em;margin-bottom:16px;transition:letter-spacing .45s cubic-bezier(.65,0,.2,1)}
+.site-footer .wordmark:hover{letter-spacing:.09em}
+.site-footer .wordmark span{color:#fff}.site-footer .wordmark b{color:var(--vio)}
+.site-footer .social{display:flex;gap:10px;margin-top:26px}
+.site-footer .social a{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;color:#ddd;transition:background .2s,color .2s,transform .3s cubic-bezier(.65,0,.2,1)}
+.site-footer .social a:hover{background:#26284f;color:var(--vio);transform:translateY(-3px)}
+.site-footer .social .ui{width:22px;height:22px}
+.site-footer .fbot{border-top:1px solid #26284f;padding:20px 0;font-size:13px;color:#9092ae;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 24px}
+.site-footer .fbot strong{color:#ddd}.site-footer .fbot a:hover{color:var(--vio)}
+.site-footer .fbot a{position:relative}
+.site-footer .fbot a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--vio);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.65,0,.2,1)}
+.site-footer .fbot a:hover::after{transform:scaleX(1)}
+.site-footer .fgrid li a{position:relative}
+.site-footer .fgrid li a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--vio);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.65,0,.2,1)}
+.site-footer .fgrid li a:hover::after{transform:scaleX(1)}
+.site-footer .fgrid h4{position:relative;padding-bottom:8px}
+.site-footer .fgrid h4::after{content:"";position:absolute;left:0;bottom:0;width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--vio),transparent);transition:width .45s cubic-bezier(.65,0,.2,1)}
+.site-footer .fgrid div:hover>h4::after{width:46px}
+@media(max-width:1000px){.site-footer .fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.site-footer .fgrid>div:first-child{grid-column:1/-1}}
+@media(max-width:700px){.site-footer{padding:44px 0 78px}.site-footer .fgrid{grid-template-columns:1fr 1fr;gap:26px 18px;padding-bottom:28px}.site-footer .fgrid>div:first-child{grid-column:1/-1}.site-footer .fgrid p{max-width:none}.site-footer .wordmark{font-size:28px}.site-footer .fbot{flex-direction:column;text-align:center;padding:18px 0;gap:10px}}
+@media(prefers-reduced-motion:reduce){.site-footer *{transition:none!important;animation:none!important}}
+</style>
+
+
+<style id="client-stories-step-carousel">
+/* Client Success Stories: move exactly one card over 5 seconds, then pause for 5 seconds. */
+@media (max-width:700px) {
+  .tq .g3.mq.tq-step-carousel {
+    animation:none !important;
+    translate:none !important;
+    transition:transform 5s cubic-bezier(.22,.61,.36,1) !important;
+    will-change:transform;
+  }
+  .tq .g3.mq.tq-step-carousel.paused-step {
+    transition:none !important;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  .tq .g3.mq.tq-step-carousel {
+    animation:none !important;
+    transition:none !important;
+    transform:none !important;
+  }
+}
+</style>
+
+<style id="products-mobile-hero-image-size">
+/* Slightly enlarge the hero image on mobile only; all layout and page logic remain unchanged. */
+@media (max-width: 700px) {
+  .hero {
+    --hero-zoom: 1.15;
+  }
+}
+</style>
 </head>
 <body>
 <div id="bar"></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-utensils" viewBox="0 0 24 24"><path d="M6 3v7a2 2 0 0 0 2 2v9M10 3v7a2 2 0 0 1-2 2M6 3v0M18 21V3c-2.2 1.2-3.5 3.6-3.5 7 0 2 .9 3 3.5 3"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V9l8-5 8 5v12M2 21h20M9 21v-6h6v6M8 11h.01M12 11h.01M16 11h.01"/></symbol>
+<symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M21 17v4"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+<symbol id="i-store" viewBox="0 0 24 24"><path d="M4 9l1.5-5h13L20 9M4 9v11h16V9M4 9c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3M10 20v-5h4v5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></symbol>
+<symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v5H5a1 1 0 0 1-1-1v-4zM20 14h-3v5h2a1 1 0 0 0 1-1v-4zM17 19c0 1.5-1.5 2-4 2"/></symbol>
 <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></symbol>
 <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.5v.01M12 16v-5.5M12 13c0-1.5 1-2.6 2.5-2.6S17 11.4 17 13v3"/></symbol>
 <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5v.01"/></symbol>
@@ -809,7 +925,7 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
 <span class="fchip hc2" aria-hidden="true"><span class="ic">TC</span>TrionCam &middot; Coming soon</span>
 </section>
 
-<div class="ticker" aria-hidden="true"><div class="tk" id="tk"></div></div>
+<div class="vt" aria-hidden="true"><div class="vt-m"><div class="vt-track" id="vt"></div></div></div>
 
 <!-- Overview + Restaurant -->
 <section id="products" class="sec">
@@ -933,11 +1049,11 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
 </section>
 
 <!-- Onboarding -->
-<section class="sec dk">
+<section class="sec dk onboard" id="onboarding" aria-labelledby="onboardTitle">
 <div class="wrap">
 <div class="head">
 <span class="tag">Seamless Onboarding</span>
-<h2>From consultation to launch in 5-7 days</h2>
+<h2 id="onboardTitle">From consultation to launch in 5-7 days</h2>
 <p class="lead">Our streamlined implementation process ensures you're up and running quickly</p>
 </div>
 <div class="g4">
@@ -976,11 +1092,11 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
 </div>
 </div>
 </div>
+<div class="dots" id="tDots" aria-label="Testimonial navigation"></div>
 <div class="met">
-<div><strong>50+</strong><span>Active Restaurants</span></div>
-<div><strong>15K+</strong><span>Daily Orders</span></div>
-<div><strong>99.9%</strong><span>Platform Uptime</span></div>
-<div><strong>4.8/5</strong><span>Customer Rating</span></div>
+<div><strong>100+</strong><span>Projects Delivered</span></div>
+<div><strong>3000+</strong><span>Students Trained</span></div>
+<div><strong>5/5</strong><span>Google Ratings</span></div>
 </div>
 </div>
 </section>
@@ -1005,21 +1121,22 @@ h2 .w:hover>span{color:var(--ind)}.dk h2 .w:hover>span{color:var(--vio)}.cta h2 
 </section>
 </main>
 
-<footer><div class="wrap">
-<div class="fg">
-<div><a href="index.html" class="wordmark" aria-label="Algo Orbit home"><span>ALGO</span><b>ORBIT</b></a>
-<p>Empowering businesses with innovative digital solutions. From restaurant management to civic engagement platforms, we build technology that drives real impact.</p>
-<div class="social">
-<a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ui"><use href="#i-linkedin"/></svg></a>
-<a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ui"><use href="#i-instagram"/></svg></a>
-<a href="https://www.facebook.com/profile.php?id=61578724749065" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ui"><use href="#i-facebook"/></svg></a>
-<a href="https://whatsapp.com/channel/0029VbBktvfAYlUS6kToth1B" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ui" style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg></a>
-</div></div>
-<div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-<div><h4>Products</h4><ul><li><a href="products.html#puredine">Restaurant System</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
-<div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="training.html">Internships</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
-</div>
-<div class="fb"><p>&copy; 2026 <strong>ALGOORBIT INNOVATIONS PRIVATE LIMITED</strong> All rights reserved.</p><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></div>
+<footer class="site-footer"><div class="wrap">
+ <div class="fgrid">
+  <div><a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><span>ALGO</span><b>ORBIT</b></a>
+   <p>Empowering businesses with innovative digital solutions. From restaurant management to civic engagement platforms, we build technology that drives real impact.</p>
+   <p style="margin-top:10px">ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p>
+   <div class="social">
+    <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ui"><use href="#i-linkedin"/></svg></a>
+    <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ui"><use href="#i-instagram"/></svg></a>
+    <a href="https://www.facebook.com/profile.php?id=61578724749065" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ui"><use href="#i-facebook"/></svg></a>
+    <a href="https://whatsapp.com/channel/0029VbBktvfAYlUS6kToth1B" target="_blank" rel="noopener" aria-label="WhatsApp Channel"><svg class="ui" style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg></a>
+   </div></div>
+  <div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+  <div><h4>Products</h4><ul><li><a href="products.html#puredine">Restaurant System</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
+  <div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="contact.html">Internships</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+ </div>
+ <div class="fbot"><p>&copy; 2026 <strong>ALGOORBIT INNOVATIONS PRIVATE LIMITED</strong> All rights reserved.</p><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></div>
 </div></footer>
 
 <a href="https://wa.me/919482119446" class="wa" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"><svg class="ui"><use href="#i-wa"/></svg></a>
@@ -1250,13 +1367,12 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
  /* 5. Onboarding steps: day stamps */
  decorate('.dk .g4>.step',['Day 1','Day 2-3','Day 4-5','Day 6-7']);
 
- /* 6. Testimonials: verified footer row + star watermark */
+ /* 6. Testimonials: verified footer row (star watermark removed) */
  QA('.tq .g3>.t').forEach(function(t){
   if(t.classList.contains('dup')||t.querySelector('.tfoot'))return;
   var r=t.querySelector('.res');if(!r)return;
   var f=document.createElement('div');f.className='tfoot';
   t.insertBefore(f,r);f.appendChild(r);f.insertAdjacentHTML('beforeend',chip('Verified client'));
-  t.insertAdjacentHTML('afterbegin','<i class="wm" aria-hidden="true">&#9733;</i>');
  });
 
  /* 7. Metrics: animated gauge under each number */
@@ -1279,6 +1395,7 @@ var mm=matchMedia('(max-width:700px)');
 function build(){
  QA('.g3,.g4').forEach(function(g){
   if(g.classList.contains('mq'))return;
+  if(g.closest('.tq'))return; /* Client Success Stories: swipe carousel (consultancy.html style), no cloned loop */
   var kids=Array.prototype.slice.call(g.children);if(!kids.length)return;
   kids.forEach(function(k){var c=k.cloneNode(true);
    c.classList.remove('reveal','in','tch','rl','rr','rz','glow');c.style.transitionDelay='';c.classList.add('dup');c.setAttribute('aria-hidden','true');
@@ -1586,6 +1703,990 @@ header,header.hide,header.scrolled{position:sticky;top:0;transform:none!importan
  },{threshold:[0,.3]}).observe(h);
 })();
 </script>
+
+
+<script id="consultancy-motion-parity-js">
+(function(){
+  'use strict';
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var hero=document.querySelector('.hero');
+  var sections=Array.prototype.slice.call(document.querySelectorAll('.sec,.cta'));
+  var pending=false,viewport=window.innerHeight||document.documentElement.clientHeight;
+
+  function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
+
+  /* Lightweight section parallax, matching the restrained Consultancy treatment. */
+  function paint(){
+    pending=false;
+    viewport=window.innerHeight||document.documentElement.clientHeight;
+    if(reduce)return;
+    sections.forEach(function(section){
+      var r=section.getBoundingClientRect();
+      if(r.bottom < -120 || r.top > viewport+120){
+        section.style.setProperty('--product-parallax-y','0px');
+        return;
+      }
+      var center=r.top+r.height*.5-viewport*.5;
+      var speed=section.classList.contains('cta')?-.018:-.014;
+      section.style.setProperty('--product-parallax-y',clamp(center*speed,-14,14).toFixed(2)+'px');
+    });
+  }
+  function requestPaint(){if(!pending){pending=true;requestAnimationFrame(paint);}}
+  if(!reduce){
+    sections.forEach(function(s){s.style.setProperty('--product-parallax-y','0px');});
+    window.addEventListener('scroll',requestPaint,{passive:true});
+    window.addEventListener('resize',requestPaint,{passive:true});
+    requestPaint();
+  }
+
+  /* Cursor-following perspective on the existing product visual frames. */
+  if(fine&&!reduce){
+    document.querySelectorAll('.vis .frame,.shot').forEach(function(frame){
+      frame.addEventListener('mousemove',function(e){
+        var r=frame.getBoundingClientRect();
+        var x=(e.clientX-r.left)/r.width-.5;
+        var y=(e.clientY-r.top)/r.height-.5;
+        frame.style.transform='perspective(1100px) rotateY('+(x*4.5).toFixed(2)+'deg) rotateX('+(-y*3.5).toFixed(2)+'deg) translateY(-4px)';
+      });
+      frame.addEventListener('mouseleave',function(){frame.style.transform='';});
+    });
+
+    /* Subtle magnetic response for existing primary actions; no click logic changes. */
+    document.querySelectorAll('.hero .btn,.acts .btn').forEach(function(btn){
+      btn.addEventListener('mousemove',function(e){
+        var r=btn.getBoundingClientRect();
+        var x=(e.clientX-r.left-r.width/2)*.045;
+        var y=(e.clientY-r.top-r.height/2)*.07;
+        btn.style.translate=x.toFixed(2)+'px '+y.toFixed(2)+'px';
+      });
+      btn.addEventListener('mouseleave',function(){btn.style.translate='';});
+    });
+  }
+
+  /* Keep hover-style feedback accessible on touch: use the page's existing .tch state. */
+  if(!reduce && 'IntersectionObserver' in window && window.matchMedia('(hover:none),(max-width:900px)').matches){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        entry.target.classList.toggle('tch',entry.isIntersecting);
+      });
+    },{rootMargin:'-38% 0px -38% 0px'});
+    document.querySelectorAll('.vis .frame,.shot,.trio>div,.cols li,.met>div,.stats>div,.fchip').forEach(function(el){
+      if(!el.classList.contains('dup'))io.observe(el);
+    });
+  }
+})();
+</script>
+
+
+<script id="client-stories-step-carousel-js">
+/* Client Success Stories mobile carousel:
+   each card takes 5 seconds to move into place, followed by a 5-second pause.
+   Existing cards, duplicate loop cards, and touch interactions remain intact. */
+(function () {
+  'use strict';
+  var track = null; /* superseded by the consultancy.html-style swipe carousel (products-smooth-parity-js) */
+  var media = window.matchMedia('(max-width:700px)');
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)');
+  if (!track) return;
+
+  var timer = 0;
+  var index = 0;
+  var originalCount = 0;
+  var active = false;
+  var hold = false;
+  var destroyed = false;
+
+  function children() {
+    return Array.prototype.filter.call(track.children, function (el) {
+      return !el.classList.contains('dup') || el.getAttribute('aria-hidden') === 'true';
+    });
+  }
+  function originals() {
+    return Array.prototype.filter.call(track.children, function (el) {
+      return !el.classList.contains('dup');
+    });
+  }
+  function cardOffset(n) {
+    var list = children();
+    if (!list[n]) return 0;
+    return list[n].offsetLeft - list[0].offsetLeft;
+  }
+  function clear() {
+    window.clearTimeout(timer);
+    timer = 0;
+  }
+  function setPosition(n, animate) {
+    track.classList.toggle('paused-step', !animate);
+    track.style.setProperty('transform', 'translate3d(' + (-cardOffset(n)) + 'px,0,0)', 'important');
+  }
+  function schedule() {
+    clear();
+    if (!active || hold || document.hidden || reduce.matches) return;
+    // Five seconds stationary before the next one-card glide.
+    timer = window.setTimeout(moveOne, 5000);
+  }
+  function moveOne() {
+    if (!active || hold || document.hidden || reduce.matches) return;
+    track.classList.remove('paused-step');
+    index += 1;
+    setPosition(index, true);
+    // The card glides for 5 seconds; then it remains still for 5 seconds.
+    timer = window.setTimeout(function () {
+      if (index >= originalCount) {
+        index = 0;
+        setPosition(index, false);
+        // Force the loop reset to finish before transitions are restored.
+        void track.offsetWidth;
+      }
+      schedule();
+    }, 5000);
+  }
+  function start() {
+    clear();
+    if (!media.matches || reduce.matches || !originals().length) {
+      stop();
+      return;
+    }
+    originalCount = originals().length;
+    active = true;
+    index = 0;
+    track.classList.add('tq-step-carousel');
+    track.classList.add('paused-step');
+    setPosition(0, false);
+    schedule();
+  }
+  function stop() {
+    clear();
+    active = false;
+    index = 0;
+    track.classList.remove('tq-step-carousel', 'paused-step');
+    track.style.removeProperty('transform');
+    track.style.removeProperty('translate');
+  }
+  function pause() {
+    if (!active) return;
+    hold = true;
+    clear();
+    track.classList.add('paused-step');
+  }
+  function resume() {
+    if (!active) return;
+    hold = false;
+    // Resume with a fresh five-second pause, avoiding a sudden jump after touch.
+    schedule();
+  }
+
+  track.addEventListener('touchstart', pause, { passive: true });
+  track.addEventListener('touchend', resume, { passive: true });
+  track.addEventListener('touchcancel', resume, { passive: true });
+  track.addEventListener('mouseenter', pause);
+  track.addEventListener('mouseleave', resume);
+  track.addEventListener('focusin', pause);
+  track.addEventListener('focusout', resume);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) clear();
+    else schedule();
+  });
+
+  if (media.addEventListener) media.addEventListener('change', function () {
+    if (media.matches) start(); else stop();
+  });
+  else if (media.addListener) media.addListener(function () {
+    if (media.matches) start(); else stop();
+  });
+  if (reduce.addEventListener) reduce.addEventListener('change', function () {
+    if (reduce.matches) stop(); else start();
+  });
+  else if (reduce.addListener) reduce.addListener(function () {
+    if (reduce.matches) stop(); else start();
+  });
+
+  // The existing mobile-card script creates the duplicate loop cards.
+  // Wait until that script has completed its initial setup.
+  window.requestAnimationFrame(start);
+  window.addEventListener('load', start, { once: true });
+})();
+</script>
+
+
+<style id="products-parity-layer">
+/* =====================================================================
+   PRODUCTS PARITY LAYER (additive, loaded last)
+   1) Smooth inertia scrolling (Lenis) support
+   2) Left / right / up scroll reveals, same system as consultancy.html
+   3) Smooth hover polish (nav, buttons)
+   4) Client stories: violet star watermark removed
+   5) "From consultation to launch" redesigned as a launch timeline
+   ===================================================================== */
+:root{--e3:cubic-bezier(.22,1,.36,1)}
+
+/* ---------- 1. Lenis base ---------- */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+.lenis.lenis-scrolling iframe{pointer-events:none}
+html{overscroll-behavior-y:none}
+
+/* ---------- 2. Directional reveals (translate, so hover transforms stay free) ---------- */
+@media (prefers-reduced-motion:no-preference){
+ .reveal[data-dir]{transform:none;transition:opacity .9s var(--ease),translate 1.1s var(--ease)}
+ .reveal[data-dir="l"]:not(.in){translate:-80px 0}
+ .reveal[data-dir="r"]:not(.in){translate:80px 0}
+ .reveal[data-dir="u"]:not(.in){translate:0 36px}
+}
+@media (max-width:700px) and (prefers-reduced-motion:no-preference){
+ .reveal[data-dir="l"]:not(.in){translate:-36px 0}
+ .reveal[data-dir="r"]:not(.in){translate:36px 0}
+ /* phone card columns already use the .mr rise-in; give it a left / right direction */
+ body.mrx .mq>[data-dir="l"]:not(.mr){translate:-36px 0}
+ body.mrx .mq>[data-dir="r"]:not(.mr){translate:36px 0}
+ body.mrx .mq>[data-dir="u"]:not(.mr){translate:0 38px}
+}
+
+/* ---------- 3. Smooth hover polish (mouse devices) ---------- */
+@property --bp{syntax:'<angle>';inherits:false;initial-value:0deg}
+@media (hover:hover) and (pointer:fine){
+ .links>a{display:inline-block;transition:color .25s,transform .4s var(--e3),letter-spacing .4s var(--e3)}
+ .links>a:hover,.dd>button:hover{transform:translateY(-1px);letter-spacing:.015em}
+ .links>a::after,.dd>button::after{transform-origin:right;transition:transform .5s var(--e3)}
+ .links>a:hover::after,.dd>button:hover::after,.dd>button.active::after{transform-origin:left}
+
+ .btn:not(.o):not(.l):not(.lo){
+  background-image:linear-gradient(105deg,#5b4be8 0%,#7a6df0 38%,#0e0f2a 78%);background-size:260% 100%;background-position:0 0;
+  transition:background-position .7s var(--e3),background-color .25s,color .25s,border-color .25s,box-shadow .25s,transform .3s var(--e3),translate .25s var(--e3)}
+ .btn:not(.o):not(.l):not(.lo):hover{background-position:100% 0;background-color:var(--navy);border-color:var(--navy)}
+ .btn.o,.btn.lo{--rc:#82c8eb}.btn.lo:hover{--rc:#5b4be8}
+ .btn.o::before,.btn.lo::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;pointer-events:none;
+  background:conic-gradient(from -90deg,var(--rc) 0deg,var(--rc) var(--bp),transparent var(--bp));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;transition:--bp .9s var(--e3)}
+ .btn.o:hover::before,.btn.lo:hover::before{--bp:360deg}
+ .btn:active{transform:scale(.97)}
+ .btn:focus-visible{box-shadow:0 0 0 4px rgba(91,75,232,.28)}
+ .fchip,.chip{transition:scale .4s var(--e3)}
+ .fchip:hover{scale:1.04}
+}
+@media (prefers-reduced-motion:reduce){.btn.o::before,.btn.lo::before{display:none}}
+
+/* ---------- 4. Client success stories: no violet star graphic inside the cards ---------- */
+.tq .t>i.wm,.t>i.wm{display:none!important}
+
+/* ---------- 5. Onboarding: launch timeline ---------- */
+.sec.onboard .g4{gap:8px;position:relative}
+.sec.onboard .g4::before{content:none;animation:none}
+@media(min-width:1001px){.sec.onboard .g4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.sec.onboard .g4>.step.hov{
+ --fill:100%;
+ display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto 1fr;column-gap:14px;align-content:start;align-items:center;
+ height:100%;padding:34px 22px 28px;border-radius:20px;overflow:visible;text-align:left;
+ background:transparent;border:1px solid transparent;box-shadow:none;animation:none!important;
+ transition:background .45s var(--e3),border-color .45s var(--e3),box-shadow .45s var(--e3),transform .5s var(--e3)}
+/* the old decorations are replaced by the timeline */
+.sec.onboard .step>i.ring,.sec.onboard .step>.wn,.sec.onboard .step>i.cshine,.sec.onboard .step.hov::before,.sec.onboard .step.hov::after,.sec.onboard .step h4::after,.sec.onboard .step .ico::after{display:none!important}
+/* progress segment (fills as the section scrolls into view) */
+.sec.onboard .step>i.bar{
+ display:block;position:absolute;left:0;right:0;top:0;height:4px;border-radius:4px;z-index:2;opacity:1;animation:none;
+ background:linear-gradient(90deg,#8f84f2,#82c8eb) 0 0/var(--fill,100%) 100% no-repeat,rgba(255,255,255,.14);
+ transition:background-size .45s linear}
+/* numbered node */
+.sec.onboard .step .ico{
+ grid-column:1;grid-row:1;width:48px;height:48px;margin:0;border-radius:50%;display:grid;place-items:center;
+ font:700 1.05rem/1 var(--fd);color:rgba(255,255,255,.72);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);box-shadow:none;animation:none;
+ transition:background .5s var(--e3),color .4s,border-color .4s,box-shadow .5s var(--e3),transform .5s var(--e3)}
+.sec.onboard .step.on .ico,.sec.onboard .step.hov:is(:hover,.tch) .ico{
+ color:#fff;background:linear-gradient(135deg,var(--ind),var(--peri));border-color:transparent;
+ box-shadow:0 0 0 5px rgba(143,132,242,.18),0 10px 22px rgba(91,75,232,.45);animation:none}
+.sec.onboard .step.hov:hover .ico{transform:scale(1.06)}
+/* day label */
+.sec.onboard .step .meta{
+ grid-column:2;grid-row:1;justify-self:start;align-self:center;margin:0;
+ font:600 11px/1 var(--fd);letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;
+ color:#cfcaff;background:rgba(143,132,242,.14);border:1px solid rgba(143,132,242,.32)}
+.sec.onboard .step.hov:is(:hover,.tch) .meta{color:#fff;background:rgba(143,132,242,.28);border-color:rgba(143,132,242,.6)}
+/* copy */
+.sec.onboard .step h4{grid-column:1/-1;grid-row:2;align-self:start;margin:22px 0 8px;font-size:1.2rem;color:#fff}
+.sec.onboard .step p{grid-column:1/-1;grid-row:3;align-self:start;margin:0;color:#b4b6dc;font-size:.94rem;line-height:1.7}
+/* hover / touch: a glass panel appears, no white flood */
+.sec.onboard .g4>.step.hov:is(:hover,.tch){
+ transform:translateY(-6px);
+ background:linear-gradient(165deg,rgba(143,132,242,.16),rgba(255,255,255,.03));
+ border-color:rgba(143,132,242,.45);box-shadow:0 24px 48px rgba(0,0,0,.35)}
+.sec.onboard .step.hov:is(:hover,.tch) h4{color:#fff}
+.sec.onboard .step.hov:is(:hover,.tch) p{color:#d6d7f3}
+.sec.onboard .step.glow{animation:none!important}
+
+/* tablets: two columns, each card keeps its own progress segment */
+@media(min-width:701px) and (max-width:1000px){.sec.onboard .g4{gap:14px}.sec.onboard .g4>.step.hov{padding:34px 24px 28px}}
+
+/* phones: vertical timeline with a connecting rail */
+@media(max-width:700px){
+ .sec.onboard .g4{gap:6px!important}
+ .sec.onboard .g4>.step.hov{grid-template-columns:48px 1fr;grid-template-rows:auto auto 1fr;column-gap:16px;padding:18px 14px 18px;border-radius:18px;box-shadow:none}
+ .sec.onboard .step .ico{grid-column:1;grid-row:1/span 3;align-self:start}
+ .sec.onboard .step .meta{grid-column:2;grid-row:1;margin:2px 0 0}
+ .sec.onboard .step h4{grid-column:2;grid-row:2;margin:10px 0 6px;font-size:1.1rem}
+ .sec.onboard .step p{grid-column:2;grid-row:3;font-size:14.5px}
+ .sec.onboard .step>i.bar{left:36px;right:auto;top:70px;bottom:-20px;width:3px;height:auto;
+  background:linear-gradient(180deg,#8f84f2,#82c8eb) 0 0/100% var(--fill,100%) no-repeat,rgba(255,255,255,.14)}
+ .sec.onboard .g4>.step:nth-child(4)>i.bar{display:none}
+ .sec.onboard .g4>.step.hov:is(:hover,.tch){transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .sec.onboard .step>i.bar{transition:none}
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script id="products-parity-layer-js">
+(function(){
+ 'use strict';
+ var d=document,root=d.documentElement;
+ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ function QA(s,r){return [].slice.call((r||d).querySelectorAll(s))}
+ function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+
+ /* ===== 1. Smooth inertia scrolling (mouse wheel); touch keeps native scrolling ===== */
+ if(!reduce&&window.Lenis){
+  var lenis=new Lenis({duration:1.15,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t))},smoothWheel:true});
+  window.siteScroller=lenis;
+  requestAnimationFrame(function loop(t){lenis.raf(t);requestAnimationFrame(loop)});
+  /* in-page links glide with the same easing */
+  d.addEventListener('click',function(e){
+   var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;
+   var id=a.getAttribute('href');if(!id||id.length<2)return;
+   var t;try{t=d.querySelector(id)}catch(x){return}
+   if(!t)return;
+   e.preventDefault();lenis.scrollTo(t,{offset:-64});
+  },true);
+  /* back-to-top uses the same scroller */
+  d.addEventListener('click',function(e){
+   var b=e.target.closest&&e.target.closest('.totop');if(!b)return;
+   e.stopPropagation();lenis.scrollTo(0);
+  },true);
+  /* scrollable overlays keep native scrolling */
+  ['nav','ddm'].forEach(function(id){var el=d.getElementById(id);if(el)el.setAttribute('data-lenis-prevent','')});
+ }
+
+ if(reduce)return;
+
+ /* ===== 2. Left / right / up directions for the existing scroll reveal ===== */
+ function cols(p){
+  var c=getComputedStyle(p);
+  return c.display==='grid'?Math.max(1,c.gridTemplateColumns.split(' ').length):1;
+ }
+ function dir(i,n){
+  if(n<=1)return i%2?'r':'l';
+  var x=(i+.5)/n;
+  return x<.34?'l':x>.66?'r':'u';
+ }
+ var SEL='.head,.hov,.met,.cols>div,.trio,.shot,.vis .frame';
+ function apply(){
+  var phone=matchMedia('(max-width:700px)').matches;
+  QA(SEL).forEach(function(el){
+   if(el.classList.contains('dup'))return;
+   var p=el.parentNode,v;
+   if(el.matches('.head,.met,.trio'))v='u';
+   else if(el.matches('.vis .frame,.shot')){var g=el.closest('.pgrid');v=g?(g.classList.contains('rev')?'l':'r'):'u'}
+   else if(el.matches('.cols>div')){v=[].indexOf.call(p.children,el)%2?'r':'l'}
+   else if(el.matches('.t')&&phone)v='u';
+   else{
+    var sibs=[].filter.call(p.children,function(c){return c.matches('.hov')&&!c.classList.contains('dup')});
+    v=dir(sibs.indexOf(el),cols(p));
+   }
+   el.setAttribute('data-dir',v);
+  });
+ }
+ apply();
+ var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(apply,200)});
+
+ /* ===== 3. Onboarding timeline: segments and nodes light up as you scroll ===== */
+ var ob=d.getElementById('onboarding');
+ if(ob){
+  var grid=ob.querySelector('.g4'),queued=false;
+  var paint=function(){
+   queued=false;
+   var steps=QA('.g4>.step:not(.dup)',ob),n=steps.length;if(!n||!grid)return;
+   var r=grid.getBoundingClientRect(),vh=innerHeight;
+   var p=clamp((vh*.82-r.top)/(r.height*.85+vh*.12),0,1);
+   steps.forEach(function(s,i){
+    var f=clamp(p*n-i,0,1);
+    s.style.setProperty('--fill',(f*100).toFixed(1)+'%');
+    s.classList.toggle('on',f>0);
+   });
+  };
+  /* start empty so the scroll fills it in */
+  QA('.g4>.step',ob).forEach(function(s){s.style.setProperty('--fill','0%')});
+  addEventListener('scroll',function(){if(!queued){queued=true;requestAnimationFrame(paint)}},{passive:true});
+  addEventListener('resize',paint);
+  addEventListener('load',paint);
+  paint();
+ }
+})();
+</script>
+
+
+<style id="products-calm-final">
+/* =====================================================================
+   PRODUCTS FINAL LAYER (loaded last)
+   1) Ticker below the hero: same scroll-driven glow ticker as index.html
+   2) Cards: plain white at rest, one smooth hover on mouse devices only
+      (no touch / scroll highlight, no auto glow, no dark fill)
+   ===================================================================== */
+:root{--e3:cubic-bezier(.22,1,.36,1)}
+
+/* ---------- 1. Ticker (ported from index.html) ---------- */
+.vt{position:relative;background:var(--navy);height:70px;display:flex;align-items:center;border-top:1px solid rgba(255,255,255,.06);box-shadow:inset 0 -30px 40px -30px rgba(91,75,232,.45)}
+.vt::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;z-index:2;background:linear-gradient(90deg,transparent,var(--peri),#82c8eb,var(--peri),transparent);box-shadow:0 0 14px 2px rgba(143,132,242,.75)}
+.vt::after{content:"";position:absolute;top:0;bottom:0;left:-30%;width:30%;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(143,132,242,.28),transparent);animation:vtSweep 5s linear infinite}
+@keyframes vtSweep{to{left:100%}}
+.vt-m{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.vt-track{position:relative;display:flex;width:max-content;will-change:transform}
+.vt-i{display:flex;align-items:center;gap:12px;padding-right:36px;margin-right:36px;position:relative;color:#fff;font:500 14.5px/1 var(--fd);letter-spacing:.01em;white-space:nowrap;opacity:var(--o,.45);transform:scale(var(--s,.95));transform-origin:left center;text-shadow:0 0 calc(var(--g,0)*16px) rgba(143,132,242,var(--g,0))}
+.vt-i svg{width:22px;height:22px;flex:none;fill:none;stroke:#b9b3ff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 calc(var(--g,0)*6px) rgba(143,132,242,var(--g,0)))}
+.vt-i::after{content:"";position:absolute;right:0;top:50%;width:5px;height:5px;margin-top:-2.5px;border:1px solid var(--peri);border-radius:50%;box-shadow:0 0 8px rgba(143,132,242,.9)}
+@media(max-width:700px){.vt{height:56px}.vt-i{font-size:13px;gap:9px;padding-right:26px;margin-right:26px}.vt-i svg{width:19px;height:19px}}
+@media(prefers-reduced-motion:reduce){.vt::after{animation:none}}
+
+/* ---------- 2. Cards: white at rest ---------- */
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div){
+ background:#fff!important;background-image:none!important;
+ border:1px solid #e6e4f5!important;
+ box-shadow:0 1px 2px rgba(14,15,42,.05),0 12px 28px -18px rgba(14,15,42,.22)!important;
+ transform:none!important;animation:none!important;filter:none!important;
+ transition:transform .55s var(--e3),box-shadow .55s var(--e3),border-color .4s ease!important}
+/* decorative layers that coloured or animated the cards are switched off */
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div)::before,
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t)>:is(i.bar,i.ring,i.wm,i.cshine){display:none!important}
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div) :is(h4,.who h4){color:var(--navy)!important}
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div) p{color:var(--mute)!important}
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div) blockquote{color:var(--mute)!important}
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div) .who small{color:var(--mute)!important}
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div) .res{color:var(--ind)!important;background:rgba(91,75,232,.1)!important}
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div) .meta{color:var(--b)!important;background:rgba(var(--glow),.1)!important;border-color:rgba(var(--glow),.28)!important}
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div) blockquote::before{color:rgba(91,75,232,.18)!important}
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div) .ico{background:linear-gradient(135deg,var(--a),var(--b))!important;color:#fff!important;animation:none!important;transition:transform .5s var(--e3),box-shadow .5s var(--e3)!important}
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div) .wn{background:#fff!important;color:var(--b)!important}
+/* top accent line: hidden at rest, draws in on hover only */
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t)::after{transform:scaleX(0)!important;transition:transform .55s var(--e3)!important}
+.feat li.hov::after{transform:scaleY(0)!important}
+.feat li.hov{transform:none!important}
+
+/* image containers (Our Product Suite): clean white frame, no glow blob */
+.vis::before{display:none!important}
+:is(.vis .frame,.vis .shot){background:#fff!important;border:1px solid #e6e4f5!important;box-shadow:0 1px 2px rgba(14,15,42,.05),0 14px 32px -18px rgba(14,15,42,.25)!important;transform:none!important;filter:none!important;transition:transform .55s var(--e3),box-shadow .55s var(--e3)!important}
+.vis .frame>i,.vis .shot>i{display:none!important}
+.vis .frame::after{transform:translateX(-120%)!important}
+
+/* ---------- Hover: mouse only, one smooth lift ---------- */
+@media (hover:hover) and (pointer:fine){
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div):hover{transform:translateY(-6px)!important;border-color:rgba(91,75,232,.4)!important;box-shadow:0 26px 48px -22px rgba(69,56,196,.38)!important}
+ .feat li.hov:hover{transform:translateX(6px)!important}
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t):hover::after{transform:scaleX(1)!important}
+ .feat li.hov:hover::after{transform:scaleY(1)!important}
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div):hover .ico{transform:translateY(-2px) scale(1.07)!important;box-shadow:0 14px 26px rgba(var(--glow),.38)!important}
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div):hover h4{color:var(--ind)!important}
+ :is(.vis .frame,.vis .shot):hover{transform:translateY(-6px)!important;box-shadow:0 30px 60px -24px rgba(69,56,196,.45)!important}
+ .vis .frame:hover::after{transform:translateX(120%)!important}
+ .vis .frame:hover img,.vis .shot:hover img{transform:scale(1.04)}
+}
+/* touch devices: no hover look at all */
+@media (hover:none),(pointer:coarse){
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div),:is(.vis .frame,.vis .shot){transform:none!important}
+}
+@media(prefers-reduced-motion:reduce){:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div),:is(.vis .frame,.vis .shot){transition:none!important}}
+</style>
+
+<script id="products-final-js">
+(function(){
+ var R=matchMedia('(prefers-reduced-motion:reduce)').matches,Q=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+ var cl=function(v){return Math.max(0,Math.min(1,v))};
+
+ /* ---- 1. Hero ticker: same behaviour as index.html (follows scroll direction and speed, items brighten near the centre) ---- */
+ var vt=document.getElementById('vt');
+ if(vt){
+  var K=[['Restaurant Management','i-utensils'],['Civic Technology','i-building'],['PureDine','i-qr'],['TrionCam','i-pin'],['Est. 2023','i-cal'],['50+ Active Restaurants','i-store'],['99.9% Uptime','i-shield'],['24/7 Support','i-headset']];
+  var one=K.map(function(k){return '<span class="vt-i"><svg viewBox="0 0 24 24"><use href="#'+k[1]+'"/></svg>'+k[0]+'</span>'}).join('');
+  vt.innerHTML=one;var unit=vt.scrollWidth,n=Math.max(1,Math.ceil((innerWidth+300)/unit));
+  vt.innerHTML=one.repeat(n)+one.repeat(n);
+  var W=vt.scrollWidth/2,its=[],pos=0,vel=40,dir=1,boost=0,ly=scrollY,idle,vis=true,hold=false,lt=0,vw=innerWidth;
+  function measure(){W=vt.scrollWidth/2;its=Q('.vt-i',vt).map(function(e){return{e:e,c:e.offsetLeft+e.offsetWidth/2}})}
+  measure();
+  addEventListener('scroll',function(){var d=scrollY-ly;ly=scrollY;if(!d)return;dir=d>0?1:-1;boost=Math.min(boost+Math.abs(d)*1.4,340);clearTimeout(idle);idle=setTimeout(function(){dir=1},1100)},{passive:true});
+  addEventListener('resize',function(){vw=innerWidth;measure()});
+  addEventListener('load',measure);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(measure);
+  if('IntersectionObserver' in window)new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(vt.parentNode.parentNode);
+  vt.parentNode.parentNode.addEventListener('mouseenter',function(){hold=true});
+  vt.parentNode.parentNode.addEventListener('mouseleave',function(){hold=false});
+  function paint(){var mid=vw/2;vt.style.transform='translate3d('+(-pos).toFixed(1)+'px,0,0)';
+   its.forEach(function(o){var x=o.c-pos;if(x<0)x+=W*2;var f=cl(1-Math.abs(x-mid)/(vw*.42));
+    o.e.style.setProperty('--o',(.42+.58*f).toFixed(2));o.e.style.setProperty('--s',(.95+.07*f).toFixed(3));o.e.style.setProperty('--g',(f*f).toFixed(2))})}
+  (function loop(t){requestAnimationFrame(loop);var dt=Math.min(t-lt,50)/1000;lt=t;if(!vis||document.hidden||R)return;
+   boost*=.93;var tv=(42+boost)*dir*(hold?.25:1);vel+=(tv-vel)*.07;pos=(((pos+vel*dt)%W)+W)%W;paint()})(0);
+  paint();
+ }
+
+ /* ---- 2. Cards stay white: earlier scripts toggled .tch (touch / scroll highlight) and .glow (auto glow). Strip them. ---- */
+ var SEL='.feat li,.sub .card,#trioncam-workflow .step,.tq .t';
+ function clean(el){if(el.classList&&(el.classList.contains('tch')||el.classList.contains('glow'))){el.classList.remove('tch','glow')}}
+ function sweep(){Q(SEL).forEach(clean)}
+ sweep();
+ if('MutationObserver' in window){
+  new MutationObserver(function(ms){ms.forEach(function(m){var t=m.target;if(t.matches&&t.matches(SEL))clean(t)})})
+   .observe(document.body,{subtree:true,attributes:true,attributeFilter:['class']});
+ }
+})();
+</script>
+
+<style id="products-smooth-parity">
+/* =====================================================================
+   PRODUCTS SMOOTH PARITY LAYER (loaded last, presentation + motion only)
+   Brings the consultancy.html feel to products.html on desktop + mobile:
+   1) Shared easing, softer hover timing, page fade-in
+   2) Scroll performance: no backdrop blur, compositor hints, hover
+      repaint paused while scrolling, lazy images fade in
+   3) Phones / touch: heavy looping decoration paused so scrolling is smooth
+   4) Client Success Stories: same design as consultancy.html
+      (static three-card grid on desktop, swipe carousel + dots on phones)
+   5) Words of the lead paragraphs light up as they scroll through
+   ===================================================================== */
+:root{--e2:cubic-bezier(.22,1,.36,1)}
+
+/* ---------- 1. Easing + page fade-in ---------- */
+@keyframes pgIn{from{opacity:0}}
+body{animation:pgIn .6s var(--e2) backwards}
+.btn,.fchip,.stats>div,.met>div,.links>a,.menu a{transition-timing-function:var(--e2)}
+
+/* ---------- 2. Scroll performance ---------- */
+header{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(14,15,42,.97)}
+.badge,.fchip,.chip{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.badge{background:rgba(14,15,42,.92)}
+.reveal,.hero-bg,.vt-track,.totop,.wa,.cglow{will-change:transform}
+body.is-scrolling main,body.is-scrolling .site-footer{pointer-events:none}
+.site-footer{content-visibility:visible}
+img[loading="lazy"]{opacity:0;transition:opacity .6s var(--e2)}
+img[loading="lazy"].loaded{opacity:1}
+@media(prefers-reduced-motion:reduce){body{animation:none}body.is-scrolling main{pointer-events:auto}img[loading="lazy"]{opacity:1}}
+
+/* ---------- 3. Phones, tablets and touch devices ---------- */
+@media(max-width:1000px),(hover:none){
+ .blob,.pcv,.cglow{display:none!important}
+ .vt::after,.fchip,.badge,.badge small:first-child::before,.stats div::after,.met::after,.ico::after,.hero-orbit{animation:none!important}
+ body.is-scrolling main,body.is-scrolling .site-footer{pointer-events:auto!important}
+ .reveal,.hero-bg,.totop,.wa{will-change:auto}
+}
+
+/* ---------- 4. Client Success Stories (consultancy.html design) ---------- */
+.tq{-webkit-mask-image:none!important;mask-image:none!important}
+.tq .g3>.t.dup{display:none!important}
+.tq .t .who img{transition:transform .5s var(--e2)}
+.tq .t .who{opacity:.88;transform:translateY(3px);transition:transform .5s var(--e2),opacity .4s}
+.tq .t blockquote::before{transform-origin:0 100%;transition:transform .7s var(--e2),color .5s}
+.tq .t .who h4,.tq .t .who small{transition:color .4s,letter-spacing .4s}
+@media(hover:hover) and (pointer:fine){
+ .tq .t:hover .who{opacity:1;transform:none}
+ .tq .t:hover .who img{transform:scale(1.1) rotate(-6deg)}
+ .tq .t:hover blockquote::before{transform:scale(1.4) rotate(-6deg);color:rgba(91,75,232,.34)!important}
+ .tq .t:hover .who h4{letter-spacing:.01em}
+}
+.dots{display:none}
+@media(max-width:700px){
+ .tq{overflow:hidden!important;margin:0 calc(var(--gut) * -1)!important}
+ .tq .g3{display:flex!important;flex-wrap:nowrap!important;grid-template-columns:none!important;gap:14px!important;width:auto!important;max-width:none!important;
+  overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  margin:0!important;padding:6px var(--gut) 14px!important;scroll-padding-inline:var(--gut);animation:none!important;transform:none!important;translate:none!important}
+ .tq .g3::-webkit-scrollbar{display:none}
+ .tq .g3>.t{flex:0 0 86%!important;width:auto!important;max-width:none!important;margin:0!important;height:auto;scroll-snap-align:start;padding:22px;border-radius:20px;
+  opacity:1!important;translate:none!important;filter:none!important}
+ .tq .t .who{opacity:1;transform:none}
+ .dots{display:flex;justify-content:center;gap:8px;margin-top:6px;margin-bottom:26px}
+ .dots button{width:9px;height:9px;padding:0;border-radius:50%;border:0;background:#cfd0e6;cursor:pointer;transition:width .3s var(--e2),background .3s}
+ .dots button.on{background:var(--ind);width:26px;border-radius:5px}
+}
+
+/* ---------- 5. Text scrub ---------- */
+.sw{opacity:.28;transition:opacity .35s}
+.sw.lit{opacity:1}
+@media(prefers-reduced-motion:reduce){.sw{opacity:1!important}}
+</style>
+
+<script id="products-smooth-parity-js">
+(function(){
+ 'use strict';
+ var d=document,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var QA=function(s,r){return Array.prototype.slice.call((r||d).querySelectorAll(s))};
+
+ /* A. Mark the page as "scrolling" only while scrolling, so hover repaints do not fight the scroll thread */
+ var st,on=false;
+ addEventListener('scroll',function(){
+  if(!on){on=true;d.body.classList.add('is-scrolling')}
+  clearTimeout(st);st=setTimeout(function(){on=false;d.body.classList.remove('is-scrolling')},120)
+ },{passive:true});
+
+ /* B. Lazy images fade in once decoded (no pop-in while scrolling) */
+ function done(im){im.classList.add('loaded')}
+ QA('img[loading="lazy"]').forEach(function(im){
+  if(im.complete&&im.naturalWidth)done(im);
+  else{im.addEventListener('load',function(){done(im)},{once:true});im.addEventListener('error',function(){done(im)},{once:true})}
+ });
+ setTimeout(function(){QA('img[loading="lazy"]:not(.loaded)').forEach(done)},4000);
+
+ /* C. Client Success Stories carousel (phones only): swipe, dots, gentle autoplay. Desktop keeps the static grid. */
+ (function(){
+  var tr=d.querySelector('.tq .g3'),dots=d.getElementById('tDots'),mob=matchMedia('(max-width:700px)');
+  if(!tr||!dots)return;
+  var items=QA('.t',tr).filter(function(el){return !el.classList.contains('dup')}),t=0,hold=false,rel;
+  if(!items.length)return;
+  function step(){return items[0].offsetWidth+14}
+  items.forEach(function(el,i){
+   var b=d.createElement('button');b.type='button';b.setAttribute('aria-label','Testimonial '+(i+1));
+   b.onclick=function(){tr.scrollTo({left:tr.scrollLeft+el.getBoundingClientRect().left-tr.getBoundingClientRect().left-parseFloat(getComputedStyle(tr).paddingLeft||0),behavior:'smooth'})};
+   dots.appendChild(b)});
+  function sync(){var n=Math.min(items.length-1,Math.max(0,Math.round(tr.scrollLeft/step())));
+   QA('button',dots).forEach(function(b,k){b.className=k===n?'on':''})}
+  tr.addEventListener('scroll',sync,{passive:true});sync();
+  function pause(){hold=true;clearTimeout(rel)}
+  function resume(){clearTimeout(rel);rel=setTimeout(function(){hold=false},2500)}
+  tr.addEventListener('touchstart',pause,{passive:true});
+  tr.addEventListener('touchend',resume);tr.addEventListener('touchcancel',resume);
+  if(reduce)return;
+  var vis=true;if('IntersectionObserver' in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting}).observe(tr);
+  setInterval(function(){
+   if(!mob.matches||hold||!vis||d.hidden){t=0;return}
+   t+=100;
+   if(t>=3500){t=0;
+    if(tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4)tr.scrollTo({left:0,behavior:'smooth'});
+    else tr.scrollBy({left:step(),behavior:'smooth'})}
+  },100);
+ })();
+
+ /* D. Text scrub: words light up as the lead paragraphs scroll through the screen */
+ if(reduce)return;
+ var scr=[];
+ QA('#products>.wrap>.head .lead,.pgrid .lead').slice(0,3).forEach(function(p){
+  var ws=[],tw=d.createTreeWalker(p,NodeFilter.SHOW_TEXT),nodes=[],n;
+  while((n=tw.nextNode()))if(n.nodeValue.trim())nodes.push(n);
+  nodes.forEach(function(tn){
+   var f=d.createDocumentFragment();
+   tn.nodeValue.split(/(\s+)/).forEach(function(part){
+    if(!part)return;
+    if(/^\s+$/.test(part))f.appendChild(d.createTextNode(part));
+    else{var s=d.createElement('span');s.className='sw';s.textContent=part;f.appendChild(s);ws.push(s)}
+   });
+   tn.parentNode.replaceChild(f,tn);
+  });
+  if(ws.length)scr.push({p:p,w:ws,n:0});
+ });
+ var sq=false;
+ function scrub(){
+  sq=false;var vh=innerHeight;
+  scr.forEach(function(s){
+   var r=s.p.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;
+   var p=Math.min(1,Math.max(0,(vh*.88-r.top)/(vh*.45+r.height*.5))),n=Math.round(p*s.w.length);
+   if(n!==s.n){var i,lo=Math.min(n,s.n),hi=Math.max(n,s.n);for(i=lo;i<hi;i++)s.w[i].classList.toggle('lit',n>s.n);s.n=n}
+  });
+ }
+ if(scr.length){
+  addEventListener('scroll',function(){if(!sq){sq=true;requestAnimationFrame(scrub)}},{passive:true});
+  addEventListener('resize',scrub);scrub();
+ }
+})();
+</script>
+
+<!-- =====================================================================
+     PRODUCTS x CONSULTANCY MOTION LAYER (additive, loaded last so it wins the cascade).
+     Nothing above is removed or changed in behaviour. This layer brings the
+     consultancy.html feel to every card and image card on desktop and mobile:
+       1) Smooth scroll-progress bar (GPU transform, no layout per scroll tick)
+       2) Navigation / logo entrance, section intro choreography, stat pop-in
+       3) Card hover: soft lift, restrained 3D tilt, cursor-following light,
+          accent line + icon + tag motion (mouse devices only)
+       4) Image cards: depth tilt, cursor-following zoom, sheen sweep, settle-in
+          on scroll (all devices)
+       5) Magnetic buttons, CTA ring, footer cascade, brand-colour social icons
+       6) Subtle background parallax, press feedback on touch screens
+     All hidden start-states are gated behind html.px, which JS only adds when
+     motion is allowed, so no-JS and reduced-motion users see everything normally.
+     ===================================================================== -->
+<style id="products-consultancy-motion">
+:root{--e5:cubic-bezier(.22,1,.36,1)}
+
+/* ---------- 1. Scroll progress bar: transform instead of width ---------- */
+#bar{width:100%!important;transform:scaleX(0);transform-origin:0 50%;will-change:transform}
+
+/* ---------- 2. Entrance choreography ---------- */
+@keyframes pxDown{from{opacity:0;transform:translateY(-10px)}}
+@keyframes pxDd{from{opacity:0;transform:translateX(-10px)}}
+@keyframes pxUp{from{opacity:0;transform:translateY(22px)}}
+@keyframes pxPop{from{opacity:0;transform:translateY(22px) scale(.88)}to{opacity:1;transform:none}}
+@keyframes pxPing{0%{box-shadow:0 0 0 0 rgba(130,200,235,.7)}100%{box-shadow:0 0 0 12px rgba(130,200,235,0)}}
+@keyframes pxRing{0%{box-shadow:0 10px 24px rgba(0,0,0,.25),0 0 0 0 rgba(255,255,255,.5)}70%{box-shadow:0 10px 24px rgba(0,0,0,.25),0 0 0 16px rgba(255,255,255,0)}100%{box-shadow:0 10px 24px rgba(0,0,0,.25),0 0 0 0 rgba(255,255,255,0)}}
+
+/* backwards fill only: once finished the normal hover transforms work again */
+.logo{animation:pxDown .7s var(--e5) .05s backwards}
+@media(min-width:821px){
+ .links>a,.links>.dd{animation:pxDown .7s var(--e5) backwards}
+ .links>:nth-child(1){animation-delay:.12s}.links>:nth-child(2){animation-delay:.18s}.links>:nth-child(3){animation-delay:.24s}
+ .links>:nth-child(4){animation-delay:.30s}.links>:nth-child(5){animation-delay:.36s}.links>:nth-child(6){animation-delay:.42s}
+}
+.dd:hover .menu a,.dd.open .menu a,.menu.open a{animation:pxDd .42s var(--e5) backwards}
+.menu a:nth-child(2){animation-delay:.05s}.menu a:nth-child(3){animation-delay:.1s}
+
+/* section intro: eyebrow slides in, then the paragraph follows the heading */
+.px .head .tag{opacity:0;transform:translateX(-18px);transition:opacity .7s var(--e5),transform .7s var(--e5)}
+.px .head .lead{opacity:0;transform:translateY(14px);transition:opacity .8s var(--e5) .35s,transform .8s var(--e5) .35s}
+.px .head.drawn .tag,.px .head.drawn .lead{opacity:1;transform:none}
+
+/* metrics: numbers pop in one after another each time the band scrolls into view */
+.px .met strong{opacity:0}
+.px .met.pxin strong{animation:pxPop .85s var(--e5) both!important;animation-delay:calc(var(--j,0)*.14s)!important}
+.px .met.pxin span{animation:pxUp .8s var(--e5) both;animation-delay:calc(var(--j,0)*.14s + .25s)}
+
+/* CTA: breathing ring on the light button, trust ticks stagger in */
+.cta .btn.l{animation:pxRing 2.8s ease-out infinite}
+.cta .btn.l:hover{animation:none}
+.px .cta .trust span{opacity:0;transform:translateY(12px);transition:opacity .6s var(--e5),transform .6s var(--e5)}
+.px .cta.pxin .trust span{opacity:1;transform:none}
+.px .cta.pxin .trust span:nth-child(1){transition-delay:.15s}.px .cta.pxin .trust span:nth-child(2){transition-delay:.27s}.px .cta.pxin .trust span:nth-child(3){transition-delay:.39s}
+
+/* ---------- 3. Stat indicators: glow + live ping dot ---------- */
+.stats strong,.met strong{position:relative;width:fit-content}
+.met strong{margin-inline:auto}
+.stats strong::after,.met strong::after{content:"";position:absolute;top:.32em;right:-.55em;width:8px;height:8px;border-radius:50%;background:#82c8eb;transform:scale(0);transition:transform .45s var(--e5)}
+.stats div:hover strong,.met div:hover strong{filter:drop-shadow(0 0 16px rgba(169,163,238,.7))}
+.stats div:hover strong::after,.met div:hover strong::after{transform:scale(1);animation:pxPing 1.4s ease-out infinite}
+
+/* ---------- 4. Cards ---------- */
+/* resting state: every property that moves is eased, including the scroll reveal (opacity / translate) */
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div){
+ transition:transform .55s var(--e5),box-shadow .55s var(--e5),border-color .4s ease,opacity .9s var(--ease),translate 1.1s var(--ease),scale .3s var(--e5)!important}
+:is(.cta .card,.sec.onboard .step.hov){transition-property:transform,box-shadow,border-color,background,opacity,translate,scale}
+/* soft light that follows the cursor (replaces the dark ink fill that the white cards switched off) */
+:is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div)::before{
+ display:block!important;content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;
+ background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(143,132,242,.2),transparent 70%)!important;
+ clip-path:none!important;opacity:0;transition:opacity .4s ease!important}
+.vis .trio div{position:relative;overflow:hidden;isolation:isolate}
+.vis .trio div::before{z-index:-1!important}
+/* tag chips and icons stagger on hover */
+.hov .meta,.hov .res{transition:transform .4s var(--e5),background .3s,border-color .3s,color .3s}
+.hov .ico{transition:transform .5s var(--e5),box-shadow .5s var(--e5),background .4s,color .4s}
+
+@media (hover:hover) and (pointer:fine){
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div):hover{
+  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px)!important;
+  border-color:rgba(91,75,232,.42)!important;
+  box-shadow:0 28px 52px -22px rgba(69,56,196,.42),0 0 0 1px rgba(143,132,242,.12)!important}
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div):hover::before{opacity:1}
+ #restaurant .feat li.hov:hover{transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateX(6px)!important}
+ /* while the pointer moves, the tilt follows it without lag */
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div).fx-on:hover{
+  transition:transform .12s linear,box-shadow .45s var(--e5),border-color .3s ease,opacity .9s var(--ease),translate 1.1s var(--ease)!important}
+ /* accent line under the title extends in the brand gradient (it used to turn white on white) */
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div):hover h4::after{width:60px!important;background:linear-gradient(90deg,var(--ind),#82c8eb)!important}
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t):hover :is(.meta,.res){transform:translateY(-3px)}
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t):hover p{transform:translateY(1px)}
+ /* dark cards (CTA and onboarding) keep their own look and gain the same lift + tilt */
+ .cta .card.hov:hover,.sec.onboard .g4>.step.hov:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px)!important}
+ .cta .card.hov.fx-on:hover,.sec.onboard .g4>.step.hov.fx-on:hover{transition:transform .12s linear,box-shadow .4s,border-color .4s,background .3s!important}
+}
+
+/* ---------- 5. Image cards: depth, cursor-following zoom, sheen ---------- */
+html body .vis :is(.frame,.shot){
+ --rx:0deg;--ry:0deg;--px:0;--py:0;position:relative;
+ transition:transform .6s var(--e5),box-shadow .6s var(--e5),opacity .9s var(--ease),translate 1.1s var(--ease),scale .3s var(--e5)!important}
+html body .vis :is(.frame,.shot) img{
+ transform-origin:calc(50% + var(--px,0)*10%) calc(50% + var(--py,0)*10%);backface-visibility:hidden;
+ transition:transform 1.1s var(--e5),transform-origin .6s var(--e5),scale 1.5s var(--e5),filter .6s ease,opacity .6s var(--e5)}
+/* sheen sweep across the screenshots too (the product photos already have one) */
+.vis .shot::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.34) 50%,transparent 65%);transform:translateX(-120%);transition:transform 1s var(--ease)}
+/* settle-in: the picture eases from slightly zoomed to rest when its card scrolls into view */
+.px .vis :is(.frame,.shot) img{scale:1.12}
+.px .vis :is(.frame,.shot).pxin img{scale:1}
+
+@media (hover:hover) and (pointer:fine){
+ html body .vis :is(.frame,.shot):hover{
+  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px)!important;
+  box-shadow:0 34px 70px -26px rgba(69,56,196,.5)!important}
+ html body .vis :is(.frame,.shot).fx-on:hover{transition:transform .12s linear,box-shadow .5s var(--e5),opacity .9s var(--ease),translate 1.1s var(--ease)!important}
+ html body .vis .frame:hover img,html body .vis .shot:hover img{transform:scale(1.07);filter:saturate(1.1) contrast(1.02)}
+ .vis .shot:hover::after{transform:translateX(120%)}
+}
+
+/* ---------- 6. Buttons ---------- */
+.btn.o,.btn.l,.btn.lo{transition:transform .3s var(--e5),translate .25s var(--e5),box-shadow .3s,border-color .25s,background-color .25s,color .25s}
+@media (hover:none),(pointer:coarse){
+ .btn:active{transform:scale(.97)}
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div,.cta .card):active,html body .vis :is(.frame,.shot):active{scale:.985}
+}
+
+/* ---------- 7. Footer: brand-colour social icons, underline follows the cursor side ---------- */
+.site-footer .fgrid li a::after,.site-footer .fbot a::after{transform-origin:var(--o,left)}
+@media (hover:hover) and (pointer:fine){
+ .site-footer .social a{transition:background .35s,color .35s,transform .55s var(--e5),box-shadow .35s}
+ html body .site-footer .social a:hover{color:#fff;transform:perspective(380px) rotateY(18deg) rotateX(-10deg) translateY(-3px);box-shadow:0 10px 22px rgba(0,0,0,.4)}
+ .site-footer .social a:nth-child(1):hover{background:#0a66c2}
+ .site-footer .social a:nth-child(2):hover{background:linear-gradient(45deg,#f9a825,#e1306c 55%,#833ab4)}
+ .site-footer .social a:nth-child(3):hover{background:#1877f2}
+ .site-footer .social a:nth-child(4):hover{background:#25d366}
+}
+
+/* ---------- 8. Subtle background parallax ---------- */
+@media (prefers-reduced-motion:no-preference){
+ .sec .blob,.cta::before,.cta::after{translate:0 var(--parallax-y,0px)}
+}
+
+/* ---------- 9. Reduced motion: everything visible, nothing animated ---------- */
+@media (prefers-reduced-motion:reduce){
+ .logo,.links>a,.links>.dd,.menu a,.cta .btn.l,.px .met strong,.px .met span{animation:none!important}
+ .stats strong::after,.met strong::after{animation:none!important}
+ .sec .blob,.cta::before,.cta::after{translate:none}
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.vis .trio div),html body .vis :is(.frame,.shot),html body .vis :is(.frame,.shot) img{transition:none!important}
+ #bar{transition:none}
+}
+</style>
+
+<script id="products-consultancy-motion-js">
+(function(){
+ 'use strict';
+ var d=document,root=d.documentElement;
+ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+ function QA(s,r){return Array.prototype.slice.call((r||d).querySelectorAll(s))}
+ function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+
+ /* ===== 1. Progress bar on the GPU. The old bar is swapped for a clone so its width-writing handler no longer touches the page. ===== */
+ var oldBar=d.getElementById('bar');
+ if(oldBar&&oldBar.parentNode){
+  var bar=oldBar.cloneNode(false);oldBar.parentNode.replaceChild(bar,oldBar);
+  var bq=false;
+  var pb=function(){bq=false;var h=root.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?clamp(scrollY/h,0,1):0).toFixed(4)+')'};
+  addEventListener('scroll',function(){if(!bq){bq=true;requestAnimationFrame(pb)}},{passive:true});
+  addEventListener('resize',pb);pb();
+ }
+
+ /* ===== 2. Footer link underline enters and leaves on the side the cursor does ===== */
+ if(fine){
+  QA('.site-footer .fgrid li a,.site-footer .fbot a').forEach(function(a){
+   function side(e){var r=a.getBoundingClientRect();return e.clientX<r.left+r.width/2?'left':'right'}
+   a.addEventListener('mouseenter',function(e){a.style.setProperty('--o',side(e))});
+   a.addEventListener('mouseleave',function(e){a.style.setProperty('--o',side(e))});
+  });
+ }
+
+ if(reduce)return;
+
+ /* ===== 3. Magnetic pull for buttons outside the hero / CTA (those already have it) ===== */
+ if(fine){
+  QA('.btn').forEach(function(b){
+   if(b.closest('.hero,.cta')||b.classList.contains('mbar'))return;
+   b.addEventListener('pointermove',function(e){
+    var r=b.getBoundingClientRect();
+    b.style.translate=((e.clientX-r.left-r.width/2)*.2).toFixed(1)+'px '+((e.clientY-r.top-r.height/2)*.3).toFixed(1)+'px';
+   });
+   b.addEventListener('pointerleave',function(){b.style.translate='0 0'});
+  });
+ }
+
+ /* ===== 4. Tilt + cursor light on cards, depth + cursor-following zoom on image cards ===== */
+ if(fine){
+  function bind(el,tx,ty){
+   var raf=0,ev=null;
+   function paint(){
+    raf=0;if(!ev)return;
+    var r=el.getBoundingClientRect(),x=ev.clientX-r.left,y=ev.clientY-r.top,w=r.width||1,h=r.height||1;
+    el.style.setProperty('--mx',x.toFixed(0)+'px');el.style.setProperty('--my',y.toFixed(0)+'px');
+    el.style.setProperty('--ry',((x/w-.5)*tx).toFixed(2)+'deg');
+    el.style.setProperty('--rx',((.5-y/h)*ty).toFixed(2)+'deg');
+    el.style.setProperty('--px',(clamp(x/w*2-1,-1,1)).toFixed(3));
+    el.style.setProperty('--py',(clamp(y/h*2-1,-1,1)).toFixed(3));
+   }
+   el.addEventListener('pointermove',function(e){
+    if(e.pointerType&&e.pointerType!=='mouse')return;
+    ev=e;el.classList.add('fx-on');if(!raf)raf=requestAnimationFrame(paint);
+   });
+   el.addEventListener('pointerleave',function(){
+    ev=null;el.classList.remove('fx-on');
+    el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');el.style.setProperty('--px','0');el.style.setProperty('--py','0');
+   });
+  }
+  QA('.feat li.hov,.sub .card,#trioncam-workflow .step,.tq .t,.cta .card,.sec.onboard .g4>.step').forEach(function(c){
+   if(c.classList.contains('dup'))return;bind(c,5,4);
+  });
+  QA('.vis .frame,.vis .shot').forEach(function(f){bind(f,7,6)});
+ }
+
+ /* ===== 5. Gated entrance states + stagger indexes (only when motion and IntersectionObserver are available) ===== */
+ if(!('IntersectionObserver' in window))return;
+ root.classList.add('px');
+ QA('.met>div').forEach(function(m,i){m.style.setProperty('--j',i)});
+
+ /* metrics + CTA replay their choreography every time they come into view */
+ var tog=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('pxin',e.isIntersecting)})},{threshold:.25});
+ QA('.met,.cta').forEach(function(el){tog.observe(el)});
+
+ /* product photos / screenshots settle from a slight zoom the first time they scroll into view */
+ var once=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('pxin');once.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -5% 0px'});
+ QA('.vis .frame,.vis .shot').forEach(function(el){once.observe(el)});
+ /* safety net: never leave an image zoomed */
+ setTimeout(function(){QA('.vis .frame:not(.pxin),.vis .shot:not(.pxin)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)el.classList.add('pxin')})},2500);
+
+ /* footer columns fade up in sequence */
+ var fg=d.querySelector('.fgrid');
+ if(fg){
+  var fio=new IntersectionObserver(function(es){es.forEach(function(e){
+   if(e.isIntersecting){QA(':scope>div',e.target).forEach(function(c,i){c.style.animation='fadeUp .8s var(--e5) '+(i*.12)+'s both'});fio.unobserve(e.target)}})},{threshold:.15});
+  fio.observe(fg);
+ }
+
+ /* ===== 6. Subtle background parallax (sections, CTA glows). One rAF per frame, skipped on small / touch screens ===== */
+ var layers=QA('.sec,.cta'),pq=false;
+ function par(){
+  pq=false;
+  var vh=innerHeight,small=matchMedia('(max-width:1000px),(hover:none)').matches;
+  layers.forEach(function(s){
+   var r=s.getBoundingClientRect();
+   if(small||r.bottom<-120||r.top>vh+120){s.style.setProperty('--parallax-y','0px');return}
+   var sp=s.classList.contains('cta')?-.018:-.016;
+   s.style.setProperty('--parallax-y',clamp((r.top+r.height*.5-vh*.5)*sp,-16,16).toFixed(2)+'px');
+  });
+ }
+ addEventListener('scroll',function(){if(!pq){pq=true;requestAnimationFrame(par)}},{passive:true});
+ addEventListener('resize',par);par();
+})();
+</script>
+
+<style id="products-final-cards-stats">
+/* =====================================================================
+   1) Client Success Stories metrics band: three cards (desktop + mobile)
+   2) Suite / features / workflow / technology cards: plain white at rest on every
+      device, one smooth hover only while a mouse pointer is over them
+   ===================================================================== */
+.met{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.met div:nth-child(n){border-left:1px solid rgba(255,255,255,.14);border-top:0}
+.met div:first-child{border-left:0}
+@media(max-width:700px){
+ .met{margin-top:34px}
+ .met div:nth-child(n){padding:26px 6px;border-top:0!important;border-left:1px solid rgba(255,255,255,.14)!important}
+ .met div:first-child{border-left:0!important}
+ .met strong{font-size:clamp(1.3rem,6.4vw,1.7rem)}
+ .met strong::after{right:-.4em;width:6px;height:6px}
+ .met span{font-size:.74rem;line-height:1.35;display:block;padding:0 4px}
+}
+
+/* white at rest, always */
+:is(.vis .frame,.vis .shot,.vis .trio div,.feat li.hov,.sub .card,#trioncam-workflow .step){background-color:#fff!important;background-image:none!important}
+:is(.vis .frame,.vis .shot,.vis .trio div,.feat li.hov,.sub .card,#trioncam-workflow .step)::before{opacity:0}
+/* touch screens and pens: no hover look at all (a tap must not leave a sticky highlight) */
+@media (hover:none),(pointer:coarse){
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.vis .trio div):hover{transform:none!important;border-color:#e6e4f5!important;box-shadow:0 1px 2px rgba(14,15,42,.05),0 12px 28px -18px rgba(14,15,42,.22)!important}
+ html body .vis :is(.frame,.shot):hover{transform:none!important;box-shadow:0 1px 2px rgba(14,15,42,.05),0 14px 32px -18px rgba(14,15,42,.25)!important}
+ :is(.feat li.hov,.sub .card,#trioncam-workflow .step,.vis .trio div):hover::before{opacity:0!important}
+ html body .vis .frame:hover img,html body .vis .shot:hover img{transform:none;filter:none}
+}
+</style>
 
 </body>
 </html>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Training | Algo Orbit - Corporate, Student &amp; College Learning</title>
-<meta name="description" content="Algo Orbit delivers corporate training for enterprises, placement-focused bootcamps for students, and faculty development plus placement readiness programs for colleges.">
+<title>Training | Algo Orbit | Corporate, Student &amp; College Learning</title>
+<meta name="description" content="Algo Orbit delivers corporate training for enterprises, placement focused bootcamps for students, and faculty development plus placement readiness programs for colleges.">
 <meta name="theme-color" content="#5b4be8">
 <link rel="canonical" href="https://www.algoorbit.in/training.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%230e0f2a'/%3E%3Cline x1='13.5' y1='28' x2='21.5' y2='12.5' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3Ccircle cx='30' cy='27.5' r='5' fill='%23fff'/%3E%3C/svg%3E">
@@ -698,6 +698,433 @@ h2 .w:hover>span{color:var(--ind)}
 }
 @media(prefers-reduced-motion:reduce){.hero h1 em::after{animation:none!important;transform:scaleX(1)}}
 </style>
+<style id="training-upgrade-v2">
+/* =====================================================================
+   TRAINING UPGRADE v2 (careers.html motion system + requested changes)
+   Added last so it wins the cascade. Nothing above is changed in logic.
+   1) Smooth scrolling (Lenis), left/right scroll reveals, smooth hovers
+   2) Hero moving line (same as careers.html)
+   3) Training Impact: 3 cards
+   4) Certificate Verification: redesign
+   5) Who We Train: "Read more" buttons
+   ===================================================================== */
+:root{--e2:cubic-bezier(.22,1,.36,1)}
+
+/* ---------- 1. Smooth scroll (Lenis) + calmer hovers ---------- */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+html{overscroll-behavior-y:none}
+body.is-scrolling main{pointer-events:none}
+.c,.st,.gr,.pic,.sb,.chips span,.tg,.vsteps>li,.fchip,.hero-fl,.fl,.cimg img,.pic img{transition-timing-function:var(--e2)}
+@keyframes imgFade{from{opacity:0}}
+html.js-fx img[loading="lazy"]:not(.loaded){opacity:0}
+html.js-fx img[loading="lazy"].loaded{animation:imgFade .8s var(--e2) backwards}
+@media(hover:hover) and (pointer:fine){
+ .logo svg{transition:transform .5s var(--e2)}
+ .logo:hover svg{transform:rotate(-8deg) scale(1.1)}
+ .btn:active{transform:scale(.97)}
+ .btn:focus-visible{box-shadow:0 0 0 4px rgba(91,75,232,.28)}
+ .chips span:hover{scale:1.03}
+ .c.tilt:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-8px)!important;transition:transform .2s ease-out,box-shadow .4s var(--e2),border-color .4s var(--e2)}
+}
+
+/* ---------- left / right reveal (existing .reveal system, wider travel, longer ease) ---------- */
+.reveal{transition:opacity .9s var(--ease),transform 1.1s var(--e2)}
+.reveal.rv-l:not(.in){transform:translateX(-80px)}
+.reveal.rv-r:not(.in){transform:translateX(80px)}
+@media(max-width:700px){
+ .reveal.rv-l:not(.in){transform:translateX(-36px)}
+ .reveal.rv-r:not(.in){transform:translateX(36px)}
+ /* phone card groups force opacity/transform, so the entrance is re-allowed here */
+ .mq>.reveal:not(.in){opacity:0!important;transform:translateY(34px)!important}
+ .mq>.reveal.rv-l:not(.in){transform:translateX(-36px)!important}
+ .mq>.reveal.rv-r:not(.in){transform:translateX(36px)!important}
+ .mq>.reveal.in{opacity:1!important;transform:none!important;transition:opacity .9s var(--ease),transform 1.1s var(--e2)}
+}
+
+/* ---------- left / right reveal for CTA, footer and new blocks ---------- */
+html.js-fx .fx{opacity:0;translate:var(--fx-x,0) var(--fx-y,0);transition:opacity .9s var(--ease),translate 1.1s var(--e2),transform .4s var(--e2),background .4s,box-shadow .4s,border-color .4s;transition-delay:var(--fd,0s)}
+html.js-fx .fx[data-dir="l"]{--fx-x:-80px}
+html.js-fx .fx[data-dir="r"]{--fx-x:80px}
+html.js-fx .fx[data-dir="u"]{--fx-y:36px}
+html.js-fx .fx.fx-in{opacity:1;translate:0 0}
+@media(max-width:700px){
+ html.js-fx .fx[data-dir="l"]{--fx-x:-36px}
+ html.js-fx .fx[data-dir="r"]{--fx-x:36px}
+}
+
+/* ---------- hero + section intros ---------- */
+@keyframes fxL{from{opacity:0;transform:translateX(-56px)}to{opacity:1;transform:none}}
+main .hero-copy>:not(h1){animation-name:fxL}
+html.js-fx .head .tag{opacity:0;transform:translateX(-18px);transition:opacity .7s var(--e2),transform .7s var(--e2)}
+html.js-fx .head>.lead{opacity:0;transform:translateY(14px);transition:opacity .8s var(--e2) .35s,transform .8s var(--e2) .35s}
+html.js-fx .head.hd-in .tag,html.js-fx .head.hd-in>.lead{opacity:1;transform:none}
+
+/* ---------- light sweep + growing accent line on every card ---------- */
+.c>i.cshine{position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;overflow:hidden;opacity:0;
+ background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(130,200,235,.1) 45%,transparent 70%);
+ clip-path:polygon(0 0,0 0,0 0);transition:opacity .35s,clip-path .7s var(--ease)}
+i.cshine::before{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,var(--ind),#82c8eb);transition:width .6s var(--ease)}
+i.cshine::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-140%) skewX(-18deg)}
+.c:is(:hover,.tch)>i.cshine{opacity:1;clip-path:polygon(0 0,260% 0,0 260%)}
+.c:is(:hover,.tch)>i.cshine::before{width:100%}
+.c:is(:hover,.tch)>i.cshine::after{animation:sheenX 1s var(--ease) forwards}
+
+/* ---------- 2. Moving line after the hero (same as careers.html) ---------- */
+.vt{position:relative;overflow:hidden;background:var(--navy);height:70px;display:flex;align-items:center;border-top:1px solid rgba(255,255,255,.06);box-shadow:inset 0 -30px 40px -30px rgba(91,75,232,.45)}
+.vt-m{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.vt-track{position:relative;display:flex;width:max-content;will-change:transform}
+.vt-i{display:flex;align-items:center;gap:12px;padding-right:36px;margin-right:36px;position:relative;color:#fff;font:500 14.5px/1 var(--fd);letter-spacing:.01em;white-space:nowrap;opacity:var(--o,.45);transform:scale(var(--s,.95));transform-origin:left center;text-shadow:0 0 calc(var(--g,0)*16px) rgba(143,132,242,var(--g,0))}
+.vt-i svg{width:22px;height:22px;flex:none;fill:none;stroke:#b9b3ff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 calc(var(--g,0)*6px) rgba(143,132,242,var(--g,0)))}
+.vt-i::after{content:"";position:absolute;right:0;top:50%;width:5px;height:5px;margin-top:-2.5px;border:1px solid var(--peri);border-radius:50%;box-shadow:0 0 8px rgba(143,132,242,.9)}
+.vt::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;z-index:2;background:linear-gradient(90deg,transparent,var(--peri),#82c8eb,var(--peri),transparent);box-shadow:0 0 14px 2px rgba(143,132,242,.75)}
+.vt::after{content:"";position:absolute;top:0;bottom:0;left:-30%;width:30%;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(143,132,242,.28),transparent);animation:vtSweep 5s linear infinite}
+@keyframes vtSweep{to{left:100%}}
+@media(max-width:700px){.vt{height:56px}.vt-i{font-size:13px;gap:9px;padding-right:26px;margin-right:26px}.vt-i svg{width:19px;height:19px}}
+@media(prefers-reduced-motion:reduce){.vt::after{animation:none}}
+
+/* ---------- 3. Training Impact: three cards ---------- */
+.sb-g{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;max-width:1000px}
+.sb,.sb:first-child{padding:34px 22px 30px;border:1px solid rgba(255,255,255,.14);border-radius:26px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.02));box-shadow:0 18px 44px rgba(0,0,0,.28);overflow:hidden}
+.sb:hover{border-color:rgba(143,132,242,.7);background:linear-gradient(160deg,rgba(143,132,242,.22),rgba(255,255,255,.03));box-shadow:0 26px 60px rgba(91,75,232,.35);transform:translateY(-8px)}
+.sb-ic{display:grid;place-items:center;width:56px;height:56px;margin:0 auto 18px;border-radius:17px;color:#fff;background:linear-gradient(135deg,var(--peri),var(--ind));box-shadow:0 10px 24px rgba(91,75,232,.5);transition:transform .5s var(--e2)}
+.sb-ic .ui{width:26px;height:26px}
+.sb:hover .sb-ic{transform:rotate(-8deg) scale(1.1)}
+.sb small{font-weight:600;letter-spacing:.02em}
+@media(max-width:900px){.sb-g{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;row-gap:14px}.sb,.sb:first-child,.sb:nth-child(odd){padding:26px 12px 22px}.sb-ic{width:46px;height:46px}.sb strong{font-size:2.2rem}}
+@media(max-width:700px){
+ .sb-g{grid-template-columns:minmax(0,1fr);gap:14px;max-width:440px}
+ .sb,.sb:first-child,.sb:nth-child(odd),.sb:last-child{padding:26px 18px 22px;border:1px solid rgba(255,255,255,.14);border-radius:22px;grid-column:auto}
+ .sb strong{font-size:2.6rem}.sb small{font-size:14px}
+}
+
+/* ---------- 4. Certificate Verification: redesign ---------- */
+.vsec .head{margin-bottom:clamp(28px,4vw,44px)}
+.vgrid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:clamp(22px,3vw,36px);align-items:stretch}
+.vpanel{position:relative;display:flex;flex-direction:column;margin:0;padding:clamp(24px,3vw,34px);border-radius:28px;color:#fff;
+ background:radial-gradient(420px 240px at 100% 0,rgba(130,200,235,.22),transparent 70%),linear-gradient(160deg,#1c1e50,#0e0f2a);
+ border:1px solid rgba(255,255,255,.14);box-shadow:0 28px 64px rgba(14,15,42,.38);-webkit-backdrop-filter:none;backdrop-filter:none}
+.vp-top{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.vp-ic{display:grid;place-items:center;width:50px;height:50px;flex:none;border-radius:15px;color:#fff;background:linear-gradient(135deg,var(--peri),var(--ind));box-shadow:0 10px 24px rgba(91,75,232,.5)}
+.vp-ic .ui{width:24px;height:24px}
+.vpanel h3{display:block;margin:0;color:#fff;font-size:1.2rem}
+.vpanel h3::before{display:none}
+.vp-top small{display:block;margin-top:2px;color:#aeb0d6;font-size:.8rem}
+.vp-live{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:99px;white-space:nowrap;font:600 11px/1 var(--fd);letter-spacing:.1em;text-transform:uppercase;color:#bfe9d0;background:rgba(46,204,113,.12);border:1px solid rgba(46,204,113,.35)}
+.vp-live i{width:7px;height:7px;border-radius:50%;background:#34d27b;animation:livePing 2s infinite}
+@keyframes livePing{0%{box-shadow:0 0 0 0 rgba(52,210,123,.6)}70%{box-shadow:0 0 0 8px rgba(52,210,123,0)}100%{box-shadow:0 0 0 0 rgba(52,210,123,0)}}
+.vp-help{margin-bottom:18px;color:#b4b6dc;font-size:.92rem}
+.vp-label{display:block;margin-bottom:10px;font:600 12px var(--fd);letter-spacing:.1em;text-transform:uppercase;color:#c9cae9}
+.vpanel .vf{margin:0 0 22px}
+.vf-in{position:relative;display:block;flex:1;min-width:0}
+.vf-in .ui{position:absolute;left:18px;top:50%;margin-top:-.65em;color:var(--mute);pointer-events:none}
+.vf-in input{width:100%;padding-left:48px}
+.vpanel .vf input{height:50px;border-color:transparent;color:var(--navy)}
+.vpanel .vf input:focus{border-color:var(--peri);box-shadow:0 0 0 4px rgba(143,132,242,.35)}
+.vpanel .vf .btn{height:50px;background:linear-gradient(135deg,var(--peri),var(--ind));border-color:transparent}
+.vpanel .vf .btn:hover{background:#fff;border-color:#fff;color:var(--navy)}
+.vpanel .vr{margin:-2px 0 22px;padding:16px 18px;border-radius:16px}
+.vr-h{display:flex;align-items:center;gap:10px;font-size:1rem}
+.vr-h .ui{width:22px;height:22px;padding:3px;border-radius:50%;background:#14663a;color:#fff;stroke-width:3}
+.vr dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin-top:12px;font-size:.88rem}
+.vr dt{color:#3b7a57;font-weight:600}
+.vr dd{margin:0;color:#14663a;font-weight:600;overflow-wrap:anywhere}
+.vp-notes{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.12)}
+.vp-notes li{display:inline-flex;align-items:center;gap:8px;color:#b4b6dc;font-size:.82rem}
+.vp-notes .ui{width:16px;height:16px;color:#82c8eb}
+.vfeat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.vfeat>.c{padding:24px 20px 22px}
+.vfeat>.c:nth-child(1){--a:#8f84f2;--b:#5b4be8;--glow:91,75,232}
+.vfeat>.c:nth-child(2){--a:#82c8eb;--b:#2a8fcf;--glow:47,167,224}
+.vfeat>.c:nth-child(3){--a:#a9a3ee;--b:#7a6df0;--glow:143,132,242}
+.vfeat>.c:nth-child(4){--a:#8f84f2;--b:#4538c4;--glow:69,56,196}
+.vfeat>.c::before{background:linear-gradient(150deg,var(--a),var(--b))}
+.vfeat>.c:hover,.vfeat>.c.tch{border-color:rgba(var(--glow),.8);box-shadow:0 26px 54px rgba(var(--glow),.4)}
+.vfeat>.c .ic{width:50px;height:50px;border-radius:16px}
+.vfeat>.c .ic .ui{width:23px;height:23px}
+.vfeat>.c h3{font-size:1.02rem}
+.vfeat>.c p{font-size:.88rem}
+.vsteps{list-style:none;position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:clamp(24px,3.5vw,38px);counter-reset:vs}
+.vsteps>li{counter-increment:vs;position:relative;display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:20px;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid #fff;box-shadow:0 8px 24px rgba(91,75,232,.1);transition:transform .5s var(--e2),box-shadow .4s,border-color .4s,background .3s}
+.vsteps>li::before{content:counter(vs);flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;font:700 .95rem var(--fd);color:#fff;background:linear-gradient(135deg,var(--peri),var(--ind));box-shadow:0 8px 18px rgba(91,75,232,.35)}
+.vsteps>li:not(:last-child)::after{content:"";position:absolute;left:100%;top:50%;width:18px;height:2px;background:linear-gradient(90deg,var(--peri),transparent)}
+.vsteps>li:hover{transform:translateY(-5px);background:#fff;border-color:var(--peri);box-shadow:0 18px 40px rgba(91,75,232,.22)}
+.vsteps strong{display:block;margin-bottom:2px;font:600 1rem var(--fd);color:var(--navy)}
+.vsteps span{color:var(--mute);font-size:.88rem;line-height:1.55}
+@media(max-width:1000px){.vgrid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:820px){.vsteps{grid-template-columns:minmax(0,1fr)}.vsteps>li:not(:last-child)::after{display:none}}
+@media(max-width:700px){.vfeat{grid-template-columns:minmax(0,1fr);gap:16px}.vp-top{flex-wrap:wrap}.vpanel .vf{margin-bottom:20px}}
+
+/* ---------- 5. Who We Train: "Read more" buttons ---------- */
+#aud>.c{cursor:pointer}
+#aud .rm{--gl:var(--glow);align-self:stretch;gap:10px;height:46px;min-width:0;margin-top:16px;padding:0 20px;font-size:14.5px;color:#fff;background:linear-gradient(135deg,var(--b),color-mix(in srgb,var(--b) 62%,#14163f));border-color:transparent;box-shadow:0 10px 22px rgba(var(--glow),.35)}
+#aud .rm:hover{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 14px 30px rgba(14,15,42,.4)}
+#aud p.more a{color:inherit}
+</style>
+<style id="training-update-v3">
+/* =====================================================================
+   TRAINING UPDATE v3
+   1) Who We Train: only the "Read more" buttons remain
+   2) Six practice areas (dark cards): no white hover effects
+   3) Client Stories: same design as consultancy.html, neutral cards
+   ===================================================================== */
+
+/* ---------- 1. Who We Train ---------- */
+#aud .rm{margin-top:20px}
+
+/* ---------- 2. Six practice areas: hover stays dark, no white fill / tags / sweeps ---------- */
+#corp .c::before{background:linear-gradient(150deg,rgba(91,75,232,.38),rgba(42,143,207,.14))}
+#corp .c>i.cshine,#corp .c .cimg::before{display:none}
+#corp .c:is(:hover,.tch){border-color:rgba(143,132,242,.7);box-shadow:0 26px 56px rgba(91,75,232,.4)}
+#corp .c:is(:hover,.tch) h3{color:#fff}
+#corp .c:is(:hover,.tch) p,#corp .c:is(:hover,.tch) li{color:#b4b6dc}
+#corp .c:is(:hover,.tch) .ft{color:#b4b6dc;border-color:rgba(255,255,255,.12)}
+#corp .c:is(:hover,.tch) li::before{background:#82c8eb}
+#corp .c:is(:hover,.tch) .tg{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16);color:#dcdcf8}
+#corp .c:is(:hover,.tch) .bd{background:rgba(255,255,255,.1);color:#d9d5ff}
+#corp .c:is(:hover,.tch) h3::after{background:linear-gradient(90deg,var(--a),var(--b))}
+#corp .c .tg:hover{background:linear-gradient(135deg,var(--a),var(--b));border-color:transparent;color:#fff}
+
+/* ---------- 3. Client Stories (consultancy design, neutral cards) ---------- */
+#testi>.c.q{--a:#8f84f2;--b:#5b4be8;--glow:91,75,232;padding:30px;border-radius:24px;background:#fff;border:1px solid #ececf6;box-shadow:0 12px 30px rgba(14,15,42,.07);transition:transform .5s var(--e2),box-shadow .4s var(--e2),border-color .4s var(--e2)}
+/* resting accent bar that grows on hover */
+#testi>.c.q::before{display:block;content:"";position:absolute;top:0;left:0;right:auto;bottom:auto;inset:0 auto auto 0;width:100%;height:4px;z-index:2;border-radius:0;background:var(--ind);clip-path:none;transform:scaleX(.3);transform-origin:left;transition:transform .6s var(--ease)}
+#testi>.c.q:is(:hover,.tch)::before{clip-path:none;transform:none}
+/* quote mark swells on hover */
+#testi>.c.q::after{display:block;color:#e6e6f1;transform-origin:100% 0;transition:transform .7s var(--e2),color .5s}
+#testi>.c.q:is(:hover,.tch)::after{color:rgba(14,15,42,.12);transform:scale(1.45) rotate(-6deg)}
+#testi>.c.q:is(:hover,.tch){background:#fff;border-color:#dcdcec;transform:translateY(-8px);box-shadow:0 22px 44px rgba(14,15,42,.14)}
+#testi>.c.q:is(:hover,.tch) p{color:var(--mute)}
+#testi>.c.q:is(:hover,.tch) .who strong{color:var(--navy);letter-spacing:.01em}
+#testi>.c.q:is(:hover,.tch) .who small{color:var(--ink)}
+#testi>.c.q .who{position:relative;opacity:.9;transform:translateY(3px);transition:transform .5s var(--e2),opacity .4s}
+#testi>.c.q:is(:hover,.tch) .who{opacity:1;transform:none}
+#testi>.c.q .who strong,#testi>.c.q .who small{transition:color .4s,letter-spacing .4s}
+#testi>.c.q .av{background:var(--navy);box-shadow:0 0 0 3px #fff;transition:transform .5s var(--e2)}
+#testi>.c.q:is(:hover,.tch) .av{transform:scale(1.1) rotate(-6deg)}
+/* orbiting ring around the avatar */
+#testi>.c.q .who::before{content:"";position:absolute;left:-4px;top:50%;width:54px;height:54px;margin-top:-27px;border-radius:50%;padding:3px;pointer-events:none;z-index:1;
+ background:conic-gradient(from var(--ang),transparent 0 50%,var(--peri) 74%,var(--ind) 92%,#fff);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+ mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:spinAng 5s linear infinite}
+#testi>.c.q .who>*{position:relative;z-index:2}
+#testi>.c.q .stars{animation:none}
+
+.dots{display:none}
+@media(max-width:700px){
+ /* phones: swipeable carousel with dots (same as consultancy.html) */
+ #testi.g3{display:flex!important;grid-template-columns:none!important;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
+  width:auto;max-width:none;margin:0 calc(var(--gut)*-1)!important;padding:6px var(--gut) 14px;scroll-padding-inline:var(--gut);animation:none!important;transform:none!important;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+ #testi.g3::-webkit-scrollbar{display:none}
+ #testi>.c.q{flex:0 0 86%;width:auto;height:auto;scroll-snap-align:start;padding:22px;border-radius:20px;opacity:1!important;transform:none!important;translate:none!important;box-shadow:0 8px 28px rgba(14,15,42,.07)}
+ #testi>.c.q .who{order:-1;margin-bottom:16px;opacity:1;transform:none}
+ #testi>.c.q p{order:1;margin-bottom:20px;line-height:1.7}
+ #testi>.c.q .stars{order:2;margin-bottom:0}
+ #testi>.c.q:active{transform:scale(.98)!important;transition:transform .15s}
+ .dots{display:flex;justify-content:center;gap:8px;margin-top:18px}
+ .dots button{width:9px;height:9px;padding:0;border-radius:50%;border:0;background:#cfd0e6;cursor:pointer;transition:.3s}
+ .dots button.on{background:var(--ind);width:26px;border-radius:5px}
+}
+@media(prefers-reduced-motion:reduce){#testi>.c.q .who::before{animation:none!important}}
+</style>
+<style id="training-consultancy-motion">
+/* =====================================================================
+   TRAINING MOTION v4: the same motion system as consultancy.html
+   Added last so it wins the cascade. Content, markup and logic above
+   are unchanged. Everything here is gated for touch screens and for
+   prefers-reduced-motion.
+   1) Smooth entrance on load, softer hover easing, lighter scrolling
+   2) Left / right scroll reveals driven by the GPU "translate" property
+   3) Smooth hover effects: nav, buttons, cards, steps, footer, social
+   4) Scroll effects: curtain unfold on dark bands, parallax, progress
+   ===================================================================== */
+:root{--e1:cubic-bezier(.22,1,.36,1);--e3:cubic-bezier(.22,1,.36,1)}
+@property --bp{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes mvPageIn{from{opacity:0}to{opacity:1}}
+@keyframes mvDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+@keyframes mvDd{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+@keyframes mvSlide{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+@keyframes fxR{from{opacity:0;transform:translateX(70px)}to{opacity:1;transform:none}}
+@keyframes mvBar{50%{width:84px}}
+@keyframes mvRing{0%{box-shadow:0 10px 24px rgba(0,0,0,.25),0 0 0 0 rgba(255,255,255,.5)}70%{box-shadow:0 10px 24px rgba(0,0,0,.25),0 0 0 16px rgba(255,255,255,0)}100%{box-shadow:0 10px 24px rgba(0,0,0,.25),0 0 0 0 rgba(255,255,255,0)}}
+@keyframes mvWaGlow{0%,100%{box-shadow:0 0 14px 2px rgba(37,211,102,.55),0 0 34px 8px rgba(37,211,102,.28),0 8px 24px rgba(37,211,102,.45)}50%{box-shadow:0 0 26px 6px rgba(37,211,102,.9),0 0 64px 18px rgba(37,211,102,.42),0 8px 24px rgba(37,211,102,.55)}}
+@keyframes mvWaRing{0%{transform:scale(1);opacity:.85}100%{transform:scale(2.1);opacity:0}}
+
+/* ---------- 1. Page load + lighter scrolling ---------- */
+body{animation:mvPageIn .6s ease backwards}
+/* progress bar uses a GPU transform instead of animating width */
+#bar{width:100%!important;transform:scaleX(0);transform-origin:0 50%;will-change:transform}
+/* backdrop blur is the main cause of scroll stutter: near-opaque fills of the same colour instead */
+header{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(14,15,42,.97)}
+.chips span,.btn.o,.hero-fl,.fl,.pic .fchip,.vsteps>li,.gr,#aud>.c .ai{-webkit-backdrop-filter:none;backdrop-filter:none}
+.chips span{background:rgba(255,255,255,.82)}
+.btn.o{background:rgba(255,255,255,.78)}
+.hero-fl{background:rgba(255,255,255,.95)}
+.fl{background:rgba(14,15,42,.92)}
+.pic .fchip{background:rgba(255,255,255,.96)}
+.vsteps>li{background:rgba(255,255,255,.86)}
+.gr{background:rgba(255,255,255,.86)}
+#aud>.c .ai{background:linear-gradient(160deg,rgba(255,255,255,.98),color-mix(in srgb,var(--a) 24%,#fff))}
+/* compositor hints for elements that move while scrolling */
+.reveal{will-change:translate,opacity}
+.wa,.mbar,.cglow{will-change:transform}
+.blob,.hero::after,.stats-b::before,.cta::before{will-change:transform}
+/* endless decorative loops that repaint gradients or shadows wait for hover (or the on-screen state) */
+.c .ic,.dk .c .ic,.g3>.c:not(.q)::after,.cring,#aud>.c::after,.vb::after,#testi>.c.q .who::before,.sb strong,.sp .st{animation-play-state:paused}
+.c:is(:hover,.tch) .ic,.dk .c:is(:hover,.tch) .ic,.g3>.c:not(.q):is(:hover,.tch)::after,.c:is(:hover,.tch) .cring,.pic:hover .cring,
+#aud>.c:is(:hover,.tch)::after,.vb.glow::after,.vb:hover::after,#testi>.c.q:is(:hover,.tch) .who::before,.sb:hover strong,.sp .st:is(:hover,.tch){animation-play-state:running}
+/* hover repaints are skipped while the page is actively scrolling (class toggled by JS) */
+body.is-scrolling main,body.is-scrolling footer{pointer-events:none}
+
+/* ---------- 2. Left / right reveals (GPU translate, same easing as consultancy.html) ---------- */
+.reveal{transform:none;transition:opacity .9s var(--ease),translate 1.1s var(--e1)}
+.reveal:not(.in){transform:none;translate:0 36px}
+.reveal.rv-l:not(.in){transform:none;translate:-80px 0}
+.reveal.rv-r:not(.in){transform:none;translate:80px 0}
+.reveal.in{translate:0 0}
+/* hero: copy glides in from the left, picture from the right */
+@media(min-width:1001px){main .hero .hero-bg{animation:fxR 1.3s var(--ease) .2s both}}
+@media(min-width:701px){
+ .chips span{animation:fadeUp .8s var(--e1) backwards}
+ .chips span:nth-child(1){animation-delay:.85s}.chips span:nth-child(2){animation-delay:1s}.chips span:nth-child(3){animation-delay:1.15s}.chips span:nth-child(4){animation-delay:1.3s}.chips span:nth-child(5){animation-delay:1.45s}
+}
+@media(max-width:700px){
+ .reveal:not(.in){translate:0 26px}
+ .reveal.rv-l:not(.in){translate:-36px 0}
+ .reveal.rv-r:not(.in){translate:36px 0}
+ /* phone card groups force opacity / transform, so the entrance is re-allowed here */
+ .mq>.reveal:not(.in){opacity:0!important;transform:none!important;translate:0 34px}
+ .mq>.reveal.rv-l:not(.in){transform:none!important;translate:-36px 0}
+ .mq>.reveal.rv-r:not(.in){transform:none!important;translate:36px 0}
+ .mq>.reveal.in{opacity:1!important;transform:none!important;translate:0 0;transition:opacity .9s var(--ease),translate 1.1s var(--e1)}
+}
+/* extra blocks that now slide in from the sides */
+html.js-fx .sp>div:first-child>.fx,html.js-fx .stats-b .wrap>.fx{will-change:translate,opacity}
+
+/* ---------- 3. Smooth hover effects ---------- */
+/* navigation: staggered entrance, dropdown items cascade, underline travels through */
+.logo{animation:mvDown .7s var(--e1) .05s backwards}
+.dd:hover .menu a,.dd.open .menu a{animation:mvDd .42s var(--e1) backwards}
+.menu a:nth-child(2){animation-delay:.05s!important}.menu a:nth-child(3){animation-delay:.1s!important}
+.menu a{position:relative;overflow:hidden}
+.menu a::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.2),transparent);transform:translateX(-120%);transition:transform .7s var(--e1)}
+.menu a:hover::after{transform:translateX(120%)}
+@media(min-width:821px){
+ .links>a{display:inline-block;transition:color .25s,transform .4s var(--e1),letter-spacing .4s var(--e1)}
+ .links>a:hover,.dd>button:hover{transform:translateY(-1px);letter-spacing:.015em}
+ .links>a::after,.dd>button::after{transform-origin:right;transition:transform .5s var(--e1)}
+ .links>a:hover::after,.dd>button:hover::after,.dd>button.active::after,.dd.open>button::after,.dd:hover>button::after{transform-origin:left}
+}
+@media(max-width:820px){
+ .menu a::after{display:none}
+ .links.open>a,.links.open>.dd{animation:mvSlide .45s var(--e1) backwards}
+ .links.open>:nth-child(1){animation-delay:.04s}.links.open>:nth-child(2){animation-delay:.09s}.links.open>:nth-child(3){animation-delay:.14s}
+ .links.open>:nth-child(4){animation-delay:.19s}.links.open>:nth-child(5){animation-delay:.24s}.links.open>:nth-child(6){animation-delay:.29s}
+}
+/* primary buttons: the gradient slides across, secondary buttons draw their border */
+.acts .btn:not(.o):not(.g):not(.l),.center .btn:not(.l){background-image:linear-gradient(105deg,#5b4be8 0%,#7a6df0 38%,#0e0f2a 78%);background-size:260% 100%;background-position:0 0;
+ transition:background-position .7s var(--e1),background-color .25s,color .25s,border-color .25s,box-shadow .25s,transform .25s var(--e1),translate .25s var(--e1)}
+.acts .btn:not(.o):not(.g):not(.l):is(:hover,:active),.center .btn:not(.l):is(:hover,:active){background-position:100% 0;background-color:var(--navy);border-color:var(--navy)}
+.btn.o,.btn.g{--rc:#82c8eb}.btn.g{--rc:#fff}
+.btn.o::before,.btn.g::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;pointer-events:none;
+ background:conic-gradient(from -90deg,var(--rc) 0deg,var(--rc) var(--bp),transparent var(--bp));
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+ mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;transition:--bp .9s var(--e1)}
+.btn.o:hover::before,.btn.g:hover::before{--bp:360deg}
+.btn{transition:background .25s,color .25s,border-color .25s,box-shadow .25s,transform .25s var(--e1),translate .25s var(--e1)}
+.acts .btn:not(.o):not(.g):not(.l),.center .btn:not(.l){transition:background-position .7s var(--e1),background-color .25s,color .25s,border-color .25s,box-shadow .25s,transform .25s var(--e1),translate .25s var(--e1)}
+.cta .btn.l{animation:mvRing 2.8s ease-out infinite}
+.cta .btn.l:hover{animation:none}
+@media(hover:hover) and (pointer:fine){
+ .btn:focus-visible{outline-offset:4px}
+ .btn:hover{transform:translateY(-2px) scale(1.03)}
+ .btn:active{transform:scale(.97)}
+}
+/* section headings: accent bar breathes once drawn, tags and chips lift */
+.head.drawn h2::after{animation:mvBar 3.2s ease-in-out 1s infinite}
+.c .tg{transition:transform .4s var(--e1),background .4s ease .1s,border-color .4s ease .1s,color .4s ease .1s}
+.c:hover .tg{transform:translateY(-3px)}
+.c:hover .tg:nth-child(2){transition-delay:.06s,.1s,.1s,.1s}.c:hover .tg:nth-child(3){transition-delay:.12s,.1s,.1s,.1s}
+/* statistics glow */
+.sb:hover strong,.hero-fl:hover strong{filter:drop-shadow(0 0 16px rgba(169,163,238,.7))}
+/* who we train: calmer photo zoom */
+#aud>.c:is(:hover,.tch) .cimg img{transform:scale(1.06)}
+/* card photos, icons and titles drift with the cursor (fine pointers only) */
+@media(hover:hover) and (pointer:fine){
+ :is(#boot,#cert,#fdp,#ws,#corp) .c .cimg img{object-position:calc(50% + var(--px,0)*10%) calc(50% + var(--py,0)*14%);transition:transform .9s var(--ease),filter .6s,object-position .7s var(--e1)}
+ :is(#boot,#cert,#fdp,#ws,#corp) .c .ic{transition:transform .5s var(--ease),translate .5s var(--e1),background .4s,color .4s}
+ :is(#boot,#cert,#fdp,#ws,#corp) .c:hover .ic{translate:calc(var(--px,0)*4px) calc(var(--py,0)*3px)}
+ :is(#boot,#cert,#fdp,#ws,#corp) .c h3{transform-origin:left center;transition:color .4s .12s,transform .5s var(--e1),translate .5s var(--e1)}
+ :is(#boot,#cert,#fdp,#ws,#corp) .c:hover h3{transform:scale(1.04);translate:calc(var(--px,0)*2px) -2px}
+ :is(#boot,#cert,#fdp,#ws,#corp) .c p{transition:color .4s .12s,opacity .5s var(--e1),transform .5s var(--e1)}
+ :is(#boot,#cert,#fdp,#ws,#corp) .c:hover p{transform:translateY(2px);opacity:.92}
+ /* step rows: restrained 3D tilt with a light that follows the cursor */
+ .sp .st{--mx:50%;--my:50%}
+ .sp .st:hover{transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateX(8px)}
+ .sp .st.tilting{transition:transform .12s linear,box-shadow .3s,background .3s,border-color .3s}
+ .social a:hover{transform:perspective(380px) rotateY(18deg) rotateX(-10deg) translateY(-3px)}
+}
+.sp .st{position:relative}
+.sp .st::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(143,132,242,.24),transparent 65%);transition:opacity .35s}
+.sp .st:hover::after{opacity:1}
+/* footer: heading line grows, link underline enters and leaves on the side of the cursor */
+.fg h4{position:relative;padding-bottom:8px;margin-bottom:10px}
+.fg h4::after{content:"";position:absolute;left:0;bottom:0;width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--vio),transparent);transition:width .45s var(--e1)}
+.fg>div:hover>h4::after{width:46px}
+.fg li a{position:relative}
+.fg li a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--vio);transform:scaleX(0);transform-origin:var(--o,left);transition:transform .35s var(--ease)}
+.fg li a:hover::after{transform:scaleX(1)}
+.fb a::after{transform-origin:var(--o,left)}
+/* social icons: brand colour with a restrained 3D turn */
+.social a{transition:background .35s,color .35s,transform .55s var(--e1),box-shadow .35s}
+.social a:hover{color:#fff;box-shadow:0 10px 22px rgba(0,0,0,.4)}
+.social a:nth-child(1):hover{background:#0a66c2}
+.social a:nth-child(2):hover{background:linear-gradient(45deg,#f9a825,#e1306c 55%,#833ab4)}
+.social a:nth-child(3):hover{background:#1877f2}
+.social a:nth-child(4):hover{background:#25d366}
+/* WhatsApp: glowing halo with expanding rings, brighter while scrolling */
+.wa{isolation:isolate;overflow:visible;animation:mvWaGlow 2.4s ease-in-out infinite,waBob 4s ease-in-out infinite}
+.wa::before,.wa::after{content:"";position:absolute;inset:0;border-radius:50%;z-index:-1;pointer-events:none;border:2px solid rgba(37,211,102,.75);background:radial-gradient(circle,rgba(37,211,102,.35),transparent 70%);animation:mvWaRing 2.4s ease-out infinite}
+.wa::after{animation-delay:1.2s}
+.wa.hot{animation-duration:1s,4s}
+
+/* ---------- 4. Scroll effects ---------- */
+/* dark bands and the final call to action unfold from a rounded card to full width */
+.cur{--cr:56px;clip-path:inset(0 calc((1 - var(--p,1)) * 5%) round calc((1 - var(--p,1)) * var(--cr)))}
+.cur.full{clip-path:none}
+/* drifting background glows and orbit (value set from JS) */
+@media(prefers-reduced-motion:no-preference){
+ .hero .orbit,.sec .blob,.stats-b::before,.stats-b::after,.cta::before,.cta::after{translate:0 var(--parallax-y,0px);will-change:translate}
+}
+
+/* ---------- Touch screens and small viewports: smooth scrolling first ---------- */
+@media(max-width:1000px),(hover:none){
+ .blob,.hero::after,.stats-b::before,.stats-b::after,.cta::before,.cta::after,
+ .btn,.cta .btn.l,.wa,.wa::before,.wa::after,.stars,.tag,.hero h1 em,
+ .c .ic,.dk .c .ic,.g3>.c:not(.q)::after,.cring,#aud>.c::after,.vb::after,.sp .st,.sb strong,.hero-fl strong,
+ .vp-live i,.vb h3::before,.head.drawn h2::after{animation:none!important}
+ .cur{clip-path:none!important}
+ .hero .orbit,.sec .blob,.stats-b::before,.stats-b::after,.cta::before,.cta::after{translate:none!important;will-change:auto}
+ .reveal,.blob,.hero-bg,.wa{will-change:auto}
+ /* never block taps while scrolling */
+ body.is-scrolling main,body.is-scrolling footer{pointer-events:auto!important}
+}
+@media(hover:none){
+ /* the "play hover in the middle of the screen" lift made cards jump while scrolling: colour and ink effects stay, movement goes */
+ .c:is(:hover,.tch):not(:active),#boot .c:is(:hover,.tch):not(:active),#cert .c:is(:hover,.tch):not(:active),#corp .c:is(:hover,.tch):not(:active),#fdp .c:is(:hover,.tch):not(:active),#ws .c:is(:hover,.tch):not(:active){transform:none!important}
+}
+@media(max-width:700px){
+ *,*::before,*::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+ .cur{--cr:28px}
+}
+@media(prefers-reduced-motion:reduce){
+ body,.logo,.chips span,.cta .btn.l,.wa,.wa::before,.wa::after,.menu a,.links.open>a,.links.open>.dd,.head.drawn h2::after,main .hero .hero-bg{animation:none!important}
+ .cur{clip-path:none!important}
+ .reveal,.fx{translate:none!important}
+ .btn.o::before,.btn.g::before{transition:none}
+}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -705,6 +1132,28 @@ h2 .w:hover>span{color:var(--ind)}
  <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.5v.01M12 16v-5.5M12 13c0-1.5 1-2.6 2.5-2.6S17 11.4 17 13v3"/></symbol>
  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5v.01"/></symbol>
  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+
+ <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></symbol>
+ <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+ <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
+ <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+ <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+ <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 12 10 5 10-5"/><path d="m2 17 10 5 10-5"/></symbol>
+ <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+ <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+ <symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8M7 9h6M7 12h10"/></symbol>
+ <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 20h20"/></symbol>
+ <symbol id="i-cert" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m8.5 14.5-1.5 7 5-3 5 3-1.5-7"/></symbol>
+ <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h3M20 17v4"/></symbol>
+ <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></symbol>
+ <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></symbol>
+ <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5 9-9"/></symbol>
+ <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+ <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+ <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
+ <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14.2a5 5 0 0 1 4.5 5"/></symbol>
+ <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
 </svg>
 <div id="bar"></div>
 
@@ -714,7 +1163,7 @@ h2 .w:hover>span{color:var(--ind)}
 <button class="mb" id="mb" aria-label="Toggle menu" aria-expanded="false">☰</button>
 <nav class="links" id="nav" aria-label="Primary">
 <a href="index.html">Home</a><a href="about.html">About</a>
-<div class="dd has-dd"><button type="button" id="ddb" class="active" aria-expanded="false" aria-haspopup="true">Services ▾</button>
+<div class="dd has-dd"><button type="button" id="ddb" class="active" aria-expanded="false" aria-haspopup="true">Services</button>
 <div class="menu" id="ddm"><a href="consultancy.html">IT Consultancy</a><a href="training.html" class="on" aria-current="page">Enterprise Training</a><a href="products.html">Products</a></div></div>
 <a href="our-work.html">Our Work</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a>
 </nav>
@@ -727,26 +1176,26 @@ h2 .w:hover>span{color:var(--ind)}
 <div class="hg">
 <div class="hero-copy">
 <h1>One academy. <em>Three paths</em> to mastery.</h1>
-<p class="lead">Algo Orbit partners with enterprises, students and colleges to close the gap between learning and real-world performance, through instructor-led, project-based training with certificates that employers can actually verify.</p>
+<p class="lead">Algo Orbit partners with enterprises, students and colleges to close the gap between learning and real world performance, through instructor led, project based training with certificates that employers can actually verify.</p>
 <div class="acts"><a href="contact.html" class="btn">Talk to Our Team</a><a href="#audience" class="btn o">Explore All Programs</a></div>
-<div class="chips"><span>2,500+ Trained</span><span>50+ Enterprises</span><span>12+ College Partners</span><span>5.0 Google Rating</span><span>QR-Verified Certs</span></div>
+<div class="chips"><span>2,500+ Trained</span><span>50+ Enterprises</span><span>12+ College Partners</span><span>5.0 Google Rating</span><span>QR Verified Certs</span></div>
 </div>
 </div>
 <div class="hero-fl"><strong>92%</strong>Placement rate</div>
 </section>
 
-<div class="ticker" aria-hidden="true"><div class="marq" id="tk"></div></div>
+<div class="vt" aria-hidden="true"><div class="vt-m"><div class="vt-track" id="vt"></div></div></div>
 
 <section class="sec" id="audience"><div class="wrap">
 <div class="head"><span class="tag">Who We Train</span><h2>Built for three very different goals</h2><p class="lead">Whether you are upskilling a workforce, launching a career, or preparing an entire graduating batch, there is a structured path designed specifically for you.</p></div>
 <div class="g3" id="aud">
-<a class="c" href="#corporate"><div class="cimg"><img src="assets/images/corporate.png" alt="Enterprise training" loading="lazy"><span>Enterprises</span></div><div class="ai"><span class="ic">01</span><h3>For Enterprises</h3><p>Corporate training across cloud, full stack, data, security, product and leadership, mapped to the tools your teams use in production, with measurable ROI reporting.</p><p class="more">Explore corporate training →</p></div></a>
-<a class="c" href="#students"><div class="cimg"><img src="assets/images/students.png" alt="Student bootcamps" loading="lazy"><span>Students</span></div><div class="ai"><span class="ic">02</span><h3>For Students</h3><p>Placement-focused bootcamps in Flutter, MERN, Frontend, Software Engineering, Competitive Programming and Placement Readiness, backed by QR-verified certifications.</p><p class="more">Explore student bootcamps →</p></div></a>
-<a class="c" href="#colleges"><div class="cimg"><img src="assets/images/colleges.png" alt="College programs" loading="lazy"><span>Colleges</span></div><div class="ai"><span class="ic">03</span><h3>For Colleges</h3><p>Faculty Development Programs, a full DSA plus development Placement Readiness curriculum, and technology workshops delivered directly on your campus.</p><p class="more">Explore college programs →</p></div></a>
+<div class="c" data-href="#corporate"><div class="cimg"><img src="assets/images/corporate.png" alt="Enterprise training" loading="lazy"><span>Enterprises</span></div><div class="ai"><span class="ic">01</span><h3>For Enterprises</h3><p>Corporate training across cloud, full stack, data, security, product and leadership, mapped to the tools your teams use in production, with measurable ROI reporting.</p><a class="btn rm" href="training-corporate.html"><span>Read more about corporate</span></a></div></div>
+<div class="c" data-href="#students"><div class="cimg"><img src="assets/images/students.png" alt="Student bootcamps" loading="lazy"><span>Students</span></div><div class="ai"><span class="ic">02</span><h3>For Students</h3><p>Placement focused bootcamps in Flutter, MERN, Frontend, Software Engineering, Competitive Programming and Placement Readiness, backed by QR verified certifications.</p><a class="btn rm" href="training-learner.html"><span>Read more about learners</span></a></div></div>
+<div class="c" data-href="#colleges"><div class="cimg"><img src="assets/images/colleges.png" alt="College programs" loading="lazy"><span>Colleges</span></div><div class="ai"><span class="ic">03</span><h3>For Colleges</h3><p>Faculty Development Programs, a full DSA plus development Placement Readiness curriculum, and technology workshops delivered directly on your campus.</p><a class="btn rm" href="training-institution.html"><span>Read more about institutions</span></a></div></div>
 </div></div></section>
 
 <section class="sec dk" id="corporate"><div class="wrap">
-<div class="head"><span class="tag">Section 01 · For Enterprises</span><h2>Enterprise training engineered for business outcomes</h2><p class="lead">From cloud migration to AI adoption, Algo Orbit designs corporate training around the tools your teams actually use in production. Every program is benchmarked against role-specific competency frameworks and tied to measurable performance indicators, not just attendance.</p></div>
+<div class="head"><span class="tag">Section 01 · For Enterprises</span><h2>Enterprise training engineered for business outcomes</h2><p class="lead">From cloud migration to AI adoption, Algo Orbit designs corporate training around the tools your teams actually use in production. Every program is benchmarked against role specific competency frameworks and tied to measurable performance indicators, not just attendance.</p></div>
 <div class="head" style="margin-bottom:28px"><h3 style="font-size:1.4rem">Six practice areas. Every tool your teams will actually use.</h3><p class="lead" style="font-size:.95rem">Technology &amp; tools covered</p></div>
 <div class="g3" id="corp"></div>
 <div class="center"><a href="contact.html" class="btn l">Request Training Proposal</a></div>
@@ -755,64 +1204,59 @@ h2 .w:hover>span{color:var(--ind)}
 <section class="sec alt"><div class="wrap sp">
 <div>
 <span class="tag">Delivery Models</span><h2>Flexible training delivery built around your team</h2>
-<p class="lead">We meet your team where they are, on-site, remote, or a blend configured around your workflow.</p>
+<p class="lead">We meet your team where they are, on site, remote, or a blend configured around your workflow.</p>
 <div style="margin-top:18px" id="deliv"></div>
 </div>
 <div class="pic"><img src="https://www.algoorbit.in/static/images/background/corp3.png" alt="Corporate training delivery" loading="lazy"><div class="fl"><strong>3 Options</strong>Delivery modes</div></div>
 </div></section>
 
 <section class="sec" id="students"><div class="wrap">
-<div class="head"><span class="tag">Section 02 · For Students</span><h2>Bootcamps that get you interview-ready</h2><p class="lead">Structured, mentor-led bootcamps covering the exact stacks companies hire for right now. Live projects, code reviews and placement support are built into every track, not offered as an afterthought.</p></div>
+<div class="head"><span class="tag">Section 02 · For Students</span><h2>Bootcamps that get you interview ready</h2><p class="lead">Structured, mentor led bootcamps covering the exact stacks companies hire for right now. Live projects, code reviews and placement support are built into every track, not offered as an afterthought.</p></div>
 <div class="head" style="margin-bottom:28px"><h3 style="font-size:1.4rem">Six tracks. One goal: get you hired.</h3></div>
 <div class="g3" id="boot"></div>
 <div class="center"><a href="https://forms.gle/YDS9jowNYgyRRNEw7" target="_blank" rel="noopener" class="btn">Enroll in a Bootcamp</a></div>
-<div class="head" style="margin-top:72px"><span class="tag">Certification Programs</span><h2>Certifications employers recognize and verify</h2><p class="lead">Short, focused certification tracks for learners who want to validate a specific skill quickly, each backed by a QR-verified Algo Orbit certificate.</p></div>
+<div class="head" style="margin-top:72px"><span class="tag">Certification Programs</span><h2>Certifications employers recognize and verify</h2><p class="lead">Short, focused certification tracks for learners who want to validate a specific skill quickly, each backed by a QR verified Algo Orbit certificate.</p></div>
 <div class="g3" id="cert"></div>
 </div></section>
 
-<section class="sec alt"><div class="wrap sp">
-<div>
-<span class="tag">Certificate Verification</span><h2>Every certificate. Instantly verified.</h2>
-<p class="lead">Unlike other training providers, every Algo Orbit certificate, whether from a bootcamp or a college workshop, has a unique ID and QR code. Employers and placement cells verify in seconds.</p>
-<div class="vb"><h3>Verify a Certificate</h3><p style="color:var(--mute);font-size:.9rem">Enter the Certificate ID found on the certificate.</p>
-<div class="vf"><input id="cv" placeholder="e.g. AL25242" maxlength="30" aria-label="Certificate ID"><button class="btn" id="cvb" type="button">Verify</button></div>
-<div class="vr" id="cvr"></div>
-<p style="margin-top:14px;font-size:.8rem;color:var(--mute)">All certificates permanently stored · No expiry · Instant verification</p></div>
+<section class="sec alt vsec" id="verify"><div class="wrap">
+<div class="head"><span class="tag">Certificate Verification</span><h2>Every certificate. Instantly verified.</h2><p class="lead">Unlike other training providers, every Algo Orbit certificate, whether from a bootcamp or a college workshop, has a unique ID and QR code. Employers and placement cells verify in seconds.</p></div>
+<div class="vgrid">
+<div class="vb vpanel">
+<div class="vp-top"><span class="vp-ic"><svg class="ui" aria-hidden="true"><use href="#i-shield"/></svg></span><div><h3>Verify a Certificate</h3><small>Algo Orbit credential registry</small></div><span class="vp-live"><i></i>Live</span></div>
+<p class="vp-help">Enter the Certificate ID found on the certificate.</p>
+<label class="vp-label" for="cv">Certificate ID</label>
+<div class="vf"><span class="vf-in"><svg class="ui" aria-hidden="true"><use href="#i-search"/></svg><input id="cv" placeholder="e.g. AL25242" maxlength="30" aria-label="Certificate ID" autocomplete="off" spellcheck="false"></span><button class="btn" id="cvb" type="button">Verify</button></div>
+<div class="vr" id="cvr" role="status" aria-live="polite"></div>
+<ul class="vp-notes"><li><svg class="ui" aria-hidden="true"><use href="#i-lock"/></svg>All certificates permanently stored</li><li><svg class="ui" aria-hidden="true"><use href="#i-check"/></svg>No expiry</li><li><svg class="ui" aria-hidden="true"><use href="#i-bolt"/></svg>Instant verification</li></ul>
 </div>
-<div id="vfe"></div>
+<div class="vfeat" id="vfe"></div>
+</div>
+<ol class="vsteps">
+<li><div><strong>Scan the QR code</strong><span>Employers and placement cells scan the unique QR code printed on the certificate.</span></div></li>
+<li><div><strong>Or enter the ID</strong><span>Type the Certificate ID into the registry above and press Verify.</span></div></li>
+<li><div><strong>See verified details</strong><span>Learner, program, institution and date appear in seconds.</span></div></li>
+</ol>
 </div></section>
 
 <section class="sec" id="colleges"><div class="wrap">
-<div class="head"><span class="tag">Section 03 · For Colleges &amp; Institutions</span><h2>Partnering with campuses to build placement-ready engineers</h2><p class="lead">We work directly with training and placement cells and academic departments to strengthen curriculum, upskill faculty, and get final-year students placement-ready well before campus drives begin.</p></div>
+<div class="head"><span class="tag">Section 03 · For Colleges &amp; Institutions</span><h2>Partnering with campuses to build placement ready engineers</h2><p class="lead">We work directly with training and placement cells and academic departments to strengthen curriculum, upskill faculty, and get final year students placement ready well before campus drives begin.</p></div>
 <div class="head" style="margin-bottom:28px"><h3 style="font-size:1.4rem">Faculty Development Programs: keep faculty ahead of the technology curve</h3></div>
 <div class="g3" id="fdp"></div>
 </div></section>
 
-<section class="sec alt"><div class="wrap sp">
-<div>
-<span class="tag">Placement Readiness Program</span><h2>DSA and development, built into one curriculum</h2>
-<p class="lead">Delivered directly on campus for final-year batches, combining algorithmic problem-solving with a real development capstone so students walk into interviews with both.</p>
-<div style="margin-top:18px" id="prp"></div>
-</div>
-<div class="pic"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=900&q=80" alt="Placement readiness program on campus" loading="lazy"><div class="fl"><strong>92%</strong>Placement rate</div></div>
-</div></section>
-
-<section class="sec"><div class="wrap">
-<div class="head"><span class="tag">Technology Workshops</span><h2>Short, high-impact workshops delivered on your campus</h2><p class="lead">1 to 3 day intensive workshops for departments, coding clubs or entire semesters, each ending with a small hands-on build.</p></div>
+<section class="sec alt"><div class="wrap">
+<div class="head"><span class="tag">Technology Workshops</span><h2>Short, high impact workshops delivered on your campus</h2><p class="lead">1 to 3 day intensive workshops for departments, coding clubs or entire semesters, each ending with a small hands on build.</p></div>
 <div class="g3" id="ws"></div>
 <div class="center"><a href="contact.html" class="btn">Schedule a Campus Workshop</a></div>
 </div></section>
 
-<section class="sec alt"><div class="wrap">
+<section class="sec"><div class="wrap">
 <div class="head"><span class="tag">Client Stories</span><h2>Trusted by enterprises, students and colleges</h2><p class="lead">Real results from real partnerships across all three audiences we serve.</p></div>
 <div class="g3" id="testi"></div>
+<div class="dots" id="tDots"></div>
 <div class="gr"><div style="display:flex;align-items:center"><strong>5.0</strong><div><div class="stars" style="margin:0">★★★★★</div><small style="color:var(--mute);display:block">Based on Google Business Profile reviews · Verified on Google Maps</small></div></div>
 <a href="https://g.page/r/ALGOORBIT" target="_blank" rel="noopener" class="btn o">Read All Reviews</a></div>
-</div></section>
-
-<section class="sec dk"><div class="wrap">
-<div class="head"><span class="tag">How We Onboard You</span><h2>From inquiry to excellence</h2><p class="lead">Exactly what happens when an enterprise, a student, or a college partners with Algo Orbit.</p></div>
-<div class="tl" id="tl"></div>
 </div></section>
 
 <section class="cta"><div class="wrap">
@@ -820,7 +1264,7 @@ h2 .w:hover>span{color:var(--ind)}
 <h2>Wherever you sit, the next batch is forming right now.</h2>
 <p>Enterprises are booking Q3 training slots, students are enrolling for the upcoming bootcamp batch, and colleges are locking in FDP and placement readiness dates for the upcoming semester.</p>
 <div class="acts"><a href="contact.html" class="btn l">Request Corporate Proposal</a><a href="https://forms.gle/YDS9jowNYgyRRNEw7" target="_blank" rel="noopener" class="btn g">Apply for a Bootcamp</a><a href="contact.html" class="btn g">Partner Your College</a></div>
-<small>Online &amp; Offline delivery · QR-verified certificate on completion · CIN: U62011KA2025PTC207904</small>
+<small>Online &amp; Offline delivery · QR verified certificate on completion · CIN: U62011KA2025PTC207904</small>
 </div></section>
 </main>
 
@@ -851,49 +1295,50 @@ T=function(s){return s.split(',').map(function(x){return'<span class="tg">'+x+'<
 R=function(id,a,f){$(id).innerHTML=a.map(f).join('')},
 ST=function(a){return function(x,i){return'<div class="st"><span class="ic" style="margin:2px 0 0">'+(a?(i<9?'0':'')+(i+1):x[2])+'</span><div><h3>'+x[0]+'</h3><p>'+x[1]+'</p></div></div>'}},
 POOL=['1451187580459-43490279c0fa','1555529669-e69e7aa0ba9a','1504868584819-f8e8b4b6d7e3','1550439062-609e1531270e','1553877522-43269d4ea984','1560518883-ce09059eeffa','1519494026892-80bbd2d6fd0d','1519389950473-47ba0277781c','1523240795612-9a054b0db644','1516321318423-f06f85e504b3','1461749280684-dccba630e2f6','1521737604893-d14cc237f11d'],
+WSP=['1555066931-4365d14bab8c','1517694712202-14dd9538aa97','1498050108023-c5249f4df085','1488590528505-98d2b5aba04b','1515879218367-8466d910aaa4','1542831371-29b0f74f9713'],
+WSF=['1517694712202-14dd9538aa97','1498050108023-c5249f4df085','1461749280684-dccba630e2f6'],
+IMW=function(i,l,alt){return'<div class="cimg"><img src="'+U(WSP[i%WSP.length])+'" data-fb="'+U(WSF[i%WSF.length])+'" onerror="this.onerror=null;this.src=this.getAttribute(\'data-fb\')" alt="'+(alt||'')+'" loading="lazy">'+(l?'<span>'+l+'</span>':'')+'</div>'},
 IM=function(i,l,alt){return'<div class="cimg"><img src="'+U(POOL[i%POOL.length])+'" alt="'+(alt||'')+'" loading="lazy">'+(l?'<span>'+l+'</span>':'')+'</div>'};
 
 /* Ticker: list is doubled so the reel loops seamlessly and keeps moving on every screen size */
-var TK=['Cloud & DevOps','Full Stack','Data & AI/ML','Cybersecurity','Flutter','MERN','Frontend','DSA & Placements','Faculty Development','Campus Workshops','QR-Verified Certificates'];
-$('tk').innerHTML=TK.concat(TK).map(function(t){return'<span>'+t.replace(/&/g,'&amp;')+'</span>'}).join('');
+var TK=['Cloud & DevOps','Full Stack','Data & AI/ML','Cybersecurity','Flutter','MERN','Frontend','DSA & Placements','Faculty Development','Campus Workshops','QR Verified Certificates'];
+if($('tk'))$('tk').innerHTML=TK.concat(TK).map(function(t){return'<span>'+t.replace(/&/g,'&amp;')+'</span>'}).join('');
 
 R('corp',[
-['Cloud & DevOps Engineering','Build and automate cloud-native infrastructure at enterprise scale, from provisioning to continuous deployment.','AWS,Azure,GCP,Docker,Kubernetes,Terraform,Jenkins,GitLab CI/CD,Ansible,Prometheus & Grafana','12 to 16 weeks','Advanced','CD'],
-['Full Stack & Application Engineering','End-to-end web development from modern JavaScript frameworks to scalable backend APIs and database design.','React,Next.js,Angular,Node.js,Express,Django,Spring Boot,TypeScript,GraphQL,PostgreSQL,MongoDB,Redis','14 to 18 weeks','Intermediate','FS'],
-['Data, Analytics & AI/ML','Full ML lifecycle from data engineering and feature design to model deployment and applied generative AI.','Python,Pandas,NumPy,SQL,Apache Spark,Airflow,TensorFlow,PyTorch,Scikit-learn,Power BI,Tableau,LangChain & Prompt Engineering','16 to 20 weeks','Advanced','AI'],
+['Cloud & DevOps Engineering','Build and automate cloud native infrastructure at enterprise scale, from provisioning to continuous deployment.','AWS,Azure,GCP,Docker,Kubernetes,Terraform,Jenkins,GitLab CI/CD,Ansible,Prometheus & Grafana','12 to 16 weeks','Advanced','CD'],
+['Full Stack & Application Engineering','End to end web development from modern JavaScript frameworks to scalable backend APIs and database design.','React,Next.js,Angular,Node.js,Express,Django,Spring Boot,TypeScript,GraphQL,PostgreSQL,MongoDB,Redis','14 to 18 weeks','Intermediate','FS'],
+['Data, Analytics & AI/ML','Full ML lifecycle from data engineering and feature design to model deployment and applied generative AI.','Python,Pandas,NumPy,SQL,Apache Spark,Airflow,TensorFlow,PyTorch,Scikit learn,Power BI,Tableau,LangChain & Prompt Engineering','16 to 20 weeks','Advanced','AI'],
 ['Cybersecurity & Compliance','From penetration testing to defensive SOC operations, governance and regulatory readiness for audits.','Kali Linux,Burp Suite,Nmap,Wireshark,SIEM Tools,ISO 27001,GDPR,NIST,SOC 2,Threat Modeling','10 to 14 weeks','Advanced','CS'],
 ['Product, Agile & Delivery Excellence','Discovery, validation, roadmapping and stakeholder alignment drawn from real product case studies.','Jira,Confluence,Scrum,Kanban,OKRs,Design Thinking,Stakeholder Management,Roadmapping','8 to 12 weeks','Intermediate','PM'],
-['Low-Code, ERP & Enterprise Systems','Business process automation and enterprise systems training for teams running on established platforms.','SAP Fundamentals,Salesforce,Power Platform,ServiceNow Basics,Business Process Automation','6 to 10 weeks','All Levels','ES']
+['Low Code, ERP & Enterprise Systems','Business process automation and enterprise systems training for teams running on established platforms.','SAP Fundamentals,Salesforce,Power Platform,ServiceNow Basics,Business Process Automation','6 to 10 weeks','All Levels','ES']
 ],function(x,i){return'<div class="c">'+IM(i,x[4],x[0])+'<span class="ic">'+x[5]+'</span><h3>'+x[0]+'</h3><p>'+x[1]+'</p><div class="tgs">'+T(x[2])+'</div><div class="ft"><span>'+x[3]+'</span><span class="bd">'+x[4]+'</span></div></div>'});
 
-R('deliv',[['On-Site Corporate Training','Our instructors come to you for deep, immersive in-person sessions built around your team\'s environment, tools, and day-to-day challenges.','ON'],['Virtual Instructor-Led Training','Live, high-engagement online sessions with real instructors. Breakout rooms, hands-on labs, and real-time collaboration for distributed teams.','VR'],['Hybrid Learning Solutions','Blend live instruction with self-paced modules. Ideal for enterprises with geographically distributed teams.','HY']],ST(0));
+R('deliv',[['On Site Corporate Training','Our instructors come to you for deep, immersive in person sessions built around your team\'s environment, tools, and day to day challenges.','ON'],['Virtual Instructor Led Training','Live, high engagement online sessions with real instructors. Breakout rooms, hands on labs, and real time collaboration for distributed teams.','VR'],['Hybrid Learning Solutions','Blend live instruction with self paced modules. Ideal for enterprises with geographically distributed teams.','HY']],ST(0));
 
 R('boot',[
-['1551650975-87deedd944c3','FLUTTER','Flutter App Development','One codebase, two stores. Ship to Google Play and the App Store using Flutter and Dart, the most in-demand cross-platform skill in the market right now.','Dart and Flutter from ground up~State management and Firebase~Animations, payments and auth~Play Store and App Store deployment','6 to 8 weeks','Flutter / Dart',1],
-['1593720213428-28a5b9e94613','MERN','MERN Full Stack Development','Master the complete JavaScript stack: MongoDB, Express, React and Node.js. Build and deploy full-scale web applications exactly how top-tier startups operate.','React.js and modern JavaScript~Node.js, Express and REST APIs~MongoDB and database design~Cloud deployment and DevOps basics','8 weeks','MERN Stack'],
-['1461749280684-dccba630e2f6','FRONTEND','Frontend Development','Build fast, accessible, pixel-perfect interfaces with modern JavaScript, React, Next.js and Tailwind. Design systems, performance and real deployment included.','HTML, CSS, JavaScript (ES6+)~React, Next.js and component design~Tailwind CSS and responsive UI~API integration and deployment','6 to 8 weeks','React / Next.js'],
+['1551650975-87deedd944c3','FLUTTER','Flutter App Development','One codebase, two stores. Ship to Google Play and the App Store using Flutter and Dart, the most in demand cross platform skill in the market right now.','Dart and Flutter from ground up~State management and Firebase~Animations, payments and auth~Play Store and App Store deployment','6 to 8 weeks','Flutter / Dart',1],
+['1593720213428-28a5b9e94613','MERN','MERN Full Stack Development','Master the complete JavaScript stack: MongoDB, Express, React and Node.js. Build and deploy full scale web applications exactly how top tier startups operate.','React.js and modern JavaScript~Node.js, Express and REST APIs~MongoDB and database design~Cloud deployment and DevOps basics','8 weeks','MERN Stack'],
+['1461749280684-dccba630e2f6','FRONTEND','Frontend Development','Build fast, accessible, pixel perfect interfaces with modern JavaScript, React, Next.js and Tailwind. Design systems, performance and real deployment included.','HTML, CSS, JavaScript (ES6+)~React, Next.js and component design~Tailwind CSS and responsive UI~API integration and deployment','6 to 8 weeks','React / Next.js'],
 ['1516321318423-f06f85e504b3','CORE CS','Software Engineering Fundamentals','The core computer science every strong engineer needs: data structures, OOP, databases, system design basics and clean coding practices.','Data structures and algorithms~OOP, design patterns and clean code~DBMS, SQL and version control with Git~Introductory system design concepts','8 weeks','Beginner to Intermediate'],
-['1521737604893-d14cc237f11d','PLACEMENTS','Placement Readiness Program','Everything between "I can code" and "I got the offer": aptitude, DSA problem drills, mock interviews, resume building and group discussion practice.','Aptitude and logical reasoning~DSA problem-solving drills~Mock technical and HR interviews~Resume, LinkedIn and GD practice','4 to 6 weeks','All Levels'],
-['1550439062-609e1531270e','CP','Competitive Programming','Sharpen problem-solving speed and accuracy in C++ or Java, built for coding rounds, Codeforces and LeetCode-style contests.','Time and space complexity mastery~Graphs, DP, greedy and trees~Weekly timed contests with ranking~Company-specific coding round prep','6 weeks','Intermediate']
+['1521737604893-d14cc237f11d','PLACEMENTS','Placement Readiness Program','Everything between "I can code" and "I got the offer": aptitude, DSA problem drills, mock interviews, resume building and group discussion practice.','Aptitude and logical reasoning~DSA problem solving drills~Mock technical and HR interviews~Resume, LinkedIn and GD practice','4 to 6 weeks','All Levels'],
+['1550439062-609e1531270e','CP','Competitive Programming','Sharpen problem solving speed and accuracy in C++ or Java, built for coding rounds, Codeforces and LeetCode style contests.','Time and space complexity mastery~Graphs, DP, greedy and trees~Weekly timed contests with ranking~Company specific coding round prep','6 weeks','Intermediate']
 ],function(x){return'<div class="c"><div class="cimg"><img src="'+U(x[0])+'" alt="'+x[2]+'" loading="lazy"><span>'+x[1]+'</span>'+(x[7]?'<b class="pop">Most Popular · Android + iOS</b>':'')+'</div><h3>'+x[2]+'</h3><p>'+x[3]+'</p><ul>'+L(x[4])+'</ul><div class="ft"><span>'+x[5]+'</span><span class="bd">'+x[6]+'</span></div></div>'});
 
-R('cert',[['Certified Flutter Developer','Cross-platform mobile development, state management and app store deployment.','FL','1551650975-87deedd944c3'],['Certified MERN Stack Developer','End-to-end JavaScript stack proficiency validated through a deployed capstone project.','MN','1593720213428-28a5b9e94613'],['Certified Frontend Engineer','React, responsive design and modern UI engineering, assessed on a live build.','FE','1461749280684-dccba630e2f6'],['Certified DSA Professional','Data structures, algorithms and complexity analysis validated across timed assessments.','DS','1516321318423-f06f85e504b3'],['Certified Software Engineer','Core engineering practices spanning OOP, databases and system design fundamentals.','SE','1555529669-e69e7aa0ba9a'],['Certified Competitive Programmer','Contest-grade problem-solving performance across ranked assessments.','CP','1550439062-609e1531270e']],function(x){return'<div class="c"><div class="cimg"><img src="'+U(x[3])+'" alt="'+x[0]+'" loading="lazy"></div><span class="ic">'+x[2]+'</span><h3>'+x[0]+'</h3><p>'+x[1]+'</p></div>'});
+R('cert',[['Certified Flutter Developer','Cross platform mobile development, state management and app store deployment.','FL','1551650975-87deedd944c3'],['Certified MERN Stack Developer','End to end JavaScript stack proficiency validated through a deployed capstone project.','MN','1593720213428-28a5b9e94613'],['Certified Frontend Engineer','React, responsive design and modern UI engineering, assessed on a live build.','FE','1461749280684-dccba630e2f6'],['Certified DSA Professional','Data structures, algorithms and complexity analysis validated across timed assessments.','DS','1516321318423-f06f85e504b3'],['Certified Software Engineer','Core engineering practices spanning OOP, databases and system design fundamentals.','SE','1555529669-e69e7aa0ba9a'],['Certified Competitive Programmer','Contest grade problem solving performance across ranked assessments.','CP','1550439062-609e1531270e']],function(x){return'<div class="c"><div class="cimg"><img src="'+U(x[3])+'" alt="'+x[0]+'" loading="lazy"></div><span class="ic">'+x[2]+'</span><h3>'+x[0]+'</h3><p>'+x[1]+'</p></div>'});
 
-R('vfe',[['QR Code on Every Certificate','Each certificate carries a unique QR code that employers and TPOs scan to instantly verify learner details, project, and completion date.','QR'],['Project Details Included','Certificates include the specific project or workshop completed, so employers see exactly what was built, not just "completed training".','PD'],['Registered Company Credibility','Algo Orbit is a registered private limited company (CIN: U62011KA2025PTC207904). Every certificate carries legal company weight.','RC'],['LinkedIn-Shareable Format','Designed for LinkedIn profiles with verification links recruiters click directly from your profile.','LI']],ST(0));
+R('vfe',[['QR Code on Every Certificate','Each certificate carries a unique QR code that employers and TPOs scan to instantly verify learner details, project, and completion date.','QR'],['Project Details Included','Certificates include the specific project or workshop completed, so employers see exactly what was built, not just "completed training".','PD'],['Registered Company Credibility','Algo Orbit is a registered private limited company (CIN: U62011KA2025PTC207904). Every certificate carries legal company weight.','RC'],['LinkedIn Shareable Format','Designed for LinkedIn profiles with verification links recruiters click directly from your profile.','LI']],function(x){var ic={QR:'i-qr',PD:'i-doc',RC:'i-shield',LI:'i-share'}[x[2]]||'i-check';return'<div class="c"><span class="ic"><svg class="ui" aria-hidden="true"><use href="#'+ic+'"/></svg></span><h3>'+x[0]+'</h3><p>'+x[1]+'</p></div>'});
 
-R('fdp',[['AI & Machine Learning FDP','A hands-on faculty program covering Python, ML fundamentals, deep learning and how to bring applied AI into classroom projects.','AI'],['Full Stack Web Development FDP','Modern web fundamentals, from HTML and JavaScript to MERN, so faculty can mentor project-based coursework confidently.','FS'],['Cloud Computing & DevOps FDP','AWS and Azure fundamentals, containers and CI/CD concepts, adapted for classroom delivery and lab exercises.','CD'],['Cybersecurity FDP','Network security, ethical hacking basics and secure coding practices, structured for both theory and lab sessions.','CS'],['IoT & Embedded Systems FDP','Sensor integration, microcontrollers and edge connectivity concepts, built around practical mini-project kits.','IO'],['Data Science & Analytics FDP','Statistics, Python analytics libraries and visualization tools, framed around teachable, reusable classroom datasets.','DA']],function(x,i){return'<div class="c">'+IM(i+3,'FDP',x[0])+'<span class="ic">'+x[2]+'</span><h3>'+x[0]+'</h3><p>'+x[1]+'</p></div>'});
+R('fdp',[['AI & Machine Learning FDP','A hands on faculty program covering Python, ML fundamentals, deep learning and how to bring applied AI into classroom projects.','AI'],['Full Stack Web Development FDP','Modern web fundamentals, from HTML and JavaScript to MERN, so faculty can mentor project based coursework confidently.','FS'],['Cloud Computing & DevOps FDP','AWS and Azure fundamentals, containers and CI/CD concepts, adapted for classroom delivery and lab exercises.','CD'],['Cybersecurity FDP','Network security, ethical hacking basics and secure coding practices, structured for both theory and lab sessions.','CS'],['IoT & Embedded Systems FDP','Sensor integration, microcontrollers and edge connectivity concepts, built around practical mini project kits.','IO'],['Data Science & Analytics FDP','Statistics, Python analytics libraries and visualization tools, framed around teachable, reusable classroom datasets.','DA']],function(x,i){return'<div class="c">'+IM(i+3,'FDP',x[0])+'<span class="ic">'+x[2]+'</span><h3>'+x[0]+'</h3><p>'+x[1]+'</p></div>'});
 
-R('prp',[['Structured DSA Curriculum','Arrays to graphs, covering 300+ curated problems with progressively increasing difficulty and weekly assessments.','DS'],['Development Capstone Track','A real MERN or Java project built in parallel, so students can speak confidently about a shipped product in interviews.','DC'],['Aptitude & Reasoning','Quantitative aptitude, logical reasoning and verbal ability practice mapped to actual campus placement test patterns.','AR'],['Mock Interviews & Resume Building','One-on-one mock technical and HR interviews with recorded feedback, plus resume and LinkedIn profile reviews.','MI'],['Group Discussions & Soft Skills','Structured GD practice, communication coaching and confidence-building sessions ahead of campus drives.','GD']],ST(0));
 
-R('ws',[['Python for Problem Solving','Core syntax, data structures and problem-solving patterns for first and second-year students.','Variables, loops and functions~Lists, dictionaries and file handling~Mini automation project','1 day','Beginner'],['Java & OOP Workshop','Object-oriented concepts and Java fundamentals mapped directly to common university syllabi.','Classes, objects and inheritance~Collections and exception handling~Small console application build','2 days','Beginner'],['Web Development Workshop','HTML, CSS and JavaScript fundamentals, ending with a deployed personal portfolio site.','Semantic HTML and CSS layouts~JavaScript DOM manipulation~Live portfolio deployment','2 days','Beginner'],['Cloud Computing Workshop','AWS and Azure fundamentals: compute, storage and deployment basics for aspiring cloud engineers.','Core cloud service concepts~Hands-on EC2 and storage labs~Deploy a sample application','2 days','Intermediate'],['AI & Prompt Engineering Workshop','Practical applied AI: using LLMs, prompt design and building a simple AI-powered mini tool.','LLM fundamentals and use cases~Prompt engineering techniques~Build a small AI-powered tool','1 day','All Levels'],['Cybersecurity Awareness Workshop','Practical security hygiene, common attack patterns and safe coding habits for student developers.','Common vulnerabilities and attacks~Safe coding and password hygiene~Live vulnerability demo','1 day','Beginner']],function(x,i){return'<div class="c">'+IM(i+6,'Workshop',x[0])+'<h3>'+x[0]+'</h3><p>'+x[1]+'</p><ul>'+L(x[2])+'</ul><div class="ft"><span>'+x[3]+'</span><span class="bd">'+x[4]+'</span></div></div>'});
+R('ws',[['Python for Problem Solving','Core syntax, data structures and problem solving patterns for first and second year students.','Variables, loops and functions~Lists, dictionaries and file handling~Mini automation project','1 day','Beginner'],['Java & OOP Workshop','Object oriented concepts and Java fundamentals mapped directly to common university syllabi.','Classes, objects and inheritance~Collections and exception handling~Small console application build','2 days','Beginner'],['Web Development Workshop','HTML, CSS and JavaScript fundamentals, ending with a deployed personal portfolio site.','Semantic HTML and CSS layouts~JavaScript DOM manipulation~Live portfolio deployment','2 days','Beginner'],['Cloud Computing Workshop','AWS and Azure fundamentals: compute, storage and deployment basics for aspiring cloud engineers.','Core cloud service concepts~Hands on EC2 and storage labs~Deploy a sample application','2 days','Intermediate'],['AI & Prompt Engineering Workshop','Practical applied AI: using LLMs, prompt design and building a simple AI powered mini tool.','LLM fundamentals and use cases~Prompt engineering techniques~Build a small AI powered tool','1 day','All Levels'],['Cybersecurity Awareness Workshop','Practical security hygiene, common attack patterns and safe coding habits for student developers.','Common vulnerabilities and attacks~Safe coding and password hygiene~Live vulnerability demo','1 day','Beginner']],function(x,i){return'<div class="c">'+IMW(i,'Workshop',x[0])+'<h3>'+x[0]+'</h3><p>'+x[1]+'</p><ul>'+L(x[2])+'</ul><div class="ft"><span>'+x[3]+'</span><span class="bd">'+x[4]+'</span></div></div>'});
 
 R('testi',[['RK','Rakesh Kamath','VP Engineering, TechNova Systems','Algo Orbit ran a cloud and DevOps program for our engineering team and the difference showed within weeks. Deployment cycles got faster, incidents dropped, and the trainers stayed engaged with us well after the sessions ended.'],['PM','Prajna Mendon','NMAMIT Nitte','The MERN bootcamp did not just teach me syntax, it taught me to think like a developer. Real projects, real mentors, real feedback. I had an offer before the program even ended. Best investment in my career, hands down.'],['SB','Prof. Shreya Bhat','Training & Placement Officer, SMVITM Bantakal','We brought Algo Orbit in for a placement readiness program covering DSA and development for our final years. Our placement percentage improved noticeably that season, and the faculty development sessions were just as valuable.']],function(x){return'<div class="c q"><div class="stars">★★★★★</div><p>"'+x[3]+'"</p><div class="who"><span class="av">'+x[0]+'</span><div><strong>'+x[1]+'</strong><small>'+x[2]+' · Google Review</small></div></div></div>'});
 
-R('tl',[['Initial Consultation',"A focused discovery call to understand your goals, whether that is a team's skill gaps, a student's career target, or a college's placement targets."],['Skills Assessment','Structured pre-training evaluations identify exact capability gaps and inform a personalized learning path for every participant.'],['Custom Proposal','A full curriculum outline, week-by-week schedule, delivery format, pricing, and expected measurable outcomes, all in writing before you commit.'],['Program Launch','Orientation session, platform access, resource distribution, and instructor introductions. Everyone starts week one with full context.'],['Completion & Certification','QR-verified Algo Orbit certificates issued. Permanent access to all course materials and the alumni network included on completion.'],['Ongoing Support','Continued mentorship, refresher sessions, and upskilling modules to ensure long-term impact. The relationship does not end at certification.']],function(x){return'<div><h3>'+x[0]+'</h3><p>'+x[1]+'</p></div>'});
 
 var CERTS={'AL25242':['Dhanyatha R','Full Stack Development Bootcamp (Flask & MySQL)','SMVITM Bantakal','January 16, 2026'],'DLAIML309CS20010JUNE23':['Nishan H','AI & Machine Learning','N.R.A.M Aided Polytechnic, Nitte','June 12, 2023']};
 function verify(){var v=$('cv').value.trim().toUpperCase(),r=$('cvr'),c=CERTS[v];r.style.display='block';
-if(c){r.className='vr ok';r.innerHTML='<strong>Certificate Verified</strong><br>Name: '+c[0]+' · Program: '+c[1]+'<br>Institution: '+c[2]+' · Date: '+c[3]}
+if(c){r.className='vr ok';r.innerHTML='<div class="vr-h"><svg class="ui" aria-hidden="true"><use href="#i-check"/></svg><strong>Certificate Verified</strong></div><dl><dt>Name</dt><dd>'+c[0]+'</dd><dt>Program</dt><dd>'+c[1]+'</dd><dt>Institution</dt><dd>'+c[2]+'</dd><dt>Date</dt><dd>'+c[3]+'</dd></dl>'}
 else if(v.length<3){r.className='vr er';r.textContent='Please enter a valid Certificate ID.'}
 else{r.className='vr er';r.innerHTML='Certificate ID not found. Please verify the ID or contact <strong>connect@algoorbit.in</strong>.'}}
 $('cvb').onclick=verify;$('cv').onkeydown=function(e){if(e.key==='Enter')verify()};
@@ -932,7 +1377,7 @@ QA('.head').forEach(function(el){dio.observe(el)});
 
 /* scroll reveal */
 if(!reduce){var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('reveal','in');el.style.transitionDelay=''},1500)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-QA('.head,.c,.st,.vb,.gr,.tl>div,.pic').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('reveal');el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)})}
+QA('.head,.c,.st,.vb,.gr,.tl>div,.pic,.vsteps>li').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('reveal');el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)})}
 
 /* soft glow when blocks scroll into view */
 (function(){var g=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('glow',e.isIntersecting)})},{threshold:.55});QA('.vb,.gr,.tl>div').forEach(function(el){g.observe(el)})})();
@@ -975,7 +1420,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
 /* ===== 3. Mobile card handling (original). Duplicates are built only on phones; the upgrade CSS
    stacks them vertically and hides the duplicates, so cards no longer move sideways. ===== */
 (function(){
-var ids=['aud','corp','boot','cert','fdp','ws','testi'];
+var ids=['aud','corp','boot','cert','fdp','ws'];
 var mm=matchMedia('(max-width:700px)');
 function build(){
  ids.forEach(function(id){
@@ -1020,10 +1465,10 @@ document.addEventListener('touchmove',function(){clearTimeout(t)},{passive:true}
    var t=document.createElement('i');t.className='wn';t.setAttribute('aria-hidden','true');t.textContent=(i<9?'0':'')+(i+1);im.appendChild(t)})});
 
  /* Impact band (count-up) before the final CTA */
- var cta=Q('.cta'),data=[[2500,'+','Learners trained'],[50,'+','Enterprise clients'],[12,'+','College partners'],[92,'%','Placement rate']];
+ var cta=Q('.cta'),data=[[100,'+','Projects delivered','i-briefcase'],[3000,'+','Students trained','i-users'],[5,'/5','Google ratings','i-star']];
  if(cta){var s=document.createElement('section');s.className='stats-b';s.setAttribute('aria-label','Training impact');
   s.innerHTML='<div class="wrap"><span class="tag">Training Impact</span><h2>Results that speak for themselves</h2><div class="sb-g">'+
-   data.map(function(d){return'<div class="sb"><strong><span data-n="'+d[0]+'">'+d[0].toLocaleString('en-IN')+'</span><i>'+d[1]+'</i></strong><small>'+d[2]+'</small></div>'}).join('')+'</div></div>';
+   data.map(function(d){return'<div class="sb"><span class="sb-ic" aria-hidden="true"><svg class="ui"><use href="#'+d[3]+'"/></svg></span><strong><span data-n="'+d[0]+'">'+d[0].toLocaleString('en-IN')+'</span><i>'+d[1]+'</i></strong><small>'+d[2]+'</small></div>'}).join('')+'</div></div>';
   cta.parentNode.insertBefore(s,cta);
   if(!reduce&&'IntersectionObserver' in window){var ns=QA('[data-n]',s);ns.forEach(function(n){n.textContent='0'});
    new IntersectionObserver(function(es,o){if(es[0].isIntersecting){ns.forEach(function(el){var t=+el.dataset.n,st=null;
@@ -1045,7 +1490,7 @@ document.addEventListener('touchmove',function(){clearTimeout(t)},{passive:true}
 /* ===== 5. Enhancement round 2 (About-page style) ===== */
 (function(){
  /* floating chips on the two image frames */
- var chips=[[['DS','Live mentor-led labs'],['QR','Verified certificates']],[['92','Placement rate'],['1:1','Mock interviews']]];
+ var chips=[[['DS','Live mentor led labs'],['QR','Verified certificates']],[['92','Placement rate'],['1:1','Mock interviews']]];
  QA('.pic').forEach(function(p,i){var c=chips[i%2];if(!c||Q('.fchip',p))return;
   p.insertAdjacentHTML('beforeend','<span class="fchip c1"><i>'+c[0][0]+'</i>'+c[0][1]+'</span><span class="fchip c2"><i>'+c[1][0]+'</i>'+c[1][1]+'</span>')});
 
@@ -1105,6 +1550,297 @@ document.addEventListener('touchmove',function(){clearTimeout(t)},{passive:true}
  var mm=matchMedia('(max-width:700px)');
  var again=function(){setTimeout(addRings,60)};
  if(mm.addEventListener)mm.addEventListener('change',again);else if(mm.addListener)mm.addListener(again);
+})();
+</script>
+<script id="lenis-1.1.18">/* Lenis 1.1.18 (MIT, darkroom.engineering), embedded so the page is fully self-contained */
+var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t,e){return(1-e)*r+e*t}function z(r,t,e,i){return W(r,t,1-Math.exp(-e*i))}function x(r,t){return(r%t+t)%t}var y=class{isRunning=!1;value=0;from=0;to=0;currentTime=0;lerp;duration;easing;onUpdate;advance(t){if(!this.isRunning)return;let e=!1;if(this.duration&&this.easing){this.currentTime+=t;let i=w(0,this.currentTime/this.duration,1);e=i>=1;let s=e?1:this.easing(i);this.value=this.from+(this.to-this.from)*s}else this.lerp?(this.value=z(this.value,this.to,this.lerp*60,t),Math.round(this.value)===this.to&&(this.value=this.to,e=!0)):(this.value=this.to,e=!0);e&&this.stop(),this.onUpdate?.(this.value,e)}stop(){this.isRunning=!1}fromTo(t,e,{lerp:i,duration:s,easing:o,onStart:l,onUpdate:h}){this.from=this.value=t,this.to=e,this.lerp=i,this.duration=s,this.easing=o,this.currentTime=0,this.isRunning=!0,l?.(),this.onUpdate=h}};function R(r,t){let e;return function(...i){let s=this;clearTimeout(e),e=setTimeout(()=>{e=void 0,r.apply(s,i)},t)}}var E=class{constructor(t,e,{autoResize:i=!0,debounce:s=250}={}){this.wrapper=t;this.content=e;i&&(this.debouncedResize=R(this.resize,s),this.wrapper instanceof Window?window.addEventListener("resize",this.debouncedResize,!1):(this.wrapperResizeObserver=new ResizeObserver(this.debouncedResize),this.wrapperResizeObserver.observe(this.wrapper)),this.contentResizeObserver=new ResizeObserver(this.debouncedResize),this.contentResizeObserver.observe(this.content)),this.resize()}width=0;height=0;scrollHeight=0;scrollWidth=0;debouncedResize;wrapperResizeObserver;contentResizeObserver;destroy(){this.wrapperResizeObserver?.disconnect(),this.contentResizeObserver?.disconnect(),this.wrapper===window&&this.debouncedResize&&window.removeEventListener("resize",this.debouncedResize,!1)}resize=()=>{this.onWrapperResize(),this.onContentResize()};onWrapperResize=()=>{this.wrapper instanceof Window?(this.width=window.innerWidth,this.height=window.innerHeight):(this.width=this.wrapper.clientWidth,this.height=this.wrapper.clientHeight)};onContentResize=()=>{this.wrapper instanceof Window?(this.scrollHeight=this.content.scrollHeight,this.scrollWidth=this.content.scrollWidth):(this.scrollHeight=this.wrapper.scrollHeight,this.scrollWidth=this.wrapper.scrollWidth)};get limit(){return{x:this.scrollWidth-this.width,y:this.scrollHeight-this.height}}};var f=class{events={};emit(t,...e){let i=this.events[t]||[];for(let s=0,o=i.length;s<o;s++)i[s]?.(...e)}on(t,e){return this.events[t]?.push(e)||(this.events[t]=[e]),()=>{this.events[t]=this.events[t]?.filter(i=>e!==i)}}off(t,e){this.events[t]=this.events[t]?.filter(i=>e!==i)}destroy(){this.events={}}};var _=100/6,u={passive:!1},T=class{constructor(t,e={wheelMultiplier:1,touchMultiplier:1}){this.element=t;this.options=e;window.addEventListener("resize",this.onWindowResize,!1),this.onWindowResize(),this.element.addEventListener("wheel",this.onWheel,u),this.element.addEventListener("touchstart",this.onTouchStart,u),this.element.addEventListener("touchmove",this.onTouchMove,u),this.element.addEventListener("touchend",this.onTouchEnd,u)}touchStart={x:0,y:0};lastDelta={x:0,y:0};window={width:0,height:0};emitter=new f;on(t,e){return this.emitter.on(t,e)}destroy(){this.emitter.destroy(),window.removeEventListener("resize",this.onWindowResize,!1),this.element.removeEventListener("wheel",this.onWheel,u),this.element.removeEventListener("touchstart",this.onTouchStart,u),this.element.removeEventListener("touchmove",this.onTouchMove,u),this.element.removeEventListener("touchend",this.onTouchEnd,u)}onTouchStart=t=>{let{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:0,y:0},this.emitter.emit("scroll",{deltaX:0,deltaY:0,event:t})};onTouchMove=t=>{let{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t,s=-(e-this.touchStart.x)*this.options.touchMultiplier,o=-(i-this.touchStart.y)*this.options.touchMultiplier;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:s,y:o},this.emitter.emit("scroll",{deltaX:s,deltaY:o,event:t})};onTouchEnd=t=>{this.emitter.emit("scroll",{deltaX:this.lastDelta.x,deltaY:this.lastDelta.y,event:t})};onWheel=t=>{let{deltaX:e,deltaY:i,deltaMode:s}=t,o=s===1?_:s===2?this.window.width:1,l=s===1?_:s===2?this.window.height:1;e*=o,i*=l,e*=this.options.wheelMultiplier,i*=this.options.wheelMultiplier,this.emitter.emit("scroll",{deltaX:e,deltaY:i,event:t})};onWindowResize=()=>{this.window={width:window.innerWidth,height:window.innerHeight}}};var L=class{_isScrolling=!1;_isStopped=!1;_isLocked=!1;_preventNextNativeScrollEvent=!1;_resetVelocityTimeout=null;__rafID=null;isTouching;time=0;userData={};lastVelocity=0;velocity=0;direction=0;options;targetScroll;animatedScroll;animate=new y;emitter=new f;dimensions;virtualScroll;constructor({wrapper:t=window,content:e=document.documentElement,eventsTarget:i=t,smoothWheel:s=!0,syncTouch:o=!1,syncTouchLerp:l=.075,touchInertiaMultiplier:h=35,duration:S,easing:d=H=>Math.min(1,1.001-Math.pow(2,-10*H)),lerp:c=.1,infinite:p=!1,orientation:b="vertical",gestureOrientation:n="vertical",touchMultiplier:a=1,wheelMultiplier:v=1,autoResize:g=!0,prevent:m,virtualScroll:N,overscroll:M=!0,autoRaf:O=!1,__experimental__naiveDimensions:D=!1}={}){window.lenisVersion=k,(!t||t===document.documentElement||t===document.body)&&(t=window),this.options={wrapper:t,content:e,eventsTarget:i,smoothWheel:s,syncTouch:o,syncTouchLerp:l,touchInertiaMultiplier:h,duration:S,easing:d,lerp:c,infinite:p,gestureOrientation:n,orientation:b,touchMultiplier:a,wheelMultiplier:v,autoResize:g,prevent:m,virtualScroll:N,overscroll:M,autoRaf:O,__experimental__naiveDimensions:D},this.dimensions=new E(t,e,{autoResize:g}),this.updateClassName(),this.targetScroll=this.animatedScroll=this.actualScroll,this.options.wrapper.addEventListener("scroll",this.onNativeScroll,!1),this.options.wrapper.addEventListener("pointerdown",this.onPointerDown,!1),this.virtualScroll=new T(i,{touchMultiplier:a,wheelMultiplier:v}),this.virtualScroll.on("scroll",this.onVirtualScroll),this.options.autoRaf&&(this.__rafID=requestAnimationFrame(this.raf))}destroy(){this.emitter.destroy(),this.options.wrapper.removeEventListener("scroll",this.onNativeScroll,!1),this.options.wrapper.removeEventListener("pointerdown",this.onPointerDown,!1),this.virtualScroll.destroy(),this.dimensions.destroy(),this.cleanUpClassName(),this.__rafID&&cancelAnimationFrame(this.__rafID)}on(t,e){return this.emitter.on(t,e)}off(t,e){return this.emitter.off(t,e)}setScroll(t){this.isHorizontal?this.rootElement.scrollLeft=t:this.rootElement.scrollTop=t}onPointerDown=t=>{t.button===1&&this.reset()};onVirtualScroll=t=>{if(typeof this.options.virtualScroll=="function"&&this.options.virtualScroll(t)===!1)return;let{deltaX:e,deltaY:i,event:s}=t;if(this.emitter.emit("virtual-scroll",{deltaX:e,deltaY:i,event:s}),s.ctrlKey||s.lenisStopPropagation)return;let o=s.type.includes("touch"),l=s.type.includes("wheel");this.isTouching=s.type==="touchstart"||s.type==="touchmove";let h=e===0&&i===0;if(this.options.syncTouch&&o&&s.type==="touchstart"&&h&&!this.isStopped&&!this.isLocked){this.reset();return}let d=this.options.gestureOrientation==="vertical"&&i===0||this.options.gestureOrientation==="horizontal"&&e===0;if(h||d)return;let c=s.composedPath();c=c.slice(0,c.indexOf(this.rootElement));let p=this.options.prevent;if(c.find(m=>m instanceof HTMLElement&&(typeof p=="function"&&p?.(m)||m.hasAttribute?.("data-lenis-prevent")||o&&m.hasAttribute?.("data-lenis-prevent-touch")||l&&m.hasAttribute?.("data-lenis-prevent-wheel"))))return;if(this.isStopped||this.isLocked){s.preventDefault();return}if(!(this.options.syncTouch&&o||this.options.smoothWheel&&l)){this.isScrolling="native",this.animate.stop(),s.lenisStopPropagation=!0;return}let n=i;this.options.gestureOrientation==="both"?n=Math.abs(i)>Math.abs(e)?i:e:this.options.gestureOrientation==="horizontal"&&(n=e),(!this.options.overscroll||this.options.infinite||this.options.wrapper!==window&&(this.animatedScroll>0&&this.animatedScroll<this.limit||this.animatedScroll===0&&i>0||this.animatedScroll===this.limit&&i<0))&&(s.lenisStopPropagation=!0),s.preventDefault();let a=o&&this.options.syncTouch,g=o&&s.type==="touchend"&&Math.abs(n)>5;g&&(n=this.velocity*this.options.touchInertiaMultiplier),this.scrollTo(this.targetScroll+n,{programmatic:!1,...a?{lerp:g?this.options.syncTouchLerp:1}:{lerp:this.options.lerp,duration:this.options.duration,easing:this.options.easing}})};resize(){this.dimensions.resize(),this.animatedScroll=this.targetScroll=this.actualScroll,this.emit()}emit(){this.emitter.emit("scroll",this)}onNativeScroll=()=>{if(this._resetVelocityTimeout!==null&&(clearTimeout(this._resetVelocityTimeout),this._resetVelocityTimeout=null),this._preventNextNativeScrollEvent){this._preventNextNativeScrollEvent=!1;return}if(this.isScrolling===!1||this.isScrolling==="native"){let t=this.animatedScroll;this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity,this.velocity=this.animatedScroll-t,this.direction=Math.sign(this.animatedScroll-t),this.isStopped||(this.isScrolling="native"),this.emit(),this.velocity!==0&&(this._resetVelocityTimeout=setTimeout(()=>{this.lastVelocity=this.velocity,this.velocity=0,this.isScrolling=!1,this.emit()},400))}};reset(){this.isLocked=!1,this.isScrolling=!1,this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity=0,this.animate.stop()}start(){this.isStopped&&(this.reset(),this.isStopped=!1)}stop(){this.isStopped||(this.reset(),this.isStopped=!0)}raf=t=>{let e=t-(this.time||t);this.time=t,this.animate.advance(e*.001),this.options.autoRaf&&(this.__rafID=requestAnimationFrame(this.raf))};scrollTo(t,{offset:e=0,immediate:i=!1,lock:s=!1,duration:o=this.options.duration,easing:l=this.options.easing,lerp:h=this.options.lerp,onStart:S,onComplete:d,force:c=!1,programmatic:p=!0,userData:b}={}){if(!((this.isStopped||this.isLocked)&&!c)){if(typeof t=="string"&&["top","left","start"].includes(t))t=0;else if(typeof t=="string"&&["bottom","right","end"].includes(t))t=this.limit;else{let n;if(typeof t=="string"?n=document.querySelector(t):t instanceof HTMLElement&&t?.nodeType&&(n=t),n){if(this.options.wrapper!==window){let v=this.rootElement.getBoundingClientRect();e-=this.isHorizontal?v.left:v.top}let a=n.getBoundingClientRect();t=(this.isHorizontal?a.left:a.top)+this.animatedScroll}}if(typeof t=="number"){if(t+=e,t=Math.round(t),this.options.infinite?p&&(this.targetScroll=this.animatedScroll=this.scroll):t=w(0,t,this.limit),t===this.targetScroll){S?.(this),d?.(this);return}if(this.userData=b??{},i){this.animatedScroll=this.targetScroll=t,this.setScroll(this.scroll),this.reset(),this.preventNextNativeScrollEvent(),this.emit(),d?.(this),this.userData={};return}p||(this.targetScroll=t),this.animate.fromTo(this.animatedScroll,t,{duration:o,easing:l,lerp:h,onStart:()=>{s&&(this.isLocked=!0),this.isScrolling="smooth",S?.(this)},onUpdate:(n,a)=>{this.isScrolling="smooth",this.lastVelocity=this.velocity,this.velocity=n-this.animatedScroll,this.direction=Math.sign(this.velocity),this.animatedScroll=n,this.setScroll(this.scroll),p&&(this.targetScroll=n),a||this.emit(),a&&(this.reset(),this.emit(),d?.(this),this.userData={},this.preventNextNativeScrollEvent())}})}}}preventNextNativeScrollEvent(){this._preventNextNativeScrollEvent=!0,requestAnimationFrame(()=>{this._preventNextNativeScrollEvent=!1})}get rootElement(){return this.options.wrapper===window?document.documentElement:this.options.wrapper}get limit(){return this.options.__experimental__naiveDimensions?this.isHorizontal?this.rootElement.scrollWidth-this.rootElement.clientWidth:this.rootElement.scrollHeight-this.rootElement.clientHeight:this.dimensions.limit[this.isHorizontal?"x":"y"]}get isHorizontal(){return this.options.orientation==="horizontal"}get actualScroll(){return this.isHorizontal?this.rootElement.scrollLeft:this.rootElement.scrollTop}get scroll(){return this.options.infinite?x(this.animatedScroll,this.limit):this.animatedScroll}get progress(){return this.limit===0?1:this.scroll/this.limit}get isScrolling(){return this._isScrolling}set isScrolling(t){this._isScrolling!==t&&(this._isScrolling=t,this.updateClassName())}get isStopped(){return this._isStopped}set isStopped(t){this._isStopped!==t&&(this._isStopped=t,this.updateClassName())}get isLocked(){return this._isLocked}set isLocked(t){this._isLocked!==t&&(this._isLocked=t,this.updateClassName())}get isSmooth(){return this.isScrolling==="smooth"}get className(){let t="lenis";return this.isStopped&&(t+=" lenis-stopped"),this.isLocked&&(t+=" lenis-locked"),this.isScrolling&&(t+=" lenis-scrolling"),this.isScrolling==="smooth"&&(t+=" lenis-smooth"),t}updateClassName(){this.cleanUpClassName(),this.rootElement.className=`${this.rootElement.className} ${this.className}`.trim()}cleanUpClassName(){this.rootElement.className=this.rootElement.className.replace(/lenis(-\w+)?/g,"").trim()}};globalThis.Lenis=L;
+</script>
+<script id="training-upgrade-v2-js">
+/* ===== 8. Training upgrade v2: careers.html motion system + requested changes ===== */
+
+/* 8a. Hero moving line (same behaviour as careers.html): follows scroll direction and speed, items brighten near the centre */
+(function(){
+ var vt=document.getElementById('vt');if(!vt)return;
+ var cl=function(v){return Math.max(0,Math.min(1,v))},RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var K=[['Cloud &amp; DevOps','i-cloud'],['Full Stack','i-code'],['Data &amp; AI/ML','i-cpu'],['Cybersecurity','i-shield'],['Flutter','i-phone'],['MERN','i-layers'],['Frontend','i-monitor'],['DSA &amp; Placements','i-target'],['Faculty Development','i-board'],['Campus Workshops','i-laptop'],['QR Verified Certificates','i-cert']];
+ var one=K.map(function(k){return '<span class="vt-i"><svg viewBox="0 0 24 24"><use href="#'+k[1]+'"/></svg>'+k[0]+'</span>'}).join('');
+ var W=1,its=[],pos=0,vel=40,dir=1,boost=0,ly=scrollY,idle,vis=true,hold=false,lt=0,vw=innerWidth,rz;
+ function build(){
+  vt.innerHTML=one;var unit=vt.scrollWidth||1,n=Math.max(1,Math.ceil((innerWidth+300)/unit));
+  vt.innerHTML=one.repeat(n)+one.repeat(n);
+  W=vt.scrollWidth/2||1;
+  its=[].slice.call(vt.querySelectorAll('.vt-i')).map(function(e){return{e:e,c:e.offsetLeft+e.offsetWidth/2}});
+  pos=((pos%W)+W)%W;paint();
+ }
+ function paint(){var mid=vw/2;vt.style.transform='translate3d('+(-pos).toFixed(1)+'px,0,0)';
+  its.forEach(function(o){var x=o.c-pos;if(x<0)x+=W*2;var f=cl(1-Math.abs(x-mid)/(vw*.42));o.e.style.setProperty('--o',(.42+.58*f).toFixed(2));o.e.style.setProperty('--s',(.95+.07*f).toFixed(3));o.e.style.setProperty('--g',(f*f).toFixed(2))})}
+ build();
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(build);
+ addEventListener('load',build);
+ addEventListener('scroll',function(){var d=scrollY-ly;ly=scrollY;if(!d)return;dir=d>0?1:-1;boost=Math.min(boost+Math.abs(d)*1.4,340);clearTimeout(idle);idle=setTimeout(function(){dir=1},1100)},{passive:true});
+ addEventListener('resize',function(){vw=innerWidth;clearTimeout(rz);rz=setTimeout(build,200)});
+ if('IntersectionObserver' in window)new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(vt.parentNode);
+ vt.parentNode.addEventListener('mouseenter',function(){hold=true});vt.parentNode.addEventListener('mouseleave',function(){hold=false});
+ (function loop(t){requestAnimationFrame(loop);var dt=Math.min(t-lt,50)/1000;lt=t;if(!vis||document.hidden||RM)return;
+  boost*=.93;var tv=(42+boost)*dir*(hold?.25:1);vel+=(tv-vel)*.07;pos=(((pos+vel*dt)%W)+W)%W;paint()})(0);
+})();
+
+/* 8b. Smooth scrolling, directional reveals, tilt, card light-sweep, "Who we train" card links */
+(function(){
+ 'use strict';
+ var d=document,root=d.documentElement;
+ var rd=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+ function QA(s,r){return [].slice.call((r||d).querySelectorAll(s))}
+
+ /* A. scrolling flag: hover repaints do not fight the scroll thread */
+ var st,on=false;
+ addEventListener('scroll',function(){
+  if(!on){on=true;d.body.classList.add('is-scrolling')}
+  clearTimeout(st);st=setTimeout(function(){on=false;d.body.classList.remove('is-scrolling')},120)
+ },{passive:true});
+
+ /* B. lazy images fade in once decoded */
+ function done(im){im.classList.add('loaded')}
+ QA('img[loading="lazy"]').forEach(function(im){
+  if(im.complete&&im.naturalWidth)done(im);
+  else{im.addEventListener('load',function(){done(im)},{once:true});im.addEventListener('error',function(){done(im)},{once:true})}
+ });
+ setTimeout(function(){QA('img[loading="lazy"]:not(.loaded)').forEach(done)},4000);
+
+ /* C. smooth inertia scrolling on mouse wheel (touch keeps native scrolling) */
+ var lenis=null;
+ function goTo(t){if(lenis)lenis.scrollTo(t,{offset:-60});else t.scrollIntoView({behavior:'smooth',block:'start'})}
+ if(!rd&&window.Lenis){
+  lenis=new Lenis({duration:1.15,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t))},smoothWheel:true});
+  window.siteScroller=lenis;
+  requestAnimationFrame(function loop(t){lenis.raf(t);requestAnimationFrame(loop)});
+  d.addEventListener('click',function(e){
+   var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;
+   var id=a.getAttribute('href');if(!id||id.length<2)return;
+   var t=d.querySelector(id);if(!t)return;
+   e.preventDefault();e.stopPropagation();lenis.scrollTo(t,{offset:-60});
+  },true);
+  var navw=d.getElementById('nav');if(navw)navw.setAttribute('data-lenis-prevent','');
+ }
+
+ /* D. Who we train: whole card still jumps to its section; the new button goes to its own page */
+ d.addEventListener('click',function(e){
+  var c=e.target.closest&&e.target.closest('#aud>.c');
+  if(!c||c.classList.contains('dup')||e.target.closest('a'))return;
+  var h=c.getAttribute('data-href');if(!h)return;
+  var t=d.querySelector(h);if(t)goTo(t);
+ });
+
+ /* E. card extras: light-sweep layer on every photo / info card (not the arch cards) */
+ QA('.c').forEach(function(c){
+  if(c.closest('#aud,#testi,#corp'))return;
+  if(!c.querySelector(':scope>i.cshine'))c.insertAdjacentHTML('beforeend','<i class="cshine" aria-hidden="true"></i>');
+ });
+
+ /* F. desktop only: 3D tilt that follows the cursor */
+ if(fine&&!rd){
+  QA('#corp .c,#boot .c,#cert .c,#fdp .c,#ws .c,.vfeat .c').forEach(function(c){
+   c.classList.add('tilt');
+   c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.style.setProperty('--ry',(px*6).toFixed(2)+'deg');c.style.setProperty('--rx',(-py*6).toFixed(2)+'deg')});
+   c.addEventListener('mouseleave',function(){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')});
+  });
+ }
+
+ if(rd||!('IntersectionObserver' in window))return;
+ root.classList.add('js-fx');
+
+ /* G. left / right directions for the existing .reveal elements */
+ function cols(p){var c=getComputedStyle(p);return c.display==='grid'?Math.max(1,c.gridTemplateColumns.split(' ').length):1}
+ function dirOf(i,n){if(n<=1)return i%2?'r':'l';var x=((i%n)+.5)/n;return x<.34?'l':x>.66?'r':'u'}
+ function applyDirs(){
+  QA('.reveal').forEach(function(el){
+   el.classList.remove('rv-l','rv-r');
+   var p=el.parentNode,sibs=[].filter.call(p.children,function(c){return c.classList.contains('c')||c.classList.contains('st')||c.tagName==='LI'||c.classList.contains('sb')});
+   var i=sibs.indexOf(el),v='u';
+   if(el.classList.contains('head')||el.classList.contains('gr'))v='u';
+   else if(el.classList.contains('pic'))v='r';
+   else if(el.classList.contains('vb'))v='l';
+   else if(el.classList.contains('st'))v='l';
+   else if(i>-1)v=dirOf(i,cols(p));
+   if(v==='l')el.classList.add('rv-l');else if(v==='r')el.classList.add('rv-r');
+  });
+ }
+ applyDirs();
+
+ /* H. section heads: tag from the left, lead rises */
+ var hio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('hd-in');hio.unobserve(e.target)}})},{threshold:.15});
+ QA('.head').forEach(function(h){hio.observe(h)});
+
+ /* I. left / right reveal for stats cards, CTA and footer */
+ var fxio=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;fxio.unobserve(el);el.classList.add('fx-in');
+   setTimeout(function(){el.classList.remove('fx','fx-in');el.style.removeProperty('--fd');el.removeAttribute('data-dir')},1700)});
+ },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+ var fxList=[];
+ function addFx(el,dir,i,parent){el.classList.add('fx');el.setAttribute('data-dir',dir||'u');el.style.setProperty('--fd',((i%5)*.09).toFixed(2)+'s');if(parent)fxList.push([el,i,parent]);fxio.observe(el)}
+ QA('.sb').forEach(function(el,i){addFx(el,null,i,el.parentNode)});
+ QA('.cta>.wrap>*').forEach(function(el,i){if(el.tagName==='H2')return;addFx(el,el.classList.contains('tag')?'l':el.tagName==='P'?'r':'u',i)});
+ QA('footer .fg>*').forEach(function(el,i){addFx(el,null,i,el.parentNode)});
+ QA('footer .fb').forEach(function(el){addFx(el,'u',0)});
+ function applyFx(){fxList.forEach(function(it){if(!it[0].classList.contains('fx'))return;it[0].setAttribute('data-dir',dirOf(it[1],cols(it[2])))})}
+ applyFx();
+ var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){applyDirs();applyFx()},200)});
+})();
+</script>
+<script id="training-update-v3-js">
+/* ===== 9. Client Stories carousel (phones only): swipe, dots, autoplay (same as consultancy.html) ===== */
+(function(){
+ var tr=document.getElementById('testi'),dots=document.getElementById('tDots'),mob=matchMedia('(max-width:700px)');
+ if(!tr||!dots)return;
+ var items=QA('.c.q',tr),t=0,hold=false,rel;
+ if(!items.length)return;
+ function pad(){return parseFloat(getComputedStyle(tr).paddingLeft)||16}
+ function step(){return items[0].offsetWidth+14}
+ items.forEach(function(el,i){
+  var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Testimonial '+(i+1));
+  b.onclick=function(){tr.scrollTo({left:tr.scrollLeft+el.getBoundingClientRect().left-tr.getBoundingClientRect().left-pad(),behavior:'smooth'})};
+  dots.appendChild(b)});
+ function sync(){var n=Math.min(items.length-1,Math.max(0,Math.round(tr.scrollLeft/step())));
+  QA('button',dots).forEach(function(b,k){b.className=k===n?'on':''})}
+ tr.addEventListener('scroll',sync,{passive:true});sync();
+ function pause(){hold=true;clearTimeout(rel)}
+ function resume(){clearTimeout(rel);rel=setTimeout(function(){hold=false},2500)}
+ tr.addEventListener('touchstart',pause,{passive:true});
+ tr.addEventListener('touchend',resume);tr.addEventListener('touchcancel',resume);
+ if(reduce)return;
+ var vis=true;if('IntersectionObserver' in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting}).observe(tr);
+ setInterval(function(){
+  if(!mob.matches||hold||!vis||document.hidden){t=0;return}
+  t+=100;
+  if(t>=3500){t=0;
+   if(tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4)tr.scrollTo({left:0,behavior:'smooth'});
+   else tr.scrollBy({left:step(),behavior:'smooth'})}
+ },100);
+})();
+</script>
+<script id="training-consultancy-motion-js">
+/* ===== 10. Training motion v4: consultancy.html motion system (scroll feel, left / right reveals, hover) ===== */
+(function(){
+ 'use strict';
+ var d=document,root=d.documentElement;
+ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+ function QA(s,r){return [].slice.call((r||d).querySelectorAll(s))}
+ function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+ function ease(t){return t*t*(3-2*t)}
+
+ /* 1. Menus: Escape closes them, tapping a link in the phone menu closes it */
+ var nav=d.getElementById('nav'),mb=d.getElementById('mb');
+ function closeMenus(){
+  if(nav&&nav.classList.contains('open')){nav.classList.remove('open');if(mb)mb.setAttribute('aria-expanded','false')}
+  QA('.dd.open').forEach(function(x){x.classList.remove('open');var b=x.querySelector('button');if(b)b.setAttribute('aria-expanded','false')});
+ }
+ d.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenus()});
+ if(nav)nav.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('a'))closeMenus()});
+
+ /* 2. Footer links: underline enters and leaves on the side the cursor does */
+ if(fine){
+  QA('.fg li a,.fb a').forEach(function(a){
+   function side(e){var r=a.getBoundingClientRect();return e.clientX<r.left+r.width/2?'left':'right'}
+   a.addEventListener('mouseenter',function(e){a.style.setProperty('--o',side(e))});
+   a.addEventListener('mouseleave',function(e){a.style.setProperty('--o',side(e))});
+  });
+ }
+
+ if(reduce)return;
+
+ /* 3. One scroll frame: progress bar, curtain unfold on dark bands, hero zoom, WhatsApp boost, parallax */
+ var bar=d.getElementById('bar'),wa=d.querySelector('.wa'),hero=d.querySelector('.hero'),hb=d.querySelector('.hero-bg');
+ var cur=QA('.sec.dk,.cta');cur.forEach(function(s){s.classList.add('cur')});
+ var layers=QA('.sec,.stats-b,.cta');
+ var run=false,wt;
+ function frame(){
+  run=false;
+  var sy=scrollY,h=innerHeight,dh=root.scrollHeight-h,end=sy>=dh-4;
+  if(bar)bar.style.transform='scaleX('+(dh>0?clamp(sy/dh,0,1):0).toFixed(4)+')';
+  cur.forEach(function(s){
+   var r=s.getBoundingClientRect(),p=end?1:ease(clamp((h-r.top)/(h*.38),0,1));
+   s.style.setProperty('--p',p.toFixed(3));s.classList.toggle('full',p>=.999);
+  });
+  if(hero&&hb&&sy<h*1.4&&innerWidth>1000)hb.style.scale=(1+Math.min(sy/h,1)*.08).toFixed(4);
+  /* subtle parallax on the drifting glows, orbit and decorative rings */
+  if(hero){
+   if(innerWidth>1000){
+    var hr=hero.getBoundingClientRect();
+    if(hr.bottom>-160&&hr.top<h+160)hero.style.setProperty('--parallax-y',clamp((hr.top+hr.height*.5-h*.5)*-.035,-18,18).toFixed(2)+'px');
+    else hero.style.setProperty('--parallax-y','0px');
+   }else hero.style.setProperty('--parallax-y','0px');
+  }
+  for(var i=0;i<layers.length;i++){
+   var s=layers[i],r2=s.getBoundingClientRect();
+   if(r2.bottom<-120||r2.top>h+120){s.style.setProperty('--parallax-y','0px');continue}
+   var sp=s.classList.contains('cta')?-.018:s.classList.contains('stats-b')?-.022:-.016;
+   s.style.setProperty('--parallax-y',clamp((r2.top+r2.height*.5-h*.5)*sp,-16,16).toFixed(2)+'px');
+  }
+ }
+ function kick(){if(!run){run=true;requestAnimationFrame(frame)}}
+ addEventListener('scroll',function(){
+  kick();
+  if(wa){wa.classList.add('hot');clearTimeout(wt);wt=setTimeout(function(){wa.classList.remove('hot')},700)}
+ },{passive:true});
+ addEventListener('resize',kick);kick();
+
+ if(!('IntersectionObserver' in window))return;
+
+ /* 4. Extra left / right reveals (same .fx system as the stats, CTA and footer) */
+ var fio=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+   if(!e.isIntersecting)return;
+   var el=e.target;fio.unobserve(el);el.classList.add('fx-in');
+   setTimeout(function(){el.classList.remove('fx','fx-in');el.style.removeProperty('--fd');el.removeAttribute('data-dir')},1700);
+  });
+ },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+ function addFx(el,dir,delay){
+  if(!el||el.classList.contains('fx'))return;
+  el.classList.add('fx');el.setAttribute('data-dir',dir);el.style.setProperty('--fd',(delay||0).toFixed(2)+'s');fio.observe(el);
+ }
+ if(root.classList.contains('js-fx')){
+  QA('.sp>div:first-child').forEach(function(col){
+   addFx(col.querySelector(':scope>.tag'),'l',0);
+   addFx(col.querySelector(':scope>.lead'),'l',.12);
+  });
+  QA('.stats-b .wrap>.tag').forEach(function(t){addFx(t,'l',0)});
+ }
+
+ /* 5. Hover effects (mouse only): step rows tilt with a light, card photos and titles drift, magnetic buttons */
+ if(fine){
+  QA('.sp .st').forEach(function(c){
+   c.addEventListener('pointermove',function(e){
+    var r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+    c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
+    c.style.setProperty('--ry',((x/r.width-.5)*5).toFixed(2)+'deg');
+    c.style.setProperty('--rx',((.5-y/r.height)*4).toFixed(2)+'deg');
+    c.classList.add('tilting');
+   });
+   c.addEventListener('pointerleave',function(){
+    c.classList.remove('tilting');c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg');
+   });
+  });
+  QA('#boot .c,#cert .c,#fdp .c,#ws .c,#corp .c').forEach(function(c){
+   c.addEventListener('mousemove',function(e){
+    var r=c.getBoundingClientRect();
+    c.style.setProperty('--px',((e.clientX-r.left)/r.width*2-1).toFixed(3));
+    c.style.setProperty('--py',((e.clientY-r.top)/r.height*2-1).toFixed(3));
+   });
+   c.addEventListener('mouseleave',function(){c.style.setProperty('--px',0);c.style.setProperty('--py',0)});
+  });
+  QA('.center .btn,.gr .btn').forEach(function(b){
+   b.addEventListener('pointermove',function(e){
+    var r=b.getBoundingClientRect();
+    b.style.translate=((e.clientX-r.left-r.width/2)*.2).toFixed(1)+'px '+((e.clientY-r.top-r.height/2)*.3).toFixed(1)+'px';
+   });
+   b.addEventListener('pointerleave',function(){
+    var from=b.style.translate||'0px 0px';b.style.translate='';
+    if(b.animate)b.animate([{translate:from},{translate:'0px 0px'}],{duration:450,easing:'cubic-bezier(.22,1,.36,1)'});
+   });
+  });
+ }
 })();
 </script>
 </body>
