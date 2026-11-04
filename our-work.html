@@ -798,6 +798,104 @@ body i.rl{position:absolute;inset:0;z-index:6;border-radius:inherit;padding:3px;
 /* Top bar always stays visible */
 .site-header,.site-header.hide{position:sticky;top:0;transform:none!important}
 </style>
+<style id="ow-fx-css">
+/* ===== 1. no decorative underlines, dashes or arrows ===== */
+.head h2::after,.head.c h2::after,.head.drawn h2::after,.eng-body h3::after,.proj .pi h3::after,.proj:hover .pi h3::after,.nav-links>li>a::after,.dd-btn::after,.link::after{display:none!important;content:none!important}
+.pts li{border-bottom:0!important}
+.stats::after,.cta::after{border:1.5px solid rgba(255,255,255,.1)!important}
+.proj .go,.xg{display:none!important}
+.nav-links>li>a:hover,.dd-btn:hover{color:#fff}
+
+/* ===== 2. entrances (same system as Home and About) ===== */
+.px-l{--fx:-72px;--fy:0px}.px-r{--fx:72px;--fy:0px}.px-u{--fx:0px;--fy:38px}
+@media(max-width:700px){.px-l{--fx:-30px}.px-r{--fx:30px}.px-u{--fy:22px}}
+.px-pre{opacity:0;translate:var(--fx) var(--fy)}
+.px-go.px-go{animation:pxIn 1s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--pd,0s)}
+@keyframes pxIn{from{opacity:0;translate:var(--fx) var(--fy)}to{opacity:1;translate:0 0}}
+
+/* ===== 3. cursor light + depth on hover ===== */
+.sp2{position:absolute;inset:0;z-index:4;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s ease;
+ background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(var(--sg,143,132,242),.16),transparent 62%)}
+.sp2::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
+ background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgb(var(--sg,91,75,232)),rgba(130,200,235,.75) 45%,transparent 75%);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+ mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+*:hover>.sp2,.spot-on>.sp2{opacity:1}
+.flag.dpx .chip{translate:calc(var(--dx,0)*-8px) calc(var(--dy,0)*-5px)}
+.flag.dpx h3{translate:calc(var(--dx,0)*10px) calc(var(--dy,0)*6px)}
+.flag.dpx .ov>p{translate:calc(var(--dx,0)*14px) calc(var(--dy,0)*8px)}
+.flag.dpx .vb{translate:calc(var(--dx,0)*20px) calc(var(--dy,0)*10px)}
+.proj.dpx .tg{translate:calc(var(--dx,0)*-12px) calc(var(--dy,0)*-8px)}
+.proj.dpx .pi{translate:calc(var(--dx,0)*12px) calc(var(--dy,0)*7px)}
+.eng-item.dpx .eng-body h3{translate:calc(var(--dx,0)*10px) calc(var(--dy,0)*6px)}
+.eng-item.dpx .eng-body>p{translate:calc(var(--dx,0)*14px) calc(var(--dy,0)*8px)}
+.eng-item.dpx .res,.eng-item.dpx .tags{translate:calc(var(--dx,0)*20px) calc(var(--dy,0)*10px)}
+.eng-item.dpx .eng-cat{translate:calc(var(--dx,0)*-10px) calc(var(--dy,0)*-6px)}
+.rv-c.dpx .who{translate:calc(var(--dx,0)*-8px) calc(var(--dy,0)*-5px)}
+.rv-c.dpx p{translate:calc(var(--dx,0)*10px) calc(var(--dy,0)*6px)}
+.rv-c.dpx .rf{translate:calc(var(--dx,0)*16px) calc(var(--dy,0)*8px)}
+@media(hover:none){.sp2{display:none}.spot-on>.sp2{display:block}}
+
+/* ===== 4. reviews: same section as Home ===== */
+@keyframes spinAng{to{--ang:360deg}}
+.rev{position:relative;background:var(--navy)!important;background-image:radial-gradient(700px 360px at 10% 0,rgba(143,132,242,.22),transparent 70%)!important;overflow:hidden}
+.rev .head h2{color:#fff}.rev .head p{color:#b4b6dc}
+.rev::before,.rev::after{content:"";position:absolute;border-radius:50%;pointer-events:none;z-index:0;animation:orb 14s ease-in-out infinite}
+.rev::before{width:520px;height:520px;left:-170px;bottom:-200px;background:radial-gradient(circle,rgba(91,75,232,.5),transparent 70%);translate:0 calc(var(--bp,0)*60px)}
+.rev::after{width:460px;height:460px;right:-150px;top:-160px;background:radial-gradient(circle,rgba(130,200,235,.3),transparent 70%);animation-direction:reverse;translate:0 calc(var(--bp,0)*-50px)}
+.rev>.wrap,.rev>.rv-mq{position:relative;z-index:1}
+.rv-mq{position:relative;margin-top:44px;padding:22px 0 30px;contain:paint;touch-action:pan-y;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.rv-track{display:flex;gap:22px;width:max-content;animation:rvmq var(--rvd,90s) linear infinite;will-change:transform;backface-visibility:hidden}
+.rv-mq:hover .rv-track{animation-play-state:paused}
+.rv-mq:active .rv-track,.rv-c:hover{animation-play-state:running}
+@keyframes rvmq{to{transform:translateX(-50%)}}
+.rv-c{position:relative;flex:none;width:clamp(290px,30vw,400px);display:flex;flex-direction:column;gap:16px;padding:26px;border-radius:22px;background:#fff;color:var(--ink);border:1px solid rgba(255,255,255,.9);
+ box-shadow:0 0 0 1px rgba(143,132,242,.35),0 0 26px -4px rgba(143,132,242,.45),0 24px 44px -26px rgba(0,0,0,.65);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.rv-c::before{content:"\201C";position:absolute;right:20px;top:8px;font:700 84px/1 Georgia,serif;color:var(--soft);pointer-events:none}
+.rv-c::after{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit;padding:2px;opacity:.6;pointer-events:none;
+ background:conic-gradient(from var(--ang),#5b4be8,#82c8eb,#a9a3ee,#5b4be8);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;transition:opacity .4s}
+.rv-c>*{position:relative;z-index:1}
+.rv-c.g::before{color:#e3e0ff}
+.rv-c .who{display:flex;align-items:center;gap:12px}
+.rv-c .av{width:46px;height:46px;border-radius:50%;object-fit:cover;background:var(--mist);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--peri)}
+.rv-c .av.ini{display:grid;place-items:center;flex:none;background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff;font:700 18px var(--fd)}
+.rv-c strong{display:block;font:600 15px/1.2 var(--fd);color:var(--navy)}.rv-c small{color:var(--mute);font-size:13px}
+.rv-c p{flex:1;margin:0;font-size:14.5px;line-height:1.7;color:#3a3c5c}
+.rv-c .rf{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.rv-c .rs{color:#f0a91c;letter-spacing:3px;font-size:15px;text-shadow:0 0 12px rgba(240,169,28,.7);animation:none}
+@media(hover:hover){
+ .rv-c:hover{transform:translateY(-10px) scale(1.015);box-shadow:0 0 0 1px rgba(91,75,232,.6),0 0 44px 2px rgba(143,132,242,.7),0 34px 56px -24px rgba(0,0,0,.8)}
+ .rv-c:hover::after{opacity:1;animation:spinAng 3s linear infinite}
+ .rv-c:hover .av{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ind)}
+ .rv-c:hover strong{color:var(--ind)}
+}
+@media(max-width:700px){.rv-c{width:min(84vw,330px)}.rv-c .rf{flex-wrap:wrap}.rev::before,.rev::after{width:260px;height:260px}}
+@media(prefers-reduced-motion:reduce){.px-pre{opacity:1;translate:none}.px-go.px-go{animation:none}.sp2{display:none}.rev::before,.rev::after{animation:none}.rv-mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.rv-track{animation:none}}
+
+/* ===== 5. animated borders ===== */
+/* Featured: two projects, a light that travels around the frame */
+.flag{background:var(--navy)!important;box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(143,132,242,.25)}
+.flags .flag::before{display:block!important;content:"";position:absolute;inset:0;z-index:3;pointer-events:none;opacity:1;border-radius:inherit;padding:5px;
+ background:conic-gradient(from var(--ang),rgba(91,75,232,.35),#8f84f2 12%,#82c8eb 24%,#fff 30%,#82c8eb 36%,rgba(91,75,232,.35) 50%,#5b4be8 66%,#a9a3ee 82%,rgba(91,75,232,.35));
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+ animation:spinAng 6s linear infinite;filter:drop-shadow(0 0 7px rgba(143,132,242,.75))}
+.flags .flag:hover::before{animation-duration:2.4s;filter:drop-shadow(0 0 12px rgba(130,200,235,.95))}
+.flag:hover{box-shadow:0 34px 80px rgba(91,75,232,.55),0 0 0 1px rgba(130,200,235,.5)}
+
+/* Browse by industry: fine gradient frame that slowly circles each card, speeds up on hover */
+.proj{border:0!important;box-shadow:0 14px 34px rgba(91,75,232,.18),0 0 0 1px rgba(91,75,232,.18)}
+.proj .bd{position:absolute;inset:0;z-index:5;border-radius:inherit;padding:2px;pointer-events:none;opacity:.8;
+ background:conic-gradient(from var(--ang),rgba(143,132,242,.18),#8f84f2 14%,#82c8eb 26%,rgba(143,132,242,.18) 42%,rgba(130,200,235,.18) 62%,#5b4be8 80%,rgba(143,132,242,.18));
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+ animation:spinAng 9s linear infinite;transition:opacity .4s,padding .3s}
+.proj:hover .bd{opacity:1;padding:3px;animation-duration:2.8s;filter:drop-shadow(0 0 8px rgba(143,132,242,.8))}
+.proj:hover{box-shadow:0 26px 54px rgba(91,75,232,.4),0 0 0 1px rgba(130,200,235,.4)}
+@media(prefers-reduced-motion:reduce){.flags .flag::before,.proj .bd{animation:none}}
+
+/* ===== 6. Explore our work: invisible timer keeps the steps moving one by one ===== */
+.xr::after{opacity:0!important}
+</style>
 </head>
 <body class="ready">
 
@@ -858,14 +956,14 @@ body i.rl{position:absolute;inset:0;z-index:6;border-radius:inherit;padding:3px;
 
 <section class="cat-sec xp-sec" aria-labelledby="wk"><div class="wrap">
 <div class="head c"><span class="eyebrow">Where we work</span><h2 id="wk">Explore our work</h2><p>Hover a path to preview what we have built, then jump straight in.</p></div>
-<div class="xp" id="xp"><div class="xp-view" aria-hidden="true"><div class="xs on"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy" onerror="this.remove()"></div><div class="xs"><img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy" onerror="this.remove()"></div><div class="xs"><img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt="" loading="lazy" onerror="this.remove()"></div><div class="xs g"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="" loading="lazy" onerror="this.remove()"><div class="gt"><div class="av"><img src="https://www.algoorbit.in/static/images/review/riya.png" alt=""><img src="https://www.algoorbit.in/static/images/review/meera.png" alt=""><img src="https://www.algoorbit.in/static/images/review/prajna.jpg" alt=""></div><h3>Partner feedback</h3><p>Real results from real partnerships.</p><span class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div><div class="xs g"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy" onerror="this.remove()"><div class="gt"><svg class="ui"><use href="#i-mail"/></svg><h3>Let’s build together</h3><p>Talk to our team at connect@algoorbit.in</p></div></div></div><ul class="xp-list"><li><a class="xr on" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-cafe"/></svg></span><span class="xt"><strong>Café System</strong><small>Food &amp; Beverage</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-clinic"/></svg></span><span class="xt"><strong>Clinic System</strong><small>Healthcare</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><span class="xt"><strong>Campus Training</strong><small>Education</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="#feedback"><span class="ic"><svg class="ui"><use href="#i-check"/></svg></span><span class="xt"><strong>Feedback</strong><small>Partners and learners</small></span><span class="xg">&rarr;</span></a></li><li><a class="xr" href="contact.html"><span class="ic"><svg class="ui"><use href="#i-mail"/></svg></span><span class="xt"><strong>Contact</strong><small>Talk to our team</small></span><span class="xg">&rarr;</span></a></li></ul></div></div></section>
+<div class="xp" id="xp"><div class="xp-view" aria-hidden="true"><div class="xs on"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=85" alt="" loading="lazy" onerror="this.remove()"></div><div class="xs"><img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1000&q=85" alt="" loading="lazy" onerror="this.remove()"></div><div class="xs"><img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt="" loading="lazy" onerror="this.remove()"></div><div class="xs g"><img src="https://www.algoorbit.in/static/images/events/nitte2.jpeg" alt="" loading="lazy" onerror="this.remove()"><div class="gt"><div class="av"><img src="https://www.algoorbit.in/static/images/review/riya.png" alt=""><img src="https://www.algoorbit.in/static/images/review/meera.png" alt=""><img src="https://www.algoorbit.in/static/images/review/prajna.jpg" alt=""></div><h3>Partner feedback</h3><p>Real results from real partnerships.</p><span class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div><div class="xs g"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy" onerror="this.remove()"><div class="gt"><svg class="ui"><use href="#i-mail"/></svg><h3>Let’s build together</h3><p>Talk to our team at connect@algoorbit.in</p></div></div></div><ul class="xp-list"><li><a class="xr on" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-cafe"/></svg></span><span class="xt"><strong>Café System</strong><small>Food &amp; Beverage</small></span></a></li><li><a class="xr" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-clinic"/></svg></span><span class="xt"><strong>Clinic System</strong><small>Healthcare</small></span></a></li><li><a class="xr" href="#case-studies"><span class="ic"><svg class="ui"><use href="#i-layers"/></svg></span><span class="xt"><strong>Campus Training</strong><small>Education</small></span></a></li><li><a class="xr" href="#reviews"><span class="ic"><svg class="ui"><use href="#i-check"/></svg></span><span class="xt"><strong>Feedback</strong><small>Partners and learners</small></span></a></li><li><a class="xr" href="contact.html"><span class="ic"><svg class="ui"><use href="#i-mail"/></svg></span><span class="xt"><strong>Contact</strong><small>Talk to our team</small></span></a></li></ul></div></div></section>
 
 <section class="sec dk">
  <div class="wrap">
   <div class="head c"><span class="eyebrow">Featured work</span><h2>Two projects. Endless impact.</h2><p>Our flagship builds.</p></div>
   <div class="flags" id="flags">
-   <a class="flag" href="works/luminae.html"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&h=600&fit=crop&q=85" alt="Luminae Interior" loading="lazy"><div class="ov"><span class="chip">Interior Design</span><h3>Luminae Interior</h3><p>A luxury design studio that needed a digital space as beautiful as the spaces they create.</p><span class="vb">View project →</span></div></a>
-   <a class="flag" href="works/bramhari.html"><img src="https://www.algoorbit.in/static/images/sharon/banner.png" alt="Bramhari Fashion" style="object-position:center top" loading="lazy"><div class="ov"><span class="chip">Fashion &amp; Tailoring</span><h3>Bramhari Fashion</h3><p>A royal Indian fashion designer &amp; tailoring studio in Karkala, where every stitch tells a story.</p><span class="vb">View project →</span></div></a>
+   <a class="flag" href="works/luminae.html"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&h=600&fit=crop&q=85" alt="Luminae Interior" loading="lazy"><div class="ov"><span class="chip">Interior Design</span><h3>Luminae Interior</h3><p>A luxury design studio that needed a digital space as beautiful as the spaces they create.</p><span class="vb">View project</span></div></a>
+   <a class="flag" href="works/bramhari.html"><img src="https://www.algoorbit.in/static/images/sharon/banner.png" alt="Bramhari Fashion" style="object-position:center top" loading="lazy"><div class="ov"><span class="chip">Fashion &amp; Tailoring</span><h3>Bramhari Fashion</h3><p>A royal Indian fashion designer &amp; tailoring studio in Karkala, where every stitch tells a story.</p><span class="vb">View project</span></div></a>
   </div>
  </div>
 </section>
@@ -883,20 +981,10 @@ body i.rl{position:absolute;inset:0;z-index:6;border-radius:inherit;padding:3px;
  </div>
 </section>
 
-<section id="case-studies" class="sec dk"><div class="wrap"><div class="head c"><span class="eyebrow">Case studies</span><h2>Selected engagements</h2><p>Real-world challenges solved through code and structured workshops.</p></div><div class="eng" id="eng"><article class="eng-item" style="--n:0;--a:#f6a45b;--b:#e8743b;--g:246,164,91"><div class="eng-img"><svg class="ui eg"><use href="#i-cafe"/></svg><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80" alt="Coffee cup on a café table" loading="lazy" onerror="this.remove()"><span class="eng-cat"><svg class="ui"><use href="#i-cafe"/></svg>Food &amp; Beverage</span></div><div class="eng-body"><h3>Café Management System</h3><p>Unified ordering, table allocation, and staff payouts into a single portal, cutting order confusion and reducing settlement delays.</p><ul class="pts"><li>Unified ordering</li><li>Table allocation</li><li>Staff payouts</li></ul><div class="res"><svg class="ui"><use href="#i-check"/></svg>Less order confusion, faster settlements</div><div class="tags"><span>Web App</span><span>Payments</span><span>Node.js</span></div></div></article><article class="eng-item" style="--n:1;--a:#82c8eb;--b:#2a8fcf;--g:47,167,224"><div class="eng-img"><svg class="ui eg"><use href="#i-clinic"/></svg><img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1000&q=80" alt="Stethoscope and medical equipment" loading="lazy" onerror="this.remove()"><span class="eng-cat"><svg class="ui"><use href="#i-clinic"/></svg>Healthcare</span></div><div class="eng-body"><h3>Clinic Management System</h3><p>Developed an intuitive appointment scheduler, digital patient records, and billing workflow that staff adopted within days.</p><ul class="pts"><li>Appointment scheduler</li><li>Digital records</li><li>Billing workflow</li></ul><div class="res"><svg class="ui"><use href="#i-check"/></svg>Adopted by staff within days</div><div class="tags"><span>Dashboard</span><span>Billing</span><span>Healthcare</span></div></div></article><article class="eng-item" style="--n:2;--a:#a9a3ee;--b:#7a6df0;--g:143,132,242"><div class="eng-img"><svg class="ui eg"><use href="#i-layers"/></svg><img src="https://www.algoorbit.in/static/images/events/nitte3.png" alt="Campus training at NMAMIT Nitte" loading="lazy" onerror="this.remove()"><span class="eng-cat"><svg class="ui"><use href="#i-layers"/></svg>Education</span></div><div class="eng-body"><h3>Campus Training at NMAMIT Nitte</h3><p>Delivered an intensive 8-week, project-first training program covering software engineering practices for 52 engineering students.</p><ul class="pts"><li>8-week program</li><li>Project-first</li><li>Placement ready</li></ul><div class="res"><svg class="ui"><use href="#i-check"/></svg>8 weeks &middot; 52 engineering students</div><div class="tags"><span>Bootcamp</span><span>Full-Stack</span><span>Placement</span></div></div></article></div></div></section>
+<section id="case-studies" class="sec dk"><div class="wrap"><div class="head c"><span class="eyebrow">Case studies</span><h2>Selected engagements</h2><p>Real-world challenges solved through code and structured workshops.</p></div><div class="eng" id="eng"><article class="eng-item" style="--n:0;--a:#f6a45b;--b:#e8743b;--g:246,164,91"><div class="eng-img"><svg class="ui eg"><use href="#i-cafe"/></svg><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=85" alt="Modern café interior" loading="lazy" onerror="this.remove()"><span class="eng-cat"><svg class="ui"><use href="#i-cafe"/></svg>Food &amp; Beverage</span></div><div class="eng-body"><h3>Café Management System</h3><p>Unified ordering, table allocation, and staff payouts into a single portal, cutting order confusion and reducing settlement delays.</p><ul class="pts"><li>Unified ordering</li><li>Table allocation</li><li>Staff payouts</li></ul><div class="res"><svg class="ui"><use href="#i-check"/></svg>Less order confusion, faster settlements</div><div class="tags"><span>Web App</span><span>Payments</span><span>Node.js</span></div></div></article><article class="eng-item" style="--n:1;--a:#82c8eb;--b:#2a8fcf;--g:47,167,224"><div class="eng-img"><svg class="ui eg"><use href="#i-clinic"/></svg><img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1000&q=85" alt="Modern hospital building" loading="lazy" onerror="this.remove()"><span class="eng-cat"><svg class="ui"><use href="#i-clinic"/></svg>Healthcare</span></div><div class="eng-body"><h3>Clinic Management System</h3><p>Developed an intuitive appointment scheduler, digital patient records, and billing workflow that staff adopted within days.</p><ul class="pts"><li>Appointment scheduler</li><li>Digital records</li><li>Billing workflow</li></ul><div class="res"><svg class="ui"><use href="#i-check"/></svg>Adopted by staff within days</div><div class="tags"><span>Dashboard</span><span>Billing</span><span>Healthcare</span></div></div></article><article class="eng-item" style="--n:2;--a:#a9a3ee;--b:#7a6df0;--g:143,132,242"><div class="eng-img"><svg class="ui eg"><use href="#i-layers"/></svg><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=85" alt="Students in a campus training session" loading="lazy" onerror="this.remove()"><span class="eng-cat"><svg class="ui"><use href="#i-layers"/></svg>Education</span></div><div class="eng-body"><h3>Campus Training at NMAMIT Nitte</h3><p>Delivered an intensive 8-week, project-first training program covering software engineering practices for 52 engineering students.</p><ul class="pts"><li>8-week program</li><li>Project-first</li><li>Placement ready</li></ul><div class="res"><svg class="ui"><use href="#i-check"/></svg>8 weeks &middot; 52 engineering students</div><div class="tags"><span>Bootcamp</span><span>Full-Stack</span><span>Placement</span></div></div></article></div></div></section>
 
 
-<section id="feedback" class="sec alt">
- <div class="wrap">
-  <div class="head c"><span class="eyebrow">Testimonials</span><h2>Feedback from our partners</h2><p>Real results from real partnerships.</p></div>
-  <div class="t-track" id="tTrack">
-   <figure class="quote"><div class="who"><img src="https://www.algoorbit.in/static/images/review/riya.png" alt="" loading="lazy"><span><strong>Riya Fernandes</strong><small>Owner, Brew &amp; Bean Café</small></span></div><p>“Algo Orbit completely transformed how we run our café. The management system they built handles orders, staff scheduling, and payments seamlessly. The team was professional, fast, and genuinely cared about our success.”</p><div class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</div></figure>
-   <figure class="quote"><div class="who"><img src="https://www.algoorbit.in/static/images/review/meera.png" alt="" loading="lazy"><span><strong>Dr. Meera Rao</strong><small>Harmony Health Clinic</small></span></div><p>“The clinic management system Algo Orbit delivered was clean, practical, and exceeded every expectation. Patient scheduling, records, and billing, all in one intuitive system. Our staff adopted it in days.”</p><div class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</div></figure>
-   <figure class="quote"><div class="who"><img src="https://www.algoorbit.in/static/images/review/prajna.jpg" alt="" loading="lazy"><span><strong>Prajna Mendon</strong><small>NMAMIT Nitte</small></span></div><p>“The training program at Algo Orbit didn’t just teach me to code; it taught me to think like a developer. Real projects, real mentors, real feedback. I landed my first job offer before the program even ended.”</p><div class="rs">&#9733;&#9733;&#9733;&#9733;&#9733;</div></figure>
-  </div>
-  <div class="dots" id="tDots"></div>
- </div>
-</section>
+<section class="sec rev" id="reviews"><div class="wrap"><div class="head c"><h2>What our clients and learners say</h2><p>Feedback from the businesses, clinics and students we have worked with.</p></div></div><div class="rv-mq" aria-label="Client and learner reviews"><div class="rv-track" id="rvTrack"></div></div></section>
 
 <div class="cta">
  <h2>Got an idea? Let's build it.</h2>
@@ -966,7 +1054,7 @@ var P=[
 ];
 var esc=function(s){return s.replace(/&/g,'&amp;')};
 var grid=$('#proj-grid');
-grid.innerHTML=P.map(function(p,i){return '<a class="proj" data-cat="'+p[0]+'" href="'+p[4]+'"'+(/^https?:/.test(p[4])?' target="_blank" rel="noopener"':'')+'><img src="'+p[5]+'" alt="'+esc(p[2])+'" loading="lazy"><span class="sh"></span><div class="tg"><span class="ib">'+p[1]+'</span>'+(p[6]?'<span class="nb">New</span>':'')+'</div><span class="go" aria-hidden="true">&rarr;</span><div class="pi"><span class="ind">'+p[1]+'</span><h3>'+esc(p[2])+'</h3><p>'+esc(p[3])+'</p></div></a>'}).join('');
+grid.innerHTML=P.map(function(p,i){return '<a class="proj" data-cat="'+p[0]+'" href="'+p[4]+'"'+(/^https?:/.test(p[4])?' target="_blank" rel="noopener"':'')+'><img src="'+p[5]+'" alt="'+esc(p[2])+'" loading="lazy"><span class="sh"></span><div class="tg"><span class="ib">'+p[1]+'</span>'+(p[6]?'<span class="nb">New</span>':'')+'</div><div class="pi"><span class="ind">'+p[1]+'</span><h3>'+esc(p[2])+'</h3><p>'+esc(p[3])+'</p></div></a>'}).join('');
 
 // Filters + search (work together)
 (function(){var f='all',q='',pq=$('#pq'),none=$('#noRes');
@@ -989,25 +1077,6 @@ apply(false);
 // Count-up
 function countUp(el){var t=+el.dataset.count,s=null;(function step(ts){s=s||ts;var k=Math.min((ts-s)/1600,1);el.textContent=Math.floor((1-Math.pow(1-k,3))*t).toLocaleString('en-IN');if(k<1)requestAnimationFrame(step)})(performance.now())}
 
-
-// Scroll reveal (skipped for cards inside the mobile moving strips)
-if(!reduce){var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('rv','in');el.style.transitionDelay=''},1500)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
- $$('.head,.xr,.xp-view,.flag,.proj,.eng-item,.quote,.cta>*').forEach(function(el){
-  if(el.classList.contains('dup')||(false))return;
-  var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('rv');el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)})}
-
-// Heading underline draw
-var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('drawn');dio.unobserve(e.target)}})},{threshold:.6});
-$$('.head').forEach(function(el){dio.observe(el)});
-
-// Testimonials carousel with dots (desktop/tablet; mobile uses the moving strip)
-(function(){var track=$('#tTrack'),dots=$('#tDots'),items=$$('.quote:not(.dup)',track),t=0,hold=false,step=function(){return items[0].offsetWidth+22};
- track.onmouseenter=function(){hold=true};track.onmouseleave=function(){hold=false};
- items.forEach(function(_,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Slide '+(i+1));b.onclick=function(){track.scrollTo({left:items[i].offsetLeft-track.offsetLeft,behavior:'smooth'})};dots.appendChild(b)});
- track.addEventListener('scroll',function(){var n=Math.min(items.length-1,Math.round(track.scrollLeft/step()));$$('button',dots).forEach(function(b,k){b.className=k===n?'on':''})});track.dispatchEvent(new Event('scroll'));
- if(reduce)return;
- setInterval(function(){if(hold||document.hidden||false)return;t+=100;
-  if(t>=3500){t=0;if(track.scrollLeft+track.clientWidth>=track.scrollWidth-4)track.scrollTo({left:0,behavior:'smooth'});else track.scrollBy({left:step(),behavior:'smooth'})}},100)})();
 
 // Zoom transition when opening a project page (internal links only)
 (function(){var clone=$('#zoomClone'),flash=$('#flashLayer');
@@ -1047,17 +1116,6 @@ if(!reduce){var bg=$('.hero-bg'),hero=$('.hero');addEventListener('scroll',funct
 $$('.sec.dk,.sec.alt').forEach(function(sec){sec.insertAdjacentHTML('afterbegin','<i class="blob b1" aria-hidden="true"></i><i class="blob b2" aria-hidden="true"></i>')});
 $$('.sec.dk').forEach(function(sec){sec.addEventListener('mousemove',function(e){var r=sec.getBoundingClientRect();sec.style.setProperty('--sx',(e.clientX-r.left)+'px');sec.style.setProperty('--sy',(e.clientY-r.top)+'px')})});
 
-// Headline words rise one by one
-(function(){
- function e2(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
- var heads=$$('.head h2,.cta h2,.stats h2');
- heads.forEach(function(h){var i=0,label=h.textContent.replace(/\s+/g,' ').trim();
-  h.setAttribute('aria-label',label);
-  h.innerHTML=label.split(' ').map(function(w){return'<span class="w" aria-hidden="true" style="--i:'+(i++)+'"><span>'+e2(w)+'</span></span>'}).join(' ');
-  if(reduce)h.classList.add('wd')});
- if(!reduce){var wio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('wd');wio.unobserve(e.target)}})},{threshold:.4});heads.forEach(function(h){wio.observe(h)})}
-})();
-
 // Hero: interactive particle network
 (function(){var h=$('.hero');if(!h||reduce)return;
  var c=document.createElement('canvas');c.className='pcv';c.setAttribute('aria-hidden','true');h.insertBefore(c,h.firstChild);
@@ -1090,7 +1148,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
  var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))},
   reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,
   fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
- if(fine&&!reduce){$$('.cat,.card,.quote,.eng-item,.stat').forEach(function(c){
+ if(fine&&!reduce){$$('.cat,.card,.quote,.stat').forEach(function(c){
   var s=document.createElement('i');s.className='spot';s.setAttribute('aria-hidden','true');c.appendChild(s);
   c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--px',(e.clientX-r.left)+'px');c.style.setProperty('--py',(e.clientY-r.top)+'px')})})}
  var t=document.createElement('button');t.className='totop';t.type='button';t.setAttribute('aria-label','Back to top');
@@ -1109,10 +1167,6 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
 (function(){if(reduce)return;var it=$$('.eng-item');if(it.length<2)return;
  function u(){if(innerWidth<1001)return;it.forEach(function(c,i){var n=it[i+1];if(!n)return;var t=n.getBoundingClientRect().top,s=84+(i+1)*18;c.style.setProperty('--k',Math.min(1,Math.max(0,(innerHeight*.85-t)/(innerHeight*.85-s))).toFixed(3))})}
  addEventListener('scroll',u,{passive:true});u()})();
-// Testimonials: the card in view is highlighted
-(function(){var t=$('#tTrack');if(!t||!('IntersectionObserver' in window))return;t.classList.add('qa');
- var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('cur',e.isIntersecting)})},{root:t,threshold:.6});
- $$('.quote',t).forEach(function(q){io.observe(q)})})();
 // Training sub-menu
 (function(){var q=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
  q('.sub-btn').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var li=b.parentNode,o=!li.classList.contains('open');li.classList.toggle('open',o);b.setAttribute('aria-expanded',o)})});
@@ -1145,116 +1199,6 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
  addEventListener('scroll',function(){if(!busy2){busy2=true;requestAnimationFrame(upd)}},{passive:true});upd();
 })();
 </script>
-<script id="scroll-replay-all">
-/* =====================================================================
-   SCROLL ANIMATIONS THAT KEEP WORKING (no more play-once)
-   Everything that used to animate only the first time it appeared now
-   replays whenever it comes back into view, scrolling down or up:
-   reveals, heading words + underline, staggered pop-ins, image masks,
-   route/arch/orb/step reveals and number count-ups.
-   Cards also keep drifting at different speeds while you scroll
-   (same effect as the Careers page).
-   ===================================================================== */
-(function(){
- if((typeof reduce!=='undefined'&&reduce)||!('IntersectionObserver' in window))return;
- var QA=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
- try{if(typeof rio!=='undefined'&&rio&&rio.disconnect)rio.disconnect()}catch(e){}
-
- /* generic watcher: on() when visible enough, off() once fully out of view */
- function watch(els,th,on,off){
-  if(!els.length)return;
-  var o=new IntersectionObserver(function(es){es.forEach(function(e){
-   if(e.intersectionRatio>=th||(e.isIntersecting&&e.intersectionRect.height>=innerHeight*.3))on(e.target);
-   else if(!e.isIntersecting)off(e.target);
-  })},{threshold:[0,th]});
-  els.forEach(function(el){o.observe(el)});
- }
-
- /* ---- 1. scroll reveals: hide again when out of view, play again on return ---- */
- var rv=QA('.rv');
- rv.forEach(function(el){el._dl=el.style.transitionDelay||'';el.style.transitionDelay='';el._on=false;el.classList.add('rv');el.classList.remove('in')});
- if(rv.length){
-  var TH=[0,.03,.06,.09,.12,.2,.3,.4,.5];
-  var ro=new IntersectionObserver(function(es){es.forEach(function(e){
-   var el=e.target,enough=e.intersectionRatio>=.12||(e.isIntersecting&&e.intersectionRect.height>=innerHeight*.25);
-   if(!el._on&&enough){
-    el._on=true;clearTimeout(el._t);
-    el.classList.add('rv');el.style.transitionDelay=el._dl;el.classList.add('in');
-    /* after the entrance, free the element so hover effects work */
-    el._t=setTimeout(function(){el.classList.remove('rv','in');el.style.transitionDelay=''},1500);
-   }else if(el._on&&!e.isIntersecting){
-    el._on=false;clearTimeout(el._t);el.style.transitionDelay='';
-    el.classList.add('rv');el.classList.remove('in');
-   }
-  })},{threshold:TH,rootMargin:'0px 0px -40px 0px'});
-  rv.forEach(function(el){ro.observe(el)});
- }
-
- /* ---- 2. heading underline + words rise: replay ---- */
- watch(QA('.head,.section-head'),.5,function(el){el.classList.add('drawn')},function(el){el.classList.remove('drawn')});
- var hs=[];QA('.w').forEach(function(w){var h=w.parentNode;if(hs.indexOf(h)<0)hs.push(h)});
- watch(hs,.4,function(el){el.classList.add('wd')},function(el){el.classList.remove('wd')});
-
- /* ---- 3. staggered pop-ins (chips, tiles, list rows...) ---- */
- QA('.sx').forEach(function(el){
-  el._sxc=['sx','sx-l','sx-r'].filter(function(c){return el.classList.contains(c)});
-  el._k=el.style.getPropertyValue('--k')||'0';el._sx=false;
- });
- watch(QA('.sx'),.2,function(el){
-  if(el._sx)return;el._sx=true;
-  el.style.setProperty('--k',el._k);el.classList.remove('sx-in');
-  el.classList.add.apply(el.classList,el._sxc);void el.offsetWidth;el.classList.add('sx-in');
-  el.addEventListener('animationend',function(){el.classList.remove('sx','sx-in','sx-l','sx-r');el.style.removeProperty('--k')},{once:true});
- },function(el){
-  if(!el._sx)return;el._sx=false;
-  el.classList.add.apply(el.classList,el._sxc);el.classList.remove('sx-in');el.style.setProperty('--k',el._k);
- });
-
- /* ---- 4. image masks, routes, arches, orbs, product cards ---- */
- watch(QA('img.mk'),.15,function(el){el.classList.add('on')},function(el){el.classList.remove('on')});
- watch(QA('#arches,#flow,#orbs,.mosaic'),.2,function(el){el.classList.add('go')},function(el){el.classList.remove('go')});
- watch(QA('.tgrid'),.25,function(el){
-  if(el.classList.contains('go'))return;el.classList.add('go');clearTimeout(el._d);el._d=setTimeout(function(){el.classList.add('done')},1200);
- },function(el){clearTimeout(el._d);el.classList.remove('go','done')});
- watch(QA('.pcard'),.25,function(el){el.classList.add('seen')},function(el){el.classList.remove('seen')});
-
- /* ---- 5. number count-ups run again every time ---- */
- if(typeof countUp==='function'){
-  var cn=QA('[data-count]');cn.forEach(function(el){el._st=0;el._once=false});
-  watch(cn,.5,function(el){
-   if(el._st===1)return;el._st=1;
-   if(el._once)countUp(el);el._once=true;   /* first time is handled by the page's own code */
-  },function(el){
-   if(el._st!==1)return;el._st=0;
-   if(el._once)el.textContent='0';
-  });
- }
-
- /* ---- 6. cards keep drifting at different speeds while you scroll ---- */
- var skip='.mq,.mqw,.marq,.tk,#tTrack,.dup,[aria-hidden="true"],.strips,#strips,.hero,.hpm,.ticker,header,footer';
- var cards=QA('.card,.quote,.cat,.stat,.feat,.proj,.eng-item,.gt,.flag,.pcard,.tcard,.tstat,.formbox,.dk-i,.rt,.mapbox').filter(function(el){
-  if(el.closest(skip))return false;
-  var cs=getComputedStyle(el);
-  return cs.position!=='fixed'&&cs.position!=='sticky'&&(!cs.translate||cs.translate==='none');
- });
- cards.forEach(function(el){
-  el._ty=0;el._dp=[6,12,18][Array.prototype.indexOf.call(el.parentNode.children,el)%3];
- });
- var busy=false;
- function drift(){
-  busy=false;var vh=innerHeight,k=innerWidth>700?1:.6;
-  cards.forEach(function(el){
-   var r=el.getBoundingClientRect();
-   if(r.bottom<-80||r.top>vh+80)return;
-   var base=r.top+r.height/2-el._ty,ty=((base-vh/2)/vh)*-el._dp*k;
-   el._ty=ty;el.style.translate='0 '+ty.toFixed(1)+'px';
-  });
- }
- addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(drift)}},{passive:true});
- addEventListener('resize',drift);drift();
-})();
-</script>
-
 <script id="parallax-depth">
 (function(){
  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
@@ -1287,39 +1231,68 @@ document.addEventListener('click',function(e){var b=e.target.closest('.btn');if(
 })();
 </script>
 
-<script id="parallax-sides">
-/* Text slides in from the left / right as you scroll, and drifts out the other way */
+<script id="ow-fx">
 (function(){
- if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
- var Q=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
- var items=[];
- function add(el,dir){if(el&&!el.closest('.hero,header,footer'))items.push({el:el,dir:dir})}
- Q('.head').forEach(function(h,i){var f=i%2?-1:1;
-  add(h.querySelector('.eyebrow'),-f);add(h.querySelector('h2'),f);add(h.querySelector('p'),-f)});
- Q('.eng-item').forEach(function(it,i){var f=i%2?-1:1;
-  add(it.querySelector('.eng-body'),f);add(it.querySelector('.eng-img'),-f)});
- var cta=document.querySelector('.cta');
- if(cta)Array.prototype.forEach.call(cta.children,function(c,i){add(c,i%2?1:-1)});
- add(document.querySelector('.toolbar'),-1);
- items.forEach(function(o){o.el.style.willChange='translate'});
- var busy=false;
- function clamp(v){return Math.max(0,Math.min(1,v))}
- function run(){
-  busy=false;var vh=innerHeight,dist=innerWidth>700?80:34;
-  items.forEach(function(o){
-   var r=o.el.getBoundingClientRect();
-   if(!r.height||r.bottom<-120||r.top>vh+120){return}
-   var c=r.top+r.height/2,
-    inn=clamp((c-vh*.55)/(vh*.42)),      /* entering from the bottom */
-    out=clamp((vh*.18-c)/(vh*.3));       /* leaving through the top  */
-   var x=o.dir*(inn-out)*dist,
-    y=o.el.matches('.head>h2')?0:0;
-   var cur=o.el.style.translate.split(' ');
-   o.el.style.translate=x.toFixed(1)+'px '+(cur[1]||'0px');
-  });
- }
- addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(run)}},{passive:true});
- addEventListener('resize',run);run();
+var R=matchMedia('(prefers-reduced-motion:reduce)').matches,Q=function(q,r){return Array.prototype.slice.call((r||document).querySelectorAll(q))};
+
+/* Reviews marquee: same cards as Home */
+var REVIEWS=[
+ {n:'Priyadarshana K',r:'Google review',g:1,t:'Had an excellent experience with Algo Orbit Innovations. The team is professional, responsive, and genuinely knowledgeable in their field. Communication was smooth throughout, and the quality of work exceeded my expectations. Highly recommend them to anyone looking for a reliable and skilled partner.'},
+ {n:'Matthew Wilson',r:'Google review',g:1,t:'Really happy with the work AlgoOrbit did for us. We worked with the team on a custom business management system, and the whole process was smooth from start to finish. Everyone was responsive, easy to communicate with, and handled changes quickly.<br><br>Mr. Nishan was great to work with personally. Very approachable, professional, and knowledgeable. The whole team did a great job, and we really appreciated their support throughout the project. We’d definitely recommend AlgoOrbit and would love to work with them again on future projects.'},
+ {n:'Dhrithi Rai B',r:'Google review',g:1,t:'My experience with the Flutter project was very useful and interesting. I learned to create attractive user interfaces, use Dart and Flutter widgets, connect Firebase, and fix errors during development. It improved my coding, debugging, and problem-solving skills.'},
+ {n:'Riya Fernandes',r:'Owner, Brew & Bean Café',i:'https://www.algoorbit.in/static/images/review/riya.png',t:'ALGO ORBIT completely transformed how we run our café. The management system they built handles orders, staff scheduling, and payments seamlessly. The team was professional, fast, and genuinely cared about our success.'},
+ {n:'Dr. Meera Rao',r:'Harmony Health Clinic',i:'https://www.algoorbit.in/static/images/review/meera.png',t:'The clinic management system ALGO ORBIT delivered was clean, practical, and exceeded every expectation. Patient scheduling, records, and billing, all in one intuitive system. Our staff adopted it in days.'},
+ {n:'Prajna Mendon',r:'NMAMIT Nitte',i:'https://www.algoorbit.in/static/images/review/prajna.jpg',t:'The training program at ALGO ORBIT didn’t just teach me to code; it taught me to think like a developer. Real projects, real mentors, real feedback. I landed my first job offer before the program even ended.'}
+];
+var rt=document.getElementById('rvTrack');
+if(rt){var rone=REVIEWS.map(function(v){var av=v.i?'<img class="av" src="'+v.i+'" alt="" width="46" height="46" loading="lazy">':'<span class="av ini" aria-hidden="true">'+v.n.charAt(0)+'</span>';
+ return '<figure class="rv-c'+(v.g?' g':'')+'"><div class="who">'+av+'<span><strong>'+v.n+'</strong><small>'+v.r+'</small></span></div><p>“'+v.t+'”</p><div class="rf"><div class="rs" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>'+'</div></figure>'}).join('');
+ var rn=Math.max(2,Math.ceil(innerWidth*2/(REVIEWS.length*330)));
+ rt.innerHTML=rone.repeat(rn*2);rt.style.setProperty('--rvd',(REVIEWS.length*rn*28)+'s')}
+
+/* Fine animated frame on every project card */
+Q('.proj').forEach(function(c){var b=document.createElement('i');b.className='bd';b.setAttribute('aria-hidden','true');c.appendChild(b)});
+
+/* Cursor light + depth on hover (touch: tap for a short glow) */
+var SEL='.flag,.proj,.eng-item,.rv-c',all=Q(SEL);
+all.forEach(function(c){var i=document.createElement('i');i.className='sp2';i.setAttribute('aria-hidden','true');c.appendChild(i)});
+function pos(c,e){var r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
+ if(!R){c.style.setProperty('--dx',(x/r.width-.5).toFixed(3));c.style.setProperty('--dy',(y/r.height-.5).toFixed(3))}}
+function off(c){cancelAnimationFrame(c._raf);clearTimeout(c._t);c.classList.remove('dpx','spot-on');c.style.setProperty('--dx',0);c.style.setProperty('--dy',0)}
+all.forEach(function(c){
+ c.addEventListener('pointerenter',function(e){if(e.pointerType==='touch')return;pos(c,e);c.classList.add('dpx')});
+ c.addEventListener('pointermove',function(e){if(e.pointerType!=='touch')pos(c,e)});
+ c.addEventListener('pointerleave',function(e){if(e.pointerType!=='touch')off(c)});
+ c.addEventListener('pointerdown',function(e){if(e.pointerType!=='touch')return;
+  all.forEach(function(x){if(x!==c)off(x)});off(c);pos(c,e);c.classList.add('dpx','spot-on');
+  if(!R){var t0=performance.now();(function d(t){var k=t-t0;c.style.setProperty('--dx',(Math.sin(k/520)*.38).toFixed(3));c.style.setProperty('--dy',(Math.cos(k/680)*.32).toFixed(3));c._raf=requestAnimationFrame(d)})(t0)}
+  c._t=setTimeout(function(){off(c)},3400)})});
+
+/* Scroll entrances: slide in from the side, settle, replay after leaving (same as Home) */
+if(!R&&'IntersectionObserver' in window){
+ var G=[['.head .eyebrow','u'],['.head h2','l'],['.head p','r'],['.toolbar','u'],['.xp','u'],['.flag','t'],['.proj','t'],['.eng-img','e'],['.eng-body','e'],['.rv-mq','u'],['.cta-acts,.assure','u']];
+ function dirOf(k,el){
+  if(k==='t'){var s=Array.prototype.slice.call(el.parentNode.children),j=s.indexOf(el),n=s.length;return n===1?'u':n===2?(j?'r':'l'):['l','u','r'][j%3]}
+  if(k==='e'){var it=el.closest('.eng-item'),im=it&&it.querySelector('.eng-img'),bd=it&&it.querySelector('.eng-body');
+   if(!im||!bd)return'u';var a=im.getBoundingClientRect().left,b=bd.getBoundingClientRect().left;
+   if(Math.abs(a-b)<20)return'u';var imgLeft=a<b;return el===im?(imgLeft?'l':'r'):(imgLeft?'r':'l')}
+  return k}
+ var seen=[],T=[];
+ G.forEach(function(g){Q(g[0]).forEach(function(el,i){
+  if(seen.indexOf(el)>-1||el.closest('.hero,header,footer,.ticker'))return;seen.push(el);
+  el.classList.add('px-'+dirOf(g[1],el),'px-pre');el.style.setProperty('--pd',(Math.min(i%3,2)*.12)+'s');T.push(el)})});
+ var inO=new IntersectionObserver(function(es){es.forEach(function(e){var el=e.target;
+  if(e.isIntersecting&&el._s!==1){el._s=1;el.classList.remove('px-pre');el.classList.add('px-go');
+   clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('px-go')},1400)}})},{threshold:0,rootMargin:'0px 0px -9% 0px'});
+ var outO=new IntersectionObserver(function(es){es.forEach(function(e){var el=e.target;
+  if(!e.isIntersecting&&el._s===1){el._s=0;clearTimeout(el._t);el.classList.remove('px-go');el.classList.add('px-pre')}})},{threshold:0});
+ T.forEach(function(el){inO.observe(el);outO.observe(el)})}
+
+/* Reviews glow shapes drift while scrolling */
+var rev=document.getElementById('reviews');
+if(rev&&!R){var busy=false;function bp(){busy=false;var r=rev.getBoundingClientRect(),vh=innerHeight;if(r.bottom<-200||r.top>vh+200)return;
+ rev.style.setProperty('--bp',Math.max(-1,Math.min(1,(r.top+r.height/2-vh/2)/(vh*.5+r.height/2))).toFixed(3))}
+ addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(bp)}},{passive:true});bp()}
 })();
 </script>
 </body>
