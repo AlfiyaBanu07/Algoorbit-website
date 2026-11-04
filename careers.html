@@ -1195,10 +1195,75 @@ h2 .w:hover>span{color:var(--ind)}
  .lp .card:is(:hover,.tch) .ci{transform:none}
 }
 </style>
+<style id="careers-revisions">
+/* ===== Careers revisions ===== */
+/* top bar fixed */
+.site-header,.site-header.hide{position:fixed;top:0;left:0;right:0;width:100%;transform:none!important}
+/* footer logo */
+.wordmark{display:inline-flex;align-items:center}
+.wordmark .logo-mark{width:42px;height:42px;margin-right:12px;flex:none}
+@media(max-width:700px){.wordmark .logo-mark{width:38px;height:38px}}
+
+/* Current openings: simple cards */
+#openings>.wrap{max-width:1180px!important}
+.ows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
+.ow{display:flex;flex-direction:column;gap:12px;padding:26px 24px 22px;border-radius:18px;background:#fff;color:var(--ink);border:1px solid rgba(255,255,255,.9);box-shadow:0 18px 40px rgba(0,0,0,.28);transition:transform .35s var(--ease),box-shadow .35s}
+.ow:hover{transform:translateY(-4px);box-shadow:0 26px 50px rgba(0,0,0,.36)}
+.ow-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ow-ic{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--mist);color:var(--ind)}
+.ow-ic .ui{width:24px;height:24px}
+.ow-type{font:600 12px var(--fb);color:var(--indd);background:var(--mist);padding:5px 12px;border-radius:99px}
+.ow h3{font-size:1.25rem;line-height:1.25;color:var(--navy);margin-top:4px}
+.ow-meta{color:var(--mute);font-size:13.5px;margin-top:-6px}
+.ow-desc{color:#43455f;font-size:14.5px;line-height:1.65}
+.ow-tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+.ow-tags li{font:500 12.5px var(--fb);color:var(--ink);border:1px solid var(--line);background:#faf9ff;padding:4px 10px;border-radius:8px}
+.ow-more{border-top:1px solid var(--line);padding-top:6px}
+.ow-more summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:8px 0;font:600 14px var(--fb);color:var(--ind)}
+.ow-more summary::-webkit-details-marker{display:none}
+.ow-more summary .ui{width:18px;height:18px;transition:transform .3s var(--ease)}
+.ow-more[open] summary .ui{transform:rotate(180deg)}
+.ow-req{padding:4px 0 8px;animation:jobIn .35s var(--ease)}
+.ow-req h4{font:600 12px var(--fb);letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:10px 0 6px}
+.ow-req ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.ow-req li{position:relative;padding-left:18px;font-size:14px;line-height:1.5;color:#43455f}
+.ow-req li::before{content:"";position:absolute;left:2px;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--ind)}
+.ow-req .nice li::before{background:#b8b5e8}
+@keyframes jobIn{from{opacity:0;transform:translateY(-6px)}}
+.ow-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:16px;margin-top:2px}
+.ow-foot small{color:var(--mute);font-size:12.5px}
+.ow-foot .btn{height:42px;min-width:0;padding:0 22px;font-size:14px;animation:none}
+@media(max-width:1000px){.ows{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.ows{grid-template-columns:1fr;gap:16px}.ow{padding:22px 18px 18px}}
+
+/* Hiring process: clean step list */
+.hp{list-style:none;max-width:920px;margin:0 auto;border-bottom:1px solid rgba(255,255,255,.16)}
+.hp-row{display:grid;grid-template-columns:72px minmax(0,1fr) 190px;gap:24px;align-items:start;padding:28px 12px;border-top:1px solid rgba(255,255,255,.16);transition:background .3s,padding-left .35s var(--ease)}
+.hp-row:hover{background:rgba(255,255,255,.05);padding-left:20px}
+.hp-n{font:600 1.9rem/1 var(--fd);color:var(--vio)}
+.hp-b h3{font-size:1.2rem;line-height:1.3;color:#fff;margin-bottom:6px}
+.hp-b p{color:#b4b6dc;font-size:15px;line-height:1.7;max-width:56ch}
+.hp-t{justify-self:end;text-align:right;font:600 13px var(--fb);color:#dcdcf8;padding:5px 12px;border:1px solid rgba(255,255,255,.2);border-radius:99px;white-space:nowrap}
+@media(max-width:700px){
+ .hp-row{grid-template-columns:44px minmax(0,1fr);gap:4px 14px;padding:20px 4px}
+ .hp-n{font-size:1.35rem;grid-row:1/3}.hp-t{grid-column:2;grid-row:1;justify-self:start;order:-1;margin-bottom:8px;white-space:normal;text-align:left}
+ .hp-b{grid-column:2;grid-row:2}.hp-b h3{font-size:1.05rem}.hp-b p{font-size:14.5px}
+ .hp-row:hover{padding-left:4px}
+}
+
+/* Perks: 4 cards, clean 2 x 2 on phones */
+@media(max-width:700px){
+ body .grid.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin:0!important}
+ body .grid-4 .card,body .grid-4 .card:nth-child(even){margin-top:0!important}
+}
+@media(min-width:701px){.grid.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.ow-req{animation:none}}
+</style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/></symbol>
  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.2 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></symbol>
  <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></symbol>
@@ -1296,74 +1361,38 @@ h2 .w:hover>span{color:var(--ind)}
 <!-- Openings -->
 <section class="section dk" id="openings">
  <div class="wrap" style="max-width:1000px">
-  <div class="section-head"><span class="eyebrow">Now Hiring</span><h2>Current Openings</h2><p>Three roles, real work, real growth. Apply directly we respond within 48 hours.</p></div>
+  <div class="section-head"><span class="eyebrow">Now Hiring</span><h2>Current Openings</h2><p>Three roles, real work, real growth. Apply directly, we respond within 48 hours.</p></div>
 
-  <div class="roles">
-   <article class="rc" style="--a:#8f84f2;--b:#5b4be8;--glow:91,75,232">
-    <div class="rc-in">
-     <div class="rc-top"><span class="rc-id"><i></i>ROLE_<span>01</span></span><span class="chip open">Open</span></div>
-     <div class="rc-head">
-      <span class="rc-ic"><span><svg class="ui"><use href="#i-film"/></svg></span></span>
-      <div><h3>Video Editing Intern</h3><div class="rc-chips"><span class="chip red">Internship</span><span class="chip">Any Degree</span></div></div>
-      <button class="btn rc-toggle" type="button" aria-expanded="false" aria-controls="rcm1"><span class="t-open">View details</span><span class="t-close">Hide details</span></button>
-     </div>
-     <div class="rc-more" id="rcm1"><div class="rc-more-in">
-     <p class="rc-desc">Create scroll-stopping content that drives real engagement from professional brand ads to viral reels. You'll work directly with our marketing team to bring our clients' stories to life.</p>
-     <div class="rc-grid">
-      <div class="rc-panel"><h4 class="rc-h"><b>A</b>Required Skills<em>06</em></h4><ul>
-       <li><svg class="ui"><use href="#i-check"/></svg>Adobe Premiere Pro &amp; After Effects (advanced)</li><li><svg class="ui"><use href="#i-check"/></svg>CapCut / DaVinci Resolve proficiency</li><li><svg class="ui"><use href="#i-check"/></svg>Motion graphics &amp; kinetic typography</li><li><svg class="ui"><use href="#i-check"/></svg>Color grading &amp; professional audio mixing</li><li><svg class="ui"><use href="#i-check"/></svg>Short-form content: Reels, YouTube Shorts, TikTok</li><li><svg class="ui"><use href="#i-check"/></svg>Visual storytelling &amp; storyboarding</li></ul></div>
-      <div class="rc-panel nice"><h4 class="rc-h"><b>B</b>Nice to Have<em>04</em></h4><ul>
-       <li><svg class="ui"><use href="#i-star"/></svg>Adobe Photoshop / Illustrator basics</li><li><svg class="ui"><use href="#i-star"/></svg>Basic photography / drone footage editing</li><li><svg class="ui"><use href="#i-star"/></svg>Knowledge of platform algorithms</li><li><svg class="ui"><use href="#i-star"/></svg>Portfolio with 5+ projects</li></ul></div>
-     </div>
-     <div class="rc-foot">
-      <div class="rc-tags"><span>Premiere Pro</span><span>After Effects</span><span>DaVinci</span><span>Reels</span></div>
-      <div class="rc-act"><small>Reply within 48 hrs</small><button class="btn rc-btn" type="button" onclick="openApplyModal('Video Editing Intern','fa-film')">Apply Now</button></div>
-     </div></div></div>
-    </div>
+  <div class="ows">
+   <article class="ow">
+    <div class="ow-top"><span class="ow-ic"><svg class="ui" aria-hidden="true"><use href="#i-film"/></svg></span><span class="ow-type">Internship</span></div>
+    <h3>Video Editing Intern</h3>
+    <p class="ow-meta">Any Degree</p>
+    <p class="ow-desc">Create scroll-stopping content that drives real engagement from professional brand ads to viral reels. You'll work directly with our marketing team to bring our clients' stories to life.</p>
+    <ul class="ow-tags" aria-label="Key skills"><li>Premiere Pro</li><li>After Effects</li><li>DaVinci</li><li>Reels</li></ul>
+    <details class="ow-more"><summary>View requirements<svg class="ui" aria-hidden="true"><use href="#i-down"/></svg></summary>
+     <div class="ow-req"><h4>Required skills</h4><ul><li>Adobe Premiere Pro &amp; After Effects (advanced)</li><li>CapCut / DaVinci Resolve proficiency</li><li>Motion graphics &amp; kinetic typography</li><li>Color grading &amp; professional audio mixing</li><li>Short-form content — Reels, YouTube Shorts, TikTok</li><li>Visual storytelling &amp; storyboarding</li></ul><h4>Nice to have</h4><ul class="nice"><li>Adobe Photoshop / Illustrator basics</li><li>Basic photography / drone footage editing</li><li>Knowledge of platform algorithms</li><li>Portfolio with 5+ projects</li></ul></div></details>
+    <div class="ow-foot"><small>Reply within 48 hrs</small><button class="btn btn-primary" type="button" onclick="openApplyModal('Video Editing Intern','fa-film')">Apply now</button></div>
    </article>
-   <article class="rc" style="--a:#82c8eb;--b:#2a8fcf;--glow:47,167,224">
-    <div class="rc-in">
-     <div class="rc-top"><span class="rc-id"><i></i>ROLE_<span>02</span></span><span class="chip open">Open</span></div>
-     <div class="rc-head">
-      <span class="rc-ic"><span><svg class="ui"><use href="#i-code"/></svg></span></span>
-      <div><h3>Full Stack Developer Intern</h3><div class="rc-chips"><span class="chip red">Internship</span><span class="chip">B.Tech / BCA / MCA</span></div></div>
-      <button class="btn rc-toggle" type="button" aria-expanded="false" aria-controls="rcm2"><span class="t-open">View details</span><span class="t-close">Hide details</span></button>
-     </div>
-     <div class="rc-more" id="rcm2"><div class="rc-more-in">
-     <p class="rc-desc">Build features that go live. Work across front-end and back-end to ship real products used by real customers. Computer Science stream students currently pursuing B.Tech, BCA, or MCA welcome.</p>
-     <div class="rc-grid">
-      <div class="rc-panel"><h4 class="rc-h"><b>A</b>Required Skills<em>06</em></h4><ul>
-       <li><svg class="ui"><use href="#i-check"/></svg>HTML, CSS, JavaScript (ES6+)</li><li><svg class="ui"><use href="#i-check"/></svg>React.js or Vue.js fundamentals</li><li><svg class="ui"><use href="#i-check"/></svg>Node.js / Python backend basics</li><li><svg class="ui"><use href="#i-check"/></svg>REST APIs &amp; JSON handling</li><li><svg class="ui"><use href="#i-check"/></svg>SQL / MongoDB basics</li><li><svg class="ui"><use href="#i-check"/></svg>Git &amp; version control</li></ul></div>
-      <div class="rc-panel nice"><h4 class="rc-h"><b>B</b>Nice to Have<em>04</em></h4><ul>
-       <li><svg class="ui"><use href="#i-star"/></svg>TypeScript experience</li><li><svg class="ui"><use href="#i-star"/></svg>Next.js / Django / Flask</li><li><svg class="ui"><use href="#i-star"/></svg>Basic AWS / Firebase exposure</li><li><svg class="ui"><use href="#i-star"/></svg>Side projects / GitHub portfolio</li></ul></div>
-     </div>
-     <div class="rc-foot">
-      <div class="rc-tags"><span>React</span><span>Node.js</span><span>MongoDB</span><span>Python</span></div>
-      <div class="rc-act"><small>Reply within 48 hrs</small><button class="btn rc-btn" type="button" onclick="openApplyModal('Full Stack Developer Intern','fa-code')">Apply Now</button></div>
-     </div></div></div>
-    </div>
+   <article class="ow">
+    <div class="ow-top"><span class="ow-ic"><svg class="ui" aria-hidden="true"><use href="#i-code"/></svg></span><span class="ow-type">Internship</span></div>
+    <h3>Full Stack Developer Intern</h3>
+    <p class="ow-meta">B.Tech / BCA / MCA</p>
+    <p class="ow-desc">Build features that go live. Work across front-end and back-end to ship real products used by real customers. Computer Science stream students currently pursuing B.Tech, BCA, or MCA welcome.</p>
+    <ul class="ow-tags" aria-label="Key skills"><li>React</li><li>Node.js</li><li>MongoDB</li><li>Python</li></ul>
+    <details class="ow-more"><summary>View requirements<svg class="ui" aria-hidden="true"><use href="#i-down"/></svg></summary>
+     <div class="ow-req"><h4>Required skills</h4><ul><li>HTML, CSS, JavaScript (ES6+)</li><li>React.js or Vue.js fundamentals</li><li>Node.js / Python backend basics</li><li>REST APIs &amp; JSON handling</li><li>SQL / MongoDB basics</li><li>Git &amp; version control</li></ul><h4>Nice to have</h4><ul class="nice"><li>TypeScript experience</li><li>Next.js / Django / Flask</li><li>Basic AWS / Firebase exposure</li><li>Side projects / GitHub portfolio</li></ul></div></details>
+    <div class="ow-foot"><small>Reply within 48 hrs</small><button class="btn btn-primary" type="button" onclick="openApplyModal('Full Stack Developer Intern','fa-code')">Apply now</button></div>
    </article>
-   <article class="rc" style="--a:#c4a1ff;--b:#8b5cf6;--glow:139,92,246">
-    <div class="rc-in">
-     <div class="rc-top"><span class="rc-id"><i></i>ROLE_<span>03</span></span><span class="chip open">Open</span></div>
-     <div class="rc-head">
-      <span class="rc-ic"><span><svg class="ui"><use href="#i-mega"/></svg></span></span>
-      <div><h3>Digital Marketing Intern</h3><div class="rc-chips"><span class="chip red">Internship</span><span class="chip">Any Degree</span></div></div>
-      <button class="btn rc-toggle" type="button" aria-expanded="false" aria-controls="rcm3"><span class="t-open">View details</span><span class="t-close">Hide details</span></button>
-     </div>
-     <div class="rc-more" id="rcm3"><div class="rc-more-in">
-     <p class="rc-desc">Drive real marketing results. Run SEO strategies, manage social media, craft content, and analyse what actually works. This is a hands-on role you'll own campaigns from day one.</p>
-     <div class="rc-grid">
-      <div class="rc-panel"><h4 class="rc-h"><b>A</b>Required Skills<em>05</em></h4><ul>
-       <li><svg class="ui"><use href="#i-check"/></svg>Social media management (Instagram, LinkedIn)</li><li><svg class="ui"><use href="#i-check"/></svg>SEO fundamentals &amp; keyword research</li><li><svg class="ui"><use href="#i-check"/></svg>Content writing &amp; copywriting</li><li><svg class="ui"><use href="#i-check"/></svg>Google Analytics / Meta Business Suite</li><li><svg class="ui"><use href="#i-check"/></svg>Email marketing basics</li></ul></div>
-      <div class="rc-panel nice"><h4 class="rc-h"><b>B</b>Nice to Have<em>04</em></h4><ul>
-       <li><svg class="ui"><use href="#i-star"/></svg>Paid ads (Meta Ads / Google Ads)</li><li><svg class="ui"><use href="#i-star"/></svg>Canva / basic graphic design</li><li><svg class="ui"><use href="#i-star"/></svg>WordPress or Webflow basics</li><li><svg class="ui"><use href="#i-star"/></svg>Existing blog / social following</li></ul></div>
-     </div>
-     <div class="rc-foot">
-      <div class="rc-tags"><span>SEO</span><span>Social Media</span><span>Google Ads</span><span>Analytics</span></div>
-      <div class="rc-act"><small>Reply within 48 hrs</small><button class="btn rc-btn" type="button" onclick="openApplyModal('Digital Marketing Intern','fa-bullhorn')">Apply Now</button></div>
-     </div></div></div>
-    </div>
+   <article class="ow">
+    <div class="ow-top"><span class="ow-ic"><svg class="ui" aria-hidden="true"><use href="#i-mega"/></svg></span><span class="ow-type">Internship</span></div>
+    <h3>Digital Marketing Intern</h3>
+    <p class="ow-meta">Any Degree</p>
+    <p class="ow-desc">Drive real marketing results. Run SEO strategies, manage social media, craft content, and analyse what actually works. This is a hands-on role you'll own campaigns from day one.</p>
+    <ul class="ow-tags" aria-label="Key skills"><li>SEO</li><li>Social Media</li><li>Google Ads</li><li>Analytics</li></ul>
+    <details class="ow-more"><summary>View requirements<svg class="ui" aria-hidden="true"><use href="#i-down"/></svg></summary>
+     <div class="ow-req"><h4>Required skills</h4><ul><li>Social media management (Instagram, LinkedIn)</li><li>SEO fundamentals &amp; keyword research</li><li>Content writing &amp; copywriting</li><li>Google Analytics / Meta Business Suite</li><li>Email marketing basics</li></ul><h4>Nice to have</h4><ul class="nice"><li>Paid ads (Meta Ads / Google Ads)</li><li>Canva / basic graphic design</li><li>WordPress or Webflow basics</li><li>Existing blog / social following</li></ul></div></details>
+    <div class="ow-foot"><small>Reply within 48 hrs</small><button class="btn btn-primary" type="button" onclick="openApplyModal('Digital Marketing Intern','fa-bullhorn')">Apply now</button></div>
    </article>
   </div>
 
@@ -1381,10 +1410,6 @@ h2 .w:hover>span{color:var(--ind)}
    <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-laptop"/></svg></span><h3>Flexible &amp; Remote</h3><p>Hybrid options, flexible hours, and remote work support.</p></div>
    <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-cert"/></svg></span><h3>Certificate &amp; LOR</h3><p>Completion certificates + strong letter of recommendation for every intern.</p></div>
    <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-rocket"/></svg></span><h3>PPO Opportunity</h3><p>Strong performers get pre-placement offers before their final year.</p></div>
-   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-board"/></svg></span><h3>1-on-1 Mentorship</h3><p>Dedicated mentor for every team member. Weekly check-ins included.</p></div>
-   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-award"/></svg></span><h3>Recognition Culture</h3><p>Monthly spotlights, performance bonuses, and team shoutouts.</p></div>
-   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-chat"/></svg></span><h3>Open Culture</h3><p>Flat hierarchy. Talk to founders directly. Your voice shapes the company.</p></div>
-   <div class="card"><span class="cat-ic"><svg class="ui"><use href="#i-brief"/></svg></span><h3>Real Portfolio Work</h3><p>Projects go live. You'll have real case studies to show recruiters.</p></div>
   </div>
  </div>
 </section>
@@ -1393,14 +1418,13 @@ h2 .w:hover>span{color:var(--ind)}
 <section class="section dk">
  <div class="wrap">
   <div class="section-head"><span class="eyebrow">Hiring Process</span><h2>Simple, Fast &amp; Transparent</h2><p>We don't drag people through 8 rounds. Here's exactly what to expect.</p></div>
-  <div class="tl" id="tl">
-   <div class="tl-line" id="tlLine"></div>
-   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><div class="tl-top"><span class="cat-ic"><svg class="ui"><use href="#i-send"/></svg></span><span class="tl-n">01</span><span class="tl-fy">Takes 5 minutes</span></div><h3>Apply via This Page</h3><p>Click Apply Now on any role, fill the form, attach your resume / portfolio / GitHub link. We read every word.</p></div></div>
-   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><div class="tl-top"><span class="cat-ic"><svg class="ui"><use href="#i-chat"/></svg></span><span class="tl-n">02</span><span class="tl-fy">Within 48 hours of applying</span></div><h3>Quick Shortlist Call (15 min)</h3><p>A relaxed 15-minute video call with our team lead. No trick questions, just a conversation about your background, skills, and what you're looking for.</p></div></div>
-   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><div class="tl-top"><span class="cat-ic"><svg class="ui"><use href="#i-laptop"/></svg></span><span class="tl-n">03</span><span class="tl-fy">You have 3 days</span></div><h3>Task / Mini Project</h3><p>A small, time-boxed assignment (2 to 4 hours max). For developers, a small feature build. For video editors, a 30-second edit. For marketers, a sample content plan.</p></div></div>
-   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><div class="tl-top"><span class="cat-ic"><svg class="ui"><use href="#i-users"/></svg></span><span class="tl-n">04</span><span class="tl-fy">Day 5 to 7</span></div><h3>Final Conversation</h3><p>A 30-minute chat with the department head to review your task, talk about expectations, and align on your start date.</p></div></div>
-   <div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><div class="tl-top"><span class="cat-ic"><svg class="ui"><use href="#i-rocket"/></svg></span><span class="tl-n">05</span><span class="tl-fy">Total process: ~7 days</span></div><h3>Offer &amp; Onboard</h3><p>Offer letter within 24 hours. Then a structured first week with your buddy, team introductions, and your first real task, no busywork.</p></div></div>
-  </div>
+  <ol class="hp" aria-label="Hiring steps">
+   <li class="hp-row"><span class="hp-n">01</span><div class="hp-b"><h3>Apply via This Page</h3><p>Click Apply Now on any role, fill the form, attach your resume / portfolio / GitHub link. We read every word.</p></div><span class="hp-t">Takes 5 minutes</span></li>
+   <li class="hp-row"><span class="hp-n">02</span><div class="hp-b"><h3>Quick Shortlist Call (15 min)</h3><p>A relaxed 15-minute video call with our team lead. No trick questions — just a conversation about your background, skills, and what you're looking for.</p></div><span class="hp-t">Within 48 hours of applying</span></li>
+   <li class="hp-row"><span class="hp-n">03</span><div class="hp-b"><h3>Task / Mini Project</h3><p>A small, time-boxed assignment (2–4 hours max). For developers, a small feature build. For video editors, a 30-second edit. For marketers, a sample content plan.</p></div><span class="hp-t">You have 3 days</span></li>
+   <li class="hp-row"><span class="hp-n">04</span><div class="hp-b"><h3>Final Conversation</h3><p>A 30-minute chat with the department head to review your task, talk about expectations, and align on your start date.</p></div><span class="hp-t">Day 5–7</span></li>
+   <li class="hp-row"><span class="hp-n">05</span><div class="hp-b"><h3>Offer &amp; Onboard</h3><p>Offer letter within 24 hours. Then a structured first week with your buddy, team introductions, and your first real task — no busywork.</p></div><span class="hp-t">Total process: ~7 days</span></li>
+  </ol>
  </div>
 </section>
 
@@ -1451,7 +1475,7 @@ h2 .w:hover>span{color:var(--ind)}
  <div class="wrap">
   <div class="fgrid">
    <div>
-    <a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><span>ALGO</span><b>ORBIT</b></a>
+    <a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10"/><line x1="13.5" y1="28" x2="21.5" y2="12.5"/><circle cx="30" cy="27.5" r="5"/></svg><span>ALGO</span><b>ORBIT</b></a>
     <p>Empowering businesses with innovative digital solutions. From restaurant management to civic engagement platforms, we build technology that drives real impact.</p>
     <div class="social">
      <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ui"><use href="#i-linkedin"/></svg></a>
@@ -1504,7 +1528,7 @@ h2 .w:hover>span{color:var(--ind)}
    <div id="apFormWrap">
     <span class="eyebrow">Now Accepting Applications</span>
     <h2 class="ap-title">Apply for <span id="apModalTitle">This Role</span></h2>
-    <p class="ap-note">Fill in your details and attach your resume we read every application.</p>
+    <p class="ap-note">Fill in your details and attach your resume, we read every application.</p>
     <form id="applyForm" action="/apply" method="POST" enctype="multipart/form-data" onsubmit="handleApplySubmit(event)">
      <input type="hidden" name="role" id="roleInput" value="">
      <div class="av-row">
@@ -2381,511 +2405,36 @@ body .rc:is(:hover,.tch) .rc-in>i.cb{width:24px;height:24px}
  body .rc-panel li{font-size:13px}
 }
 </style>
-
-<!-- =====================================================================
-     CAREERS UPGRADE LAYER (purely additive, added last so it wins the cascade).
-     Nothing above is removed or changed in logic.
-     0) No new colour themes: every card keeps the existing brand palette only
-     1) Smooth scrolling, left / right scroll reveals and smooth hovers
-        (same system as consultancy.html, desktop + mobile)
-     2) Current Openings: professional redesign
-     3) Hiring Process: professional redesign
-     ===================================================================== -->
-<style id="careers-upgrade-v1">
-:root{--e2:cubic-bezier(.22,1,.36,1)}
-
-/* ---------- Smooth scroll (Lenis) ---------- */
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
-.lenis.lenis-stopped{overflow:hidden}
-html{overscroll-behavior-y:none}
-
-/* ---------- Smooth-layer: cheaper scrolling + consistent hover easing ---------- */
-.rv,.rc,.hx-step{will-change:transform,opacity}
-body.is-scrolling main{pointer-events:none}
-.card,.quote,.rc,.tl-card,.general,.faq details,.chip,.rc-tags span,.fchip{transition-timing-function:var(--e2)}
-img[loading="lazy"]{opacity:0;transition:opacity .6s var(--e2),transform .9s var(--e2),filter .6s}
-img[loading="lazy"].loaded{opacity:1}
-@media(hover:hover) and (pointer:fine){
- .site-logo .logo-mark{transition:transform .5s var(--e2)}
- .site-logo:hover .logo-mark{transform:rotate(-8deg) scale(1.1)}
- .btn:active{transform:scale(.97)}
- .btn:focus-visible{box-shadow:0 0 0 4px rgba(91,75,232,.28)}
- .chip:hover{scale:1.03}
-}
-@media(hover:none){.rv,.rc,.hx-step{will-change:auto}}
-
-/* ---------- Left / right reveal: existing .rv system (wider travel, longer ease) ---------- */
-.rv{transition:opacity .9s var(--ease),transform 1.1s var(--e2)}
-.rv.rv-l:not(.in){transform:translateX(-80px)}
-.rv.rv-r:not(.in){transform:translateX(80px)}
-@media(max-width:700px){
- .rv.rv-l:not(.in){transform:translateX(-36px)}
- .rv.rv-r:not(.in){transform:translateX(36px)}
-}
-
-/* ---------- Left / right reveal: replaying cards (existing .rx system) ----------
-   Entrance uses the 'translate' property, so the hover lift (transform) keeps its own smooth timing */
-@media(prefers-reduced-motion:no-preference){
- body .lp .card.rx,body .grid-4 .card.rx,body .quote.rx,body .faq details.rx,body .general.rx{
-  transition:opacity .9s var(--e2),translate .95s var(--e2),transform .55s var(--e2),scale .95s var(--e2),box-shadow .5s var(--e2),border-color .5s var(--e2)!important}
- body .lp .card.rx:not(.rx-in),body .grid-4 .card.rx:not(.rx-in),body .quote.rx:not(.rx-in),body .faq details.rx:not(.rx-in),body .general.rx:not(.rx-in){
-  transform:none!important;translate:var(--dx,0px) calc(var(--rvy,48px)*var(--ky,1))!important;scale:.96}
- body .lp .card.rx.rx-in.rx-settled,body .grid-4 .card.rx.rx-in.rx-settled,body .quote.rx.rx-in.rx-settled,body .faq details.rx.rx-in.rx-settled,body .general.rx.rx-in.rx-settled{
-  transition:opacity .9s var(--e2),translate .25s linear,transform .55s var(--e2),scale .6s var(--e2),box-shadow .5s var(--e2),border-color .5s var(--e2)!important}
-}
-
-/* ---------- Left / right reveal: new elements ---------- */
-html.js-fx .fx{opacity:0;translate:var(--fx-x,0) var(--fx-y,0);transition:opacity .9s var(--ease),translate 1.1s var(--e2);transition-delay:var(--fd,0s)}
-html.js-fx .fx[data-dir="l"]{--fx-x:-80px}
-html.js-fx .fx[data-dir="r"]{--fx-x:80px}
-html.js-fx .fx[data-dir="u"]{--fx-y:36px}
-html.js-fx .fx.fx-in{opacity:1;translate:0 0}
-@media(max-width:700px){
- html.js-fx .fx[data-dir="l"]{--fx-x:-36px}
- html.js-fx .fx[data-dir="r"]{--fx-x:36px}
-}
-
-/* ---------- Hero + section intros ---------- */
-@keyframes fxL{from{opacity:0;transform:translateX(-56px)}to{opacity:1;transform:none}}
-main .hero-copy>:not(h1),main .hero-copy>ul.checklist{animation-name:fxL}
-html.js-fx .section-head .eyebrow{opacity:0;transform:translateX(-18px);transition:opacity .7s var(--e2),transform .7s var(--e2)}
-html.js-fx .section-head>p{opacity:0;transform:translateY(14px);transition:opacity .8s var(--e2) .35s,transform .8s var(--e2) .35s}
-html.js-fx .section-head.drawn .eyebrow,html.js-fx .section-head.drawn>p{opacity:1;transform:none}
-
-/* =====================================================================
-   2) CURRENT OPENINGS: professional redesign
-   ===================================================================== */
-#openings>.wrap{max-width:940px!important}
-.ops-bar{display:grid;grid-template-columns:repeat(4,1fr);margin:0 0 26px;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(255,255,255,.04);overflow:hidden}
-.ops-bar>div{padding:16px 18px;text-align:center;border-left:1px solid rgba(255,255,255,.1);transition:background .4s var(--e2)}
-.ops-bar>div:first-child{border-left:0}
-.ops-bar>div:hover{background:rgba(143,132,242,.12)}
-.ops-bar b{display:block;font:700 1.45rem/1.1 var(--fd);color:#fff}
-.ops-bar span{display:block;margin-top:4px;font:600 11px/1.3 var(--fb);letter-spacing:.1em;text-transform:uppercase;color:#aeb0d6}
-
-#openings .roles{gap:18px}
-#openings .rc{--a:var(--peri)!important;--b:var(--ind)!important;--glow:91,75,232!important}
-#openings .rc{padding:1px;border-radius:20px;animation:none;
- background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.05));
- box-shadow:0 14px 34px rgba(0,0,0,.3);
- transition:transform .6s var(--e2),opacity .9s var(--e2),box-shadow .5s var(--e2),background .5s}
-#openings .rc:is(:hover,.tch){transform:translateY(-4px);animation:none;
- background:linear-gradient(180deg,rgba(var(--glow),.85),rgba(var(--glow),.2));box-shadow:0 22px 48px rgba(var(--glow),.28)}
-#openings .rc.open{background:linear-gradient(180deg,rgba(var(--glow),.85),rgba(var(--glow),.2))}
-#openings .rc.pre:not(.seen){opacity:0;transform:translateX(var(--rvx,-80px))}
-#openings .rc-in{border-radius:19px;padding:20px 26px 22px 30px;
- background:linear-gradient(160deg,#1c1e50,#12132f)}
-#openings .rc-in::before{inset:0 auto 0 0;width:4px;height:auto;background:linear-gradient(180deg,var(--a),var(--b));background-image:linear-gradient(180deg,var(--a),var(--b));-webkit-mask:none;mask:none;opacity:1}
-#openings .rc-in::after,#openings .rc-in>i.cb,#openings .rc-id::after,#openings .rc-ic::before{display:none!important}
-#openings .rc-top{margin-bottom:14px}
-#openings .rc-id{font-size:11px;letter-spacing:.16em;color:#9fa3d6}
-#openings .rc-id i{border-radius:50%;transform:none;width:8px;height:8px}
-#openings .rc-head{gap:18px;margin-bottom:0}
-#openings .rc-ic{width:56px;height:56px;filter:none}
-#openings .rc-ic>span{border-radius:16px;clip-path:none;box-shadow:0 10px 22px rgba(var(--glow),.4)}
-#openings .rc:is(:hover,.tch) .rc-ic>span{transform:scale(1.06) rotate(-4deg)}
-#openings .rc-ic .ui{width:24px;height:24px}
-#openings .rc-head h3{font-size:clamp(1.1rem,1rem + .55vw,1.4rem);margin-bottom:8px;background:none;-webkit-text-fill-color:#fff;color:#fff}
-#openings .rc .chip{font-size:11.5px;min-height:24px;padding:2px 11px}
-#openings .rc-toggle{height:42px;padding:0 20px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);box-shadow:none}
-#openings .rc-toggle:hover,#openings .rc-toggle:focus-visible,#openings .rc.open .rc-toggle{background:linear-gradient(135deg,var(--a),var(--b));border-color:transparent;box-shadow:0 10px 22px rgba(var(--glow),.4)}
-#openings .rc-more-in{padding-top:2px}
-#openings .rc-desc{margin:20px 0 20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:14.5px;line-height:1.75;max-width:none}
-#openings .rc-grid{gap:14px;margin-bottom:20px}
-#openings .rc-panel{padding:18px 18px 10px;border-radius:14px;background:rgba(255,255,255,.04);-webkit-backdrop-filter:none;backdrop-filter:none}
-#openings .rc-panel.nice{border-style:dashed;border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.03)}
-#openings .nice .rc-h b{background:linear-gradient(135deg,var(--a),var(--b))}
-#openings .rc-panel.nice li .ui{color:var(--a)}
-#openings .rc:is(:hover,.tch) .rc-panel.nice{border-color:rgba(var(--glow),.55)}
-#openings .rc-h{font-size:11px;margin-bottom:12px}
-#openings .rc-panel li{padding:7px 8px;margin:0 -8px 1px;font-size:13.8px}
-#openings .rc-foot{padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}
-#openings .rc-tags span{border-radius:8px;font-size:11.5px;padding:7px 11px}
-#openings .rc-btn{height:44px;padding:0 26px;border-radius:12px}
-#openings .general{margin-top:26px;border-radius:18px}
-
-@media(max-width:820px){.ops-bar{grid-template-columns:repeat(2,1fr)}.ops-bar>div:nth-child(3){border-left:0}.ops-bar>div:nth-child(n+3){border-top:1px solid rgba(255,255,255,.1)}}
-@media(max-width:700px){
- #openings .rc-in{padding:16px 16px 18px 20px}
- #openings .rc-head{flex-wrap:wrap;gap:12px}
- #openings .rc-ic{width:46px;height:46px}
- #openings .rc-ic .ui{width:20px;height:20px}
- #openings .rc-head>div{flex:1}
- #openings .rc-toggle{width:100%}
- #openings .rc-foot{flex-direction:column;align-items:stretch}
- #openings .rc-act{justify-content:space-between}
- #openings .rc-btn{flex:1}
- .ops-bar b{font-size:1.2rem}
-}
-
-/* =====================================================================
-   3) HIRING PROCESS: professional redesign (stepper)
-   ===================================================================== */
-.hx-on .hpm,.hx-on .tl{display:none!important}
-.hx{position:relative;max-width:1180px;margin:0 auto}
-.hx-rail{position:absolute;background:rgba(255,255,255,.14);border-radius:3px;z-index:0}
-.hx-fill{display:block;border-radius:inherit;background:linear-gradient(90deg,var(--peri),var(--ind));box-shadow:0 0 14px rgba(143,132,242,.7);transition:width .15s linear,height .15s linear}
-.hx-step{position:relative;z-index:1}
-.hx-node{position:relative;z-index:2;display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:var(--navy);border:2px solid rgba(143,132,242,.4);color:#cfcaff;font:700 15px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.04em;transition:background .5s var(--e2),border-color .5s,box-shadow .5s,color .5s,transform .5s var(--e2)}
-.hx-node::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--peri);opacity:0}
-.hx-step.on .hx-node{background:linear-gradient(135deg,var(--a),var(--b));border-color:transparent;color:#fff;box-shadow:0 0 0 7px rgba(var(--glow),.2),0 10px 24px rgba(var(--glow),.5)}
-.hx-step.on .hx-node::after{animation:ping2 2.4s ease-out infinite}
-.hx-step:hover .hx-node{transform:scale(1.1)}
-.hx-card{--mx:50%;--my:-40%;position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;padding:22px 20px 18px;border-radius:20px;background:linear-gradient(160deg,#1c1e50,#12132f);border:1px solid rgba(255,255,255,.1);box-shadow:0 14px 34px rgba(0,0,0,.35);transition:transform .55s var(--e2),border-color .45s,box-shadow .45s}
-.hx-card::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(var(--glow),.28),transparent 70%);opacity:0;transition:opacity .4s}
-.hx-card::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--a),var(--b));transform:scaleX(0);transform-origin:left;transition:transform .7s var(--e2)}
-.hx-step.on .hx-card{border-color:rgba(var(--glow),.5)}
-.hx-step.on .hx-card::after{transform:scaleX(1)}
-.hx-card:hover{transform:translateY(-6px);border-color:rgba(var(--glow),.85);box-shadow:0 24px 50px rgba(var(--glow),.34)}
-.hx-card:hover::before{opacity:1}
-.hx-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
-.hx-ic{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;color:#fff;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 8px 18px rgba(var(--glow),.45);transition:transform .5s var(--e2)}
-.hx-ic .ui{width:20px;height:20px}
-.hx-card:hover .hx-ic{transform:rotate(-8deg) scale(1.1)}
-.hx-no{font:800 1.9rem/1 var(--fd);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.2px rgba(207,202,255,.35)}
-.hx-tag{align-self:flex-start;display:inline-block;margin-bottom:12px;padding:5px 11px;border-radius:999px;font:600 10.5px/1.3 var(--fb);letter-spacing:.07em;text-transform:uppercase;color:#e6e3ff;background:rgba(var(--glow),.2);border:1px solid rgba(var(--glow),.5)}
-.hx-card h3{color:#fff;font-size:1.06rem;line-height:1.3;margin-bottom:8px}
-.hx-card p{flex:1;color:#b4b6dc;font-size:13.8px;line-height:1.65}
-.hx-foot{display:flex;align-items:center;gap:10px;margin-top:16px;font:600 10.5px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.12em;color:#8e91c4}
-.hx-foot i{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.1);overflow:hidden}
-.hx-foot i b{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--a),var(--b));transition:width 1.1s var(--e2) .2s}
-.hx-step.on .hx-foot i b{width:var(--p,50%)}
-.hx-step{--a:var(--peri);--b:var(--ind);--glow:91,75,232}
-.hx-sum{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 14px;margin:34px auto 0;max-width:760px}
-.hx-sum span{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font:600 12.5px/1 var(--fb);color:#dcdcf8;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);transition:background .4s var(--e2),transform .4s var(--e2),border-color .4s}
-.hx-sum span:hover{background:rgba(143,132,242,.22);border-color:rgba(143,132,242,.6);transform:translateY(-3px)}
-.hx-sum .ui{width:15px;height:15px;color:var(--peri)}
-
-/* desktop: horizontal stepper */
-@media(min-width:1000px){
- .hx{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
- .hx-rail{top:26px;left:10%;right:10%;height:3px}
- .hx-fill{height:100%;width:var(--fw,0%)}
- .hx-step{display:flex;flex-direction:column;align-items:center}
- .hx-node::before{content:"";position:absolute;top:100%;left:50%;width:2px;height:22px;margin-left:-1px;background:linear-gradient(rgba(143,132,242,.55),transparent)}
- .hx-card{width:100%;flex:1;margin-top:22px}
-}
-/* tablet + phone: vertical timeline */
-@media(max-width:999px){
- .hx{max-width:720px}
- .hx-rail{left:26px;width:3px;margin-left:-1.5px;top:var(--rt,26px);height:var(--rh,0px)}
- .hx-fill{width:100%;height:var(--fh,0px);background:linear-gradient(180deg,var(--peri),var(--ind))}
- .hx-step{padding-left:76px;margin-bottom:20px}
- .hx-step:last-of-type{margin-bottom:0}
- .hx-node{position:absolute;left:0;top:14px}
-}
-@media(max-width:700px){
- .hx-rail{left:21px}
- .hx-step{padding-left:60px;margin-bottom:16px}
- .hx-node{width:44px;height:44px;font-size:13px}
- .hx-card{padding:18px 16px 16px;border-radius:18px}
- .hx-no{font-size:1.6rem}
- .hx-sum{margin-top:26px}
- .hx-sum span{font-size:12px;padding:8px 13px}
-}
-@media(prefers-reduced-motion:reduce){
- .hx-step.on .hx-node::after{animation:none}
- .hx-foot i b{transition:none;width:var(--p,50%)}
- .hx-card::after{transform:scaleX(1);transition:none}
- img[loading="lazy"]{opacity:1}
- body.is-scrolling main{pointer-events:auto}
-}
-
-/* =====================================================================
-   CARDS: plain white at rest, effects only while the cursor is on them
-   (Why Us, Perks & Benefits, Team Voices behave like consultancy.html)
-   ===================================================================== */
-body .lp .card,body .grid-4 .card,body .quote{--a:var(--peri)!important;--b:var(--ind)!important;--glow:91,75,232!important;
- transition:transform .55s var(--e2),box-shadow .5s var(--e2),border-color .5s var(--e2),opacity .9s var(--e2),translate .95s var(--e2),scale .95s var(--e2),filter .8s var(--e2)}
-body .lp .card.glow,body .grid-4 .card.glow,body .quote.glow,body .quote .rs{animation:none!important}
-body .lp .card::before,body .grid-4 .card::before,body .quote::after{transition:clip-path .7s var(--e2)}
-body .lp .card .ci img{transition:transform 1s var(--e2)}
-@media(max-width:700px){
- body .lp .card,body .grid-4 .card,body .quote{box-shadow:0 12px 30px rgba(91,75,232,.12),inset 0 1px 0 #fff!important}
-}
-
-/* =====================================================================
-   TEAM VOICES: same swipe carousel + design as consultancy "Client Stories"
-   (phones: swipe, snap, dots, one card slides every 5 seconds then rests)
-   ===================================================================== */
-@media(max-width:700px){
- body #tGrid.t-grid{display:flex!important;flex-wrap:nowrap;grid-template-columns:none!important;gap:14px!important;
-  margin:0 -20px!important;padding:8px 20px 14px!important;overflow-x:auto;overflow-y:hidden;
-  scroll-snap-type:x mandatory;scroll-padding-inline:20px;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none}
- body #tGrid.t-grid::-webkit-scrollbar{display:none}
- body #tGrid.t-grid>.quote{flex:0 0 86%!important;min-width:0;height:auto;align-self:stretch;scroll-snap-align:start;
-  padding:22px!important;border-radius:20px!important;opacity:1!important;transform:none!important;translate:none!important;scale:1!important;filter:none!important;
-  background:rgba(255,255,255,.6)!important;border:1px solid rgba(255,255,255,.9)!important;
-  box-shadow:0 8px 28px rgba(91,75,232,.08),inset 0 1px 0 #fff!important}
- body #tGrid.t-grid>.quote .who{order:-1;margin-bottom:16px}
- body #tGrid.t-grid>.quote p{order:1;margin:0 0 20px;line-height:1.7}
- body #tGrid.t-grid>.quote .rs{order:2;margin-bottom:0}
- body #tGrid.t-grid>.quote .cm{order:3}
- body #tGrid.t-grid>.quote:hover{transform:none!important}
- body #tGrid.t-grid>.quote:active{transform:scale(.98)!important;transition:transform .15s}
- .t-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}
-}
-
-/* =====================================================================
-   FAQ: word colours exactly as consultancy.html
-   question = ink at rest, indigo only on hover or when open (never from scrolling);
-   answer = muted grey
-   ===================================================================== */
-body .faq summary{color:var(--ink)}
-body .faq details.tch:not(:hover):not([open]) .fq-t{color:var(--ink)}
-body .faq details:not([open]):not(:hover) .fq-t{color:var(--ink)}
-body .faq details:hover .fq-t,body .faq details[open] .fq-t{color:var(--ind)}
-body .faq details p{color:var(--mute)}
-.fq-t{transition:color .3s var(--e2)}
-body .faq summary::after{transition:transform .55s var(--e2),color .3s}
-body .faq details:hover summary::after{color:var(--peri)}
-body .faq details[open] summary::after{color:var(--ind)}
-</style>
-
-<script id="lenis-1.1.18">/* Lenis 1.1.18 (MIT, darkroom.engineering), embedded so the page is fully self-contained */
-var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t,e){return(1-e)*r+e*t}function z(r,t,e,i){return W(r,t,1-Math.exp(-e*i))}function x(r,t){return(r%t+t)%t}var y=class{isRunning=!1;value=0;from=0;to=0;currentTime=0;lerp;duration;easing;onUpdate;advance(t){if(!this.isRunning)return;let e=!1;if(this.duration&&this.easing){this.currentTime+=t;let i=w(0,this.currentTime/this.duration,1);e=i>=1;let s=e?1:this.easing(i);this.value=this.from+(this.to-this.from)*s}else this.lerp?(this.value=z(this.value,this.to,this.lerp*60,t),Math.round(this.value)===this.to&&(this.value=this.to,e=!0)):(this.value=this.to,e=!0);e&&this.stop(),this.onUpdate?.(this.value,e)}stop(){this.isRunning=!1}fromTo(t,e,{lerp:i,duration:s,easing:o,onStart:l,onUpdate:h}){this.from=this.value=t,this.to=e,this.lerp=i,this.duration=s,this.easing=o,this.currentTime=0,this.isRunning=!0,l?.(),this.onUpdate=h}};function R(r,t){let e;return function(...i){let s=this;clearTimeout(e),e=setTimeout(()=>{e=void 0,r.apply(s,i)},t)}}var E=class{constructor(t,e,{autoResize:i=!0,debounce:s=250}={}){this.wrapper=t;this.content=e;i&&(this.debouncedResize=R(this.resize,s),this.wrapper instanceof Window?window.addEventListener("resize",this.debouncedResize,!1):(this.wrapperResizeObserver=new ResizeObserver(this.debouncedResize),this.wrapperResizeObserver.observe(this.wrapper)),this.contentResizeObserver=new ResizeObserver(this.debouncedResize),this.contentResizeObserver.observe(this.content)),this.resize()}width=0;height=0;scrollHeight=0;scrollWidth=0;debouncedResize;wrapperResizeObserver;contentResizeObserver;destroy(){this.wrapperResizeObserver?.disconnect(),this.contentResizeObserver?.disconnect(),this.wrapper===window&&this.debouncedResize&&window.removeEventListener("resize",this.debouncedResize,!1)}resize=()=>{this.onWrapperResize(),this.onContentResize()};onWrapperResize=()=>{this.wrapper instanceof Window?(this.width=window.innerWidth,this.height=window.innerHeight):(this.width=this.wrapper.clientWidth,this.height=this.wrapper.clientHeight)};onContentResize=()=>{this.wrapper instanceof Window?(this.scrollHeight=this.content.scrollHeight,this.scrollWidth=this.content.scrollWidth):(this.scrollHeight=this.wrapper.scrollHeight,this.scrollWidth=this.wrapper.scrollWidth)};get limit(){return{x:this.scrollWidth-this.width,y:this.scrollHeight-this.height}}};var f=class{events={};emit(t,...e){let i=this.events[t]||[];for(let s=0,o=i.length;s<o;s++)i[s]?.(...e)}on(t,e){return this.events[t]?.push(e)||(this.events[t]=[e]),()=>{this.events[t]=this.events[t]?.filter(i=>e!==i)}}off(t,e){this.events[t]=this.events[t]?.filter(i=>e!==i)}destroy(){this.events={}}};var _=100/6,u={passive:!1},T=class{constructor(t,e={wheelMultiplier:1,touchMultiplier:1}){this.element=t;this.options=e;window.addEventListener("resize",this.onWindowResize,!1),this.onWindowResize(),this.element.addEventListener("wheel",this.onWheel,u),this.element.addEventListener("touchstart",this.onTouchStart,u),this.element.addEventListener("touchmove",this.onTouchMove,u),this.element.addEventListener("touchend",this.onTouchEnd,u)}touchStart={x:0,y:0};lastDelta={x:0,y:0};window={width:0,height:0};emitter=new f;on(t,e){return this.emitter.on(t,e)}destroy(){this.emitter.destroy(),window.removeEventListener("resize",this.onWindowResize,!1),this.element.removeEventListener("wheel",this.onWheel,u),this.element.removeEventListener("touchstart",this.onTouchStart,u),this.element.removeEventListener("touchmove",this.onTouchMove,u),this.element.removeEventListener("touchend",this.onTouchEnd,u)}onTouchStart=t=>{let{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:0,y:0},this.emitter.emit("scroll",{deltaX:0,deltaY:0,event:t})};onTouchMove=t=>{let{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t,s=-(e-this.touchStart.x)*this.options.touchMultiplier,o=-(i-this.touchStart.y)*this.options.touchMultiplier;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:s,y:o},this.emitter.emit("scroll",{deltaX:s,deltaY:o,event:t})};onTouchEnd=t=>{this.emitter.emit("scroll",{deltaX:this.lastDelta.x,deltaY:this.lastDelta.y,event:t})};onWheel=t=>{let{deltaX:e,deltaY:i,deltaMode:s}=t,o=s===1?_:s===2?this.window.width:1,l=s===1?_:s===2?this.window.height:1;e*=o,i*=l,e*=this.options.wheelMultiplier,i*=this.options.wheelMultiplier,this.emitter.emit("scroll",{deltaX:e,deltaY:i,event:t})};onWindowResize=()=>{this.window={width:window.innerWidth,height:window.innerHeight}}};var L=class{_isScrolling=!1;_isStopped=!1;_isLocked=!1;_preventNextNativeScrollEvent=!1;_resetVelocityTimeout=null;__rafID=null;isTouching;time=0;userData={};lastVelocity=0;velocity=0;direction=0;options;targetScroll;animatedScroll;animate=new y;emitter=new f;dimensions;virtualScroll;constructor({wrapper:t=window,content:e=document.documentElement,eventsTarget:i=t,smoothWheel:s=!0,syncTouch:o=!1,syncTouchLerp:l=.075,touchInertiaMultiplier:h=35,duration:S,easing:d=H=>Math.min(1,1.001-Math.pow(2,-10*H)),lerp:c=.1,infinite:p=!1,orientation:b="vertical",gestureOrientation:n="vertical",touchMultiplier:a=1,wheelMultiplier:v=1,autoResize:g=!0,prevent:m,virtualScroll:N,overscroll:M=!0,autoRaf:O=!1,__experimental__naiveDimensions:D=!1}={}){window.lenisVersion=k,(!t||t===document.documentElement||t===document.body)&&(t=window),this.options={wrapper:t,content:e,eventsTarget:i,smoothWheel:s,syncTouch:o,syncTouchLerp:l,touchInertiaMultiplier:h,duration:S,easing:d,lerp:c,infinite:p,gestureOrientation:n,orientation:b,touchMultiplier:a,wheelMultiplier:v,autoResize:g,prevent:m,virtualScroll:N,overscroll:M,autoRaf:O,__experimental__naiveDimensions:D},this.dimensions=new E(t,e,{autoResize:g}),this.updateClassName(),this.targetScroll=this.animatedScroll=this.actualScroll,this.options.wrapper.addEventListener("scroll",this.onNativeScroll,!1),this.options.wrapper.addEventListener("pointerdown",this.onPointerDown,!1),this.virtualScroll=new T(i,{touchMultiplier:a,wheelMultiplier:v}),this.virtualScroll.on("scroll",this.onVirtualScroll),this.options.autoRaf&&(this.__rafID=requestAnimationFrame(this.raf))}destroy(){this.emitter.destroy(),this.options.wrapper.removeEventListener("scroll",this.onNativeScroll,!1),this.options.wrapper.removeEventListener("pointerdown",this.onPointerDown,!1),this.virtualScroll.destroy(),this.dimensions.destroy(),this.cleanUpClassName(),this.__rafID&&cancelAnimationFrame(this.__rafID)}on(t,e){return this.emitter.on(t,e)}off(t,e){return this.emitter.off(t,e)}setScroll(t){this.isHorizontal?this.rootElement.scrollLeft=t:this.rootElement.scrollTop=t}onPointerDown=t=>{t.button===1&&this.reset()};onVirtualScroll=t=>{if(typeof this.options.virtualScroll=="function"&&this.options.virtualScroll(t)===!1)return;let{deltaX:e,deltaY:i,event:s}=t;if(this.emitter.emit("virtual-scroll",{deltaX:e,deltaY:i,event:s}),s.ctrlKey||s.lenisStopPropagation)return;let o=s.type.includes("touch"),l=s.type.includes("wheel");this.isTouching=s.type==="touchstart"||s.type==="touchmove";let h=e===0&&i===0;if(this.options.syncTouch&&o&&s.type==="touchstart"&&h&&!this.isStopped&&!this.isLocked){this.reset();return}let d=this.options.gestureOrientation==="vertical"&&i===0||this.options.gestureOrientation==="horizontal"&&e===0;if(h||d)return;let c=s.composedPath();c=c.slice(0,c.indexOf(this.rootElement));let p=this.options.prevent;if(c.find(m=>m instanceof HTMLElement&&(typeof p=="function"&&p?.(m)||m.hasAttribute?.("data-lenis-prevent")||o&&m.hasAttribute?.("data-lenis-prevent-touch")||l&&m.hasAttribute?.("data-lenis-prevent-wheel"))))return;if(this.isStopped||this.isLocked){s.preventDefault();return}if(!(this.options.syncTouch&&o||this.options.smoothWheel&&l)){this.isScrolling="native",this.animate.stop(),s.lenisStopPropagation=!0;return}let n=i;this.options.gestureOrientation==="both"?n=Math.abs(i)>Math.abs(e)?i:e:this.options.gestureOrientation==="horizontal"&&(n=e),(!this.options.overscroll||this.options.infinite||this.options.wrapper!==window&&(this.animatedScroll>0&&this.animatedScroll<this.limit||this.animatedScroll===0&&i>0||this.animatedScroll===this.limit&&i<0))&&(s.lenisStopPropagation=!0),s.preventDefault();let a=o&&this.options.syncTouch,g=o&&s.type==="touchend"&&Math.abs(n)>5;g&&(n=this.velocity*this.options.touchInertiaMultiplier),this.scrollTo(this.targetScroll+n,{programmatic:!1,...a?{lerp:g?this.options.syncTouchLerp:1}:{lerp:this.options.lerp,duration:this.options.duration,easing:this.options.easing}})};resize(){this.dimensions.resize(),this.animatedScroll=this.targetScroll=this.actualScroll,this.emit()}emit(){this.emitter.emit("scroll",this)}onNativeScroll=()=>{if(this._resetVelocityTimeout!==null&&(clearTimeout(this._resetVelocityTimeout),this._resetVelocityTimeout=null),this._preventNextNativeScrollEvent){this._preventNextNativeScrollEvent=!1;return}if(this.isScrolling===!1||this.isScrolling==="native"){let t=this.animatedScroll;this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity,this.velocity=this.animatedScroll-t,this.direction=Math.sign(this.animatedScroll-t),this.isStopped||(this.isScrolling="native"),this.emit(),this.velocity!==0&&(this._resetVelocityTimeout=setTimeout(()=>{this.lastVelocity=this.velocity,this.velocity=0,this.isScrolling=!1,this.emit()},400))}};reset(){this.isLocked=!1,this.isScrolling=!1,this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity=0,this.animate.stop()}start(){this.isStopped&&(this.reset(),this.isStopped=!1)}stop(){this.isStopped||(this.reset(),this.isStopped=!0)}raf=t=>{let e=t-(this.time||t);this.time=t,this.animate.advance(e*.001),this.options.autoRaf&&(this.__rafID=requestAnimationFrame(this.raf))};scrollTo(t,{offset:e=0,immediate:i=!1,lock:s=!1,duration:o=this.options.duration,easing:l=this.options.easing,lerp:h=this.options.lerp,onStart:S,onComplete:d,force:c=!1,programmatic:p=!0,userData:b}={}){if(!((this.isStopped||this.isLocked)&&!c)){if(typeof t=="string"&&["top","left","start"].includes(t))t=0;else if(typeof t=="string"&&["bottom","right","end"].includes(t))t=this.limit;else{let n;if(typeof t=="string"?n=document.querySelector(t):t instanceof HTMLElement&&t?.nodeType&&(n=t),n){if(this.options.wrapper!==window){let v=this.rootElement.getBoundingClientRect();e-=this.isHorizontal?v.left:v.top}let a=n.getBoundingClientRect();t=(this.isHorizontal?a.left:a.top)+this.animatedScroll}}if(typeof t=="number"){if(t+=e,t=Math.round(t),this.options.infinite?p&&(this.targetScroll=this.animatedScroll=this.scroll):t=w(0,t,this.limit),t===this.targetScroll){S?.(this),d?.(this);return}if(this.userData=b??{},i){this.animatedScroll=this.targetScroll=t,this.setScroll(this.scroll),this.reset(),this.preventNextNativeScrollEvent(),this.emit(),d?.(this),this.userData={};return}p||(this.targetScroll=t),this.animate.fromTo(this.animatedScroll,t,{duration:o,easing:l,lerp:h,onStart:()=>{s&&(this.isLocked=!0),this.isScrolling="smooth",S?.(this)},onUpdate:(n,a)=>{this.isScrolling="smooth",this.lastVelocity=this.velocity,this.velocity=n-this.animatedScroll,this.direction=Math.sign(this.velocity),this.animatedScroll=n,this.setScroll(this.scroll),p&&(this.targetScroll=n),a||this.emit(),a&&(this.reset(),this.emit(),d?.(this),this.userData={},this.preventNextNativeScrollEvent())}})}}}preventNextNativeScrollEvent(){this._preventNextNativeScrollEvent=!0,requestAnimationFrame(()=>{this._preventNextNativeScrollEvent=!1})}get rootElement(){return this.options.wrapper===window?document.documentElement:this.options.wrapper}get limit(){return this.options.__experimental__naiveDimensions?this.isHorizontal?this.rootElement.scrollWidth-this.rootElement.clientWidth:this.rootElement.scrollHeight-this.rootElement.clientHeight:this.dimensions.limit[this.isHorizontal?"x":"y"]}get isHorizontal(){return this.options.orientation==="horizontal"}get actualScroll(){return this.isHorizontal?this.rootElement.scrollLeft:this.rootElement.scrollTop}get scroll(){return this.options.infinite?x(this.animatedScroll,this.limit):this.animatedScroll}get progress(){return this.limit===0?1:this.scroll/this.limit}get isScrolling(){return this._isScrolling}set isScrolling(t){this._isScrolling!==t&&(this._isScrolling=t,this.updateClassName())}get isStopped(){return this._isStopped}set isStopped(t){this._isStopped!==t&&(this._isStopped=t,this.updateClassName())}get isLocked(){return this._isLocked}set isLocked(t){this._isLocked!==t&&(this._isLocked=t,this.updateClassName())}get isSmooth(){return this.isScrolling==="smooth"}get className(){let t="lenis";return this.isStopped&&(t+=" lenis-stopped"),this.isLocked&&(t+=" lenis-locked"),this.isScrolling&&(t+=" lenis-scrolling"),this.isScrolling==="smooth"&&(t+=" lenis-smooth"),t}updateClassName(){this.cleanUpClassName(),this.rootElement.className=`${this.rootElement.className} ${this.className}`.trim()}cleanUpClassName(){this.rootElement.className=this.rootElement.className.replace(/lenis(-\w+)?/g,"").trim()}};globalThis.Lenis=L;
+<script id="fixed-header">
+(function(){var h=document.querySelector('.site-header');if(!h)return;
+ function fit(){document.body.style.paddingTop=h.offsetHeight+'px'}
+ fit();addEventListener('resize',fit);addEventListener('load',fit);
+ if(window.ResizeObserver)new ResizeObserver(fit).observe(h)})();
 </script>
-<script id="careers-upgrade-v1-js">
+<script id="careers-sides">
+/* text slides in from the left / right as you scroll (gentle) */
 (function(){
- 'use strict';
- var d=document,root=d.documentElement;
- var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
- var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
- function QA(s,r){return [].slice.call((r||d).querySelectorAll(s))}
- function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
- function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-
- /* A. Scrolling flag: hover repaints don't fight the scroll thread */
- var st,on=false;
- addEventListener('scroll',function(){
-  if(!on){on=true;d.body.classList.add('is-scrolling')}
-  clearTimeout(st);st=setTimeout(function(){on=false;d.body.classList.remove('is-scrolling')},120)
- },{passive:true});
-
- /* B. Lazy images fade in once decoded */
- function done(im){im.classList.add('loaded')}
- QA('img[loading="lazy"]').forEach(function(im){
-  if(im.complete&&im.naturalWidth)done(im);
-  else{im.addEventListener('load',function(){done(im)},{once:true});im.addEventListener('error',function(){done(im)},{once:true})}
- });
- setTimeout(function(){QA('img[loading="lazy"]:not(.loaded)').forEach(done)},4000);
-
- /* C. Openings summary bar (built from the real roles) */
- var roles=d.querySelector('#openings .roles');
- if(roles&&!d.querySelector('.ops-bar')){
-  var n=QA('#openings .rc').length,bar=d.createElement('div');
-  bar.className='ops-bar';
-  bar.innerHTML='<div><b>'+(n<10?'0':'')+n+'</b><span>Open roles</span></div><div><b>48 hrs</b><span>Reply time</span></div><div><b>Paid</b><span>Internships</span></div><div><b>PPO</b><span>Career path</span></div>';
-  roles.parentNode.insertBefore(bar,roles);
- }
-
- /* D. Hiring process stepper (built from the existing timeline items) */
- var tl=d.getElementById('tl'),hx=null,steps=[];
- if(tl){
-  var items=QA('.tl-item',tl),N=items.length;
-  if(N>1){
-   var html='<div class="hx-rail" aria-hidden="true"><i class="hx-fill"></i></div>';
-   items.forEach(function(it,i){
-    var use=it.querySelector('.cat-ic use'),icon=use?use.getAttribute('href'):'#i-check',
-     num=(it.querySelector('.tl-n')||{}).textContent||('0'+(i+1)),
-     fy=(it.querySelector('.tl-fy')||{}).textContent||'',
-     t=(it.querySelector('h3')||{}).textContent||'',
-     p=(it.querySelector('p')||{}).textContent||'',
-     pc=Math.round((i+1)/N*100);
-    html+='<article class="hx-step" role="listitem"><div class="hx-node" aria-hidden="true">'+esc(num)+'</div>'
-     +'<div class="hx-card"><div class="hx-top"><span class="hx-ic"><svg class="ui" aria-hidden="true"><use href="'+esc(icon)+'"/></svg></span><span class="hx-no" aria-hidden="true">'+esc(num)+'</span></div>'
-     +'<span class="hx-tag">'+esc(fy)+'</span><h3>'+esc(t)+'</h3><p>'+esc(p)+'</p>'
-     +'<div class="hx-foot"><span>STEP '+(i+1)+'/'+N+'</span><i aria-hidden="true"><b style="--p:'+pc+'%"></b></i></div></div></article>';
-   });
-   hx=d.createElement('div');hx.className='hx';hx.setAttribute('role','list');hx.setAttribute('aria-label','Hiring process steps');
-   hx.innerHTML=html;
-   tl.parentNode.insertBefore(hx,tl);
-   var sum=d.createElement('div');sum.className='hx-sum';
-   sum.innerHTML='<span><svg class="ui" aria-hidden="true"><use href="#i-clock"/></svg>About 7 days end to end</span><span><svg class="ui" aria-hidden="true"><use href="#i-check"/></svg>No trick questions</span><span><svg class="ui" aria-hidden="true"><use href="#i-send"/></svg>Offer within 24 hours</span>';
-   hx.parentNode.insertBefore(sum,tl);
-   tl.closest('.section').classList.add('hx-on');
-   steps=QA('.hx-step',hx);
-  }
- }
-
- /* E. Smooth inertia scrolling on mouse wheel (touch keeps native scrolling) */
- if(!reduce&&window.Lenis){
-  var lenis=new Lenis({duration:1.15,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t))},smoothWheel:true});
-  window.siteScroller=lenis;
-  requestAnimationFrame(function loop(t){lenis.raf(t);requestAnimationFrame(loop)});
-  d.addEventListener('click',function(e){
-   var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;
-   var id=a.getAttribute('href');if(!id||id.length<2)return;
-   var t=d.querySelector(id);if(!t)return;
-   e.preventDefault();e.stopPropagation();lenis.scrollTo(t,{offset:-64});
-  },true);
-  var modal=d.getElementById('applyModal'),navw=d.getElementById('navWrap');
-  if(modal)modal.setAttribute('data-lenis-prevent','');
-  if(navw)navw.setAttribute('data-lenis-prevent','');
-  var locked=false;
-  new MutationObserver(function(){
-   var l=d.body.classList.contains('lock');
-   if(l!==locked){locked=l;if(l)lenis.stop();else lenis.start()}
-  }).observe(d.body,{attributes:true,attributeFilter:['class']});
- }
-
- /* Hiring stepper: scroll-driven progress (runs even with reduced motion, no animation needed) */
- function paintSteps(){
-  if(!hx)return;
-  var horizontal=matchMedia('(min-width:1000px)').matches,vh=innerHeight,rail=hx.querySelector('.hx-rail'),fill=hx.querySelector('.hx-fill');
-  if(horizontal){
-   var r=hx.getBoundingClientRect(),p=clamp((vh*.78-r.top)/(r.height*.9),0,1);
-   hx.style.removeProperty('--rt');hx.style.removeProperty('--rh');hx.style.removeProperty('--fh');
-   hx.style.setProperty('--fw',(p*100).toFixed(1)+'%');
-   steps.forEach(function(s,i){s.classList.toggle('on',p>.001&&p>=i/(steps.length-1)-.02)});
-  }else{
-   var hr=hx.getBoundingClientRect(),first=steps[0].querySelector('.hx-node').getBoundingClientRect(),last=steps[steps.length-1].querySelector('.hx-node').getBoundingClientRect();
-   var top=first.top+first.height/2-hr.top,bot=last.top+last.height/2-hr.top,len=Math.max(0,bot-top);
-   hx.style.setProperty('--rt',top.toFixed(1)+'px');hx.style.setProperty('--rh',len.toFixed(1)+'px');
-   var mark=vh*.62-hr.top;
-   hx.style.setProperty('--fh',clamp(mark-top,0,len).toFixed(1)+'px');hx.style.removeProperty('--fw');
-   steps.forEach(function(s){var nb=s.querySelector('.hx-node').getBoundingClientRect();s.classList.toggle('on',mark>=nb.top+nb.height/2-hr.top)});
-  }
- }
- if(hx){
-  var q=false;
-  var tick=function(){q=false;paintSteps()};
-  addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(tick)}},{passive:true});
-  addEventListener('resize',paintSteps);
-  paintSteps();setTimeout(paintSteps,600);
- }
-
- /* I. Cards stay white unless the cursor is really on them:
-       the scroll-centre highlight (.tch) and the one-off glow are switched off for these cards */
- QA('.lp>.card,.grid-4>.card,.t-grid>.quote').forEach(function(el){
-  function sync(){
-   if(el.classList.contains('tch'))el.classList.remove('tch');
-   if(el.classList.contains('glow'))el.classList.remove('glow');
-   if(el.classList.contains('rx-in')){
-    if(!el._st)el._st=setTimeout(function(){el.classList.add('rx-settled')},1100);
-   }else{clearTimeout(el._st);el._st=0;if(el.classList.contains('rx-settled'))el.classList.remove('rx-settled')}
-  }
-  new MutationObserver(sync).observe(el,{attributes:true,attributeFilter:['class']});
-  sync();
- });
-
- /* J. Team Voices carousel autoplay (phones): a card slides in every 5 seconds,
-       then rests; pauses while the finger is on it and while off screen */
- (function(){
-  var tr=d.getElementById('tGrid');if(!tr)return;
-  var items=QA('.quote',tr);if(items.length<2)return;
-  var mob=matchMedia('(max-width:700px)'),hold=false,rel,vis=true,t=0;
-  function step(){return items[0].offsetWidth+14}
-  function pause(){hold=true;clearTimeout(rel)}
-  function resume(){clearTimeout(rel);rel=setTimeout(function(){hold=false;t=0},2500)}
-  tr.addEventListener('touchstart',pause,{passive:true});
-  tr.addEventListener('touchend',resume);tr.addEventListener('touchcancel',resume);
-  tr.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')pause()});
-  if(reduce||!('IntersectionObserver' in window))return;
-  new IntersectionObserver(function(es){vis=es[0].isIntersecting}).observe(tr);
-  setInterval(function(){
-   if(!mob.matches||hold||!vis||d.hidden){t=0;return}
-   t+=100;
-   if(t>=5000){t=0;
-    if(tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4)tr.scrollTo({left:0,behavior:'smooth'});
-    else tr.scrollBy({left:step(),behavior:'smooth'})}
-  },100);
- })();
-
- if(reduce)return;
- root.classList.add('js-fx');
-
- /* F. Left / right directions */
- function cols(p){
-  var c=getComputedStyle(p);
-  return c.display==='grid'?Math.max(1,c.gridTemplateColumns.split(' ').length):1;
- }
- function dir(i,n){
-  if(n<=1)return i%2?'r':'l';
-  var x=(i+.5)/n;
-  return x<.34?'l':x>.66?'r':'u';
- }
- function setRx(el,v){
-  var phone=matchMedia('(max-width:700px)').matches,m=phone?36:80;
-  el.style.setProperty('--dx',v==='l'?-m+'px':v==='r'?m+'px':'0px');
-  el.style.setProperty('--ky',v==='u'?'1':'0');
- }
- var rxSel='.lp>.card,.grid-4>.card,.t-grid>.quote,.faq details,.general';
- function applyRx(){
-  var phone=matchMedia('(max-width:700px)').matches;
-  QA(rxSel).forEach(function(el){
-   var p=el.parentNode,sibs=[].filter.call(p.children,function(c){return c.matches(rxSel)});
-   var i=sibs.indexOf(el),n=cols(p),v;
-   if(el.matches('.faq details'))v='r';
-   else if(el.matches('.general'))v='u';
-   else if(el.matches('.quote')&&phone)v='u';
-   else v=dir(i,n);
-   setRx(el,v);
-  });
-  QA('#openings .rc').forEach(function(el,i){
-   var m=phone?36:80;el.style.setProperty('--rvx',(i%2?m:-m)+'px');
-  });
- }
- applyRx();
-
- /* G. Left / right reveal for the redesigned sections */
- var fxio=new IntersectionObserver(function(es){
-  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('fx-in');fxio.unobserve(e.target)}});
- },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
- var fxList=[];
- var opsb=d.querySelector('.ops-bar');
- if(opsb){opsb.classList.add('fx');opsb.setAttribute('data-dir','u');fxio.observe(opsb)}
- var hsum=d.querySelector('.hx-sum');
- if(hsum){hsum.classList.add('fx');hsum.setAttribute('data-dir','u');fxio.observe(hsum)}
- steps.forEach(function(el,i){
-  el.classList.add('fx');
-  el.style.setProperty('--fd',((i%5)*.08).toFixed(2)+'s');
-  fxList.push([el,i,null]);fxio.observe(el);
- });
- /* CTA band: heading from the left, copy from the right, buttons rise */
- var ctaDirs=['l','l','r','u','u'];
- QA('.cta-band>*').forEach(function(el,i){
-  el.classList.add('fx');el.setAttribute('data-dir',ctaDirs[i]||'u');
-  el.style.setProperty('--fd',(i*.09).toFixed(2)+'s');fxio.observe(el);
- });
- /* Footer: columns slide in from their own side */
- QA('.site-footer .fgrid>*').forEach(function(el,i){
-  el.classList.add('fx');el.style.setProperty('--fd',(i*.09).toFixed(2)+'s');
-  fxList.push([el,i,el.parentNode]);fxio.observe(el);
- });
- QA('.site-footer .wrap>*:not(.fgrid)').forEach(function(el){el.classList.add('fx');el.setAttribute('data-dir','u');fxio.observe(el)});
- function applyFx(){
-  var horizontal=matchMedia('(min-width:1000px)').matches;
-  fxList.forEach(function(it){
-   var v;
-   if(it[2])v=dir(it[1],cols(it[2]));
-   else v=horizontal?dir(it[1],steps.length):(it[1]%2?'r':'l');
-   it[0].setAttribute('data-dir',v);
-  });
- }
- applyFx();
- var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){applyRx();applyFx()},200)});
-
- /* H. Hover: spotlight on stepper cards, magnetic Apply buttons */
- if(fine){
-  QA('.hx-card').forEach(function(c){
-   c.addEventListener('pointermove',function(e){
-    var r=c.getBoundingClientRect();
-    c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');
-   });
-   c.addEventListener('pointerleave',function(){c.style.setProperty('--my','-40%')});
-  });
-  QA('.rc-btn').forEach(function(b){
-   b.style.transition='transform .35s var(--ease),background .3s,color .3s,box-shadow .3s,translate .4s var(--ease)';
-   b.addEventListener('pointermove',function(e){
-    var r=b.getBoundingClientRect();
-    b.style.translate=((e.clientX-r.left-r.width/2)*.14).toFixed(1)+'px '+((e.clientY-r.top-r.height/2)*.22).toFixed(1)+'px';
-   });
-   b.addEventListener('pointerleave',function(){b.style.translate='0 0'});
-  });
- }
-
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ var Q=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+ var items=[];
+ function add(el,dir){if(el&&!el.closest('.hero,header,footer'))items.push({el:el,dir:dir})}
+ Q('.section-head').forEach(function(h,i){var f=i%2?-1:1;
+  add(h.querySelector('.eyebrow'),-f);add(h.querySelector('h2'),f);add(h.querySelector('p'),-f)});
+ Q('.ow').forEach(function(el,i){add(el,[-1,0,1][i%3])});
+ Q('.hp-row').forEach(function(el,i){add(el,i%2?1:-1)});
+ add(document.querySelector('.general'),-1);
+ var cta=document.querySelector('.cta-band');
+ if(cta)Array.prototype.forEach.call(cta.querySelectorAll('h2,p,.cta-acts'),function(c,i){add(c,i%2?1:-1)});
+ items=items.filter(function(o){return o.dir!==0});
+ items.forEach(function(o){o.el.style.willChange='translate'});
+ var busy=false;function cl(v){return Math.max(0,Math.min(1,v))}
+ function run(){busy=false;var vh=innerHeight,dist=innerWidth>700?34:10;
+  items.forEach(function(o){var r=o.el.getBoundingClientRect();if(!r.height||r.bottom<-120||r.top>vh+120)return;
+   var c=r.top+r.height/2,inn=cl((c-vh*.55)/(vh*.42)),out=cl((vh*.18-c)/(vh*.3));
+   var cur=o.el.style.translate.split(' ');
+   o.el.style.translate=(o.dir*(inn-out)*dist).toFixed(1)+'px '+(cur[1]||'0px')})}
+ addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(run)}},{passive:true});
+ addEventListener('resize',run);run();
 })();
 </script>
 </body>
