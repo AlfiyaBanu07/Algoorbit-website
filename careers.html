@@ -48,6 +48,7 @@ button,input,textarea{font-family:var(--fb)}
 .nav-links>li>a:hover::after,.dd-btn:hover::after,.nav-links>li>a.active::after{transform:scaleX(1)}
 .nav-links>li>a.active{font-weight:700}.nav-links>li>a.active::after{background:var(--peri)}
 .dd-btn{background:none;border:0;cursor:pointer}
+.dd-btn .car{display:inline-block;font-size:.65em;margin-left:6px;transition:transform .25s}.has-dd.open .dd-btn .car{transform:rotate(180deg)}
 .has-dd{position:relative}
 .dd{position:absolute;top:100%;left:-14px;min-width:230px;background:rgba(255,255,255,.97);border:1px solid var(--line);box-shadow:0 14px 32px rgba(20,21,46,.12);padding:8px 0;border-radius:16px;opacity:0;visibility:hidden;transform:translateY(6px);transition:.2s}
 .has-dd:hover .dd,.has-dd.open .dd{opacity:1;visibility:visible;transform:none}
@@ -1309,7 +1310,7 @@ h2 .w:hover>span{color:var(--ind)}
    <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
-    <li class="has-dd"><button class="dd-btn" type="button" aria-expanded="false">Services</button>
+    <li class="has-dd"><button class="dd-btn" type="button" aria-expanded="false">Services <span class="car" aria-hidden="true">▼</span></button>
      <div class="dd"><a href="consultancy.html">IT Consultancy</a><a href="training.html">Enterprise Training</a><a href="products.html">Products</a></div></li>
     <li><a href="our-work.html">Our Work</a></li>
     <li><a href="careers.html" class="active" aria-current="page">Careers</a></li>
@@ -1429,15 +1430,16 @@ h2 .w:hover>span{color:var(--ind)}
 </section>
 
 <!-- Testimonials -->
-<section class="section alt">
+<section class="section alt tv-sec" id="reviews">
  <div class="wrap">
-  <div class="section-head"><span class="eyebrow">Team Voices</span><h2>Hear It From Our People</h2></div>
-  <div class="grid t-grid" id="tGrid">
+  <div class="section-head"><span class="eyebrow">Team Voices</span><h2>Hear It From Our People</h2><p>Words from our interns and team, along with feedback from the clients and learners we have worked with.</p></div>
+  <div class="grid t-grid" id="tGrid" hidden>
    <div class="quote"><div class="rs">★★★★★</div><p>"I joined as a Full Stack intern and shipped my first feature in week two. The codebase was real, the feedback was honest, and the mentorship was exactly what I needed to level up fast."</p><div class="who"><span class="av">RK</span><div><strong>Rahul K.</strong><small>Full Stack Intern to Junior Dev</small></div></div></div>
    <div class="quote"><div class="rs">★★★★★</div><p>"As a video editing intern, I was given brand campaigns on day three. The trust Algo Orbit puts in you is unreal. My portfolio grew more in 3 months here than in 2 years of freelancing."</p><div class="who"><span class="av">PS</span><div><strong>Priya S.</strong><small>Video Editing Intern</small></div></div></div>
    <div class="quote"><div class="rs">★★★★★</div><p>"The digital marketing internship here is not a 'learn Canva' type of thing. I ran actual Google Ads campaigns, wrote SEO content that ranked, and got a strong LOR. 100% recommend."</p><div class="who"><span class="av">AN</span><div><strong>Aisha N.</strong><small>Digital Marketing Intern</small></div></div></div>
   </div>
  </div>
+ <div class="rv-mq" aria-label="Team voices and client reviews"><div class="rv-track" id="rvTrack"></div></div>
 </section>
 
 <!-- FAQ -->
@@ -1476,7 +1478,7 @@ h2 .w:hover>span{color:var(--ind)}
   <div class="fgrid">
    <div>
     <a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10"/><line x1="13.5" y1="28" x2="21.5" y2="12.5"/><circle cx="30" cy="27.5" r="5"/></svg><span>ALGO</span><b>ORBIT</b></a>
-    <p>Empowering businesses with innovative digital solutions. From restaurant management to civic engagement platforms, we build technology that drives real impact.</p>
+    <p>We build software for businesses and teach practical tech skills. Our products range from restaurant management to civic engagement platforms.</p>
     <div class="social">
      <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ui"><use href="#i-linkedin"/></svg></a>
      <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ui"><use href="#i-ig"/></svg></a>
@@ -1485,12 +1487,13 @@ h2 .w:hover>span{color:var(--ind)}
     </div>
    </div>
    <div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="careers.html" style="color:#fff;font-weight:600">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-   <div><h4>Products</h4><ul><li><a href="products.html#puredine">Restaurant System</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
-   <div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="training.html">Internships</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+   <div><h4>Products</h4><ul><li><a href="products.html#puredine">PureDine</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
+   <div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="training-institution.html">For Institutions</a></li><li><a href="training-corporate.html">For Corporate</a></li><li><a href="training-learner.html">For Learners</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
   </div>
   <div class="fbot"><p>&copy; 2026 <strong>ALGOORBIT INNOVATIONS PRIVATE LIMITED</strong> All rights reserved.</p><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></div>
  </div>
 </footer>
+<button type="button" class="totop" id="totop" aria-label="Back to top"><svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="trk" cx="24" cy="24" r="22"/><circle class="prg" cx="24" cy="24" r="22"/></svg><svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <a href="#openings" class="btn btn-primary mbar" id="mbar">View Open Roles</a>
 <a href="https://wa.me/919482119446" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></a>
@@ -1564,6 +1567,9 @@ h2 .w:hover>span{color:var(--ind)}
 <script>
 var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+/* Motion flags: AUTO_HOVER=false -> hover effects only play when the cursor is on a card (never automatically while scrolling).
+   LEGACY_REVEAL=false -> the old rise-from-below reveal is replaced by the left/right slide-in layer at the end of the page. */
+var AUTO_HOVER=false,LEGACY_REVEAL=false;
 
 // Ticker
 /* Hero ticker (same behaviour as index.html): follows scroll direction and speed, items brighten near the centre */
@@ -1809,7 +1815,7 @@ function showApplySuccess(){
 
  /* soft glow when cards scroll into view */
  var gio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('glow',e.isIntersecting)})},{threshold:.55});
- QA('.card,.quote,.job').forEach(function(el){if(!el.classList.contains('dup'))gio.observe(el)});
+ if(AUTO_HOVER)QA('.card,.quote,.job').forEach(function(el){if(!el.classList.contains('dup'))gio.observe(el)});
 
  /* phones: cards rise in one after another as you scroll down */
  document.body.classList.add('mrx');
@@ -1817,7 +1823,7 @@ function showApplySuccess(){
  QA('.grid>*').forEach(function(el){if(!el.classList.contains('dup'))rio.observe(el)});
 
  /* touch screens: hover effects play automatically when an item reaches the middle of the screen */
- if(matchMedia('(max-width:900px),(hover:none)').matches){
+ if(AUTO_HOVER&&matchMedia('(max-width:900px),(hover:none)').matches){
   var tio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
   QA('.card,.tl-card,.tl-item,.ring').forEach(function(el){if(!el.classList.contains('dup'))tio.observe(el)});
  }
@@ -1903,7 +1909,7 @@ function showApplySuccess(){
  cards.forEach(function(c){c.classList.add('pre')});
  var io=new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');o.unobserve(e.target)}})},{threshold:.1});
  cards.forEach(function(c){io.observe(c)});
- if(matchMedia('(max-width:900px),(hover:none)').matches){
+ if(AUTO_HOVER&&matchMedia('(max-width:900px),(hover:none)').matches){
   var tio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
   cards.forEach(function(c){tio.observe(c)});
  }
@@ -1922,7 +1928,7 @@ function showApplySuccess(){
 (function(){
  var QA=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
  if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver' in window))return;
- if(!matchMedia('(max-width:900px),(hover:none)').matches)return;
+ if(!AUTO_HOVER||!matchMedia('(max-width:900px),(hover:none)').matches)return;
  var tio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
  QA('.hero .hs,.hero .checklist li,.job,.faq details,.faq-vis,.fchip').forEach(function(el){tio.observe(el)});
 })();
@@ -2002,13 +2008,13 @@ function showApplySuccess(){
  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);el.classList.add('in');
   setTimeout(function(){el.classList.remove('sr','sr-l','sr-r','sr-s','in');el.style.removeProperty('--d')},2200)})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
  /* Why Us: rows slide in from alternating sides */
- tag('.lp>.card',function(el,i){el.classList.add(wide?(i%2?'sr-r':'sr-l'):'sr-l');el.style.setProperty('--d',(wide?(i>>1)*.12:0)+'s')});
+ if(LEGACY_REVEAL)tag('.lp>.card',function(el,i){el.classList.add(wide?(i%2?'sr-r':'sr-l'):'sr-l');el.style.setProperty('--d',(wide?(i>>1)*.12:0)+'s')});
  /* Perks: pop in with a stagger */
- tag('.grid-4>.card',function(el,i){el.classList.add('sr-s');el.style.setProperty('--d',((wide?i%4:i%2)*.09)+'s')});
+ if(LEGACY_REVEAL)tag('.grid-4>.card',function(el,i){el.classList.add('sr-s');el.style.setProperty('--d',((wide?i%4:i%2)*.09)+'s')});
  /* Quotes: rise one after another */
- tag('.t-grid>.quote',function(el,i){el.style.setProperty('--d',(i*.14)+'s')});
+ if(LEGACY_REVEAL)tag('.t-grid>.quote',function(el,i){el.style.setProperty('--d',(i*.14)+'s')});
  /* FAQ: slide in from the right */
- tag('.faq details',function(el,i){el.classList.add('sr-r');el.style.setProperty('--d',(i*.08)+'s')});
+ if(LEGACY_REVEAL)tag('.faq details',function(el,i){el.classList.add('sr-r');el.style.setProperty('--d',(i*.08)+'s')});
  /* Parallax: FAQ photo drifts, Why Us photos shift inside their circles */
  var fv=document.querySelector('.faq-vis'),thumbs=$$('.lp .ci img'),tick=false;
  function par(){tick=false;var vh=innerHeight;
@@ -2193,7 +2199,7 @@ body .tl-item{border-bottom:0;padding-bottom:0}
   c.insertAdjacentHTML('afterbegin','<i class="wm" aria-hidden="true">'+(h?h.textContent.charAt(0):'')+'</i>');
  });
  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
- if(!matchMedia('(max-width:900px),(hover:none)').matches)return;
+ if(!AUTO_HOVER||!matchMedia('(max-width:900px),(hover:none)').matches)return;
  var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
  QA('.quote').forEach(function(el){io.observe(el)});
 })();
@@ -2319,7 +2325,7 @@ body .grid.lp>.card>.wn{top:12px;right:12px;padding:6px 10px;font-size:11px}
  var wide=function(){return innerWidth>700};
 
  /* ---- 1. cards / quotes / faq rows: replay on every entry, both directions ---- */
- var els=QA('.lp>.card,.grid-4>.card,.t-grid>.quote,.faq details,.general');
+ var els=LEGACY_REVEAL?QA('.lp>.card,.grid-4>.card,.t-grid>.quote,.faq details,.general'):[];
  els.forEach(function(el,i){
   el.classList.remove('sr','sr-l','sr-r','sr-s','in','rv','rv-l','rv-r','rv-s');
   el.style.removeProperty('--d');
@@ -2420,9 +2426,9 @@ body .rc:is(:hover,.tch) .rc-in>i.cb{width:24px;height:24px}
  function add(el,dir){if(el&&!el.closest('.hero,header,footer'))items.push({el:el,dir:dir})}
  Q('.section-head').forEach(function(h,i){var f=i%2?-1:1;
   add(h.querySelector('.eyebrow'),-f);add(h.querySelector('h2'),f);add(h.querySelector('p'),-f)});
- Q('.ow').forEach(function(el,i){add(el,[-1,0,1][i%3])});
- Q('.hp-row').forEach(function(el,i){add(el,i%2?1:-1)});
- add(document.querySelector('.general'),-1);
+ if(LEGACY_REVEAL)Q('.ow').forEach(function(el,i){add(el,[-1,0,1][i%3])});
+ if(LEGACY_REVEAL)Q('.hp-row').forEach(function(el,i){add(el,i%2?1:-1)});
+ if(LEGACY_REVEAL)add(document.querySelector('.general'),-1);
  var cta=document.querySelector('.cta-band');
  if(cta)Array.prototype.forEach.call(cta.querySelectorAll('h2,p,.cta-acts'),function(c,i){add(c,i%2?1:-1)});
  items=items.filter(function(o){return o.dir!==0});
@@ -2437,5 +2443,499 @@ body .rc:is(:hover,.tch) .rc-in>i.cb{width:24px;height:24px}
  addEventListener('resize',run);run();
 })();
 </script>
+
+<style id="careers-index-parity">
+/* ===== Footer: exact index.html look (logo mark + wordmark, sizes, spacing), desktop + mobile ===== */
+.site-footer{position:relative;background:#0a0b20;color:#b9bbd2;padding:clamp(44px,6vw,68px) 0 0;font-size:14.5px}
+.site-footer::before{content:none!important;display:none!important;animation:none!important}
+.fgrid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;padding-bottom:44px}
+.fgrid h4{color:#fff;font-size:13px;margin-bottom:16px;letter-spacing:.06em}.fgrid h4.lg{margin-top:26px}
+.fgrid li{margin-bottom:10px}.fgrid p{max-width:420px;line-height:1.7}
+.site-footer .wordmark{display:inline-flex;align-items:center;gap:12px;font:800 32px var(--fd);letter-spacing:.03em;margin-bottom:16px}
+.site-footer .wordmark>span,.site-footer .wordmark>b{display:inline}.site-footer .wordmark span{color:#fff}.site-footer .wordmark b{color:var(--vio)}
+.site-footer .wordmark .logo-mark{width:40px;height:40px;margin:0;flex:none}.site-footer .wordmark .logo-mark rect{fill:var(--ind)}
+.social{display:flex;gap:10px;margin-top:26px}.social a{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;color:#ddd}.social .ui{width:22px;height:22px}
+.fbot{border-top:1px solid #26284f;padding:20px 0;font-size:13px;color:#9092ae;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 24px}.fbot strong{color:#ddd;font-weight:600}
+.fgrid li a,.site-footer li a{display:inline-block;transition:translate .25s var(--ease),color .25s}
+.fgrid li a:hover,.site-footer li a:hover{color:#fff;translate:5px 0;transform:none}
+.social a{transition:translate .25s var(--ease),background .25s,color .25s}
+.social a:hover{background:#26284f;color:var(--vio);translate:0 -4px;transform:none}
+.fbot a{transition:color .25s}.fbot a:hover{color:var(--vio)}
+@media(max-width:1000px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.fgrid>div:first-child{grid-column:1/-1}}
+@media(max-width:700px){
+ .site-footer{padding-bottom:78px}
+ .fgrid{grid-template-columns:1fr 1fr;gap:26px 18px;padding-bottom:28px}.fgrid>div:first-child{grid-column:1/-1}.fgrid li{margin-bottom:12px}
+ .fbot{flex-direction:column;align-items:center;text-align:center;padding:18px 0}
+ .site-footer .wordmark{font-size:28px}.site-footer .wordmark .logo-mark{width:36px;height:36px}
+}
+@media(hover:none){.fgrid li a:hover,.social a:hover{translate:none}}
+
+/* ===== No underlines / divider lines anywhere (desktop + mobile) ===== */
+*,*::before,*::after{text-decoration:none!important}
+a,a:hover,u,ins{text-decoration:none!important}
+hr{display:none!important}
+.hero h1 em::before,.hero h1 em::after,.hero h1::after,.hero .lead::after{content:none!important;display:none!important;animation:none!important}
+.hero h1,.hero h1 em,.hero .lead{border-bottom:0!important;text-decoration:none!important}
+.section-head h2::after,.cta-band h2::after,.card h3::after,.lp .card h3::after,.grid-4 .card h3::after,.ow h3::after,.rc-id::after{content:none!important;display:none!important}
+.section-head .eyebrow::before,.section-head .eyebrow::after,.cta-band .eyebrow::before,.cta-band .eyebrow::after,.dk .section-head .eyebrow::before,.dk .section-head .eyebrow::after{content:none!important;display:none!important}
+h2,h3,h4,p,.section-head,.section-head p{border-bottom:0!important}
+body .lp .card,body .grid-4 .card,body .lp .card:hover,body .grid-4 .card:hover{border-bottom:0!important}
+body .faq details,body .faq details[open],body .faq details:hover,body .faq details[open]:hover{border-bottom:0!important;margin-bottom:4px}
+.tl-item,.hp,.hp-row,.ow-more,.ow-foot,.job-foot{border-top:0!important;border-bottom:0!important}
+.site-header,#navWrap,.nav-links>li,.nav-links>li:last-child{border-top:0!important;border-bottom:0!important}
+.grid.lp::before,.grid.lp::after{content:none!important;display:none!important}
+
+/* ===== Team Voices: index.html "reviews" design, slow looping marquee ===== */
+#tGrid[hidden],.t-dots{display:none!important}
+section.section.tv-sec{position:relative;overflow:hidden;color:#fff;background:var(--navy)!important;background-image:radial-gradient(700px 360px at 10% 0,rgba(143,132,242,.22),transparent 70%)!important}
+section.section.tv-sec>.blob{display:none!important}
+section.section.tv-sec::before,section.section.tv-sec::after{content:"";position:absolute;inset:auto;border-radius:50%;pointer-events:none;z-index:0;opacity:.7;-webkit-mask-image:none;mask-image:none;background-size:auto;animation:orb 14s ease-in-out infinite}
+section.section.tv-sec::before{width:520px;height:520px;left:-170px;bottom:-200px;top:auto;right:auto;background:radial-gradient(circle,rgba(91,75,232,.5),transparent 70%);translate:0 calc(var(--bp,0)*60px)}
+section.section.tv-sec::after{width:460px;height:460px;right:-150px;top:-160px;left:auto;bottom:auto;background:radial-gradient(circle,rgba(130,200,235,.3),transparent 70%);animation-direction:reverse;translate:0 calc(var(--bp,0)*-50px)}
+.tv-sec>.wrap,.tv-sec>.rv-mq{position:relative;z-index:1}
+.tv-sec .section-head h2{color:#fff}.tv-sec .section-head p{color:#b4b6dc}
+.tv-sec .eyebrow{background-image:linear-gradient(90deg,var(--vio),#fff,var(--vio))}
+@property --bp{syntax:'<number>';inherits:false;initial-value:0}
+.rv-mq{position:relative;margin-top:44px;padding:22px 0 30px;touch-action:pan-y;contain:paint;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.rv-track{display:flex;gap:22px;width:max-content;animation:rvmq var(--rvd,90s) linear infinite;animation-play-state:running!important;will-change:transform;backface-visibility:hidden}
+@keyframes rvmq{to{transform:translateX(-50%)}}
+.rv-c{position:relative;flex:none;width:clamp(290px,30vw,400px);display:flex;flex-direction:column;gap:16px;padding:26px;margin:0;border-radius:24px;background:#fff;color:var(--ink);border:1px solid rgba(255,255,255,.9);box-shadow:0 0 0 1px rgba(143,132,242,.35),0 0 26px -4px rgba(143,132,242,.45),0 24px 44px -26px rgba(0,0,0,.65);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.rv-c .who{display:flex;align-items:center;gap:12px}
+.rv-c .av{width:46px;height:46px;border-radius:50%;object-fit:cover;background:var(--mist);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--peri);transition:box-shadow .45s var(--ease)}
+.rv-c .av.ini{display:grid;place-items:center;flex:none;width:46px;height:46px;background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff;font:700 18px var(--fd)}
+.rv-c strong{display:block;font:600 15px/1.2 var(--fd);color:var(--navy);transition:color .35s}.rv-c small{color:var(--mute);font-size:13px}
+.rv-c p{flex:1;margin:0;font-size:14.5px;font-style:normal;line-height:1.7;color:#3a3c5c}
+.rv-c .rs{display:block;align-self:auto;margin:0;color:#f0a91c;letter-spacing:3px;font-size:15px;text-shadow:0 0 12px rgba(240,169,28,.7);animation:none}
+.rv-c .rtag{display:inline-block;padding:4px 12px;border-radius:99px;background:rgba(91,75,232,.1);color:var(--ind);font:600 12px/1.4 var(--fd)}
+.rv-c .rf{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.rv-c::before{content:"\201C";position:absolute;right:20px;top:8px;font:700 84px/1 Georgia,serif;color:var(--soft);pointer-events:none}
+.rv-c.g::before{color:#e3e0ff}
+.rv-c::after{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit;padding:2px;opacity:.6;pointer-events:none;background:conic-gradient(from var(--ang),#5b4be8,#82c8eb,#a9a3ee,#5b4be8);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;transition:opacity .4s}
+.rv-c>*{position:relative;z-index:1}
+@media(hover:hover){.rv-c:hover{transform:translateY(-10px) scale(1.015);box-shadow:0 0 0 1px rgba(91,75,232,.6),0 0 44px 2px rgba(143,132,242,.7),0 34px 56px -24px rgba(0,0,0,.8)}.rv-c:hover::after{opacity:1;animation:spinAng 3s linear infinite}.rv-c:hover .av{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ind)}.rv-c:hover strong{color:var(--ind)}}
+@media(hover:none){.rv-c:active{transform:scale(.985)}}
+@media(max-width:700px){.rv-c{width:min(84vw,330px)}section.section.tv-sec::before,section.section.tv-sec::after{width:260px;height:260px}}
+
+/* ===== index.html smooth effects: card spotlight, entrances, image fade, back-to-top ===== */
+.ow{position:relative}
+.spot{position:absolute!important;inset:0;z-index:4!important;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s ease;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(143,132,242,.16),transparent 62%)}
+.spot::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgb(91,75,232),rgba(130,200,235,.75) 45%,transparent 75%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+*:hover>.spot,.spot-on>.spot{opacity:1}
+.px-u{--fx:0px;--fy:38px}
+@media(max-width:700px){.px-u{--fy:22px}}
+.px-pre{opacity:0;translate:var(--fx) var(--fy)}
+.px-go.px-go{animation:pxIn 1s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--pd,0s)}
+@keyframes pxIn{from{opacity:0;translate:var(--fx) var(--fy)}to{opacity:1;translate:0 0}}
+img.img-ld{opacity:0}
+img.img-in{animation:imgIn .8s var(--ease) both}
+@keyframes imgIn{from{opacity:0}to{opacity:1}}
+.totop{position:fixed;left:24px;bottom:24px;z-index:140;width:48px;height:48px;padding:0;border:0;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px rgba(20,21,46,.18);opacity:0;visibility:hidden;transform:translateY(16px) scale(.9);transition:opacity .35s,transform .35s var(--ease),visibility .35s,background .25s,color .25s}
+.totop.show{opacity:1;visibility:visible;transform:none}
+.totop:hover{background:var(--navy);color:#fff}
+.totop .ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.totop .trk{fill:none;stroke:var(--line);stroke-width:2.5}
+.totop .prg{fill:none;stroke:var(--ind);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:138.23;stroke-dashoffset:138.23}
+.totop .ui{position:relative;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:700px){.totop{left:16px;bottom:16px;width:44px;height:44px}body.bar-on .totop{bottom:84px}}
+@media(prefers-reduced-motion:reduce){
+ .rv-mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.rv-track{animation:none!important}
+ section.section.tv-sec::before,section.section.tv-sec::after{animation:none}
+ .px-pre{opacity:1;translate:none}.px-go.px-go,img.img-in{animation:none}.spot{display:none}
+}
+</style>
+
+<script id="careers-index-parity-js">
+(function(){
+ var R=matchMedia('(prefers-reduced-motion:reduce)').matches,Q=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+ var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
+
+ /* ---- 1. Team Voices: existing quotes + the index.html reviews, slow looping marquee ---- */
+ var t=document.getElementById('rvTrack'),src=document.getElementById('tGrid');
+ if(t){
+  var esc=function(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;')};
+  var V=[];
+  if(src)Q('.quote',src).forEach(function(c){
+   var p=c.querySelector('p'),n=c.querySelector('.who strong'),r=c.querySelector('.who small'),a=c.querySelector('.who .av'),m=c.querySelector('.cm');
+   if(!p||!n)return;
+   V.push({n:n.textContent.trim(),r:r?r.textContent.trim():'',ini:a?a.textContent.trim():'',t:p.textContent.trim().replace(/^["\u201C]+|["\u201D]+$/g,''),x:m?m.textContent.trim():''})});
+  V=V.concat([
+   {n:'Priyadarshana K',r:'Google review',g:1,t:'Had an excellent experience with Algo Orbit Innovations. The team is professional, responsive, and genuinely knowledgeable in their field. Communication was smooth throughout, and the quality of work exceeded my expectations. Highly recommend them to anyone looking for a reliable and skilled partner.'},
+   {n:'Matthew Wilson',r:'Google review',g:1,h:1,t:'Really happy with the work AlgoOrbit did for us. We worked with the team on a custom business management system, and the whole process was smooth from start to finish. Everyone was responsive, easy to communicate with, and handled changes quickly.<br><br>Mr. Nishan was great to work with personally. Very approachable, professional, and knowledgeable. The whole team did a great job, and we really appreciated their support throughout the project. We\u2019d definitely recommend AlgoOrbit and would love to work with them again on future projects.'},
+   {n:'Dhrithi Rai B',r:'Google review',g:1,t:'My experience with the Flutter project was very useful and interesting. I learned to create attractive user interfaces, use Dart and Flutter widgets, connect Firebase, and fix errors during development. It improved my coding, debugging, and problem-solving skills.'},
+   {n:'Riya Fernandes',r:'Owner, Brew & Bean Caf\u00e9',i:'https://www.algoorbit.in/static/images/review/riya.png',t:'ALGO ORBIT completely transformed how we run our caf\u00e9. The management system they built handles orders, staff scheduling, and payments seamlessly. The team was professional, fast, and genuinely cared about our success.'},
+   {n:'Dr. Meera Rao',r:'Harmony Health Clinic',i:'https://www.algoorbit.in/static/images/review/meera.png',t:'The clinic management system ALGO ORBIT delivered was clean, practical, and exceeded every expectation. Patient scheduling, records, and billing, all in one intuitive system. Our staff adopted it in days.'},
+   {n:'Prajna Mendon',r:'NMAMIT Nitte',i:'https://www.algoorbit.in/static/images/review/prajna.jpg',t:'The training program at ALGO ORBIT didn\u2019t just teach me to code; it taught me to think like a developer. Real projects, real mentors, real feedback. I landed my first job offer before the program even ended.'}
+  ]);
+  var one=V.map(function(v){
+   var av=v.i?'<img class="av" src="'+v.i+'" alt="" width="46" height="46" loading="lazy">':'<span class="av ini" aria-hidden="true">'+esc(v.ini||v.n.charAt(0))+'</span>';
+   return '<figure class="rv-c'+(v.g?' g':'')+'"><div class="who">'+av+'<span><strong>'+esc(v.n)+'</strong><small>'+esc(v.r)+'</small></span></div><p>\u201C'+(v.h?v.t:esc(v.t))+'\u201D</p><div class="rf"><div class="rs" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>'+(v.x?'<span class="rtag">'+esc(v.x)+'</span>':'')+'</div></figure>'}).join('');
+  var rn=Math.max(2,Math.ceil(innerWidth*2/(V.length*330)));
+  t.innerHTML=one.repeat(rn*2);
+  Q('figure',t).forEach(function(f,i){if(i>=V.length)f.setAttribute('aria-hidden','true')});
+  t.style.setProperty('--rvd',(V.length*rn*28)+'s');
+ }
+
+ /* ---- 2. Back to top with scroll-progress ring (as on index.html) ---- */
+ var tt=document.getElementById('totop');
+ if(tt){
+  var prg=tt.querySelector('.prg'),busy=false;
+  var upd=function(){busy=false;var sy=scrollY,dh=document.documentElement.scrollHeight-innerHeight;
+   tt.classList.toggle('show',sy>innerHeight*.8);
+   if(prg)prg.style.strokeDashoffset=(138.23*(1-(dh>0?clamp(sy/dh,0,1):0))).toFixed(2)};
+  addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(upd)}},{passive:true});
+  addEventListener('resize',upd);upd();
+  tt.addEventListener('click',function(){scrollTo({top:0,behavior:R?'auto':'smooth'})});
+ }
+
+ /* ---- 3. Card spotlight that follows the cursor (desktop) / tap (touch) ---- */
+ if(!R){
+  var SEL='.ow,.rv-c,.hpm-card';
+  Q(SEL).forEach(function(c){if(c.querySelector(':scope>.spot'))return;var i=document.createElement('i');i.className='spot';i.setAttribute('aria-hidden','true');c.appendChild(i)});
+  var raf=0,tx=null,ex=0,ey=0;
+  document.addEventListener('pointermove',function(e){if(e.pointerType==='touch')return;var c=e.target.closest&&e.target.closest(SEL);if(!c)return;tx=c;ex=e.clientX;ey=e.clientY;
+   if(!raf)raf=requestAnimationFrame(function(){raf=0;var r=tx.getBoundingClientRect();tx.style.setProperty('--mx',(ex-r.left)+'px');tx.style.setProperty('--my',(ey-r.top)+'px')})},{passive:true});
+  document.addEventListener('pointerdown',function(e){if(e.pointerType!=='touch')return;var c=e.target.closest&&e.target.closest(SEL);if(!c)return;var r=c.getBoundingClientRect();
+   c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');c.classList.add('spot-on');clearTimeout(c._so);c._so=setTimeout(function(){c.classList.remove('spot-on')},1600)},{passive:true});
+ }
+
+ /* ---- 4. Images fade in once loaded ---- */
+ if(!R)Q('img').forEach(function(im){
+  if(im.complete||im.closest('.hero,.hero-vis,#applyModal,.rv-track'))return;
+  im.classList.add('img-ld');
+  var d=function(){im.classList.remove('img-ld');im.classList.add('img-in')};
+  im.addEventListener('load',d,{once:true});im.addEventListener('error',function(){im.classList.remove('img-ld')},{once:true});
+  setTimeout(function(){im.classList.remove('img-ld')},4000)});
+
+ /* ---- 5. Team Voices: marquee slides up on entry (replays after fully leaving), orbs drift with scroll ---- */
+ var mq=document.querySelector('.tv-sec .rv-mq'),tv=document.querySelector('.tv-sec');
+ if(!R&&mq&&'IntersectionObserver' in window){
+  mq.classList.add('px-u','px-pre');
+  new IntersectionObserver(function(es){es.forEach(function(e){var el=e.target;
+   if(e.isIntersecting&&el._s!==1){el._s=1;el.classList.remove('px-pre');el.classList.add('px-go');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('px-go')},1400)}
+   else if(!e.isIntersecting&&el._s===1){el._s=0;clearTimeout(el._t);el.classList.remove('px-go');el.classList.add('px-pre')}})},{threshold:0,rootMargin:'0px 0px -9% 0px'}).observe(mq);
+ }
+ if(!R&&tv){
+  var v=0,run=false;
+  var f=function(){run=false;var r=tv.getBoundingClientRect(),vh=innerHeight;if(r.bottom<-300||r.top>vh+300)return;
+   var tg=clamp((r.top+r.height/2-vh/2)/(vh/2+r.height/2),-1,1);v+=(tg-v)*.12;tv.style.setProperty('--bp',v.toFixed(3));if(Math.abs(tg-v)>.002)k()};
+  var k=function(){if(!run){run=true;requestAnimationFrame(f)}};
+  addEventListener('scroll',k,{passive:true});addEventListener('resize',k);k();
+ }
+})();
+</script>
+
+<style id="smooth-motion">
+/* =====================================================================
+   SMOOTH MOTION LAYER (index.html parity) - additive, loaded last
+   1. Cards / rows slide in from the LEFT and RIGHT while you scroll
+   2. Hover effects play ONLY while the cursor is on the card
+   3. Eased background parallax on hero + sections
+   ===================================================================== */
+.px-l{--fx:-72px;--fy:0px}
+.px-r{--fx:72px;--fy:0px}
+.px-u{--fx:0px;--fy:38px}
+@media(max-width:700px){.px-l{--fx:-30px}.px-r{--fx:30px}.px-u{--fy:22px}}
+.px-pre,.px-go{will-change:opacity,translate}
+
+/* ---------- smooth cursor-only hover polish (no auto-play) ---------- */
+.ow{transition:transform .55s cubic-bezier(.22,1,.36,1),box-shadow .55s cubic-bezier(.22,1,.36,1),border-color .4s}
+.ow .ow-ic{transition:background .4s ease,color .4s ease,transform .55s var(--ease)}
+.ow .ow-type{transition:background .4s ease,color .4s ease}
+.ow h3{transition:color .35s ease}
+.ow .ow-tags li{transition:background .35s ease,border-color .35s ease,transform .4s var(--ease)}
+.ow-foot .btn{transition:background .25s,color .25s,border-color .25s,box-shadow .25s,transform .4s var(--ease),translate .25s var(--ease)}
+@media(hover:hover) and (pointer:fine){
+ .ow:hover .ow-ic{background:var(--ind);color:#fff;transform:rotate(-6deg) scale(1.08)}
+ .ow:hover .ow-type{background:var(--ind);color:#fff}
+ .ow:hover h3{color:var(--ind)}
+ .ow:hover .ow-tags li{background:#efedff;border-color:var(--vio)}
+ .ow .ow-tags li:hover{transform:translateY(-2px)}
+ .hp-row:hover .hp-n{color:#fff;transform:translateX(4px)}
+ .hp-row:hover .hp-t{border-color:var(--vio);background:rgba(143,132,242,.14)}
+}
+.hp-n{transition:color .4s ease,transform .5s var(--ease)}
+.hp-t{transition:border-color .4s ease,background .4s ease}
+.hp-row{transition:background .4s ease,padding-left .5s cubic-bezier(.22,1,.36,1)}
+.faq summary,.faq .fq-ic,.faq .fq-t{transition:color .3s ease,background .3s ease,transform .45s var(--ease),box-shadow .3s ease}
+body .lp .card,body .grid-4 .card{transition-timing-function:cubic-bezier(.22,1,.36,1)}
+
+/* ---------- eased section parallax (driven by --pp from the script below) ---------- */
+.hero::before{translate:0 calc(var(--pp,0)*60px)}
+.hero::after{translate:0 calc(var(--pp,0)*-50px)}
+.blob.b1{translate:0 calc(var(--pp,0)*70px)}
+.blob.b2{translate:0 calc(var(--pp,0)*-60px)}
+.cta-band::before{translate:0 calc(var(--pp,0)*40px)}
+.cta-band::after{translate:0 calc(var(--pp,0)*-40px)}
+.stats-section::after{translate:0 calc(var(--pp,0)*-40px)}
+section.section.tv-sec::before{translate:0 calc(var(--pp,0)*60px)}
+section.section.tv-sec::after{translate:0 calc(var(--pp,0)*-50px)}
+
+/* touch screens: no sticky hover lift left behind after scrolling */
+@media(hover:none){.ow:hover{transform:none}}
+
+@media(prefers-reduced-motion:reduce){
+ .px-pre{opacity:1!important;translate:none!important}
+ .px-go.px-go{animation:none!important}
+ .hero::before,.hero::after,.blob.b1,.blob.b2,.cta-band::before,.cta-band::after,.stats-section::after,section.section.tv-sec::before,section.section.tv-sec::after{translate:none}
+}
+
+</style>
+<script id="smooth-motion-js">
+/* =====================================================================
+   SMOOTH MOTION LAYER (index.html parity)
+   A. Cards slide in from the left / right as they enter the screen,
+      settle, and replay after they have fully left (same as index.html)
+   B. Eased background parallax (hero, dark sections, CTA, reviews)
+   Hover effects are CSS-only (cursor on the card) - nothing auto-plays.
+   ===================================================================== */
+(function(){
+ var R=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ if(R||!('IntersectionObserver' in window))return;
+ var Q=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+ var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
+
+ /* ---------- A. side entrances ---------- */
+ /* kind: 'c' = by column (left column from the left, right column from the right, middle rises),
+          'a' = alternate left / right down a single list, 'u' = rise */
+ var G=[['.lp>.card','c'],['.ows>.ow','c'],['.grid-4>.card','c'],['.hp>.hp-row','a'],['.faq details','a'],['.general','u']];
+ var items=[],seen=[];
+ G.forEach(function(g){Q(g[0]).forEach(function(el){
+  if(seen.indexOf(el)>-1||el.closest('.hero,header,footer'))return;seen.push(el);
+  el.classList.remove('rv','in');            /* the old one-time fade-up would fight the slide */
+  el.style.removeProperty('transition-delay');
+  el.classList.add('px-pre','px-u');         /* hidden until it scrolls into view */
+  items.push({el:el,k:g[1]})})});
+
+ function place(el){var sib=Q(':scope>*',el.parentNode).filter(function(s){return s.offsetParent!==null});
+  var xs=[];sib.forEach(function(s){var x=Math.round(s.offsetLeft/12);if(xs.indexOf(x)<0)xs.push(x)});xs.sort(function(a,b){return a-b});
+  return{i:Math.max(0,xs.indexOf(Math.round(el.offsetLeft/12))),n:xs.length,idx:sib.indexOf(el)}}
+ function dirOf(o){
+  if(o.k==='u')return{d:'u',pd:0};
+  var p=place(o.el);
+  if(o.k==='a'||p.n<=1)return{d:p.idx%2?'r':'l',pd:0};
+  var d=(p.n%2&&p.i===(p.n-1)/2)?'u':(p.i<p.n/2?'l':'r');
+  return{d:d,pd:Math.min(p.i,3)*.1}}
+
+ var inO=new IntersectionObserver(function(es){es.forEach(function(e){var el=e.target;
+  if(e.isIntersecting&&el._s!==1){el._s=1;
+   var o=el._o,r=dirOf(o);
+   el.classList.remove('px-l','px-r','px-u','px-pre');el.classList.add('px-'+r.d);
+   el.style.setProperty('--pd',r.pd+'s');
+   void el.offsetWidth;                       /* restart the animation on every replay */
+   el.classList.add('px-go');
+   clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('px-go')},1700)}
+ })},{threshold:0,rootMargin:'0px 0px -9% 0px'});
+ var outO=new IntersectionObserver(function(es){es.forEach(function(e){var el=e.target;
+  if(!e.isIntersecting&&el._s===1){el._s=0;clearTimeout(el._t);el.classList.remove('px-go');el.classList.add('px-pre')}
+ })},{threshold:0});
+ items.forEach(function(o){o.el._o=o;inO.observe(o.el);outO.observe(o.el)});
+
+ /* ---------- B. eased section parallax ---------- */
+ var S=Q('.hero,.section.dk,.section.alt,.cta-band,.stats-section').map(function(el){return{el:el,v:0}});
+ var run=false;
+ function frame(){run=false;var vh=innerHeight,moving=false;
+  S.forEach(function(o){var r=o.el.getBoundingClientRect();if(r.bottom<-300||r.top>vh+300)return;
+   var tg=clamp((r.top+r.height/2-vh/2)/(vh/2+r.height/2),-1,1);o.v+=(tg-o.v)*.12;
+   if(Math.abs(tg-o.v)>.002)moving=true;else o.v=tg;
+   o.el.style.setProperty('--pp',o.v.toFixed(3))});
+  if(moving)kick()}
+ function kick(){if(!run){run=true;requestAnimationFrame(frame)}}
+ addEventListener('scroll',kick,{passive:true});addEventListener('resize',kick);addEventListener('load',kick);kick();
+})();
+
+</script>
+
+<style id="openings-redesign">
+/* =====================================================================
+   CURRENT OPENINGS - PROFESSIONAL REDESIGN (desktop + tablet + mobile)
+   - Every card is exactly the same size (equal-height grid rows)
+   - Same structure in every card: header, title, eligibility, summary,
+     skills, requirements button, action bar
+   - "View requirements" opens INSIDE the card (scrollable panel), so the
+     card never grows and the other cards never shift
+   - Hover effects only while the cursor is on a card
+   ===================================================================== */
+@keyframes owPanel{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+#openings .ows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:24px;align-items:stretch}
+#openings .ow{
+ --a:#8f84f2;--b:#5b4be8;--glow:91,75,232;
+ position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;gap:0;
+ height:100%;min-height:440px;padding:30px 26px 0;border-radius:22px;
+ background:#fff;border:1px solid rgba(255,255,255,.92);
+ box-shadow:0 18px 44px rgba(0,0,0,.3)}
+#openings .ows>.ow:nth-child(2){--a:#82c8eb;--b:#2a8fcf;--glow:42,143,207}
+#openings .ows>.ow:nth-child(3){--a:#a9a3ee;--b:#7a6df0;--glow:122,109,240}
+#openings .ow::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;z-index:3;pointer-events:none;background:linear-gradient(90deg,var(--a),var(--b))}
+#openings .ow:hover{box-shadow:0 28px 60px rgba(0,0,0,.4),0 0 0 1px rgba(var(--glow),.35)}
+
+/* header: icon tile + type chip */
+#openings .ow-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 20px}
+#openings .ow-ic{width:54px;height:54px;border-radius:16px;background:rgba(var(--glow),.12);color:var(--b)}
+#openings .ow-ic .ui{width:25px;height:25px}
+#openings .ow-type{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:99px;font:600 12px/1 var(--fb);letter-spacing:.02em;color:var(--b);background:rgba(var(--glow),.1);border:1px solid rgba(var(--glow),.24)}
+#openings .ow-type::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+
+/* title, eligibility, summary */
+#openings .ow h3{margin:0 0 10px;font-size:1.3rem;line-height:1.25;color:var(--navy)}
+#openings .ow-meta{align-self:flex-start;margin:0 0 14px;padding:5px 12px;border-radius:8px;background:#f3f2fb;color:var(--mute);font:600 12.5px/1.3 var(--fb)}
+#openings .ow-desc{flex:1 1 auto;margin:0 0 18px;font-size:14.5px;line-height:1.7;color:#43455f}
+
+/* skills */
+#openings .ow-tags{margin:0 0 18px;gap:8px}
+#openings .ow-tags li{padding:5px 11px;border-radius:99px;background:rgba(var(--glow),.08);border:1px solid rgba(var(--glow),.2);color:var(--ink);font:500 12.5px/1.3 var(--fb)}
+
+/* requirements button */
+#openings .ow-more{position:static;margin:0 0 22px;padding:0;border:0}
+#openings .ow-more summary{padding:12px 16px;border-radius:12px;background:#f6f5ff;color:var(--b);font:600 14px/1.3 var(--fb);transition:background .3s ease,color .3s ease}
+#openings .ow-more summary:hover{background:rgba(var(--glow),.12)}
+#openings .ow-more summary .ui{width:18px;height:18px}
+
+/* requirements panel: opens inside the card, card size never changes */
+#openings .ow-more[open] .ow-req{
+ position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;
+ padding:0;background:#fff;border-radius:inherit;animation:owPanel .4s cubic-bezier(.22,1,.36,1) both}
+#openings .ow-req-head{position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+ padding:24px 22px 14px 26px;background:linear-gradient(90deg,var(--a),var(--b)) top/100% 5px no-repeat,#fff}
+#openings .ow-req-head span{display:block;margin-bottom:6px;font:600 11px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--b)}
+#openings .ow-req-head strong{display:block;font:600 1.1rem/1.25 var(--fd);color:var(--navy)}
+#openings .ow-x{flex:none;display:grid;place-items:center;width:38px;height:38px;padding:0;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--mute);cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .35s var(--ease)}
+#openings .ow-x .ui{width:16px;height:16px}
+#openings .ow-x:hover,#openings .ow-x:focus-visible{background:var(--b);border-color:var(--b);color:#fff;transform:rotate(90deg)}
+#openings .ow-req h4{margin:14px 26px 8px;font:600 12px/1 var(--fb);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+#openings .ow-req ul{margin:0 26px}
+#openings .ow-req ul:not(.nice){margin-bottom:6px}
+#openings .ow-req li{font-size:14px;line-height:1.5;color:#43455f}
+#openings .ow-req li::before{background:var(--b)}
+#openings .ow-req .nice li::before{background:var(--a)}
+#openings .ow-req-bar{position:sticky;bottom:0;z-index:2;display:flex;gap:10px;margin-top:auto;padding:16px 26px 20px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff 32%)}
+#openings .ow-req-bar .btn{flex:1;height:44px;min-width:0;padding:0 18px;font-size:14px;animation:none}
+#openings .ow-back{flex:none;height:44px;padding:0 20px;border-radius:999px;border:1.5px solid rgba(var(--glow),.4);background:#fff;color:var(--b);font:600 14px/1 var(--fb);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+#openings .ow-back:hover,#openings .ow-back:focus-visible{background:rgba(var(--glow),.1);border-color:var(--b)}
+
+/* action bar (tinted band, no divider line) */
+#openings .ow-foot{margin:0 -26px;padding:16px 26px;border:0;background:#f6f5ff;gap:12px}
+#openings .ow-foot small{display:inline-flex;align-items:center;gap:8px;font:600 12.5px/1.3 var(--fb);color:var(--mute)}
+#openings .ow-foot small::before{content:"";width:7px;height:7px;border-radius:50%;background:#12a150;box-shadow:0 0 0 3px rgba(18,161,80,.18);flex:none}
+#openings .ow-foot .btn{min-width:132px;height:42px;padding:0 22px;font-size:14px}
+
+/* hover (cursor only) */
+@media(hover:hover) and (pointer:fine){
+ #openings .ow:hover .ow-ic{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;transform:rotate(-6deg) scale(1.08)}
+ #openings .ow:hover .ow-type{background:linear-gradient(135deg,var(--a),var(--b));border-color:transparent;color:#fff}
+ #openings .ow:hover h3{color:var(--b)}
+ #openings .ow:hover .ow-tags li{background:rgba(var(--glow),.14);border-color:rgba(var(--glow),.45)}
+}
+
+/* tablet: two columns, the last card is centred and keeps the same size */
+@media(max-width:1000px){
+ #openings .ows{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+ #openings .ows>.ow:last-child:nth-child(odd){grid-column:1/-1;width:calc(50% - 10px);justify-self:center}
+}
+/* mobile: one column, every card the same height */
+@media(max-width:700px){
+ #openings .ows{grid-template-columns:minmax(0,1fr);gap:18px}
+ #openings .ows>.ow:last-child:nth-child(odd){grid-column:auto;width:auto;justify-self:stretch}
+ #openings .ow{min-height:440px;padding:26px 20px 0;border-radius:20px}
+ #openings .ow-top{margin-bottom:16px}
+ #openings .ow-ic{width:48px;height:48px;border-radius:14px}
+ #openings .ow h3{font-size:1.2rem}
+ #openings .ow-foot{margin:0 -20px;padding:14px 20px}
+ #openings .ow-req-head{padding:22px 16px 12px 20px}
+ #openings .ow-req h4{margin-left:20px;margin-right:20px}
+ #openings .ow-req ul{margin-left:20px;margin-right:20px}
+ #openings .ow-req-bar{padding:14px 20px 18px}
+}
+@media(prefers-reduced-motion:reduce){#openings .ow-more[open] .ow-req{animation:none}}
+
+</style>
+<script id="openings-redesign-js">
+/* Current Openings: requirements panel controls (close button, back / apply bar, Esc, one open at a time) */
+(function(){
+ var cards=Array.prototype.slice.call(document.querySelectorAll('#openings .ow'));
+ if(!cards.length)return;
+ var panels=[];
+ cards.forEach(function(c){
+  var d=c.querySelector('.ow-more'),req=c.querySelector('.ow-req'),h=c.querySelector('h3'),sum=d&&d.querySelector('summary');
+  if(!d||!req||!sum||req.querySelector('.ow-req-head'))return;
+  var title=h?h.textContent.trim():'';
+  var head=document.createElement('div');head.className='ow-req-head';
+  head.innerHTML='<div><span>Requirements</span><strong></strong></div><button type="button" class="ow-x" aria-label="Close requirements"><svg class="ui" aria-hidden="true"><use href="#i-x"/></svg></button>';
+  head.querySelector('strong').textContent=title;
+  req.insertBefore(head,req.firstChild);
+  var bar=document.createElement('div');bar.className='ow-req-bar';
+  bar.innerHTML='<button type="button" class="ow-back">Back</button><button type="button" class="btn btn-primary ow-ap">Apply now</button>';
+  req.appendChild(bar);
+  function close(){d.open=false;sum.focus({preventScroll:true})}
+  head.querySelector('.ow-x').addEventListener('click',close);
+  bar.querySelector('.ow-back').addEventListener('click',close);
+  bar.querySelector('.ow-ap').addEventListener('click',function(){d.open=false;if(typeof openApplyModal==='function')openApplyModal(title,'')});
+  d.addEventListener('toggle',function(){
+   if(d.open){panels.forEach(function(o){if(o!==d)o.open=false});req.scrollTop=0;
+    setTimeout(function(){var x=head.querySelector('.ow-x');if(x)x.focus({preventScroll:true})},60)}
+  });
+  panels.push(d);
+ });
+ document.addEventListener('keydown',function(e){
+  if(e.key!=='Escape')return;
+  panels.forEach(function(d){if(d.open){d.open=false;var s=d.querySelector('summary');if(s)s.focus({preventScroll:true})}});
+ });
+})();
+
+</script>
+
+<style id="openings-horizontal">
+/* =====================================================================
+   CURRENT OPENINGS - HORIZONTAL CARDS (DESKTOP ONLY, 1001px and wider)
+   Each opening is one wide, equal-size row:
+   [ icon + title + eligibility ] [ summary + skills ] [ Apply + requirements ]
+   Tablet and mobile keep the previous layout untouched.
+   ===================================================================== */
+@media(min-width:1001px){
+ #openings>.wrap{max-width:1180px!important}
+ #openings .ows{grid-template-columns:minmax(0,1fr);grid-auto-rows:1fr;gap:20px}
+ #openings .ow{
+  --lc:clamp(230px,23vw,268px);--rc:clamp(200px,18vw,220px);--gp:clamp(24px,3vw,40px);--pad:32px;
+  display:grid;grid-template-columns:var(--lc) minmax(0,1fr) var(--rc);
+  grid-template-areas:"top desc foot" "title desc foot" "meta tags more";
+  grid-template-rows:auto 1fr auto;column-gap:var(--gp);row-gap:0;align-items:start;
+  min-height:270px;padding:30px var(--pad);border-radius:22px;
+  background:linear-gradient(90deg,#fff calc(100% - var(--pad) - var(--rc) - var(--gp)/2),#f6f5ff 0)}
+ /* accent bar moves to the left edge */
+ #openings .ow::before{right:auto;bottom:0;width:5px;height:auto;background:linear-gradient(180deg,var(--a),var(--b))}
+
+ /* left column */
+ #openings .ow-top{grid-area:top;justify-content:flex-start;gap:14px;margin:0 0 16px}
+ #openings .ow h3{grid-area:title;margin:0;align-self:start}
+ #openings .ow-meta{grid-area:meta;justify-self:start;align-self:end;margin:0}
+
+ /* middle column */
+ #openings .ow-desc{grid-area:desc;align-self:start;margin:0 0 14px;max-width:62ch}
+ #openings .ow-tags{grid-area:tags;align-self:end;margin:0}
+
+ /* right column: tinted action panel */
+ #openings .ow-foot{grid-area:foot;align-self:center;display:flex;flex-direction:column-reverse;align-items:stretch;gap:12px;margin:0;padding:0;background:none;text-align:center}
+ #openings .ow-foot small{justify-content:center}
+ #openings .ow-foot .btn{width:100%;min-width:0;height:46px}
+ #openings .ow-more{grid-area:more;align-self:end;margin:0}
+
+ /* requirements panel: two columns inside the same card, card size never changes */
+ #openings .ow-more[open] .ow-req{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto 1fr;align-content:start;column-gap:var(--gp);
+  padding:0 var(--pad) 18px calc(var(--pad) + 5px);
+  background:linear-gradient(180deg,var(--a),var(--b)) left/5px 100% no-repeat,#fff}
+ #openings .ow-req-head{grid-column:1;grid-row:1;position:static;padding:24px 0 8px;background:none}
+ #openings .ow-x{display:none}
+ #openings .ow-req-bar{grid-column:2;grid-row:1;position:static;justify-self:end;align-self:center;margin:0;padding:24px 0 8px;background:none}
+ #openings .ow-req-bar .btn{flex:none;min-width:140px}
+ #openings .ow-req h4{margin:10px 0 8px}
+ #openings .ow-req ul{margin:0}
+ #openings .ow-req h4:nth-of-type(1){grid-column:1;grid-row:2}
+ #openings .ow-req ul:nth-of-type(1){grid-column:1;grid-row:3}
+ #openings .ow-req h4:nth-of-type(2){grid-column:2;grid-row:2}
+ #openings .ow-req ul:nth-of-type(2){grid-column:2;grid-row:3}
+}
+
+</style>
 </body>
 </html>
