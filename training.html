@@ -1125,6 +1125,149 @@ html.js-fx .sp>div:first-child>.fx,html.js-fx .stats-b .wrap>.fx{will-change:tra
  .btn.o::before,.btn.g::before{transition:none}
 }
 </style>
+<style id="training-about-motion">
+/* =====================================================================
+   TRAINING x ABOUT MOTION LAYER (added last, nothing above is changed)
+   Brings the remaining about.html motion to this page:
+   1) Smart header: glides away on scroll down, returns on scroll up
+   2) Back to top button with a scroll progress ring
+   3) Scroll linked left / right slide for headings, intros and buttons
+   4) Left / right reveals that replay every time a block returns to view
+   5) Photo wipe reveal, staggered lists, staggered social icons
+   6) Smooth hover polish (icons, notes, social)
+   Every effect is skipped for prefers-reduced-motion.
+   ===================================================================== */
+:root{--e4:cubic-bezier(.22,1,.36,1)}
+
+/* ---------- 1. Smart header ---------- */
+header{transition:transform .45s var(--ease),box-shadow .3s}
+header.hide{transform:translateY(-100%)}
+@media(min-width:1001px) and (hover:hover){.hero-copy{will-change:opacity,translate}}
+
+/* ---------- 2. Back to top with progress ring ---------- */
+.totop{position:fixed;left:24px;bottom:24px;z-index:140;width:48px;height:48px;padding:0;border:0;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px rgba(20,21,46,.18);opacity:0;visibility:hidden;transform:translateY(16px) scale(.9);transition:opacity .35s,transform .35s var(--ease),visibility .35s,background .25s,color .25s}
+.totop.show{opacity:1;visibility:visible;transform:none}
+.totop:hover{background:var(--navy);color:#fff}
+.totop:active{transform:scale(.94)}
+.totop .ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.totop .trk{fill:none;stroke:var(--line);stroke-width:2.5}
+.totop .prg{fill:none;stroke:var(--ind);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:138.23;stroke-dashoffset:138.23}
+.totop .ui{position:relative;width:18px;height:18px}
+.totop:hover .ui{animation:tmUp .6s var(--e4)}
+@keyframes tmUp{40%{transform:translateY(-4px)}}
+@media(max-width:700px){.totop{left:16px;bottom:16px;width:44px;height:44px}body.bar-on .totop{bottom:84px}}
+
+/* ---------- 3. Photo wipe, staggered lists and icons ---------- */
+.pic img.mk{clip-path:inset(0 0 100% 0);transition:transform .9s var(--ease),clip-path .9s var(--e4)}
+.pic img.mk.on{clip-path:inset(0 0 0 0)}
+.lst>li{opacity:0;transform:translateX(-16px);transition:opacity .6s var(--e4),transform .6s var(--e4)}
+.lst.lv>li{opacity:1;transform:none;transition-delay:calc(var(--k)*90ms)}
+.sx{opacity:0}
+.sx.sx-in{animation:tmPop .75s var(--e4) both;animation-delay:calc(var(--k,0)*70ms)}
+@keyframes tmPop{from{opacity:0;transform:translateY(26px) scale(.86)}to{opacity:1;transform:none}}
+@media(max-width:700px){.lst>li{transform:translateY(14px)}.lst.lv>li{transform:none}}
+
+/* ---------- 4. Smooth hover polish ---------- */
+.vp-notes li{transition:transform .35s var(--e4),color .3s}
+.vp-notes li:hover{transform:translateX(6px);color:#fff}
+@keyframes tmWig{20%{rotate:-12deg}45%{rotate:10deg}70%{rotate:-6deg}100%{rotate:0deg}}
+.vfeat>.c:hover .ic .ui,.sb:hover .sb-ic .ui,.vp-notes li:hover .ui{animation:tmWig .7s var(--e4)}
+.social a:hover{animation:icPop .5s var(--ease)}
+
+@media(prefers-reduced-motion:reduce){
+ header{transition:none}.totop,.totop:hover .ui{transition:none;animation:none}
+ .pic img.mk,.lst>li,.sx{clip-path:none!important;opacity:1!important;transform:none!important;animation:none!important}
+}
+@media print{.totop{display:none!important}}
+</style>
+<style id="training-motion-v5">
+/* =====================================================================
+   TRAINING v5 (added last, nothing above is changed or removed)
+   1) About-style image-card animation: photo wipe + slow settle zoom,
+      direction follows the card (left card from the left, right card
+      from the right), chips pop in after the photo
+   2) Cards ease in with a soft scale as they slide from left / right
+   3) Six practice areas: number badge is large, high contrast, readable
+   4) Certificate verification: roomier desktop layout (>=1001px only)
+   ===================================================================== */
+
+/* ---------- 1. Photo wipe on every image card (about.html style) ---------- */
+html.js-fx :is(#aud,#corp,#boot,#cert,#fdp,#ws,body) .cimg img.wp{
+ clip-path:inset(0 0 100% 0);scale:1.14;
+ transition:clip-path 1.15s var(--e1),scale 1.7s var(--e1),transform .9s var(--ease),filter .6s,object-position .7s var(--e1),opacity .8s var(--e1);
+ will-change:clip-path,scale}
+html.js-fx :is(#aud,#corp,#boot,#cert,#fdp,#ws,body) .cimg img.wp[data-wp="l"]{clip-path:inset(0 100% 0 0)}
+html.js-fx :is(#aud,#corp,#boot,#cert,#fdp,#ws,body) .cimg img.wp[data-wp="r"]{clip-path:inset(0 0 0 100%)}
+html.js-fx :is(#aud,#corp,#boot,#cert,#fdp,#ws,body) .cimg img.wp.wp-on{clip-path:inset(0);scale:1;will-change:auto}
+/* label, number and badge chips pop in once the photo has opened */
+@keyframes tmChip{from{opacity:0;translate:0 14px;scale:.8}}
+html.js-fx .cimg.wp-arm:not(.wp-go) :is(span,.wn,.pop){opacity:0}
+html.js-fx .cimg.wp-go :is(span,.wn,.pop){animation:tmChip .8s var(--e1) .6s backwards}
+html.js-fx .cimg.wp-go .wn{animation-delay:.75s}
+
+/* ---------- 2. Cards ease in with a soft scale while sliding left / right ---------- */
+.c.reveal:not(.in),.pic.reveal:not(.in),.vb.reveal:not(.in),.gr.reveal:not(.in),.vsteps>li.reveal:not(.in){scale:.965}
+.reveal{transition:opacity .9s var(--ease),translate 1.1s var(--e1),scale 1.1s var(--e1)}
+@media(max-width:700px){
+ .mq>.reveal.in{transition:opacity .9s var(--ease),translate 1.1s var(--e1),scale 1.1s var(--e1)}
+ .c.reveal:not(.in),.pic.reveal:not(.in),.vb.reveal:not(.in){scale:.98}
+}
+
+/* ---------- 3. Six practice areas: clearly visible number badge ---------- */
+html #corp.g3>.c.c.c:not(.q) .wn{
+ left:14px;top:14px;right:auto;bottom:auto;min-width:48px;text-align:center;
+ padding:9px 15px 8px;font:800 15px/1 var(--fd);letter-spacing:.08em;
+ color:#fff;background:linear-gradient(135deg,#7466f0,#4538c4);
+ border:2px solid rgba(255,255,255,.95);
+ box-shadow:0 8px 20px rgba(14,15,42,.5),0 0 0 4px rgba(91,75,232,.28);
+ text-shadow:0 1px 2px rgba(14,15,42,.35)}
+html #corp.g3>.c.c.c:not(.q):is(:hover,.tch) .wn{
+ color:var(--indd);background:linear-gradient(135deg,#fff,#e8e5ff);border-color:#fff;text-shadow:none;
+ box-shadow:0 10px 24px rgba(14,15,42,.5),0 0 0 5px rgba(143,132,242,.4)}
+@media(max-width:700px){
+ html #corp.g3>.c.c.c:not(.q) .wn{left:12px;top:12px;min-width:44px;padding:8px 13px 7px;font-size:14px}
+}
+
+/* ---------- 4. Certificate verification: more room inside the cards (desktop only) ---------- */
+@media(min-width:1001px){
+ .vsec .vgrid{grid-template-columns:minmax(0,.94fr) minmax(0,1.2fr);gap:32px;align-items:stretch}
+ .vsec .vpanel{padding:38px 40px 32px}
+ .vsec .vp-top{gap:16px;margin-bottom:28px}
+ .vsec .vp-ic{width:58px;height:58px;border-radius:18px}
+ .vsec .vp-ic .ui{width:28px;height:28px}
+ .vsec .vpanel h3{font-size:1.38rem}
+ .vsec .vp-top small{margin-top:4px;font-size:.88rem}
+ .vsec .vp-live{padding:8px 14px;font-size:11.5px}
+ .vsec .vp-help{margin-bottom:24px;font-size:1rem;line-height:1.65}
+ .vsec .vp-label{margin-bottom:12px;font-size:12.5px}
+ .vsec .vpanel .vf{gap:12px;margin-bottom:28px}
+ .vsec .vpanel .vf input{height:58px;font-size:1rem;padding-left:52px}
+ .vsec .vf-in .ui{left:20px}
+ .vsec .vpanel .vf .btn{height:58px;min-width:150px;padding:0 30px;font-size:16px}
+ .vsec .vpanel .vr{padding:20px 22px;margin-bottom:26px}
+ .vsec .vr dl{gap:8px 20px;font-size:.92rem}
+ .vsec .vp-notes{gap:12px 24px;padding-top:26px}
+ .vsec .vp-notes li{font-size:.88rem}
+ .vsec .vp-notes .ui{width:18px;height:18px}
+ .vsec .vfeat{gap:22px}
+ .vsec .vfeat>.c{padding:32px 30px 30px}
+ .vsec .vfeat>.c .ic{width:58px;height:58px;margin-bottom:20px;border-radius:18px}
+ .vsec .vfeat>.c .ic .ui{width:26px;height:26px}
+ .vsec .vfeat>.c h3{margin-bottom:6px;font-size:1.14rem;line-height:1.35}
+ .vsec .vfeat>.c p{font-size:.95rem;line-height:1.72}
+ .vsec .vsteps{gap:22px;margin-top:40px}
+ .vsec .vsteps>li{padding:24px 26px;gap:18px}
+ .vsec .vsteps>li::before{width:42px;height:42px;font-size:1rem}
+ .vsec .vsteps>li:not(:last-child)::after{width:22px}
+ .vsec .vsteps strong{margin-bottom:4px;font-size:1.05rem}
+ .vsec .vsteps span{font-size:.92rem;line-height:1.65}
+}
+@media(prefers-reduced-motion:reduce){
+ html.js-fx .cimg img.wp{clip-path:none!important;scale:1!important;transition:none!important}
+ html.js-fx .cimg.wp-arm :is(span,.wn,.pop){opacity:1!important;animation:none!important}
+ .c.reveal:not(.in),.pic.reveal:not(.in),.vb.reveal:not(.in),.gr.reveal:not(.in),.vsteps>li.reveal:not(.in){scale:1}
+}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1285,6 +1428,7 @@ html.js-fx .sp>div:first-child>.fx,html.js-fx .stats-b .wrap>.fx{will-change:tra
 <div class="fb"><p>&copy; 2026 <strong>ALGOORBIT INNOVATIONS PRIVATE LIMITED</strong> All rights reserved.</p><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></div>
 </div></footer>
 <a href="https://wa.me/919482119446" class="wa" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg class="ui"><use href="#i-wa"/></svg></a>
+<button type="button" class="totop" id="totop" aria-label="Back to top"><svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="trk" cx="24" cy="24" r="22"/><circle class="prg" cx="24" cy="24" r="22"/></svg><svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <script>
 /* ===== 1. Content builders ===== */
@@ -1841,6 +1985,263 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
    });
   });
  }
+})();
+</script>
+<script id="training-about-motion-js">
+/* ===== 11. Training x About motion layer (smart header, back to top, scroll linked left / right slides, replaying reveals) ===== */
+(function(){
+ 'use strict';
+ var d=document,root=d.documentElement;
+ var RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var hasIO='IntersectionObserver' in window;
+ function QA(s,r){return [].slice.call((r||d).querySelectorAll(s))}
+ function cl(v,a,b){return Math.max(a,Math.min(b,v))}
+ function sm(t){return t*t*(3-2*t)}
+ function cols(p){var c=getComputedStyle(p);return c.display==='grid'?Math.max(1,c.gridTemplateColumns.split(' ').length):1}
+ function dirOf(i,n){if(n<=1)return i%2?'r':'l';var x=((i%n)+.5)/n;return x<.34?'l':x>.66?'r':'u'}
+
+ /* ---------- A. Smart header, back to top, hero copy ---------- */
+ var hdr=d.querySelector('header'),nav=d.getElementById('nav'),tt=d.getElementById('totop'),
+     prg=tt&&tt.querySelector('.prg'),hero=d.querySelector('.hero'),hc=d.querySelector('.hero-copy');
+ var lastY=scrollY,hidden=false,run=false;
+ function focusInside(){try{return !!(hdr&&hdr.querySelector(':focus-visible'))}catch(e){return false}}
+ function frame(){
+  run=false;
+  var sy=scrollY,h=innerHeight,dh=root.scrollHeight-h;
+  if(hdr&&!RM){
+   var dy=sy-lastY;
+   if(Math.abs(dy)>6){
+    var busy=(nav&&nav.classList.contains('open'))||d.querySelector('.dd.open')||focusInside();
+    if(dy>0&&sy>240&&!busy)hidden=true;else if(dy<0||sy<=120)hidden=false;
+    hdr.classList.toggle('hide',hidden);lastY=sy;
+   }
+  }else lastY=sy;
+  if(tt){
+   tt.classList.toggle('show',sy>h*.8);
+   if(prg)prg.style.strokeDashoffset=(138.23*(1-(dh>0?cl(sy/dh,0,1):0))).toFixed(2);
+  }
+  if(hc&&hero&&!RM){
+   if(innerWidth>1000&&sy<h*1.4){
+    var k=Math.min(sy/(h*.8),1);
+    hc.style.opacity=(1-k*.9).toFixed(3);
+    hc.style.translate='0 '+(sy*.05).toFixed(1)+'px';
+   }else if(hc.style.opacity||hc.style.translate){hc.style.opacity='';hc.style.translate=''}
+  }
+ }
+ function kick(){if(!run){run=true;requestAnimationFrame(frame)}}
+ addEventListener('scroll',kick,{passive:true});addEventListener('resize',kick);kick();
+ if(tt)tt.addEventListener('click',function(){
+  var L=window.siteScroller;
+  if(L&&!RM)L.scrollTo(0,{duration:1.4});else scrollTo({top:0,behavior:RM?'auto':'smooth'});
+ });
+
+ if(RM||!hasIO)return;
+
+ /* generic watcher: on() once enough is visible, off() once fully out of view */
+ function watch(els,th,on,off){
+  if(!els.length)return;
+  var o=new IntersectionObserver(function(es){es.forEach(function(e){
+   if(e.intersectionRatio>=th||(e.isIntersecting&&e.intersectionRect.height>=innerHeight*.3))on(e.target);
+   else if(!e.isIntersecting)off(e.target);
+  })},{threshold:[0,th]});
+  els.forEach(function(el){o.observe(el)});
+ }
+
+ /* ---------- B. Left / right reveals that replay every time ---------- */
+ var rv=QA('.reveal').filter(function(el){return !el.classList.contains('dup')&&!el.closest('.dup')});
+ rv.forEach(function(el){el._dl=el.style.transitionDelay||'';el._on=false});
+ if(rv.length){
+  var ro=new IntersectionObserver(function(es){es.forEach(function(e){
+   var el=e.target,enough=e.intersectionRatio>=.1||(e.isIntersecting&&e.intersectionRect.height>=innerHeight*.25);
+   if(!el._on&&enough){
+    el._on=true;clearTimeout(el._t);
+    el.classList.add('reveal');el.style.transitionDelay=el._dl;
+    void el.offsetWidth;
+    el.classList.add('in');
+    /* free the element afterwards so card hover effects keep their own transitions */
+    el._t=setTimeout(function(){el.classList.remove('reveal','in');el.style.transitionDelay=''},1500);
+   }else if(el._on&&!e.isIntersecting){
+    el._on=false;clearTimeout(el._t);el.style.transitionDelay='';
+    el.classList.add('reveal');el.classList.remove('in');
+   }
+  })},{threshold:[0,.03,.06,.1,.2,.3,.4,.5],rootMargin:'0px 0px -40px 0px'});
+  rv.forEach(function(el){ro.observe(el)});
+ }
+ /* directions follow the grid, also for blocks that are currently at rest */
+ function fixDirs(){
+  rv.forEach(function(el){
+   el.classList.remove('rv-l','rv-r');
+   var p=el.parentNode,sibs=[].filter.call(p.children,function(c){return c.classList.contains('c')||c.classList.contains('st')||c.tagName==='LI'||c.classList.contains('sb')});
+   var i=sibs.indexOf(el),v='u';
+   if(el.classList.contains('head')||el.classList.contains('gr'))v='u';
+   else if(el.classList.contains('pic'))v='r';
+   else if(el.classList.contains('vb'))v='l';
+   else if(el.classList.contains('st'))v='l';
+   else if(i>-1)v=dirOf(i,cols(p));
+   if(v==='l')el.classList.add('rv-l');else if(v==='r')el.classList.add('rv-r');
+  });
+ }
+ var rz;addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(fixDirs,260)});
+
+ /* section heads: underline, tag + intro and headline words replay */
+ watch(QA('.head'),.5,function(el){el.classList.add('drawn')},function(el){el.classList.remove('drawn')});
+ watch(QA('.head'),.15,function(el){el.classList.add('hd-in')},function(el){el.classList.remove('hd-in')});
+ var hs=[];QA('.w').forEach(function(w){var h=w.parentNode;if(hs.indexOf(h)<0)hs.push(h)});
+ watch(hs,.4,function(el){el.classList.add('wd')},function(el){el.classList.remove('wd')});
+
+ /* stats cards, CTA and footer (the .fx blocks) replay from their own side */
+ var fxs=QA('.fx');
+ fxs.forEach(function(el){
+  var p=el.parentNode;
+  el._fk=(p.classList.contains('sb-g')||p.classList.contains('fg'))?'grid':'fixed';
+  el._fd=el.getAttribute('data-dir')||'u';
+  el._ff=el.style.getPropertyValue('--fd')||'0s';
+  el._fon=false;
+ });
+ function arm(el){
+  el.classList.add('fx');
+  var dir=el._fk==='grid'?dirOf([].indexOf.call(el.parentNode.children,el),cols(el.parentNode)):el._fd;
+  el.setAttribute('data-dir',dir);
+  el.style.setProperty('--fd',el._ff);
+ }
+ if(fxs.length){
+  var fo=new IntersectionObserver(function(es){es.forEach(function(e){
+   var el=e.target;
+   if(!el._fon&&e.intersectionRatio>=.1){
+    el._fon=true;clearTimeout(el._ft);
+    arm(el);void el.offsetWidth;
+    el.classList.add('fx-in');
+    el._ft=setTimeout(function(){el.classList.remove('fx','fx-in');el.style.removeProperty('--fd');el.removeAttribute('data-dir')},1700);
+   }else if(el._fon&&!e.isIntersecting){
+    el._fon=false;clearTimeout(el._ft);
+    arm(el);el.classList.remove('fx-in');
+   }
+  })},{threshold:[0,.1,.3],rootMargin:'0px 0px -3% 0px'});
+  fxs.forEach(function(el){fo.observe(el)});
+ }
+
+ /* impact numbers count up again each time they come back */
+ function countRun(el){
+  var t=el._v,tok=el._tok=(el._tok||0)+1,s=null;
+  (function f(ts){
+   if(el._tok!==tok)return;
+   s=s||ts;var k=Math.min((ts-s)/1600,1);
+   el.textContent=Math.floor((1-Math.pow(1-k,3))*t).toLocaleString('en-IN');
+   if(k<1)requestAnimationFrame(f);else el.textContent=t.toLocaleString('en-IN');
+  })(performance.now());
+ }
+ var cn=QA('[data-n]');
+ cn.forEach(function(el){el._v=+el.getAttribute('data-n')||0;el._once=false;el._st=0});
+ watch(cn,.5,function(el){
+  if(el._st===1)return;el._st=1;
+  if(el._once)countRun(el);   /* the very first run is handled by the page's own count up */
+  el._once=true;
+ },function(el){
+  if(el._st!==1)return;el._st=0;
+  if(el._once){el._tok=(el._tok||0)+1;el.textContent='0'}
+ });
+
+ /* ---------- C. Photo wipe, staggered lists, staggered social icons ---------- */
+ var mo=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(!e.isIntersecting)return;
+  var im=e.target.querySelector('img.mk');if(im)im.classList.add('on');
+  mo.unobserve(e.target);
+ })},{threshold:.01,rootMargin:'0px 0px 12% 0px'});
+ QA('.pic').forEach(function(p){var im=p.querySelector(':scope>img');if(!im)return;im.classList.add('mk');mo.observe(p)});
+
+ var lio=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(!e.isIntersecting)return;
+  var l=e.target;l.classList.add('lv');lio.unobserve(l);
+  setTimeout(function(){l.classList.remove('lst','lv');QA(':scope>li',l).forEach(function(li){li.style.removeProperty('--k')})},1800);
+ })},{threshold:.3});
+ QA('.fg ul,.vp-notes').forEach(function(l){
+  QA(':scope>li',l).forEach(function(li,i){li.style.setProperty('--k',i)});
+  l.classList.add('lst');lio.observe(l);
+ });
+
+ var sxo=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(!e.isIntersecting)return;
+  var el=e.target;el.classList.add('sx-in');sxo.unobserve(el);
+  el.addEventListener('animationend',function(){el.classList.remove('sx','sx-in');el.style.removeProperty('--k')},{once:true});
+ })},{threshold:.2,rootMargin:'0px 0px -20px 0px'});
+ QA('.social a').forEach(function(el,i){el.classList.add('sx');el.style.setProperty('--k',i%8);sxo.observe(el)});
+
+ /* ---------- D. Scroll linked left / right slide (same smoothing as about.html) ----------
+    Headlines glide in from the left, intros from the right, button rows rise.
+    Blocks that already use .reveal / .fx are left alone, so nothing fights over "translate". */
+ var P=[],busy=false;
+ function reg(sel,dir){
+  QA(sel).forEach(function(el){
+   if(el.closest('.dup')||el.classList.contains('reveal')||el.classList.contains('fx'))return;
+   if(P.some(function(o){return o.el===el}))return;
+   P.push({el:el,d:dir,p:0,q:1,set:false,y:0});
+  });
+ }
+ reg('.head h2,.head h3,.sp h2,.cta h2,.stats-b h2,.gr>div:first-child','l');
+ reg('.head>.lead','r');
+ reg('.center','u');
+ function pframe(){
+  busy=false;
+  var vh=innerHeight,k=innerWidth<700?.4:1,end=scrollY>=root.scrollHeight-vh-4,mv=false;
+  P.forEach(function(t){
+   var r=t.el.getBoundingClientRect(),top=r.top-(t.d==='u'?t.y:0);
+   var p=end&&top<vh?1:cl((vh*.97-top)/(vh*.34),0,1),q=cl(r.bottom/(vh*.3),0,1);
+   t.p+=(p-t.p)*.15;t.q+=(q-t.q)*.15;
+   if(Math.abs(p-t.p)>.002||Math.abs(q-t.q)>.002)mv=true;else{t.p=p;t.q=q}
+   var s=sm(t.p),e=sm(t.q),D=(t.d==='u'?40:90)*k,x=0,y=0;
+   if(t.d==='l')x=-(1-s)*D+(1-e)*D*.4;
+   else if(t.d==='r')x=(1-s)*D-(1-e)*D*.4;
+   else y=(1-s)*D-(1-e)*D*.3;
+   t.y=y;
+   if(s>.995&&e>.995){if(t.set){t.el.style.translate='';t.set=false}}
+   else{t.set=true;t.el.style.translate=x.toFixed(1)+'px '+y.toFixed(1)+'px'}
+  });
+  if(mv)pkick();
+ }
+ function pkick(){if(!busy){busy=true;requestAnimationFrame(pframe)}}
+ addEventListener('scroll',pkick,{passive:true});addEventListener('resize',pkick);addEventListener('load',pkick);pkick();
+})();
+</script>
+<script id="training-motion-v5-js">
+/* ===== 12. Training v5: image cards wipe in from the side of their card (about.html style) ===== */
+(function(){
+ 'use strict';
+ var d=document,root=d.documentElement;
+ /* the .js-fx flag is only set when motion is allowed and IntersectionObserver exists */
+ if(!root.classList.contains('js-fx')||!('IntersectionObserver' in window))return;
+ function QA(s,r){return [].slice.call((r||d).querySelectorAll(s))}
+ function cols(p){var c=getComputedStyle(p);return c.display==='grid'?Math.max(1,c.gridTemplateColumns.split(' ').length):1}
+ function dirOf(i,n){if(n<=1)return i%2?'r':'l';var x=((i%n)+.5)/n;return x<.34?'l':x>.66?'r':'u'}
+
+ /* wipe direction follows the card's column: left card from the left, right card from the right, middle from the top */
+ function dirFor(img){
+  var card=img.closest('.c');if(!card)return 'u';
+  var p=card.parentNode,sibs=[].filter.call(p.children,function(k){return !k.classList.contains('dup')});
+  return dirOf(sibs.indexOf(card),cols(p));
+ }
+ var frames=QA('.cimg').filter(function(f){return !f.closest('.dup')&&f.querySelector(':scope>img')});
+ frames.forEach(function(f){
+  var im=f.querySelector(':scope>img');
+  im.classList.add('wp');im.setAttribute('data-wp',dirFor(im));f.classList.add('wp-arm');
+ });
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(!e.isIntersecting)return;
+  var f=e.target,im=f.querySelector(':scope>img');io.unobserve(f);
+  /* short delay so the photo opens while its card is still gliding in */
+  setTimeout(function(){f.classList.add('wp-go');if(im)im.classList.add('wp-on')},140);
+ })},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+ frames.forEach(function(f){io.observe(f)});
+
+ /* keep directions correct when the grid changes columns (rotate / resize) */
+ var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){
+  frames.forEach(function(f){var im=f.querySelector(':scope>img');if(im&&!im.classList.contains('wp-on'))im.setAttribute('data-wp',dirFor(im))});
+ },250)});
+
+ /* safety net: if a frame never reports as visible (rare layout edge cases) it still opens after load */
+ addEventListener('load',function(){setTimeout(function(){
+  frames.forEach(function(f){var r=f.getBoundingClientRect();
+   if(r.top<innerHeight&&r.bottom>0&&!f.classList.contains('wp-go')){f.classList.add('wp-go');var im=f.querySelector(':scope>img');if(im)im.classList.add('wp-on')}});
+ },1200)});
 })();
 </script>
 </body>
