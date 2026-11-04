@@ -57,6 +57,7 @@ button,input,select,textarea{font-family:inherit}
 .nav-links>li>a:hover::after,.dd-btn:hover::after,.dd-btn.active::after{transform:scaleX(1)}
 .dd-btn.active{color:#fff;font-weight:700}.dd-btn.active::after{background:var(--peri)}
 .has-dd{position:relative}
+.has-dd .car{display:inline-block;font-size:.65em;margin-left:6px;transition:transform .25s}.has-dd.open .car{transform:rotate(180deg)}
 .dd{position:absolute;top:100%;left:-14px;min-width:230px;background:rgba(255,255,255,.95);border:1px solid var(--line);box-shadow:0 14px 32px rgba(20,21,46,.1);padding:8px 0;border-radius:16px;opacity:0;visibility:hidden;transform:translateY(6px);transition:.2s}
 .dd::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px}
 .has-dd:hover .dd,.has-dd.open .dd{opacity:1;visibility:visible;transform:none}
@@ -842,7 +843,7 @@ h2 em{font-style:normal;color:var(--ind)}
   <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-controls="navWrap" aria-expanded="false">☰</button>
   <nav id="navWrap" aria-label="Primary"><ul class="nav-links">
    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
-   <li class="has-dd"><button class="dd-btn active" type="button" aria-expanded="false" aria-haspopup="true">Services</button><div class="dd"><a href="consultancy.html" class="cur" aria-current="page">IT Consultancy</a><a href="training.html">Enterprise Training</a><a href="products.html">Products</a></div></li>
+   <li class="has-dd"><button class="dd-btn active" type="button" aria-expanded="false" aria-haspopup="true">Services <span class="car" aria-hidden="true">▼</span></button><div class="dd"><a href="consultancy.html" class="cur" aria-current="page">IT Consultancy</a><a href="training.html">Enterprise Training</a><a href="products.html">Products</a></div></li>
    <li><a href="our-work.html">Our Work</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li>
   </ul></nav>
  </div>
@@ -975,16 +976,18 @@ h2 em{font-style:normal;color:var(--ind)}
  </div>
 </section>
 
-<section class="sec alt">
+<section class="sec rev" id="reviews">
  <div class="wrap">
-  <div class="head"><span class="eyebrow">Client Stories</span><h2>Straight from the <em>People We Have Helped</em></h2></div>
-  <div class="grid" id="tqTrack">
-   <div class="quote"><div class="rs">★★★★★</div><p>"Algo Orbit transformed our operations with their internal management system. Professional, responsive, and results-driven. Every deadline was met."</p><div class="who"><img src="https://www.algoorbit.in/static/images/review/riya.png" alt="Riya Fernandes" width="46" height="46" loading="lazy"><div><strong>Riya Fernandes</strong><small>Owner, Brew &amp; Bean Cafe</small></div></div></div>
-   <div class="quote"><div class="rs">★★★★★</div><p>"Practical solutions that improved our daily operations significantly. The team truly understands enterprise technology and the healthcare domain."</p><div class="who"><img src="https://www.algoorbit.in/static/images/review/meera.png" alt="Dr. Meera Rao" width="46" height="46" loading="lazy"><div><strong>Dr. Meera Rao</strong><small>Harmony Health Clinic</small></div></div></div>
-   <div class="quote"><div class="rs">★★★★★</div><p>"Their strategic guidance helped us scale efficiently. We had an idea and zero tech team. Algo Orbit became our technical backbone."</p><div class="who"><img src="https://www.algoorbit.in/static/images/review/raj.jpg" alt="Raj Sharma" width="46" height="46" loading="lazy"><div><strong>Raj Sharma</strong><small>Tech Startup Founder</small></div></div></div>
-  </div>
-  <div class="dots" id="tDots"></div>
+  <div class="head"><span class="eyebrow">Client Stories</span><h2>Straight from the <em>People We Have Helped</em></h2><p>Feedback from the businesses, clinics and students we have worked with.</p></div>
  </div>
+ <div class="rv-mq" aria-label="Client and learner reviews"><div class="rv-track" id="rvTrack">
+  <figure class="rv-c"><div class="who"><img class="av" src="https://www.algoorbit.in/static/images/review/riya.png" alt="Riya Fernandes" width="46" height="46" loading="lazy"><span><strong>Riya Fernandes</strong><small>Owner, Brew &amp; Bean Cafe</small></span></div><p>"Algo Orbit transformed our operations with their internal management system. Professional, responsive, and results-driven. Every deadline was met."</p><div class="rf"><div class="rs" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></figure>
+  <figure class="rv-c"><div class="who"><img class="av" src="https://www.algoorbit.in/static/images/review/meera.png" alt="Dr. Meera Rao" width="46" height="46" loading="lazy"><span><strong>Dr. Meera Rao</strong><small>Harmony Health Clinic</small></span></div><p>"Practical solutions that improved our daily operations significantly. The team truly understands enterprise technology and the healthcare domain."</p><div class="rf"><div class="rs" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></figure>
+  <figure class="rv-c"><div class="who"><img class="av" src="https://www.algoorbit.in/static/images/review/raj.jpg" alt="Raj Sharma" width="46" height="46" loading="lazy"><span><strong>Raj Sharma</strong><small>Tech Startup Founder</small></span></div><p>"Their strategic guidance helped us scale efficiently. We had an idea and zero tech team. Algo Orbit became our technical backbone."</p><div class="rf"><div class="rs" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></figure>
+  <figure class="rv-c g"><div class="who"><span class="av ini" aria-hidden="true">P</span><span><strong>Priyadarshana K</strong><small>Google review</small></span></div><p>“Had an excellent experience with Algo Orbit Innovations. The team is professional, responsive, and genuinely knowledgeable in their field. Communication was smooth throughout, and the quality of work exceeded my expectations. Highly recommend them to anyone looking for a reliable and skilled partner.”</p><div class="rf"><div class="rs" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></figure>
+  <figure class="rv-c g"><div class="who"><span class="av ini" aria-hidden="true">M</span><span><strong>Matthew Wilson</strong><small>Google review</small></span></div><p>“Really happy with the work AlgoOrbit did for us. We worked with the team on a custom business management system, and the whole process was smooth from start to finish. Everyone was responsive, easy to communicate with, and handled changes quickly.<br><br>Mr. Nishan was great to work with personally. Very approachable, professional, and knowledgeable. The whole team did a great job, and we really appreciated their support throughout the project. We’d definitely recommend AlgoOrbit and would love to work with them again on future projects.”</p><div class="rf"><div class="rs" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></figure>
+  <figure class="rv-c g"><div class="who"><span class="av ini" aria-hidden="true">D</span><span><strong>Dhrithi Rai B</strong><small>Google review</small></span></div><p>“My experience with the Flutter project was very useful and interesting. I learned to create attractive user interfaces, use Dart and Flutter widgets, connect Firebase, and fix errors during development. It improved my coding, debugging, and problem-solving skills.”</p><div class="rf"><div class="rs" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></figure>
+ </div></div>
 </section>
 
 <section class="sec" id="faq">
@@ -1016,23 +1019,26 @@ h2 em{font-style:normal;color:var(--ind)}
 </section>
 </main>
 
-<footer class="site-footer"><div class="wrap">
- <div class="fgrid">
-  <div><a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><span>ALGO</span><b>ORBIT</b></a>
-   <p>Empowering businesses with innovative digital solutions. From restaurant management to civic engagement platforms, we build technology that drives real impact.</p>
-   <p style="margin-top:10px">ALGOORBIT INNOVATIONS PRIVATE LIMITED delivers software solutions and structured technical learning.</p>
-   <div class="social">
-    <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ui"><use href="#i-linkedin"/></svg></a>
-    <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ui"><use href="#i-ig"/></svg></a>
-    <a href="https://www.facebook.com/profile.php?id=61578724749065" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ui"><use href="#i-fb"/></svg></a>
-    <a href="https://whatsapp.com/channel/0029VbBktvfAYlUS6kToth1B" target="_blank" rel="noopener" aria-label="WhatsApp Channel"><svg class="ui" style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg></a>
-   </div></div>
-  <div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-  <div><h4>Products</h4><ul><li><a href="products.html#puredine">Restaurant System</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
-  <div><h4>Services</h4><ul><li><a href="consultancy.html" style="color:#fff;font-weight:600">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="contact.html">Internships</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+<footer class="site-footer">
+ <div class="wrap">
+  <div class="fgrid">
+   <div>
+    <a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10"/><line x1="13.5" y1="28" x2="21.5" y2="12.5"/><circle cx="30" cy="27.5" r="5"/></svg><span>ALGO</span><b>ORBIT</b></a>
+    <p>We build software for businesses and teach practical tech skills. Our products range from restaurant management to civic engagement platforms.</p>
+    <div class="social">
+     <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ui"><use href="#i-linkedin"/></svg></a>
+     <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ui"><use href="#i-ig"/></svg></a>
+     <a href="https://www.facebook.com/profile.php?id=61578724749065" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ui"><use href="#i-fb"/></svg></a>
+     <a href="https://whatsapp.com/channel/0029VbBktvfAYlUS6kToth1B" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ui" style="fill:currentColor;stroke:none"><use href="#i-wa"/></svg></a>
+    </div>
+   </div>
+   <div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+   <div><h4>Products</h4><ul><li><a href="products.html#puredine">PureDine</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
+   <div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="training-institution.html">For Institutions</a></li><li><a href="training-corporate.html">For Corporate</a></li><li><a href="training-learner.html">For Learners</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+  </div>
+  <div class="fbot"><p>&copy; 2026 <strong>ALGOORBIT INNOVATIONS PRIVATE LIMITED</strong> All rights reserved.</p><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></div>
  </div>
- <div class="fbot"><p>&copy; 2026 <strong>ALGOORBIT INNOVATIONS PRIVATE LIMITED</strong> All rights reserved.</p><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></div>
-</div></footer>
+</footer>
 
 <div id="scheduleModal" onclick="if(event.target===this)closeScheduleModal()">
  <div id="smWrap" role="dialog" aria-modal="true" aria-labelledby="smTitle">
@@ -3094,6 +3100,73 @@ main .stats .stat:hover{background:rgba(255,255,255,.1);transform:translateY(-6p
  vt.parentNode.addEventListener('mouseenter',function(){hold=true});vt.parentNode.addEventListener('mouseleave',function(){hold=false});
  (function loop(t){requestAnimationFrame(loop);var dt=Math.min(t-lt,50)/1000;lt=t;if(!vis||document.hidden||R)return;
   boost*=.93;var tv=(42+boost)*dir*(hold?.25:1);vel+=(tv-vel)*.07;pos=(((pos+vel*dt)%W)+W)%W;paint()})(0);
+})();
+</script>
+<style id="footer-lines-layer">
+/* ===== Footer: same logo, fonts and style as index.html ===== */
+.site-footer{font-family:'Open Sans',system-ui,sans-serif;font-size:14.5px}
+.site-footer .wordmark{display:inline-flex;align-items:center;gap:12px;font:800 32px var(--fd);letter-spacing:.03em;margin-bottom:16px}
+.site-footer .wordmark:hover{letter-spacing:.03em}
+.site-footer .wordmark .logo-mark{width:40px;height:40px;flex:none}.site-footer .wordmark .logo-mark rect{fill:var(--ind)}
+.site-footer .wordmark>span,.site-footer .wordmark>b{display:inline}
+.site-footer .fgrid h4{font-size:13px;letter-spacing:.06em;padding-bottom:0}
+.site-footer .fgrid h4::after{content:none!important;display:none!important}
+.fgrid li a::after,.fbot a::after{content:none!important;display:none!important}
+.site-footer a,.site-footer a:hover,.fbot a{text-decoration:none!important;border-bottom:0!important}
+@media(max-width:700px){.site-footer .wordmark{font-size:28px}.site-footer .wordmark .logo-mark{width:36px;height:36px}}
+/* ===== No decorative lines / underlines anywhere ===== */
+.nav-links>li>a::after,.dd-btn::after,.head h2::after,.card::before,.card h3::after,.arch .ai h3::after,.ind::before,.ind-info h3::after,.quote::after,.stat::after,.eyebrow::before,.faq details::before,.feat::before,.tech .marq span::before,.tech .marq span::after,.tech .tech-list .tech-item::before,.vt::before,.ps-card::before{content:none!important;display:none!important}
+.hero h1 em::before,.hero h1 em::after{content:none!important;display:none!important}
+.hero h1 em{text-decoration:none!important;padding-bottom:0}
+@media(max-width:700px){.hero h1 em{background-image:linear-gradient(90deg,var(--ind),#82c8eb,var(--ind))!important;background-size:200% 100%!important;background-position:0 0!important;background-repeat:repeat!important;-webkit-background-clip:text!important;background-clip:text!important;animation:shimmer 6s linear infinite!important}}
+a,a:hover,.link,.dbtn,.dbtn:hover,.card a,.ind a{text-decoration:none!important}
+</style>
+<style id="client-stories-google">
+/* Google reviews: same details as index.html (initial avatar, "Google review" label) */
+.quote .who .ini{display:grid;place-items:center;flex:none;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff;font:700 18px var(--fd);box-shadow:0 0 0 3px #fff}
+.quote.g::before{color:#e3e0ff}
+.grid>.quote:nth-child(4){--a:#82c8eb;--b:#2a8fcf;--glow:47,167,224}
+.grid>.quote:nth-child(5){--a:#8f84f2;--b:#5b4be8;--glow:91,75,232}
+.grid>.quote:nth-child(6){--a:#a9a3ee;--b:#7a6df0;--glow:143,132,242}
+.quote:hover .who .ini{transform:scale(1.1) rotate(-6deg)}.quote .who .ini{transition:transform .5s var(--ease)}
+.quote.g p{font-size:14.5px;line-height:1.7}
+#tqTrack .quote.g{flex:0 0 86%}
+</style>
+<style id="client-stories-marquee">
+/* Client Stories: same UI and slow looping marquee as index.html */
+.rev{--r:24px;background:var(--navy)!important;background-image:radial-gradient(700px 360px at 10% 0,rgba(143,132,242,.22),transparent 70%)!important;overflow:hidden;position:relative}
+.rev .head h2{color:#fff}.rev .head h2 em{color:var(--vio);-webkit-text-fill-color:var(--vio);background:none}.rev .head p{color:#b4b6dc}
+.rev .eyebrow{background-image:linear-gradient(90deg,var(--vio),#fff,var(--vio))}
+.rev::before,.rev::after{content:"";position:absolute;border-radius:50%;pointer-events:none;z-index:0;animation:orb 14s ease-in-out infinite}
+.rev::before{width:520px;height:520px;left:-170px;bottom:-200px;background:radial-gradient(circle,rgba(91,75,232,.5),transparent 70%)}
+.rev::after{width:460px;height:460px;right:-150px;top:-160px;background:radial-gradient(circle,rgba(130,200,235,.3),transparent 70%);animation-direction:reverse}
+.rev>.wrap,.rev>.rv-mq{position:relative;z-index:1}
+.rv-mq{position:relative;margin-top:44px;padding:22px 0 30px;touch-action:pan-y;contain:paint;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.rv-track{display:flex;gap:22px;width:max-content;animation:rvmq var(--rvd,90s) linear infinite;animation-play-state:running!important;will-change:transform;backface-visibility:hidden}
+@keyframes rvmq{to{transform:translateX(-50%)}}
+.rv-c{position:relative;flex:none;width:clamp(290px,30vw,400px);display:flex;flex-direction:column;gap:16px;padding:26px;border-radius:var(--r);background:#fff;color:var(--ink);border:1px solid rgba(255,255,255,.9);box-shadow:0 0 0 1px rgba(143,132,242,.35),0 0 26px -4px rgba(143,132,242,.45),0 24px 44px -26px rgba(0,0,0,.65);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.rv-c .who{display:flex;align-items:center;gap:12px}
+.rv-c .av{width:46px;height:46px;border-radius:50%;object-fit:cover;background:var(--mist);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--peri);transition:box-shadow .45s var(--ease)}
+.rv-c strong{display:block;font:600 15px/1.2 var(--fd);color:var(--navy);transition:color .35s}.rv-c small{color:var(--mute);font-size:13px}
+.rv-c p{flex:1;margin:0;font-size:14.5px;line-height:1.7;color:#3a3c5c;font-style:normal}
+.rv-c .rs{color:#f0a91c;letter-spacing:3px;font-size:15px;margin:0;text-shadow:0 0 12px rgba(240,169,28,.7)}
+.rv-c::before{content:"\201C";position:absolute;right:20px;top:8px;font:700 84px/1 Georgia,serif;color:var(--soft);pointer-events:none}
+.rv-c.g::before{color:#e3e0ff}
+.rv-c::after{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit;padding:2px;opacity:.6;pointer-events:none;background:conic-gradient(from var(--ang),#5b4be8,#82c8eb,#a9a3ee,#5b4be8);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;transition:opacity .4s}
+.rv-c>*{position:relative;z-index:1}
+.rv-c .av.ini{display:grid;place-items:center;flex:none;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff;font:700 18px var(--fd)}
+.rv-c .rf{display:flex;align-items:center;justify-content:space-between;gap:10px}
+@media(hover:hover){.rv-c:hover{transform:translateY(-10px) scale(1.015);box-shadow:0 0 0 1px rgba(91,75,232,.6),0 0 44px 2px rgba(143,132,242,.7),0 34px 56px -24px rgba(0,0,0,.8)}.rv-c:hover::after{opacity:1;animation:spinAng 3s linear infinite}.rv-c:hover .av{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ind)}.rv-c:hover strong{color:var(--ind)}}
+@media(hover:none){.rv-c:active{transform:scale(.985)}}
+@media(max-width:700px){.rv-c{width:min(84vw,330px)}.rv-c .rf{flex-wrap:wrap}.rev::before,.rev::after{width:260px;height:260px}}
+@media(prefers-reduced-motion:reduce){.rv-mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.rv-track{animation:none!important}.rev::before,.rev::after{animation:none}}
+</style>
+<script id="client-stories-marquee-js">
+(function(){
+ var t=document.getElementById('rvTrack');if(!t)return;
+ var base=[].slice.call(t.children),n=base.length,rn=Math.max(2,Math.ceil(innerWidth*2/(n*330)));
+ for(var k=1;k<rn*2;k++)base.forEach(function(c){var d=c.cloneNode(true);d.setAttribute('aria-hidden','true');[].forEach.call(d.querySelectorAll('img'),function(i){i.alt=''});t.appendChild(d)});
+ t.style.setProperty('--rvd',(n*rn*28)+'s');
 })();
 </script>
 </body>

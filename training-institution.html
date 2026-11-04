@@ -215,6 +215,9 @@ h2{font-size:clamp(1.65rem,1.2rem + 1.7vw,2.4rem);line-height:1.2;margin-bottom:
  .mbar{display:flex;position:fixed;left:16px;right:16px;bottom:max(12px,env(safe-area-inset-bottom));z-index:90;transform:translateY(140%);transition:transform .4s var(--ease);box-shadow:0 12px 28px rgba(14,15,42,.35)}.mbar.show{transform:none}body.bar-on .wa-float{bottom:80px}.wa-float{right:16px;bottom:16px;width:52px;height:52px}}
 @media(max-width:380px){.g4{grid-template-columns:minmax(0,1fr)}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}.vt::after{animation:none}.rv{opacity:1;transform:none}}
+
+/* ===== E. Photo framing: keep faces in view for people photos ===== */
+.card>img,.fin img{object-position:center 28%}
 </style>
 
 <!-- =====================================================================
@@ -314,7 +317,7 @@ html.js-fx .head.drawn .eyebrow,html.js-fx .head.drawn>p{opacity:1;transform:non
  .card.rx.rx-in.rx-settled,.tile.rx.rx-in.rx-settled,.checks li.rx.rx-in.rx-settled,.faq details.rx.rx-in.rx-settled,.flow li.rx.rx-in.rx-settled{
   transition:opacity .9s var(--e2),translate .25s linear,transform .55s var(--e2),scale .6s var(--e2),box-shadow .5s var(--e2),border-color .5s var(--e2),background .45s var(--e2),color .4s!important}
  .flow.pre li.rx{transition-delay:0s}
- html.js-fx .fx{opacity:0;translate:var(--fx-x,0) var(--fx-y,0);transition:opacity .9s var(--ease),translate 1.1s var(--e2);transition-delay:var(--fd,0s)}
+ html.js-fx .fx{opacity:0;translate:var(--fx-x,0) var(--fx-y,0);transition:opacity .9s var(--ease),translate 1.1s var(--e2);transition-delay:var(--fxd,0s)}
  html.js-fx .fx[data-dir="l"]{--fx-x:-80px}html.js-fx .fx[data-dir="r"]{--fx-x:80px}html.js-fx .fx[data-dir="u"]{--fx-y:36px}
  html.js-fx .fx.fx-in{opacity:1;translate:0 0}
 }
@@ -437,6 +440,149 @@ html.js-fx .head.drawn .eyebrow,html.js-fx .head.drawn>p{opacity:1;transform:non
 @media(max-width:600px){.back-link{margin-bottom:18px;font-size:13px}}
 @media(prefers-reduced-motion:reduce){.hero-copy>.back-link{animation:none}.back-link,.back-link .bl-ic{transition:none}}
 </style>
+<style id="institution-index-parity-layer">
+/* ===== A. Footer: same logo, type and spacing as index.html (desktop + mobile) ===== */
+@keyframes icPop{40%{transform:scale(1.2) rotate(-8deg)}}
+.site-footer .wordmark{display:inline-flex;align-items:center;gap:12px;font:800 32px var(--fd);letter-spacing:.03em;margin-bottom:16px}
+.site-footer .wordmark:hover{letter-spacing:.03em}
+.site-footer .wordmark .logo-mark{width:40px;height:40px;flex:none}.site-footer .wordmark .logo-mark rect{fill:var(--ind)}
+.site-footer .wordmark>span,.site-footer .wordmark>b{display:inline}
+.site-footer .wordmark span{color:#fff}.site-footer .wordmark b{color:var(--vio)}
+.fgrid p{max-width:420px;line-height:1.7}
+.fgrid li a:hover{transform:none}
+.site-footer li a{display:inline-block;transition:translate .25s var(--ease),color .25s}
+.site-footer li a:hover{translate:5px 0}
+.social a{transition:translate .25s var(--ease),background .25s,color .25s,border-color .25s}
+.social a:hover{transform:none;translate:0 -4px;animation:icPop .5s var(--ease)}
+.site-footer a,.site-footer a:hover,.fbot a{text-decoration:none!important;border-bottom:0!important}
+.fgrid li a:focus-visible,.fbot a:focus-visible,.social a:focus-visible{outline:2px solid var(--vio);outline-offset:3px;border-radius:6px}
+@media(max-width:700px){
+ .site-footer .wordmark{font-size:28px}.site-footer .wordmark .logo-mark{width:36px;height:36px}
+ .site-footer{padding-bottom:78px}
+ .fgrid{grid-template-columns:1fr 1fr;gap:26px 18px;padding-bottom:28px}
+ .fgrid>div:first-child{grid-column:1/-1}
+ .fgrid li{margin-bottom:12px}
+ .fbot{flex-direction:column;align-items:center;text-align:center;padding:18px 0}
+}
+@media(prefers-reduced-motion:reduce){.site-footer li a:hover,.social a:hover{translate:none;animation:none}}
+
+/* ===== B. No underlines or decorative lines anywhere (desktop + mobile) ===== */
+*,*::before,*::after{text-decoration:none!important}
+.head h2::after,.head.c h2::after,.card h3::after,.hero h1 em::after,.hero h1 em::before,
+.card::before,.head .eyebrow::before,.head .eyebrow::after,.head.c .eyebrow::before,.head.c .eyebrow::after,
+.dk .head.c .eyebrow::before,.dk .head.c .eyebrow::after,.dk::before,.flow::before,.vt::before,.site-footer::before,.vis::before{
+ content:none!important;display:none!important;animation:none!important}
+.tile>i.bar{display:none!important}
+.vt{border-top:0}
+.card,.tile,.checks li{border-color:transparent}
+.faq details[open]{border-left-width:1px}
+.frame{padding:0;background:none;border-radius:26px}
+.frame:hover{background:none;animation:none}
+@media(max-width:700px){
+ .card,.tile{box-shadow:0 12px 30px rgba(91,75,232,.12)}
+ .tile{box-shadow:0 14px 30px rgba(0,0,0,.3)}
+}
+
+/* ===== C. Hero photo (training-institution.png), desktop + tablet + phone ===== */
+.hero-bg{width:min(64%,1060px);object-position:100% center;-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 6%,#000 34%);mask-image:linear-gradient(90deg,transparent 0,transparent 6%,#000 34%)}
+.hero .hero-sheen{width:min(64%,1060px)}
+@media(max-width:1000px){.hero-bg{width:100%;object-position:center;-webkit-mask-image:none;mask-image:none}}
+@media(max-width:700px){.hero-bg{object-position:92% center;-webkit-mask-image:linear-gradient(180deg,#000 88%,transparent);mask-image:linear-gradient(180deg,#000 88%,transparent)}}
+
+/* ===== D. Team voices: same slow moving review cards as index.html ===== */
+.sec.rev{background:var(--navy)!important;background-image:radial-gradient(700px 360px at 10% 0,rgba(143,132,242,.22),transparent 70%)!important;overflow:hidden}
+.sec.rev:not(.dk):not(.lgt)::before{content:"";position:absolute;inset:auto;left:-170px;bottom:-200px;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;
+ background-image:radial-gradient(circle,rgba(91,75,232,.5),transparent 70%);background-size:auto;-webkit-mask-image:none;mask-image:none;animation:orb 14s ease-in-out infinite}
+.sec.rev::after{content:"";position:absolute;right:-150px;top:-160px;width:460px;height:460px;border-radius:50%;pointer-events:none;z-index:0;
+ background:radial-gradient(circle,rgba(130,200,235,.3),transparent 70%);animation:orb 14s ease-in-out infinite reverse}
+.rev>.wrap,.rev>.rv-mq{position:relative;z-index:1}
+.rev .eyebrow{background-image:linear-gradient(90deg,var(--vio),#fff,var(--vio))}
+.rev .head h2{color:#fff}.rev .head p{color:#b4b6dc}
+.rev h2 .w:hover>span{color:var(--vio)}
+.rv-mq{position:relative;margin-top:44px;padding:22px 0 30px;contain:paint;touch-action:pan-y;
+ -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.rv-track{display:flex;gap:22px;width:max-content;animation:rvmq var(--rvd,90s) linear infinite;will-change:transform;backface-visibility:hidden}
+@keyframes rvmq{to{transform:translateX(-50%)}}
+.rv-c{position:relative;flex:none;width:clamp(290px,30vw,400px);display:flex;flex-direction:column;gap:16px;padding:26px;border-radius:20px;background:#fff;color:var(--ink);margin:0;
+ border:1px solid rgba(255,255,255,.9);box-shadow:0 0 0 1px rgba(143,132,242,.35),0 0 26px -4px rgba(143,132,242,.45),0 24px 44px -26px rgba(0,0,0,.65);
+ transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.rv-c::before{content:"\201C";position:absolute;right:20px;top:8px;font:700 84px/1 Georgia,serif;color:var(--soft);pointer-events:none}
+.rv-c.g::before{color:#e3e0ff}
+.rv-c::after{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit;padding:2px;opacity:.6;pointer-events:none;
+ background:conic-gradient(from var(--ang),#5b4be8,#82c8eb,#a9a3ee,#5b4be8);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;transition:opacity .4s}
+.rv-c>*{position:relative;z-index:1}
+.rv-c .who{display:flex;align-items:center;gap:12px}
+.rv-c .av{width:46px;height:46px;border-radius:50%;object-fit:cover;background:var(--mist);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--peri);transition:box-shadow .4s var(--ease)}
+.rv-c .av.ini{display:grid;place-items:center;flex:none;background:linear-gradient(135deg,var(--ind),var(--peri));color:#fff;font:700 18px var(--fd)}
+.rv-c strong{display:block;font:600 15px/1.2 var(--fd);color:var(--navy);transition:color .35s}.rv-c small{color:var(--mute);font-size:13px}
+.rv-c p{flex:1;margin:0;font-size:14.5px;line-height:1.7;color:#3a3c5c}
+.rv-c .rf{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.rv-c .rs{color:#f0a91c;letter-spacing:3px;font-size:15px;text-shadow:0 0 12px rgba(240,169,28,.7)}
+@media(hover:hover){
+ .rv-c:hover{transform:translateY(-10px) scale(1.015);box-shadow:0 0 0 1px rgba(91,75,232,.6),0 0 44px 2px rgba(143,132,242,.7),0 34px 56px -24px rgba(0,0,0,.8)}
+ .rv-c:hover::after{opacity:1;animation:spinAng 3s linear infinite}
+ .rv-c:hover .av{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ind)}
+ .rv-c:hover strong{color:var(--ind)}
+}
+@media(hover:none){.rv-c:active{transform:scale(.985)}}
+@media(max-width:700px){.rv-c{width:min(84vw,330px)}.rv-c .rf{flex-wrap:wrap}.sec.rev:not(.dk):not(.lgt)::before,.sec.rev::after{width:260px;height:260px}}
+@media(prefers-reduced-motion:reduce){.rv-mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.rv-track{animation:none}.sec.rev:not(.dk):not(.lgt)::before,.sec.rev::after{animation:none!important}}
+
+/* ===== F. Process section redesign (desktop, tablet, mobile). Markup and JS hooks unchanged ===== */
+.flow{grid-template-columns:repeat(5,minmax(0,1fr));gap:30px 28px;align-items:stretch;counter-reset:s}
+.flow li{
+ display:flex;flex-direction:column;align-items:center;text-align:center;
+ padding:34px 20px 28px;border-radius:22px;
+ background:linear-gradient(165deg,#1d2055 0%,#13143a 60%,#101130 100%);
+ border:1px solid rgba(255,255,255,.1);
+ box-shadow:0 18px 38px rgba(4,5,24,.45),inset 0 1px 0 rgba(255,255,255,.06);
+ transition:transform .45s var(--e2,var(--ease)),border-color .4s,box-shadow .45s}
+.flow li::before{content:"";position:absolute;top:0;left:22px;right:22px;height:3px;border-radius:0 0 6px 6px;background:linear-gradient(90deg,var(--a),var(--b))}
+.flow li:hover{transform:translateY(-6px);border-color:var(--a);box-shadow:0 26px 50px rgba(4,5,24,.55),0 0 0 1px var(--a),0 0 34px -6px var(--a)}
+.fn{width:68px;height:68px;margin:0 auto 20px;border:2px solid var(--a);background:radial-gradient(circle at 30% 25%,#34388f,#0e0f2a);box-shadow:0 0 0 5px rgba(14,15,42,.85),0 0 26px -2px var(--a)}
+.fn .ui{width:28px;height:28px}
+.fn b{right:-10px;top:-10px;min-width:28px;height:28px;padding:0 5px;font-size:11px;letter-spacing:.02em;box-shadow:0 4px 10px rgba(0,0,0,.35)}
+.flow h3{font-size:17px;line-height:1.25;margin:0 0 8px;color:#fff}
+.flow p{font-size:14px;line-height:1.6;color:#b9bbe0;max-width:26ch;margin:0 auto}
+/* connector between cards (desktop) */
+.flow li:not(:last-child)::after{content:"";position:absolute;top:50px;right:-29px;width:30px;height:16px;background:linear-gradient(90deg,var(--a),var(--b));clip-path:polygon(0 38%,62% 38%,62% 0,100% 50%,62% 100%,62% 62%,0 62%);opacity:.95;pointer-events:none}
+/* tablet: 3 + 2 centred */
+@media(max-width:1180px){
+ .flow{grid-template-columns:repeat(6,minmax(0,1fr));gap:22px}
+ .flow li{grid-column:span 2}
+ .flow li:nth-child(4){grid-column:2 / span 2}
+ .flow li:nth-child(5){grid-column:4 / span 2}
+ .flow li:not(:last-child)::after{display:none}
+}
+/* mobile: vertical timeline */
+@media(max-width:700px){
+ .flow{grid-template-columns:minmax(0,1fr);gap:14px}
+ .flow li,.flow li:nth-child(4),.flow li:nth-child(5){
+  grid-column:auto;display:grid;grid-template-columns:56px minmax(0,1fr);column-gap:16px;align-items:center;
+  text-align:left;padding:16px 18px 16px 16px;border-radius:20px}
+ .flow li::before{top:14px;bottom:14px;left:0;right:auto;width:3px;height:auto;border-radius:0 6px 6px 0;background:linear-gradient(180deg,var(--a),var(--b))}
+ .fn{grid-row:1 / span 2;width:56px;height:56px;margin:0;box-shadow:0 0 0 4px rgba(14,15,42,.85),0 0 20px -2px var(--a)}
+ .fn .ui{width:24px;height:24px}
+ .fn b{right:-8px;top:-8px;min-width:22px;height:22px;font-size:9.5px}
+ .flow h3{grid-column:2;align-self:end;font-size:16px;margin:0 0 3px}
+ .flow p{grid-column:2;align-self:start;font-size:13.5px;line-height:1.5;max-width:none;margin:0}
+ /* vertical connector line between steps */
+ .flow li:not(:last-child)::after{display:block;top:auto;bottom:-14px;right:auto;left:43px;width:3px;height:14px;clip-path:none;background:linear-gradient(180deg,var(--b),var(--a));opacity:.85}
+ .flow li:hover{transform:none}
+}
+
+/* ===== Slim navbar: logo + ALGO ORBIT only, "Back to Training" pinned top-right ===== */
+.site-header .nav-inner{gap:16px}
+.site-header .menu-toggle,.site-header #navWrap{display:none!important}
+.site-header .nav-back{margin:0;flex:none;padding:4px 16px 4px 4px;font-size:13.5px;line-height:1;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);box-shadow:none;animation:none;white-space:nowrap}
+.site-header .nav-back .bl-ic{width:28px;height:28px}
+.site-header .nav-back:hover,.site-header .nav-back:focus-visible{background:#fff;color:#0e0f2a;border-color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.35);transform:translateX(-3px)}
+.site-header .nav-back:hover .bl-ic,.site-header .nav-back:focus-visible .bl-ic{background:#5b4be8;color:#fff}
+.site-header .nav-back:focus-visible{outline:2px solid #8f84f2;outline-offset:3px}
+@media(max-width:480px){.site-header .nav-back{padding:3px 12px 3px 3px;font-size:12.5px;gap:8px}.site-header .nav-back .bl-ic{width:26px;height:26px}}
+@media(max-width:340px){.site-header .nav-back>span:last-child{display:none}.site-header .nav-back{padding:3px}}
+</style>
 </head>
 <body>
 
@@ -473,18 +619,7 @@ html.js-fx .head.drawn .eyebrow,html.js-fx .head.drawn>p{opacity:1;transform:non
    <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10"/><line x1="13.5" y1="28" x2="21.5" y2="12.5"/><circle cx="30" cy="27.5" r="5"/></svg>
    <span class="logo-text"><b>ALGO</b><span>ORBIT</span></span>
   </a>
-  <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-controls="navWrap" aria-expanded="false">☰</button>
-  <nav id="navWrap" aria-label="Primary">
-   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li class="has-dd"><button class="dd-btn" type="button" aria-expanded="false">Services</button>
-     <div class="dd"><a href="consultancy.html">IT Consultancy</a><a href="training.html">Enterprise Training</a><a href="institutions.html">For Institutions</a><a href="products.html">Products</a></div></li>
-    <li><a href="our-work.html">Our Work</a></li>
-    <li><a href="careers.html">Careers</a></li>
-    <li><a href="contact.html">Contact</a></li>
-   </ul>
-  </nav>
+  <a href="training.html" class="back-link nav-back" aria-label="Back to Training"><span class="bl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span><span>Back to Training</span></a>
  </div>
 </header>
 
@@ -493,12 +628,11 @@ html.js-fx .head.drawn .eyebrow,html.js-fx .head.drawn>p{opacity:1;transform:non
 <!-- Hero -->
 <section class="hero">
  <div class="hero-orbit" aria-hidden="true"><svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="290"/><circle class="d2" cx="300" cy="300" r="215"/><circle cx="300" cy="300" r="140"/><g class="o1"><circle class="dot" cx="300" cy="10" r="7"/></g><g class="o2"><circle class="dot" cx="515" cy="300" r="5"/></g><g class="o3"><circle class="dot" cx="300" cy="440" r="4"/></g></svg></div>
- <img class="hero-bg" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80" onerror="this.onerror=null;this.src='assets/images/insti.png'" alt="Students collaborating at a college training session" width="1600" height="900" fetchpriority="high">
+ <img class="hero-bg" src="training-institution.png" onerror="this.onerror=null;this.src='assets/images/training-institution.png'" alt="Trainer presenting Training and Development to a class of college students" width="1672" height="941" fetchpriority="high">
  <span class="fchip h1"><span class="ic"><svg class="ui"><use href="#i-target"/></svg></span>Placement ready</span>
  <span class="fchip h2"><span class="ic"><svg class="ui"><use href="#i-award"/></svg></span>Certificates</span>
  <div class="wrap hero-grid">
   <div class="hero-copy">
-   <a href="training.html" class="back-link" aria-label="Back to Training"><span class="bl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span><span>Back to Training</span></a>
    <h1>Industry Oriented Training for <em>Colleges and Universities</em></h1>
    <p class="lead">Partner with ALGO ORBIT to strengthen placement readiness, deliver practical value added courses, upskill faculty and introduce students to relevant technologies through structured, hands on programs.</p>
    <div class="acts"><a href="contact.html" class="btn btn-p">Request an Institutional Proposal</a><a href="#programs" class="btn btn-o">Explore Programs</a></div>
@@ -514,12 +648,12 @@ html.js-fx .head.drawn .eyebrow,html.js-fx .head.drawn>p{opacity:1;transform:non
  <div class="wrap">
   <div class="head c"><span class="eyebrow">Programs</span><h2>Six ways to partner with us</h2><p>Choose one program or combine several into a semester long plan.</p></div>
   <div class="grid g6">
-   <article class="card"><span class="wn">01</span><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=75" onerror="this.onerror=null;this.src='assets/images/insti.png'" alt="Students preparing for placements" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-target"/></svg></span><h3>Campus Placement Training</h3><p>Prepare students for technical assessments, coding rounds, aptitude tests, technical interviews and HR interviews.</p><div class="tags"><span>Programming</span><span>DSA</span><span>OOP</span><span>SQL &amp; DBMS</span><span>Aptitude</span><span>Resume</span><span>Mock interviews</span></div><a href="contact.html" class="dbtn">Request proposal</a></div></article>
-   <article class="card"><span class="wn">02</span><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=75" onerror="this.onerror=null;this.src='assets/images/learn.png'" alt="Student coding on a laptop" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-book"/></svg></span><h3>Value Added Courses</h3><p>Practical, structured courses designed to complement academic learning.</p><div class="tags"><span>MERN Stack</span><span>Python</span><span>AI &amp; ML</span><span>Generative AI</span><span>Flutter</span><span>Cloud &amp; DevOps</span><span>Java</span></div><a href="contact.html" class="dbtn">Request proposal</a></div></article>
-   <article class="card"><span class="wn">03</span><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=75" onerror="this.onerror=null;this.src='assets/images/it.png'" alt="Faculty attending a development program" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-users"/></svg></span><h3>Faculty Development Programs</h3><p>Help faculty build practical familiarity with selected technologies, modern development tools and applied teaching approaches.</p><a href="contact.html" class="dbtn">Request proposal</a></div></article>
-   <article class="card"><span class="wn">04</span><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=75" onerror="this.onerror=null;this.src='assets/images/prod.png'" alt="Technical workshop in progress" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-board"/></svg></span><h3>Technical Workshops</h3><p>Focused sessions for departments, technical clubs and student cohorts, with practical activities and defined learning objectives.</p><a href="contact.html" class="dbtn">Request proposal</a></div></article>
-   <article class="card"><span class="wn">05</span><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=75" onerror="this.onerror=null;this.src='assets/images/enter.png'" alt="Mentor guiding a student project" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>Internships &amp; Project Mentorship</h3><p>Structured project work, technical guidance, development workflows and project presentation support.</p><a href="contact.html" class="dbtn">Request proposal</a></div></article>
-   <article class="card"><span class="wn">06</span><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=75" onerror="this.onerror=null;this.src='assets/images/bus.png'" alt="Industry and academia partnership" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-partner"/></svg></span><h3>Institutional Partnerships</h3><p>Discuss semester wise training, recurring technical programs and longer term industry and academia engagement based on your needs.</p><a href="contact.html" class="dbtn">Request proposal</a></div></article>
+   <article class="card"><span class="wn">01</span><img src="https://images.unsplash.com/photo-1709290749293-c6152a187b14?auto=format&fit=crop&w=800&h=520&q=75" onerror="this.onerror=null;this.src='assets/images/insti.png'" alt="Indian engineering students attending a placement preparation session in a lecture hall" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-target"/></svg></span><h3>Campus Placement Training</h3><p>Prepare students for technical assessments, coding rounds, aptitude tests, technical interviews and HR interviews.</p><div class="tags"><span>Programming</span><span>DSA</span><span>OOP</span><span>SQL &amp; DBMS</span><span>Aptitude</span><span>Resume</span><span>Mock interviews</span></div><a href="contact.html" class="dbtn">Request proposal</a></div></article>
+   <article class="card"><span class="wn">02</span><img src="https://images.unsplash.com/photo-1660734194655-d5a4ca09d82e?auto=format&fit=crop&w=800&h=520&q=75" onerror="this.onerror=null;this.src='assets/images/learn.png'" alt="Indian students learning together on a laptop in a value added course" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-book"/></svg></span><h3>Value Added Courses</h3><p>Practical, structured courses designed to complement academic learning.</p><div class="tags"><span>MERN Stack</span><span>Python</span><span>AI &amp; ML</span><span>Generative AI</span><span>Flutter</span><span>Cloud &amp; DevOps</span><span>Java</span></div><a href="contact.html" class="dbtn">Request proposal</a></div></article>
+   <article class="card"><span class="wn">03</span><img src="https://images.unsplash.com/photo-1722573783625-eceb04251036?auto=format&fit=crop&w=800&h=520&q=75" onerror="this.onerror=null;this.src='assets/images/it.png'" alt="Indian faculty and participants in a development program with a projector screen" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-users"/></svg></span><h3>Faculty Development Programs</h3><p>Help faculty build practical familiarity with selected technologies, modern development tools and applied teaching approaches.</p><a href="contact.html" class="dbtn">Request proposal</a></div></article>
+   <article class="card"><span class="wn">04</span><img src="https://images.unsplash.com/photo-1558023598-0afa967eac90?auto=format&fit=crop&w=800&h=520&q=75" onerror="this.onerror=null;this.src='assets/images/prod.png'" alt="Indian students working together at a technical workshop" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-board"/></svg></span><h3>Technical Workshops</h3><p>Focused sessions for departments, technical clubs and student cohorts, with practical activities and defined learning objectives.</p><a href="contact.html" class="dbtn">Request proposal</a></div></article>
+   <article class="card"><span class="wn">05</span><img src="https://images.unsplash.com/photo-1686624386665-4cd01b96d0f6?auto=format&fit=crop&w=800&h=520&q=75" onerror="this.onerror=null;this.src='assets/images/enter.png'" alt="Indian students and mentors working on a project at a table" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>Internships &amp; Project Mentorship</h3><p>Structured project work, technical guidance, development workflows and project presentation support.</p><a href="contact.html" class="dbtn">Request proposal</a></div></article>
+   <article class="card"><span class="wn">06</span><img src="https://images.unsplash.com/photo-1682962232755-f1d051ddb638?auto=format&fit=crop&w=800&h=520&q=75" onerror="this.onerror=null;this.src='assets/images/bus.png'" alt="Indian students and industry mentors in an institutional partnership session" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-partner"/></svg></span><h3>Institutional Partnerships</h3><p>Discuss semester wise training, recurring technical programs and longer term industry and academia engagement based on your needs.</p><a href="contact.html" class="dbtn">Request proposal</a></div></article>
   </div>
  </div>
 </section>
@@ -545,7 +679,7 @@ html.js-fx .head.drawn .eyebrow,html.js-fx .head.drawn>p{opacity:1;transform:non
 <section class="sec alt">
  <div class="wrap two">
   <div class="vis">
-   <div class="frame"><div class="fin"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=75" onerror="this.onerror=null;this.src='assets/images/insti.png'" alt="Training session with students and a mentor" loading="lazy"></div></div>
+   <div class="frame"><div class="fin"><img src="https://images.unsplash.com/photo-1573894998033-c0cef4ed722b?auto=format&fit=crop&w=1000&h=750&q=75" onerror="this.onerror=null;this.src='assets/images/insti.png'" alt="Indian students in a classroom training session" loading="lazy"></div></div>
    <span class="fchip c1"><span class="ic"><svg class="ui"><use href="#i-file"/></svg></span>Syllabus &amp; reports</span>
    <span class="fchip c2"><span class="ic"><svg class="ui"><use href="#i-award"/></svg></span>Certificates</span>
   </div>
@@ -593,7 +727,7 @@ html.js-fx .head.drawn .eyebrow,html.js-fx .head.drawn>p{opacity:1;transform:non
   <div class="head c"><span class="eyebrow">FAQ</span><h2>Questions from institutions</h2></div>
   <div class="faq-wrap">
    <div class="vis">
-    <div class="frame"><div class="fin"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=75" onerror="this.onerror=null;this.src='assets/images/index.png'" alt="Lecture hall with students" loading="lazy"></div></div>
+    <div class="frame"><div class="fin"><img src="https://images.unsplash.com/photo-1635246550194-11af93a2763f?auto=format&fit=crop&w=900&h=675&q=75" onerror="this.onerror=null;this.src='assets/images/index.png'" alt="Indian students in a lecture hall" loading="lazy"></div></div>
     <span class="fchip c1"><span class="ic"><svg class="ui"><use href="#i-help"/></svg></span>Quick answers</span>
    </div>
    <div class="faq" id="faqContainer">
@@ -619,8 +753,8 @@ html.js-fx .head.drawn .eyebrow,html.js-fx .head.drawn>p{opacity:1;transform:non
  <div class="wrap">
   <div class="fgrid">
    <div>
-    <a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><span>ALGO</span><b>ORBIT</b></a>
-    <p>Empowering businesses with innovative digital solutions. From restaurant management to civic engagement platforms, we build technology that drives real impact.</p>
+    <a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10"/><line x1="13.5" y1="28" x2="21.5" y2="12.5"/><circle cx="30" cy="27.5" r="5"/></svg><span>ALGO</span><b>ORBIT</b></a>
+    <p>We build software for businesses and teach practical tech skills. Our products range from restaurant management to civic engagement platforms.</p>
     <div class="social">
      <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ui"><use href="#i-linkedin"/></svg></a>
      <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ui"><use href="#i-instagram"/></svg></a>
@@ -629,8 +763,8 @@ html.js-fx .head.drawn .eyebrow,html.js-fx .head.drawn>p{opacity:1;transform:non
     </div>
    </div>
    <div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-   <div><h4>Products</h4><ul><li><a href="products.html#puredine">Restaurant System</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
-   <div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="institutions.html">For Institutions</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+   <div><h4>Products</h4><ul><li><a href="products.html#puredine">PureDine</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
+   <div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="training-institution.html">For Institutions</a></li><li><a href="training-corporate.html">For Corporate</a></li><li><a href="training-learner.html">For Learners</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
   </div>
   <div class="fbot"><p>&copy; 2026 <strong>ALGOORBIT INNOVATIONS PRIVATE LIMITED</strong> All rights reserved.</p><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></div>
  </div>
@@ -651,7 +785,7 @@ addEventListener('scroll',function(){var h=document.documentElement.scrollHeight
 
 // Menu + dropdown
 var tg=$('#menuToggle'),nav=$('#navWrap');
-tg.onclick=function(){tg.setAttribute('aria-expanded',nav.classList.toggle('open'))};
+if(tg&&nav)tg.onclick=function(){tg.setAttribute('aria-expanded',nav.classList.toggle('open'))};
 $$('.dd-btn').forEach(function(b){b.onclick=function(){var li=b.parentNode,o=!li.classList.contains('open');$$('.has-dd').forEach(function(x){x.classList.remove('open')});if(o)li.classList.add('open');b.setAttribute('aria-expanded',o)}});
 document.addEventListener('click',function(e){if(!e.target.closest('.has-dd'))$$('.has-dd').forEach(function(x){x.classList.remove('open')})});
 
@@ -686,8 +820,8 @@ document.addEventListener('click',function(e){if(!e.target.closest('.has-dd'))$$
 if(!reduce&&'IntersectionObserver' in window){
  var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('rv','in');el.style.transitionDelay=''},1500)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
  $$('.head,.vis,.two>div:not(.vis),.cta>*').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('rv');el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)});
- var f=$('#flow');f.classList.add('pre');
- new IntersectionObserver(function(es,o){if(es[0].isIntersecting){f.classList.add('go');o.disconnect()}},{threshold:.25}).observe(f);
+ var flowEl=$('#flow');flowEl.classList.add('pre');
+ new IntersectionObserver(function(es,o){if(es[0].isIntersecting){flowEl.classList.add('go');o.disconnect()}},{threshold:.25}).observe(flowEl);
 }else{$$('.rv').forEach(function(el){el.classList.remove('rv')})}
 var dio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('drawn',e.isIntersecting)})},{threshold:.6});
 $$('.head').forEach(function(el){dio.observe(el)});
@@ -703,8 +837,11 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce){
  $$('.hero .btn,.cta .btn').forEach(function(b){b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.25)+'px '+((e.clientY-r.top-r.height/2)*.35)+'px'});b.addEventListener('mouseleave',function(){b.style.translate='0 0'})});
 }
 
-// Touch: program cards play their hover effect as they reach the middle of the screen
-if(matchMedia('(hover:none)').matches&&!reduce&&'IntersectionObserver' in window){
+// Touch: program cards used to play their hover effect on their own as they reached the middle of the screen.
+// Hover effects now run only on a real cursor hover (or a tap), so this scroll-driven trigger is switched off.
+// Set AUTO_HOVER to true to bring the old behaviour back.
+var AUTO_HOVER=false;
+if(AUTO_HOVER&&matchMedia('(hover:none)').matches&&!reduce&&'IntersectionObserver' in window){
  var tio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
  $$('.card,.tile,.flow li,.faq details,.checks li').forEach(function(el){tio.observe(el)});
 }
@@ -897,11 +1034,11 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
  var ctaDirs=['l','r','u'];
  QA('.cta>*').forEach(function(el,i){
   el.classList.add('fx');el.setAttribute('data-dir',ctaDirs[i]||'u');
-  el.style.setProperty('--fd',(i*.09).toFixed(2)+'s');fxio.observe(el);
+  el.style.setProperty('--fxd',(i*.09).toFixed(2)+'s');fxio.observe(el);
  });
  QA('.site-footer .fgrid>*').forEach(function(el,i,all){
   el.classList.add('fx');el.setAttribute('data-dir',i%2?'r':'l');
-  el.style.setProperty('--fd',(i*.09).toFixed(2)+'s');fxio.observe(el);
+  el.style.setProperty('--fxd',(i*.09).toFixed(2)+'s');fxio.observe(el);
  });
  QA('.site-footer .wrap>*:not(.fgrid)').forEach(function(el){el.classList.add('fx');el.setAttribute('data-dir','u');fxio.observe(el)});
 
@@ -911,6 +1048,35 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
    b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.12).toFixed(1)+'px '+((e.clientY-r.top-r.height/2)*.2).toFixed(1)+'px'});
    b.addEventListener('pointerleave',function(){b.style.translate='0 0'});
   });
+ }
+})();
+</script>
+<script id="voices-js">
+(function(){
+ var REVIEWS=[
+  {n:'Priyadarshana K',r:'Google review',g:1,t:'Had an excellent experience with Algo Orbit Innovations. The team is professional, responsive, and genuinely knowledgeable in their field. Communication was smooth throughout, and the quality of work exceeded my expectations. Highly recommend them to anyone looking for a reliable and skilled partner.'},
+  {n:'Matthew Wilson',r:'Google review',g:1,t:'Really happy with the work AlgoOrbit did for us. We worked with the team on a custom business management system, and the whole process was smooth from start to finish. Everyone was responsive, easy to communicate with, and handled changes quickly.<br><br>Mr. Nishan was great to work with personally. Very approachable, professional, and knowledgeable. The whole team did a great job, and we really appreciated their support throughout the project. We\u2019d definitely recommend AlgoOrbit and would love to work with them again on future projects.'},
+  {n:'Dhrithi Rai B',r:'Google review',g:1,t:'My experience with the Flutter project was very useful and interesting. I learned to create attractive user interfaces, use Dart and Flutter widgets, connect Firebase, and fix errors during development. It improved my coding, debugging, and problem-solving skills.'},
+  {n:'Riya Fernandes',r:'Owner, Brew & Bean Caf\u00e9',i:'https://www.algoorbit.in/static/images/review/riya.png',t:'ALGO ORBIT completely transformed how we run our caf\u00e9. The management system they built handles orders, staff scheduling, and payments seamlessly. The team was professional, fast, and genuinely cared about our success.'},
+  {n:'Dr. Meera Rao',r:'Harmony Health Clinic',i:'https://www.algoorbit.in/static/images/review/meera.png',t:'The clinic management system ALGO ORBIT delivered was clean, practical, and exceeded every expectation. Patient scheduling, records, and billing, all in one intuitive system. Our staff adopted it in days.'},
+  {n:'Prajna Mendon',r:'NMAMIT Nitte',i:'https://www.algoorbit.in/static/images/review/prajna.jpg',t:'The training program at ALGO ORBIT didn\u2019t just teach me to code; it taught me to think like a developer. Real projects, real mentors, real feedback. I landed my first job offer before the program even ended.'}
+ ];
+ var rt=document.getElementById('rvTrack');
+ if(!rt)return;
+ function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+ var rone=REVIEWS.map(function(v){
+  var av=v.i?'<img class="av" src="'+v.i+'" alt="" width="46" height="46" loading="lazy">':'<span class="av ini" aria-hidden="true">'+esc(v.n.charAt(0))+'</span>';
+  return '<figure class="rv-c'+(v.g?' g':'')+'"><div class="who">'+av+'<span><strong>'+esc(v.n)+'</strong><small>'+esc(v.r)+'</small></span></div><p>\u201C'+v.t+'\u201D</p><div class="rf"><div class="rs" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></figure>'}).join('');
+ var rn=Math.max(2,Math.ceil(innerWidth*2/(REVIEWS.length*330)));
+ rt.innerHTML=rone.repeat(rn*2);
+ rt.style.setProperty('--rvd',(REVIEWS.length*rn*28)+'s');
+ /* the repeated half is decorative, so hide it from assistive tech */
+ [].slice.call(rt.children).forEach(function(c,i){if(i>=REVIEWS.length){c.setAttribute('aria-hidden','true')}});
+ /* the strip slides in from below once, same family of reveals as the rest of the page */
+ var mq=rt.parentNode;
+ if(document.documentElement.classList.contains('js-fx')&&'IntersectionObserver' in window){
+  mq.classList.add('fx');mq.setAttribute('data-dir','u');
+  new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('fx-in',e.isIntersecting)})},{threshold:.12,rootMargin:'0px 0px -6% 0px'}).observe(mq);
  }
 })();
 </script>

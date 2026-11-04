@@ -189,7 +189,7 @@ h2{font-size:clamp(1.65rem,1.2rem + 1.7vw,2.4rem);line-height:1.2;margin-bottom:
 .mbar{display:none}
 
 /* Reveal, glow, ripple */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}.rv.in{opacity:1;transform:none}
+.rv{opacity:0;translate:0 26px;transition:opacity .9s var(--ease),translate .9s var(--ease),transform .45s var(--ease),box-shadow .4s,background .45s,border-color .3s}.rv.in{opacity:1;translate:0 0}
 .cglow{position:fixed;left:0;top:0;width:460px;height:460px;margin:-230px 0 0 -230px;border-radius:50%;pointer-events:none;z-index:60;background:radial-gradient(circle,rgba(143,132,242,.2),transparent 65%);opacity:0;transition:opacity .5s}.cglow.on{opacity:1}
 .btn .rp{position:absolute;width:220px;height:220px;margin:-110px 0 0 -110px;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);animation:rp .7s ease-out forwards;pointer-events:none}@keyframes rp{to{transform:scale(1);opacity:0}}
 
@@ -204,7 +204,7 @@ h2{font-size:clamp(1.65rem,1.2rem + 1.7vw,2.4rem);line-height:1.2;margin-bottom:
 @media(max-width:700px){body{font-size:15.5px}.wrap{padding:0 20px}.grid,.g5{grid-template-columns:minmax(0,1fr)}.g5>.card:nth-child(5){grid-column:auto}.g10{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tile{padding:20px 14px}
  .sec{padding:48px 0}.hero-grid{padding:24px 20px 28px}.hero h1{font-size:clamp(1.9rem,8.6vw,2.3rem)}.acts{flex-direction:column;align-items:stretch}.btn{white-space:normal;min-width:0;height:auto;min-height:50px;padding:12px 22px}
  .checklist{flex-wrap:nowrap;overflow-x:auto;gap:8px;margin:0 -20px;padding:0 20px 4px;scrollbar-width:none}.checklist::-webkit-scrollbar{display:none}.checklist li{flex:none;padding:8px 14px;border-radius:99px;background:rgba(255,255,255,.75);border:1px solid #fff;font-size:13px}.checklist li::before{width:6px;height:6px}
- .rv{transform:translateY(16px);transition-duration:.6s}.card:hover,.tile:hover,.frame:hover{transform:none}.card .dbtn{width:100%;justify-content:center;height:48px}.card>img{height:160px}.cb{padding:20px}
+ .rv{translate:0 16px}.card:hover,.tile:hover,.frame:hover{transform:none}.card .dbtn{width:100%;justify-content:center;height:48px}.card>img{height:160px}.cb{padding:20px}
  .flow{grid-template-columns:minmax(0,1fr);gap:12px}.flow li{display:flex;align-items:center;gap:16px;text-align:left;padding:14px 16px;border-radius:20px;background:linear-gradient(160deg,#1c1e50,#12132f);border:1px solid rgba(255,255,255,.1)}.fn{width:56px;height:56px;margin:0}.fn .ui{width:24px;height:24px}.fn b{min-width:22px;height:22px;font-size:9.5px}
  .fchip{font-size:11.5px;padding:6px 10px 6px 7px}.fchip.c1{left:8px}.fchip.c2{right:8px}.faq details{padding:0 16px}.faq summary{font-size:15px}.faq summary .ic{width:34px;height:34px}.faq details p{padding-left:46px;font-size:14.5px}
  .cta{padding:52px 20px}.cta .btn{width:100%}.fgrid{grid-template-columns:1fr 1fr;gap:26px 18px}.fbot{flex-direction:column;text-align:center}.site-footer{padding-bottom:78px}
@@ -236,12 +236,14 @@ html{overscroll-behavior-y:none}
 }
 
 /* left / right reveal */
-.rv{transition:opacity .9s var(--ease),transform 1.1s var(--e2)}
-.rv.rv-l:not(.in){transform:translateX(-80px)}
-.rv.rv-r:not(.in){transform:translateX(80px)}
+.rv{transition:opacity .9s var(--ease),translate 1.1s var(--e2),transform .45s var(--ease),box-shadow .4s,background .45s,border-color .3s}
+.rv.rv-l:not(.in){translate:-80px 0}
+.rv.rv-r:not(.in){translate:80px 0}
+.rv.rv-u:not(.in){translate:0 40px}
 @media(max-width:700px){
- .rv.rv-l:not(.in){transform:translateX(-36px)}
- .rv.rv-r:not(.in){transform:translateX(36px)}
+ .rv.rv-l:not(.in){translate:-36px 0}
+ .rv.rv-r:not(.in){translate:36px 0}
+ .rv.rv-u:not(.in){translate:0 24px}
 }
 
 /* hero copy slides in from the left */
@@ -280,6 +282,109 @@ html{overscroll-behavior-y:none}
 @keyframes backIn{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
 @media(max-width:600px){.back-link{margin-bottom:18px;font-size:13px}}
 @media(prefers-reduced-motion:reduce){.hero-copy>.back-link{animation:none}.back-link,.back-link .bl-ic{transition:none}}
+
+/* =====================================================================
+   UPDATE LAYER (additive): footer = index.html footer, lines removed,
+   index.html style smooth scroll / reveal / hover effects
+   ===================================================================== */
+
+/* ---- 1) Footer: same logo, type and layout as index.html ---- */
+.site-footer{background:#0a0b20;color:#b9bbd2;padding:clamp(44px,6vw,68px) 0 0;font-size:14.5px}
+.fgrid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;padding-bottom:44px}
+.fgrid h4{color:#fff;font-size:13px;margin-bottom:16px;letter-spacing:.06em}.fgrid h4.lg{margin-top:26px}
+.fgrid li{margin-bottom:10px}
+.fgrid p{max-width:420px;line-height:1.7}
+.site-footer .wordmark{display:inline-flex;align-items:center;gap:12px;font:800 32px var(--fd);letter-spacing:.03em;margin-bottom:16px}
+.site-footer .wordmark:hover{letter-spacing:.03em}
+.site-footer .wordmark .logo-mark{width:40px;height:40px;flex:none;transition:transform .5s var(--e2)}
+.site-footer .wordmark .logo-mark rect{fill:var(--ind)}
+.site-footer .wordmark .logo-mark line{stroke:#fff;stroke-width:10;stroke-linecap:round}
+.site-footer .wordmark .logo-mark circle{fill:#fff}
+.site-footer .wordmark:hover .logo-mark{transform:rotate(-8deg) scale(1.1)}
+.site-footer .wordmark>span{color:#fff;display:inline}.site-footer .wordmark>b{color:var(--vio);display:inline}
+.fbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 24px;border-top:1px solid #26284f;padding:20px 0;font-size:13px;color:#9092ae}
+.fbot strong{color:#ddd;font-weight:600}.fbot a{transition:color .2s}.fbot a:hover{color:var(--vio)}
+.fgrid li a:focus-visible,.fbot a:focus-visible,.social a:focus-visible{outline:2px solid var(--vio);outline-offset:3px;border-radius:6px}
+.site-footer a,.site-footer a:hover,.fbot a{text-decoration:none!important;border-bottom:0!important}
+@media(max-width:1000px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.fgrid>div:first-child{grid-column:1/-1}}
+@media(max-width:700px){
+ .site-footer{padding-bottom:78px}
+ .fgrid{grid-template-columns:1fr 1fr;gap:26px 18px;padding-bottom:28px}
+ .fgrid>div:first-child{grid-column:1/-1}
+ .fgrid li{margin-bottom:12px}
+ .fbot{flex-direction:column;align-items:center;text-align:center;padding:18px 0}
+ .site-footer .wordmark{font-size:28px}.site-footer .wordmark .logo-mark{width:36px;height:36px}
+}
+
+/* ---- 2) Remove every underline / accent line ---- */
+.head h2::after,.head.c h2::after,.head.drawn h2::after,
+.card h3::after,.card:hover h3::after,.card.tch h3::after,
+.hero h1 em::after,
+.card::before,
+.flow::before,.flow.pre::before,
+.vt::before,
+.nav-links>li>a::after,.nav-links>li>a:hover::after,.dd-btn::after,.dd-btn:hover::after,.dd-btn.cur::after{
+ content:none!important;display:none!important;width:0!important;height:0!important;background:none!important;box-shadow:none!important;animation:none!important}
+.vt{border-top:0}
+.site-header{border-bottom:0}
+a,a:hover,a:focus,summary,.hero h1 em,.card h3,.head h2{text-decoration:none!important}
+.hero h1 em{border-bottom:0!important;padding-bottom:0!important}
+
+/* ---- 3) Hero picture: sits on the same layer on desktop and mobile ---- */
+.hero-bg{object-fit:cover;object-position:center}
+
+/* ---- 4) Smooth effects from index.html ---- */
+/* back to top button with scroll progress ring */
+.totop{position:fixed;left:24px;bottom:24px;z-index:140;width:48px;height:48px;padding:0;border:0;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px rgba(20,21,46,.18);opacity:0;visibility:hidden;transform:translateY(16px) scale(.9);transition:opacity .35s,transform .35s var(--ease),visibility .35s,background .25s,color .25s}
+.totop.show{opacity:1;visibility:visible;transform:none}
+.totop:hover{background:var(--navy);color:#fff}
+.totop .ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.totop .trk{fill:none;stroke:var(--line);stroke-width:2.5}
+.totop .prg{fill:none;stroke:var(--ind);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:138.23;stroke-dashoffset:138.23}
+.totop .ui{position:relative;width:18px;height:18px}
+@media(max-width:700px){.totop{left:16px;bottom:16px;width:44px;height:44px}body.bar-on .totop{bottom:84px}}
+
+/* cursor light that follows the pointer inside cards (desktop) */
+.fxh{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;opacity:0;transition:opacity .35s;background:radial-gradient(280px circle at var(--hx,50%) var(--hy,50%),rgba(var(--hc,143,132,242),.2),transparent 70%)}
+*:hover>.fxh{opacity:1}
+
+/* footer reveal, same feel as index.html */
+.fgrid>div.fr,.fbot.fr{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .9s var(--e2)}
+.fgrid>div.fr.in,.fbot.fr.in{opacity:1;transform:none}
+.fgrid>div.fr:nth-child(2){transition-delay:.08s}.fgrid>div.fr:nth-child(3){transition-delay:.16s}.fgrid>div.fr:nth-child(4){transition-delay:.24s}
+
+/* parallax helpers: slight zoom so moving images never show an edge */
+.card>img,.fin img{scale:1.08}
+.hero-bg{will-change:translate}
+@media(max-width:1000px){.hero-bg{will-change:auto}}
+.is-scrolling .fchip,.is-scrolling .hero::after,.is-scrolling .cta::after{animation-play-state:paused}
+
+@media(hover:hover) and (pointer:fine){
+ .site-footer li a{display:inline-block;transition:translate .25s var(--ease),color .2s,transform .25s var(--ease)}
+ .site-footer li a:hover{transform:none;translate:5px 0}
+ .social a{transition:translate .25s var(--ease),background .25s,color .25s,border-color .25s,transform .3s var(--ease)}
+ .social a:hover{transform:none;translate:0 -4px}
+ .tile,.checks li,.faq details,.flow li{will-change:transform}
+ .flow li:hover .fn{transform:translateY(-6px) scale(1.06)}
+}
+@media(prefers-reduced-motion:reduce){
+ .fxh{display:none}
+ .fgrid>div.fr,.fbot.fr{opacity:1;transform:none;transition:none}
+ .card>img,.fin img{scale:1}
+ .site-footer li a:hover,.social a:hover{translate:none}
+ .totop{transition:none}
+}
+
+/* ===== Slim navbar: logo + ALGO ORBIT only, "Back to Training" pinned top-right ===== */
+.site-header .nav-inner{gap:16px}
+.site-header .menu-toggle,.site-header #navWrap{display:none!important}
+.site-header .nav-back{margin:0;flex:none;padding:4px 16px 4px 4px;font-size:13.5px;line-height:1;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);box-shadow:none;animation:none;white-space:nowrap}
+.site-header .nav-back .bl-ic{width:28px;height:28px}
+.site-header .nav-back:hover,.site-header .nav-back:focus-visible{background:#fff;color:#0e0f2a;border-color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.35);transform:translateX(-3px)}
+.site-header .nav-back:hover .bl-ic,.site-header .nav-back:focus-visible .bl-ic{background:#5b4be8;color:#fff}
+.site-header .nav-back:focus-visible{outline:2px solid #8f84f2;outline-offset:3px}
+@media(max-width:480px){.site-header .nav-back{padding:3px 12px 3px 3px;font-size:12.5px;gap:8px}.site-header .nav-back .bl-ic{width:26px;height:26px}}
+@media(max-width:340px){.site-header .nav-back>span:last-child{display:none}.site-header .nav-back{padding:3px}}
 </style>
 </head>
 <body>
@@ -318,18 +423,7 @@ html{overscroll-behavior-y:none}
    <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10"/><line x1="13.5" y1="28" x2="21.5" y2="12.5"/><circle cx="30" cy="27.5" r="5"/></svg>
    <span class="logo-text"><b>ALGO</b><span>ORBIT</span></span>
   </a>
-  <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-controls="navWrap" aria-expanded="false">☰</button>
-  <nav id="navWrap" aria-label="Primary">
-   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li class="has-dd"><button class="dd-btn cur" type="button" aria-expanded="false">Services</button>
-     <div class="dd"><a href="consultancy.html">IT Consultancy</a><a href="training.html">Enterprise Training</a><a href="institutions.html">For Institutions</a><a href="learners.html">For Learners</a><a href="products.html">Products</a></div></li>
-    <li><a href="our-work.html">Our Work</a></li>
-    <li><a href="careers.html">Careers</a></li>
-    <li><a href="contact.html">Contact</a></li>
-   </ul>
-  </nav>
+  <a href="training.html" class="back-link nav-back" aria-label="Back to Training"><span class="bl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span><span>Back to Training</span></a>
  </div>
 </header>
 
@@ -337,10 +431,9 @@ html{overscroll-behavior-y:none}
 
 <!-- Hero -->
 <section class="hero">
- <img class="hero-bg" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80" onerror="this.onerror=null;this.src='assets/images/learn.png'" alt="Students learning together on laptops" width="1600" height="900" fetchpriority="high">
+ <img class="hero-bg" src="assets/images/training-learner.png" onerror="this.onerror=null;this.src='assets/images/learn.png'" alt="Students learning together with ALGO ORBIT" width="1600" height="900" fetchpriority="high">
  <div class="wrap hero-grid">
   <div class="hero-copy">
-   <a href="training.html" class="back-link" aria-label="Back to Training"><span class="bl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span><span>Back to Training</span></a>
    <h1>Build Practical Skills for <em>Your Next Opportunity</em></h1>
    <p class="lead">Develop technical knowledge, work on projects and prepare for interviews through structured training programs, internships and guided learning with ALGO ORBIT.</p>
    <div class="acts"><a href="#paths" class="btn btn-p">Explore Learning Paths</a><a href="contact.html" class="btn btn-o">Talk to our team</a></div>
@@ -356,11 +449,11 @@ html{overscroll-behavior-y:none}
  <div class="wrap">
   <div class="head c"><span class="eyebrow">Learning paths</span><h2>Choose the path that fits your goal</h2><p>Five focused routes, from interview readiness to real project experience.</p></div>
   <div class="grid g5">
-   <article class="card"><span class="wn">01</span><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=75" onerror="this.onerror=null;this.src='assets/images/learn.png'" alt="Student preparing for a placement interview" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-target"/></svg></span><h3>Placement Preparation</h3><p>Programming fundamentals, DSA, OOP, SQL, DBMS, aptitude, resume preparation and mock interviews.</p><div class="tags"><span>Programming</span><span>DSA</span><span>OOP</span><span>SQL &amp; DBMS</span><span>Aptitude</span><span>Mock interviews</span></div><a href="contact.html" class="dbtn">View details</a></div></article>
-   <article class="card"><span class="wn">02</span><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=75" onerror="this.onerror=null;this.src='assets/images/prod.png'" alt="Developer building a web application" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>Full Stack Development</h3><p>Frontend development, backend APIs, databases, application integration and deployment.</p><div class="tags"><span>Frontend</span><span>Backend APIs</span><span>Databases</span><span>Integration</span><span>Deployment</span></div><a href="contact.html" class="dbtn">View details</a></div></article>
+   <article class="card"><span class="wn">01</span><img src="assets/images/indian-placement-prep.jpg" onerror="this.onerror=null;this.src='assets/images/learn.png'" alt="Student preparing for a placement interview" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-target"/></svg></span><h3>Placement Preparation</h3><p>Programming fundamentals, DSA, OOP, SQL, DBMS, aptitude, resume preparation and mock interviews.</p><div class="tags"><span>Programming</span><span>DSA</span><span>OOP</span><span>SQL &amp; DBMS</span><span>Aptitude</span><span>Mock interviews</span></div><a href="contact.html" class="dbtn">View details</a></div></article>
+   <article class="card"><span class="wn">02</span><img src="assets/images/indian-full-stack.jpg" onerror="this.onerror=null;this.src='assets/images/prod.png'" alt="Developer building a web application" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span><h3>Full Stack Development</h3><p>Frontend development, backend APIs, databases, application integration and deployment.</p><div class="tags"><span>Frontend</span><span>Backend APIs</span><span>Databases</span><span>Integration</span><span>Deployment</span></div><a href="contact.html" class="dbtn">View details</a></div></article>
    <article class="card"><span class="wn">03</span><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=75" onerror="this.onerror=null;this.src='assets/images/it.png'" alt="Mobile app interface on a phone" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-phone"/></svg></span><h3>Mobile App Development</h3><p>Dart, Flutter, responsive interfaces, APIs and application development.</p><div class="tags"><span>Dart</span><span>Flutter</span><span>Responsive UI</span><span>APIs</span></div><a href="contact.html" class="dbtn">View details</a></div></article>
-   <article class="card"><span class="wn">04</span><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=75" onerror="this.onerror=null;this.src='assets/images/enter.png'" alt="Data analysis dashboard on a screen" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-chip"/></svg></span><h3>AI &amp; Data Technologies</h3><p>Python, AI/ML foundations, data analysis and generative AI applications.</p><div class="tags"><span>Python</span><span>AI / ML</span><span>Data analysis</span><span>Generative AI</span></div><a href="contact.html" class="dbtn">View details</a></div></article>
-   <article class="card"><span class="wn">05</span><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=75" onerror="this.onerror=null;this.src='assets/images/insti.png'" alt="Mentor reviewing a student project" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-users"/></svg></span><h3>Internships &amp; Project Mentorship</h3><p>Guided assignments, project implementation, code reviews where available, testing and project presentation.</p><div class="tags"><span>Guided assignments</span><span>Code reviews*</span><span>Testing</span><span>Presentation</span></div><a href="contact.html" class="dbtn">View details</a></div></article>
+   <article class="card"><span class="wn">04</span><img src="assets/images/indian-ai-data.jpg" onerror="this.onerror=null;this.src='assets/images/enter.png'" alt="Data analysis dashboard on a screen" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-chip"/></svg></span><h3>AI &amp; Data Technologies</h3><p>Python, AI/ML foundations, data analysis and generative AI applications.</p><div class="tags"><span>Python</span><span>AI / ML</span><span>Data analysis</span><span>Generative AI</span></div><a href="contact.html" class="dbtn">View details</a></div></article>
+   <article class="card"><span class="wn">05</span><img src="assets/images/indian-mentorship.jpg" onerror="this.onerror=null;this.src='assets/images/insti.png'" alt="Mentor reviewing a student project" loading="lazy"><div class="cb"><span class="ic"><svg class="ui"><use href="#i-users"/></svg></span><h3>Internships &amp; Project Mentorship</h3><p>Guided assignments, project implementation, code reviews where available, testing and project presentation.</p><div class="tags"><span>Guided assignments</span><span>Code reviews*</span><span>Testing</span><span>Presentation</span></div><a href="contact.html" class="dbtn">View details</a></div></article>
   </div>
   <p class="sub" style="margin-top:20px;font-size:13.5px;text-align:center">*Where available.</p>
  </div>
@@ -404,7 +497,7 @@ html{overscroll-behavior-y:none}
 <section class="sec">
  <div class="wrap two">
   <div class="vis">
-   <div class="frame"><div class="fin"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1000&q=75" onerror="this.onerror=null;this.src='assets/images/index.png'" alt="Learners working on a project with a mentor" loading="lazy"></div></div>
+   <div class="frame"><div class="fin"><img src="assets/images/indian-learners-mentor.jpg" onerror="this.onerror=null;this.src='assets/images/index.png'" alt="Learners working on a project with a mentor" loading="lazy"></div></div>
    <span class="fchip c1"><span class="ic"><svg class="ui"><use href="#i-code"/></svg></span>Real projects</span>
    <span class="fchip c2"><span class="ic"><svg class="ui"><use href="#i-users"/></svg></span>Mentor guidance</span>
   </div>
@@ -424,7 +517,7 @@ html{overscroll-behavior-y:none}
   <div class="head c"><span class="eyebrow">FAQ</span><h2>Questions from learners</h2></div>
   <div class="faq-wrap">
    <div class="vis">
-    <div class="frame"><div class="fin"><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=75" onerror="this.onerror=null;this.src='assets/images/learn.png'" alt="Student coding on a laptop" loading="lazy"></div></div>
+    <div class="frame"><div class="fin"><img src="assets/images/indian-student-coding.jpg" onerror="this.onerror=null;this.src='assets/images/learn.png'" alt="Student coding on a laptop" loading="lazy"></div></div>
     <span class="fchip c1"><span class="ic"><svg class="ui"><use href="#i-help"/></svg></span>Quick answers</span>
    </div>
    <div class="faq">
@@ -450,8 +543,8 @@ html{overscroll-behavior-y:none}
  <div class="wrap">
   <div class="fgrid">
    <div>
-    <a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><span>ALGO</span><b>ORBIT</b></a>
-    <p>Empowering businesses with innovative digital solutions. From restaurant management to civic engagement platforms, we build technology that drives real impact.</p>
+    <a href="index.html" class="wordmark" aria-label="ALGO ORBIT home"><svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10"/><line x1="13.5" y1="28" x2="21.5" y2="12.5"/><circle cx="30" cy="27.5" r="5"/></svg><span>ALGO</span><b>ORBIT</b></a>
+    <p>We build software for businesses and teach practical tech skills. Our products range from restaurant management to civic engagement platforms.</p>
     <div class="social">
      <a href="https://www.linkedin.com/company/aionyxai/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ui"><use href="#i-linkedin"/></svg></a>
      <a href="https://www.instagram.com/algoorbit_official/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ui"><use href="#i-instagram"/></svg></a>
@@ -460,13 +553,14 @@ html{overscroll-behavior-y:none}
     </div>
    </div>
    <div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-   <div><h4>Products</h4><ul><li><a href="products.html#puredine">Restaurant System</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
-   <div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="institutions.html">For Institutions</a></li><li><a href="learners.html">For Learners</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+   <div><h4>Products</h4><ul><li><a href="products.html#puredine">PureDine</a></li><li><a href="products.html#trioncam">TrionCam</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="contact.html">Request Demo</a></li></ul></div>
+   <div><h4>Services</h4><ul><li><a href="consultancy.html">IT Consultancy</a></li><li><a href="training.html">Training</a></li><li><a href="training-institution.html">For Institutions</a></li><li><a href="training-corporate.html">For Corporate</a></li><li><a href="training-learner.html">For Learners</a></li></ul><h4 class="lg">Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
   </div>
   <div class="fbot"><p>&copy; 2026 <strong>ALGOORBIT INNOVATIONS PRIVATE LIMITED</strong> All rights reserved.</p><a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a></div>
  </div>
 </footer>
 
+<button type="button" class="totop" id="totop" aria-label="Back to top"><svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="trk" cx="24" cy="24" r="22"/><circle class="prg" cx="24" cy="24" r="22"/></svg><svg class="ui" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <a href="#paths" class="btn btn-p mbar" id="mbar">Explore Programs</a>
 <a href="https://wa.me/919482119446" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></a>
 
@@ -485,10 +579,10 @@ addEventListener('scroll',function(){var h=document.documentElement.scrollHeight
 
 // Menu + dropdown
 var tg=$('#menuToggle'),nav=$('#navWrap');
-tg.onclick=function(){tg.setAttribute('aria-expanded',nav.classList.toggle('open'))};
+if(tg&&nav)tg.onclick=function(){tg.setAttribute('aria-expanded',nav.classList.toggle('open'))};
 $$('.dd-btn').forEach(function(b){b.onclick=function(){var li=b.parentNode,o=!li.classList.contains('open');$$('.has-dd').forEach(function(x){x.classList.remove('open')});if(o)li.classList.add('open');b.setAttribute('aria-expanded',o)}});
 document.addEventListener('click',function(e){if(!e.target.closest('.has-dd'))$$('.has-dd').forEach(function(x){x.classList.remove('open')})});
-$$('#navWrap a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open')})});
+$$('#navWrap a').forEach(function(a){a.addEventListener('click',function(){if(nav)nav.classList.remove('open')})});
 
 // Reel: moving line that follows scroll direction and speed (same as careers.html)
 (function(){
@@ -519,18 +613,19 @@ $$('#navWrap a').forEach(function(a){a.addEventListener('click',function(){nav.c
 
 // Scroll reveal + heading underline + flow
 if(!reduce&&'IntersectionObserver' in window){
- var rio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;el.classList.add('in');rio.unobserve(el);setTimeout(function(){el.classList.remove('rv','in','rv-l','rv-r');el.style.transitionDelay=''},1500)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+ var rio=new IntersectionObserver(function(es){es.forEach(function(e){var el=e.target;if(e.isIntersecting&&e.intersectionRatio>=.12){clearTimeout(el._rt);el.style.transitionDelay=el._d||'';el.classList.add('in');el._rt=setTimeout(function(){el.style.transitionDelay=''},1500)}else if(!e.isIntersecting){clearTimeout(el._rt);el.style.transitionDelay='0s';el.classList.remove('in')}})},{threshold:[0,.12],rootMargin:'0px 0px -40px 0px'});
  var dn=0,fn_=0;
- $$('.head,.card,.tile,.vis,.two>div:not(.vis),.faq details,.cta>*').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('rv');
+ $$('.head,.card,.tile,.vis,.two>div:not(.vis),.faq details,.cta>*,.checks li').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentNode.children,el);el.classList.add('rv');
   if(el.classList.contains('card')||el.classList.contains('tile')){el.classList.add(dn++%2?'rv-r':'rv-l')}
   else if(el.classList.contains('vis'))el.classList.add('rv-l');
   else if(el.matches('.two>div:not(.vis)'))el.classList.add('rv-r');
   else if(el.tagName==='DETAILS')el.classList.add(fn_++%2?'rv-l':'rv-r');
-  el.style.transitionDelay=(i%4)*.1+'s';rio.observe(el)});
+  else if(el.tagName==='LI')el.classList.add(el.parentNode.children[0]===el||Array.prototype.indexOf.call(el.parentNode.children,el)%2===0?'rv-l':'rv-r');
+  el._d=(i%4)*.1+'s';el.style.transitionDelay=el._d;rio.observe(el)});
  var f=$('#flow');f.classList.add('pre');
  new IntersectionObserver(function(es,o){if(es[0].isIntersecting){f.classList.add('go');o.disconnect()}},{threshold:.25}).observe(f);
 }
-var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('drawn');dio.unobserve(e.target)}})},{threshold:.6});
+var dio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('drawn',e.isIntersecting&&e.intersectionRatio>=.6)})},{threshold:.6});
 $$('.head').forEach(function(el){dio.observe(el)});
 
 // Button ripple
@@ -545,7 +640,7 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce){
 }
 
 // Touch: cards play their hover effect as they reach the middle of the screen
-if(matchMedia('(hover:none)').matches&&!reduce&&'IntersectionObserver' in window){
+if(false&&matchMedia('(hover:none)').matches&&!reduce&&'IntersectionObserver' in window){ /* disabled: hover effects only run under the cursor */
  var s=document.createElement('style');s.textContent='.card.tch .cb::before{clip-path:inset(0)}.card.tch h3,.card.tch p{color:#fff}.card.tch .ic{background:#fff;color:var(--b)}.card.tch h3::after{width:68px;background:#fff}.card.tch>img{transform:scale(1.08)}.card.tch .tags span{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35);color:#fff}.tile.tch{background:linear-gradient(160deg,#fff,#e8e5ff)}.tile.tch h3{color:var(--navy)}.tile.tch p{color:var(--mute)}';
  document.head.appendChild(s);
  var tio=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('tch',e.isIntersecting)})},{rootMargin:'-40% 0px -40% 0px'});
@@ -565,6 +660,66 @@ if(!reduce&&window.Lenis){
  },true);
  nav.setAttribute('data-lenis-prevent','');
 }
+
+// ---- Update layer: index.html style footer reveal, cursor light, parallax, back to top ----
+(function(){
+ var R=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var Q=function(q,r){return Array.prototype.slice.call((r||document).querySelectorAll(q))};
+ var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
+
+ // footer blocks fade up one after another
+ if(!R&&'IntersectionObserver' in window){
+  var fo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>=.15)e.target.classList.add('in');else if(!e.isIntersecting)e.target.classList.remove('in')})},{threshold:[0,.15],rootMargin:'0px 0px -6% 0px'});
+  Q('.fgrid>div,.fbot').forEach(function(el){el.classList.add('fr');fo.observe(el)});
+ }
+
+ // back to top button + progress ring
+ var totop=document.getElementById('totop'),prg=totop&&totop.querySelector('.prg');
+ function topFrame(){
+  var h=innerHeight,dh=document.documentElement.scrollHeight-h,sy=scrollY;
+  totop.classList.toggle('show',sy>h*.8);
+  prg.style.strokeDashoffset=(138.23*(1-(dh>0?sy/dh:0))).toFixed(2);
+ }
+ if(totop&&prg){
+  addEventListener('scroll',topFrame,{passive:true});addEventListener('resize',topFrame);topFrame();
+  totop.addEventListener('click',function(){
+   if(window.siteScroller&&!R)window.siteScroller.scrollTo(0,{duration:1.4});else scrollTo({top:0,behavior:R?'auto':'smooth'});
+  });
+ }
+
+ if(R)return;
+
+ // pause heavy looping animations while the page is scrolling
+ var st;addEventListener('scroll',function(){document.documentElement.classList.add('is-scrolling');clearTimeout(st);st=setTimeout(function(){document.documentElement.classList.remove('is-scrolling')},140)},{passive:true});
+
+ // cursor light inside cards and tiles (mouse only)
+ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+  Q('.card,.tile,.faq details,.checks li').forEach(function(c){
+   var f=document.createElement('i');f.className='fxh';f.setAttribute('aria-hidden','true');
+   if(c.tagName==='DETAILS'||c.tagName==='LI'){f.style.zIndex='0'}
+   c.appendChild(f);
+   c.addEventListener('pointermove',function(e){if(e.pointerType==='touch')return;var r=c.getBoundingClientRect();f.style.setProperty('--hx',(e.clientX-r.left)+'px');f.style.setProperty('--hy',(e.clientY-r.top)+'px')});
+  });
+ }
+
+ // smooth eased parallax on the hero picture and card pictures
+ var T=[],vh=innerHeight,run=false;
+ var wide=function(){return innerWidth>1000};
+ function add(sel,f,m){Q(sel).forEach(function(el){T.push({el:el,f:f,m:m,y:0})})}
+ add('.hero-bg',.08,'s');add('.grid>.card>img',.035,'c');add('.fin img',.03,'c');
+ function frame(){
+  run=false;var sy=scrollY,moving=false;vh=innerHeight;
+  T.forEach(function(t){var tg;
+   if(t.m==='s'){tg=wide()&&sy<vh*1.6?sy*t.f:0}
+   else{var r=t.el.getBoundingClientRect();if(r.bottom<-250||r.top>vh+250)return;
+    var d=r.top+r.height/2-t.y-vh/2;tg=clamp(-d*t.f,-t.el.offsetHeight*.065,t.el.offsetHeight*.065)}
+   t.y+=(tg-t.y)*.14;if(Math.abs(tg-t.y)>.04)moving=true;else t.y=tg;
+   t.el.style.setProperty('translate','0 '+t.y.toFixed(2)+'px','important')});
+  if(moving)kick();
+ }
+ function kick(){if(!run){run=true;requestAnimationFrame(frame)}}
+ addEventListener('scroll',kick,{passive:true});addEventListener('resize',kick);addEventListener('load',kick);kick();
+})();
 </script>
 </body>
 </html>
